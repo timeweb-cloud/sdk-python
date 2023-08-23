@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import openapi_client
-from openapi_client.models.finances import Finances  # noqa: E501
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.finances import Finances  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
 class TestFinances(unittest.TestCase):
     """Finances unit test stubs"""
@@ -36,7 +36,7 @@ class TestFinances(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `Finances`
         """
-        model = openapi_client.models.finances.Finances()  # noqa: E501
+        model = timeweb_cloud_api.models.finances.Finances()  # noqa: E501
         if include_optional :
             return Finances(
                 balance = 7378.3, 

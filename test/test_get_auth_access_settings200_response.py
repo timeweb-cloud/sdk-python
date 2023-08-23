@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import openapi_client
-from openapi_client.models.get_auth_access_settings200_response import GetAuthAccessSettings200Response  # noqa: E501
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.get_auth_access_settings200_response import GetAuthAccessSettings200Response  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
 class TestGetAuthAccessSettings200Response(unittest.TestCase):
     """GetAuthAccessSettings200Response unit test stubs"""
@@ -36,12 +36,12 @@ class TestGetAuthAccessSettings200Response(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `GetAuthAccessSettings200Response`
         """
-        model = openapi_client.models.get_auth_access_settings200_response.GetAuthAccessSettings200Response()  # noqa: E501
+        model = timeweb_cloud_api.models.get_auth_access_settings200_response.GetAuthAccessSettings200Response()  # noqa: E501
         if include_optional :
             return GetAuthAccessSettings200Response(
                 is_ip_restrictions_enabled = true, 
                 is_country_restrictions_enabled = true, 
-                white_list = openapi_client.models.get_auth_access_settings_200_response_white_list.getAuthAccessSettings_200_response_white_list(
+                white_list = timeweb_cloud_api.models.get_auth_access_settings_200_response_white_list.getAuthAccessSettings_200_response_white_list(
                     ips = null, 
                     countries = null, )
             )
@@ -49,7 +49,7 @@ class TestGetAuthAccessSettings200Response(unittest.TestCase):
             return GetAuthAccessSettings200Response(
                 is_ip_restrictions_enabled = true,
                 is_country_restrictions_enabled = true,
-                white_list = openapi_client.models.get_auth_access_settings_200_response_white_list.getAuthAccessSettings_200_response_white_list(
+                white_list = timeweb_cloud_api.models.get_auth_access_settings_200_response_white_list.getAuthAccessSettings_200_response_white_list(
                     ips = null, 
                     countries = null, ),
         )

@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.forwarding_incoming_is_enabled import ForwardingIncomingIsEnabled
+from timeweb_cloud_api.models.forwarding_incoming_is_enabled import ForwardingIncomingIsEnabled
 
 # TODO update the JSON string below
 json = "{}"

@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import openapi_client
-from openapi_client.models.database_cluster_disk_stats import DatabaseClusterDiskStats  # noqa: E501
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.database_cluster_disk_stats import DatabaseClusterDiskStats  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
 class TestDatabaseClusterDiskStats(unittest.TestCase):
     """DatabaseClusterDiskStats unit test stubs"""
@@ -36,7 +36,7 @@ class TestDatabaseClusterDiskStats(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `DatabaseClusterDiskStats`
         """
-        model = openapi_client.models.database_cluster_disk_stats.DatabaseClusterDiskStats()  # noqa: E501
+        model = timeweb_cloud_api.models.database_cluster_disk_stats.DatabaseClusterDiskStats()  # noqa: E501
         if include_optional :
             return DatabaseClusterDiskStats(
                 size = 10485760, 

@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.vpc import Vpc
+from timeweb_cloud_api.models.vpc import Vpc
 
 # TODO update the JSON string below
 json = "{}"

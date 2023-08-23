@@ -1,4 +1,4 @@
-# openapi_client.KubernetesApi
+# timeweb_cloud_api.KubernetesApi
 
 All URIs are relative to *https://api.timeweb.cloud*
 
@@ -38,15 +38,15 @@ Method | HTTP request | Description
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.cluster_in import ClusterIn
-from openapi_client.models.cluster_response import ClusterResponse
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.cluster_in import ClusterIn
+from timeweb_cloud_api.models.cluster_response import ClusterResponse
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -56,15 +56,15 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.KubernetesApi(api_client)
-    cluster_in = openapi_client.ClusterIn() # ClusterIn | 
+    api_instance = timeweb_cloud_api.KubernetesApi(api_client)
+    cluster_in = timeweb_cloud_api.ClusterIn() # ClusterIn | 
 
     try:
         # Создание кластера
@@ -119,15 +119,15 @@ Name | Type | Description  | Notes
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.node_group_in import NodeGroupIn
-from openapi_client.models.node_group_response import NodeGroupResponse
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.node_group_in import NodeGroupIn
+from timeweb_cloud_api.models.node_group_response import NodeGroupResponse
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -137,16 +137,16 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.KubernetesApi(api_client)
+    api_instance = timeweb_cloud_api.KubernetesApi(api_client)
     cluster_id = None # object | Уникальный идентификатор кластера
-    node_group_in = openapi_client.NodeGroupIn() # NodeGroupIn | 
+    node_group_in = timeweb_cloud_api.NodeGroupIn() # NodeGroupIn | 
 
     try:
         # Создание группы нод
@@ -204,14 +204,14 @@ Name | Type | Description  | Notes
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.delete_cluster200_response import DeleteCluster200Response
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.delete_cluster200_response import DeleteCluster200Response
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -221,14 +221,14 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.KubernetesApi(api_client)
+    api_instance = timeweb_cloud_api.KubernetesApi(api_client)
     cluster_id = None # object | Уникальный идентификатор кластера
     hash = 15095f25-aac3-4d60-a788-96cb5136f186 # object | Хеш, который совместно с кодом авторизации надо отправить для удаления, если включено подтверждение удаления сервисов через Телеграм. (optional)
     code = 0000 # object | Код подтверждения, который придет к вам в Телеграм, после запроса удаления, если включено подтверждение удаления сервисов.  При помощи API токена сервисы можно удалять без подтверждения, если параметр токена `is_able_to_delete` установлен в значение `true` (optional)
@@ -291,13 +291,13 @@ Name | Type | Description  | Notes
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -307,14 +307,14 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.KubernetesApi(api_client)
+    api_instance = timeweb_cloud_api.KubernetesApi(api_client)
     cluster_id = None # object | Уникальный идентификатор кластера
     node_id = None # object | Уникальный идентификатор группы нод
 
@@ -372,13 +372,13 @@ void (empty response body)
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -388,14 +388,14 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.KubernetesApi(api_client)
+    api_instance = timeweb_cloud_api.KubernetesApi(api_client)
     cluster_id = None # object | Уникальный идентификатор кластера
     group_id = None # object | Уникальный идентификатор группы
 
@@ -453,14 +453,14 @@ void (empty response body)
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.cluster_response import ClusterResponse
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.cluster_response import ClusterResponse
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -470,14 +470,14 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.KubernetesApi(api_client)
+    api_instance = timeweb_cloud_api.KubernetesApi(api_client)
     cluster_id = None # object | Уникальный идентификатор кластера
 
     try:
@@ -535,13 +535,13 @@ Name | Type | Description  | Notes
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -551,14 +551,14 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.KubernetesApi(api_client)
+    api_instance = timeweb_cloud_api.KubernetesApi(api_client)
     cluster_id = None # object | Уникальный идентификатор кластера
 
     try:
@@ -616,14 +616,14 @@ Name | Type | Description  | Notes
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.node_group_response import NodeGroupResponse
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.node_group_response import NodeGroupResponse
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -633,14 +633,14 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.KubernetesApi(api_client)
+    api_instance = timeweb_cloud_api.KubernetesApi(api_client)
     cluster_id = None # object | Уникальный идентификатор кластера
     group_id = None # object | Уникальный идентификатор группы
 
@@ -700,14 +700,14 @@ Name | Type | Description  | Notes
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.node_groups_response import NodeGroupsResponse
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.node_groups_response import NodeGroupsResponse
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -717,14 +717,14 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.KubernetesApi(api_client)
+    api_instance = timeweb_cloud_api.KubernetesApi(api_client)
     cluster_id = None # object | Уникальный идентификатор кластера
 
     try:
@@ -782,14 +782,14 @@ Name | Type | Description  | Notes
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.nodes_response import NodesResponse
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.nodes_response import NodesResponse
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -799,14 +799,14 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.KubernetesApi(api_client)
+    api_instance = timeweb_cloud_api.KubernetesApi(api_client)
     cluster_id = None # object | Уникальный идентификатор кластера
 
     try:
@@ -864,14 +864,14 @@ Name | Type | Description  | Notes
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.nodes_response import NodesResponse
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.nodes_response import NodesResponse
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -881,14 +881,14 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.KubernetesApi(api_client)
+    api_instance = timeweb_cloud_api.KubernetesApi(api_client)
     cluster_id = None # object | Уникальный идентификатор кластера
     group_id = None # object | Уникальный идентификатор группы
     limit = None # object | Обозначает количество записей, которое необходимо вернуть. (optional)
@@ -952,14 +952,14 @@ Name | Type | Description  | Notes
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.resources_response import ResourcesResponse
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.resources_response import ResourcesResponse
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -969,14 +969,14 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.KubernetesApi(api_client)
+    api_instance = timeweb_cloud_api.KubernetesApi(api_client)
     cluster_id = None # object | Уникальный идентификатор кластера
 
     try:
@@ -1034,14 +1034,14 @@ Name | Type | Description  | Notes
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.clusters_response import ClustersResponse
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.clusters_response import ClustersResponse
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -1051,14 +1051,14 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.KubernetesApi(api_client)
+    api_instance = timeweb_cloud_api.KubernetesApi(api_client)
     limit = None # object | Обозначает количество записей, которое необходимо вернуть. (optional)
     offset = None # object | Указывает на смещение относительно начала списка. (optional)
 
@@ -1116,14 +1116,14 @@ Name | Type | Description  | Notes
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.network_drivers_response import NetworkDriversResponse
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.network_drivers_response import NetworkDriversResponse
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -1133,14 +1133,14 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.KubernetesApi(api_client)
+    api_instance = timeweb_cloud_api.KubernetesApi(api_client)
 
     try:
         # Получение списка сетевых драйверов k8s
@@ -1192,14 +1192,14 @@ This endpoint does not need any parameter.
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.k8_s_versions_response import K8SVersionsResponse
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.k8_s_versions_response import K8SVersionsResponse
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -1209,14 +1209,14 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.KubernetesApi(api_client)
+    api_instance = timeweb_cloud_api.KubernetesApi(api_client)
 
     try:
         # Получение списка версий k8s
@@ -1268,14 +1268,14 @@ This endpoint does not need any parameter.
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.presets_response import PresetsResponse
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.presets_response import PresetsResponse
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -1285,14 +1285,14 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.KubernetesApi(api_client)
+    api_instance = timeweb_cloud_api.KubernetesApi(api_client)
 
     try:
         # Получение списка тарифов
@@ -1344,15 +1344,15 @@ This endpoint does not need any parameter.
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.node_count import NodeCount
-from openapi_client.models.nodes_response import NodesResponse
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.node_count import NodeCount
+from timeweb_cloud_api.models.nodes_response import NodesResponse
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -1362,17 +1362,17 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.KubernetesApi(api_client)
+    api_instance = timeweb_cloud_api.KubernetesApi(api_client)
     cluster_id = None # object | Уникальный идентификатор кластера
     group_id = None # object | Уникальный идентификатор группы
-    node_count = openapi_client.NodeCount() # NodeCount | 
+    node_count = timeweb_cloud_api.NodeCount() # NodeCount | 
 
     try:
         # Увеличение количества нод в группе на указанное количество
@@ -1431,14 +1431,14 @@ Name | Type | Description  | Notes
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.node_count import NodeCount
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.node_count import NodeCount
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -1448,17 +1448,17 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.KubernetesApi(api_client)
+    api_instance = timeweb_cloud_api.KubernetesApi(api_client)
     cluster_id = None # object | Уникальный идентификатор кластера
     group_id = None # object | Уникальный идентификатор группы
-    node_count = openapi_client.NodeCount() # NodeCount | 
+    node_count = timeweb_cloud_api.NodeCount() # NodeCount | 
 
     try:
         # Уменьшение количества нод в группе на указанное количество
@@ -1515,15 +1515,15 @@ void (empty response body)
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.cluster_edit import ClusterEdit
-from openapi_client.models.cluster_response import ClusterResponse
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.cluster_edit import ClusterEdit
+from timeweb_cloud_api.models.cluster_response import ClusterResponse
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -1533,16 +1533,16 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.KubernetesApi(api_client)
+    api_instance = timeweb_cloud_api.KubernetesApi(api_client)
     cluster_id = None # object | Уникальный идентификатор кластера
-    cluster_edit = openapi_client.ClusterEdit() # ClusterEdit | 
+    cluster_edit = timeweb_cloud_api.ClusterEdit() # ClusterEdit | 
 
     try:
         # Обновление информации о кластере

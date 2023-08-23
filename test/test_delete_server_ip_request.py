@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import openapi_client
-from openapi_client.models.delete_server_ip_request import DeleteServerIPRequest  # noqa: E501
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.delete_server_ip_request import DeleteServerIPRequest  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
 class TestDeleteServerIPRequest(unittest.TestCase):
     """DeleteServerIPRequest unit test stubs"""
@@ -36,7 +36,7 @@ class TestDeleteServerIPRequest(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `DeleteServerIPRequest`
         """
-        model = openapi_client.models.delete_server_ip_request.DeleteServerIPRequest()  # noqa: E501
+        model = timeweb_cloud_api.models.delete_server_ip_request.DeleteServerIPRequest()  # noqa: E501
         if include_optional :
             return DeleteServerIPRequest(
                 ip = 1.1.1.1

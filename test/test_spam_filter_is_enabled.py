@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import openapi_client
-from openapi_client.models.spam_filter_is_enabled import SpamFilterIsEnabled  # noqa: E501
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.spam_filter_is_enabled import SpamFilterIsEnabled  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
 class TestSpamFilterIsEnabled(unittest.TestCase):
     """SpamFilterIsEnabled unit test stubs"""
@@ -36,7 +36,7 @@ class TestSpamFilterIsEnabled(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `SpamFilterIsEnabled`
         """
-        model = openapi_client.models.spam_filter_is_enabled.SpamFilterIsEnabled()  # noqa: E501
+        model = timeweb_cloud_api.models.spam_filter_is_enabled.SpamFilterIsEnabled()  # noqa: E501
         if include_optional :
             return SpamFilterIsEnabled(
                 is_enabled = true, 

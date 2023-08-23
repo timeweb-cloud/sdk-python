@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.presets_storage import PresetsStorage
+from timeweb_cloud_api.models.presets_storage import PresetsStorage
 
 # TODO update the JSON string below
 json = "{}"

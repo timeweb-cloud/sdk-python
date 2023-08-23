@@ -1,4 +1,4 @@
-# openapi_client.DomainsApi
+# timeweb_cloud_api.DomainsApi
 
 All URIs are relative to *https://api.timeweb.cloud*
 
@@ -40,13 +40,13 @@ Method | HTTP request | Description
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -56,14 +56,14 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.DomainsApi(api_client)
+    api_instance = timeweb_cloud_api.DomainsApi(api_client)
     fqdn = somedomain.ru # object | Полное имя домена.
 
     try:
@@ -118,14 +118,14 @@ void (empty response body)
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.add_subdomain201_response import AddSubdomain201Response
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.add_subdomain201_response import AddSubdomain201Response
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -135,14 +135,14 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.DomainsApi(api_client)
+    api_instance = timeweb_cloud_api.DomainsApi(api_client)
     fqdn = somedomain.ru # object | Полное имя домена.
     subdomain_fqdn = sub.somedomain.ru # object | Полное имя поддомена.
 
@@ -201,14 +201,14 @@ Name | Type | Description  | Notes
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.check_domain200_response import CheckDomain200Response
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.check_domain200_response import CheckDomain200Response
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -218,14 +218,14 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.DomainsApi(api_client)
+    api_instance = timeweb_cloud_api.DomainsApi(api_client)
     fqdn = somedomain.ru # object | Полное имя домена.
 
     try:
@@ -281,15 +281,15 @@ Name | Type | Description  | Notes
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.create_dns import CreateDns
-from openapi_client.models.create_domain_dns_record201_response import CreateDomainDNSRecord201Response
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.create_dns import CreateDns
+from timeweb_cloud_api.models.create_domain_dns_record201_response import CreateDomainDNSRecord201Response
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -299,16 +299,16 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.DomainsApi(api_client)
+    api_instance = timeweb_cloud_api.DomainsApi(api_client)
     fqdn = somedomain.ru # object | Полное имя домена или поддомена.
-    create_dns = openapi_client.CreateDns() # CreateDns | 
+    create_dns = timeweb_cloud_api.CreateDns() # CreateDns | 
 
     try:
         # Добавить информацию о DNS-записи для домена или поддомена
@@ -365,15 +365,15 @@ Name | Type | Description  | Notes
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.create_domain_request201_response import CreateDomainRequest201Response
-from openapi_client.models.domain_register import DomainRegister
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.create_domain_request201_response import CreateDomainRequest201Response
+from timeweb_cloud_api.models.domain_register import DomainRegister
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -383,15 +383,15 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.DomainsApi(api_client)
-    domain_register = openapi_client.DomainRegister() # DomainRegister | 
+    api_instance = timeweb_cloud_api.DomainsApi(api_client)
+    domain_register = timeweb_cloud_api.DomainRegister() # DomainRegister | 
 
     try:
         # Создание заявки на регистрацию/продление/трансфер домена
@@ -447,13 +447,13 @@ Name | Type | Description  | Notes
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -463,14 +463,14 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.DomainsApi(api_client)
+    api_instance = timeweb_cloud_api.DomainsApi(api_client)
     fqdn = somedomain.ru # object | Полное имя домена.
 
     try:
@@ -526,13 +526,13 @@ void (empty response body)
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -542,14 +542,14 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.DomainsApi(api_client)
+    api_instance = timeweb_cloud_api.DomainsApi(api_client)
     fqdn = somedomain.ru # object | Полное имя домена или поддомена.
     record_id = 123 # object | Идентификатор DNS-записи домена или поддомена.
 
@@ -606,13 +606,13 @@ void (empty response body)
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -622,14 +622,14 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.DomainsApi(api_client)
+    api_instance = timeweb_cloud_api.DomainsApi(api_client)
     fqdn = somedomain.ru # object | Полное имя домена.
     subdomain_fqdn = sub.somedomain.ru # object | Полное имя поддомена.
 
@@ -687,14 +687,14 @@ void (empty response body)
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.get_domain200_response import GetDomain200Response
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.get_domain200_response import GetDomain200Response
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -704,14 +704,14 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.DomainsApi(api_client)
+    api_instance = timeweb_cloud_api.DomainsApi(api_client)
     fqdn = somedomain.ru # object | Полное имя домена.
 
     try:
@@ -768,14 +768,14 @@ Name | Type | Description  | Notes
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.get_domain_dns_records200_response import GetDomainDNSRecords200Response
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.get_domain_dns_records200_response import GetDomainDNSRecords200Response
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -785,14 +785,14 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.DomainsApi(api_client)
+    api_instance = timeweb_cloud_api.DomainsApi(api_client)
     fqdn = somedomain.ru # object | Полное имя домена или поддомена.
     limit = None # object | Обозначает количество записей, которое необходимо вернуть. (optional)
     offset = None # object | Указывает на смещение относительно начала списка. (optional)
@@ -853,14 +853,14 @@ Name | Type | Description  | Notes
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.get_domain_dns_records200_response import GetDomainDNSRecords200Response
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.get_domain_dns_records200_response import GetDomainDNSRecords200Response
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -870,14 +870,14 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.DomainsApi(api_client)
+    api_instance = timeweb_cloud_api.DomainsApi(api_client)
     fqdn = somedomain.ru # object | Полное имя домена или поддомена.
     limit = None # object | Обозначает количество записей, которое необходимо вернуть. (optional)
     offset = None # object | Указывает на смещение относительно начала списка. (optional)
@@ -938,14 +938,14 @@ Name | Type | Description  | Notes
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.get_domain_name_servers200_response import GetDomainNameServers200Response
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.get_domain_name_servers200_response import GetDomainNameServers200Response
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -955,14 +955,14 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.DomainsApi(api_client)
+    api_instance = timeweb_cloud_api.DomainsApi(api_client)
     fqdn = somedomain.ru # object | Полное имя домена.
 
     try:
@@ -1019,14 +1019,14 @@ Name | Type | Description  | Notes
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.create_domain_request201_response import CreateDomainRequest201Response
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.create_domain_request201_response import CreateDomainRequest201Response
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -1036,14 +1036,14 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.DomainsApi(api_client)
+    api_instance = timeweb_cloud_api.DomainsApi(api_client)
     request_id = 123 # object | Идентификатор заявки на регистрацию/продление/трансфер домена.
 
     try:
@@ -1100,14 +1100,14 @@ Name | Type | Description  | Notes
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.get_domain_requests200_response import GetDomainRequests200Response
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.get_domain_requests200_response import GetDomainRequests200Response
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -1117,14 +1117,14 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.DomainsApi(api_client)
+    api_instance = timeweb_cloud_api.DomainsApi(api_client)
     person_id = 123 # object | Идентификатор администратора, на которого зарегистрирован домен. (optional)
 
     try:
@@ -1180,14 +1180,14 @@ Name | Type | Description  | Notes
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.get_domains200_response import GetDomains200Response
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.get_domains200_response import GetDomains200Response
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -1197,14 +1197,14 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.DomainsApi(api_client)
+    api_instance = timeweb_cloud_api.DomainsApi(api_client)
     limit = None # object | Обозначает количество записей, которое необходимо вернуть. (optional)
     offset = None # object | Указывает на смещение относительно начала списка. (optional)
     idn_name = xn--e1afmkfd.xn--p1ai # object | Интернационализированное доменное имя. (optional)
@@ -1270,14 +1270,14 @@ Name | Type | Description  | Notes
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.get_tld200_response import GetTLD200Response
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.get_tld200_response import GetTLD200Response
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -1287,14 +1287,14 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.DomainsApi(api_client)
+    api_instance = timeweb_cloud_api.DomainsApi(api_client)
     tld_id = 123 # object | Идентификатор доменной зоны.
 
     try:
@@ -1351,14 +1351,14 @@ Name | Type | Description  | Notes
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.get_tlds200_response import GetTLDs200Response
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.get_tlds200_response import GetTLDs200Response
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -1368,14 +1368,14 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.DomainsApi(api_client)
+    api_instance = timeweb_cloud_api.DomainsApi(api_client)
     is_published = true # object | Это логическое значение, которое показывает, опубликована ли доменная зона. (optional)
     is_registered = true # object | Это логическое значение, которое показывает, зарегистрирована ли доменная зона. (optional)
 
@@ -1433,15 +1433,15 @@ Name | Type | Description  | Notes
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.update_domain import UpdateDomain
-from openapi_client.models.update_domain_auto_prolongation200_response import UpdateDomainAutoProlongation200Response
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.update_domain import UpdateDomain
+from timeweb_cloud_api.models.update_domain_auto_prolongation200_response import UpdateDomainAutoProlongation200Response
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -1451,16 +1451,16 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.DomainsApi(api_client)
+    api_instance = timeweb_cloud_api.DomainsApi(api_client)
     fqdn = somedomain.ru # object | Полное имя домена.
-    update_domain = openapi_client.UpdateDomain() # UpdateDomain | 
+    update_domain = timeweb_cloud_api.UpdateDomain() # UpdateDomain | 
 
     try:
         # Включение/выключение автопродления домена
@@ -1518,15 +1518,15 @@ Name | Type | Description  | Notes
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.create_dns import CreateDns
-from openapi_client.models.create_domain_dns_record201_response import CreateDomainDNSRecord201Response
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.create_dns import CreateDns
+from timeweb_cloud_api.models.create_domain_dns_record201_response import CreateDomainDNSRecord201Response
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -1536,17 +1536,17 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.DomainsApi(api_client)
+    api_instance = timeweb_cloud_api.DomainsApi(api_client)
     fqdn = somedomain.ru # object | Полное имя домена или поддомена.
     record_id = 123 # object | Идентификатор DNS-записи домена или поддомена.
-    create_dns = openapi_client.CreateDns() # CreateDns | 
+    create_dns = timeweb_cloud_api.CreateDns() # CreateDns | 
 
     try:
         # Обновить информацию о DNS-записи домена или поддомена
@@ -1604,15 +1604,15 @@ Name | Type | Description  | Notes
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.get_domain_name_servers200_response import GetDomainNameServers200Response
-from openapi_client.models.update_domain_name_servers import UpdateDomainNameServers
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.get_domain_name_servers200_response import GetDomainNameServers200Response
+from timeweb_cloud_api.models.update_domain_name_servers import UpdateDomainNameServers
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -1622,16 +1622,16 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.DomainsApi(api_client)
+    api_instance = timeweb_cloud_api.DomainsApi(api_client)
     fqdn = somedomain.ru # object | Полное имя домена.
-    update_domain_name_servers = openapi_client.UpdateDomainNameServers() # UpdateDomainNameServers | 
+    update_domain_name_servers = timeweb_cloud_api.UpdateDomainNameServers() # UpdateDomainNameServers | 
 
     try:
         # Изменение name-серверов домена
@@ -1688,15 +1688,15 @@ Name | Type | Description  | Notes
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.create_domain_request201_response import CreateDomainRequest201Response
-from openapi_client.models.use import Use
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.create_domain_request201_response import CreateDomainRequest201Response
+from timeweb_cloud_api.models.use import Use
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -1706,16 +1706,16 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.DomainsApi(api_client)
+    api_instance = timeweb_cloud_api.DomainsApi(api_client)
     request_id = 123 # object | Идентификатор заявки на регистрацию/продление/трансфер домена.
-    use = openapi_client.Use() # Use | 
+    use = timeweb_cloud_api.Use() # Use | 
 
     try:
         # Оплата/обновление заявки на регистрацию/продление/трансфер домена

@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.update_server_os_boot_mode_request import UpdateServerOSBootModeRequest
+from timeweb_cloud_api.models.update_server_os_boot_mode_request import UpdateServerOSBootModeRequest
 
 # TODO update the JSON string below
 json = "{}"

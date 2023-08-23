@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import openapi_client
-from openapi_client.models.mailbox import Mailbox  # noqa: E501
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.mailbox import Mailbox  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
 class TestMailbox(unittest.TestCase):
     """Mailbox unit test stubs"""
@@ -36,23 +36,23 @@ class TestMailbox(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `Mailbox`
         """
-        model = openapi_client.models.mailbox.Mailbox()  # noqa: E501
+        model = timeweb_cloud_api.models.mailbox.Mailbox()  # noqa: E501
         if include_optional :
             return Mailbox(
-                auto_reply = openapi_client.models.mailbox_auto_reply.mailbox_auto_reply(
+                auto_reply = timeweb_cloud_api.models.mailbox_auto_reply.mailbox_auto_reply(
                     is_enabled = true, 
                     message = some message, 
                     subject = some subject, ), 
-                spam_filter = openapi_client.models.mailbox_spam_filter.mailbox_spam_filter(
+                spam_filter = timeweb_cloud_api.models.mailbox_spam_filter.mailbox_spam_filter(
                     is_enabled = true, 
                     action = forward, 
                     forward_to = test@timeweb.ru, 
                     white_list = null, ), 
-                forwarding_incoming = openapi_client.models.mailbox_forwarding_incoming.mailbox_forwarding_incoming(
+                forwarding_incoming = timeweb_cloud_api.models.mailbox_forwarding_incoming.mailbox_forwarding_incoming(
                     is_enabled = true, 
                     is_delete_messages = false, 
                     incoming_list = null, ), 
-                forwarding_outgoing = openapi_client.models.mailbox_forwarding_outgoing.mailbox_forwarding_outgoing(
+                forwarding_outgoing = timeweb_cloud_api.models.mailbox_forwarding_outgoing.mailbox_forwarding_outgoing(
                     is_enabled = true, 
                     outgoing_to = test@timeweb.ru, ), 
                 comment = some comment, 
@@ -66,20 +66,20 @@ class TestMailbox(unittest.TestCase):
             )
         else :
             return Mailbox(
-                auto_reply = openapi_client.models.mailbox_auto_reply.mailbox_auto_reply(
+                auto_reply = timeweb_cloud_api.models.mailbox_auto_reply.mailbox_auto_reply(
                     is_enabled = true, 
                     message = some message, 
                     subject = some subject, ),
-                spam_filter = openapi_client.models.mailbox_spam_filter.mailbox_spam_filter(
+                spam_filter = timeweb_cloud_api.models.mailbox_spam_filter.mailbox_spam_filter(
                     is_enabled = true, 
                     action = forward, 
                     forward_to = test@timeweb.ru, 
                     white_list = null, ),
-                forwarding_incoming = openapi_client.models.mailbox_forwarding_incoming.mailbox_forwarding_incoming(
+                forwarding_incoming = timeweb_cloud_api.models.mailbox_forwarding_incoming.mailbox_forwarding_incoming(
                     is_enabled = true, 
                     is_delete_messages = false, 
                     incoming_list = null, ),
-                forwarding_outgoing = openapi_client.models.mailbox_forwarding_outgoing.mailbox_forwarding_outgoing(
+                forwarding_outgoing = timeweb_cloud_api.models.mailbox_forwarding_outgoing.mailbox_forwarding_outgoing(
                     is_enabled = true, 
                     outgoing_to = test@timeweb.ru, ),
                 comment = some comment,

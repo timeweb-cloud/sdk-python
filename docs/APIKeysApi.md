@@ -1,4 +1,4 @@
-# openapi_client.APIKeysApi
+# timeweb_cloud_api.APIKeysApi
 
 All URIs are relative to *https://api.timeweb.cloud*
 
@@ -24,15 +24,15 @@ Method | HTTP request | Description
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.create_api_key import CreateApiKey
-from openapi_client.models.create_token201_response import CreateToken201Response
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.create_api_key import CreateApiKey
+from timeweb_cloud_api.models.create_token201_response import CreateToken201Response
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -42,15 +42,15 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.APIKeysApi(api_client)
-    create_api_key = openapi_client.CreateApiKey() # CreateApiKey | 
+    api_instance = timeweb_cloud_api.APIKeysApi(api_client)
+    create_api_key = timeweb_cloud_api.CreateApiKey() # CreateApiKey | 
 
     try:
         # Создание токена
@@ -107,13 +107,13 @@ Name | Type | Description  | Notes
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -123,14 +123,14 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.APIKeysApi(api_client)
+    api_instance = timeweb_cloud_api.APIKeysApi(api_client)
     token_id = None # object | Идентификатор токена
 
     try:
@@ -186,14 +186,14 @@ void (empty response body)
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.get_tokens200_response import GetTokens200Response
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.get_tokens200_response import GetTokens200Response
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -203,14 +203,14 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.APIKeysApi(api_client)
+    api_instance = timeweb_cloud_api.APIKeysApi(api_client)
 
     try:
         # Получение списка выпущенных токенов
@@ -264,15 +264,15 @@ This endpoint does not need any parameter.
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.create_token201_response import CreateToken201Response
-from openapi_client.models.refresh_api_key import RefreshApiKey
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.create_token201_response import CreateToken201Response
+from timeweb_cloud_api.models.refresh_api_key import RefreshApiKey
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -282,16 +282,16 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.APIKeysApi(api_client)
+    api_instance = timeweb_cloud_api.APIKeysApi(api_client)
     token_id = None # object | Идентификатор токена
-    refresh_api_key = openapi_client.RefreshApiKey() # RefreshApiKey | 
+    refresh_api_key = timeweb_cloud_api.RefreshApiKey() # RefreshApiKey | 
 
     try:
         # Перевыпустить токен
@@ -349,15 +349,15 @@ Name | Type | Description  | Notes
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.edit_api_key import EditApiKey
-from openapi_client.models.update_token200_response import UpdateToken200Response
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.edit_api_key import EditApiKey
+from timeweb_cloud_api.models.update_token200_response import UpdateToken200Response
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -367,16 +367,16 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.APIKeysApi(api_client)
+    api_instance = timeweb_cloud_api.APIKeysApi(api_client)
     token_id = None # object | Идентификатор токена
-    edit_api_key = openapi_client.EditApiKey() # EditApiKey | 
+    edit_api_key = timeweb_cloud_api.EditApiKey() # EditApiKey | 
 
     try:
         # Изменить токен

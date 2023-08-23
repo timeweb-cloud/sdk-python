@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.dns_record_data import DnsRecordData
+from timeweb_cloud_api.models.dns_record_data import DnsRecordData
 
 # TODO update the JSON string below
 json = "{}"

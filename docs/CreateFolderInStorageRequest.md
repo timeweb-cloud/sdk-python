@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.create_folder_in_storage_request import CreateFolderInStorageRequest
+from timeweb_cloud_api.models.create_folder_in_storage_request import CreateFolderInStorageRequest
 
 # TODO update the JSON string below
 json = "{}"

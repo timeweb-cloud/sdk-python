@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import openapi_client
-from openapi_client.models.update_server_ip_request import UpdateServerIPRequest  # noqa: E501
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.update_server_ip_request import UpdateServerIPRequest  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
 class TestUpdateServerIPRequest(unittest.TestCase):
     """UpdateServerIPRequest unit test stubs"""
@@ -36,7 +36,7 @@ class TestUpdateServerIPRequest(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `UpdateServerIPRequest`
         """
-        model = openapi_client.models.update_server_ip_request.UpdateServerIPRequest()  # noqa: E501
+        model = timeweb_cloud_api.models.update_server_ip_request.UpdateServerIPRequest()  # noqa: E501
         if include_optional :
             return UpdateServerIPRequest(
                 ip = 1.1.1.1, 

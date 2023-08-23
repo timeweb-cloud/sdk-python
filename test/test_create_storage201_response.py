@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import openapi_client
-from openapi_client.models.create_storage201_response import CreateStorage201Response  # noqa: E501
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.create_storage201_response import CreateStorage201Response  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
 class TestCreateStorage201Response(unittest.TestCase):
     """CreateStorage201Response unit test stubs"""
@@ -36,13 +36,13 @@ class TestCreateStorage201Response(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `CreateStorage201Response`
         """
-        model = openapi_client.models.create_storage201_response.CreateStorage201Response()  # noqa: E501
+        model = timeweb_cloud_api.models.create_storage201_response.CreateStorage201Response()  # noqa: E501
         if include_optional :
             return CreateStorage201Response(
-                bucket = openapi_client.models.bucket.bucket(
+                bucket = timeweb_cloud_api.models.bucket.bucket(
                     id = 1, 
                     name = Cute Quail, 
-                    disk_stats = openapi_client.models.bucket_disk_stats.bucket_disk_stats(
+                    disk_stats = timeweb_cloud_api.models.bucket_disk_stats.bucket_disk_stats(
                         size = 10485760, 
                         used = 486.11328125, ), 
                     type = public, 
@@ -56,10 +56,10 @@ class TestCreateStorage201Response(unittest.TestCase):
             )
         else :
             return CreateStorage201Response(
-                bucket = openapi_client.models.bucket.bucket(
+                bucket = timeweb_cloud_api.models.bucket.bucket(
                     id = 1, 
                     name = Cute Quail, 
-                    disk_stats = openapi_client.models.bucket_disk_stats.bucket_disk_stats(
+                    disk_stats = timeweb_cloud_api.models.bucket_disk_stats.bucket_disk_stats(
                         size = 10485760, 
                         used = 486.11328125, ), 
                     type = public, 

@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import openapi_client
-from openapi_client.models.update_token200_response import UpdateToken200Response  # noqa: E501
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.update_token200_response import UpdateToken200Response  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
 class TestUpdateToken200Response(unittest.TestCase):
     """UpdateToken200Response unit test stubs"""
@@ -36,10 +36,10 @@ class TestUpdateToken200Response(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `UpdateToken200Response`
         """
-        model = openapi_client.models.update_token200_response.UpdateToken200Response()  # noqa: E501
+        model = timeweb_cloud_api.models.update_token200_response.UpdateToken200Response()  # noqa: E501
         if include_optional :
             return UpdateToken200Response(
-                api_key = openapi_client.models.api_key.api-key(
+                api_key = timeweb_cloud_api.models.api_key.api-key(
                     id = 913a3a06-1eb9-4e9c-bc63-6ca6944e883b, 
                     created_at = 2022-10-25T15:15:45.000Z, 
                     name = Example, 
@@ -48,7 +48,7 @@ class TestUpdateToken200Response(unittest.TestCase):
             )
         else :
             return UpdateToken200Response(
-                api_key = openapi_client.models.api_key.api-key(
+                api_key = timeweb_cloud_api.models.api_key.api-key(
                     id = 913a3a06-1eb9-4e9c-bc63-6ca6944e883b, 
                     created_at = 2022-10-25T15:15:45.000Z, 
                     name = Example, 

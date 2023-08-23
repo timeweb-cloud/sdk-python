@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import openapi_client
-from openapi_client.models.vds import Vds  # noqa: E501
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.vds import Vds  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
 class TestVds(unittest.TestCase):
     """Vds unit test stubs"""
@@ -36,18 +36,18 @@ class TestVds(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `Vds`
         """
-        model = openapi_client.models.vds.Vds()  # noqa: E501
+        model = timeweb_cloud_api.models.vds.Vds()  # noqa: E501
         if include_optional :
             return Vds(
                 id = 1, 
                 name = Cute Quail, 
                 comment = Development Server, 
                 created_at = 2021-02-25T11:04:15Z, 
-                os = openapi_client.models.vds_os.vds_os(
+                os = timeweb_cloud_api.models.vds_os.vds_os(
                     id = 1, 
                     name = bitrix, 
                     version = 18.04, ), 
-                software = openapi_client.models.vds_software.vds_software(
+                software = timeweb_cloud_api.models.vds_software.vds_software(
                     id = 1, 
                     name = name, ), 
                 preset_id = 11, 
@@ -72,11 +72,11 @@ class TestVds(unittest.TestCase):
                 name = Cute Quail,
                 comment = Development Server,
                 created_at = 2021-02-25T11:04:15Z,
-                os = openapi_client.models.vds_os.vds_os(
+                os = timeweb_cloud_api.models.vds_os.vds_os(
                     id = 1, 
                     name = bitrix, 
                     version = 18.04, ),
-                software = openapi_client.models.vds_software.vds_software(
+                software = timeweb_cloud_api.models.vds_software.vds_software(
                     id = 1, 
                     name = name, ),
                 preset_id = 11,

@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import openapi_client
-from openapi_client.models.vpc_port import VpcPort  # noqa: E501
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.vpc_port import VpcPort  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
 class TestVpcPort(unittest.TestCase):
     """VpcPort unit test stubs"""
@@ -36,14 +36,14 @@ class TestVpcPort(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `VpcPort`
         """
-        model = openapi_client.models.vpc_port.VpcPort()  # noqa: E501
+        model = timeweb_cloud_api.models.vpc_port.VpcPort()  # noqa: E501
         if include_optional :
             return VpcPort(
                 id = d05673e4-1c74-46g4-b98f-aa3d42a99079, 
                 nat_mode = dnat_and_snat, 
                 mac = 51:43:35:c3:aa:fa, 
                 ipv4 = 172.16.16.2, 
-                service = openapi_client.models.vpc_port_service.vpc_port_service(
+                service = timeweb_cloud_api.models.vpc_port_service.vpc_port_service(
                     id = 1, 
                     type = server, 
                     name = Example, )
@@ -54,7 +54,7 @@ class TestVpcPort(unittest.TestCase):
                 nat_mode = dnat_and_snat,
                 mac = 51:43:35:c3:aa:fa,
                 ipv4 = 172.16.16.2,
-                service = openapi_client.models.vpc_port_service.vpc_port_service(
+                service = timeweb_cloud_api.models.vpc_port_service.vpc_port_service(
                     id = 1, 
                     type = server, 
                     name = Example, ),

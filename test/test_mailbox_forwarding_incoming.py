@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import openapi_client
-from openapi_client.models.mailbox_forwarding_incoming import MailboxForwardingIncoming  # noqa: E501
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.mailbox_forwarding_incoming import MailboxForwardingIncoming  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
 class TestMailboxForwardingIncoming(unittest.TestCase):
     """MailboxForwardingIncoming unit test stubs"""
@@ -36,7 +36,7 @@ class TestMailboxForwardingIncoming(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `MailboxForwardingIncoming`
         """
-        model = openapi_client.models.mailbox_forwarding_incoming.MailboxForwardingIncoming()  # noqa: E501
+        model = timeweb_cloud_api.models.mailbox_forwarding_incoming.MailboxForwardingIncoming()  # noqa: E501
         if include_optional :
             return MailboxForwardingIncoming(
                 is_enabled = true, 

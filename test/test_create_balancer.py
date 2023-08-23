@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import openapi_client
-from openapi_client.models.create_balancer import CreateBalancer  # noqa: E501
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.create_balancer import CreateBalancer  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
 class TestCreateBalancer(unittest.TestCase):
     """CreateBalancer unit test stubs"""
@@ -36,7 +36,7 @@ class TestCreateBalancer(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `CreateBalancer`
         """
-        model = openapi_client.models.create_balancer.CreateBalancer()  # noqa: E501
+        model = timeweb_cloud_api.models.create_balancer.CreateBalancer()  # noqa: E501
         if include_optional :
             return CreateBalancer(
                 name = Cute Quail, 
@@ -53,7 +53,7 @@ class TestCreateBalancer(unittest.TestCase):
                 fall = 3, 
                 rise = 2, 
                 preset_id = 5, 
-                network = openapi_client.models.network.network(
+                network = timeweb_cloud_api.models.network.network(
                     id = network-1234567890, 
                     ip = 192.168.0.0, )
             )

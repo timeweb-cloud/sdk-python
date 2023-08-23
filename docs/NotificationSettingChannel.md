@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.notification_setting_channel import NotificationSettingChannel
+from timeweb_cloud_api.models.notification_setting_channel import NotificationSettingChannel
 
 # TODO update the JSON string below
 json = "{}"

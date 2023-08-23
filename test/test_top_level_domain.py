@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import openapi_client
-from openapi_client.models.top_level_domain import TopLevelDomain  # noqa: E501
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.top_level_domain import TopLevelDomain  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
 class TestTopLevelDomain(unittest.TestCase):
     """TopLevelDomain unit test stubs"""
@@ -36,7 +36,7 @@ class TestTopLevelDomain(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `TopLevelDomain`
         """
-        model = openapi_client.models.top_level_domain.TopLevelDomain()  # noqa: E501
+        model = timeweb_cloud_api.models.top_level_domain.TopLevelDomain()  # noqa: E501
         if include_optional :
             return TopLevelDomain(
                 allowed_buy_periods = None, 

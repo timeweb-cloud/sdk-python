@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.quota import Quota
+from timeweb_cloud_api.models.quota import Quota
 
 # TODO update the JSON string below
 json = "{}"

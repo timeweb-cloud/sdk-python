@@ -1,4 +1,4 @@
-# openapi_client.VPCApi
+# timeweb_cloud_api.VPCApi
 
 All URIs are relative to *https://api.timeweb.cloud*
 
@@ -26,15 +26,15 @@ Method | HTTP request | Description
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.create_vpc201_response import CreateVPC201Response
-from openapi_client.models.create_vpc import CreateVpc
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.create_vpc201_response import CreateVPC201Response
+from timeweb_cloud_api.models.create_vpc import CreateVpc
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -44,15 +44,15 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.VPCApi(api_client)
-    create_vpc = openapi_client.CreateVpc() # CreateVpc | 
+    api_instance = timeweb_cloud_api.VPCApi(api_client)
+    create_vpc = timeweb_cloud_api.CreateVpc() # CreateVpc | 
 
     try:
         # Создание VPC
@@ -109,14 +109,14 @@ Name | Type | Description  | Notes
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.create_vpc201_response import CreateVPC201Response
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.create_vpc201_response import CreateVPC201Response
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -126,14 +126,14 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.VPCApi(api_client)
+    api_instance = timeweb_cloud_api.VPCApi(api_client)
     vpc_id = network-1234567890 # object | Идентификатор сети
 
     try:
@@ -191,14 +191,14 @@ Name | Type | Description  | Notes
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.create_vpc201_response import CreateVPC201Response
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.create_vpc201_response import CreateVPC201Response
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -208,14 +208,14 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.VPCApi(api_client)
+    api_instance = timeweb_cloud_api.VPCApi(api_client)
     vpc_id = network-1234567890 # object | Идентификатор сети
 
     try:
@@ -273,14 +273,14 @@ Name | Type | Description  | Notes
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.get_vpc_ports200_response import GetVPCPorts200Response
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.get_vpc_ports200_response import GetVPCPorts200Response
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -290,14 +290,14 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.VPCApi(api_client)
+    api_instance = timeweb_cloud_api.VPCApi(api_client)
     vpc_id = network-1234567890 # object | Идентификатор сети
 
     try:
@@ -355,14 +355,14 @@ Name | Type | Description  | Notes
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.get_vpc_services200_response import GetVPCServices200Response
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.get_vpc_services200_response import GetVPCServices200Response
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -372,14 +372,14 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.VPCApi(api_client)
+    api_instance = timeweb_cloud_api.VPCApi(api_client)
     vpc_id = network-1234567890 # object | Идентификатор сети
 
     try:
@@ -437,14 +437,14 @@ Name | Type | Description  | Notes
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.get_vpcs200_response import GetVPCs200Response
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.get_vpcs200_response import GetVPCs200Response
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -454,14 +454,14 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.VPCApi(api_client)
+    api_instance = timeweb_cloud_api.VPCApi(api_client)
 
     try:
         # Получение списка VPCs
@@ -515,15 +515,15 @@ This endpoint does not need any parameter.
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.create_vpc201_response import CreateVPC201Response
-from openapi_client.models.update_vpc import UpdateVpc
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.create_vpc201_response import CreateVPC201Response
+from timeweb_cloud_api.models.update_vpc import UpdateVpc
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -533,16 +533,16 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.VPCApi(api_client)
+    api_instance = timeweb_cloud_api.VPCApi(api_client)
     vpc_id = network-1234567890 # object | Идентификатор сети
-    update_vpc = openapi_client.UpdateVpc() # UpdateVpc | 
+    update_vpc = timeweb_cloud_api.UpdateVpc() # UpdateVpc | 
 
     try:
         # Изменение VPC по идентификатору сети

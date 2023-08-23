@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import openapi_client
-from openapi_client.models.create_domain_mailbox_request import CreateDomainMailboxRequest  # noqa: E501
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.create_domain_mailbox_request import CreateDomainMailboxRequest  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
 class TestCreateDomainMailboxRequest(unittest.TestCase):
     """CreateDomainMailboxRequest unit test stubs"""
@@ -36,7 +36,7 @@ class TestCreateDomainMailboxRequest(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `CreateDomainMailboxRequest`
         """
-        model = openapi_client.models.create_domain_mailbox_request.CreateDomainMailboxRequest()  # noqa: E501
+        model = timeweb_cloud_api.models.create_domain_mailbox_request.CreateDomainMailboxRequest()  # noqa: E501
         if include_optional :
             return CreateDomainMailboxRequest(
                 mailbox = mailbox, 

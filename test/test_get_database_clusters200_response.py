@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import openapi_client
-from openapi_client.models.get_database_clusters200_response import GetDatabaseClusters200Response  # noqa: E501
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.get_database_clusters200_response import GetDatabaseClusters200Response  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
 class TestGetDatabaseClusters200Response(unittest.TestCase):
     """GetDatabaseClusters200Response unit test stubs"""
@@ -36,16 +36,16 @@ class TestGetDatabaseClusters200Response(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `GetDatabaseClusters200Response`
         """
-        model = openapi_client.models.get_database_clusters200_response.GetDatabaseClusters200Response()  # noqa: E501
+        model = timeweb_cloud_api.models.get_database_clusters200_response.GetDatabaseClusters200Response()  # noqa: E501
         if include_optional :
             return GetDatabaseClusters200Response(
-                meta = openapi_client.models.meta.meta(
+                meta = timeweb_cloud_api.models.meta.meta(
                     total = 10, ), 
                 dbs = None
             )
         else :
             return GetDatabaseClusters200Response(
-                meta = openapi_client.models.meta.meta(
+                meta = timeweb_cloud_api.models.meta.meta(
                     total = 10, ),
                 dbs = None,
         )

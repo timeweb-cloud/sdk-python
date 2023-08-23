@@ -1,4 +1,4 @@
-# openapi_client.AccountApi
+# timeweb_cloud_api.AccountApi
 
 All URIs are relative to *https://api.timeweb.cloud*
 
@@ -31,15 +31,15 @@ Method | HTTP request | Description
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.add_countries_to_allowed_list201_response import AddCountriesToAllowedList201Response
-from openapi_client.models.add_countries_to_allowed_list_request import AddCountriesToAllowedListRequest
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.add_countries_to_allowed_list201_response import AddCountriesToAllowedList201Response
+from timeweb_cloud_api.models.add_countries_to_allowed_list_request import AddCountriesToAllowedListRequest
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -49,15 +49,15 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.AccountApi(api_client)
-    add_countries_to_allowed_list_request = openapi_client.AddCountriesToAllowedListRequest() # AddCountriesToAllowedListRequest | 
+    api_instance = timeweb_cloud_api.AccountApi(api_client)
+    add_countries_to_allowed_list_request = timeweb_cloud_api.AddCountriesToAllowedListRequest() # AddCountriesToAllowedListRequest | 
 
     try:
         # Добавление стран в список разрешенных
@@ -112,15 +112,15 @@ Name | Type | Description  | Notes
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.add_ips_to_allowed_list201_response import AddIPsToAllowedList201Response
-from openapi_client.models.add_ips_to_allowed_list_request import AddIPsToAllowedListRequest
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.add_ips_to_allowed_list201_response import AddIPsToAllowedList201Response
+from timeweb_cloud_api.models.add_ips_to_allowed_list_request import AddIPsToAllowedListRequest
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -130,15 +130,15 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.AccountApi(api_client)
-    add_ips_to_allowed_list_request = openapi_client.AddIPsToAllowedListRequest() # AddIPsToAllowedListRequest | 
+    api_instance = timeweb_cloud_api.AccountApi(api_client)
+    add_ips_to_allowed_list_request = timeweb_cloud_api.AddIPsToAllowedListRequest() # AddIPsToAllowedListRequest | 
 
     try:
         # Добавление IP-адресов в список разрешенных
@@ -193,15 +193,15 @@ Name | Type | Description  | Notes
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.delete_countries_from_allowed_list200_response import DeleteCountriesFromAllowedList200Response
-from openapi_client.models.delete_countries_from_allowed_list_request import DeleteCountriesFromAllowedListRequest
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.delete_countries_from_allowed_list200_response import DeleteCountriesFromAllowedList200Response
+from timeweb_cloud_api.models.delete_countries_from_allowed_list_request import DeleteCountriesFromAllowedListRequest
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -211,15 +211,15 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.AccountApi(api_client)
-    delete_countries_from_allowed_list_request = openapi_client.DeleteCountriesFromAllowedListRequest() # DeleteCountriesFromAllowedListRequest | 
+    api_instance = timeweb_cloud_api.AccountApi(api_client)
+    delete_countries_from_allowed_list_request = timeweb_cloud_api.DeleteCountriesFromAllowedListRequest() # DeleteCountriesFromAllowedListRequest | 
 
     try:
         # Удаление стран из списка разрешенных
@@ -274,15 +274,15 @@ Name | Type | Description  | Notes
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.delete_ips_from_allowed_list200_response import DeleteIPsFromAllowedList200Response
-from openapi_client.models.delete_ips_from_allowed_list_request import DeleteIPsFromAllowedListRequest
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.delete_ips_from_allowed_list200_response import DeleteIPsFromAllowedList200Response
+from timeweb_cloud_api.models.delete_ips_from_allowed_list_request import DeleteIPsFromAllowedListRequest
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -292,15 +292,15 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.AccountApi(api_client)
-    delete_ips_from_allowed_list_request = openapi_client.DeleteIPsFromAllowedListRequest() # DeleteIPsFromAllowedListRequest | 
+    api_instance = timeweb_cloud_api.AccountApi(api_client)
+    delete_ips_from_allowed_list_request = timeweb_cloud_api.DeleteIPsFromAllowedListRequest() # DeleteIPsFromAllowedListRequest | 
 
     try:
         # Удаление IP-адресов из списка разрешенных
@@ -355,14 +355,14 @@ Name | Type | Description  | Notes
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.get_account_status200_response import GetAccountStatus200Response
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.get_account_status200_response import GetAccountStatus200Response
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -372,14 +372,14 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.AccountApi(api_client)
+    api_instance = timeweb_cloud_api.AccountApi(api_client)
 
     try:
         # Получение статуса аккаунта
@@ -433,14 +433,14 @@ This endpoint does not need any parameter.
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.get_auth_access_settings200_response import GetAuthAccessSettings200Response
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.get_auth_access_settings200_response import GetAuthAccessSettings200Response
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -450,14 +450,14 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.AccountApi(api_client)
+    api_instance = timeweb_cloud_api.AccountApi(api_client)
 
     try:
         # Получить информацию о ограничениях авторизации пользователя
@@ -509,14 +509,14 @@ This endpoint does not need any parameter.
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.get_countries200_response import GetCountries200Response
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.get_countries200_response import GetCountries200Response
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -526,14 +526,14 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.AccountApi(api_client)
+    api_instance = timeweb_cloud_api.AccountApi(api_client)
 
     try:
         # Получение списка стран
@@ -585,14 +585,14 @@ This endpoint does not need any parameter.
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.get_finances200_response import GetFinances200Response
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.get_finances200_response import GetFinances200Response
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -602,14 +602,14 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.AccountApi(api_client)
+    api_instance = timeweb_cloud_api.AccountApi(api_client)
 
     try:
         # Получение платежной информации
@@ -663,14 +663,14 @@ This endpoint does not need any parameter.
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.get_notification_settings200_response import GetNotificationSettings200Response
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.get_notification_settings200_response import GetNotificationSettings200Response
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -680,14 +680,14 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.AccountApi(api_client)
+    api_instance = timeweb_cloud_api.AccountApi(api_client)
 
     try:
         # Получение настроек уведомлений аккаунта
@@ -741,14 +741,14 @@ This endpoint does not need any parameter.
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.update_auth_restrictions_by_countries_request import UpdateAuthRestrictionsByCountriesRequest
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.update_auth_restrictions_by_countries_request import UpdateAuthRestrictionsByCountriesRequest
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -758,15 +758,15 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.AccountApi(api_client)
-    update_auth_restrictions_by_countries_request = openapi_client.UpdateAuthRestrictionsByCountriesRequest() # UpdateAuthRestrictionsByCountriesRequest | 
+    api_instance = timeweb_cloud_api.AccountApi(api_client)
+    update_auth_restrictions_by_countries_request = timeweb_cloud_api.UpdateAuthRestrictionsByCountriesRequest() # UpdateAuthRestrictionsByCountriesRequest | 
 
     try:
         # Включение/отключение ограничений по стране
@@ -819,14 +819,14 @@ void (empty response body)
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.update_auth_restrictions_by_countries_request import UpdateAuthRestrictionsByCountriesRequest
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.update_auth_restrictions_by_countries_request import UpdateAuthRestrictionsByCountriesRequest
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -836,15 +836,15 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.AccountApi(api_client)
-    update_auth_restrictions_by_countries_request = openapi_client.UpdateAuthRestrictionsByCountriesRequest() # UpdateAuthRestrictionsByCountriesRequest | 
+    api_instance = timeweb_cloud_api.AccountApi(api_client)
+    update_auth_restrictions_by_countries_request = timeweb_cloud_api.UpdateAuthRestrictionsByCountriesRequest() # UpdateAuthRestrictionsByCountriesRequest | 
 
     try:
         # Включение/отключение ограничений по IP-адресу
@@ -897,15 +897,15 @@ void (empty response body)
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.get_notification_settings200_response import GetNotificationSettings200Response
-from openapi_client.models.update_notification_settings_request import UpdateNotificationSettingsRequest
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.get_notification_settings200_response import GetNotificationSettings200Response
+from timeweb_cloud_api.models.update_notification_settings_request import UpdateNotificationSettingsRequest
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -915,15 +915,15 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.AccountApi(api_client)
-    update_notification_settings_request = openapi_client.UpdateNotificationSettingsRequest() # UpdateNotificationSettingsRequest | 
+    api_instance = timeweb_cloud_api.AccountApi(api_client)
+    update_notification_settings_request = timeweb_cloud_api.UpdateNotificationSettingsRequest() # UpdateNotificationSettingsRequest | 
 
     try:
         # Изменение настроек уведомлений аккаунта

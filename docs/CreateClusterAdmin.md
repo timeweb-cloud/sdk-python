@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.create_cluster_admin import CreateClusterAdmin
+from timeweb_cloud_api.models.create_cluster_admin import CreateClusterAdmin
 
 # TODO update the JSON string below
 json = "{}"

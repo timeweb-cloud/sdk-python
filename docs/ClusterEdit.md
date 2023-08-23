@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.cluster_edit import ClusterEdit
+from timeweb_cloud_api.models.cluster_edit import ClusterEdit
 
 # TODO update the JSON string below
 json = "{}"

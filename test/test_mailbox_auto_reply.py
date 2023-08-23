@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import openapi_client
-from openapi_client.models.mailbox_auto_reply import MailboxAutoReply  # noqa: E501
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.mailbox_auto_reply import MailboxAutoReply  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
 class TestMailboxAutoReply(unittest.TestCase):
     """MailboxAutoReply unit test stubs"""
@@ -36,7 +36,7 @@ class TestMailboxAutoReply(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `MailboxAutoReply`
         """
-        model = openapi_client.models.mailbox_auto_reply.MailboxAutoReply()  # noqa: E501
+        model = timeweb_cloud_api.models.mailbox_auto_reply.MailboxAutoReply()  # noqa: E501
         if include_optional :
             return MailboxAutoReply(
                 is_enabled = true, 

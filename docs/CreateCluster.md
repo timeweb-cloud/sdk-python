@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.create_cluster import CreateCluster
+from timeweb_cloud_api.models.create_cluster import CreateCluster
 
 # TODO update the JSON string below
 json = "{}"

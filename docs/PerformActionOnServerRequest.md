@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.perform_action_on_server_request import PerformActionOnServerRequest
+from timeweb_cloud_api.models.perform_action_on_server_request import PerformActionOnServerRequest
 
 # TODO update the JSON string below
 json = "{}"

@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import openapi_client
-from openapi_client.models.add_countries_to_allowed_list201_response import AddCountriesToAllowedList201Response  # noqa: E501
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.add_countries_to_allowed_list201_response import AddCountriesToAllowedList201Response  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
 class TestAddCountriesToAllowedList201Response(unittest.TestCase):
     """AddCountriesToAllowedList201Response unit test stubs"""
@@ -36,16 +36,16 @@ class TestAddCountriesToAllowedList201Response(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `AddCountriesToAllowedList201Response`
         """
-        model = openapi_client.models.add_countries_to_allowed_list201_response.AddCountriesToAllowedList201Response()  # noqa: E501
+        model = timeweb_cloud_api.models.add_countries_to_allowed_list201_response.AddCountriesToAllowedList201Response()  # noqa: E501
         if include_optional :
             return AddCountriesToAllowedList201Response(
-                countries = openapi_client.models.add_countries.add-countries(
+                countries = timeweb_cloud_api.models.add_countries.add-countries(
                     value = RU, 
                     status = success, )
             )
         else :
             return AddCountriesToAllowedList201Response(
-                countries = openapi_client.models.add_countries.add-countries(
+                countries = timeweb_cloud_api.models.add_countries.add-countries(
                     value = RU, 
                     status = success, ),
         )

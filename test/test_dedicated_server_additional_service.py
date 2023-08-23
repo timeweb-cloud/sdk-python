@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import openapi_client
-from openapi_client.models.dedicated_server_additional_service import DedicatedServerAdditionalService  # noqa: E501
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.dedicated_server_additional_service import DedicatedServerAdditionalService  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
 class TestDedicatedServerAdditionalService(unittest.TestCase):
     """DedicatedServerAdditionalService unit test stubs"""
@@ -36,7 +36,7 @@ class TestDedicatedServerAdditionalService(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `DedicatedServerAdditionalService`
         """
-        model = openapi_client.models.dedicated_server_additional_service.DedicatedServerAdditionalService()  # noqa: E501
+        model = timeweb_cloud_api.models.dedicated_server_additional_service.DedicatedServerAdditionalService()  # noqa: E501
         if include_optional :
             return DedicatedServerAdditionalService(
                 id = 27, 

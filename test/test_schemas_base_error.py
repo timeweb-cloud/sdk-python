@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import openapi_client
-from openapi_client.models.schemas_base_error import SchemasBaseError  # noqa: E501
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.schemas_base_error import SchemasBaseError  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
 class TestSchemasBaseError(unittest.TestCase):
     """SchemasBaseError unit test stubs"""
@@ -36,7 +36,7 @@ class TestSchemasBaseError(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `SchemasBaseError`
         """
-        model = openapi_client.models.schemas_base_error.SchemasBaseError()  # noqa: E501
+        model = timeweb_cloud_api.models.schemas_base_error.SchemasBaseError()  # noqa: E501
         if include_optional :
             return SchemasBaseError(
                 status_code = None, 

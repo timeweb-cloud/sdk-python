@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.create_key_request import CreateKeyRequest
+from timeweb_cloud_api.models.create_key_request import CreateKeyRequest
 
 # TODO update the JSON string below
 json = "{}"

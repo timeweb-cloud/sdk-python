@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import openapi_client
-from openapi_client.models.s3_object import S3Object  # noqa: E501
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.s3_object import S3Object  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
 class TestS3Object(unittest.TestCase):
     """S3Object unit test stubs"""
@@ -36,7 +36,7 @@ class TestS3Object(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `S3Object`
         """
-        model = openapi_client.models.s3_object.S3Object()  # noqa: E501
+        model = timeweb_cloud_api.models.s3_object.S3Object()  # noqa: E501
         if include_optional :
             return S3Object(
                 key = test.jpg, 
@@ -45,7 +45,7 @@ class TestS3Object(unittest.TestCase):
                 size = 21403, 
                 storage_class = Default, 
                 checksum_algorithm = [], 
-                owner = openapi_client.models.s3_object_owner.s3_object_owner(
+                owner = timeweb_cloud_api.models.s3_object_owner.s3_object_owner(
                     id = null, 
                     display_name = null, ), 
                 type = file

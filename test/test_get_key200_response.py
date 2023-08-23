@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import openapi_client
-from openapi_client.models.get_key200_response import GetKey200Response  # noqa: E501
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.get_key200_response import GetKey200Response  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
 class TestGetKey200Response(unittest.TestCase):
     """GetKey200Response unit test stubs"""
@@ -36,12 +36,12 @@ class TestGetKey200Response(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `GetKey200Response`
         """
-        model = openapi_client.models.get_key200_response.GetKey200Response()  # noqa: E501
+        model = timeweb_cloud_api.models.get_key200_response.GetKey200Response()  # noqa: E501
         if include_optional :
             return GetKey200Response(
-                meta = openapi_client.models.meta.meta(
+                meta = timeweb_cloud_api.models.meta.meta(
                     total = 10, ), 
-                ssh_key = openapi_client.models.ssh_key.ssh-key(
+                ssh_key = timeweb_cloud_api.models.ssh_key.ssh-key(
                     id = 2, 
                     name = ssh key, 
                     body = ssh-dss AAAAB3NzaC1kc3MAAACBALixbc+uF2kuv83LiB3gg200vHJ7hH0QCC77fqlu+5raX6Y1PJZZORwzvbvU6k8gfrmjMRwQFDNncu3aXUiM9TleOBxFsQ2Hg5hDblSr2bnnyVP0jjPzsYye+0Ebaa+IjEqZz8y0qu8zejCpHqhLP/PlRDS9vtTsadrVvNwFFCyhAAAAFQD7m0AZOd/lHraIgBjXJvfN+qGiAQAAAIAdXSV0n47akGC/g0ejkNzHDSdRFf2fR0FsOos/7f5j+QfstijVBMwzA4Ti+dNJv3BQqQv3Bk5X3o5yUTUL+cM6fa4KSyIhGi14RL0kqjJrNjrVAhwjPH8K9aHDouqQEz56UL72+iGhMxwBHBMWq7cZ2k31mmFgEoYgwNcYuNmtlAAAAIBxIebJMItpq3ez5Hg5GyhpnSU7h0kshh+D5UAAlPmJo8OUQH6avQGf6gpxs3CnQ/im/aCKcb/bYm4V5Y9a7Zq+LrZGQZ79GLWsu/oK0HfQiP+oWwzCGmsdIGblsTRzrKU0FFo7zGmyTsBU48OeD76nKsc5EJ9F9wQC3S2KK38Ynw== test@MBP-test.office.timeweb.ru, 
@@ -51,9 +51,9 @@ class TestGetKey200Response(unittest.TestCase):
             )
         else :
             return GetKey200Response(
-                meta = openapi_client.models.meta.meta(
+                meta = timeweb_cloud_api.models.meta.meta(
                     total = 10, ),
-                ssh_key = openapi_client.models.ssh_key.ssh-key(
+                ssh_key = timeweb_cloud_api.models.ssh_key.ssh-key(
                     id = 2, 
                     name = ssh key, 
                     body = ssh-dss AAAAB3NzaC1kc3MAAACBALixbc+uF2kuv83LiB3gg200vHJ7hH0QCC77fqlu+5raX6Y1PJZZORwzvbvU6k8gfrmjMRwQFDNncu3aXUiM9TleOBxFsQ2Hg5hDblSr2bnnyVP0jjPzsYye+0Ebaa+IjEqZz8y0qu8zejCpHqhLP/PlRDS9vtTsadrVvNwFFCyhAAAAFQD7m0AZOd/lHraIgBjXJvfN+qGiAQAAAIAdXSV0n47akGC/g0ejkNzHDSdRFf2fR0FsOos/7f5j+QfstijVBMwzA4Ti+dNJv3BQqQv3Bk5X3o5yUTUL+cM6fa4KSyIhGi14RL0kqjJrNjrVAhwjPH8K9aHDouqQEz56UL72+iGhMxwBHBMWq7cZ2k31mmFgEoYgwNcYuNmtlAAAAIBxIebJMItpq3ez5Hg5GyhpnSU7h0kshh+D5UAAlPmJo8OUQH6avQGf6gpxs3CnQ/im/aCKcb/bYm4V5Y9a7Zq+LrZGQZ79GLWsu/oK0HfQiP+oWwzCGmsdIGblsTRzrKU0FFo7zGmyTsBU48OeD76nKsc5EJ9F9wQC3S2KK38Ynw== test@MBP-test.office.timeweb.ru, 

@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import openapi_client
-from openapi_client.models.project_resource import ProjectResource  # noqa: E501
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.project_resource import ProjectResource  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
 class TestProjectResource(unittest.TestCase):
     """ProjectResource unit test stubs"""
@@ -36,13 +36,13 @@ class TestProjectResource(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ProjectResource`
         """
-        model = openapi_client.models.project_resource.ProjectResource()  # noqa: E501
+        model = timeweb_cloud_api.models.project_resource.ProjectResource()  # noqa: E501
         if include_optional :
             return ProjectResource(
                 id = 1, 
                 created_at = 2021-02-25T11:04:15Z, 
                 resource_id = 1, 
-                project = openapi_client.models.project.project(
+                project = timeweb_cloud_api.models.project.project(
                     id = 1, 
                     account_id = cp78562, 
                     avatar_id = 1664446660062, 
@@ -56,7 +56,7 @@ class TestProjectResource(unittest.TestCase):
                 id = 1,
                 created_at = 2021-02-25T11:04:15Z,
                 resource_id = 1,
-                project = openapi_client.models.project.project(
+                project = timeweb_cloud_api.models.project.project(
                     id = 1, 
                     account_id = cp78562, 
                     avatar_id = 1664446660062, 

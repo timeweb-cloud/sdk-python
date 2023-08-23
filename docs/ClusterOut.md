@@ -21,7 +21,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.cluster_out import ClusterOut
+from timeweb_cloud_api.models.cluster_out import ClusterOut
 
 # TODO update the JSON string below
 json = "{}"

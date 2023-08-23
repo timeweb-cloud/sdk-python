@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.free import Free
+from timeweb_cloud_api.models.free import Free
 
 # TODO update the JSON string below
 json = "{}"

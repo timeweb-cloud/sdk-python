@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import openapi_client
-from openapi_client.models.create_domain_dns_record201_response import CreateDomainDNSRecord201Response  # noqa: E501
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.create_domain_dns_record201_response import CreateDomainDNSRecord201Response  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
 class TestCreateDomainDNSRecord201Response(unittest.TestCase):
     """CreateDomainDNSRecord201Response unit test stubs"""
@@ -36,23 +36,23 @@ class TestCreateDomainDNSRecord201Response(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `CreateDomainDNSRecord201Response`
         """
-        model = openapi_client.models.create_domain_dns_record201_response.CreateDomainDNSRecord201Response()  # noqa: E501
+        model = timeweb_cloud_api.models.create_domain_dns_record201_response.CreateDomainDNSRecord201Response()  # noqa: E501
         if include_optional :
             return CreateDomainDNSRecord201Response(
-                dns_record = openapi_client.models.dns_record.dns-record(
+                dns_record = timeweb_cloud_api.models.dns_record.dns-record(
                     type = A, 
                     id = 123, 
-                    data = openapi_client.models.dns_record_data.dns_record_data(
+                    data = timeweb_cloud_api.models.dns_record_data.dns_record_data(
                         priority = 0, 
                         subdomain = sub.somedomain.ru, 
                         value = 98.76.54.32, ), )
             )
         else :
             return CreateDomainDNSRecord201Response(
-                dns_record = openapi_client.models.dns_record.dns-record(
+                dns_record = timeweb_cloud_api.models.dns_record.dns-record(
                     type = A, 
                     id = 123, 
-                    data = openapi_client.models.dns_record_data.dns_record_data(
+                    data = timeweb_cloud_api.models.dns_record_data.dns_record_data(
                         priority = 0, 
                         subdomain = sub.somedomain.ru, 
                         value = 98.76.54.32, ), ),

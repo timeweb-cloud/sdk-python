@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.domain_register import DomainRegister
+from timeweb_cloud_api.models.domain_register import DomainRegister
 
 # TODO update the JSON string below
 json = "{}"

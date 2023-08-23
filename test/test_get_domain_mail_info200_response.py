@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import openapi_client
-from openapi_client.models.get_domain_mail_info200_response import GetDomainMailInfo200Response  # noqa: E501
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.get_domain_mail_info200_response import GetDomainMailInfo200Response  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
 class TestGetDomainMailInfo200Response(unittest.TestCase):
     """GetDomainMailInfo200Response unit test stubs"""
@@ -36,16 +36,16 @@ class TestGetDomainMailInfo200Response(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `GetDomainMailInfo200Response`
         """
-        model = openapi_client.models.get_domain_mail_info200_response.GetDomainMailInfo200Response()  # noqa: E501
+        model = timeweb_cloud_api.models.get_domain_mail_info200_response.GetDomainMailInfo200Response()  # noqa: E501
         if include_optional :
             return GetDomainMailInfo200Response(
-                domain_info = openapi_client.models.domain_info.domain-info(
+                domain_info = timeweb_cloud_api.models.domain_info.domain-info(
                     email = 1024, 
                     used = 512, )
             )
         else :
             return GetDomainMailInfo200Response(
-                domain_info = openapi_client.models.domain_info.domain-info(
+                domain_info = timeweb_cloud_api.models.domain_info.domain-info(
                     email = 1024, 
                     used = 512, ),
         )

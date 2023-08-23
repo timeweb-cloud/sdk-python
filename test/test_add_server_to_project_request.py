@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import openapi_client
-from openapi_client.models.add_server_to_project_request import AddServerToProjectRequest  # noqa: E501
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.add_server_to_project_request import AddServerToProjectRequest  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
 class TestAddServerToProjectRequest(unittest.TestCase):
     """AddServerToProjectRequest unit test stubs"""
@@ -36,7 +36,7 @@ class TestAddServerToProjectRequest(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `AddServerToProjectRequest`
         """
-        model = openapi_client.models.add_server_to_project_request.AddServerToProjectRequest()  # noqa: E501
+        model = timeweb_cloud_api.models.add_server_to_project_request.AddServerToProjectRequest()  # noqa: E501
         if include_optional :
             return AddServerToProjectRequest(
                 resource_id = 1

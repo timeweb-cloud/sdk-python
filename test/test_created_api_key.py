@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import openapi_client
-from openapi_client.models.created_api_key import CreatedApiKey  # noqa: E501
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.created_api_key import CreatedApiKey  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
 class TestCreatedApiKey(unittest.TestCase):
     """CreatedApiKey unit test stubs"""
@@ -36,7 +36,7 @@ class TestCreatedApiKey(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `CreatedApiKey`
         """
-        model = openapi_client.models.created_api_key.CreatedApiKey()  # noqa: E501
+        model = timeweb_cloud_api.models.created_api_key.CreatedApiKey()  # noqa: E501
         if include_optional :
             return CreatedApiKey(
                 token = None, 

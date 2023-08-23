@@ -22,7 +22,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.database_cluster import DatabaseCluster
+from timeweb_cloud_api.models.database_cluster import DatabaseCluster
 
 # TODO update the JSON string below
 json = "{}"

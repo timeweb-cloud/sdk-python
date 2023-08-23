@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import openapi_client
-from openapi_client.models.auto_reply_is_enabled import AutoReplyIsEnabled  # noqa: E501
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.auto_reply_is_enabled import AutoReplyIsEnabled  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
 class TestAutoReplyIsEnabled(unittest.TestCase):
     """AutoReplyIsEnabled unit test stubs"""
@@ -36,7 +36,7 @@ class TestAutoReplyIsEnabled(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `AutoReplyIsEnabled`
         """
-        model = openapi_client.models.auto_reply_is_enabled.AutoReplyIsEnabled()  # noqa: E501
+        model = timeweb_cloud_api.models.auto_reply_is_enabled.AutoReplyIsEnabled()  # noqa: E501
         if include_optional :
             return AutoReplyIsEnabled(
                 is_enabled = true, 

@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import openapi_client
-from openapi_client.models.notification_setting import NotificationSetting  # noqa: E501
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.notification_setting import NotificationSetting  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
 class TestNotificationSetting(unittest.TestCase):
     """NotificationSetting unit test stubs"""
@@ -36,10 +36,10 @@ class TestNotificationSetting(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `NotificationSetting`
         """
-        model = openapi_client.models.notification_setting.NotificationSetting()  # noqa: E501
+        model = timeweb_cloud_api.models.notification_setting.NotificationSetting()  # noqa: E501
         if include_optional :
             return NotificationSetting(
-                channels = openapi_client.models.notification_setting_channels.notification_setting_channels(
+                channels = timeweb_cloud_api.models.notification_setting_channels.notification_setting_channels(
                     email = installing, 
                     sms = installing, 
                     telegram = installing, ), 
@@ -48,7 +48,7 @@ class TestNotificationSetting(unittest.TestCase):
             )
         else :
             return NotificationSetting(
-                channels = openapi_client.models.notification_setting_channels.notification_setting_channels(
+                channels = timeweb_cloud_api.models.notification_setting_channels.notification_setting_channels(
                     email = installing, 
                     sms = installing, 
                     telegram = installing, ),

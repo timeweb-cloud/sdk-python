@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import openapi_client
-from openapi_client.models.master_preset_out_api import MasterPresetOutApi  # noqa: E501
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.master_preset_out_api import MasterPresetOutApi  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
 class TestMasterPresetOutApi(unittest.TestCase):
     """MasterPresetOutApi unit test stubs"""
@@ -36,7 +36,7 @@ class TestMasterPresetOutApi(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `MasterPresetOutApi`
         """
-        model = openapi_client.models.master_preset_out_api.MasterPresetOutApi()  # noqa: E501
+        model = timeweb_cloud_api.models.master_preset_out_api.MasterPresetOutApi()  # noqa: E501
         if include_optional :
             return MasterPresetOutApi(
                 id = None, 

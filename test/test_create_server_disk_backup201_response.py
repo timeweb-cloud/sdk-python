@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import openapi_client
-from openapi_client.models.create_server_disk_backup201_response import CreateServerDiskBackup201Response  # noqa: E501
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.create_server_disk_backup201_response import CreateServerDiskBackup201Response  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
 class TestCreateServerDiskBackup201Response(unittest.TestCase):
     """CreateServerDiskBackup201Response unit test stubs"""
@@ -36,10 +36,10 @@ class TestCreateServerDiskBackup201Response(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `CreateServerDiskBackup201Response`
         """
-        model = openapi_client.models.create_server_disk_backup201_response.CreateServerDiskBackup201Response()  # noqa: E501
+        model = timeweb_cloud_api.models.create_server_disk_backup201_response.CreateServerDiskBackup201Response()  # noqa: E501
         if include_optional :
             return CreateServerDiskBackup201Response(
-                backup = openapi_client.models.server_backup.server-backup(
+                backup = timeweb_cloud_api.models.server_backup.server-backup(
                     id = 3, 
                     name = name, 
                     comment = comment, 

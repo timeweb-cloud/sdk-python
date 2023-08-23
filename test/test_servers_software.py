@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import openapi_client
-from openapi_client.models.servers_software import ServersSoftware  # noqa: E501
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.servers_software import ServersSoftware  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
 class TestServersSoftware(unittest.TestCase):
     """ServersSoftware unit test stubs"""
@@ -36,7 +36,7 @@ class TestServersSoftware(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ServersSoftware`
         """
-        model = openapi_client.models.servers_software.ServersSoftware()  # noqa: E501
+        model = timeweb_cloud_api.models.servers_software.ServersSoftware()  # noqa: E501
         if include_optional :
             return ServersSoftware(
                 id = 2377, 
@@ -44,7 +44,7 @@ class TestServersSoftware(unittest.TestCase):
                 os_ids = None, 
                 description = iRedMail - полноценный почтовый сервер под Linux, 
                 installations = 1, 
-                requirements = openapi_client.models.servers_software_requirements.servers_software_requirements(
+                requirements = timeweb_cloud_api.models.servers_software_requirements.servers_software_requirements(
                     cpu_min = 2, 
                     disk_min = 200, 
                     ram_min = 4, 

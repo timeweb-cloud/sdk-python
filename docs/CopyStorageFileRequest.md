@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.copy_storage_file_request import CopyStorageFileRequest
+from timeweb_cloud_api.models.copy_storage_file_request import CopyStorageFileRequest
 
 # TODO update the JSON string below
 json = "{}"

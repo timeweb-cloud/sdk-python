@@ -1,4 +1,4 @@
-# openapi_client.S3Api
+# timeweb_cloud_api.S3Api
 
 All URIs are relative to *https://api.timeweb.cloud*
 
@@ -38,14 +38,14 @@ Method | HTTP request | Description
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.add_storage_subdomain_certificate_request import AddStorageSubdomainCertificateRequest
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.add_storage_subdomain_certificate_request import AddStorageSubdomainCertificateRequest
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -55,15 +55,15 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.S3Api(api_client)
-    add_storage_subdomain_certificate_request = openapi_client.AddStorageSubdomainCertificateRequest() # AddStorageSubdomainCertificateRequest | 
+    api_instance = timeweb_cloud_api.S3Api(api_client)
+    add_storage_subdomain_certificate_request = timeweb_cloud_api.AddStorageSubdomainCertificateRequest() # AddStorageSubdomainCertificateRequest | 
 
     try:
         # Добавление сертификата для поддомена хранилища
@@ -118,15 +118,15 @@ void (empty response body)
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.add_storage_subdomains200_response import AddStorageSubdomains200Response
-from openapi_client.models.add_storage_subdomains_request import AddStorageSubdomainsRequest
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.add_storage_subdomains200_response import AddStorageSubdomains200Response
+from timeweb_cloud_api.models.add_storage_subdomains_request import AddStorageSubdomainsRequest
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -136,16 +136,16 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.S3Api(api_client)
+    api_instance = timeweb_cloud_api.S3Api(api_client)
     bucket_id = 1051 # object | Уникальный идентификатор хранилища.
-    add_storage_subdomains_request = openapi_client.AddStorageSubdomainsRequest() # AddStorageSubdomainsRequest | 
+    add_storage_subdomains_request = timeweb_cloud_api.AddStorageSubdomainsRequest() # AddStorageSubdomainsRequest | 
 
     try:
         # Добавление поддоменов для хранилища
@@ -203,14 +203,14 @@ Name | Type | Description  | Notes
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.copy_storage_file_request import CopyStorageFileRequest
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.copy_storage_file_request import CopyStorageFileRequest
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -220,16 +220,16 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.S3Api(api_client)
+    api_instance = timeweb_cloud_api.S3Api(api_client)
     bucket_id = 1051 # object | Уникальный идентификатор хранилища.
-    copy_storage_file_request = openapi_client.CopyStorageFileRequest() # CopyStorageFileRequest | 
+    copy_storage_file_request = timeweb_cloud_api.CopyStorageFileRequest() # CopyStorageFileRequest | 
 
     try:
         # Копирование файла/директории в хранилище
@@ -285,14 +285,14 @@ void (empty response body)
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.create_folder_in_storage_request import CreateFolderInStorageRequest
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.create_folder_in_storage_request import CreateFolderInStorageRequest
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -302,16 +302,16 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.S3Api(api_client)
+    api_instance = timeweb_cloud_api.S3Api(api_client)
     bucket_id = 1051 # object | Уникальный идентификатор хранилища.
-    create_folder_in_storage_request = openapi_client.CreateFolderInStorageRequest() # CreateFolderInStorageRequest | 
+    create_folder_in_storage_request = timeweb_cloud_api.CreateFolderInStorageRequest() # CreateFolderInStorageRequest | 
 
     try:
         # Создание директории в хранилище
@@ -368,15 +368,15 @@ void (empty response body)
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.create_storage201_response import CreateStorage201Response
-from openapi_client.models.create_storage_request import CreateStorageRequest
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.create_storage201_response import CreateStorage201Response
+from timeweb_cloud_api.models.create_storage_request import CreateStorageRequest
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -386,15 +386,15 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.S3Api(api_client)
-    create_storage_request = openapi_client.CreateStorageRequest() # CreateStorageRequest | 
+    api_instance = timeweb_cloud_api.S3Api(api_client)
+    create_storage_request = timeweb_cloud_api.CreateStorageRequest() # CreateStorageRequest | 
 
     try:
         # Создание хранилища
@@ -451,14 +451,14 @@ Name | Type | Description  | Notes
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.delete_storage200_response import DeleteStorage200Response
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.delete_storage200_response import DeleteStorage200Response
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -468,14 +468,14 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.S3Api(api_client)
+    api_instance = timeweb_cloud_api.S3Api(api_client)
     bucket_id = 1051 # object | Уникальный идентификатор хранилища.
     hash = 15095f25-aac3-4d60-a788-96cb5136f186 # object | Хеш, который совместно с кодом авторизации надо отправить для удаления, если включено подтверждение удаления сервисов через Телеграм. (optional)
     code = 0000 # object | Код подтверждения, который придет к вам в Телеграм, после запроса удаления, если включено подтверждение удаления сервисов.  При помощи API токена сервисы можно удалять без подтверждения, если параметр токена `is_able_to_delete` установлен в значение `true` (optional)
@@ -538,14 +538,14 @@ Name | Type | Description  | Notes
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.delete_storage_file_request import DeleteStorageFileRequest
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.delete_storage_file_request import DeleteStorageFileRequest
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -555,16 +555,16 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.S3Api(api_client)
+    api_instance = timeweb_cloud_api.S3Api(api_client)
     bucket_id = 1051 # object | Уникальный идентификатор хранилища.
-    delete_storage_file_request = openapi_client.DeleteStorageFileRequest() # DeleteStorageFileRequest | 
+    delete_storage_file_request = timeweb_cloud_api.DeleteStorageFileRequest() # DeleteStorageFileRequest | 
     is_multipart = true # object | Это логическое значение, которое используется для обозначения multipart-загрузки. (optional)
 
     try:
@@ -622,15 +622,15 @@ void (empty response body)
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.add_storage_subdomains200_response import AddStorageSubdomains200Response
-from openapi_client.models.add_storage_subdomains_request import AddStorageSubdomainsRequest
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.add_storage_subdomains200_response import AddStorageSubdomains200Response
+from timeweb_cloud_api.models.add_storage_subdomains_request import AddStorageSubdomainsRequest
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -640,16 +640,16 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.S3Api(api_client)
+    api_instance = timeweb_cloud_api.S3Api(api_client)
     bucket_id = 1051 # object | Уникальный идентификатор хранилища.
-    add_storage_subdomains_request = openapi_client.AddStorageSubdomainsRequest() # AddStorageSubdomainsRequest | 
+    add_storage_subdomains_request = timeweb_cloud_api.AddStorageSubdomainsRequest() # AddStorageSubdomainsRequest | 
 
     try:
         # Удаление поддоменов хранилища
@@ -707,14 +707,14 @@ Name | Type | Description  | Notes
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.get_storage_files_list200_response import GetStorageFilesList200Response
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.get_storage_files_list200_response import GetStorageFilesList200Response
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -724,14 +724,14 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.S3Api(api_client)
+    api_instance = timeweb_cloud_api.S3Api(api_client)
     bucket_id = 1051 # object | Уникальный идентификатор хранилища.
     prefix = example # object | Префикс для поиска файла. (optional)
     is_multipart = true # object | Это логическое значение, которое используется для обозначения multipart-загрузки. (optional)
@@ -793,14 +793,14 @@ Name | Type | Description  | Notes
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.get_storage_subdomains200_response import GetStorageSubdomains200Response
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.get_storage_subdomains200_response import GetStorageSubdomains200Response
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -810,14 +810,14 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.S3Api(api_client)
+    api_instance = timeweb_cloud_api.S3Api(api_client)
     bucket_id = 1051 # object | Уникальный идентификатор хранилища.
 
     try:
@@ -875,14 +875,14 @@ Name | Type | Description  | Notes
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.get_storage_transfer_status200_response import GetStorageTransferStatus200Response
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.get_storage_transfer_status200_response import GetStorageTransferStatus200Response
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -892,14 +892,14 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.S3Api(api_client)
+    api_instance = timeweb_cloud_api.S3Api(api_client)
     bucket_id = 1051 # object | Уникальный идентификатор хранилища.
 
     try:
@@ -957,14 +957,14 @@ Name | Type | Description  | Notes
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.get_storage_users200_response import GetStorageUsers200Response
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.get_storage_users200_response import GetStorageUsers200Response
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -974,14 +974,14 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.S3Api(api_client)
+    api_instance = timeweb_cloud_api.S3Api(api_client)
 
     try:
         # Получение списка пользователей хранилищ аккаунта
@@ -1035,14 +1035,14 @@ This endpoint does not need any parameter.
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.get_project_storages200_response import GetProjectStorages200Response
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.get_project_storages200_response import GetProjectStorages200Response
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -1052,14 +1052,14 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.S3Api(api_client)
+    api_instance = timeweb_cloud_api.S3Api(api_client)
 
     try:
         # Получение списка хранилищ аккаунта
@@ -1113,14 +1113,14 @@ This endpoint does not need any parameter.
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.get_storages_presets200_response import GetStoragesPresets200Response
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.get_storages_presets200_response import GetStoragesPresets200Response
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -1130,14 +1130,14 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.S3Api(api_client)
+    api_instance = timeweb_cloud_api.S3Api(api_client)
 
     try:
         # Получение списка тарифов для хранилищ
@@ -1191,14 +1191,14 @@ This endpoint does not need any parameter.
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.rename_storage_file_request import RenameStorageFileRequest
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.rename_storage_file_request import RenameStorageFileRequest
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -1208,16 +1208,16 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.S3Api(api_client)
+    api_instance = timeweb_cloud_api.S3Api(api_client)
     bucket_id = 1051 # object | Уникальный идентификатор хранилища.
-    rename_storage_file_request = openapi_client.RenameStorageFileRequest() # RenameStorageFileRequest | 
+    rename_storage_file_request = timeweb_cloud_api.RenameStorageFileRequest() # RenameStorageFileRequest | 
 
     try:
         # Переименование файла/директории в хранилище
@@ -1273,14 +1273,14 @@ void (empty response body)
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.transfer_storage_request import TransferStorageRequest
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.transfer_storage_request import TransferStorageRequest
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -1290,15 +1290,15 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.S3Api(api_client)
-    transfer_storage_request = openapi_client.TransferStorageRequest() # TransferStorageRequest | 
+    api_instance = timeweb_cloud_api.S3Api(api_client)
+    transfer_storage_request = timeweb_cloud_api.TransferStorageRequest() # TransferStorageRequest | 
 
     try:
         # Перенос хранилища от стороннего провайдера S3 в Timeweb Cloud
@@ -1353,15 +1353,15 @@ void (empty response body)
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.create_storage201_response import CreateStorage201Response
-from openapi_client.models.update_storage_request import UpdateStorageRequest
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.create_storage201_response import CreateStorage201Response
+from timeweb_cloud_api.models.update_storage_request import UpdateStorageRequest
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -1371,16 +1371,16 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.S3Api(api_client)
+    api_instance = timeweb_cloud_api.S3Api(api_client)
     bucket_id = 1051 # object | Уникальный идентификатор хранилища.
-    update_storage_request = openapi_client.UpdateStorageRequest() # UpdateStorageRequest | 
+    update_storage_request = timeweb_cloud_api.UpdateStorageRequest() # UpdateStorageRequest | 
 
     try:
         # Изменение хранилища на аккаунте
@@ -1438,15 +1438,15 @@ Name | Type | Description  | Notes
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.update_storage_user200_response import UpdateStorageUser200Response
-from openapi_client.models.update_storage_user_request import UpdateStorageUserRequest
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.update_storage_user200_response import UpdateStorageUser200Response
+from timeweb_cloud_api.models.update_storage_user_request import UpdateStorageUserRequest
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -1456,16 +1456,16 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.S3Api(api_client)
+    api_instance = timeweb_cloud_api.S3Api(api_client)
     user_id = 1051 # object | Уникальный идентификатор пользователя хранилища.
-    update_storage_user_request = openapi_client.UpdateStorageUserRequest() # UpdateStorageUserRequest | 
+    update_storage_user_request = timeweb_cloud_api.UpdateStorageUserRequest() # UpdateStorageUserRequest | 
 
     try:
         # Изменение пароля пользователя-администратора хранилища
@@ -1523,13 +1523,13 @@ Name | Type | Description  | Notes
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -1539,14 +1539,14 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.S3Api(api_client)
+    api_instance = timeweb_cloud_api.S3Api(api_client)
     bucket_id = 1051 # object | Уникальный идентификатор хранилища.
     files = None # object | 
     path = test1/tes2 # object | Путь до директории в хранилище (optional)

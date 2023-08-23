@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.create_domain_mailbox_request import CreateDomainMailboxRequest
+from timeweb_cloud_api.models.create_domain_mailbox_request import CreateDomainMailboxRequest
 
 # TODO update the JSON string below
 json = "{}"

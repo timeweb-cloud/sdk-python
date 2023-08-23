@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import openapi_client
-from openapi_client.models.create_vpc201_response import CreateVPC201Response  # noqa: E501
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.create_vpc201_response import CreateVPC201Response  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
 class TestCreateVPC201Response(unittest.TestCase):
     """CreateVPC201Response unit test stubs"""
@@ -36,10 +36,10 @@ class TestCreateVPC201Response(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `CreateVPC201Response`
         """
-        model = openapi_client.models.create_vpc201_response.CreateVPC201Response()  # noqa: E501
+        model = timeweb_cloud_api.models.create_vpc201_response.CreateVPC201Response()  # noqa: E501
         if include_optional :
             return CreateVPC201Response(
-                vpc = openapi_client.models.vpc.vpc(
+                vpc = timeweb_cloud_api.models.vpc.vpc(
                     id = network-1234567890, 
                     name = Общая сеть, 
                     subnet_v4 = 192.168.0.0/24, 
@@ -49,7 +49,7 @@ class TestCreateVPC201Response(unittest.TestCase):
             )
         else :
             return CreateVPC201Response(
-                vpc = openapi_client.models.vpc.vpc(
+                vpc = timeweb_cloud_api.models.vpc.vpc(
                     id = network-1234567890, 
                     name = Общая сеть, 
                     subnet_v4 = 192.168.0.0/24, 

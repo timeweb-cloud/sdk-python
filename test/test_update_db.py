@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import openapi_client
-from openapi_client.models.update_db import UpdateDb  # noqa: E501
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.update_db import UpdateDb  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
 class TestUpdateDb(unittest.TestCase):
     """UpdateDb unit test stubs"""
@@ -36,13 +36,13 @@ class TestUpdateDb(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `UpdateDb`
         """
-        model = openapi_client.models.update_db.UpdateDb()  # noqa: E501
+        model = timeweb_cloud_api.models.update_db.UpdateDb()  # noqa: E501
         if include_optional :
             return UpdateDb(
                 password = password, 
                 name = default_db, 
                 preset_id = 5, 
-                config_parameters = openapi_client.models.config_parameters.config-parameters(
+                config_parameters = timeweb_cloud_api.models.config_parameters.config-parameters(
                     auto_increment_increment = 1, 
                     auto_increment_offset = 1, 
                     innodb_io_capacity = 200, 

@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.create_balancer_rule200_response import CreateBalancerRule200Response
+from timeweb_cloud_api.models.create_balancer_rule200_response import CreateBalancerRule200Response
 
 # TODO update the JSON string below
 json = "{}"

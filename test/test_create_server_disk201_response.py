@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import openapi_client
-from openapi_client.models.create_server_disk201_response import CreateServerDisk201Response  # noqa: E501
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.create_server_disk201_response import CreateServerDisk201Response  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
 class TestCreateServerDisk201Response(unittest.TestCase):
     """CreateServerDisk201Response unit test stubs"""
@@ -36,10 +36,10 @@ class TestCreateServerDisk201Response(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `CreateServerDisk201Response`
         """
-        model = openapi_client.models.create_server_disk201_response.CreateServerDisk201Response()  # noqa: E501
+        model = timeweb_cloud_api.models.create_server_disk201_response.CreateServerDisk201Response()  # noqa: E501
         if include_optional :
             return CreateServerDisk201Response(
-                server_disk = openapi_client.models.server_disk.server-disk(
+                server_disk = timeweb_cloud_api.models.server_disk.server-disk(
                     id = 1, 
                     size = 10240, 
                     used = 5120, 
@@ -51,7 +51,7 @@ class TestCreateServerDisk201Response(unittest.TestCase):
             )
         else :
             return CreateServerDisk201Response(
-                server_disk = openapi_client.models.server_disk.server-disk(
+                server_disk = timeweb_cloud_api.models.server_disk.server-disk(
                     id = 1, 
                     size = 10240, 
                     used = 5120, 

@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.create_rule import CreateRule
+from timeweb_cloud_api.models.create_rule import CreateRule
 
 # TODO update the JSON string below
 json = "{}"

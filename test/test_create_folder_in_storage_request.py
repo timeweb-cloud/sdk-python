@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import openapi_client
-from openapi_client.models.create_folder_in_storage_request import CreateFolderInStorageRequest  # noqa: E501
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.create_folder_in_storage_request import CreateFolderInStorageRequest  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
 class TestCreateFolderInStorageRequest(unittest.TestCase):
     """CreateFolderInStorageRequest unit test stubs"""
@@ -36,7 +36,7 @@ class TestCreateFolderInStorageRequest(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `CreateFolderInStorageRequest`
         """
-        model = openapi_client.models.create_folder_in_storage_request.CreateFolderInStorageRequest()  # noqa: E501
+        model = timeweb_cloud_api.models.create_folder_in_storage_request.CreateFolderInStorageRequest()  # noqa: E501
         if include_optional :
             return CreateFolderInStorageRequest(
                 dir_name = dir

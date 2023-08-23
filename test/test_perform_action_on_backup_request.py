@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import openapi_client
-from openapi_client.models.perform_action_on_backup_request import PerformActionOnBackupRequest  # noqa: E501
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.perform_action_on_backup_request import PerformActionOnBackupRequest  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
 class TestPerformActionOnBackupRequest(unittest.TestCase):
     """PerformActionOnBackupRequest unit test stubs"""
@@ -36,7 +36,7 @@ class TestPerformActionOnBackupRequest(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `PerformActionOnBackupRequest`
         """
-        model = openapi_client.models.perform_action_on_backup_request.PerformActionOnBackupRequest()  # noqa: E501
+        model = timeweb_cloud_api.models.perform_action_on_backup_request.PerformActionOnBackupRequest()  # noqa: E501
         if include_optional :
             return PerformActionOnBackupRequest(
                 action = mount

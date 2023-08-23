@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.k8_s_versions_response import K8SVersionsResponse
+from timeweb_cloud_api.models.k8_s_versions_response import K8SVersionsResponse
 
 # TODO update the JSON string below
 json = "{}"

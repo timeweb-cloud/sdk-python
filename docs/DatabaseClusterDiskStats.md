@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.database_cluster_disk_stats import DatabaseClusterDiskStats
+from timeweb_cloud_api.models.database_cluster_disk_stats import DatabaseClusterDiskStats
 
 # TODO update the JSON string below
 json = "{}"

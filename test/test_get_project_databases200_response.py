@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import openapi_client
-from openapi_client.models.get_project_databases200_response import GetProjectDatabases200Response  # noqa: E501
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.get_project_databases200_response import GetProjectDatabases200Response  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
 class TestGetProjectDatabases200Response(unittest.TestCase):
     """GetProjectDatabases200Response unit test stubs"""
@@ -36,17 +36,17 @@ class TestGetProjectDatabases200Response(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `GetProjectDatabases200Response`
         """
-        model = openapi_client.models.get_project_databases200_response.GetProjectDatabases200Response()  # noqa: E501
+        model = timeweb_cloud_api.models.get_project_databases200_response.GetProjectDatabases200Response()  # noqa: E501
         if include_optional :
             return GetProjectDatabases200Response(
                 databases = None, 
-                meta = openapi_client.models.meta.meta(
+                meta = timeweb_cloud_api.models.meta.meta(
                     total = 10, )
             )
         else :
             return GetProjectDatabases200Response(
                 databases = None,
-                meta = openapi_client.models.meta.meta(
+                meta = timeweb_cloud_api.models.meta.meta(
                     total = 10, ),
         )
         """

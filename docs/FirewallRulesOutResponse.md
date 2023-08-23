@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.firewall_rules_out_response import FirewallRulesOutResponse
+from timeweb_cloud_api.models.firewall_rules_out_response import FirewallRulesOutResponse
 
 # TODO update the JSON string below
 json = "{}"

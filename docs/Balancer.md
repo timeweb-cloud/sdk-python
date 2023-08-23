@@ -30,7 +30,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.balancer import Balancer
+from timeweb_cloud_api.models.balancer import Balancer
 
 # TODO update the JSON string below
 json = "{}"

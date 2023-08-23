@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.image_url_auth import ImageUrlAuth
+from timeweb_cloud_api.models.image_url_auth import ImageUrlAuth
 
 # TODO update the JSON string below
 json = "{}"

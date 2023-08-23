@@ -15,16 +15,16 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.api.mail_api import MailApi  # noqa: E501
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.api.mail_api import MailApi  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
 
 class TestMailApi(unittest.TestCase):
     """MailApi unit test stubs"""
 
     def setUp(self):
-        self.api = openapi_client.api.mail_api.MailApi()  # noqa: E501
+        self.api = timeweb_cloud_api.api.mail_api.MailApi()  # noqa: E501
 
     def tearDown(self):
         pass

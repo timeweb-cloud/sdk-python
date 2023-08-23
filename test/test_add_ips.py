@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import openapi_client
-from openapi_client.models.add_ips import AddIps  # noqa: E501
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.add_ips import AddIps  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
 class TestAddIps(unittest.TestCase):
     """AddIps unit test stubs"""
@@ -36,7 +36,7 @@ class TestAddIps(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `AddIps`
         """
-        model = openapi_client.models.add_ips.AddIps()  # noqa: E501
+        model = timeweb_cloud_api.models.add_ips.AddIps()  # noqa: E501
         if include_optional :
             return AddIps(
                 value = 123.231.125.128, 

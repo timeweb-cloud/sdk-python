@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import openapi_client
-from openapi_client.models.create_database_cluster201_response import CreateDatabaseCluster201Response  # noqa: E501
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.create_database_cluster201_response import CreateDatabaseCluster201Response  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
 class TestCreateDatabaseCluster201Response(unittest.TestCase):
     """CreateDatabaseCluster201Response unit test stubs"""
@@ -36,10 +36,10 @@ class TestCreateDatabaseCluster201Response(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `CreateDatabaseCluster201Response`
         """
-        model = openapi_client.models.create_database_cluster201_response.CreateDatabaseCluster201Response()  # noqa: E501
+        model = timeweb_cloud_api.models.create_database_cluster201_response.CreateDatabaseCluster201Response()  # noqa: E501
         if include_optional :
             return CreateDatabaseCluster201Response(
-                db = openapi_client.models.database_cluster.database-cluster(
+                db = timeweb_cloud_api.models.database_cluster.database-cluster(
                     id = 1, 
                     created_at = 2021-02-25T11:04:15Z, 
                     location = ru-1, 
@@ -50,10 +50,10 @@ class TestCreateDatabaseCluster201Response(unittest.TestCase):
                     port = 3000, 
                     status = started, 
                     preset_id = 5, 
-                    disk_stats = openapi_client.models.database_cluster_disk_stats.database_cluster_disk_stats(
+                    disk_stats = timeweb_cloud_api.models.database_cluster_disk_stats.database_cluster_disk_stats(
                         size = 10485760, 
                         used = 486.11328125, ), 
-                    config_parameters = openapi_client.models.config_parameters.config-parameters(
+                    config_parameters = timeweb_cloud_api.models.config_parameters.config-parameters(
                         auto_increment_increment = 1, 
                         auto_increment_offset = 1, 
                         innodb_io_capacity = 200, 
@@ -86,7 +86,7 @@ class TestCreateDatabaseCluster201Response(unittest.TestCase):
             )
         else :
             return CreateDatabaseCluster201Response(
-                db = openapi_client.models.database_cluster.database-cluster(
+                db = timeweb_cloud_api.models.database_cluster.database-cluster(
                     id = 1, 
                     created_at = 2021-02-25T11:04:15Z, 
                     location = ru-1, 
@@ -97,10 +97,10 @@ class TestCreateDatabaseCluster201Response(unittest.TestCase):
                     port = 3000, 
                     status = started, 
                     preset_id = 5, 
-                    disk_stats = openapi_client.models.database_cluster_disk_stats.database_cluster_disk_stats(
+                    disk_stats = timeweb_cloud_api.models.database_cluster_disk_stats.database_cluster_disk_stats(
                         size = 10485760, 
                         used = 486.11328125, ), 
-                    config_parameters = openapi_client.models.config_parameters.config-parameters(
+                    config_parameters = timeweb_cloud_api.models.config_parameters.config-parameters(
                         auto_increment_increment = 1, 
                         auto_increment_offset = 1, 
                         innodb_io_capacity = 200, 

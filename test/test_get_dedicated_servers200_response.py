@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import openapi_client
-from openapi_client.models.get_dedicated_servers200_response import GetDedicatedServers200Response  # noqa: E501
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.get_dedicated_servers200_response import GetDedicatedServers200Response  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
 class TestGetDedicatedServers200Response(unittest.TestCase):
     """GetDedicatedServers200Response unit test stubs"""
@@ -36,16 +36,16 @@ class TestGetDedicatedServers200Response(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `GetDedicatedServers200Response`
         """
-        model = openapi_client.models.get_dedicated_servers200_response.GetDedicatedServers200Response()  # noqa: E501
+        model = timeweb_cloud_api.models.get_dedicated_servers200_response.GetDedicatedServers200Response()  # noqa: E501
         if include_optional :
             return GetDedicatedServers200Response(
-                meta = openapi_client.models.meta.meta(
+                meta = timeweb_cloud_api.models.meta.meta(
                     total = 10, ), 
                 dedicated_servers = None
             )
         else :
             return GetDedicatedServers200Response(
-                meta = openapi_client.models.meta.meta(
+                meta = timeweb_cloud_api.models.meta.meta(
                     total = 10, ),
                 dedicated_servers = None,
         )

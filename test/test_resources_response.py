@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import openapi_client
-from openapi_client.models.resources_response import ResourcesResponse  # noqa: E501
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.resources_response import ResourcesResponse  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
 class TestResourcesResponse(unittest.TestCase):
     """ResourcesResponse unit test stubs"""
@@ -36,18 +36,18 @@ class TestResourcesResponse(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ResourcesResponse`
         """
-        model = openapi_client.models.resources_response.ResourcesResponse()  # noqa: E501
+        model = timeweb_cloud_api.models.resources_response.ResourcesResponse()  # noqa: E501
         if include_optional :
             return ResourcesResponse(
                 response_id = None, 
-                resources = openapi_client.models.resources.Resources(
+                resources = timeweb_cloud_api.models.resources.Resources(
                     nodes = null, 
-                    cores = openapi_client.models.resource.Resource(
+                    cores = timeweb_cloud_api.models.resource.Resource(
                         requested = null, 
                         allocatable = null, 
                         capacity = null, 
                         used = null, ), 
-                    memory = openapi_client.models.resource.Resource(
+                    memory = timeweb_cloud_api.models.resource.Resource(
                         requested = null, 
                         allocatable = null, 
                         capacity = null, 
@@ -56,14 +56,14 @@ class TestResourcesResponse(unittest.TestCase):
             )
         else :
             return ResourcesResponse(
-                resources = openapi_client.models.resources.Resources(
+                resources = timeweb_cloud_api.models.resources.Resources(
                     nodes = null, 
-                    cores = openapi_client.models.resource.Resource(
+                    cores = timeweb_cloud_api.models.resource.Resource(
                         requested = null, 
                         allocatable = null, 
                         capacity = null, 
                         used = null, ), 
-                    memory = openapi_client.models.resource.Resource(
+                    memory = timeweb_cloud_api.models.resource.Resource(
                         requested = null, 
                         allocatable = null, 
                         capacity = null, 

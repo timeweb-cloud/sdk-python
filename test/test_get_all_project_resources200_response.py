@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import openapi_client
-from openapi_client.models.get_all_project_resources200_response import GetAllProjectResources200Response  # noqa: E501
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.get_all_project_resources200_response import GetAllProjectResources200Response  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
 class TestGetAllProjectResources200Response(unittest.TestCase):
     """GetAllProjectResources200Response unit test stubs"""
@@ -36,7 +36,7 @@ class TestGetAllProjectResources200Response(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `GetAllProjectResources200Response`
         """
-        model = openapi_client.models.get_all_project_resources200_response.GetAllProjectResources200Response()  # noqa: E501
+        model = timeweb_cloud_api.models.get_all_project_resources200_response.GetAllProjectResources200Response()  # noqa: E501
         if include_optional :
             return GetAllProjectResources200Response(
                 servers = None, 
@@ -45,7 +45,7 @@ class TestGetAllProjectResources200Response(unittest.TestCase):
                 clusters = None, 
                 databases = None, 
                 dedicated_servers = None, 
-                meta = openapi_client.models.meta.meta(
+                meta = timeweb_cloud_api.models.meta.meta(
                     total = 10, )
             )
         else :
@@ -56,7 +56,7 @@ class TestGetAllProjectResources200Response(unittest.TestCase):
                 clusters = None,
                 databases = None,
                 dedicated_servers = None,
-                meta = openapi_client.models.meta.meta(
+                meta = timeweb_cloud_api.models.meta.meta(
                     total = 10, ),
         )
         """

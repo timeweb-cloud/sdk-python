@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import openapi_client
-from openapi_client.models.clusters_response import ClustersResponse  # noqa: E501
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.clusters_response import ClustersResponse  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
 class TestClustersResponse(unittest.TestCase):
     """ClustersResponse unit test stubs"""
@@ -36,17 +36,17 @@ class TestClustersResponse(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ClustersResponse`
         """
-        model = openapi_client.models.clusters_response.ClustersResponse()  # noqa: E501
+        model = timeweb_cloud_api.models.clusters_response.ClustersResponse()  # noqa: E501
         if include_optional :
             return ClustersResponse(
                 response_id = None, 
-                meta = openapi_client.models.meta.Meta(
+                meta = timeweb_cloud_api.models.meta.Meta(
                     total = null, ), 
                 clusters = None
             )
         else :
             return ClustersResponse(
-                meta = openapi_client.models.meta.Meta(
+                meta = timeweb_cloud_api.models.meta.Meta(
                     total = null, ),
                 clusters = None,
         )

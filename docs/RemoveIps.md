@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.remove_ips import RemoveIps
+from timeweb_cloud_api.models.remove_ips import RemoveIps
 
 # TODO update the JSON string below
 json = "{}"

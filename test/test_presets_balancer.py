@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import openapi_client
-from openapi_client.models.presets_balancer import PresetsBalancer  # noqa: E501
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.presets_balancer import PresetsBalancer  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
 class TestPresetsBalancer(unittest.TestCase):
     """PresetsBalancer unit test stubs"""
@@ -36,7 +36,7 @@ class TestPresetsBalancer(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `PresetsBalancer`
         """
-        model = openapi_client.models.presets_balancer.PresetsBalancer()  # noqa: E501
+        model = timeweb_cloud_api.models.presets_balancer.PresetsBalancer()  # noqa: E501
         if include_optional :
             return PresetsBalancer(
                 id = 2377, 

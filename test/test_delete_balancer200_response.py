@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import openapi_client
-from openapi_client.models.delete_balancer200_response import DeleteBalancer200Response  # noqa: E501
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.delete_balancer200_response import DeleteBalancer200Response  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
 class TestDeleteBalancer200Response(unittest.TestCase):
     """DeleteBalancer200Response unit test stubs"""
@@ -36,15 +36,15 @@ class TestDeleteBalancer200Response(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `DeleteBalancer200Response`
         """
-        model = openapi_client.models.delete_balancer200_response.DeleteBalancer200Response()  # noqa: E501
+        model = timeweb_cloud_api.models.delete_balancer200_response.DeleteBalancer200Response()  # noqa: E501
         if include_optional :
             return DeleteBalancer200Response(
-                balancer_delete = openapi_client.models.delete_service_response.delete-service-response(
+                balancer_delete = timeweb_cloud_api.models.delete_service_response.delete-service-response(
                     hash = 15095f25-aac3-4d60-a788-96cb5136f186, )
             )
         else :
             return DeleteBalancer200Response(
-                balancer_delete = openapi_client.models.delete_service_response.delete-service-response(
+                balancer_delete = timeweb_cloud_api.models.delete_service_response.delete-service-response(
                     hash = 15095f25-aac3-4d60-a788-96cb5136f186, ),
         )
         """

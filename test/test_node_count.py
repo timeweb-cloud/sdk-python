@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import openapi_client
-from openapi_client.models.node_count import NodeCount  # noqa: E501
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.node_count import NodeCount  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
 class TestNodeCount(unittest.TestCase):
     """NodeCount unit test stubs"""
@@ -36,7 +36,7 @@ class TestNodeCount(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `NodeCount`
         """
-        model = openapi_client.models.node_count.NodeCount()  # noqa: E501
+        model = timeweb_cloud_api.models.node_count.NodeCount()  # noqa: E501
         if include_optional :
             return NodeCount(
                 count = 2

@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.url_type import URLType
+from timeweb_cloud_api.models.url_type import URLType
 
 # TODO update the JSON string below
 json = "{}"

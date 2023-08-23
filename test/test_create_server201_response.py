@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import openapi_client
-from openapi_client.models.create_server201_response import CreateServer201Response  # noqa: E501
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.create_server201_response import CreateServer201Response  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
 class TestCreateServer201Response(unittest.TestCase):
     """CreateServer201Response unit test stubs"""
@@ -36,19 +36,19 @@ class TestCreateServer201Response(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `CreateServer201Response`
         """
-        model = openapi_client.models.create_server201_response.CreateServer201Response()  # noqa: E501
+        model = timeweb_cloud_api.models.create_server201_response.CreateServer201Response()  # noqa: E501
         if include_optional :
             return CreateServer201Response(
-                server = openapi_client.models.vds.vds(
+                server = timeweb_cloud_api.models.vds.vds(
                     id = 1, 
                     name = Cute Quail, 
                     comment = Development Server, 
                     created_at = 2021-02-25T11:04:15Z, 
-                    os = openapi_client.models.vds_os.vds_os(
+                    os = timeweb_cloud_api.models.vds_os.vds_os(
                         id = 1, 
                         name = bitrix, 
                         version = 18.04, ), 
-                    software = openapi_client.models.vds_software.vds_software(
+                    software = timeweb_cloud_api.models.vds_software.vds_software(
                         id = 1, 
                         name = name, ), 
                     preset_id = 11, 
@@ -69,16 +69,16 @@ class TestCreateServer201Response(unittest.TestCase):
             )
         else :
             return CreateServer201Response(
-                server = openapi_client.models.vds.vds(
+                server = timeweb_cloud_api.models.vds.vds(
                     id = 1, 
                     name = Cute Quail, 
                     comment = Development Server, 
                     created_at = 2021-02-25T11:04:15Z, 
-                    os = openapi_client.models.vds_os.vds_os(
+                    os = timeweb_cloud_api.models.vds_os.vds_os(
                         id = 1, 
                         name = bitrix, 
                         version = 18.04, ), 
-                    software = openapi_client.models.vds_software.vds_software(
+                    software = timeweb_cloud_api.models.vds_software.vds_software(
                         id = 1, 
                         name = name, ), 
                     preset_id = 11, 

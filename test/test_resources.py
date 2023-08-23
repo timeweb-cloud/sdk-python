@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import openapi_client
-from openapi_client.models.resources import Resources  # noqa: E501
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.resources import Resources  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
 class TestResources(unittest.TestCase):
     """Resources unit test stubs"""
@@ -36,21 +36,21 @@ class TestResources(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `Resources`
         """
-        model = openapi_client.models.resources.Resources()  # noqa: E501
+        model = timeweb_cloud_api.models.resources.Resources()  # noqa: E501
         if include_optional :
             return Resources(
                 nodes = None, 
-                cores = openapi_client.models.resource.Resource(
+                cores = timeweb_cloud_api.models.resource.Resource(
                     requested = null, 
                     allocatable = null, 
                     capacity = null, 
                     used = null, ), 
-                memory = openapi_client.models.resource.Resource(
+                memory = timeweb_cloud_api.models.resource.Resource(
                     requested = null, 
                     allocatable = null, 
                     capacity = null, 
                     used = null, ), 
-                pods = openapi_client.models.resource.Resource(
+                pods = timeweb_cloud_api.models.resource.Resource(
                     requested = null, 
                     allocatable = null, 
                     capacity = null, 

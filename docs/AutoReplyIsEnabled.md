@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.auto_reply_is_enabled import AutoReplyIsEnabled
+from timeweb_cloud_api.models.auto_reply_is_enabled import AutoReplyIsEnabled
 
 # TODO update the JSON string below
 json = "{}"

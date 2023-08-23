@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import openapi_client
-from openapi_client.models.add_subdomain201_response import AddSubdomain201Response  # noqa: E501
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.add_subdomain201_response import AddSubdomain201Response  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
 class TestAddSubdomain201Response(unittest.TestCase):
     """AddSubdomain201Response unit test stubs"""
@@ -36,17 +36,17 @@ class TestAddSubdomain201Response(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `AddSubdomain201Response`
         """
-        model = openapi_client.models.add_subdomain201_response.AddSubdomain201Response()  # noqa: E501
+        model = timeweb_cloud_api.models.add_subdomain201_response.AddSubdomain201Response()  # noqa: E501
         if include_optional :
             return AddSubdomain201Response(
-                subdomain = openapi_client.models.subdomain.subdomain(
+                subdomain = timeweb_cloud_api.models.subdomain.subdomain(
                     fqdn = sub.somedomain.ru, 
                     id = 123, 
                     linked_ip = null, )
             )
         else :
             return AddSubdomain201Response(
-                subdomain = openapi_client.models.subdomain.subdomain(
+                subdomain = timeweb_cloud_api.models.subdomain.subdomain(
                     fqdn = sub.somedomain.ru, 
                     id = 123, 
                     linked_ip = null, ),

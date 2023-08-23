@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import openapi_client
-from openapi_client.models.vds_software import VdsSoftware  # noqa: E501
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.vds_software import VdsSoftware  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
 class TestVdsSoftware(unittest.TestCase):
     """VdsSoftware unit test stubs"""
@@ -36,7 +36,7 @@ class TestVdsSoftware(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `VdsSoftware`
         """
-        model = openapi_client.models.vds_software.VdsSoftware()  # noqa: E501
+        model = timeweb_cloud_api.models.vds_software.VdsSoftware()  # noqa: E501
         if include_optional :
             return VdsSoftware(
                 id = 1, 

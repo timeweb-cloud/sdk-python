@@ -30,7 +30,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.vds import Vds
+from timeweb_cloud_api.models.vds import Vds
 
 # TODO update the JSON string below
 json = "{}"

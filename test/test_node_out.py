@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import openapi_client
-from openapi_client.models.node_out import NodeOut  # noqa: E501
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.node_out import NodeOut  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
 class TestNodeOut(unittest.TestCase):
     """NodeOut unit test stubs"""
@@ -36,7 +36,7 @@ class TestNodeOut(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `NodeOut`
         """
-        model = openapi_client.models.node_out.NodeOut()  # noqa: E501
+        model = timeweb_cloud_api.models.node_out.NodeOut()  # noqa: E501
         if include_optional :
             return NodeOut(
                 id = None, 

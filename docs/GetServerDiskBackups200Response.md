@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.get_server_disk_backups200_response import GetServerDiskBackups200Response
+from timeweb_cloud_api.models.get_server_disk_backups200_response import GetServerDiskBackups200Response
 
 # TODO update the JSON string below
 json = "{}"

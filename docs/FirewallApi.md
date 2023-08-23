@@ -1,4 +1,4 @@
-# openapi_client.FirewallApi
+# timeweb_cloud_api.FirewallApi
 
 All URIs are relative to *https://api.timeweb.cloud*
 
@@ -33,15 +33,15 @@ Method | HTTP request | Description
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.firewall_group_resource_out_response import FirewallGroupResourceOutResponse
-from openapi_client.models.resource_type import ResourceType
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.firewall_group_resource_out_response import FirewallGroupResourceOutResponse
+from timeweb_cloud_api.models.resource_type import ResourceType
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -51,17 +51,17 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.FirewallApi(api_client)
+    api_instance = timeweb_cloud_api.FirewallApi(api_client)
     group_id = None # object | Идентификатор группы правил
     resource_id = None # object | Идентификатор ресурса
-    resource_type = openapi_client.ResourceType() # ResourceType |  (optional)
+    resource_type = timeweb_cloud_api.ResourceType() # ResourceType |  (optional)
 
     try:
         # Линковка ресурса в firewall group
@@ -118,15 +118,15 @@ Name | Type | Description  | Notes
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.firewall_group_in_api import FirewallGroupInAPI
-from openapi_client.models.firewall_group_out_response import FirewallGroupOutResponse
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.firewall_group_in_api import FirewallGroupInAPI
+from timeweb_cloud_api.models.firewall_group_out_response import FirewallGroupOutResponse
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -136,15 +136,15 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.FirewallApi(api_client)
-    firewall_group_in_api = openapi_client.FirewallGroupInAPI() # FirewallGroupInAPI | 
+    api_instance = timeweb_cloud_api.FirewallApi(api_client)
+    firewall_group_in_api = timeweb_cloud_api.FirewallGroupInAPI() # FirewallGroupInAPI | 
 
     try:
         # Создание группы правил
@@ -199,15 +199,15 @@ Name | Type | Description  | Notes
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.firewall_rule_in_api import FirewallRuleInAPI
-from openapi_client.models.firewall_rule_out_response import FirewallRuleOutResponse
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.firewall_rule_in_api import FirewallRuleInAPI
+from timeweb_cloud_api.models.firewall_rule_out_response import FirewallRuleOutResponse
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -217,16 +217,16 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.FirewallApi(api_client)
+    api_instance = timeweb_cloud_api.FirewallApi(api_client)
     group_id = None # object | Идентификатор группы правил
-    firewall_rule_in_api = openapi_client.FirewallRuleInAPI() # FirewallRuleInAPI | 
+    firewall_rule_in_api = timeweb_cloud_api.FirewallRuleInAPI() # FirewallRuleInAPI | 
 
     try:
         # Создание firewall правила
@@ -282,13 +282,13 @@ Name | Type | Description  | Notes
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -298,14 +298,14 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.FirewallApi(api_client)
+    api_instance = timeweb_cloud_api.FirewallApi(api_client)
     group_id = None # object | Идентификатор группы правил
 
     try:
@@ -360,13 +360,13 @@ void (empty response body)
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -376,14 +376,14 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.FirewallApi(api_client)
+    api_instance = timeweb_cloud_api.FirewallApi(api_client)
     group_id = None # object | Идентификатор группы правил
     rule_id = None # object | Идентификатор правила
 
@@ -440,14 +440,14 @@ void (empty response body)
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.resource_type import ResourceType
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.resource_type import ResourceType
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -457,17 +457,17 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.FirewallApi(api_client)
+    api_instance = timeweb_cloud_api.FirewallApi(api_client)
     group_id = None # object | Идентификатор группы правил
     resource_id = None # object | Идентификатор ресурса
-    resource_type = openapi_client.ResourceType() # ResourceType |  (optional)
+    resource_type = timeweb_cloud_api.ResourceType() # ResourceType |  (optional)
 
     try:
         # Отлинковка ресурса из firewall group
@@ -523,14 +523,14 @@ void (empty response body)
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.firewall_group_out_response import FirewallGroupOutResponse
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.firewall_group_out_response import FirewallGroupOutResponse
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -540,14 +540,14 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.FirewallApi(api_client)
+    api_instance = timeweb_cloud_api.FirewallApi(api_client)
     group_id = None # object | Идентификатор группы правил
 
     try:
@@ -604,14 +604,14 @@ Name | Type | Description  | Notes
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.firewall_group_resources_out_response import FirewallGroupResourcesOutResponse
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.firewall_group_resources_out_response import FirewallGroupResourcesOutResponse
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -621,14 +621,14 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.FirewallApi(api_client)
+    api_instance = timeweb_cloud_api.FirewallApi(api_client)
     group_id = None # object | Идентификатор группы правил
     limit = None # object | Обозначает количество записей, которое необходимо вернуть. (optional)
     offset = None # object | Указывает на смещение относительно начала списка. (optional)
@@ -688,14 +688,14 @@ Name | Type | Description  | Notes
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.firewall_rule_out_response import FirewallRuleOutResponse
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.firewall_rule_out_response import FirewallRuleOutResponse
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -705,14 +705,14 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.FirewallApi(api_client)
+    api_instance = timeweb_cloud_api.FirewallApi(api_client)
     rule_id = None # object | Идентификатор правила
     group_id = None # object | Идентификатор группы правил
 
@@ -771,14 +771,14 @@ Name | Type | Description  | Notes
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.firewall_rules_out_response import FirewallRulesOutResponse
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.firewall_rules_out_response import FirewallRulesOutResponse
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -788,14 +788,14 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.FirewallApi(api_client)
+    api_instance = timeweb_cloud_api.FirewallApi(api_client)
     group_id = None # object | Идентификатор группы правил
     limit = None # object | Обозначает количество записей, которое необходимо вернуть. (optional)
     offset = None # object | Указывает на смещение относительно начала списка. (optional)
@@ -855,14 +855,14 @@ Name | Type | Description  | Notes
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.firewall_groups_out_response import FirewallGroupsOutResponse
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.firewall_groups_out_response import FirewallGroupsOutResponse
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -872,14 +872,14 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.FirewallApi(api_client)
+    api_instance = timeweb_cloud_api.FirewallApi(api_client)
     limit = None # object | Обозначает количество записей, которое необходимо вернуть. (optional)
     offset = None # object | Указывает на смещение относительно начала списка. (optional)
 
@@ -937,15 +937,15 @@ Name | Type | Description  | Notes
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.firewall_groups_out_response import FirewallGroupsOutResponse
-from openapi_client.models.resource_type import ResourceType
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.firewall_groups_out_response import FirewallGroupsOutResponse
+from timeweb_cloud_api.models.resource_type import ResourceType
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -955,16 +955,16 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.FirewallApi(api_client)
+    api_instance = timeweb_cloud_api.FirewallApi(api_client)
     resource_id = None # object | Идентификатор ресурса
-    resource_type = openapi_client.ResourceType() # ResourceType | 
+    resource_type = timeweb_cloud_api.ResourceType() # ResourceType | 
     limit = None # object | Обозначает количество записей, которое необходимо вернуть. (optional)
     offset = None # object | Указывает на смещение относительно начала списка. (optional)
 
@@ -1024,15 +1024,15 @@ Name | Type | Description  | Notes
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.firewall_group_in_api import FirewallGroupInAPI
-from openapi_client.models.firewall_group_out_response import FirewallGroupOutResponse
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.firewall_group_in_api import FirewallGroupInAPI
+from timeweb_cloud_api.models.firewall_group_out_response import FirewallGroupOutResponse
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -1042,16 +1042,16 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.FirewallApi(api_client)
+    api_instance = timeweb_cloud_api.FirewallApi(api_client)
     group_id = None # object | Идентификатор группы правил
-    firewall_group_in_api = openapi_client.FirewallGroupInAPI() # FirewallGroupInAPI | 
+    firewall_group_in_api = timeweb_cloud_api.FirewallGroupInAPI() # FirewallGroupInAPI | 
 
     try:
         # Обновление группы правил
@@ -1108,15 +1108,15 @@ Name | Type | Description  | Notes
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.firewall_rule_in_api import FirewallRuleInAPI
-from openapi_client.models.firewall_rule_out_response import FirewallRuleOutResponse
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.firewall_rule_in_api import FirewallRuleInAPI
+from timeweb_cloud_api.models.firewall_rule_out_response import FirewallRuleOutResponse
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -1126,17 +1126,17 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.FirewallApi(api_client)
+    api_instance = timeweb_cloud_api.FirewallApi(api_client)
     group_id = None # object | Идентификатор группы правил
     rule_id = None # object | Идентификатор правила
-    firewall_rule_in_api = openapi_client.FirewallRuleInAPI() # FirewallRuleInAPI | 
+    firewall_rule_in_api = timeweb_cloud_api.FirewallRuleInAPI() # FirewallRuleInAPI | 
 
     try:
         # Обновление firewall правила

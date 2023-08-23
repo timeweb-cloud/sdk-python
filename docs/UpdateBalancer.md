@@ -22,7 +22,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.update_balancer import UpdateBalancer
+from timeweb_cloud_api.models.update_balancer import UpdateBalancer
 
 # TODO update the JSON string below
 json = "{}"

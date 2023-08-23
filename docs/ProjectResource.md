@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.project_resource import ProjectResource
+from timeweb_cloud_api.models.project_resource import ProjectResource
 
 # TODO update the JSON string below
 json = "{}"

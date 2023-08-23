@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import openapi_client
-from openapi_client.models.create_rule import CreateRule  # noqa: E501
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.create_rule import CreateRule  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
 class TestCreateRule(unittest.TestCase):
     """CreateRule unit test stubs"""
@@ -36,7 +36,7 @@ class TestCreateRule(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `CreateRule`
         """
-        model = openapi_client.models.create_rule.CreateRule()  # noqa: E501
+        model = timeweb_cloud_api.models.create_rule.CreateRule()  # noqa: E501
         if include_optional :
             return CreateRule(
                 balancer_proto = https, 

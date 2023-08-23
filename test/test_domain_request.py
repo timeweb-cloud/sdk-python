@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import openapi_client
-from openapi_client.models.domain_request import DomainRequest  # noqa: E501
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.domain_request import DomainRequest  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
 class TestDomainRequest(unittest.TestCase):
     """DomainRequest unit test stubs"""
@@ -36,7 +36,7 @@ class TestDomainRequest(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `DomainRequest`
         """
-        model = openapi_client.models.domain_request.DomainRequest()  # noqa: E501
+        model = timeweb_cloud_api.models.domain_request.DomainRequest()  # noqa: E501
         if include_optional :
             return DomainRequest(
                 account_id = cp78562, 

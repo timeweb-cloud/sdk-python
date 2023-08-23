@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import openapi_client
-from openapi_client.models.create_dedicated_server201_response import CreateDedicatedServer201Response  # noqa: E501
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.create_dedicated_server201_response import CreateDedicatedServer201Response  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
 class TestCreateDedicatedServer201Response(unittest.TestCase):
     """CreateDedicatedServer201Response unit test stubs"""
@@ -36,10 +36,10 @@ class TestCreateDedicatedServer201Response(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `CreateDedicatedServer201Response`
         """
-        model = openapi_client.models.create_dedicated_server201_response.CreateDedicatedServer201Response()  # noqa: E501
+        model = timeweb_cloud_api.models.create_dedicated_server201_response.CreateDedicatedServer201Response()  # noqa: E501
         if include_optional :
             return CreateDedicatedServer201Response(
-                dedicated_server = openapi_client.models.dedicated_server.dedicated-server(
+                dedicated_server = timeweb_cloud_api.models.dedicated_server.dedicated-server(
                     id = 1, 
                     cpu_description = Intel Xeon E3-1240v3, 
                     hdd_description = 2 x 1 ТБ HDD, 
@@ -67,7 +67,7 @@ class TestCreateDedicatedServer201Response(unittest.TestCase):
             )
         else :
             return CreateDedicatedServer201Response(
-                dedicated_server = openapi_client.models.dedicated_server.dedicated-server(
+                dedicated_server = timeweb_cloud_api.models.dedicated_server.dedicated-server(
                     id = 1, 
                     cpu_description = Intel Xeon E3-1240v3, 
                     hdd_description = 2 x 1 ТБ HDD, 

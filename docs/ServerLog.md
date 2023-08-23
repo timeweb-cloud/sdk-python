@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.server_log import ServerLog
+from timeweb_cloud_api.models.server_log import ServerLog
 
 # TODO update the JSON string below
 json = "{}"

@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import openapi_client
-from openapi_client.models.update_auth_restrictions_by_countries_request import UpdateAuthRestrictionsByCountriesRequest  # noqa: E501
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.update_auth_restrictions_by_countries_request import UpdateAuthRestrictionsByCountriesRequest  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
 class TestUpdateAuthRestrictionsByCountriesRequest(unittest.TestCase):
     """UpdateAuthRestrictionsByCountriesRequest unit test stubs"""
@@ -36,7 +36,7 @@ class TestUpdateAuthRestrictionsByCountriesRequest(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `UpdateAuthRestrictionsByCountriesRequest`
         """
-        model = openapi_client.models.update_auth_restrictions_by_countries_request.UpdateAuthRestrictionsByCountriesRequest()  # noqa: E501
+        model = timeweb_cloud_api.models.update_auth_restrictions_by_countries_request.UpdateAuthRestrictionsByCountriesRequest()  # noqa: E501
         if include_optional :
             return UpdateAuthRestrictionsByCountriesRequest(
                 is_enabled = true

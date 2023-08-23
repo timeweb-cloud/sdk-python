@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import openapi_client
-from openapi_client.models.update_server_nat_request import UpdateServerNATRequest  # noqa: E501
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.update_server_nat_request import UpdateServerNATRequest  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
 class TestUpdateServerNATRequest(unittest.TestCase):
     """UpdateServerNATRequest unit test stubs"""
@@ -36,7 +36,7 @@ class TestUpdateServerNATRequest(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `UpdateServerNATRequest`
         """
-        model = openapi_client.models.update_server_nat_request.UpdateServerNATRequest()  # noqa: E501
+        model = timeweb_cloud_api.models.update_server_nat_request.UpdateServerNATRequest()  # noqa: E501
         if include_optional :
             return UpdateServerNATRequest(
                 nat_mode = no_nat

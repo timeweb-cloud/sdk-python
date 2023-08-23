@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import openapi_client
-from openapi_client.models.refresh_api_key import RefreshApiKey  # noqa: E501
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.refresh_api_key import RefreshApiKey  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
 class TestRefreshApiKey(unittest.TestCase):
     """RefreshApiKey unit test stubs"""
@@ -36,7 +36,7 @@ class TestRefreshApiKey(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `RefreshApiKey`
         """
-        model = openapi_client.models.refresh_api_key.RefreshApiKey()  # noqa: E501
+        model = timeweb_cloud_api.models.refresh_api_key.RefreshApiKey()  # noqa: E501
         if include_optional :
             return RefreshApiKey(
                 expire = 2022-10-25T15:15:45.000Z

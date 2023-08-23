@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.get_notification_settings200_response import GetNotificationSettings200Response
+from timeweb_cloud_api.models.get_notification_settings200_response import GetNotificationSettings200Response
 
 # TODO update the JSON string below
 json = "{}"

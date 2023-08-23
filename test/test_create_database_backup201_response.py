@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import openapi_client
-from openapi_client.models.create_database_backup201_response import CreateDatabaseBackup201Response  # noqa: E501
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.create_database_backup201_response import CreateDatabaseBackup201Response  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
 class TestCreateDatabaseBackup201Response(unittest.TestCase):
     """CreateDatabaseBackup201Response unit test stubs"""
@@ -36,10 +36,10 @@ class TestCreateDatabaseBackup201Response(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `CreateDatabaseBackup201Response`
         """
-        model = openapi_client.models.create_database_backup201_response.CreateDatabaseBackup201Response()  # noqa: E501
+        model = timeweb_cloud_api.models.create_database_backup201_response.CreateDatabaseBackup201Response()  # noqa: E501
         if include_optional :
             return CreateDatabaseBackup201Response(
-                backup = openapi_client.models.backup.backup(
+                backup = timeweb_cloud_api.models.backup.backup(
                     id = 1, 
                     name = test_name, 
                     comment = test_comment, 
@@ -51,7 +51,7 @@ class TestCreateDatabaseBackup201Response(unittest.TestCase):
             )
         else :
             return CreateDatabaseBackup201Response(
-                backup = openapi_client.models.backup.backup(
+                backup = timeweb_cloud_api.models.backup.backup(
                     id = 1, 
                     name = test_name, 
                     comment = test_comment, 

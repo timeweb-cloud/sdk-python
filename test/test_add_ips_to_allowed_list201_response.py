@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import openapi_client
-from openapi_client.models.add_ips_to_allowed_list201_response import AddIPsToAllowedList201Response  # noqa: E501
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.add_ips_to_allowed_list201_response import AddIPsToAllowedList201Response  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
 class TestAddIPsToAllowedList201Response(unittest.TestCase):
     """AddIPsToAllowedList201Response unit test stubs"""
@@ -36,16 +36,16 @@ class TestAddIPsToAllowedList201Response(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `AddIPsToAllowedList201Response`
         """
-        model = openapi_client.models.add_ips_to_allowed_list201_response.AddIPsToAllowedList201Response()  # noqa: E501
+        model = timeweb_cloud_api.models.add_ips_to_allowed_list201_response.AddIPsToAllowedList201Response()  # noqa: E501
         if include_optional :
             return AddIPsToAllowedList201Response(
-                ips = openapi_client.models.add_ips.add-ips(
+                ips = timeweb_cloud_api.models.add_ips.add-ips(
                     value = 123.231.125.128, 
                     status = success, )
             )
         else :
             return AddIPsToAllowedList201Response(
-                ips = openapi_client.models.add_ips.add-ips(
+                ips = timeweb_cloud_api.models.add_ips.add-ips(
                     value = 123.231.125.128, 
                     status = success, ),
         )

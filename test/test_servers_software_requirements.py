@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import openapi_client
-from openapi_client.models.servers_software_requirements import ServersSoftwareRequirements  # noqa: E501
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.servers_software_requirements import ServersSoftwareRequirements  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
 class TestServersSoftwareRequirements(unittest.TestCase):
     """ServersSoftwareRequirements unit test stubs"""
@@ -36,7 +36,7 @@ class TestServersSoftwareRequirements(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ServersSoftwareRequirements`
         """
-        model = openapi_client.models.servers_software_requirements.ServersSoftwareRequirements()  # noqa: E501
+        model = timeweb_cloud_api.models.servers_software_requirements.ServersSoftwareRequirements()  # noqa: E501
         if include_optional :
             return ServersSoftwareRequirements(
                 cpu_min = 2, 

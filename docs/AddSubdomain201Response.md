@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.add_subdomain201_response import AddSubdomain201Response
+from timeweb_cloud_api.models.add_subdomain201_response import AddSubdomain201Response
 
 # TODO update the JSON string below
 json = "{}"

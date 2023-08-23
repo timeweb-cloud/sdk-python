@@ -20,7 +20,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.bucket import Bucket
+from timeweb_cloud_api.models.bucket import Bucket
 
 # TODO update the JSON string below
 json = "{}"

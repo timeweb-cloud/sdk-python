@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import openapi_client
-from openapi_client.models.url_type import URLType  # noqa: E501
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.url_type import URLType  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
 class TestURLType(unittest.TestCase):
     """URLType unit test stubs"""
@@ -36,7 +36,7 @@ class TestURLType(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `URLType`
         """
-        model = openapi_client.models.url_type.URLType()  # noqa: E501
+        model = timeweb_cloud_api.models.url_type.URLType()  # noqa: E501
         if include_optional :
             return URLType(
             )

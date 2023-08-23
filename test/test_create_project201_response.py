@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import openapi_client
-from openapi_client.models.create_project201_response import CreateProject201Response  # noqa: E501
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.create_project201_response import CreateProject201Response  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
 class TestCreateProject201Response(unittest.TestCase):
     """CreateProject201Response unit test stubs"""
@@ -36,10 +36,10 @@ class TestCreateProject201Response(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `CreateProject201Response`
         """
-        model = openapi_client.models.create_project201_response.CreateProject201Response()  # noqa: E501
+        model = timeweb_cloud_api.models.create_project201_response.CreateProject201Response()  # noqa: E501
         if include_optional :
             return CreateProject201Response(
-                project = openapi_client.models.project.project(
+                project = timeweb_cloud_api.models.project.project(
                     id = 1, 
                     account_id = cp78562, 
                     avatar_id = 1664446660062, 
@@ -49,7 +49,7 @@ class TestCreateProject201Response(unittest.TestCase):
             )
         else :
             return CreateProject201Response(
-                project = openapi_client.models.project.project(
+                project = timeweb_cloud_api.models.project.project(
                     id = 1, 
                     account_id = cp78562, 
                     avatar_id = 1664446660062, 

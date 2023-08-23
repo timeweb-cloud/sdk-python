@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import openapi_client
-from openapi_client.models.add_countries_to_allowed_list_request import AddCountriesToAllowedListRequest  # noqa: E501
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.add_countries_to_allowed_list_request import AddCountriesToAllowedListRequest  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
 class TestAddCountriesToAllowedListRequest(unittest.TestCase):
     """AddCountriesToAllowedListRequest unit test stubs"""
@@ -36,7 +36,7 @@ class TestAddCountriesToAllowedListRequest(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `AddCountriesToAllowedListRequest`
         """
-        model = openapi_client.models.add_countries_to_allowed_list_request.AddCountriesToAllowedListRequest()  # noqa: E501
+        model = timeweb_cloud_api.models.add_countries_to_allowed_list_request.AddCountriesToAllowedListRequest()  # noqa: E501
         if include_optional :
             return AddCountriesToAllowedListRequest(
                 countries = None

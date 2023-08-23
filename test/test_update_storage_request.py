@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import openapi_client
-from openapi_client.models.update_storage_request import UpdateStorageRequest  # noqa: E501
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.update_storage_request import UpdateStorageRequest  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
 class TestUpdateStorageRequest(unittest.TestCase):
     """UpdateStorageRequest unit test stubs"""
@@ -36,7 +36,7 @@ class TestUpdateStorageRequest(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `UpdateStorageRequest`
         """
-        model = openapi_client.models.update_storage_request.UpdateStorageRequest()  # noqa: E501
+        model = timeweb_cloud_api.models.update_storage_request.UpdateStorageRequest()  # noqa: E501
         if include_optional :
             return UpdateStorageRequest(
                 preset_id = 1, 

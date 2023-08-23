@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import openapi_client
-from openapi_client.models.dedicated_server_preset_memory import DedicatedServerPresetMemory  # noqa: E501
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.dedicated_server_preset_memory import DedicatedServerPresetMemory  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
 class TestDedicatedServerPresetMemory(unittest.TestCase):
     """DedicatedServerPresetMemory unit test stubs"""
@@ -36,7 +36,7 @@ class TestDedicatedServerPresetMemory(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `DedicatedServerPresetMemory`
         """
-        model = openapi_client.models.dedicated_server_preset_memory.DedicatedServerPresetMemory()  # noqa: E501
+        model = timeweb_cloud_api.models.dedicated_server_preset_memory.DedicatedServerPresetMemory()  # noqa: E501
         if include_optional :
             return DedicatedServerPresetMemory(
                 description = 8 ГБ RAM, 

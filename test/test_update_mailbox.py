@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import openapi_client
-from openapi_client.models.update_mailbox import UpdateMailbox  # noqa: E501
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.update_mailbox import UpdateMailbox  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
 class TestUpdateMailbox(unittest.TestCase):
     """UpdateMailbox unit test stubs"""
@@ -36,23 +36,23 @@ class TestUpdateMailbox(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `UpdateMailbox`
         """
-        model = openapi_client.models.update_mailbox.UpdateMailbox()  # noqa: E501
+        model = timeweb_cloud_api.models.update_mailbox.UpdateMailbox()  # noqa: E501
         if include_optional :
             return UpdateMailbox(
-                auto_reply = openapi_client.models.если_автоответчик_выключен.Если автоответчик выключен(
+                auto_reply = timeweb_cloud_api.models.если_автоответчик_выключен.Если автоответчик выключен(
                     is_enabled = true, 
                     message = some message, 
                     subject = some subject, ), 
-                spam_filter = openapi_client.models.если_спам_фильтр_выключен.Если спам-фильтр выключен(
+                spam_filter = timeweb_cloud_api.models.если_спам_фильтр_выключен.Если спам-фильтр выключен(
                     is_enabled = true, 
                     action = forward, 
                     forward_to = test@timeweb.ru, 
                     white_list = null, ), 
-                forwarding_incoming = openapi_client.models.если_пересылка_входящих_выключена.Если пересылка входящих выключена(
+                forwarding_incoming = timeweb_cloud_api.models.если_пересылка_входящих_выключена.Если пересылка входящих выключена(
                     is_enabled = true, 
                     is_delete_messages = false, 
                     incoming_list = null, ), 
-                forwarding_outgoing = openapi_client.models.если_пересылка_исходящих_выключена.Если пересылка исходящих выключена(
+                forwarding_outgoing = timeweb_cloud_api.models.если_пересылка_исходящих_выключена.Если пересылка исходящих выключена(
                     is_enabled = true, 
                     outgoing_to = test@timeweb.ru, ), 
                 comment = some comment, 

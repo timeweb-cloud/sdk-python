@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.domain_prime_type import DomainPrimeType
+from timeweb_cloud_api.models.domain_prime_type import DomainPrimeType
 
 # TODO update the JSON string below
 json = "{}"

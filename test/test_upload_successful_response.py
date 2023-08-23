@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import openapi_client
-from openapi_client.models.upload_successful_response import UploadSuccessfulResponse  # noqa: E501
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.upload_successful_response import UploadSuccessfulResponse  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
 class TestUploadSuccessfulResponse(unittest.TestCase):
     """UploadSuccessfulResponse unit test stubs"""
@@ -36,16 +36,16 @@ class TestUploadSuccessfulResponse(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `UploadSuccessfulResponse`
         """
-        model = openapi_client.models.upload_successful_response.UploadSuccessfulResponse()  # noqa: E501
+        model = timeweb_cloud_api.models.upload_successful_response.UploadSuccessfulResponse()  # noqa: E501
         if include_optional :
             return UploadSuccessfulResponse(
                 response_id = None, 
-                upload_successful = openapi_client.models.upload_successful.UploadSuccessful(
+                upload_successful = timeweb_cloud_api.models.upload_successful.UploadSuccessful(
                     image_id = null, )
             )
         else :
             return UploadSuccessfulResponse(
-                upload_successful = openapi_client.models.upload_successful.UploadSuccessful(
+                upload_successful = timeweb_cloud_api.models.upload_successful.UploadSuccessful(
                     image_id = null, ),
         )
         """

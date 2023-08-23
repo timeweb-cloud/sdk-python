@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import openapi_client
-from openapi_client.models.add_server_ip201_response import AddServerIP201Response  # noqa: E501
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.add_server_ip201_response import AddServerIP201Response  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
 class TestAddServerIP201Response(unittest.TestCase):
     """AddServerIP201Response unit test stubs"""
@@ -36,10 +36,10 @@ class TestAddServerIP201Response(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `AddServerIP201Response`
         """
-        model = openapi_client.models.add_server_ip201_response.AddServerIP201Response()  # noqa: E501
+        model = timeweb_cloud_api.models.add_server_ip201_response.AddServerIP201Response()  # noqa: E501
         if include_optional :
             return AddServerIP201Response(
-                server_ip = openapi_client.models.server_ip.server-ip(
+                server_ip = timeweb_cloud_api.models.server_ip.server-ip(
                     type = ipv4, 
                     ip = 0.0.0.0, 
                     ptr = ptr, 
@@ -47,7 +47,7 @@ class TestAddServerIP201Response(unittest.TestCase):
             )
         else :
             return AddServerIP201Response(
-                server_ip = openapi_client.models.server_ip.server-ip(
+                server_ip = timeweb_cloud_api.models.server_ip.server-ip(
                     type = ipv4, 
                     ip = 0.0.0.0, 
                     ptr = ptr, 

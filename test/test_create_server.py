@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import openapi_client
-from openapi_client.models.create_server import CreateServer  # noqa: E501
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.create_server import CreateServer  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
 class TestCreateServer(unittest.TestCase):
     """CreateServer unit test stubs"""
@@ -36,10 +36,10 @@ class TestCreateServer(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `CreateServer`
         """
-        model = openapi_client.models.create_server.CreateServer()  # noqa: E501
+        model = timeweb_cloud_api.models.create_server.CreateServer()  # noqa: E501
         if include_optional :
             return CreateServer(
-                configuration = openapi_client.models.create_server_configuration.create_server_configuration(
+                configuration = timeweb_cloud_api.models.create_server_configuration.create_server_configuration(
                     configurator_id = 11, 
                     disk = 15360, 
                     cpu = 1, 
@@ -55,7 +55,7 @@ class TestCreateServer(unittest.TestCase):
                 comment = comment, 
                 ssh_keys_ids = None, 
                 is_local_network = false, 
-                network = openapi_client.models.network.network(
+                network = timeweb_cloud_api.models.network.network(
                     id = network-1234567890, 
                     ip = 192.168.0.0, )
             )

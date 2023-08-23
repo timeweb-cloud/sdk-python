@@ -23,7 +23,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.top_level_domain import TopLevelDomain
+from timeweb_cloud_api.models.top_level_domain import TopLevelDomain
 
 # TODO update the JSON string below
 json = "{}"

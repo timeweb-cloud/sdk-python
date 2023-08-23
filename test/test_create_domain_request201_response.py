@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import openapi_client
-from openapi_client.models.create_domain_request201_response import CreateDomainRequest201Response  # noqa: E501
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.create_domain_request201_response import CreateDomainRequest201Response  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
 class TestCreateDomainRequest201Response(unittest.TestCase):
     """CreateDomainRequest201Response unit test stubs"""
@@ -36,10 +36,10 @@ class TestCreateDomainRequest201Response(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `CreateDomainRequest201Response`
         """
-        model = openapi_client.models.create_domain_request201_response.CreateDomainRequest201Response()  # noqa: E501
+        model = timeweb_cloud_api.models.create_domain_request201_response.CreateDomainRequest201Response()  # noqa: E501
         if include_optional :
             return CreateDomainRequest201Response(
-                request = openapi_client.models.domain_request.domain-request(
+                request = timeweb_cloud_api.models.domain_request.domain-request(
                     account_id = cp78562, 
                     auth_code = code, 
                     date = 2023-01-31T12:51:00.710Z, 
@@ -62,7 +62,7 @@ class TestCreateDomainRequest201Response(unittest.TestCase):
             )
         else :
             return CreateDomainRequest201Response(
-                request = openapi_client.models.domain_request.domain-request(
+                request = timeweb_cloud_api.models.domain_request.domain-request(
                     account_id = cp78562, 
                     auth_code = code, 
                     date = 2023-01-31T12:51:00.710Z, 

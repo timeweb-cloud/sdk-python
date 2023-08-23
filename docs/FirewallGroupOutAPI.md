@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.firewall_group_out_api import FirewallGroupOutAPI
+from timeweb_cloud_api.models.firewall_group_out_api import FirewallGroupOutAPI
 
 # TODO update the JSON string below
 json = "{}"

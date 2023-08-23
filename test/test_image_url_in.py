@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import openapi_client
-from openapi_client.models.image_url_in import ImageUrlIn  # noqa: E501
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.image_url_in import ImageUrlIn  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
 class TestImageUrlIn(unittest.TestCase):
     """ImageUrlIn unit test stubs"""
@@ -36,7 +36,7 @@ class TestImageUrlIn(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ImageUrlIn`
         """
-        model = openapi_client.models.image_url_in.ImageUrlIn()  # noqa: E501
+        model = timeweb_cloud_api.models.image_url_in.ImageUrlIn()  # noqa: E501
         if include_optional :
             return ImageUrlIn(
                 type = timeweb, 

@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import openapi_client
-from openapi_client.models.update_vpc import UpdateVpc  # noqa: E501
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.update_vpc import UpdateVpc  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
 class TestUpdateVpc(unittest.TestCase):
     """UpdateVpc unit test stubs"""
@@ -36,7 +36,7 @@ class TestUpdateVpc(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `UpdateVpc`
         """
-        model = openapi_client.models.update_vpc.UpdateVpc()  # noqa: E501
+        model = timeweb_cloud_api.models.update_vpc.UpdateVpc()  # noqa: E501
         if include_optional :
             return UpdateVpc(
                 name = Общая сеть, 

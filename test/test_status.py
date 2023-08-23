@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import openapi_client
-from openapi_client.models.status import Status  # noqa: E501
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.status import Status  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
 class TestStatus(unittest.TestCase):
     """Status unit test stubs"""
@@ -36,13 +36,13 @@ class TestStatus(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `Status`
         """
-        model = openapi_client.models.status.Status()  # noqa: E501
+        model = timeweb_cloud_api.models.status.Status()  # noqa: E501
         if include_optional :
             return Status(
                 is_blocked = false, 
                 is_permanent_blocked = false, 
                 is_send_bill_letters = false, 
-                company_info = openapi_client.models.status_company_info.status_company_info(
+                company_info = timeweb_cloud_api.models.status_company_info.status_company_info(
                     id = 0, 
                     name = Пример, ), 
                 last_password_changed_at = 2021-02-25T11:04:15Z, 
@@ -53,7 +53,7 @@ class TestStatus(unittest.TestCase):
                 is_blocked = false,
                 is_permanent_blocked = false,
                 is_send_bill_letters = false,
-                company_info = openapi_client.models.status_company_info.status_company_info(
+                company_info = timeweb_cloud_api.models.status_company_info.status_company_info(
                     id = 0, 
                     name = Пример, ),
                 last_password_changed_at = 2021-02-25T11:04:15Z,

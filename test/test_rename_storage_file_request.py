@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import openapi_client
-from openapi_client.models.rename_storage_file_request import RenameStorageFileRequest  # noqa: E501
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.rename_storage_file_request import RenameStorageFileRequest  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
 class TestRenameStorageFileRequest(unittest.TestCase):
     """RenameStorageFileRequest unit test stubs"""
@@ -36,7 +36,7 @@ class TestRenameStorageFileRequest(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `RenameStorageFileRequest`
         """
-        model = openapi_client.models.rename_storage_file_request.RenameStorageFileRequest()  # noqa: E501
+        model = timeweb_cloud_api.models.rename_storage_file_request.RenameStorageFileRequest()  # noqa: E501
         if include_optional :
             return RenameStorageFileRequest(
                 new_filename = new_filename, 

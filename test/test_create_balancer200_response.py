@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import openapi_client
-from openapi_client.models.create_balancer200_response import CreateBalancer200Response  # noqa: E501
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.create_balancer200_response import CreateBalancer200Response  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
 class TestCreateBalancer200Response(unittest.TestCase):
     """CreateBalancer200Response unit test stubs"""
@@ -36,10 +36,10 @@ class TestCreateBalancer200Response(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `CreateBalancer200Response`
         """
-        model = openapi_client.models.create_balancer200_response.CreateBalancer200Response()  # noqa: E501
+        model = timeweb_cloud_api.models.create_balancer200_response.CreateBalancer200Response()  # noqa: E501
         if include_optional :
             return CreateBalancer200Response(
-                balancer = openapi_client.models.balancer.balancer(
+                balancer = timeweb_cloud_api.models.balancer.balancer(
                     id = 1, 
                     algo = roundrobin, 
                     created_at = 2022-10-25T15:15:45.000Z, 
@@ -64,7 +64,7 @@ class TestCreateBalancer200Response(unittest.TestCase):
             )
         else :
             return CreateBalancer200Response(
-                balancer = openapi_client.models.balancer.balancer(
+                balancer = timeweb_cloud_api.models.balancer.balancer(
                     id = 1, 
                     algo = roundrobin, 
                     created_at = 2022-10-25T15:15:45.000Z, 

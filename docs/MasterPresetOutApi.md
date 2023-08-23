@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.master_preset_out_api import MasterPresetOutApi
+from timeweb_cloud_api.models.master_preset_out_api import MasterPresetOutApi
 
 # TODO update the JSON string below
 json = "{}"

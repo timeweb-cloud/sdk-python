@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.upload_successful_response import UploadSuccessfulResponse
+from timeweb_cloud_api.models.upload_successful_response import UploadSuccessfulResponse
 
 # TODO update the JSON string below
 json = "{}"

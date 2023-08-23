@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.schemas_base_error import SchemasBaseError
+from timeweb_cloud_api.models.schemas_base_error import SchemasBaseError
 
 # TODO update the JSON string below
 json = "{}"

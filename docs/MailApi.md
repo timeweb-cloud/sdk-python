@@ -1,4 +1,4 @@
-# openapi_client.MailApi
+# timeweb_cloud_api.MailApi
 
 All URIs are relative to *https://api.timeweb.cloud*
 
@@ -29,15 +29,15 @@ Method | HTTP request | Description
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.create_domain_mailbox201_response import CreateDomainMailbox201Response
-from openapi_client.models.create_domain_mailbox_request import CreateDomainMailboxRequest
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.create_domain_mailbox201_response import CreateDomainMailbox201Response
+from timeweb_cloud_api.models.create_domain_mailbox_request import CreateDomainMailboxRequest
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -47,16 +47,16 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.MailApi(api_client)
+    api_instance = timeweb_cloud_api.MailApi(api_client)
     domain = somedomain.ru # object | Полное имя домена
-    create_domain_mailbox_request = openapi_client.CreateDomainMailboxRequest() # CreateDomainMailboxRequest | 
+    create_domain_mailbox_request = timeweb_cloud_api.CreateDomainMailboxRequest() # CreateDomainMailboxRequest | 
 
     try:
         # Создание почтового ящика
@@ -112,13 +112,13 @@ Name | Type | Description  | Notes
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -128,14 +128,14 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.MailApi(api_client)
+    api_instance = timeweb_cloud_api.MailApi(api_client)
     domain = somedomain.ru # object | Полное имя домена
     mailbox = mailbox # object | Название почтового ящика
 
@@ -191,14 +191,14 @@ void (empty response body)
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.get_domain_mail_info200_response import GetDomainMailInfo200Response
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.get_domain_mail_info200_response import GetDomainMailInfo200Response
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -208,14 +208,14 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.MailApi(api_client)
+    api_instance = timeweb_cloud_api.MailApi(api_client)
     domain = somedomain.ru # object | Полное имя домена
 
     try:
@@ -271,14 +271,14 @@ Name | Type | Description  | Notes
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.get_mailboxes200_response import GetMailboxes200Response
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.get_mailboxes200_response import GetMailboxes200Response
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -288,14 +288,14 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.MailApi(api_client)
+    api_instance = timeweb_cloud_api.MailApi(api_client)
     domain = somedomain.ru # object | Полное имя домена
     limit = None # object | Обозначает количество записей, которое необходимо вернуть. (optional)
     offset = None # object | Указывает на смещение относительно начала списка. (optional)
@@ -357,14 +357,14 @@ Name | Type | Description  | Notes
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.get_mail_quota200_response import GetMailQuota200Response
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.get_mail_quota200_response import GetMailQuota200Response
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -374,14 +374,14 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.MailApi(api_client)
+    api_instance = timeweb_cloud_api.MailApi(api_client)
 
     try:
         # Получение квоты почты аккаунта
@@ -433,14 +433,14 @@ This endpoint does not need any parameter.
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.create_domain_mailbox201_response import CreateDomainMailbox201Response
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.create_domain_mailbox201_response import CreateDomainMailbox201Response
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -450,14 +450,14 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.MailApi(api_client)
+    api_instance = timeweb_cloud_api.MailApi(api_client)
     domain = somedomain.ru # object | Полное имя домена
     mailbox = mailbox # object | Название почтового ящика
 
@@ -515,14 +515,14 @@ Name | Type | Description  | Notes
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.get_mailboxes200_response import GetMailboxes200Response
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.get_mailboxes200_response import GetMailboxes200Response
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -532,14 +532,14 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.MailApi(api_client)
+    api_instance = timeweb_cloud_api.MailApi(api_client)
     limit = None # object | Обозначает количество записей, которое необходимо вернуть. (optional)
     offset = None # object | Указывает на смещение относительно начала списка. (optional)
     search = None # object | Поиск почтового ящика по названию (optional)
@@ -599,15 +599,15 @@ Name | Type | Description  | Notes
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.get_domain_mail_info200_response import GetDomainMailInfo200Response
-from openapi_client.models.update_domain_mail_info_request import UpdateDomainMailInfoRequest
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.get_domain_mail_info200_response import GetDomainMailInfo200Response
+from timeweb_cloud_api.models.update_domain_mail_info_request import UpdateDomainMailInfoRequest
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -617,16 +617,16 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.MailApi(api_client)
+    api_instance = timeweb_cloud_api.MailApi(api_client)
     domain = somedomain.ru # object | Полное имя домена
-    update_domain_mail_info_request = openapi_client.UpdateDomainMailInfoRequest() # UpdateDomainMailInfoRequest | 
+    update_domain_mail_info_request = timeweb_cloud_api.UpdateDomainMailInfoRequest() # UpdateDomainMailInfoRequest | 
 
     try:
         # Изменение почтовой информации о домене
@@ -682,15 +682,15 @@ Name | Type | Description  | Notes
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.get_mail_quota200_response import GetMailQuota200Response
-from openapi_client.models.update_mail_quota_request import UpdateMailQuotaRequest
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.get_mail_quota200_response import GetMailQuota200Response
+from timeweb_cloud_api.models.update_mail_quota_request import UpdateMailQuotaRequest
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -700,15 +700,15 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.MailApi(api_client)
-    update_mail_quota_request = openapi_client.UpdateMailQuotaRequest() # UpdateMailQuotaRequest | 
+    api_instance = timeweb_cloud_api.MailApi(api_client)
+    update_mail_quota_request = timeweb_cloud_api.UpdateMailQuotaRequest() # UpdateMailQuotaRequest | 
 
     try:
         # Изменение квоты почты аккаунта
@@ -763,15 +763,15 @@ Name | Type | Description  | Notes
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.create_domain_mailbox201_response import CreateDomainMailbox201Response
-from openapi_client.models.update_mailbox import UpdateMailbox
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.create_domain_mailbox201_response import CreateDomainMailbox201Response
+from timeweb_cloud_api.models.update_mailbox import UpdateMailbox
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -781,17 +781,17 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.MailApi(api_client)
+    api_instance = timeweb_cloud_api.MailApi(api_client)
     domain = somedomain.ru # object | Полное имя домена
     mailbox = mailbox # object | Название почтового ящика
-    update_mailbox = openapi_client.UpdateMailbox() # UpdateMailbox | 
+    update_mailbox = timeweb_cloud_api.UpdateMailbox() # UpdateMailbox | 
 
     try:
         # Изменение почтового ящика

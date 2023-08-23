@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.add_server_to_project_request import AddServerToProjectRequest
+from timeweb_cloud_api.models.add_server_to_project_request import AddServerToProjectRequest
 
 # TODO update the JSON string below
 json = "{}"

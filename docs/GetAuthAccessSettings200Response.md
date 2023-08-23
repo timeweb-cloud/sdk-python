@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.get_auth_access_settings200_response import GetAuthAccessSettings200Response
+from timeweb_cloud_api.models.get_auth_access_settings200_response import GetAuthAccessSettings200Response
 
 # TODO update the JSON string below
 json = "{}"

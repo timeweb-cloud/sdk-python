@@ -20,7 +20,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.image_out_api import ImageOutAPI
+from timeweb_cloud_api.models.image_out_api import ImageOutAPI
 
 # TODO update the JSON string below
 json = "{}"

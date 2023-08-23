@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.spam_filter_is_enabled import SpamFilterIsEnabled
+from timeweb_cloud_api.models.spam_filter_is_enabled import SpamFilterIsEnabled
 
 # TODO update the JSON string below
 json = "{}"

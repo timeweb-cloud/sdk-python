@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import openapi_client
-from openapi_client.models.update_notification_settings_request import UpdateNotificationSettingsRequest  # noqa: E501
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.update_notification_settings_request import UpdateNotificationSettingsRequest  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
 class TestUpdateNotificationSettingsRequest(unittest.TestCase):
     """UpdateNotificationSettingsRequest unit test stubs"""
@@ -36,7 +36,7 @@ class TestUpdateNotificationSettingsRequest(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `UpdateNotificationSettingsRequest`
         """
-        model = openapi_client.models.update_notification_settings_request.UpdateNotificationSettingsRequest()  # noqa: E501
+        model = timeweb_cloud_api.models.update_notification_settings_request.UpdateNotificationSettingsRequest()  # noqa: E501
         if include_optional :
             return UpdateNotificationSettingsRequest(
                 settings = [{"type":"account_blocked","channels":{"telegram":"on"}}]

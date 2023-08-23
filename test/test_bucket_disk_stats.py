@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import openapi_client
-from openapi_client.models.bucket_disk_stats import BucketDiskStats  # noqa: E501
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.bucket_disk_stats import BucketDiskStats  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
 class TestBucketDiskStats(unittest.TestCase):
     """BucketDiskStats unit test stubs"""
@@ -36,7 +36,7 @@ class TestBucketDiskStats(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `BucketDiskStats`
         """
-        model = openapi_client.models.bucket_disk_stats.BucketDiskStats()  # noqa: E501
+        model = timeweb_cloud_api.models.bucket_disk_stats.BucketDiskStats()  # noqa: E501
         if include_optional :
             return BucketDiskStats(
                 size = 10485760, 

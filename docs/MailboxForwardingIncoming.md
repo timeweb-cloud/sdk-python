@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.mailbox_forwarding_incoming import MailboxForwardingIncoming
+from timeweb_cloud_api.models.mailbox_forwarding_incoming import MailboxForwardingIncoming
 
 # TODO update the JSON string below
 json = "{}"

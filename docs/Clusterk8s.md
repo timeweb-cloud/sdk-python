@@ -22,7 +22,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.clusterk8s import Clusterk8s
+from timeweb_cloud_api.models.clusterk8s import Clusterk8s
 
 # TODO update the JSON string below
 json = "{}"

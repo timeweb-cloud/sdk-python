@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import openapi_client
-from openapi_client.models.dedicated_server_preset import DedicatedServerPreset  # noqa: E501
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.dedicated_server_preset import DedicatedServerPreset  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
 class TestDedicatedServerPreset(unittest.TestCase):
     """DedicatedServerPreset unit test stubs"""
@@ -36,21 +36,21 @@ class TestDedicatedServerPreset(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `DedicatedServerPreset`
         """
-        model = openapi_client.models.dedicated_server_preset.DedicatedServerPreset()  # noqa: E501
+        model = timeweb_cloud_api.models.dedicated_server_preset.DedicatedServerPreset()  # noqa: E501
         if include_optional :
             return DedicatedServerPreset(
                 id = 3017, 
                 description = Gold 6208U / 64 / 1N, 
                 is_ipmi_enabled = true, 
-                cpu = openapi_client.models.dedicated_server_preset_cpu.dedicated_server_preset_cpu(
+                cpu = timeweb_cloud_api.models.dedicated_server_preset_cpu.dedicated_server_preset_cpu(
                     description = Intel Xeon Gold 6208U\r\n    (16 ядер, 2.9-3.9 ГГц, 32 потока), 
                     description_short = Intel Xeon Gold 6208U, 
                     count = 16, ), 
-                disk = openapi_client.models.dedicated_server_preset_disk.dedicated_server_preset_disk(
+                disk = timeweb_cloud_api.models.dedicated_server_preset_disk.dedicated_server_preset_disk(
                     description = 2 x 1 Тб NVMe, 
                     count = 16, ), 
                 price = 100, 
-                memory = openapi_client.models.dedicated_server_preset_memory.dedicated_server_preset_memory(
+                memory = timeweb_cloud_api.models.dedicated_server_preset_memory.dedicated_server_preset_memory(
                     description = 8 ГБ RAM, 
                     count = 1, 
                     size = 65536, ), 
@@ -61,14 +61,14 @@ class TestDedicatedServerPreset(unittest.TestCase):
                 id = 3017,
                 description = Gold 6208U / 64 / 1N,
                 is_ipmi_enabled = true,
-                cpu = openapi_client.models.dedicated_server_preset_cpu.dedicated_server_preset_cpu(
+                cpu = timeweb_cloud_api.models.dedicated_server_preset_cpu.dedicated_server_preset_cpu(
                     description = Intel Xeon Gold 6208U\r\n    (16 ядер, 2.9-3.9 ГГц, 32 потока), 
                     description_short = Intel Xeon Gold 6208U, 
                     count = 16, ),
-                disk = openapi_client.models.dedicated_server_preset_disk.dedicated_server_preset_disk(
+                disk = timeweb_cloud_api.models.dedicated_server_preset_disk.dedicated_server_preset_disk(
                     description = 2 x 1 Тб NVMe, 
                     count = 16, ),
-                memory = openapi_client.models.dedicated_server_preset_memory.dedicated_server_preset_memory(
+                memory = timeweb_cloud_api.models.dedicated_server_preset_memory.dedicated_server_preset_memory(
                     description = 8 ГБ RAM, 
                     count = 1, 
                     size = 65536, ),

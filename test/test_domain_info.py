@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import openapi_client
-from openapi_client.models.domain_info import DomainInfo  # noqa: E501
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.domain_info import DomainInfo  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
 class TestDomainInfo(unittest.TestCase):
     """DomainInfo unit test stubs"""
@@ -36,7 +36,7 @@ class TestDomainInfo(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `DomainInfo`
         """
-        model = openapi_client.models.domain_info.DomainInfo()  # noqa: E501
+        model = timeweb_cloud_api.models.domain_info.DomainInfo()  # noqa: E501
         if include_optional :
             return DomainInfo(
                 email = 1024, 

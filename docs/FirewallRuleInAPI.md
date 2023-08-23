@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.firewall_rule_in_api import FirewallRuleInAPI
+from timeweb_cloud_api.models.firewall_rule_in_api import FirewallRuleInAPI
 
 # TODO update the JSON string below
 json = "{}"

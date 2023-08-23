@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.s3_object import S3Object
+from timeweb_cloud_api.models.s3_object import S3Object
 
 # TODO update the JSON string below
 json = "{}"

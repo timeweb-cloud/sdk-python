@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import openapi_client
-from openapi_client.models.update_domain_auto_prolongation200_response import UpdateDomainAutoProlongation200Response  # noqa: E501
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.update_domain_auto_prolongation200_response import UpdateDomainAutoProlongation200Response  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
 class TestUpdateDomainAutoProlongation200Response(unittest.TestCase):
     """UpdateDomainAutoProlongation200Response unit test stubs"""
@@ -36,10 +36,10 @@ class TestUpdateDomainAutoProlongation200Response(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `UpdateDomainAutoProlongation200Response`
         """
-        model = openapi_client.models.update_domain_auto_prolongation200_response.UpdateDomainAutoProlongation200Response()  # noqa: E501
+        model = timeweb_cloud_api.models.update_domain_auto_prolongation200_response.UpdateDomainAutoProlongation200Response()  # noqa: E501
         if include_optional :
             return UpdateDomainAutoProlongation200Response(
-                domain = openapi_client.models.domain.domain(
+                domain = timeweb_cloud_api.models.domain.domain(
                     allowed_buy_periods = null, 
                     days_left = 100, 
                     domain_status = paid, 
@@ -62,7 +62,7 @@ class TestUpdateDomainAutoProlongation200Response(unittest.TestCase):
             )
         else :
             return UpdateDomainAutoProlongation200Response(
-                domain = openapi_client.models.domain.domain(
+                domain = timeweb_cloud_api.models.domain.domain(
                     allowed_buy_periods = null, 
                     days_left = 100, 
                     domain_status = paid, 

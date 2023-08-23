@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import openapi_client
-from openapi_client.models.add_key_to_server_request import AddKeyToServerRequest  # noqa: E501
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.add_key_to_server_request import AddKeyToServerRequest  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
 class TestAddKeyToServerRequest(unittest.TestCase):
     """AddKeyToServerRequest unit test stubs"""
@@ -36,7 +36,7 @@ class TestAddKeyToServerRequest(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `AddKeyToServerRequest`
         """
-        model = openapi_client.models.add_key_to_server_request.AddKeyToServerRequest()  # noqa: E501
+        model = timeweb_cloud_api.models.add_key_to_server_request.AddKeyToServerRequest()  # noqa: E501
         if include_optional :
             return AddKeyToServerRequest(
                 ssh_key_ids = None

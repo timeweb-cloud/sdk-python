@@ -1,4 +1,4 @@
-# openapi_client.DedicatedServersApi
+# timeweb_cloud_api.DedicatedServersApi
 
 All URIs are relative to *https://api.timeweb.cloud*
 
@@ -26,15 +26,15 @@ Method | HTTP request | Description
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.create_dedicated_server import CreateDedicatedServer
-from openapi_client.models.create_dedicated_server201_response import CreateDedicatedServer201Response
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.create_dedicated_server import CreateDedicatedServer
+from timeweb_cloud_api.models.create_dedicated_server201_response import CreateDedicatedServer201Response
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -44,15 +44,15 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.DedicatedServersApi(api_client)
-    create_dedicated_server = openapi_client.CreateDedicatedServer() # CreateDedicatedServer | 
+    api_instance = timeweb_cloud_api.DedicatedServersApi(api_client)
+    create_dedicated_server = timeweb_cloud_api.CreateDedicatedServer() # CreateDedicatedServer | 
 
     try:
         # Создание выделенного сервера
@@ -109,13 +109,13 @@ Name | Type | Description  | Notes
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -125,14 +125,14 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.DedicatedServersApi(api_client)
+    api_instance = timeweb_cloud_api.DedicatedServersApi(api_client)
     dedicated_id = 1051 # object | Уникальный идентификатор выделенного сервера.
 
     try:
@@ -188,14 +188,14 @@ void (empty response body)
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.create_dedicated_server201_response import CreateDedicatedServer201Response
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.create_dedicated_server201_response import CreateDedicatedServer201Response
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -205,14 +205,14 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.DedicatedServersApi(api_client)
+    api_instance = timeweb_cloud_api.DedicatedServersApi(api_client)
     dedicated_id = 1051 # object | Уникальный идентификатор выделенного сервера.
 
     try:
@@ -270,14 +270,14 @@ Name | Type | Description  | Notes
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.get_dedicated_server_preset_additional_services200_response import GetDedicatedServerPresetAdditionalServices200Response
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.get_dedicated_server_preset_additional_services200_response import GetDedicatedServerPresetAdditionalServices200Response
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -287,14 +287,14 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.DedicatedServersApi(api_client)
+    api_instance = timeweb_cloud_api.DedicatedServersApi(api_client)
     preset_id = 1051 # object | Уникальный идентификатор тарифа выделенного сервера.
 
     try:
@@ -352,14 +352,14 @@ Name | Type | Description  | Notes
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.get_dedicated_servers200_response import GetDedicatedServers200Response
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.get_dedicated_servers200_response import GetDedicatedServers200Response
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -369,14 +369,14 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.DedicatedServersApi(api_client)
+    api_instance = timeweb_cloud_api.DedicatedServersApi(api_client)
 
     try:
         # Получение списка выделенных серверов
@@ -430,14 +430,14 @@ This endpoint does not need any parameter.
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.get_dedicated_servers_presets200_response import GetDedicatedServersPresets200Response
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.get_dedicated_servers_presets200_response import GetDedicatedServersPresets200Response
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -447,14 +447,14 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.DedicatedServersApi(api_client)
+    api_instance = timeweb_cloud_api.DedicatedServersApi(api_client)
     location = None # object | Получение тарифов определенной локации. (optional)
 
     try:
@@ -512,15 +512,15 @@ Name | Type | Description  | Notes
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.create_dedicated_server201_response import CreateDedicatedServer201Response
-from openapi_client.models.update_dedicated_server_request import UpdateDedicatedServerRequest
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.create_dedicated_server201_response import CreateDedicatedServer201Response
+from timeweb_cloud_api.models.update_dedicated_server_request import UpdateDedicatedServerRequest
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -530,16 +530,16 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.DedicatedServersApi(api_client)
+    api_instance = timeweb_cloud_api.DedicatedServersApi(api_client)
     dedicated_id = 1051 # object | Уникальный идентификатор выделенного сервера.
-    update_dedicated_server_request = openapi_client.UpdateDedicatedServerRequest() # UpdateDedicatedServerRequest |  (optional)
+    update_dedicated_server_request = timeweb_cloud_api.UpdateDedicatedServerRequest() # UpdateDedicatedServerRequest |  (optional)
 
     try:
         # Обновление выделенного сервера

@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import openapi_client
-from openapi_client.models.firewall_rule_out_response import FirewallRuleOutResponse  # noqa: E501
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.firewall_rule_out_response import FirewallRuleOutResponse  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
 class TestFirewallRuleOutResponse(unittest.TestCase):
     """FirewallRuleOutResponse unit test stubs"""
@@ -36,11 +36,11 @@ class TestFirewallRuleOutResponse(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `FirewallRuleOutResponse`
         """
-        model = openapi_client.models.firewall_rule_out_response.FirewallRuleOutResponse()  # noqa: E501
+        model = timeweb_cloud_api.models.firewall_rule_out_response.FirewallRuleOutResponse()  # noqa: E501
         if include_optional :
             return FirewallRuleOutResponse(
                 response_id = None, 
-                rule = openapi_client.models.firewall_rule_out_api.FirewallRuleOutAPI(
+                rule = timeweb_cloud_api.models.firewall_rule_out_api.FirewallRuleOutAPI(
                     id = null, 
                     description = null, 
                     direction = ingress, 
@@ -51,7 +51,7 @@ class TestFirewallRuleOutResponse(unittest.TestCase):
             )
         else :
             return FirewallRuleOutResponse(
-                rule = openapi_client.models.firewall_rule_out_api.FirewallRuleOutAPI(
+                rule = timeweb_cloud_api.models.firewall_rule_out_api.FirewallRuleOutAPI(
                     id = null, 
                     description = null, 
                     direction = ingress, 

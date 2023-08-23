@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import openapi_client
-from openapi_client.models.update_server import UpdateServer  # noqa: E501
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.update_server import UpdateServer  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
 class TestUpdateServer(unittest.TestCase):
     """UpdateServer unit test stubs"""
@@ -36,10 +36,10 @@ class TestUpdateServer(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `UpdateServer`
         """
-        model = openapi_client.models.update_server.UpdateServer()  # noqa: E501
+        model = timeweb_cloud_api.models.update_server.UpdateServer()  # noqa: E501
         if include_optional :
             return UpdateServer(
-                configurator = openapi_client.models.update_server_configurator.update_server_configurator(
+                configurator = timeweb_cloud_api.models.update_server_configurator.update_server_configurator(
                     configurator_id = 11, 
                     disk = 15360, 
                     cpu = 1, 

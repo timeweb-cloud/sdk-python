@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.mailbox_auto_reply import MailboxAutoReply
+from timeweb_cloud_api.models.mailbox_auto_reply import MailboxAutoReply
 
 # TODO update the JSON string below
 json = "{}"

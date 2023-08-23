@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import openapi_client
-from openapi_client.models.bonus import Bonus  # noqa: E501
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.bonus import Bonus  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
 class TestBonus(unittest.TestCase):
     """Bonus unit test stubs"""
@@ -36,7 +36,7 @@ class TestBonus(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `Bonus`
         """
-        model = openapi_client.models.bonus.Bonus()  # noqa: E501
+        model = timeweb_cloud_api.models.bonus.Bonus()  # noqa: E501
         if include_optional :
             return Bonus(
                 money_source = bonus, 

@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import openapi_client
-from openapi_client.models.image_out_response import ImageOutResponse  # noqa: E501
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.image_out_response import ImageOutResponse  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
 class TestImageOutResponse(unittest.TestCase):
     """ImageOutResponse unit test stubs"""
@@ -36,11 +36,11 @@ class TestImageOutResponse(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ImageOutResponse`
         """
-        model = openapi_client.models.image_out_response.ImageOutResponse()  # noqa: E501
+        model = timeweb_cloud_api.models.image_out_response.ImageOutResponse()  # noqa: E501
         if include_optional :
             return ImageOutResponse(
                 response_id = None, 
-                image = openapi_client.models.image_out_api.ImageOutAPI(
+                image = timeweb_cloud_api.models.image_out_api.ImageOutAPI(
                     id = null, 
                     status = new, 
                     created_at = null, 
@@ -56,7 +56,7 @@ class TestImageOutResponse(unittest.TestCase):
             )
         else :
             return ImageOutResponse(
-                image = openapi_client.models.image_out_api.ImageOutAPI(
+                image = timeweb_cloud_api.models.image_out_api.ImageOutAPI(
                     id = null, 
                     status = new, 
                     created_at = null, 

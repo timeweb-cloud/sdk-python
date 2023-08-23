@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import openapi_client
-from openapi_client.models.delete_countries_from_allowed_list_request import DeleteCountriesFromAllowedListRequest  # noqa: E501
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.delete_countries_from_allowed_list_request import DeleteCountriesFromAllowedListRequest  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
 class TestDeleteCountriesFromAllowedListRequest(unittest.TestCase):
     """DeleteCountriesFromAllowedListRequest unit test stubs"""
@@ -36,7 +36,7 @@ class TestDeleteCountriesFromAllowedListRequest(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `DeleteCountriesFromAllowedListRequest`
         """
-        model = openapi_client.models.delete_countries_from_allowed_list_request.DeleteCountriesFromAllowedListRequest()  # noqa: E501
+        model = timeweb_cloud_api.models.delete_countries_from_allowed_list_request.DeleteCountriesFromAllowedListRequest()  # noqa: E501
         if include_optional :
             return DeleteCountriesFromAllowedListRequest(
                 countries = None

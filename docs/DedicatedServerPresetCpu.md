@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.dedicated_server_preset_cpu import DedicatedServerPresetCpu
+from timeweb_cloud_api.models.dedicated_server_preset_cpu import DedicatedServerPresetCpu
 
 # TODO update the JSON string below
 json = "{}"

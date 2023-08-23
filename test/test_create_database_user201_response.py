@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import openapi_client
-from openapi_client.models.create_database_user201_response import CreateDatabaseUser201Response  # noqa: E501
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.create_database_user201_response import CreateDatabaseUser201Response  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
 class TestCreateDatabaseUser201Response(unittest.TestCase):
     """CreateDatabaseUser201Response unit test stubs"""
@@ -36,10 +36,10 @@ class TestCreateDatabaseUser201Response(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `CreateDatabaseUser201Response`
         """
-        model = openapi_client.models.create_database_user201_response.CreateDatabaseUser201Response()  # noqa: E501
+        model = timeweb_cloud_api.models.create_database_user201_response.CreateDatabaseUser201Response()  # noqa: E501
         if include_optional :
             return CreateDatabaseUser201Response(
-                admin = openapi_client.models.database_admin.database-admin(
+                admin = timeweb_cloud_api.models.database_admin.database-admin(
                     id = 1, 
                     created_at = 2021-02-25T11:04:15Z, 
                     login = default_login, 
@@ -50,7 +50,7 @@ class TestCreateDatabaseUser201Response(unittest.TestCase):
             )
         else :
             return CreateDatabaseUser201Response(
-                admin = openapi_client.models.database_admin.database-admin(
+                admin = timeweb_cloud_api.models.database_admin.database-admin(
                     id = 1, 
                     created_at = 2021-02-25T11:04:15Z, 
                     login = default_login, 

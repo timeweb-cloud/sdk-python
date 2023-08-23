@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import openapi_client
-from openapi_client.models.node_groups_response import NodeGroupsResponse  # noqa: E501
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.node_groups_response import NodeGroupsResponse  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
 class TestNodeGroupsResponse(unittest.TestCase):
     """NodeGroupsResponse unit test stubs"""
@@ -36,17 +36,17 @@ class TestNodeGroupsResponse(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `NodeGroupsResponse`
         """
-        model = openapi_client.models.node_groups_response.NodeGroupsResponse()  # noqa: E501
+        model = timeweb_cloud_api.models.node_groups_response.NodeGroupsResponse()  # noqa: E501
         if include_optional :
             return NodeGroupsResponse(
                 response_id = None, 
-                meta = openapi_client.models.meta.Meta(
+                meta = timeweb_cloud_api.models.meta.Meta(
                     total = null, ), 
                 node_groups = None
             )
         else :
             return NodeGroupsResponse(
-                meta = openapi_client.models.meta.Meta(
+                meta = timeweb_cloud_api.models.meta.Meta(
                     total = null, ),
                 node_groups = None,
         )

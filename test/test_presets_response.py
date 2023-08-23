@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import openapi_client
-from openapi_client.models.presets_response import PresetsResponse  # noqa: E501
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.presets_response import PresetsResponse  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
 class TestPresetsResponse(unittest.TestCase):
     """PresetsResponse unit test stubs"""
@@ -36,17 +36,17 @@ class TestPresetsResponse(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `PresetsResponse`
         """
-        model = openapi_client.models.presets_response.PresetsResponse()  # noqa: E501
+        model = timeweb_cloud_api.models.presets_response.PresetsResponse()  # noqa: E501
         if include_optional :
             return PresetsResponse(
                 response_id = None, 
-                meta = openapi_client.models.meta.Meta(
+                meta = timeweb_cloud_api.models.meta.Meta(
                     total = null, ), 
                 k8s_presets = None
             )
         else :
             return PresetsResponse(
-                meta = openapi_client.models.meta.Meta(
+                meta = timeweb_cloud_api.models.meta.Meta(
                     total = null, ),
                 k8s_presets = None,
         )

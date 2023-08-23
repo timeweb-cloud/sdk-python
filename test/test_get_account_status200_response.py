@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import openapi_client
-from openapi_client.models.get_account_status200_response import GetAccountStatus200Response  # noqa: E501
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.get_account_status200_response import GetAccountStatus200Response  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
 class TestGetAccountStatus200Response(unittest.TestCase):
     """GetAccountStatus200Response unit test stubs"""
@@ -36,14 +36,14 @@ class TestGetAccountStatus200Response(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `GetAccountStatus200Response`
         """
-        model = openapi_client.models.get_account_status200_response.GetAccountStatus200Response()  # noqa: E501
+        model = timeweb_cloud_api.models.get_account_status200_response.GetAccountStatus200Response()  # noqa: E501
         if include_optional :
             return GetAccountStatus200Response(
-                status = openapi_client.models.status.status(
+                status = timeweb_cloud_api.models.status.status(
                     is_blocked = false, 
                     is_permanent_blocked = false, 
                     is_send_bill_letters = false, 
-                    company_info = openapi_client.models.status_company_info.status_company_info(
+                    company_info = timeweb_cloud_api.models.status_company_info.status_company_info(
                         id = 0, 
                         name = Пример, ), 
                     last_password_changed_at = 2021-02-25T11:04:15Z, 
@@ -51,11 +51,11 @@ class TestGetAccountStatus200Response(unittest.TestCase):
             )
         else :
             return GetAccountStatus200Response(
-                status = openapi_client.models.status.status(
+                status = timeweb_cloud_api.models.status.status(
                     is_blocked = false, 
                     is_permanent_blocked = false, 
                     is_send_bill_letters = false, 
-                    company_info = openapi_client.models.status_company_info.status_company_info(
+                    company_info = timeweb_cloud_api.models.status_company_info.status_company_info(
                         id = 0, 
                         name = Пример, ), 
                     last_password_changed_at = 2021-02-25T11:04:15Z, 

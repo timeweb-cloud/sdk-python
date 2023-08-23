@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.add_ips import AddIps
+from timeweb_cloud_api.models.add_ips import AddIps
 
 # TODO update the JSON string below
 json = "{}"

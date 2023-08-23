@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import openapi_client
-from openapi_client.models.servers_configurator import ServersConfigurator  # noqa: E501
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.servers_configurator import ServersConfigurator  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
 class TestServersConfigurator(unittest.TestCase):
     """ServersConfigurator unit test stubs"""
@@ -36,7 +36,7 @@ class TestServersConfigurator(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ServersConfigurator`
         """
-        model = openapi_client.models.servers_configurator.ServersConfigurator()  # noqa: E501
+        model = timeweb_cloud_api.models.servers_configurator.ServersConfigurator()  # noqa: E501
         if include_optional :
             return ServersConfigurator(
                 id = 3, 
@@ -44,7 +44,7 @@ class TestServersConfigurator(unittest.TestCase):
                 disk_type = nvme, 
                 is_allowed_local_network = true, 
                 cpu_frequency = 3.3, 
-                requirements = openapi_client.models.servers_configurator_requirements.servers_configurator_requirements(
+                requirements = timeweb_cloud_api.models.servers_configurator_requirements.servers_configurator_requirements(
                     cpu_min = 1, 
                     cpu_step = 1, 
                     cpu_max = 12, 
@@ -65,7 +65,7 @@ class TestServersConfigurator(unittest.TestCase):
                 disk_type = nvme,
                 is_allowed_local_network = true,
                 cpu_frequency = 3.3,
-                requirements = openapi_client.models.servers_configurator_requirements.servers_configurator_requirements(
+                requirements = timeweb_cloud_api.models.servers_configurator_requirements.servers_configurator_requirements(
                     cpu_min = 1, 
                     cpu_step = 1, 
                     cpu_max = 12, 

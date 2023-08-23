@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "openapi_client"
+name = "timeweb_cloud_api"
 version = "1.0.0"
 description = "Timeweb Cloud API"
 authors = ["OpenAPI Generator Community <info@timeweb.cloud>"]
@@ -7,7 +7,7 @@ license = "NoLicense"
 readme = "README.md"
 repository = "https://github.com/GIT_USER_ID/GIT_REPO_ID"
 keywords = ["OpenAPI", "OpenAPI-Generator", "Timeweb Cloud API"]
-include = ["openapi_client/py.typed"]
+include = ["timeweb_cloud_api/py.typed"]
 
 [tool.poetry.dependencies]
 python = "^3.7"

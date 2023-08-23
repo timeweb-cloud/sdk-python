@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import openapi_client
-from openapi_client.models.image_download_response import ImageDownloadResponse  # noqa: E501
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.image_download_response import ImageDownloadResponse  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
 class TestImageDownloadResponse(unittest.TestCase):
     """ImageDownloadResponse unit test stubs"""
@@ -36,11 +36,11 @@ class TestImageDownloadResponse(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ImageDownloadResponse`
         """
-        model = openapi_client.models.image_download_response.ImageDownloadResponse()  # noqa: E501
+        model = timeweb_cloud_api.models.image_download_response.ImageDownloadResponse()  # noqa: E501
         if include_optional :
             return ImageDownloadResponse(
                 response_id = None, 
-                download = openapi_client.models.image_download_api.ImageDownloadAPI(
+                download = timeweb_cloud_api.models.image_download_api.ImageDownloadAPI(
                     id = null, 
                     created_at = null, 
                     image = null, 
@@ -51,7 +51,7 @@ class TestImageDownloadResponse(unittest.TestCase):
             )
         else :
             return ImageDownloadResponse(
-                download = openapi_client.models.image_download_api.ImageDownloadAPI(
+                download = timeweb_cloud_api.models.image_download_api.ImageDownloadAPI(
                     id = null, 
                     created_at = null, 
                     image = null, 

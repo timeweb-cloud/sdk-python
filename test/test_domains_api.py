@@ -15,16 +15,16 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.api.domains_api import DomainsApi  # noqa: E501
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.api.domains_api import DomainsApi  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
 
 class TestDomainsApi(unittest.TestCase):
     """DomainsApi unit test stubs"""
 
     def setUp(self):
-        self.api = openapi_client.api.domains_api.DomainsApi()  # noqa: E501
+        self.api = timeweb_cloud_api.api.domains_api.DomainsApi()  # noqa: E501
 
     def tearDown(self):
         pass

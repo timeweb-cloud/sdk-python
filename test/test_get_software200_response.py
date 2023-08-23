@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import openapi_client
-from openapi_client.models.get_software200_response import GetSoftware200Response  # noqa: E501
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.get_software200_response import GetSoftware200Response  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
 class TestGetSoftware200Response(unittest.TestCase):
     """GetSoftware200Response unit test stubs"""
@@ -36,16 +36,16 @@ class TestGetSoftware200Response(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `GetSoftware200Response`
         """
-        model = openapi_client.models.get_software200_response.GetSoftware200Response()  # noqa: E501
+        model = timeweb_cloud_api.models.get_software200_response.GetSoftware200Response()  # noqa: E501
         if include_optional :
             return GetSoftware200Response(
-                meta = openapi_client.models.meta.meta(
+                meta = timeweb_cloud_api.models.meta.meta(
                     total = 10, ), 
                 servers_software = None
             )
         else :
             return GetSoftware200Response(
-                meta = openapi_client.models.meta.meta(
+                meta = timeweb_cloud_api.models.meta.meta(
                     total = 10, ),
                 servers_software = None,
         )

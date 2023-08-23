@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.invoice import Invoice
+from timeweb_cloud_api.models.invoice import Invoice
 
 # TODO update the JSON string below
 json = "{}"

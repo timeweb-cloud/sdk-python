@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import openapi_client
-from openapi_client.models.get_finances200_response import GetFinances200Response  # noqa: E501
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.get_finances200_response import GetFinances200Response  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
 class TestGetFinances200Response(unittest.TestCase):
     """GetFinances200Response unit test stubs"""
@@ -36,10 +36,10 @@ class TestGetFinances200Response(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `GetFinances200Response`
         """
-        model = openapi_client.models.get_finances200_response.GetFinances200Response()  # noqa: E501
+        model = timeweb_cloud_api.models.get_finances200_response.GetFinances200Response()  # noqa: E501
         if include_optional :
             return GetFinances200Response(
-                finances = openapi_client.models.finances.finances(
+                finances = timeweb_cloud_api.models.finances.finances(
                     balance = 7378.3, 
                     currency = RUB, 
                     discount_end_date_at = 2021-02-25T11:04:15Z, 
@@ -54,7 +54,7 @@ class TestGetFinances200Response(unittest.TestCase):
             )
         else :
             return GetFinances200Response(
-                finances = openapi_client.models.finances.finances(
+                finances = timeweb_cloud_api.models.finances.finances(
                     balance = 7378.3, 
                     currency = RUB, 
                     discount_end_date_at = 2021-02-25T11:04:15Z, 

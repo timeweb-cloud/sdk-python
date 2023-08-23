@@ -15,16 +15,16 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.api.dedicated_servers_api import DedicatedServersApi  # noqa: E501
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.api.dedicated_servers_api import DedicatedServersApi  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
 
 class TestDedicatedServersApi(unittest.TestCase):
     """DedicatedServersApi unit test stubs"""
 
     def setUp(self):
-        self.api = openapi_client.api.dedicated_servers_api.DedicatedServersApi()  # noqa: E501
+        self.api = timeweb_cloud_api.api.dedicated_servers_api.DedicatedServersApi()  # noqa: E501
 
     def tearDown(self):
         pass

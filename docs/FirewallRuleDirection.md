@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.firewall_rule_direction import FirewallRuleDirection
+from timeweb_cloud_api.models.firewall_rule_direction import FirewallRuleDirection
 
 # TODO update the JSON string below
 json = "{}"

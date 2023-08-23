@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.network_drivers_response import NetworkDriversResponse
+from timeweb_cloud_api.models.network_drivers_response import NetworkDriversResponse
 
 # TODO update the JSON string below
 json = "{}"

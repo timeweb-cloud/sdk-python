@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import openapi_client
-from openapi_client.models.invoice import Invoice  # noqa: E501
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.invoice import Invoice  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
 class TestInvoice(unittest.TestCase):
     """Invoice unit test stubs"""
@@ -36,7 +36,7 @@ class TestInvoice(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `Invoice`
         """
-        model = openapi_client.models.invoice.Invoice()  # noqa: E501
+        model = timeweb_cloud_api.models.invoice.Invoice()  # noqa: E501
         if include_optional :
             return Invoice(
                 money_source = invoice, 

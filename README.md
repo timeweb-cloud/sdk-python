@@ -1,4 +1,4 @@
-# openapi-client
+# timeweb-cloud-api
 # Введение
 API Timeweb Cloud позволяет вам управлять ресурсами в облаке программным способом с использованием обычных HTTP-запросов.
 
@@ -169,7 +169,7 @@ pip install git+https://github.com/GIT_USER_ID/GIT_REPO_ID.git
 
 Then import the package:
 ```python
-import openapi_client
+import timeweb_cloud_api
 ```
 
 ### Setuptools
@@ -183,7 +183,7 @@ python setup.py install --user
 
 Then import the package:
 ```python
-import openapi_client
+import timeweb_cloud_api
 ```
 
 ### Tests
@@ -197,13 +197,13 @@ Please follow the [installation procedure](#installation--usage) and then run th
 ```python
 
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.timeweb.cloud
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     host = "https://api.timeweb.cloud"
 )
 
@@ -213,16 +213,16 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): Bearer
-configuration = openapi_client.Configuration(
+configuration = timeweb_cloud_api.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.APIKeysApi(api_client)
-    create_api_key = openapi_client.CreateApiKey() # CreateApiKey | 
+    api_instance = timeweb_cloud_api.APIKeysApi(api_client)
+    create_api_key = timeweb_cloud_api.CreateApiKey() # CreateApiKey | 
 
     try:
         # Создание токена

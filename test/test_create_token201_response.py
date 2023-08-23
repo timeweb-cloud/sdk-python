@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import openapi_client
-from openapi_client.models.create_token201_response import CreateToken201Response  # noqa: E501
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.create_token201_response import CreateToken201Response  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
 class TestCreateToken201Response(unittest.TestCase):
     """CreateToken201Response unit test stubs"""
@@ -36,10 +36,10 @@ class TestCreateToken201Response(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `CreateToken201Response`
         """
-        model = openapi_client.models.create_token201_response.CreateToken201Response()  # noqa: E501
+        model = timeweb_cloud_api.models.create_token201_response.CreateToken201Response()  # noqa: E501
         if include_optional :
             return CreateToken201Response(
-                api_key = openapi_client.models.created_api_key.created-api-key(
+                api_key = timeweb_cloud_api.models.created_api_key.created-api-key(
                     token = null, 
                     id = 913a3a06-1eb9-4e9c-bc63-6ca6944e883b, 
                     created_at = 2022-10-25T15:15:45.000Z, 
@@ -48,7 +48,7 @@ class TestCreateToken201Response(unittest.TestCase):
             )
         else :
             return CreateToken201Response(
-                api_key = openapi_client.models.created_api_key.created-api-key(
+                api_key = timeweb_cloud_api.models.created_api_key.created-api-key(
                     token = null, 
                     id = 913a3a06-1eb9-4e9c-bc63-6ca6944e883b, 
                     created_at = 2022-10-25T15:15:45.000Z, 

@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import openapi_client
-from openapi_client.models.k8_s_versions_response import K8SVersionsResponse  # noqa: E501
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.k8_s_versions_response import K8SVersionsResponse  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
 class TestK8SVersionsResponse(unittest.TestCase):
     """K8SVersionsResponse unit test stubs"""
@@ -36,17 +36,17 @@ class TestK8SVersionsResponse(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `K8SVersionsResponse`
         """
-        model = openapi_client.models.k8_s_versions_response.K8SVersionsResponse()  # noqa: E501
+        model = timeweb_cloud_api.models.k8_s_versions_response.K8SVersionsResponse()  # noqa: E501
         if include_optional :
             return K8SVersionsResponse(
                 response_id = None, 
-                meta = openapi_client.models.meta.Meta(
+                meta = timeweb_cloud_api.models.meta.Meta(
                     total = null, ), 
                 k8s_versions = None
             )
         else :
             return K8SVersionsResponse(
-                meta = openapi_client.models.meta.Meta(
+                meta = timeweb_cloud_api.models.meta.Meta(
                     total = null, ),
                 k8s_versions = None,
         )

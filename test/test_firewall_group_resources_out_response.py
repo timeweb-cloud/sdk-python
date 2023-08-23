@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import openapi_client
-from openapi_client.models.firewall_group_resources_out_response import FirewallGroupResourcesOutResponse  # noqa: E501
-from openapi_client.rest import ApiException
+import timeweb_cloud_api
+from timeweb_cloud_api.models.firewall_group_resources_out_response import FirewallGroupResourcesOutResponse  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
 class TestFirewallGroupResourcesOutResponse(unittest.TestCase):
     """FirewallGroupResourcesOutResponse unit test stubs"""
@@ -36,17 +36,17 @@ class TestFirewallGroupResourcesOutResponse(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `FirewallGroupResourcesOutResponse`
         """
-        model = openapi_client.models.firewall_group_resources_out_response.FirewallGroupResourcesOutResponse()  # noqa: E501
+        model = timeweb_cloud_api.models.firewall_group_resources_out_response.FirewallGroupResourcesOutResponse()  # noqa: E501
         if include_optional :
             return FirewallGroupResourcesOutResponse(
                 response_id = None, 
-                meta = openapi_client.models.meta.Meta(
+                meta = timeweb_cloud_api.models.meta.Meta(
                     total = null, ), 
                 resources = None
             )
         else :
             return FirewallGroupResourcesOutResponse(
-                meta = openapi_client.models.meta.Meta(
+                meta = timeweb_cloud_api.models.meta.Meta(
                     total = null, ),
                 resources = None,
         )
