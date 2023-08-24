@@ -51,8 +51,7 @@ class TestUpdateBalancer(unittest.TestCase):
                 inter = 10, 
                 timeout = 5, 
                 fall = 3, 
-                rise = 2, 
-                preset_id = 5
+                rise = 2
             )
         else :
             return UpdateBalancer(

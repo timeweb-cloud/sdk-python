@@ -17,7 +17,6 @@ Name | Type | Description | Notes
 **timeout** | **object** | Таймаут ответа балансировщика. | [optional] 
 **fall** | **object** | Порог количества ошибок. | [optional] 
 **rise** | **object** | Порог количества успешных ответов. | [optional] 
-**preset_id** | **object** | Идентификатор тарифа. | [optional] 
 
 ## Example
 

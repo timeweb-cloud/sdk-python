@@ -39,8 +39,7 @@ class UpdateBalancer(BaseModel):
     timeout: Optional[Any] = Field(None, description="Таймаут ответа балансировщика.")
     fall: Optional[Any] = Field(None, description="Порог количества ошибок.")
     rise: Optional[Any] = Field(None, description="Порог количества успешных ответов.")
-    preset_id: Optional[Any] = Field(None, description="Идентификатор тарифа.")
-    __properties = ["name", "algo", "is_sticky", "is_use_proxy", "is_ssl", "is_keepalive", "proto", "port", "path", "inter", "timeout", "fall", "rise", "preset_id"]
+    __properties = ["name", "algo", "is_sticky", "is_use_proxy", "is_ssl", "is_keepalive", "proto", "port", "path", "inter", "timeout", "fall", "rise"]
 
     @validator('algo')
     def algo_validate_enum(cls, value):
@@ -151,11 +150,6 @@ class UpdateBalancer(BaseModel):
         if self.rise is None and "rise" in self.__fields_set__:
             _dict['rise'] = None
 
-        # set to None if preset_id (nullable) is None
-        # and __fields_set__ contains the field
-        if self.preset_id is None and "preset_id" in self.__fields_set__:
-            _dict['preset_id'] = None
-
         return _dict
 
     @classmethod
@@ -180,8 +174,7 @@ class UpdateBalancer(BaseModel):
             "inter": obj.get("inter"),
             "timeout": obj.get("timeout"),
             "fall": obj.get("fall"),
-            "rise": obj.get("rise"),
-            "preset_id": obj.get("preset_id")
+            "rise": obj.get("rise")
         })
         return _obj
 
