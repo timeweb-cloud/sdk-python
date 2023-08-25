@@ -20,68 +20,16 @@ import json
 
 
 from typing import Any, Optional
-from pydantic import BaseModel, Field, validator
-from timeweb_cloud_api.models.vds_image import VdsImage
-from timeweb_cloud_api.models.vds_os import VdsOs
-from timeweb_cloud_api.models.vds_software import VdsSoftware
+from pydantic import BaseModel, Field
 
-class Vds(BaseModel):
+class VdsImage(BaseModel):
     """
-    Сервер
+    Образ сервера.
     """
-    id: Optional[Any] = Field(..., description="Уникальный идентификатор для каждого экземпляра сервера. Автоматически генерируется при создании.")
-    name: Optional[Any] = Field(..., description="Удобочитаемое имя, установленное для выделенного сервера.")
-    comment: Optional[Any] = Field(..., description="Комментарий к выделенному серверу.")
-    created_at: Optional[Any] = Field(..., description="Дата создания сервера в формате ISO8061.")
-    os: VdsOs = Field(...)
-    software: VdsSoftware = Field(...)
-    preset_id: Optional[Any] = Field(..., description="Уникальный идентификатор тарифа сервера.")
-    location: Optional[Any] = Field(..., description="Локация сервера.")
-    configurator_id: Optional[Any] = Field(..., description="Уникальный идентификатор конфигуратора сервера.")
-    boot_mode: Optional[Any] = Field(..., description="Режим загрузки ОС сервера.")
-    status: Optional[Any] = Field(..., description="Статус сервера.")
-    start_at: Optional[Any] = Field(..., description="Значение времени, указанное в комбинированном формате даты и времени ISO8601, которое представляет, когда был запущен сервер.")
-    is_ddos_guard: Optional[Any] = Field(..., description="Это логическое значение, которое показывает, включена ли защита от DDOS у данного сервера.")
-    cpu: Optional[Any] = Field(..., description="Количество ядер процессора сервера.")
-    cpu_frequency: Optional[Any] = Field(..., description="Частота ядер процессора сервера.")
-    ram: Optional[Any] = Field(..., description="Размер (в Мб) ОЗУ сервера.")
-    disks: Optional[Any] = Field(..., description="Список дисков сервера.")
-    avatar_id: Optional[Any] = Field(..., description="Уникальный идентификатор аватара сервера. Описание методов работы с аватарами появится позднее.")
-    vnc_pass: Optional[Any] = Field(..., description="Пароль от VNC.")
-    root_pass: Optional[Any] = Field(..., description="Пароль root сервера или пароль Администратора для серверов Windows.")
-    image: VdsImage = Field(...)
-    networks: Optional[Any] = Field(..., description="Список сетей диска.")
-    __properties = ["id", "name", "comment", "created_at", "os", "software", "preset_id", "location", "configurator_id", "boot_mode", "status", "start_at", "is_ddos_guard", "cpu", "cpu_frequency", "ram", "disks", "avatar_id", "vnc_pass", "root_pass", "image", "networks"]
-
-    @validator('location')
-    def location_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in ('ru-1', 'ru-2', 'pl-1', 'kz-1'):
-            raise ValueError("must be one of enum values ('ru-1', 'ru-2', 'pl-1', 'kz-1')")
-        return value
-
-    @validator('boot_mode')
-    def boot_mode_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in ('std', 'single', 'cd'):
-            raise ValueError("must be one of enum values ('std', 'single', 'cd')")
-        return value
-
-    @validator('status')
-    def status_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in ('installing', 'software_install', 'reinstalling', 'on', 'off', 'turning_on', 'turning_off', 'hard_turning_off', 'rebooting', 'hard_rebooting', 'removing', 'removed', 'cloning', 'transfer', 'blocked', 'configuring', 'no_paid', 'permanent_blocked'):
-            raise ValueError("must be one of enum values ('installing', 'software_install', 'reinstalling', 'on', 'off', 'turning_on', 'turning_off', 'hard_turning_off', 'rebooting', 'hard_rebooting', 'removing', 'removed', 'cloning', 'transfer', 'blocked', 'configuring', 'no_paid', 'permanent_blocked')")
-        return value
+    id: Optional[Any] = Field(..., description="Уникальный идентификатор образа сервера.")
+    name: Optional[Any] = Field(..., description="Название образа сервера.")
+    is_custom: Optional[Any] = Field(..., description="Является ли образ кастомным.")
+    __properties = ["id", "name", "is_custom"]
 
     class Config:
         """Pydantic configuration"""
@@ -97,8 +45,8 @@ class Vds(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> Vds:
-        """Create an instance of Vds from a JSON string"""
+    def from_json(cls, json_str: str) -> VdsImage:
+        """Create an instance of VdsImage from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self):
@@ -107,15 +55,6 @@ class Vds(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of os
-        if self.os:
-            _dict['os'] = self.os.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of software
-        if self.software:
-            _dict['software'] = self.software.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of image
-        if self.image:
-            _dict['image'] = self.image.to_dict()
         # set to None if id (nullable) is None
         # and __fields_set__ contains the field
         if self.id is None and "id" in self.__fields_set__:
@@ -126,125 +65,26 @@ class Vds(BaseModel):
         if self.name is None and "name" in self.__fields_set__:
             _dict['name'] = None
 
-        # set to None if comment (nullable) is None
+        # set to None if is_custom (nullable) is None
         # and __fields_set__ contains the field
-        if self.comment is None and "comment" in self.__fields_set__:
-            _dict['comment'] = None
-
-        # set to None if created_at (nullable) is None
-        # and __fields_set__ contains the field
-        if self.created_at is None and "created_at" in self.__fields_set__:
-            _dict['created_at'] = None
-
-        # set to None if preset_id (nullable) is None
-        # and __fields_set__ contains the field
-        if self.preset_id is None and "preset_id" in self.__fields_set__:
-            _dict['preset_id'] = None
-
-        # set to None if location (nullable) is None
-        # and __fields_set__ contains the field
-        if self.location is None and "location" in self.__fields_set__:
-            _dict['location'] = None
-
-        # set to None if configurator_id (nullable) is None
-        # and __fields_set__ contains the field
-        if self.configurator_id is None and "configurator_id" in self.__fields_set__:
-            _dict['configurator_id'] = None
-
-        # set to None if boot_mode (nullable) is None
-        # and __fields_set__ contains the field
-        if self.boot_mode is None and "boot_mode" in self.__fields_set__:
-            _dict['boot_mode'] = None
-
-        # set to None if status (nullable) is None
-        # and __fields_set__ contains the field
-        if self.status is None and "status" in self.__fields_set__:
-            _dict['status'] = None
-
-        # set to None if start_at (nullable) is None
-        # and __fields_set__ contains the field
-        if self.start_at is None and "start_at" in self.__fields_set__:
-            _dict['start_at'] = None
-
-        # set to None if is_ddos_guard (nullable) is None
-        # and __fields_set__ contains the field
-        if self.is_ddos_guard is None and "is_ddos_guard" in self.__fields_set__:
-            _dict['is_ddos_guard'] = None
-
-        # set to None if cpu (nullable) is None
-        # and __fields_set__ contains the field
-        if self.cpu is None and "cpu" in self.__fields_set__:
-            _dict['cpu'] = None
-
-        # set to None if cpu_frequency (nullable) is None
-        # and __fields_set__ contains the field
-        if self.cpu_frequency is None and "cpu_frequency" in self.__fields_set__:
-            _dict['cpu_frequency'] = None
-
-        # set to None if ram (nullable) is None
-        # and __fields_set__ contains the field
-        if self.ram is None and "ram" in self.__fields_set__:
-            _dict['ram'] = None
-
-        # set to None if disks (nullable) is None
-        # and __fields_set__ contains the field
-        if self.disks is None and "disks" in self.__fields_set__:
-            _dict['disks'] = None
-
-        # set to None if avatar_id (nullable) is None
-        # and __fields_set__ contains the field
-        if self.avatar_id is None and "avatar_id" in self.__fields_set__:
-            _dict['avatar_id'] = None
-
-        # set to None if vnc_pass (nullable) is None
-        # and __fields_set__ contains the field
-        if self.vnc_pass is None and "vnc_pass" in self.__fields_set__:
-            _dict['vnc_pass'] = None
-
-        # set to None if root_pass (nullable) is None
-        # and __fields_set__ contains the field
-        if self.root_pass is None and "root_pass" in self.__fields_set__:
-            _dict['root_pass'] = None
-
-        # set to None if networks (nullable) is None
-        # and __fields_set__ contains the field
-        if self.networks is None and "networks" in self.__fields_set__:
-            _dict['networks'] = None
+        if self.is_custom is None and "is_custom" in self.__fields_set__:
+            _dict['is_custom'] = None
 
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Vds:
-        """Create an instance of Vds from a dict"""
+    def from_dict(cls, obj: dict) -> VdsImage:
+        """Create an instance of VdsImage from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return Vds.parse_obj(obj)
+            return VdsImage.parse_obj(obj)
 
-        _obj = Vds.parse_obj({
+        _obj = VdsImage.parse_obj({
             "id": obj.get("id"),
             "name": obj.get("name"),
-            "comment": obj.get("comment"),
-            "created_at": obj.get("created_at"),
-            "os": VdsOs.from_dict(obj.get("os")) if obj.get("os") is not None else None,
-            "software": VdsSoftware.from_dict(obj.get("software")) if obj.get("software") is not None else None,
-            "preset_id": obj.get("preset_id"),
-            "location": obj.get("location"),
-            "configurator_id": obj.get("configurator_id"),
-            "boot_mode": obj.get("boot_mode"),
-            "status": obj.get("status"),
-            "start_at": obj.get("start_at"),
-            "is_ddos_guard": obj.get("is_ddos_guard"),
-            "cpu": obj.get("cpu"),
-            "cpu_frequency": obj.get("cpu_frequency"),
-            "ram": obj.get("ram"),
-            "disks": obj.get("disks"),
-            "avatar_id": obj.get("avatar_id"),
-            "vnc_pass": obj.get("vnc_pass"),
-            "root_pass": obj.get("root_pass"),
-            "image": VdsImage.from_dict(obj.get("image")) if obj.get("image") is not None else None,
-            "networks": obj.get("networks")
+            "is_custom": obj.get("is_custom")
         })
         return _obj
 

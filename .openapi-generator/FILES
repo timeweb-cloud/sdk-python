@@ -330,6 +330,7 @@ docs/UrlStatus.md
 docs/Use.md
 docs/VPCApi.md
 docs/Vds.md
+docs/VdsImage.md
 docs/VdsOs.md
 docs/VdsSoftware.md
 docs/Vpc.md
@@ -669,6 +670,7 @@ test/test_url_status.py
 test/test_url_type.py
 test/test_use.py
 test/test_vds.py
+test/test_vds_image.py
 test/test_vds_os.py
 test/test_vds_software.py
 test/test_vpc.py
@@ -1010,6 +1012,7 @@ timeweb_cloud_api/models/url_status.py
 timeweb_cloud_api/models/url_type.py
 timeweb_cloud_api/models/use.py
 timeweb_cloud_api/models/vds.py
+timeweb_cloud_api/models/vds_image.py
 timeweb_cloud_api/models/vds_os.py
 timeweb_cloud_api/models/vds_software.py
 timeweb_cloud_api/models/vpc.py

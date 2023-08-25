@@ -326,6 +326,7 @@ from timeweb_cloud_api.models.upload_successful_response import UploadSuccessful
 from timeweb_cloud_api.models.url_status import UrlStatus
 from timeweb_cloud_api.models.use import Use
 from timeweb_cloud_api.models.vds import Vds
+from timeweb_cloud_api.models.vds_image import VdsImage
 from timeweb_cloud_api.models.vds_os import VdsOs
 from timeweb_cloud_api.models.vds_software import VdsSoftware
 from timeweb_cloud_api.models.vpc import Vpc

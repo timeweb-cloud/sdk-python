@@ -785,6 +785,7 @@ Class | Method | HTTP request | Description
  - [UrlStatus](docs/UrlStatus.md)
  - [Use](docs/Use.md)
  - [Vds](docs/Vds.md)
+ - [VdsImage](docs/VdsImage.md)
  - [VdsOs](docs/VdsOs.md)
  - [VdsSoftware](docs/VdsSoftware.md)
  - [Vpc](docs/Vpc.md)

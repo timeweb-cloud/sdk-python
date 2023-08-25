@@ -65,6 +65,10 @@ class TestCreateServer201Response(unittest.TestCase):
                     avatar_id = avatar, 
                     vnc_pass = password, 
                     root_pass = password, 
+                    image = timeweb_cloud_api.models.vds_image.vds_image(
+                        id = 550e8400-e29b-41d4-a716-446655440000, 
+                        name = image_name, 
+                        is_custom = true, ), 
                     networks = null, )
             )
         else :
@@ -95,6 +99,10 @@ class TestCreateServer201Response(unittest.TestCase):
                     avatar_id = avatar, 
                     vnc_pass = password, 
                     root_pass = password, 
+                    image = timeweb_cloud_api.models.vds_image.vds_image(
+                        id = 550e8400-e29b-41d4-a716-446655440000, 
+                        name = image_name, 
+                        is_custom = true, ), 
                     networks = null, ),
         )
         """

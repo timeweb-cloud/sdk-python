@@ -25,6 +25,7 @@ Name | Type | Description | Notes
 **avatar_id** | **object** | Уникальный идентификатор аватара сервера. Описание методов работы с аватарами появится позднее. | 
 **vnc_pass** | **object** | Пароль от VNC. | 
 **root_pass** | **object** | Пароль root сервера или пароль Администратора для серверов Windows. | 
+**image** | [**VdsImage**](VdsImage.md) |  | 
 **networks** | **object** | Список сетей диска. | 
 
 ## Example
