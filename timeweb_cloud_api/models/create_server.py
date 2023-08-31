@@ -41,7 +41,8 @@ class CreateServer(BaseModel):
     ssh_keys_ids: Optional[Any] = Field(None, description="Список SSH-ключей.")
     is_local_network: Optional[Any] = Field(None, description="Локальная сеть.")
     network: Optional[Network] = None
-    __properties = ["configuration", "is_ddos_guard", "os_id", "image_id", "software_id", "preset_id", "bandwidth", "name", "avatar_id", "comment", "ssh_keys_ids", "is_local_network", "network"]
+    cloud_init: Optional[Any] = Field(None, description="Cloud-init скрипт")
+    __properties = ["configuration", "is_ddos_guard", "os_id", "image_id", "software_id", "preset_id", "bandwidth", "name", "avatar_id", "comment", "ssh_keys_ids", "is_local_network", "network", "cloud_init"]
 
     class Config:
         """Pydantic configuration"""
@@ -128,6 +129,11 @@ class CreateServer(BaseModel):
         if self.is_local_network is None and "is_local_network" in self.__fields_set__:
             _dict['is_local_network'] = None
 
+        # set to None if cloud_init (nullable) is None
+        # and __fields_set__ contains the field
+        if self.cloud_init is None and "cloud_init" in self.__fields_set__:
+            _dict['cloud_init'] = None
+
         return _dict
 
     @classmethod
@@ -152,7 +158,8 @@ class CreateServer(BaseModel):
             "comment": obj.get("comment"),
             "ssh_keys_ids": obj.get("ssh_keys_ids"),
             "is_local_network": obj.get("is_local_network"),
-            "network": Network.from_dict(obj.get("network")) if obj.get("network") is not None else None
+            "network": Network.from_dict(obj.get("network")) if obj.get("network") is not None else None,
+            "cloud_init": obj.get("cloud_init")
         })
         return _obj
 

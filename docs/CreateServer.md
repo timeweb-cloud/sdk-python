@@ -17,6 +17,7 @@ Name | Type | Description | Notes
 **ssh_keys_ids** | **object** | Список SSH-ключей. | [optional] 
 **is_local_network** | **object** | Локальная сеть. | [optional] 
 **network** | [**Network**](Network.md) |  | [optional] 
+**cloud_init** | **object** | Cloud-init скрипт | [optional] 
 
 ## Example
 

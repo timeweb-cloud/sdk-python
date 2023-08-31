@@ -51,7 +51,8 @@ class TestUpdateServer(unittest.TestCase):
                 name = name, 
                 avatar_id = avatar, 
                 comment = comment, 
-                image_id = 811
+                image_id = 811, 
+                cloud_init = #cloud-config
             )
         else :
             return UpdateServer(

@@ -36,7 +36,8 @@ class UpdateServer(BaseModel):
     avatar_id: Optional[Any] = Field(None, description="Уникальный идентификатор аватара сервера. Описание методов работы с аватарами появится позднее.")
     comment: Optional[Any] = Field(None, description="Комментарий к облачному серверу. Максимальная длина — 255 символов.")
     image_id: Optional[Any] = Field(None, description="Уникальный идентификатор образа, который будет установлен на облачный сервер. Нельзя передавать вместе с `os_id`.")
-    __properties = ["configurator", "os_id", "software_id", "preset_id", "bandwidth", "name", "avatar_id", "comment", "image_id"]
+    cloud_init: Optional[Any] = Field(None, description="Cloud-init скрипт")
+    __properties = ["configurator", "os_id", "software_id", "preset_id", "bandwidth", "name", "avatar_id", "comment", "image_id", "cloud_init"]
 
     class Config:
         """Pydantic configuration"""
@@ -105,6 +106,11 @@ class UpdateServer(BaseModel):
         if self.image_id is None and "image_id" in self.__fields_set__:
             _dict['image_id'] = None
 
+        # set to None if cloud_init (nullable) is None
+        # and __fields_set__ contains the field
+        if self.cloud_init is None and "cloud_init" in self.__fields_set__:
+            _dict['cloud_init'] = None
+
         return _dict
 
     @classmethod
@@ -125,7 +131,8 @@ class UpdateServer(BaseModel):
             "name": obj.get("name"),
             "avatar_id": obj.get("avatar_id"),
             "comment": obj.get("comment"),
-            "image_id": obj.get("image_id")
+            "image_id": obj.get("image_id"),
+            "cloud_init": obj.get("cloud_init")
         })
         return _obj
 

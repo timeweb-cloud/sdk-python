@@ -57,7 +57,8 @@ class TestCreateServer(unittest.TestCase):
                 is_local_network = false, 
                 network = timeweb_cloud_api.models.network.network(
                     id = network-1234567890, 
-                    ip = 192.168.0.0, )
+                    ip = 192.168.0.0, ), 
+                cloud_init = #cloud-config
             )
         else :
             return CreateServer(

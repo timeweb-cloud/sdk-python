@@ -69,7 +69,8 @@ class TestCreateServer201Response(unittest.TestCase):
                         id = 550e8400-e29b-41d4-a716-446655440000, 
                         name = image_name, 
                         is_custom = true, ), 
-                    networks = null, )
+                    networks = null, 
+                    cloud_init = #cloud-config, )
             )
         else :
             return CreateServer201Response(
@@ -103,7 +104,8 @@ class TestCreateServer201Response(unittest.TestCase):
                         id = 550e8400-e29b-41d4-a716-446655440000, 
                         name = image_name, 
                         is_custom = true, ), 
-                    networks = null, ),
+                    networks = null, 
+                    cloud_init = #cloud-config, ),
         )
         """
 

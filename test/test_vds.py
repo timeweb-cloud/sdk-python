@@ -68,7 +68,8 @@ class TestVds(unittest.TestCase):
                     id = 550e8400-e29b-41d4-a716-446655440000, 
                     name = image_name, 
                     is_custom = true, ), 
-                networks = None
+                networks = None, 
+                cloud_init = #cloud-config
             )
         else :
             return Vds(
@@ -102,6 +103,7 @@ class TestVds(unittest.TestCase):
                     name = image_name, 
                     is_custom = true, ),
                 networks = None,
+                cloud_init = #cloud-config,
         )
         """
 

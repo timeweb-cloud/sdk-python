@@ -51,7 +51,8 @@ class Vds(BaseModel):
     root_pass: Optional[Any] = Field(..., description="Пароль root сервера или пароль Администратора для серверов Windows.")
     image: VdsImage = Field(...)
     networks: Optional[Any] = Field(..., description="Список сетей диска.")
-    __properties = ["id", "name", "comment", "created_at", "os", "software", "preset_id", "location", "configurator_id", "boot_mode", "status", "start_at", "is_ddos_guard", "cpu", "cpu_frequency", "ram", "disks", "avatar_id", "vnc_pass", "root_pass", "image", "networks"]
+    cloud_init: Optional[Any] = Field(..., description="Cloud-init скрипт")
+    __properties = ["id", "name", "comment", "created_at", "os", "software", "preset_id", "location", "configurator_id", "boot_mode", "status", "start_at", "is_ddos_guard", "cpu", "cpu_frequency", "ram", "disks", "avatar_id", "vnc_pass", "root_pass", "image", "networks", "cloud_init"]
 
     @validator('location')
     def location_validate_enum(cls, value):
@@ -211,6 +212,11 @@ class Vds(BaseModel):
         if self.networks is None and "networks" in self.__fields_set__:
             _dict['networks'] = None
 
+        # set to None if cloud_init (nullable) is None
+        # and __fields_set__ contains the field
+        if self.cloud_init is None and "cloud_init" in self.__fields_set__:
+            _dict['cloud_init'] = None
+
         return _dict
 
     @classmethod
@@ -244,7 +250,8 @@ class Vds(BaseModel):
             "vnc_pass": obj.get("vnc_pass"),
             "root_pass": obj.get("root_pass"),
             "image": VdsImage.from_dict(obj.get("image")) if obj.get("image") is not None else None,
-            "networks": obj.get("networks")
+            "networks": obj.get("networks"),
+            "cloud_init": obj.get("cloud_init")
         })
         return _obj
 
