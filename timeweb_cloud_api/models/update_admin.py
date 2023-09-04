@@ -29,7 +29,8 @@ class UpdateAdmin(BaseModel):
     password: Optional[Any] = Field(None, description="Пароль пользователя базы данных")
     privileges: Optional[Any] = Field(None, description="Список привилегий пользователя базы данных")
     description: Optional[Any] = Field(None, description="Описание пользователя базы данных")
-    __properties = ["password", "privileges", "description"]
+    instance_id: Optional[Any] = Field(None, description="Уникальный идентификатор инстанса базы данных для приминения привилегий. В данных момент поле доступно только для кластеров MySQL. Если поле не передано, то привилегии будут применены ко всем инстансам")
+    __properties = ["password", "privileges", "description", "instance_id"]
 
     class Config:
         """Pydantic configuration"""
@@ -70,6 +71,11 @@ class UpdateAdmin(BaseModel):
         if self.description is None and "description" in self.__fields_set__:
             _dict['description'] = None
 
+        # set to None if instance_id (nullable) is None
+        # and __fields_set__ contains the field
+        if self.instance_id is None and "instance_id" in self.__fields_set__:
+            _dict['instance_id'] = None
+
         return _dict
 
     @classmethod
@@ -84,7 +90,8 @@ class UpdateAdmin(BaseModel):
         _obj = UpdateAdmin.parse_obj({
             "password": obj.get("password"),
             "privileges": obj.get("privileges"),
-            "description": obj.get("description")
+            "description": obj.get("description"),
+            "instance_id": obj.get("instance_id")
         })
         return _obj
 

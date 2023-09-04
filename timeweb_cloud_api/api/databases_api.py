@@ -524,7 +524,7 @@ class DatabasesApi(object):
     def create_database_instance(self, db_cluster_id : Annotated[Any, Field(..., description="Идентификатор кластера базы данных")], create_instance : CreateInstance, **kwargs) -> CreateDatabaseInstance201Response:  # noqa: E501
         """Создание инстанса базы данных  # noqa: E501
 
-        Чтобы создать инстанс базы данных, отправьте POST-запрос на `/api/v1/databases/{db_cluster_id}/instances`.  # noqa: E501
+        Чтобы создать инстанс базы данных, отправьте POST-запрос на `/api/v1/databases/{db_cluster_id}/instances`.\\    Существующие пользователи не будут иметь доступа к новой базе данных после создания. Вы можете изменить привилегии для пользователя через <a href='#tag/Bazy-dannyh/operation/updateDatabaseUser'>метод изменения пользователя</a>   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -555,7 +555,7 @@ class DatabasesApi(object):
     def create_database_instance_with_http_info(self, db_cluster_id : Annotated[Any, Field(..., description="Идентификатор кластера базы данных")], create_instance : CreateInstance, **kwargs) -> ApiResponse:  # noqa: E501
         """Создание инстанса базы данных  # noqa: E501
 
-        Чтобы создать инстанс базы данных, отправьте POST-запрос на `/api/v1/databases/{db_cluster_id}/instances`.  # noqa: E501
+        Чтобы создать инстанс базы данных, отправьте POST-запрос на `/api/v1/databases/{db_cluster_id}/instances`.\\    Существующие пользователи не будут иметь доступа к новой базе данных после создания. Вы можете изменить привилегии для пользователя через <a href='#tag/Bazy-dannyh/operation/updateDatabaseUser'>метод изменения пользователя</a>   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 

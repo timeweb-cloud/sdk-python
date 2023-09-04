@@ -42,6 +42,7 @@ class TestCreateAdmin(unittest.TestCase):
                 login = default_login, 
                 password = bs.:L2f$Tm:SC~, 
                 host = %, 
+                instance_id = 1476, 
                 privileges = None, 
                 description = description
             )

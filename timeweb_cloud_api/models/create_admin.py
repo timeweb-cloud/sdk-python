@@ -29,9 +29,10 @@ class CreateAdmin(BaseModel):
     login: Optional[Any] = Field(..., description="Имя пользователя базы данных")
     password: Optional[Any] = Field(..., description="Пароль пользователя базы данных")
     host: Optional[Any] = Field(None, description="Хост пользователя")
+    instance_id: Optional[Any] = Field(None, description="Уникальный идентификатор инстанса базы данных для приминения привилегий. В данных момент поле доступно только для кластеров MySQL. Если поле не передано, то привилегии будут применены ко всем инстансам")
     privileges: Optional[Any] = Field(..., description="Список привилегий пользователя базы данных")
     description: Optional[Any] = Field(None, description="Описание пользователя базы данных")
-    __properties = ["login", "password", "host", "privileges", "description"]
+    __properties = ["login", "password", "host", "instance_id", "privileges", "description"]
 
     class Config:
         """Pydantic configuration"""
@@ -72,6 +73,11 @@ class CreateAdmin(BaseModel):
         if self.host is None and "host" in self.__fields_set__:
             _dict['host'] = None
 
+        # set to None if instance_id (nullable) is None
+        # and __fields_set__ contains the field
+        if self.instance_id is None and "instance_id" in self.__fields_set__:
+            _dict['instance_id'] = None
+
         # set to None if privileges (nullable) is None
         # and __fields_set__ contains the field
         if self.privileges is None and "privileges" in self.__fields_set__:
@@ -97,6 +103,7 @@ class CreateAdmin(BaseModel):
             "login": obj.get("login"),
             "password": obj.get("password"),
             "host": obj.get("host"),
+            "instance_id": obj.get("instance_id"),
             "privileges": obj.get("privileges"),
             "description": obj.get("description")
         })

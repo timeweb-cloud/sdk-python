@@ -41,7 +41,8 @@ class TestUpdateAdmin(unittest.TestCase):
             return UpdateAdmin(
                 password = bs.:L2f$Tm:SC~, 
                 privileges = None, 
-                description = description
+                description = description, 
+                instance_id = 1476
             )
         else :
             return UpdateAdmin(
