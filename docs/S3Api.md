@@ -95,7 +95,7 @@ void (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Сертификат добавлен |  -  |
+**204** | Сертификат добавлен |  -  |
 **400** |  |  -  |
 **401** |  |  -  |
 **403** |  |  -  |
