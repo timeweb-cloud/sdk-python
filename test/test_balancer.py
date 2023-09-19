@@ -59,7 +59,8 @@ class TestBalancer(unittest.TestCase):
                 timeout = 5, 
                 is_use_proxy = true, 
                 rules = None, 
-                ips = []
+                ips = [], 
+                location = ru-1
             )
         else :
             return Balancer(
@@ -84,6 +85,7 @@ class TestBalancer(unittest.TestCase):
                 is_use_proxy = true,
                 rules = None,
                 ips = [],
+                location = ru-1,
         )
         """
 

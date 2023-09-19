@@ -47,7 +47,8 @@ class Balancer(BaseModel):
     is_use_proxy: Optional[Any] = Field(..., description="Это логическое значение, которое показывает, выступает ли балансировщик в качестве прокси.")
     rules: Optional[Any] = Field(...)
     ips: Optional[Any] = Field(..., description="Список IP-адресов, привязанных к балансировщику")
-    __properties = ["id", "algo", "created_at", "fall", "inter", "ip", "local_ip", "is_keepalive", "name", "path", "port", "proto", "rise", "preset_id", "is_ssl", "status", "is_sticky", "timeout", "is_use_proxy", "rules", "ips"]
+    location: Optional[Any] = Field(..., description="Географическое расположение балансировщика")
+    __properties = ["id", "algo", "created_at", "fall", "inter", "ip", "local_ip", "is_keepalive", "name", "path", "port", "proto", "rise", "preset_id", "is_ssl", "status", "is_sticky", "timeout", "is_use_proxy", "rules", "ips", "location"]
 
     @validator('algo')
     def algo_validate_enum(cls, value):
@@ -77,6 +78,16 @@ class Balancer(BaseModel):
 
         if value not in ('started', 'stoped', 'starting', 'no_paid'):
             raise ValueError("must be one of enum values ('started', 'stoped', 'starting', 'no_paid')")
+        return value
+
+    @validator('location')
+    def location_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in ('ru-1', 'pl-1'):
+            raise ValueError("must be one of enum values ('ru-1', 'pl-1')")
         return value
 
     class Config:
@@ -208,6 +219,11 @@ class Balancer(BaseModel):
         if self.ips is None and "ips" in self.__fields_set__:
             _dict['ips'] = None
 
+        # set to None if location (nullable) is None
+        # and __fields_set__ contains the field
+        if self.location is None and "location" in self.__fields_set__:
+            _dict['location'] = None
+
         return _dict
 
     @classmethod
@@ -240,7 +256,8 @@ class Balancer(BaseModel):
             "timeout": obj.get("timeout"),
             "is_use_proxy": obj.get("is_use_proxy"),
             "rules": obj.get("rules"),
-            "ips": obj.get("ips")
+            "ips": obj.get("ips"),
+            "location": obj.get("location")
         })
         return _obj
 

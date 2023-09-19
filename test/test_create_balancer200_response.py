@@ -60,7 +60,8 @@ class TestCreateBalancer200Response(unittest.TestCase):
                     timeout = 5, 
                     is_use_proxy = true, 
                     rules = null, 
-                    ips = [], )
+                    ips = [], 
+                    location = ru-1, )
             )
         else :
             return CreateBalancer200Response(
@@ -85,7 +86,8 @@ class TestCreateBalancer200Response(unittest.TestCase):
                     timeout = 5, 
                     is_use_proxy = true, 
                     rules = null, 
-                    ips = [], ),
+                    ips = [], 
+                    location = ru-1, ),
         )
         """
 
