@@ -2979,7 +2979,7 @@ class ServersApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def get_server_statistics(self, server_id : Annotated[Any, Field(..., description="Уникальный идентификатор облачного сервера.")], date_from : Annotated[Any, Field(..., description="Дата начала сбора статистики")], date_to : Annotated[Any, Field(..., description="Дата окончания сбора статистики")], **kwargs) -> GetServerStatistics200Response:  # noqa: E501
+    def get_server_statistics(self, server_id : Annotated[Any, Field(..., description="Уникальный идентификатор облачного сервера.")], date_from : Annotated[Any, Field(..., description="Дата начала сбора статистики. Строка в формате ISO 8061, закодированная в ASCII, пример: `2023-05-25%202023-05-25T14%3A35%3A38`")], date_to : Annotated[Any, Field(..., description="Дата окончания сбора статистики. Строка в формате ISO 8061, закодированная в ASCII, пример: `2023-05-26%202023-05-25T14%3A35%3A38`")], **kwargs) -> GetServerStatistics200Response:  # noqa: E501
         """Получение статистики сервера  # noqa: E501
 
         Чтобы получить статистику сервера, отправьте GET-запрос на `/api/v1/servers/{server_id}/statistics`.  # noqa: E501
@@ -2991,9 +2991,9 @@ class ServersApi(object):
 
         :param server_id: Уникальный идентификатор облачного сервера. (required)
         :type server_id: object
-        :param date_from: Дата начала сбора статистики (required)
+        :param date_from: Дата начала сбора статистики. Строка в формате ISO 8061, закодированная в ASCII, пример: `2023-05-25%202023-05-25T14%3A35%3A38` (required)
         :type date_from: object
-        :param date_to: Дата окончания сбора статистики (required)
+        :param date_to: Дата окончания сбора статистики. Строка в формате ISO 8061, закодированная в ASCII, пример: `2023-05-26%202023-05-25T14%3A35%3A38` (required)
         :type date_to: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -3012,7 +3012,7 @@ class ServersApi(object):
         return self.get_server_statistics_with_http_info(server_id, date_from, date_to, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def get_server_statistics_with_http_info(self, server_id : Annotated[Any, Field(..., description="Уникальный идентификатор облачного сервера.")], date_from : Annotated[Any, Field(..., description="Дата начала сбора статистики")], date_to : Annotated[Any, Field(..., description="Дата окончания сбора статистики")], **kwargs) -> ApiResponse:  # noqa: E501
+    def get_server_statistics_with_http_info(self, server_id : Annotated[Any, Field(..., description="Уникальный идентификатор облачного сервера.")], date_from : Annotated[Any, Field(..., description="Дата начала сбора статистики. Строка в формате ISO 8061, закодированная в ASCII, пример: `2023-05-25%202023-05-25T14%3A35%3A38`")], date_to : Annotated[Any, Field(..., description="Дата окончания сбора статистики. Строка в формате ISO 8061, закодированная в ASCII, пример: `2023-05-26%202023-05-25T14%3A35%3A38`")], **kwargs) -> ApiResponse:  # noqa: E501
         """Получение статистики сервера  # noqa: E501
 
         Чтобы получить статистику сервера, отправьте GET-запрос на `/api/v1/servers/{server_id}/statistics`.  # noqa: E501
@@ -3024,9 +3024,9 @@ class ServersApi(object):
 
         :param server_id: Уникальный идентификатор облачного сервера. (required)
         :type server_id: object
-        :param date_from: Дата начала сбора статистики (required)
+        :param date_from: Дата начала сбора статистики. Строка в формате ISO 8061, закодированная в ASCII, пример: `2023-05-25%202023-05-25T14%3A35%3A38` (required)
         :type date_from: object
-        :param date_to: Дата окончания сбора статистики (required)
+        :param date_to: Дата окончания сбора статистики. Строка в формате ISO 8061, закодированная в ASCII, пример: `2023-05-26%202023-05-25T14%3A35%3A38` (required)
         :type date_to: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
