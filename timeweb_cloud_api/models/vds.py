@@ -52,7 +52,8 @@ class Vds(BaseModel):
     image: VdsImage = Field(...)
     networks: Optional[Any] = Field(..., description="Список сетей диска.")
     cloud_init: Optional[Any] = Field(..., description="Cloud-init скрипт")
-    __properties = ["id", "name", "comment", "created_at", "os", "software", "preset_id", "location", "configurator_id", "boot_mode", "status", "start_at", "is_ddos_guard", "cpu", "cpu_frequency", "ram", "disks", "avatar_id", "vnc_pass", "root_pass", "image", "networks", "cloud_init"]
+    qemu_agent: Optional[Any] = Field(..., description="Включен ли QEMU-agent на сервере")
+    __properties = ["id", "name", "comment", "created_at", "os", "software", "preset_id", "location", "configurator_id", "boot_mode", "status", "start_at", "is_ddos_guard", "cpu", "cpu_frequency", "ram", "disks", "avatar_id", "vnc_pass", "root_pass", "image", "networks", "cloud_init", "qemu_agent"]
 
     @validator('location')
     def location_validate_enum(cls, value):
@@ -217,6 +218,11 @@ class Vds(BaseModel):
         if self.cloud_init is None and "cloud_init" in self.__fields_set__:
             _dict['cloud_init'] = None
 
+        # set to None if qemu_agent (nullable) is None
+        # and __fields_set__ contains the field
+        if self.qemu_agent is None and "qemu_agent" in self.__fields_set__:
+            _dict['qemu_agent'] = None
+
         return _dict
 
     @classmethod
@@ -251,7 +257,8 @@ class Vds(BaseModel):
             "root_pass": obj.get("root_pass"),
             "image": VdsImage.from_dict(obj.get("image")) if obj.get("image") is not None else None,
             "networks": obj.get("networks"),
-            "cloud_init": obj.get("cloud_init")
+            "cloud_init": obj.get("cloud_init"),
+            "qemu_agent": obj.get("qemu_agent")
         })
         return _obj
 

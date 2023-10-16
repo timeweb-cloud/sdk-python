@@ -28,6 +28,7 @@ Name | Type | Description | Notes
 **image** | [**VdsImage**](VdsImage.md) |  | 
 **networks** | **object** | Список сетей диска. | 
 **cloud_init** | **object** | Cloud-init скрипт | 
+**qemu_agent** | **object** | Включен ли QEMU-agent на сервере | 
 
 ## Example
 

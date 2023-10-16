@@ -69,7 +69,8 @@ class TestVds(unittest.TestCase):
                     name = image_name, 
                     is_custom = true, ), 
                 networks = None, 
-                cloud_init = #cloud-config
+                cloud_init = #cloud-config, 
+                qemu_agent = true
             )
         else :
             return Vds(
@@ -104,6 +105,7 @@ class TestVds(unittest.TestCase):
                     is_custom = true, ),
                 networks = None,
                 cloud_init = #cloud-config,
+                qemu_agent = true,
         )
         """
 
