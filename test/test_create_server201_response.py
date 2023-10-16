@@ -71,7 +71,7 @@ class TestCreateServer201Response(unittest.TestCase):
                         is_custom = true, ), 
                     networks = null, 
                     cloud_init = #cloud-config, 
-                    qemu_agent = true, )
+                    is_qemu_agent = true, )
             )
         else :
             return CreateServer201Response(
@@ -107,7 +107,7 @@ class TestCreateServer201Response(unittest.TestCase):
                         is_custom = true, ), 
                     networks = null, 
                     cloud_init = #cloud-config, 
-                    qemu_agent = true, ),
+                    is_qemu_agent = true, ),
         )
         """
 
