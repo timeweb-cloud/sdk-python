@@ -26,9 +26,9 @@ class ServerIp(BaseModel):
     """
     IP-адрес сервера
     """
-    type: Optional[Any] = Field(..., description="Тип IP-адреса сети")
-    ip: Optional[Any] = Field(..., description="IP-адрес сети")
-    ptr: Optional[Any] = Field(..., description="Запись имени узла")
+    type: Optional[Any] = Field(..., description="Тип IP-адреса сети.")
+    ip: Optional[Any] = Field(..., description="IP-адрес сети.")
+    ptr: Optional[Any] = Field(..., description="Запись имени узла.")
     is_main: Optional[Any] = Field(..., description="Является ли сеть основной.")
     __properties = ["type", "ip", "ptr", "is_main"]
 

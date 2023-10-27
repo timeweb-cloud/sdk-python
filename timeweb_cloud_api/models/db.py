@@ -30,7 +30,7 @@ class Db(BaseModel):
     """
     id: Optional[Any] = Field(..., description="Уникальный идентификатор для каждого экземпляра базы данных. Автоматически генерируется при создании.")
     created_at: Optional[Any] = Field(..., description="Значение времени, указанное в комбинированном формате даты и времени ISO8601, которое представляет, когда была создана база данных.")
-    account_id: Optional[Any] = Field(..., description="Идентификатор пользователя")
+    account_id: Optional[Any] = Field(..., description="Идентификатор пользователя.")
     login: Optional[Any] = Field(..., description="Логин для подключения к базе данных.")
     location: Optional[Any] = Field(None, description="Локация сервера.")
     password: Optional[Any] = Field(..., description="Пароль для подключения к базе данных.")

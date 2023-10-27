@@ -51,8 +51,8 @@ class Vds(BaseModel):
     root_pass: Optional[Any] = Field(..., description="Пароль root сервера или пароль Администратора для серверов Windows.")
     image: VdsImage = Field(...)
     networks: Optional[Any] = Field(..., description="Список сетей диска.")
-    cloud_init: Optional[Any] = Field(..., description="Cloud-init скрипт")
-    is_qemu_agent: Optional[Any] = Field(None, description="Включен ли QEMU-agent на сервере")
+    cloud_init: Optional[Any] = Field(..., description="Cloud-init скрипт.")
+    is_qemu_agent: Optional[Any] = Field(None, description="Включен ли QEMU-agent на сервере.")
     __properties = ["id", "name", "comment", "created_at", "os", "software", "preset_id", "location", "configurator_id", "boot_mode", "status", "start_at", "is_ddos_guard", "cpu", "cpu_frequency", "ram", "disks", "avatar_id", "vnc_pass", "root_pass", "image", "networks", "cloud_init", "is_qemu_agent"]
 
     @validator('location')

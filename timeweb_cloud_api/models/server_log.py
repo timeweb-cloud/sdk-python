@@ -27,8 +27,8 @@ class ServerLog(BaseModel):
     Лог сервера
     """
     id: Optional[Any] = Field(..., description="Уникальный идентификатор диска.")
-    logged_at: Optional[Any] = Field(..., description="Дата лога")
-    event: Optional[Any] = Field(..., description="Событие сервера")
+    logged_at: Optional[Any] = Field(..., description="Дата лога.")
+    event: Optional[Any] = Field(..., description="Событие сервера.")
     __properties = ["id", "logged_at", "event"]
 
     class Config:

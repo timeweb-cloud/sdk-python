@@ -27,8 +27,8 @@ Name | Type | Description | Notes
 **root_pass** | **object** | Пароль root сервера или пароль Администратора для серверов Windows. | 
 **image** | [**VdsImage**](VdsImage.md) |  | 
 **networks** | **object** | Список сетей диска. | 
-**cloud_init** | **object** | Cloud-init скрипт | 
-**is_qemu_agent** | **object** | Включен ли QEMU-agent на сервере | [optional] 
+**cloud_init** | **object** | Cloud-init скрипт. | 
+**is_qemu_agent** | **object** | Включен ли QEMU-agent на сервере. | [optional] 
 
 ## Example
 

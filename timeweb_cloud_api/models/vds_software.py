@@ -24,10 +24,10 @@ from pydantic import BaseModel, Field
 
 class VdsSoftware(BaseModel):
     """
-    ПО из маркетплейса
+    ПО из маркетплейса.
     """
-    id: Optional[Any] = Field(None, description="Уникальный идентификатор ПО из маркетплейса")
-    name: Optional[Any] = Field(None, description="Название ПО из маркетплейса")
+    id: Optional[Any] = Field(None, description="Уникальный идентификатор ПО из маркетплейса.")
+    name: Optional[Any] = Field(None, description="Название ПО из маркетплейса.")
     __properties = ["id", "name"]
 
     class Config:
