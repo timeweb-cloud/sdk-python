@@ -32,10 +32,12 @@ docs/ApiKey.md
 docs/AutoBackup.md
 docs/AutoReplyIsDisabled.md
 docs/AutoReplyIsEnabled.md
+docs/AvailabilityZone.md
 docs/Backup.md
 docs/Balancer.md
 docs/BalancersApi.md
 docs/BaseError.md
+docs/BindFloatingIp.md
 docs/Bonus.md
 docs/Bucket.md
 docs/BucketDiskStats.md
@@ -70,6 +72,8 @@ docs/CreateDomainDNSRecord201Response.md
 docs/CreateDomainMailbox201Response.md
 docs/CreateDomainMailboxRequest.md
 docs/CreateDomainRequest201Response.md
+docs/CreateFloatingIp.md
+docs/CreateFloatingIp201Response.md
 docs/CreateFolderInStorageRequest.md
 docs/CreateInstance.md
 docs/CreateKey201Response.md
@@ -97,6 +101,7 @@ docs/DatabaseInstance.md
 docs/DatabasesApi.md
 docs/Db.md
 docs/DbDiskStats.md
+docs/DbType.md
 docs/DedicatedServer.md
 docs/DedicatedServerAdditionalService.md
 docs/DedicatedServerPreset.md
@@ -145,6 +150,8 @@ docs/FirewallRuleOutAPI.md
 docs/FirewallRuleOutResponse.md
 docs/FirewallRuleProtocol.md
 docs/FirewallRulesOutResponse.md
+docs/FloatingIPApi.md
+docs/FloatingIp.md
 docs/ForwardingIncomingIsDisabled.md
 docs/ForwardingIncomingIsEnabled.md
 docs/ForwardingOutgoingIsDisabled.md
@@ -177,6 +184,7 @@ docs/GetDomainNameServers200Response.md
 docs/GetDomainRequests200Response.md
 docs/GetDomains200Response.md
 docs/GetFinances200Response.md
+docs/GetFloatingIps200Response.md
 docs/GetKey200Response.md
 docs/GetKeys200Response.md
 docs/GetMailQuota200Response.md
@@ -248,6 +256,7 @@ docs/NotificationSettingType.md
 docs/OS.md
 docs/PerformActionOnBackupRequest.md
 docs/PerformActionOnServerRequest.md
+docs/Policy.md
 docs/PresetsBalancer.md
 docs/PresetsDbs.md
 docs/PresetsResponse.md
@@ -305,6 +314,7 @@ docs/UpdateDomain.md
 docs/UpdateDomainAutoProlongation200Response.md
 docs/UpdateDomainMailInfoRequest.md
 docs/UpdateDomainNameServers.md
+docs/UpdateFloatingIp.md
 docs/UpdateInstance.md
 docs/UpdateKeyRequest.md
 docs/UpdateMailQuotaRequest.md
@@ -373,10 +383,12 @@ test/test_api_keys_api.py
 test/test_auto_backup.py
 test/test_auto_reply_is_disabled.py
 test/test_auto_reply_is_enabled.py
+test/test_availability_zone.py
 test/test_backup.py
 test/test_balancer.py
 test/test_balancers_api.py
 test/test_base_error.py
+test/test_bind_floating_ip.py
 test/test_bonus.py
 test/test_bucket.py
 test/test_bucket_disk_stats.py
@@ -411,6 +423,8 @@ test/test_create_domain_dns_record201_response.py
 test/test_create_domain_mailbox201_response.py
 test/test_create_domain_mailbox_request.py
 test/test_create_domain_request201_response.py
+test/test_create_floating_ip.py
+test/test_create_floating_ip201_response.py
 test/test_create_folder_in_storage_request.py
 test/test_create_instance.py
 test/test_create_key201_response.py
@@ -438,6 +452,7 @@ test/test_database_instance.py
 test/test_databases_api.py
 test/test_db.py
 test/test_db_disk_stats.py
+test/test_db_type.py
 test/test_dedicated_server.py
 test/test_dedicated_server_additional_service.py
 test/test_dedicated_server_preset.py
@@ -486,6 +501,8 @@ test/test_firewall_rule_out_api.py
 test/test_firewall_rule_out_response.py
 test/test_firewall_rule_protocol.py
 test/test_firewall_rules_out_response.py
+test/test_floating_ip.py
+test/test_floating_ip_api.py
 test/test_forwarding_incoming_is_disabled.py
 test/test_forwarding_incoming_is_enabled.py
 test/test_forwarding_outgoing_is_disabled.py
@@ -518,6 +535,7 @@ test/test_get_domain_name_servers200_response.py
 test/test_get_domain_requests200_response.py
 test/test_get_domains200_response.py
 test/test_get_finances200_response.py
+test/test_get_floating_ips200_response.py
 test/test_get_key200_response.py
 test/test_get_keys200_response.py
 test/test_get_mail_quota200_response.py
@@ -589,6 +607,7 @@ test/test_notification_setting_type.py
 test/test_os.py
 test/test_perform_action_on_backup_request.py
 test/test_perform_action_on_server_request.py
+test/test_policy.py
 test/test_presets_balancer.py
 test/test_presets_dbs.py
 test/test_presets_response.py
@@ -645,6 +664,7 @@ test/test_update_domain.py
 test/test_update_domain_auto_prolongation200_response.py
 test/test_update_domain_mail_info_request.py
 test/test_update_domain_name_servers.py
+test/test_update_floating_ip.py
 test/test_update_instance.py
 test/test_update_key_request.py
 test/test_update_mail_quota_request.py
@@ -688,6 +708,7 @@ timeweb_cloud_api/api/databases_api.py
 timeweb_cloud_api/api/dedicated_servers_api.py
 timeweb_cloud_api/api/domains_api.py
 timeweb_cloud_api/api/firewall_api.py
+timeweb_cloud_api/api/floating_ip_api.py
 timeweb_cloud_api/api/images_api.py
 timeweb_cloud_api/api/kubernetes_api.py
 timeweb_cloud_api/api/mail_api.py
@@ -727,9 +748,11 @@ timeweb_cloud_api/models/api_key.py
 timeweb_cloud_api/models/auto_backup.py
 timeweb_cloud_api/models/auto_reply_is_disabled.py
 timeweb_cloud_api/models/auto_reply_is_enabled.py
+timeweb_cloud_api/models/availability_zone.py
 timeweb_cloud_api/models/backup.py
 timeweb_cloud_api/models/balancer.py
 timeweb_cloud_api/models/base_error.py
+timeweb_cloud_api/models/bind_floating_ip.py
 timeweb_cloud_api/models/bonus.py
 timeweb_cloud_api/models/bucket.py
 timeweb_cloud_api/models/bucket_disk_stats.py
@@ -764,6 +787,8 @@ timeweb_cloud_api/models/create_domain_dns_record201_response.py
 timeweb_cloud_api/models/create_domain_mailbox201_response.py
 timeweb_cloud_api/models/create_domain_mailbox_request.py
 timeweb_cloud_api/models/create_domain_request201_response.py
+timeweb_cloud_api/models/create_floating_ip.py
+timeweb_cloud_api/models/create_floating_ip201_response.py
 timeweb_cloud_api/models/create_folder_in_storage_request.py
 timeweb_cloud_api/models/create_instance.py
 timeweb_cloud_api/models/create_key201_response.py
@@ -790,6 +815,7 @@ timeweb_cloud_api/models/database_cluster_disk_stats.py
 timeweb_cloud_api/models/database_instance.py
 timeweb_cloud_api/models/db.py
 timeweb_cloud_api/models/db_disk_stats.py
+timeweb_cloud_api/models/db_type.py
 timeweb_cloud_api/models/dedicated_server.py
 timeweb_cloud_api/models/dedicated_server_additional_service.py
 timeweb_cloud_api/models/dedicated_server_preset.py
@@ -835,6 +861,7 @@ timeweb_cloud_api/models/firewall_rule_out_api.py
 timeweb_cloud_api/models/firewall_rule_out_response.py
 timeweb_cloud_api/models/firewall_rule_protocol.py
 timeweb_cloud_api/models/firewall_rules_out_response.py
+timeweb_cloud_api/models/floating_ip.py
 timeweb_cloud_api/models/forwarding_incoming_is_disabled.py
 timeweb_cloud_api/models/forwarding_incoming_is_enabled.py
 timeweb_cloud_api/models/forwarding_outgoing_is_disabled.py
@@ -867,6 +894,7 @@ timeweb_cloud_api/models/get_domain_name_servers200_response.py
 timeweb_cloud_api/models/get_domain_requests200_response.py
 timeweb_cloud_api/models/get_domains200_response.py
 timeweb_cloud_api/models/get_finances200_response.py
+timeweb_cloud_api/models/get_floating_ips200_response.py
 timeweb_cloud_api/models/get_key200_response.py
 timeweb_cloud_api/models/get_keys200_response.py
 timeweb_cloud_api/models/get_mail_quota200_response.py
@@ -935,6 +963,7 @@ timeweb_cloud_api/models/notification_setting_type.py
 timeweb_cloud_api/models/os.py
 timeweb_cloud_api/models/perform_action_on_backup_request.py
 timeweb_cloud_api/models/perform_action_on_server_request.py
+timeweb_cloud_api/models/policy.py
 timeweb_cloud_api/models/presets_balancer.py
 timeweb_cloud_api/models/presets_dbs.py
 timeweb_cloud_api/models/presets_response.py
@@ -987,6 +1016,7 @@ timeweb_cloud_api/models/update_domain.py
 timeweb_cloud_api/models/update_domain_auto_prolongation200_response.py
 timeweb_cloud_api/models/update_domain_mail_info_request.py
 timeweb_cloud_api/models/update_domain_name_servers.py
+timeweb_cloud_api/models/update_floating_ip.py
 timeweb_cloud_api/models/update_instance.py
 timeweb_cloud_api/models/update_key_request.py
 timeweb_cloud_api/models/update_mail_quota_request.py

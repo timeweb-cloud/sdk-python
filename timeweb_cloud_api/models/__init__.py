@@ -41,9 +41,11 @@ from timeweb_cloud_api.models.api_key import ApiKey
 from timeweb_cloud_api.models.auto_backup import AutoBackup
 from timeweb_cloud_api.models.auto_reply_is_disabled import AutoReplyIsDisabled
 from timeweb_cloud_api.models.auto_reply_is_enabled import AutoReplyIsEnabled
+from timeweb_cloud_api.models.availability_zone import AvailabilityZone
 from timeweb_cloud_api.models.backup import Backup
 from timeweb_cloud_api.models.balancer import Balancer
 from timeweb_cloud_api.models.base_error import BaseError
+from timeweb_cloud_api.models.bind_floating_ip import BindFloatingIp
 from timeweb_cloud_api.models.bonus import Bonus
 from timeweb_cloud_api.models.bucket import Bucket
 from timeweb_cloud_api.models.bucket_disk_stats import BucketDiskStats
@@ -78,6 +80,8 @@ from timeweb_cloud_api.models.create_domain_dns_record201_response import Create
 from timeweb_cloud_api.models.create_domain_mailbox201_response import CreateDomainMailbox201Response
 from timeweb_cloud_api.models.create_domain_mailbox_request import CreateDomainMailboxRequest
 from timeweb_cloud_api.models.create_domain_request201_response import CreateDomainRequest201Response
+from timeweb_cloud_api.models.create_floating_ip import CreateFloatingIp
+from timeweb_cloud_api.models.create_floating_ip201_response import CreateFloatingIp201Response
 from timeweb_cloud_api.models.create_folder_in_storage_request import CreateFolderInStorageRequest
 from timeweb_cloud_api.models.create_instance import CreateInstance
 from timeweb_cloud_api.models.create_key201_response import CreateKey201Response
@@ -104,6 +108,7 @@ from timeweb_cloud_api.models.database_cluster_disk_stats import DatabaseCluster
 from timeweb_cloud_api.models.database_instance import DatabaseInstance
 from timeweb_cloud_api.models.db import Db
 from timeweb_cloud_api.models.db_disk_stats import DbDiskStats
+from timeweb_cloud_api.models.db_type import DbType
 from timeweb_cloud_api.models.dedicated_server import DedicatedServer
 from timeweb_cloud_api.models.dedicated_server_additional_service import DedicatedServerAdditionalService
 from timeweb_cloud_api.models.dedicated_server_preset import DedicatedServerPreset
@@ -149,6 +154,7 @@ from timeweb_cloud_api.models.firewall_rule_out_api import FirewallRuleOutAPI
 from timeweb_cloud_api.models.firewall_rule_out_response import FirewallRuleOutResponse
 from timeweb_cloud_api.models.firewall_rule_protocol import FirewallRuleProtocol
 from timeweb_cloud_api.models.firewall_rules_out_response import FirewallRulesOutResponse
+from timeweb_cloud_api.models.floating_ip import FloatingIp
 from timeweb_cloud_api.models.forwarding_incoming_is_disabled import ForwardingIncomingIsDisabled
 from timeweb_cloud_api.models.forwarding_incoming_is_enabled import ForwardingIncomingIsEnabled
 from timeweb_cloud_api.models.forwarding_outgoing_is_disabled import ForwardingOutgoingIsDisabled
@@ -181,6 +187,7 @@ from timeweb_cloud_api.models.get_domain_name_servers200_response import GetDoma
 from timeweb_cloud_api.models.get_domain_requests200_response import GetDomainRequests200Response
 from timeweb_cloud_api.models.get_domains200_response import GetDomains200Response
 from timeweb_cloud_api.models.get_finances200_response import GetFinances200Response
+from timeweb_cloud_api.models.get_floating_ips200_response import GetFloatingIps200Response
 from timeweb_cloud_api.models.get_key200_response import GetKey200Response
 from timeweb_cloud_api.models.get_keys200_response import GetKeys200Response
 from timeweb_cloud_api.models.get_mail_quota200_response import GetMailQuota200Response
@@ -249,6 +256,7 @@ from timeweb_cloud_api.models.notification_setting_type import NotificationSetti
 from timeweb_cloud_api.models.os import OS
 from timeweb_cloud_api.models.perform_action_on_backup_request import PerformActionOnBackupRequest
 from timeweb_cloud_api.models.perform_action_on_server_request import PerformActionOnServerRequest
+from timeweb_cloud_api.models.policy import Policy
 from timeweb_cloud_api.models.presets_balancer import PresetsBalancer
 from timeweb_cloud_api.models.presets_dbs import PresetsDbs
 from timeweb_cloud_api.models.presets_response import PresetsResponse
@@ -302,6 +310,7 @@ from timeweb_cloud_api.models.update_domain import UpdateDomain
 from timeweb_cloud_api.models.update_domain_auto_prolongation200_response import UpdateDomainAutoProlongation200Response
 from timeweb_cloud_api.models.update_domain_mail_info_request import UpdateDomainMailInfoRequest
 from timeweb_cloud_api.models.update_domain_name_servers import UpdateDomainNameServers
+from timeweb_cloud_api.models.update_floating_ip import UpdateFloatingIp
 from timeweb_cloud_api.models.update_instance import UpdateInstance
 from timeweb_cloud_api.models.update_key_request import UpdateKeyRequest
 from timeweb_cloud_api.models.update_mail_quota_request import UpdateMailQuotaRequest

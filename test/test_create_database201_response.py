@@ -87,7 +87,8 @@ class TestCreateDatabase201Response(unittest.TestCase):
                         sql_mode = STRICT_TRANS_TABLES, 
                         query_cache_type = 0, 
                         query_cache_size = 0, ), 
-                    is_only_local_ip_access = false, )
+                    is_only_local_ip_access = false, 
+                    availability_zone = spb-1, )
             )
         else :
             return CreateDatabase201Response(
@@ -139,7 +140,8 @@ class TestCreateDatabase201Response(unittest.TestCase):
                         sql_mode = STRICT_TRANS_TABLES, 
                         query_cache_type = 0, 
                         query_cache_size = 0, ), 
-                    is_only_local_ip_access = false, ),
+                    is_only_local_ip_access = false, 
+                    availability_zone = spb-1, ),
         )
         """
 

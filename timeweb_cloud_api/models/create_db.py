@@ -22,6 +22,7 @@ import json
 from typing import Any, Optional
 from pydantic import BaseModel, Field, validator
 from timeweb_cloud_api.models.config_parameters import ConfigParameters
+from timeweb_cloud_api.models.db_type import DbType
 from timeweb_cloud_api.models.network import Network
 
 class CreateDb(BaseModel):
@@ -31,22 +32,12 @@ class CreateDb(BaseModel):
     login: Optional[Any] = Field(None, description="Логин для подключения к базе данных.")
     password: Optional[Any] = Field(..., description="Пароль для подключения к базе данных.")
     name: Optional[Any] = Field(..., description="Название базы данных.")
-    type: Optional[Any] = Field(..., description="Тип базы данных.")
+    type: DbType = Field(...)
     hash_type: Optional[Any] = Field(None, description="Тип хеширования базы данных (mysql5 | mysql | postgres).")
     preset_id: Optional[Any] = Field(..., description="Идентификатор тарифа.")
     config_parameters: Optional[ConfigParameters] = None
     network: Optional[Network] = None
     __properties = ["login", "password", "name", "type", "hash_type", "preset_id", "config_parameters", "network"]
-
-    @validator('type')
-    def type_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in ('mysql', 'mysql5', 'postgres', 'redis', 'mongodb'):
-            raise ValueError("must be one of enum values ('mysql', 'mysql5', 'postgres', 'redis', 'mongodb')")
-        return value
 
     @validator('hash_type')
     def hash_type_validate_enum(cls, value):
@@ -102,11 +93,6 @@ class CreateDb(BaseModel):
         # and __fields_set__ contains the field
         if self.name is None and "name" in self.__fields_set__:
             _dict['name'] = None
-
-        # set to None if type (nullable) is None
-        # and __fields_set__ contains the field
-        if self.type is None and "type" in self.__fields_set__:
-            _dict['type'] = None
 
         # set to None if hash_type (nullable) is None
         # and __fields_set__ contains the field

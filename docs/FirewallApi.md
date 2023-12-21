@@ -106,7 +106,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_group**
-> FirewallGroupOutResponse create_group(firewall_group_in_api)
+> FirewallGroupOutResponse create_group(firewall_group_in_api, policy=policy)
 
 Создание группы правил
 
@@ -145,10 +145,11 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.FirewallApi(api_client)
     firewall_group_in_api = timeweb_cloud_api.FirewallGroupInAPI() # FirewallGroupInAPI | 
+    policy = None # object | Тип группы правил (optional)
 
     try:
         # Создание группы правил
-        api_response = api_instance.create_group(firewall_group_in_api)
+        api_response = api_instance.create_group(firewall_group_in_api, policy=policy)
         print("The response of FirewallApi->create_group:\n")
         pprint(api_response)
     except Exception as e:
@@ -161,6 +162,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **firewall_group_in_api** | [**FirewallGroupInAPI**](FirewallGroupInAPI.md)|  | 
+ **policy** | [**object**](.md)| Тип группы правил | [optional] 
 
 ### Return type
 

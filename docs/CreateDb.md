@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **login** | **object** | Логин для подключения к базе данных. | [optional] 
 **password** | **object** | Пароль для подключения к базе данных. | 
 **name** | **object** | Название базы данных. | 
-**type** | **object** | Тип базы данных. | 
+**type** | [**DbType**](DbType.md) |  | 
 **hash_type** | **object** | Тип хеширования базы данных (mysql5 | mysql | postgres). | [optional] 
 **preset_id** | **object** | Идентификатор тарифа. | 
 **config_parameters** | [**ConfigParameters**](ConfigParameters.md) |  | [optional] 

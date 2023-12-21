@@ -21,6 +21,7 @@ import json
 
 from typing import Any, Optional
 from pydantic import BaseModel, Field, validator
+from timeweb_cloud_api.models.db_type import DbType
 
 class PresetsDbs(BaseModel):
     """
@@ -32,20 +33,10 @@ class PresetsDbs(BaseModel):
     cpu: Optional[Any] = Field(None, description="Описание процессора тарифа.")
     ram: Optional[Any] = Field(None, description="Описание ОЗУ тарифа.")
     disk: Optional[Any] = Field(None, description="Описание диска тарифа.")
-    type: Optional[Any] = Field(None, description="Тип тарифа базы данных")
+    type: Optional[DbType] = None
     price: Optional[Any] = Field(None, description="Стоимость тарифа базы данных")
     location: Optional[Any] = Field(None, description="Географическое расположение тарифа.")
     __properties = ["id", "description", "description_short", "cpu", "ram", "disk", "type", "price", "location"]
-
-    @validator('type')
-    def type_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in ('mysql', 'mysql5', 'postgres', 'redis', 'mongodb'):
-            raise ValueError("must be one of enum values ('mysql', 'mysql5', 'postgres', 'redis', 'mongodb')")
-        return value
 
     @validator('location')
     def location_validate_enum(cls, value):
@@ -110,11 +101,6 @@ class PresetsDbs(BaseModel):
         # and __fields_set__ contains the field
         if self.disk is None and "disk" in self.__fields_set__:
             _dict['disk'] = None
-
-        # set to None if type (nullable) is None
-        # and __fields_set__ contains the field
-        if self.type is None and "type" in self.__fields_set__:
-            _dict['type'] = None
 
         # set to None if price (nullable) is None
         # and __fields_set__ contains the field

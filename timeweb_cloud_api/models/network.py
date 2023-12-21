@@ -27,8 +27,9 @@ class Network(BaseModel):
     Network
     """
     id: Optional[Any] = Field(..., description="Уникальный идентификатор сети.")
+    floating_ip: Optional[Any] = Field(None, description="Плавающий IP-адрес")
     ip: Optional[Any] = Field(None, description="IP-адрес в сети.")
-    __properties = ["id", "ip"]
+    __properties = ["id", "floating_ip", "ip"]
 
     class Config:
         """Pydantic configuration"""
@@ -59,6 +60,11 @@ class Network(BaseModel):
         if self.id is None and "id" in self.__fields_set__:
             _dict['id'] = None
 
+        # set to None if floating_ip (nullable) is None
+        # and __fields_set__ contains the field
+        if self.floating_ip is None and "floating_ip" in self.__fields_set__:
+            _dict['floating_ip'] = None
+
         # set to None if ip (nullable) is None
         # and __fields_set__ contains the field
         if self.ip is None and "ip" in self.__fields_set__:
@@ -77,6 +83,7 @@ class Network(BaseModel):
 
         _obj = Network.parse_obj({
             "id": obj.get("id"),
+            "floating_ip": obj.get("floating_ip"),
             "ip": obj.get("ip")
         })
         return _obj

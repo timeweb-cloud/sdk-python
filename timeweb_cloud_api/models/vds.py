@@ -21,6 +21,7 @@ import json
 
 from typing import Any, Optional
 from pydantic import BaseModel, Field, validator
+from timeweb_cloud_api.models.availability_zone import AvailabilityZone
 from timeweb_cloud_api.models.vds_image import VdsImage
 from timeweb_cloud_api.models.vds_os import VdsOs
 from timeweb_cloud_api.models.vds_software import VdsSoftware
@@ -41,7 +42,7 @@ class Vds(BaseModel):
     boot_mode: Optional[Any] = Field(..., description="Режим загрузки ОС сервера.")
     status: Optional[Any] = Field(..., description="Статус сервера.")
     start_at: Optional[Any] = Field(..., description="Значение времени, указанное в комбинированном формате даты и времени ISO8601, которое представляет, когда был запущен сервер.")
-    is_ddos_guard: Optional[Any] = Field(..., description="Это логическое значение, которое показывает, включена ли защита от DDOS у данного сервера.")
+    is_ddos_guard: Optional[Any] = Field(..., description="Это логическое значение, которое показывает, включена ли защита от DDoS у данного сервера.")
     cpu: Optional[Any] = Field(..., description="Количество ядер процессора сервера.")
     cpu_frequency: Optional[Any] = Field(..., description="Частота ядер процессора сервера.")
     ram: Optional[Any] = Field(..., description="Размер (в Мб) ОЗУ сервера.")
@@ -53,7 +54,8 @@ class Vds(BaseModel):
     networks: Optional[Any] = Field(..., description="Список сетей диска.")
     cloud_init: Optional[Any] = Field(..., description="Cloud-init скрипт.")
     is_qemu_agent: Optional[Any] = Field(None, description="Включен ли QEMU-agent на сервере.")
-    __properties = ["id", "name", "comment", "created_at", "os", "software", "preset_id", "location", "configurator_id", "boot_mode", "status", "start_at", "is_ddos_guard", "cpu", "cpu_frequency", "ram", "disks", "avatar_id", "vnc_pass", "root_pass", "image", "networks", "cloud_init", "is_qemu_agent"]
+    availability_zone: AvailabilityZone = Field(...)
+    __properties = ["id", "name", "comment", "created_at", "os", "software", "preset_id", "location", "configurator_id", "boot_mode", "status", "start_at", "is_ddos_guard", "cpu", "cpu_frequency", "ram", "disks", "avatar_id", "vnc_pass", "root_pass", "image", "networks", "cloud_init", "is_qemu_agent", "availability_zone"]
 
     @validator('location')
     def location_validate_enum(cls, value):
@@ -258,7 +260,8 @@ class Vds(BaseModel):
             "image": VdsImage.from_dict(obj.get("image")) if obj.get("image") is not None else None,
             "networks": obj.get("networks"),
             "cloud_init": obj.get("cloud_init"),
-            "is_qemu_agent": obj.get("is_qemu_agent")
+            "is_qemu_agent": obj.get("is_qemu_agent"),
+            "availability_zone": obj.get("availability_zone")
         })
         return _obj
 

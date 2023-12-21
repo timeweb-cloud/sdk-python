@@ -40,6 +40,7 @@ class TestNetwork(unittest.TestCase):
         if include_optional :
             return Network(
                 id = network-1234567890, 
+                floating_ip = 192.168.0.0, 
                 ip = 192.168.0.0
             )
         else :

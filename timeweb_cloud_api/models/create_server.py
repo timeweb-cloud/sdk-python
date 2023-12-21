@@ -21,6 +21,7 @@ import json
 
 from typing import Any, Optional
 from pydantic import BaseModel, Field
+from timeweb_cloud_api.models.availability_zone import AvailabilityZone
 from timeweb_cloud_api.models.create_server_configuration import CreateServerConfiguration
 from timeweb_cloud_api.models.network import Network
 
@@ -42,7 +43,8 @@ class CreateServer(BaseModel):
     is_local_network: Optional[Any] = Field(None, description="Локальная сеть.")
     network: Optional[Network] = None
     cloud_init: Optional[Any] = Field(None, description="Cloud-init скрипт")
-    __properties = ["configuration", "is_ddos_guard", "os_id", "image_id", "software_id", "preset_id", "bandwidth", "name", "avatar_id", "comment", "ssh_keys_ids", "is_local_network", "network", "cloud_init"]
+    availability_zone: Optional[AvailabilityZone] = None
+    __properties = ["configuration", "is_ddos_guard", "os_id", "image_id", "software_id", "preset_id", "bandwidth", "name", "avatar_id", "comment", "ssh_keys_ids", "is_local_network", "network", "cloud_init", "availability_zone"]
 
     class Config:
         """Pydantic configuration"""
@@ -159,7 +161,8 @@ class CreateServer(BaseModel):
             "ssh_keys_ids": obj.get("ssh_keys_ids"),
             "is_local_network": obj.get("is_local_network"),
             "network": Network.from_dict(obj.get("network")) if obj.get("network") is not None else None,
-            "cloud_init": obj.get("cloud_init")
+            "cloud_init": obj.get("cloud_init"),
+            "availability_zone": obj.get("availability_zone")
         })
         return _obj
 

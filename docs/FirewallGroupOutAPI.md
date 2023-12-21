@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **updated_at** | **object** | Дата и время последнего обновления | 
 **name** | **object** | Имя группы правил | 
 **description** | **object** | Описание группы правил | 
+**policy** | [**Policy**](Policy.md) |  | 
 
 ## Example
 

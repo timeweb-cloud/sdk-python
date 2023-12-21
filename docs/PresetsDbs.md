@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **cpu** | **object** | Описание процессора тарифа. | [optional] 
 **ram** | **object** | Описание ОЗУ тарифа. | [optional] 
 **disk** | **object** | Описание диска тарифа. | [optional] 
-**type** | **object** | Тип тарифа базы данных | [optional] 
+**type** | [**DbType**](DbType.md) |  | [optional] 
 **price** | **object** | Стоимость тарифа базы данных | [optional] 
 **location** | **object** | Географическое расположение тарифа. | [optional] 
 

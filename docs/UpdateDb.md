@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **name** | **object** | Название базы данных. | [optional] 
 **preset_id** | **object** | Идентификатор тарифа. | [optional] 
 **config_parameters** | [**ConfigParameters**](ConfigParameters.md) |  | [optional] 
-**is_external_ip** | **object** | Использовать или нет внешний ip. | [optional] 
+**is_external_ip** | **object** | Использовать или нет внешний IP. | [optional] 
 
 ## Example
 

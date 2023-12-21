@@ -31,7 +31,7 @@ class UpdateDb(BaseModel):
     name: Optional[Any] = Field(None, description="Название базы данных.")
     preset_id: Optional[Any] = Field(None, description="Идентификатор тарифа.")
     config_parameters: Optional[ConfigParameters] = None
-    is_external_ip: Optional[Any] = Field(None, description="Использовать или нет внешний ip.")
+    is_external_ip: Optional[Any] = Field(None, description="Использовать или нет внешний IP.")
     __properties = ["password", "name", "preset_id", "config_parameters", "is_external_ip"]
 
     class Config:

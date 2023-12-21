@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 **boot_mode** | **object** | Режим загрузки ОС сервера. | 
 **status** | **object** | Статус сервера. | 
 **start_at** | **object** | Значение времени, указанное в комбинированном формате даты и времени ISO8601, которое представляет, когда был запущен сервер. | 
-**is_ddos_guard** | **object** | Это логическое значение, которое показывает, включена ли защита от DDOS у данного сервера. | 
+**is_ddos_guard** | **object** | Это логическое значение, которое показывает, включена ли защита от DDoS у данного сервера. | 
 **cpu** | **object** | Количество ядер процессора сервера. | 
 **cpu_frequency** | **object** | Частота ядер процессора сервера. | 
 **ram** | **object** | Размер (в Мб) ОЗУ сервера. | 
@@ -29,6 +29,7 @@ Name | Type | Description | Notes
 **networks** | **object** | Список сетей диска. | 
 **cloud_init** | **object** | Cloud-init скрипт. | 
 **is_qemu_agent** | **object** | Включен ли QEMU-agent на сервере. | [optional] 
+**availability_zone** | [**AvailabilityZone**](AvailabilityZone.md) |  | 
 
 ## Example
 

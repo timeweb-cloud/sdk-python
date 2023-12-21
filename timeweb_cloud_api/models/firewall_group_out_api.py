@@ -21,6 +21,7 @@ import json
 
 from typing import Any, Optional
 from pydantic import BaseModel, Field
+from timeweb_cloud_api.models.policy import Policy
 
 class FirewallGroupOutAPI(BaseModel):
     """
@@ -31,7 +32,8 @@ class FirewallGroupOutAPI(BaseModel):
     updated_at: Optional[Any] = Field(..., description="Дата и время последнего обновления")
     name: Optional[Any] = Field(..., description="Имя группы правил")
     description: Optional[Any] = Field(..., description="Описание группы правил")
-    __properties = ["id", "created_at", "updated_at", "name", "description"]
+    policy: Policy = Field(...)
+    __properties = ["id", "created_at", "updated_at", "name", "description", "policy"]
 
     class Config:
         """Pydantic configuration"""
@@ -98,7 +100,8 @@ class FirewallGroupOutAPI(BaseModel):
             "created_at": obj.get("created_at"),
             "updated_at": obj.get("updated_at"),
             "name": obj.get("name"),
-            "description": obj.get("description")
+            "description": obj.get("description"),
+            "policy": obj.get("policy")
         })
         return _obj
 

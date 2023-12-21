@@ -8,6 +8,7 @@ from timeweb_cloud_api.api.databases_api import DatabasesApi
 from timeweb_cloud_api.api.dedicated_servers_api import DedicatedServersApi
 from timeweb_cloud_api.api.domains_api import DomainsApi
 from timeweb_cloud_api.api.firewall_api import FirewallApi
+from timeweb_cloud_api.api.floating_ip_api import FloatingIPApi
 from timeweb_cloud_api.api.images_api import ImagesApi
 from timeweb_cloud_api.api.kubernetes_api import KubernetesApi
 from timeweb_cloud_api.api.mail_api import MailApi

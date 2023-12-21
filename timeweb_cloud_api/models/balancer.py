@@ -21,6 +21,7 @@ import json
 
 from typing import Any, Optional
 from pydantic import BaseModel, Field, validator
+from timeweb_cloud_api.models.availability_zone import AvailabilityZone
 
 class Balancer(BaseModel):
     """
@@ -48,7 +49,8 @@ class Balancer(BaseModel):
     rules: Optional[Any] = Field(...)
     ips: Optional[Any] = Field(..., description="Список IP-адресов, привязанных к балансировщику")
     location: Optional[Any] = Field(..., description="Географическое расположение балансировщика")
-    __properties = ["id", "algo", "created_at", "fall", "inter", "ip", "local_ip", "is_keepalive", "name", "path", "port", "proto", "rise", "preset_id", "is_ssl", "status", "is_sticky", "timeout", "is_use_proxy", "rules", "ips", "location"]
+    availability_zone: AvailabilityZone = Field(...)
+    __properties = ["id", "algo", "created_at", "fall", "inter", "ip", "local_ip", "is_keepalive", "name", "path", "port", "proto", "rise", "preset_id", "is_ssl", "status", "is_sticky", "timeout", "is_use_proxy", "rules", "ips", "location", "availability_zone"]
 
     @validator('algo')
     def algo_validate_enum(cls, value):
@@ -257,7 +259,8 @@ class Balancer(BaseModel):
             "is_use_proxy": obj.get("is_use_proxy"),
             "rules": obj.get("rules"),
             "ips": obj.get("ips"),
-            "location": obj.get("location")
+            "location": obj.get("location"),
+            "availability_zone": obj.get("availability_zone")
         })
         return _obj
 

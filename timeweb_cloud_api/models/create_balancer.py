@@ -21,6 +21,7 @@ import json
 
 from typing import Any, Optional
 from pydantic import BaseModel, Field, validator
+from timeweb_cloud_api.models.availability_zone import AvailabilityZone
 from timeweb_cloud_api.models.network import Network
 
 class CreateBalancer(BaseModel):
@@ -42,7 +43,8 @@ class CreateBalancer(BaseModel):
     rise: Optional[Any] = Field(..., description="Порог количества успешных ответов.")
     preset_id: Optional[Any] = Field(..., description="Идентификатор тарифа.")
     network: Optional[Network] = None
-    __properties = ["name", "algo", "is_sticky", "is_use_proxy", "is_ssl", "is_keepalive", "proto", "port", "path", "inter", "timeout", "fall", "rise", "preset_id", "network"]
+    availability_zone: Optional[AvailabilityZone] = None
+    __properties = ["name", "algo", "is_sticky", "is_use_proxy", "is_ssl", "is_keepalive", "proto", "port", "path", "inter", "timeout", "fall", "rise", "preset_id", "network", "availability_zone"]
 
     @validator('algo')
     def algo_validate_enum(cls, value):
@@ -187,7 +189,8 @@ class CreateBalancer(BaseModel):
             "fall": obj.get("fall"),
             "rise": obj.get("rise"),
             "preset_id": obj.get("preset_id"),
-            "network": Network.from_dict(obj.get("network")) if obj.get("network") is not None else None
+            "network": Network.from_dict(obj.get("network")) if obj.get("network") is not None else None,
+            "availability_zone": obj.get("availability_zone")
         })
         return _obj
 

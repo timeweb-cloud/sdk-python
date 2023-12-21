@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **object** | Уникальный идентификатор сети. | 
+**floating_ip** | **object** | Плавающий IP-адрес | [optional] 
 **ip** | **object** | IP-адрес в сети. | [optional] 
 
 ## Example

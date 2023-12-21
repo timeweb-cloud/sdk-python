@@ -70,7 +70,8 @@ class TestVds(unittest.TestCase):
                     is_custom = true, ), 
                 networks = None, 
                 cloud_init = #cloud-config, 
-                is_qemu_agent = true
+                is_qemu_agent = true, 
+                availability_zone = spb-1
             )
         else :
             return Vds(
@@ -105,6 +106,7 @@ class TestVds(unittest.TestCase):
                     is_custom = true, ),
                 networks = None,
                 cloud_init = #cloud-config,
+                availability_zone = spb-1,
         )
         """
 

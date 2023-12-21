@@ -21,6 +21,7 @@ import json
 
 from typing import Any, Optional
 from pydantic import BaseModel, Field, validator
+from timeweb_cloud_api.models.availability_zone import AvailabilityZone
 
 class CreateVpc(BaseModel):
     """
@@ -30,7 +31,8 @@ class CreateVpc(BaseModel):
     subnet_v4: Optional[Any] = Field(..., description="Маска подсети.")
     location: Optional[Any] = Field(..., description="Локация сети.")
     description: Optional[Any] = Field(None, description="Описание.")
-    __properties = ["name", "subnet_v4", "location", "description"]
+    availability_zone: Optional[AvailabilityZone] = None
+    __properties = ["name", "subnet_v4", "location", "description", "availability_zone"]
 
     @validator('location')
     def location_validate_enum(cls, value):
@@ -101,7 +103,8 @@ class CreateVpc(BaseModel):
             "name": obj.get("name"),
             "subnet_v4": obj.get("subnet_v4"),
             "location": obj.get("location"),
-            "description": obj.get("description")
+            "description": obj.get("description"),
+            "availability_zone": obj.get("availability_zone")
         })
         return _obj
 

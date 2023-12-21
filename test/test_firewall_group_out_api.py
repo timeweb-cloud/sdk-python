@@ -43,7 +43,8 @@ class TestFirewallGroupOutAPI(unittest.TestCase):
                 created_at = None, 
                 updated_at = None, 
                 name = None, 
-                description = None
+                description = None, 
+                policy = ACCEPT
             )
         else :
             return FirewallGroupOutAPI(
@@ -52,6 +53,7 @@ class TestFirewallGroupOutAPI(unittest.TestCase):
                 updated_at = None,
                 name = None,
                 description = None,
+                policy = ACCEPT,
         )
         """
 

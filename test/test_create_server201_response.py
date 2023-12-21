@@ -71,7 +71,8 @@ class TestCreateServer201Response(unittest.TestCase):
                         is_custom = true, ), 
                     networks = null, 
                     cloud_init = #cloud-config, 
-                    is_qemu_agent = true, )
+                    is_qemu_agent = true, 
+                    availability_zone = spb-1, )
             )
         else :
             return CreateServer201Response(
@@ -107,7 +108,8 @@ class TestCreateServer201Response(unittest.TestCase):
                         is_custom = true, ), 
                     networks = null, 
                     cloud_init = #cloud-config, 
-                    is_qemu_agent = true, ),
+                    is_qemu_agent = true, 
+                    availability_zone = spb-1, ),
         )
         """
 

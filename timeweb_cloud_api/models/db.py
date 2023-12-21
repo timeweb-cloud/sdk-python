@@ -21,8 +21,10 @@ import json
 
 from typing import Any, Optional
 from pydantic import BaseModel, Field, validator
+from timeweb_cloud_api.models.availability_zone import AvailabilityZone
 from timeweb_cloud_api.models.config_parameters import ConfigParameters
 from timeweb_cloud_api.models.db_disk_stats import DbDiskStats
+from timeweb_cloud_api.models.db_type import DbType
 
 class Db(BaseModel):
     """
@@ -36,7 +38,7 @@ class Db(BaseModel):
     password: Optional[Any] = Field(..., description="Пароль для подключения к базе данных.")
     name: Optional[Any] = Field(..., description="Название базы данных.")
     host: Optional[Any] = Field(..., description="Хост.")
-    type: Optional[Any] = Field(..., description="Тип базы данных.")
+    type: DbType = Field(...)
     hash_type: Optional[Any] = Field(..., description="Тип хеширования базы данных (mysql5 | mysql | postgres).")
     port: Optional[Any] = Field(..., description="Порт")
     ip: Optional[Any] = Field(..., description="IP-адрес сетевого интерфейса IPv4.")
@@ -46,7 +48,8 @@ class Db(BaseModel):
     disk_stats: DbDiskStats = Field(...)
     config_parameters: ConfigParameters = Field(...)
     is_only_local_ip_access: Optional[Any] = Field(..., description="Это логическое значение, которое показывает, доступна ли база данных только по локальному IP адресу.")
-    __properties = ["id", "created_at", "account_id", "login", "location", "password", "name", "host", "type", "hash_type", "port", "ip", "local_ip", "status", "preset_id", "disk_stats", "config_parameters", "is_only_local_ip_access"]
+    availability_zone: AvailabilityZone = Field(...)
+    __properties = ["id", "created_at", "account_id", "login", "location", "password", "name", "host", "type", "hash_type", "port", "ip", "local_ip", "status", "preset_id", "disk_stats", "config_parameters", "is_only_local_ip_access", "availability_zone"]
 
     @validator('location')
     def location_validate_enum(cls, value):
@@ -56,16 +59,6 @@ class Db(BaseModel):
 
         if value not in ('ru-1', 'ru-2', 'pl-1', 'kz-1'):
             raise ValueError("must be one of enum values ('ru-1', 'ru-2', 'pl-1', 'kz-1')")
-        return value
-
-    @validator('type')
-    def type_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in ('mysql', 'mysql5', 'postgres', 'redis', 'mongodb'):
-            raise ValueError("must be one of enum values ('mysql', 'mysql5', 'postgres', 'redis', 'mongodb')")
         return value
 
     @validator('hash_type')
@@ -158,11 +151,6 @@ class Db(BaseModel):
         if self.host is None and "host" in self.__fields_set__:
             _dict['host'] = None
 
-        # set to None if type (nullable) is None
-        # and __fields_set__ contains the field
-        if self.type is None and "type" in self.__fields_set__:
-            _dict['type'] = None
-
         # set to None if hash_type (nullable) is None
         # and __fields_set__ contains the field
         if self.hash_type is None and "hash_type" in self.__fields_set__:
@@ -227,7 +215,8 @@ class Db(BaseModel):
             "preset_id": obj.get("preset_id"),
             "disk_stats": DbDiskStats.from_dict(obj.get("disk_stats")) if obj.get("disk_stats") is not None else None,
             "config_parameters": ConfigParameters.from_dict(obj.get("config_parameters")) if obj.get("config_parameters") is not None else None,
-            "is_only_local_ip_access": obj.get("is_only_local_ip_access")
+            "is_only_local_ip_access": obj.get("is_only_local_ip_access"),
+            "availability_zone": obj.get("availability_zone")
         })
         return _obj
 

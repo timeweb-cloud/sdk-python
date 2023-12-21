@@ -23,6 +23,7 @@ from typing import Any, Optional
 from pydantic import BaseModel, Field, validator
 from timeweb_cloud_api.models.config_parameters import ConfigParameters
 from timeweb_cloud_api.models.database_cluster_disk_stats import DatabaseClusterDiskStats
+from timeweb_cloud_api.models.db_type import DbType
 
 class DatabaseCluster(BaseModel):
     """
@@ -33,7 +34,7 @@ class DatabaseCluster(BaseModel):
     location: Optional[Any] = Field(..., description="Локация сервера.")
     name: Optional[Any] = Field(..., description="Название кластера базы данных.")
     networks: Optional[Any] = Field(..., description="Список сетей кластера базы данных.")
-    type: Optional[Any] = Field(..., description="Тип кластера базы данных.")
+    type: DbType = Field(...)
     hash_type: Optional[Any] = Field(..., description="Тип хеширования кластера базы данных (mysql5 | mysql | postgres).")
     port: Optional[Any] = Field(..., description="Порт")
     status: Optional[Any] = Field(..., description="Текущий статус кластера базы данных.")
@@ -51,16 +52,6 @@ class DatabaseCluster(BaseModel):
 
         if value not in ('ru-1', 'ru-2', 'pl-1', 'kz-1'):
             raise ValueError("must be one of enum values ('ru-1', 'ru-2', 'pl-1', 'kz-1')")
-        return value
-
-    @validator('type')
-    def type_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in ('mysql', 'mysql5', 'postgres', 'redis', 'mongodb'):
-            raise ValueError("must be one of enum values ('mysql', 'mysql5', 'postgres', 'redis', 'mongodb')")
         return value
 
     @validator('hash_type')
@@ -137,11 +128,6 @@ class DatabaseCluster(BaseModel):
         # and __fields_set__ contains the field
         if self.networks is None and "networks" in self.__fields_set__:
             _dict['networks'] = None
-
-        # set to None if type (nullable) is None
-        # and __fields_set__ contains the field
-        if self.type is None and "type" in self.__fields_set__:
-            _dict['type'] = None
 
         # set to None if hash_type (nullable) is None
         # and __fields_set__ contains the field

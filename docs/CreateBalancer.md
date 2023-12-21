@@ -19,6 +19,7 @@ Name | Type | Description | Notes
 **rise** | **object** | Порог количества успешных ответов. | 
 **preset_id** | **object** | Идентификатор тарифа. | 
 **network** | [**Network**](Network.md) |  | [optional] 
+**availability_zone** | [**AvailabilityZone**](AvailabilityZone.md) |  | [optional] 
 
 ## Example
 

@@ -61,7 +61,8 @@ class TestCreateBalancer200Response(unittest.TestCase):
                     is_use_proxy = true, 
                     rules = null, 
                     ips = [], 
-                    location = ru-1, )
+                    location = ru-1, 
+                    availability_zone = spb-1, )
             )
         else :
             return CreateBalancer200Response(
@@ -87,7 +88,8 @@ class TestCreateBalancer200Response(unittest.TestCase):
                     is_use_proxy = true, 
                     rules = null, 
                     ips = [], 
-                    location = ru-1, ),
+                    location = ru-1, 
+                    availability_zone = spb-1, ),
         )
         """
 

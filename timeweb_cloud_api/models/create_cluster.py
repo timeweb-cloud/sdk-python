@@ -21,9 +21,11 @@ import json
 
 from typing import Any, Optional
 from pydantic import BaseModel, Field, validator
+from timeweb_cloud_api.models.availability_zone import AvailabilityZone
 from timeweb_cloud_api.models.config_parameters import ConfigParameters
 from timeweb_cloud_api.models.create_cluster_admin import CreateClusterAdmin
 from timeweb_cloud_api.models.create_cluster_instance import CreateClusterInstance
+from timeweb_cloud_api.models.db_type import DbType
 from timeweb_cloud_api.models.network import Network
 
 class CreateCluster(BaseModel):
@@ -31,7 +33,7 @@ class CreateCluster(BaseModel):
     CreateCluster
     """
     name: Optional[Any] = Field(..., description="Название кластера базы данных.")
-    type: Optional[Any] = Field(..., description="Тип базы данных.")
+    type: DbType = Field(...)
     admin: Optional[CreateClusterAdmin] = None
     instance: Optional[CreateClusterInstance] = None
     hash_type: Optional[Any] = Field(None, description="Тип хеширования базы данных (mysql5 | mysql | postgres).")
@@ -39,17 +41,8 @@ class CreateCluster(BaseModel):
     config_parameters: Optional[ConfigParameters] = None
     network: Optional[Network] = None
     description: Optional[Any] = Field(None, description="Описание кластера базы данных")
-    __properties = ["name", "type", "admin", "instance", "hash_type", "preset_id", "config_parameters", "network", "description"]
-
-    @validator('type')
-    def type_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in ('mysql', 'mysql5', 'postgres', 'redis', 'mongodb'):
-            raise ValueError("must be one of enum values ('mysql', 'mysql5', 'postgres', 'redis', 'mongodb')")
-        return value
+    availability_zone: Optional[AvailabilityZone] = None
+    __properties = ["name", "type", "admin", "instance", "hash_type", "preset_id", "config_parameters", "network", "description", "availability_zone"]
 
     @validator('hash_type')
     def hash_type_validate_enum(cls, value):
@@ -102,11 +95,6 @@ class CreateCluster(BaseModel):
         if self.name is None and "name" in self.__fields_set__:
             _dict['name'] = None
 
-        # set to None if type (nullable) is None
-        # and __fields_set__ contains the field
-        if self.type is None and "type" in self.__fields_set__:
-            _dict['type'] = None
-
         # set to None if hash_type (nullable) is None
         # and __fields_set__ contains the field
         if self.hash_type is None and "hash_type" in self.__fields_set__:
@@ -142,7 +130,8 @@ class CreateCluster(BaseModel):
             "preset_id": obj.get("preset_id"),
             "config_parameters": ConfigParameters.from_dict(obj.get("config_parameters")) if obj.get("config_parameters") is not None else None,
             "network": Network.from_dict(obj.get("network")) if obj.get("network") is not None else None,
-            "description": obj.get("description")
+            "description": obj.get("description"),
+            "availability_zone": obj.get("availability_zone")
         })
         return _obj
 

@@ -42,7 +42,8 @@ class TestCreateVpc(unittest.TestCase):
                 name = Общая сеть, 
                 subnet_v4 = 192.168.0.0/24, 
                 location = ru-1, 
-                description = Сеть для примера
+                description = Сеть для примера, 
+                availability_zone = spb-1
             )
         else :
             return CreateVpc(

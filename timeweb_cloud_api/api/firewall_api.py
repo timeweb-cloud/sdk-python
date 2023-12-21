@@ -214,18 +214,20 @@ class FirewallApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def create_group(self, firewall_group_in_api : FirewallGroupInAPI, **kwargs) -> FirewallGroupOutResponse:  # noqa: E501
+    def create_group(self, firewall_group_in_api : FirewallGroupInAPI, policy : Annotated[Optional[Any], Field(description="Тип группы правил")] = None, **kwargs) -> FirewallGroupOutResponse:  # noqa: E501
         """Создание группы правил  # noqa: E501
 
         Чтобы создать группу правил, отправьте POST запрос на `/api/v1/firewall/groups`  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.create_group(firewall_group_in_api, async_req=True)
+        >>> thread = api.create_group(firewall_group_in_api, policy, async_req=True)
         >>> result = thread.get()
 
         :param firewall_group_in_api: (required)
         :type firewall_group_in_api: FirewallGroupInAPI
+        :param policy: Тип группы правил
+        :type policy: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request. If one
@@ -240,21 +242,23 @@ class FirewallApi(object):
         kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             raise ValueError("Error! Please call the create_group_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
-        return self.create_group_with_http_info(firewall_group_in_api, **kwargs)  # noqa: E501
+        return self.create_group_with_http_info(firewall_group_in_api, policy, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def create_group_with_http_info(self, firewall_group_in_api : FirewallGroupInAPI, **kwargs) -> ApiResponse:  # noqa: E501
+    def create_group_with_http_info(self, firewall_group_in_api : FirewallGroupInAPI, policy : Annotated[Optional[Any], Field(description="Тип группы правил")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Создание группы правил  # noqa: E501
 
         Чтобы создать группу правил, отправьте POST запрос на `/api/v1/firewall/groups`  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.create_group_with_http_info(firewall_group_in_api, async_req=True)
+        >>> thread = api.create_group_with_http_info(firewall_group_in_api, policy, async_req=True)
         >>> result = thread.get()
 
         :param firewall_group_in_api: (required)
         :type firewall_group_in_api: FirewallGroupInAPI
+        :param policy: Тип группы правил
+        :type policy: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
@@ -283,7 +287,8 @@ class FirewallApi(object):
         _params = locals()
 
         _all_params = [
-            'firewall_group_in_api'
+            'firewall_group_in_api',
+            'policy'
         ]
         _all_params.extend(
             [
@@ -314,6 +319,9 @@ class FirewallApi(object):
 
         # process the query parameters
         _query_params = []
+        if _params.get('policy') is not None:  # noqa: E501
+            _query_params.append(('policy', _params['policy'].value))
+
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
         # process the form parameters

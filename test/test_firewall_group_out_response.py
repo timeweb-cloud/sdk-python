@@ -45,7 +45,8 @@ class TestFirewallGroupOutResponse(unittest.TestCase):
                     created_at = null, 
                     updated_at = null, 
                     name = null, 
-                    description = null, )
+                    description = null, 
+                    policy = ACCEPT, )
             )
         else :
             return FirewallGroupOutResponse(
@@ -54,7 +55,8 @@ class TestFirewallGroupOutResponse(unittest.TestCase):
                     created_at = null, 
                     updated_at = null, 
                     name = null, 
-                    description = null, ),
+                    description = null, 
+                    policy = ACCEPT, ),
         )
         """
 

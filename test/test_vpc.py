@@ -44,7 +44,8 @@ class TestVpc(unittest.TestCase):
                 subnet_v4 = 192.168.0.0/24, 
                 location = ru-1, 
                 created_at = 2023-02-06T17:33:13Z, 
-                description = Сеть для примера
+                description = Сеть для примера, 
+                availability_zone = spb-1
             )
         else :
             return Vpc(
@@ -53,6 +54,7 @@ class TestVpc(unittest.TestCase):
                 subnet_v4 = 192.168.0.0/24,
                 location = ru-1,
                 created_at = 2023-02-06T17:33:13Z,
+                availability_zone = spb-1,
         )
         """
 

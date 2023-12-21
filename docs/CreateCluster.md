@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **object** | Название кластера базы данных. | 
-**type** | **object** | Тип базы данных. | 
+**type** | [**DbType**](DbType.md) |  | 
 **admin** | [**CreateClusterAdmin**](CreateClusterAdmin.md) |  | [optional] 
 **instance** | [**CreateClusterInstance**](CreateClusterInstance.md) |  | [optional] 
 **hash_type** | **object** | Тип хеширования базы данных (mysql5 | mysql | postgres). | [optional] 
@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **config_parameters** | [**ConfigParameters**](ConfigParameters.md) |  | [optional] 
 **network** | [**Network**](Network.md) |  | [optional] 
 **description** | **object** | Описание кластера базы данных | [optional] 
+**availability_zone** | [**AvailabilityZone**](AvailabilityZone.md) |  | [optional] 
 
 ## Example
 

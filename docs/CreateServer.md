@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **is_local_network** | **object** | Локальная сеть. | [optional] 
 **network** | [**Network**](Network.md) |  | [optional] 
 **cloud_init** | **object** | Cloud-init скрипт | [optional] 
+**availability_zone** | [**AvailabilityZone**](AvailabilityZone.md) |  | [optional] 
 
 ## Example
 

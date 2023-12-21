@@ -27,6 +27,7 @@ Name | Type | Description | Notes
 **rules** | **object** |  | 
 **ips** | **object** | Список IP-адресов, привязанных к балансировщику | 
 **location** | **object** | Географическое расположение балансировщика | 
+**availability_zone** | [**AvailabilityZone**](AvailabilityZone.md) |  | 
 
 ## Example
 

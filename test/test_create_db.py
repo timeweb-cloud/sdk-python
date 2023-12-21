@@ -76,6 +76,7 @@ class TestCreateDb(unittest.TestCase):
                     query_cache_size = 0, ), 
                 network = timeweb_cloud_api.models.network.network(
                     id = network-1234567890, 
+                    floating_ip = 192.168.0.0, 
                     ip = 192.168.0.0, )
             )
         else :

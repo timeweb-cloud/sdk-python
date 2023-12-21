@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **password** | **object** | Пароль для подключения к базе данных. | 
 **name** | **object** | Название базы данных. | 
 **host** | **object** | Хост. | 
-**type** | **object** | Тип базы данных. | 
+**type** | [**DbType**](DbType.md) |  | 
 **hash_type** | **object** | Тип хеширования базы данных (mysql5 | mysql | postgres). | 
 **port** | **object** | Порт | 
 **ip** | **object** | IP-адрес сетевого интерфейса IPv4. | 
@@ -23,6 +23,7 @@ Name | Type | Description | Notes
 **disk_stats** | [**DbDiskStats**](DbDiskStats.md) |  | 
 **config_parameters** | [**ConfigParameters**](ConfigParameters.md) |  | 
 **is_only_local_ip_access** | **object** | Это логическое значение, которое показывает, доступна ли база данных только по локальному IP адресу. | 
+**availability_zone** | [**AvailabilityZone**](AvailabilityZone.md) |  | 
 
 ## Example
 
