@@ -36,7 +36,8 @@ class NodeOut(BaseModel):
     ram: Optional[Any] = Field(..., description="Количество памяти")
     disk: Optional[Any] = Field(..., description="Количество пространства")
     network: Optional[Any] = Field(..., description="Пропускная способность сети")
-    __properties = ["id", "created_at", "type", "group_id", "status", "preset_id", "cpu", "ram", "disk", "network"]
+    node_ip: Optional[Any] = Field(..., description="Ip-адрес ноды")
+    __properties = ["id", "created_at", "type", "group_id", "status", "preset_id", "cpu", "ram", "disk", "network", "node_ip"]
 
     class Config:
         """Pydantic configuration"""
@@ -112,6 +113,11 @@ class NodeOut(BaseModel):
         if self.network is None and "network" in self.__fields_set__:
             _dict['network'] = None
 
+        # set to None if node_ip (nullable) is None
+        # and __fields_set__ contains the field
+        if self.node_ip is None and "node_ip" in self.__fields_set__:
+            _dict['node_ip'] = None
+
         return _dict
 
     @classmethod
@@ -133,7 +139,8 @@ class NodeOut(BaseModel):
             "cpu": obj.get("cpu"),
             "ram": obj.get("ram"),
             "disk": obj.get("disk"),
-            "network": obj.get("network")
+            "network": obj.get("network"),
+            "node_ip": obj.get("node_ip")
         })
         return _obj
 

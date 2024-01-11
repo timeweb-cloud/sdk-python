@@ -48,7 +48,8 @@ class TestNodeOut(unittest.TestCase):
                 cpu = None, 
                 ram = None, 
                 disk = None, 
-                network = None
+                network = None, 
+                node_ip = None
             )
         else :
             return NodeOut(
@@ -62,6 +63,7 @@ class TestNodeOut(unittest.TestCase):
                 ram = None,
                 disk = None,
                 network = None,
+                node_ip = None,
         )
         """
 
