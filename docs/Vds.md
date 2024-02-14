@@ -26,7 +26,7 @@ Name | Type | Description | Notes
 **vnc_pass** | **object** | Пароль от VNC. | 
 **root_pass** | **object** | Пароль root сервера или пароль Администратора для серверов Windows. | 
 **image** | [**VdsImage**](VdsImage.md) |  | 
-**networks** | **object** | Список сетей диска. | 
+**networks** | **object** | Список сетей сервера. | 
 **cloud_init** | **object** | Cloud-init скрипт. | 
 **is_qemu_agent** | **object** | Включен ли QEMU-agent на сервере. | [optional] 
 **availability_zone** | [**AvailabilityZone**](AvailabilityZone.md) |  | 

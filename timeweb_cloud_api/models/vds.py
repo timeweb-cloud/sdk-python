@@ -51,7 +51,7 @@ class Vds(BaseModel):
     vnc_pass: Optional[Any] = Field(..., description="Пароль от VNC.")
     root_pass: Optional[Any] = Field(..., description="Пароль root сервера или пароль Администратора для серверов Windows.")
     image: VdsImage = Field(...)
-    networks: Optional[Any] = Field(..., description="Список сетей диска.")
+    networks: Optional[Any] = Field(..., description="Список сетей сервера.")
     cloud_init: Optional[Any] = Field(..., description="Cloud-init скрипт.")
     is_qemu_agent: Optional[Any] = Field(None, description="Включен ли QEMU-agent на сервере.")
     availability_zone: AvailabilityZone = Field(...)
