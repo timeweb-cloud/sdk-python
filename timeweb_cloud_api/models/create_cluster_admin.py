@@ -24,7 +24,7 @@ from pydantic import BaseModel, Field
 
 class CreateClusterAdmin(BaseModel):
     """
-    CreateClusterAdmin
+    Пользователь базы данных.
     """
     login: Optional[Any] = Field(None, description="Имя пользователя базы данных")
     password: Optional[Any] = Field(None, description="Пароль пользователя базы данных")

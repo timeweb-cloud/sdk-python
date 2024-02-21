@@ -1,5 +1,6 @@
 # CreateClusterAdmin
 
+Пользователь базы данных.
 
 ## Properties
 Name | Type | Description | Notes
