@@ -17,11 +17,11 @@ import unittest
 import datetime
 
 import timeweb_cloud_api
-from timeweb_cloud_api.models.create_cluster import CreateCluster  # noqa: E501
+from timeweb_cloud_api.models.create_db_auto_backups import CreateDbAutoBackups  # noqa: E501
 from timeweb_cloud_api.rest import ApiException
 
-class TestCreateCluster(unittest.TestCase):
-    """CreateCluster unit test stubs"""
+class TestCreateDbAutoBackups(unittest.TestCase):
+    """CreateDbAutoBackups unit test stubs"""
 
     def setUp(self):
         pass
@@ -30,79 +30,31 @@ class TestCreateCluster(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test CreateCluster
+        """Test CreateDbAutoBackups
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # uncomment below to create an instance of `CreateCluster`
+        # uncomment below to create an instance of `CreateDbAutoBackups`
         """
-        model = timeweb_cloud_api.models.create_cluster.CreateCluster()  # noqa: E501
+        model = timeweb_cloud_api.models.create_db_auto_backups.CreateDbAutoBackups()  # noqa: E501
         if include_optional :
-            return CreateCluster(
-                name = default_db, 
-                type = mysql, 
-                admin = timeweb_cloud_api.models.create_cluster_admin.create_cluster_admin(
-                    login = default_login, 
-                    password = bs.:L2f$Tm:SC~, 
-                    host = %, 
-                    privileges = null, 
-                    description = description, ), 
-                instance = timeweb_cloud_api.models.create_cluster_instance.create_cluster_instance(
-                    name = default_db, 
-                    description = null, ), 
-                hash_type = caching_sha2, 
-                preset_id = 5, 
-                config_parameters = timeweb_cloud_api.models.config_parameters.config-parameters(
-                    auto_increment_increment = 1, 
-                    auto_increment_offset = 1, 
-                    innodb_io_capacity = 200, 
-                    innodb_purge_threads = 4, 
-                    innodb_read_io_threads = 4, 
-                    innodb_thread_concurrency = 0, 
-                    innodb_write_io_threads = 4, 
-                    join_buffer_size = 262144, 
-                    max_allowed_packet = 16777216, 
-                    max_heap_table_size = 16777216, 
-                    autovacuum_analyze_scale_factor = 0.0001, 
-                    bgwriter_delay = 200, 
-                    bgwriter_lru_maxpages = 100, 
-                    deadlock_timeout = 100, 
-                    gin_pending_list_limit = 4194304, 
-                    idle_in_transaction_session_timeout = 0, 
-                    idle_session_timeout = 0, 
-                    join_collapse_limit = 8, 
-                    lock_timeout = 0, 
-                    max_prepared_transactions = 0, 
-                    max_connections = 1, 
-                    shared_buffers = 128, 
-                    wal_buffers = 16, 
-                    temp_buffers = 8, 
-                    work_mem = 4, 
-                    sql_mode = STRICT_TRANS_TABLES, 
-                    query_cache_type = 0, 
-                    query_cache_size = 0, ), 
-                network = timeweb_cloud_api.models.network.network(
-                    id = network-1234567890, 
-                    floating_ip = 192.168.0.0, 
-                    ip = 192.168.0.0, ), 
-                description = description, 
-                availability_zone = spb-1, 
-                auto_backups = timeweb_cloud_api.models.create_db_auto_backups.create-db-auto-backups(
-                    copy_count = 2, 
-                    creation_start_at = 2023-02-02T00:00:00.000Z, 
-                    interval = week, 
-                    day_of_week = 1, )
+            return CreateDbAutoBackups(
+                copy_count = 2, 
+                creation_start_at = 2023-02-02T00:00:00.000Z, 
+                interval = week, 
+                day_of_week = 1
             )
         else :
-            return CreateCluster(
-                name = default_db,
-                type = mysql,
-                preset_id = 5,
+            return CreateDbAutoBackups(
+                copy_count = 2,
+                creation_start_at = 2023-02-02T00:00:00.000Z,
+                interval = week,
+                day_of_week = 1,
         )
         """
 
-    def testCreateCluster(self):
-        """Test CreateCluster"""
+    def testCreateDbAutoBackups(self):
+        """Test CreateDbAutoBackups"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

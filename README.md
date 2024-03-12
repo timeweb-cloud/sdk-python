@@ -539,6 +539,7 @@ Class | Method | HTTP request | Description
  - [CreateDatabaseInstance201Response](docs/CreateDatabaseInstance201Response.md)
  - [CreateDatabaseUser201Response](docs/CreateDatabaseUser201Response.md)
  - [CreateDb](docs/CreateDb.md)
+ - [CreateDbAutoBackups](docs/CreateDbAutoBackups.md)
  - [CreateDedicatedServer](docs/CreateDedicatedServer.md)
  - [CreateDedicatedServer201Response](docs/CreateDedicatedServer201Response.md)
  - [CreateDns](docs/CreateDns.md)

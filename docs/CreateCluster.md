@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **network** | [**Network**](Network.md) |  | [optional] 
 **description** | **object** | Описание кластера базы данных | [optional] 
 **availability_zone** | [**AvailabilityZone**](AvailabilityZone.md) |  | [optional] 
+**auto_backups** | [**CreateDbAutoBackups**](CreateDbAutoBackups.md) |  | [optional] 
 
 ## Example
 

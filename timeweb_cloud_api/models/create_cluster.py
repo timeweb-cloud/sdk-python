@@ -25,6 +25,7 @@ from timeweb_cloud_api.models.availability_zone import AvailabilityZone
 from timeweb_cloud_api.models.config_parameters import ConfigParameters
 from timeweb_cloud_api.models.create_cluster_admin import CreateClusterAdmin
 from timeweb_cloud_api.models.create_cluster_instance import CreateClusterInstance
+from timeweb_cloud_api.models.create_db_auto_backups import CreateDbAutoBackups
 from timeweb_cloud_api.models.db_type import DbType
 from timeweb_cloud_api.models.network import Network
 
@@ -42,7 +43,8 @@ class CreateCluster(BaseModel):
     network: Optional[Network] = None
     description: Optional[Any] = Field(None, description="Описание кластера базы данных")
     availability_zone: Optional[AvailabilityZone] = None
-    __properties = ["name", "type", "admin", "instance", "hash_type", "preset_id", "config_parameters", "network", "description", "availability_zone"]
+    auto_backups: Optional[CreateDbAutoBackups] = None
+    __properties = ["name", "type", "admin", "instance", "hash_type", "preset_id", "config_parameters", "network", "description", "availability_zone", "auto_backups"]
 
     @validator('hash_type')
     def hash_type_validate_enum(cls, value):
@@ -90,6 +92,9 @@ class CreateCluster(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of network
         if self.network:
             _dict['network'] = self.network.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of auto_backups
+        if self.auto_backups:
+            _dict['auto_backups'] = self.auto_backups.to_dict()
         # set to None if name (nullable) is None
         # and __fields_set__ contains the field
         if self.name is None and "name" in self.__fields_set__:
@@ -131,7 +136,8 @@ class CreateCluster(BaseModel):
             "config_parameters": ConfigParameters.from_dict(obj.get("config_parameters")) if obj.get("config_parameters") is not None else None,
             "network": Network.from_dict(obj.get("network")) if obj.get("network") is not None else None,
             "description": obj.get("description"),
-            "availability_zone": obj.get("availability_zone")
+            "availability_zone": obj.get("availability_zone"),
+            "auto_backups": CreateDbAutoBackups.from_dict(obj.get("auto_backups")) if obj.get("auto_backups") is not None else None
         })
         return _obj
 

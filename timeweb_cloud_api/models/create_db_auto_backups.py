@@ -13,98 +13,95 @@
 """
 
 
-import unittest
-import datetime
+from __future__ import annotations
+import pprint
+import re  # noqa: F401
+import json
 
-import timeweb_cloud_api
-from timeweb_cloud_api.models.create_cluster import CreateCluster  # noqa: E501
-from timeweb_cloud_api.rest import ApiException
 
-class TestCreateCluster(unittest.TestCase):
-    """CreateCluster unit test stubs"""
+from typing import Any, Optional
+from pydantic import BaseModel, Field, validator
 
-    def setUp(self):
-        pass
+class CreateDbAutoBackups(BaseModel):
+    """
+    База данных
+    """
+    copy_count: Optional[Any] = Field(..., description="Количество копий для хранения. Минимальное количество `1`, максимальное `99`")
+    creation_start_at: Optional[Any] = Field(..., description="Дата начала создания первого автобэкапа. Значение в формате `ISO8601`. Время не учитывается.")
+    interval: Optional[Any] = Field(..., description="Периодичность создания автобэкапов")
+    day_of_week: Optional[Any] = Field(..., description="День недели, в который будут создаваться автобэкапы. Работает только со значением `interval`: `week`. Доступные значение от `1 `до `7`.")
+    __properties = ["copy_count", "creation_start_at", "interval", "day_of_week"]
 
-    def tearDown(self):
-        pass
+    @validator('interval')
+    def interval_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
 
-    def make_instance(self, include_optional):
-        """Test CreateCluster
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
-        # uncomment below to create an instance of `CreateCluster`
-        """
-        model = timeweb_cloud_api.models.create_cluster.CreateCluster()  # noqa: E501
-        if include_optional :
-            return CreateCluster(
-                name = default_db, 
-                type = mysql, 
-                admin = timeweb_cloud_api.models.create_cluster_admin.create_cluster_admin(
-                    login = default_login, 
-                    password = bs.:L2f$Tm:SC~, 
-                    host = %, 
-                    privileges = null, 
-                    description = description, ), 
-                instance = timeweb_cloud_api.models.create_cluster_instance.create_cluster_instance(
-                    name = default_db, 
-                    description = null, ), 
-                hash_type = caching_sha2, 
-                preset_id = 5, 
-                config_parameters = timeweb_cloud_api.models.config_parameters.config-parameters(
-                    auto_increment_increment = 1, 
-                    auto_increment_offset = 1, 
-                    innodb_io_capacity = 200, 
-                    innodb_purge_threads = 4, 
-                    innodb_read_io_threads = 4, 
-                    innodb_thread_concurrency = 0, 
-                    innodb_write_io_threads = 4, 
-                    join_buffer_size = 262144, 
-                    max_allowed_packet = 16777216, 
-                    max_heap_table_size = 16777216, 
-                    autovacuum_analyze_scale_factor = 0.0001, 
-                    bgwriter_delay = 200, 
-                    bgwriter_lru_maxpages = 100, 
-                    deadlock_timeout = 100, 
-                    gin_pending_list_limit = 4194304, 
-                    idle_in_transaction_session_timeout = 0, 
-                    idle_session_timeout = 0, 
-                    join_collapse_limit = 8, 
-                    lock_timeout = 0, 
-                    max_prepared_transactions = 0, 
-                    max_connections = 1, 
-                    shared_buffers = 128, 
-                    wal_buffers = 16, 
-                    temp_buffers = 8, 
-                    work_mem = 4, 
-                    sql_mode = STRICT_TRANS_TABLES, 
-                    query_cache_type = 0, 
-                    query_cache_size = 0, ), 
-                network = timeweb_cloud_api.models.network.network(
-                    id = network-1234567890, 
-                    floating_ip = 192.168.0.0, 
-                    ip = 192.168.0.0, ), 
-                description = description, 
-                availability_zone = spb-1, 
-                auto_backups = timeweb_cloud_api.models.create_db_auto_backups.create-db-auto-backups(
-                    copy_count = 2, 
-                    creation_start_at = 2023-02-02T00:00:00.000Z, 
-                    interval = week, 
-                    day_of_week = 1, )
-            )
-        else :
-            return CreateCluster(
-                name = default_db,
-                type = mysql,
-                preset_id = 5,
-        )
-        """
+        if value not in ('day', 'week', 'month'):
+            raise ValueError("must be one of enum values ('day', 'week', 'month')")
+        return value
 
-    def testCreateCluster(self):
-        """Test CreateCluster"""
-        # inst_req_only = self.make_instance(include_optional=False)
-        # inst_req_and_optional = self.make_instance(include_optional=True)
+    class Config:
+        """Pydantic configuration"""
+        allow_population_by_field_name = True
+        validate_assignment = True
 
-if __name__ == '__main__':
-    unittest.main()
+    def to_str(self) -> str:
+        """Returns the string representation of the model using alias"""
+        return pprint.pformat(self.dict(by_alias=True))
+
+    def to_json(self) -> str:
+        """Returns the JSON representation of the model using alias"""
+        return json.dumps(self.to_dict())
+
+    @classmethod
+    def from_json(cls, json_str: str) -> CreateDbAutoBackups:
+        """Create an instance of CreateDbAutoBackups from a JSON string"""
+        return cls.from_dict(json.loads(json_str))
+
+    def to_dict(self):
+        """Returns the dictionary representation of the model using alias"""
+        _dict = self.dict(by_alias=True,
+                          exclude={
+                          },
+                          exclude_none=True)
+        # set to None if copy_count (nullable) is None
+        # and __fields_set__ contains the field
+        if self.copy_count is None and "copy_count" in self.__fields_set__:
+            _dict['copy_count'] = None
+
+        # set to None if creation_start_at (nullable) is None
+        # and __fields_set__ contains the field
+        if self.creation_start_at is None and "creation_start_at" in self.__fields_set__:
+            _dict['creation_start_at'] = None
+
+        # set to None if interval (nullable) is None
+        # and __fields_set__ contains the field
+        if self.interval is None and "interval" in self.__fields_set__:
+            _dict['interval'] = None
+
+        # set to None if day_of_week (nullable) is None
+        # and __fields_set__ contains the field
+        if self.day_of_week is None and "day_of_week" in self.__fields_set__:
+            _dict['day_of_week'] = None
+
+        return _dict
+
+    @classmethod
+    def from_dict(cls, obj: dict) -> CreateDbAutoBackups:
+        """Create an instance of CreateDbAutoBackups from a dict"""
+        if obj is None:
+            return None
+
+        if not isinstance(obj, dict):
+            return CreateDbAutoBackups.parse_obj(obj)
+
+        _obj = CreateDbAutoBackups.parse_obj({
+            "copy_count": obj.get("copy_count"),
+            "creation_start_at": obj.get("creation_start_at"),
+            "interval": obj.get("interval"),
+            "day_of_week": obj.get("day_of_week")
+        })
+        return _obj
+
