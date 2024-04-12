@@ -202,7 +202,7 @@ class FloatingIPApi(object):
     def create_floating_ip(self, create_floating_ip : CreateFloatingIp, **kwargs) -> CreateFloatingIp201Response:  # noqa: E501
         """Создание плавающего IP  # noqa: E501
 
-        Чтобы создать создать плавающий IP, отправьте POST-запрос в `/api/v1/floating-ip`, задав необходимые атрибуты.  # noqa: E501
+        Чтобы создать создать плавающий IP, отправьте POST-запрос в `/api/v1/floating-ips`, задав необходимые атрибуты.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -231,7 +231,7 @@ class FloatingIPApi(object):
     def create_floating_ip_with_http_info(self, create_floating_ip : CreateFloatingIp, **kwargs) -> ApiResponse:  # noqa: E501
         """Создание плавающего IP  # noqa: E501
 
-        Чтобы создать создать плавающий IP, отправьте POST-запрос в `/api/v1/floating-ip`, задав необходимые атрибуты.  # noqa: E501
+        Чтобы создать создать плавающий IP, отправьте POST-запрос в `/api/v1/floating-ips`, задав необходимые атрибуты.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 

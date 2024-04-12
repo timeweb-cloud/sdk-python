@@ -8,10 +8,10 @@ Name | Type | Description | Notes
 **ip** | **object** | IP-адрес | 
 **is_ddos_guard** | **object** | Это логическое значение, которое показывает, включена ли защита от DDoS. | 
 **availability_zone** | [**AvailabilityZone**](AvailabilityZone.md) |  | 
-**resource_type** | **object** | Тип ресурса. | [optional] 
-**resource_id** | **object** | Id ресурса. | [optional] 
-**comment** | **object** | Комментарий | [optional] 
-**ptr** | **object** | Запись имени узла. | [optional] 
+**resource_type** | **object** | Тип ресурса. | 
+**resource_id** | **object** | Id ресурса. | 
+**comment** | **object** | Комментарий | 
+**ptr** | **object** | Запись имени узла. | 
 
 ## Example
 

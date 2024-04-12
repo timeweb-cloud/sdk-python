@@ -54,6 +54,10 @@ class TestFloatingIp(unittest.TestCase):
                 ip = 82.97.244.202,
                 is_ddos_guard = true,
                 availability_zone = spb-1,
+                resource_type = server,
+                resource_id = 24569,
+                comment = Комментарий,
+                ptr = ptr,
         )
         """
 

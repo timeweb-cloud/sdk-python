@@ -36,8 +36,8 @@ class BindFloatingIp(BaseModel):
         if value is None:
             return value
 
-        if value not in ('server', 'balancer', 'database'):
-            raise ValueError("must be one of enum values ('server', 'balancer', 'database')")
+        if value not in ('server', 'balancer', 'database', 'network'):
+            raise ValueError("must be one of enum values ('server', 'balancer', 'database', 'network')")
         return value
 
     class Config:

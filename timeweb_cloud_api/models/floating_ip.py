@@ -31,10 +31,10 @@ class FloatingIp(BaseModel):
     ip: Optional[Any] = Field(..., description="IP-адрес")
     is_ddos_guard: Optional[Any] = Field(..., description="Это логическое значение, которое показывает, включена ли защита от DDoS.")
     availability_zone: AvailabilityZone = Field(...)
-    resource_type: Optional[Any] = Field(None, description="Тип ресурса.")
-    resource_id: Optional[Any] = Field(None, description="Id ресурса.")
-    comment: Optional[Any] = Field(None, description="Комментарий")
-    ptr: Optional[Any] = Field(None, description="Запись имени узла.")
+    resource_type: Optional[Any] = Field(..., description="Тип ресурса.")
+    resource_id: Optional[Any] = Field(..., description="Id ресурса.")
+    comment: Optional[Any] = Field(..., description="Комментарий")
+    ptr: Optional[Any] = Field(..., description="Запись имени узла.")
     __properties = ["id", "ip", "is_ddos_guard", "availability_zone", "resource_type", "resource_id", "comment", "ptr"]
 
     @validator('resource_type')
@@ -43,8 +43,8 @@ class FloatingIp(BaseModel):
         if value is None:
             return value
 
-        if value not in ('server', 'balancer', 'database'):
-            raise ValueError("must be one of enum values ('server', 'balancer', 'database')")
+        if value not in ('server', 'balancer', 'database', 'network'):
+            raise ValueError("must be one of enum values ('server', 'balancer', 'database', 'network')")
         return value
 
     class Config:
