@@ -28,6 +28,7 @@ from timeweb_cloud_api.api.firewall_api import FirewallApi
 from timeweb_cloud_api.api.floating_ip_api import FloatingIPApi
 from timeweb_cloud_api.api.images_api import ImagesApi
 from timeweb_cloud_api.api.kubernetes_api import KubernetesApi
+from timeweb_cloud_api.api.locations_api import LocationsApi
 from timeweb_cloud_api.api.mail_api import MailApi
 from timeweb_cloud_api.api.projects_api import ProjectsApi
 from timeweb_cloud_api.api.s3_api import S3Api
@@ -223,6 +224,7 @@ from timeweb_cloud_api.models.get_finances200_response import GetFinances200Resp
 from timeweb_cloud_api.models.get_floating_ips200_response import GetFloatingIps200Response
 from timeweb_cloud_api.models.get_key200_response import GetKey200Response
 from timeweb_cloud_api.models.get_keys200_response import GetKeys200Response
+from timeweb_cloud_api.models.get_locations200_response import GetLocations200Response
 from timeweb_cloud_api.models.get_mail_quota200_response import GetMailQuota200Response
 from timeweb_cloud_api.models.get_mailboxes200_response import GetMailboxes200Response
 from timeweb_cloud_api.models.get_notification_settings200_response import GetNotificationSettings200Response
@@ -266,6 +268,7 @@ from timeweb_cloud_api.models.images_out_response import ImagesOutResponse
 from timeweb_cloud_api.models.invoice import Invoice
 from timeweb_cloud_api.models.k8_s_versions_response import K8SVersionsResponse
 from timeweb_cloud_api.models.location import Location
+from timeweb_cloud_api.models.location_dto import LocationDto
 from timeweb_cloud_api.models.mailbox import Mailbox
 from timeweb_cloud_api.models.mailbox_auto_reply import MailboxAutoReply
 from timeweb_cloud_api.models.mailbox_forwarding_incoming import MailboxForwardingIncoming

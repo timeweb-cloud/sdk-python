@@ -1,6 +1,6 @@
 # Location
 
-An enumeration.
+Локация.
 
 ## Properties
 Name | Type | Description | Notes

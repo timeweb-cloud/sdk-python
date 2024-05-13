@@ -13,57 +13,29 @@
 """
 
 
-from __future__ import annotations
-import pprint
-import re  # noqa: F401
-import json
+import unittest
+
+import timeweb_cloud_api
+from timeweb_cloud_api.api.locations_api import LocationsApi  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
 
+class TestLocationsApi(unittest.TestCase):
+    """LocationsApi unit test stubs"""
 
-from pydantic import BaseModel
+    def setUp(self):
+        self.api = timeweb_cloud_api.api.locations_api.LocationsApi()  # noqa: E501
 
-class Location(BaseModel):
-    """
-    Локация.
-    """
-    __properties = []
+    def tearDown(self):
+        pass
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
+    def test_get_locations(self):
+        """Test case for get_locations
 
-    def to_str(self) -> str:
-        """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        Получение списка локаций  # noqa: E501
+        """
+        pass
 
-    def to_json(self) -> str:
-        """Returns the JSON representation of the model using alias"""
-        return json.dumps(self.to_dict())
 
-    @classmethod
-    def from_json(cls, json_str: str) -> Location:
-        """Create an instance of Location from a JSON string"""
-        return cls.from_dict(json.loads(json_str))
-
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
-        return _dict
-
-    @classmethod
-    def from_dict(cls, obj: dict) -> Location:
-        """Create an instance of Location from a dict"""
-        if obj is None:
-            return None
-
-        if not isinstance(obj, dict):
-            return Location.parse_obj(obj)
-
-        _obj = Location.parse_obj({
-        })
-        return _obj
-
+if __name__ == '__main__':
+    unittest.main()

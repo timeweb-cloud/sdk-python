@@ -13,57 +13,48 @@
 """
 
 
-from __future__ import annotations
-import pprint
-import re  # noqa: F401
-import json
+import unittest
+import datetime
 
+import timeweb_cloud_api
+from timeweb_cloud_api.models.location_dto import LocationDto  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
+class TestLocationDto(unittest.TestCase):
+    """LocationDto unit test stubs"""
 
-from pydantic import BaseModel
+    def setUp(self):
+        pass
 
-class Location(BaseModel):
-    """
-    Локация.
-    """
-    __properties = []
+    def tearDown(self):
+        pass
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
+    def make_instance(self, include_optional):
+        """Test LocationDto
+            include_option is a boolean, when False only required
+            params are included, when True both required and
+            optional params are included """
+        # uncomment below to create an instance of `LocationDto`
+        """
+        model = timeweb_cloud_api.models.location_dto.LocationDto()  # noqa: E501
+        if include_optional :
+            return LocationDto(
+                location = ru-1, 
+                location_code = RU, 
+                availability_zones = [spb-1]
+            )
+        else :
+            return LocationDto(
+                location = ru-1,
+                location_code = RU,
+                availability_zones = [spb-1],
+        )
+        """
 
-    def to_str(self) -> str:
-        """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+    def testLocationDto(self):
+        """Test LocationDto"""
+        # inst_req_only = self.make_instance(include_optional=False)
+        # inst_req_and_optional = self.make_instance(include_optional=True)
 
-    def to_json(self) -> str:
-        """Returns the JSON representation of the model using alias"""
-        return json.dumps(self.to_dict())
-
-    @classmethod
-    def from_json(cls, json_str: str) -> Location:
-        """Create an instance of Location from a JSON string"""
-        return cls.from_dict(json.loads(json_str))
-
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
-        return _dict
-
-    @classmethod
-    def from_dict(cls, obj: dict) -> Location:
-        """Create an instance of Location from a dict"""
-        if obj is None:
-            return None
-
-        if not isinstance(obj, dict):
-            return Location.parse_obj(obj)
-
-        _obj = Location.parse_obj({
-        })
-        return _obj
-
+if __name__ == '__main__':
+    unittest.main()

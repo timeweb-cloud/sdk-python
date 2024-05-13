@@ -19,14 +19,17 @@ import re  # noqa: F401
 import json
 
 
+from typing import Any, Optional
+from pydantic import BaseModel, Field
+from timeweb_cloud_api.models.meta import Meta
 
-from pydantic import BaseModel
-
-class Location(BaseModel):
+class GetLocations200Response(BaseModel):
     """
-    Локация.
+    GetLocations200Response
     """
-    __properties = []
+    meta: Meta = Field(...)
+    locations: Optional[Any] = Field(...)
+    __properties = ["meta", "locations"]
 
     class Config:
         """Pydantic configuration"""
@@ -42,8 +45,8 @@ class Location(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> Location:
-        """Create an instance of Location from a JSON string"""
+    def from_json(cls, json_str: str) -> GetLocations200Response:
+        """Create an instance of GetLocations200Response from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self):
@@ -52,18 +55,28 @@ class Location(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
+        # override the default output from pydantic by calling `to_dict()` of meta
+        if self.meta:
+            _dict['meta'] = self.meta.to_dict()
+        # set to None if locations (nullable) is None
+        # and __fields_set__ contains the field
+        if self.locations is None and "locations" in self.__fields_set__:
+            _dict['locations'] = None
+
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Location:
-        """Create an instance of Location from a dict"""
+    def from_dict(cls, obj: dict) -> GetLocations200Response:
+        """Create an instance of GetLocations200Response from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return Location.parse_obj(obj)
+            return GetLocations200Response.parse_obj(obj)
 
-        _obj = Location.parse_obj({
+        _obj = GetLocations200Response.parse_obj({
+            "meta": Meta.from_dict(obj.get("meta")) if obj.get("meta") is not None else None,
+            "locations": obj.get("locations")
         })
         return _obj
 

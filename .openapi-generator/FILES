@@ -188,6 +188,7 @@ docs/GetFinances200Response.md
 docs/GetFloatingIps200Response.md
 docs/GetKey200Response.md
 docs/GetKeys200Response.md
+docs/GetLocations200Response.md
 docs/GetMailQuota200Response.md
 docs/GetMailboxes200Response.md
 docs/GetNotificationSettings200Response.md
@@ -233,6 +234,8 @@ docs/Invoice.md
 docs/K8SVersionsResponse.md
 docs/KubernetesApi.md
 docs/Location.md
+docs/LocationDto.md
+docs/LocationsApi.md
 docs/MailApi.md
 docs/Mailbox.md
 docs/MailboxAutoReply.md
@@ -540,6 +543,7 @@ test/test_get_finances200_response.py
 test/test_get_floating_ips200_response.py
 test/test_get_key200_response.py
 test/test_get_keys200_response.py
+test/test_get_locations200_response.py
 test/test_get_mail_quota200_response.py
 test/test_get_mailboxes200_response.py
 test/test_get_notification_settings200_response.py
@@ -585,6 +589,8 @@ test/test_invoice.py
 test/test_k8_s_versions_response.py
 test/test_kubernetes_api.py
 test/test_location.py
+test/test_location_dto.py
+test/test_locations_api.py
 test/test_mail_api.py
 test/test_mailbox.py
 test/test_mailbox_auto_reply.py
@@ -713,6 +719,7 @@ timeweb_cloud_api/api/firewall_api.py
 timeweb_cloud_api/api/floating_ip_api.py
 timeweb_cloud_api/api/images_api.py
 timeweb_cloud_api/api/kubernetes_api.py
+timeweb_cloud_api/api/locations_api.py
 timeweb_cloud_api/api/mail_api.py
 timeweb_cloud_api/api/projects_api.py
 timeweb_cloud_api/api/s3_api.py
@@ -900,6 +907,7 @@ timeweb_cloud_api/models/get_finances200_response.py
 timeweb_cloud_api/models/get_floating_ips200_response.py
 timeweb_cloud_api/models/get_key200_response.py
 timeweb_cloud_api/models/get_keys200_response.py
+timeweb_cloud_api/models/get_locations200_response.py
 timeweb_cloud_api/models/get_mail_quota200_response.py
 timeweb_cloud_api/models/get_mailboxes200_response.py
 timeweb_cloud_api/models/get_notification_settings200_response.py
@@ -943,6 +951,7 @@ timeweb_cloud_api/models/images_out_response.py
 timeweb_cloud_api/models/invoice.py
 timeweb_cloud_api/models/k8_s_versions_response.py
 timeweb_cloud_api/models/location.py
+timeweb_cloud_api/models/location_dto.py
 timeweb_cloud_api/models/mailbox.py
 timeweb_cloud_api/models/mailbox_auto_reply.py
 timeweb_cloud_api/models/mailbox_forwarding_incoming.py

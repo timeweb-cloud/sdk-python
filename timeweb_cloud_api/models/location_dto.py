@@ -19,14 +19,18 @@ import re  # noqa: F401
 import json
 
 
+from typing import Any, Optional
+from pydantic import BaseModel, Field
+from timeweb_cloud_api.models.location import Location
 
-from pydantic import BaseModel
-
-class Location(BaseModel):
+class LocationDto(BaseModel):
     """
-    Локация.
+    Локация
     """
-    __properties = []
+    location: Location = Field(...)
+    location_code: Optional[Any] = Field(..., description="Код локации в формате `ISO 3166`")
+    availability_zones: Optional[Any] = Field(..., description="Список зон, доступных в данной локации")
+    __properties = ["location", "location_code", "availability_zones"]
 
     class Config:
         """Pydantic configuration"""
@@ -42,8 +46,8 @@ class Location(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> Location:
-        """Create an instance of Location from a JSON string"""
+    def from_json(cls, json_str: str) -> LocationDto:
+        """Create an instance of LocationDto from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self):
@@ -52,18 +56,31 @@ class Location(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
+        # set to None if location_code (nullable) is None
+        # and __fields_set__ contains the field
+        if self.location_code is None and "location_code" in self.__fields_set__:
+            _dict['location_code'] = None
+
+        # set to None if availability_zones (nullable) is None
+        # and __fields_set__ contains the field
+        if self.availability_zones is None and "availability_zones" in self.__fields_set__:
+            _dict['availability_zones'] = None
+
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Location:
-        """Create an instance of Location from a dict"""
+    def from_dict(cls, obj: dict) -> LocationDto:
+        """Create an instance of LocationDto from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return Location.parse_obj(obj)
+            return LocationDto.parse_obj(obj)
 
-        _obj = Location.parse_obj({
+        _obj = LocationDto.parse_obj({
+            "location": obj.get("location"),
+            "location_code": obj.get("location_code"),
+            "availability_zones": obj.get("availability_zones")
         })
         return _obj
 
