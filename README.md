@@ -285,6 +285,7 @@ Class | Method | HTTP request | Description
 *DatabasesApi* | [**get_database_backup**](docs/DatabasesApi.md#get_database_backup) | **GET** /api/v1/dbs/{db_id}/backups/{backup_id} | Получение бэкапа базы данных
 *DatabasesApi* | [**get_database_backups**](docs/DatabasesApi.md#get_database_backups) | **GET** /api/v1/dbs/{db_id}/backups | Список бэкапов базы данных
 *DatabasesApi* | [**get_database_cluster**](docs/DatabasesApi.md#get_database_cluster) | **GET** /api/v1/databases/{db_cluster_id} | Получение кластера базы данных
+*DatabasesApi* | [**get_database_cluster_types**](docs/DatabasesApi.md#get_database_cluster_types) | **GET** /api/v1/database-types | Получение списка типов кластеров баз данных
 *DatabasesApi* | [**get_database_clusters**](docs/DatabasesApi.md#get_database_clusters) | **GET** /api/v1/databases | Получение списка кластеров баз данных
 *DatabasesApi* | [**get_database_instance**](docs/DatabasesApi.md#get_database_instance) | **GET** /api/v1/databases/{db_cluster_id}/instances/{instance_id} | Получение инстанса базы данных
 *DatabasesApi* | [**get_database_instances**](docs/DatabasesApi.md#get_database_instances) | **GET** /api/v1/databases/{db_cluster_id}/instances | Получение списка инстансов баз данных
@@ -574,6 +575,7 @@ Class | Method | HTTP request | Description
  - [DatabaseCluster](docs/DatabaseCluster.md)
  - [DatabaseClusterDiskStats](docs/DatabaseClusterDiskStats.md)
  - [DatabaseInstance](docs/DatabaseInstance.md)
+ - [DatabaseType](docs/DatabaseType.md)
  - [Db](docs/Db.md)
  - [DbDiskStats](docs/DbDiskStats.md)
  - [DbType](docs/DbType.md)
@@ -640,6 +642,7 @@ Class | Method | HTTP request | Description
  - [GetCountries200Response](docs/GetCountries200Response.md)
  - [GetDatabaseAutoBackupsSettings200Response](docs/GetDatabaseAutoBackupsSettings200Response.md)
  - [GetDatabaseBackups200Response](docs/GetDatabaseBackups200Response.md)
+ - [GetDatabaseClusterTypes200Response](docs/GetDatabaseClusterTypes200Response.md)
  - [GetDatabaseClusters200Response](docs/GetDatabaseClusters200Response.md)
  - [GetDatabaseInstances200Response](docs/GetDatabaseInstances200Response.md)
  - [GetDatabaseUsers200Response](docs/GetDatabaseUsers200Response.md)

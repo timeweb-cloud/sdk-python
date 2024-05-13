@@ -13,225 +13,70 @@
 """
 
 
-import unittest
+from __future__ import annotations
+import pprint
+import re  # noqa: F401
+import json
+
+
+from typing import Any, Optional
+from pydantic import BaseModel, Field
+from timeweb_cloud_api.models.meta import Meta
+
+class GetDatabaseClusterTypes200Response(BaseModel):
+    """
+    GetDatabaseClusterTypes200Response
+    """
+    meta: Meta = Field(...)
+    types: Optional[Any] = Field(...)
+    __properties = ["meta", "types"]
+
+    class Config:
+        """Pydantic configuration"""
+        allow_population_by_field_name = True
+        validate_assignment = True
+
+    def to_str(self) -> str:
+        """Returns the string representation of the model using alias"""
+        return pprint.pformat(self.dict(by_alias=True))
+
+    def to_json(self) -> str:
+        """Returns the JSON representation of the model using alias"""
+        return json.dumps(self.to_dict())
+
+    @classmethod
+    def from_json(cls, json_str: str) -> GetDatabaseClusterTypes200Response:
+        """Create an instance of GetDatabaseClusterTypes200Response from a JSON string"""
+        return cls.from_dict(json.loads(json_str))
+
+    def to_dict(self):
+        """Returns the dictionary representation of the model using alias"""
+        _dict = self.dict(by_alias=True,
+                          exclude={
+                          },
+                          exclude_none=True)
+        # override the default output from pydantic by calling `to_dict()` of meta
+        if self.meta:
+            _dict['meta'] = self.meta.to_dict()
+        # set to None if types (nullable) is None
+        # and __fields_set__ contains the field
+        if self.types is None and "types" in self.__fields_set__:
+            _dict['types'] = None
+
+        return _dict
+
+    @classmethod
+    def from_dict(cls, obj: dict) -> GetDatabaseClusterTypes200Response:
+        """Create an instance of GetDatabaseClusterTypes200Response from a dict"""
+        if obj is None:
+            return None
+
+        if not isinstance(obj, dict):
+            return GetDatabaseClusterTypes200Response.parse_obj(obj)
+
+        _obj = GetDatabaseClusterTypes200Response.parse_obj({
+            "meta": Meta.from_dict(obj.get("meta")) if obj.get("meta") is not None else None,
+            "types": obj.get("types")
+        })
+        return _obj
 
-import timeweb_cloud_api
-from timeweb_cloud_api.api.databases_api import DatabasesApi  # noqa: E501
-from timeweb_cloud_api.rest import ApiException
-
-
-class TestDatabasesApi(unittest.TestCase):
-    """DatabasesApi unit test stubs"""
-
-    def setUp(self):
-        self.api = timeweb_cloud_api.api.databases_api.DatabasesApi()  # noqa: E501
-
-    def tearDown(self):
-        pass
-
-    def test_create_database(self):
-        """Test case for create_database
-
-        Создание базы данных  # noqa: E501
-        """
-        pass
-
-    def test_create_database_backup(self):
-        """Test case for create_database_backup
-
-        Создание бэкапа базы данных  # noqa: E501
-        """
-        pass
-
-    def test_create_database_cluster(self):
-        """Test case for create_database_cluster
-
-        Создание кластера базы данных  # noqa: E501
-        """
-        pass
-
-    def test_create_database_instance(self):
-        """Test case for create_database_instance
-
-        Создание инстанса базы данных  # noqa: E501
-        """
-        pass
-
-    def test_create_database_user(self):
-        """Test case for create_database_user
-
-        Создание пользователя базы данных  # noqa: E501
-        """
-        pass
-
-    def test_delete_database(self):
-        """Test case for delete_database
-
-        Удаление базы данных  # noqa: E501
-        """
-        pass
-
-    def test_delete_database_backup(self):
-        """Test case for delete_database_backup
-
-        Удаление бэкапа базы данных  # noqa: E501
-        """
-        pass
-
-    def test_delete_database_cluster(self):
-        """Test case for delete_database_cluster
-
-        Удаление кластера базы данных  # noqa: E501
-        """
-        pass
-
-    def test_delete_database_instance(self):
-        """Test case for delete_database_instance
-
-        Удаление инстанса базы данных  # noqa: E501
-        """
-        pass
-
-    def test_delete_database_user(self):
-        """Test case for delete_database_user
-
-        Удаление пользователя базы данных  # noqa: E501
-        """
-        pass
-
-    def test_get_database(self):
-        """Test case for get_database
-
-        Получение базы данных  # noqa: E501
-        """
-        pass
-
-    def test_get_database_auto_backups_settings(self):
-        """Test case for get_database_auto_backups_settings
-
-        Получение настроек автобэкапов базы данных  # noqa: E501
-        """
-        pass
-
-    def test_get_database_backup(self):
-        """Test case for get_database_backup
-
-        Получение бэкапа базы данных  # noqa: E501
-        """
-        pass
-
-    def test_get_database_backups(self):
-        """Test case for get_database_backups
-
-        Список бэкапов базы данных  # noqa: E501
-        """
-        pass
-
-    def test_get_database_cluster(self):
-        """Test case for get_database_cluster
-
-        Получение кластера базы данных  # noqa: E501
-        """
-        pass
-
-    def test_get_database_cluster_types(self):
-        """Test case for get_database_cluster_types
-
-        Получение списка типов кластеров баз данных  # noqa: E501
-        """
-        pass
-
-    def test_get_database_clusters(self):
-        """Test case for get_database_clusters
-
-        Получение списка кластеров баз данных  # noqa: E501
-        """
-        pass
-
-    def test_get_database_instance(self):
-        """Test case for get_database_instance
-
-        Получение инстанса базы данных  # noqa: E501
-        """
-        pass
-
-    def test_get_database_instances(self):
-        """Test case for get_database_instances
-
-        Получение списка инстансов баз данных  # noqa: E501
-        """
-        pass
-
-    def test_get_database_user(self):
-        """Test case for get_database_user
-
-        Получение пользователя базы данных  # noqa: E501
-        """
-        pass
-
-    def test_get_database_users(self):
-        """Test case for get_database_users
-
-        Получение списка пользователей базы данных  # noqa: E501
-        """
-        pass
-
-    def test_get_databases(self):
-        """Test case for get_databases
-
-        Получение списка всех баз данных  # noqa: E501
-        """
-        pass
-
-    def test_get_databases_presets(self):
-        """Test case for get_databases_presets
-
-        Получение списка тарифов для баз данных  # noqa: E501
-        """
-        pass
-
-    def test_restore_database_from_backup(self):
-        """Test case for restore_database_from_backup
-
-        Восстановление базы данных из бэкапа  # noqa: E501
-        """
-        pass
-
-    def test_update_database(self):
-        """Test case for update_database
-
-        Обновление базы данных  # noqa: E501
-        """
-        pass
-
-    def test_update_database_auto_backups_settings(self):
-        """Test case for update_database_auto_backups_settings
-
-        Изменение настроек автобэкапов базы данных  # noqa: E501
-        """
-        pass
-
-    def test_update_database_cluster(self):
-        """Test case for update_database_cluster
-
-        Изменение кластера базы данных  # noqa: E501
-        """
-        pass
-
-    def test_update_database_instance(self):
-        """Test case for update_database_instance
-
-        Изменение инстанса базы данных  # noqa: E501
-        """
-        pass
-
-    def test_update_database_user(self):
-        """Test case for update_database_user
-
-        Изменение пользователя базы данных  # noqa: E501
-        """
-        pass
-
-
-if __name__ == '__main__':
-    unittest.main()

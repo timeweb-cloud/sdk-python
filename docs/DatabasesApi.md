@@ -19,6 +19,7 @@ Method | HTTP request | Description
 [**get_database_backup**](DatabasesApi.md#get_database_backup) | **GET** /api/v1/dbs/{db_id}/backups/{backup_id} | Получение бэкапа базы данных
 [**get_database_backups**](DatabasesApi.md#get_database_backups) | **GET** /api/v1/dbs/{db_id}/backups | Список бэкапов базы данных
 [**get_database_cluster**](DatabasesApi.md#get_database_cluster) | **GET** /api/v1/databases/{db_cluster_id} | Получение кластера базы данных
+[**get_database_cluster_types**](DatabasesApi.md#get_database_cluster_types) | **GET** /api/v1/database-types | Получение списка типов кластеров баз данных
 [**get_database_clusters**](DatabasesApi.md#get_database_clusters) | **GET** /api/v1/databases | Получение списка кластеров баз данных
 [**get_database_instance**](DatabasesApi.md#get_database_instance) | **GET** /api/v1/databases/{db_cluster_id}/instances/{instance_id} | Получение инстанса базы данных
 [**get_database_instances**](DatabasesApi.md#get_database_instances) | **GET** /api/v1/databases/{db_cluster_id}/instances | Получение списка инстансов баз данных
@@ -1277,6 +1278,84 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** | Ответ будет представлять собой объект JSON c ключом &#x60;db&#x60;. |  -  |
+**400** |  |  -  |
+**401** |  |  -  |
+**403** |  |  -  |
+**404** |  |  -  |
+**429** |  |  -  |
+**500** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_database_cluster_types**
+> GetDatabaseClusterTypes200Response get_database_cluster_types()
+
+Получение списка типов кластеров баз данных
+
+Чтобы получить список типов баз данных на вашем аккаунте, отправьте GET-запрос на `/api/v1/database-types`.
+
+### Example
+
+* Bearer (JWT) Authentication (Bearer):
+```python
+import time
+import os
+import timeweb_cloud_api
+from timeweb_cloud_api.models.get_database_cluster_types200_response import GetDatabaseClusterTypes200Response
+from timeweb_cloud_api.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.timeweb.cloud
+# See configuration.py for a list of all supported configuration parameters.
+configuration = timeweb_cloud_api.Configuration(
+    host = "https://api.timeweb.cloud"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): Bearer
+configuration = timeweb_cloud_api.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = timeweb_cloud_api.DatabasesApi(api_client)
+
+    try:
+        # Получение списка типов кластеров баз данных
+        api_response = api_instance.get_database_cluster_types()
+        print("The response of DatabasesApi->get_database_cluster_types:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DatabasesApi->get_database_cluster_types: %s\n" % e)
+```
+
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**GetDatabaseClusterTypes200Response**](GetDatabaseClusterTypes200Response.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Ответ будет представлять собой объект JSON c ключом &#x60;types&#x60;. |  -  |
 **400** |  |  -  |
 **401** |  |  -  |
 **403** |  |  -  |

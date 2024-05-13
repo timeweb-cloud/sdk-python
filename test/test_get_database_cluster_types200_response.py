@@ -14,224 +14,47 @@
 
 
 import unittest
+import datetime
 
 import timeweb_cloud_api
-from timeweb_cloud_api.api.databases_api import DatabasesApi  # noqa: E501
+from timeweb_cloud_api.models.get_database_cluster_types200_response import GetDatabaseClusterTypes200Response  # noqa: E501
 from timeweb_cloud_api.rest import ApiException
 
-
-class TestDatabasesApi(unittest.TestCase):
-    """DatabasesApi unit test stubs"""
+class TestGetDatabaseClusterTypes200Response(unittest.TestCase):
+    """GetDatabaseClusterTypes200Response unit test stubs"""
 
     def setUp(self):
-        self.api = timeweb_cloud_api.api.databases_api.DatabasesApi()  # noqa: E501
+        pass
 
     def tearDown(self):
         pass
 
-    def test_create_database(self):
-        """Test case for create_database
-
-        Создание базы данных  # noqa: E501
+    def make_instance(self, include_optional):
+        """Test GetDatabaseClusterTypes200Response
+            include_option is a boolean, when False only required
+            params are included, when True both required and
+            optional params are included """
+        # uncomment below to create an instance of `GetDatabaseClusterTypes200Response`
         """
-        pass
-
-    def test_create_database_backup(self):
-        """Test case for create_database_backup
-
-        Создание бэкапа базы данных  # noqa: E501
+        model = timeweb_cloud_api.models.get_database_cluster_types200_response.GetDatabaseClusterTypes200Response()  # noqa: E501
+        if include_optional :
+            return GetDatabaseClusterTypes200Response(
+                meta = timeweb_cloud_api.models.meta.meta(
+                    total = 10, ), 
+                types = None
+            )
+        else :
+            return GetDatabaseClusterTypes200Response(
+                meta = timeweb_cloud_api.models.meta.meta(
+                    total = 10, ),
+                types = None,
+        )
         """
-        pass
 
-    def test_create_database_cluster(self):
-        """Test case for create_database_cluster
-
-        Создание кластера базы данных  # noqa: E501
-        """
-        pass
-
-    def test_create_database_instance(self):
-        """Test case for create_database_instance
-
-        Создание инстанса базы данных  # noqa: E501
-        """
-        pass
-
-    def test_create_database_user(self):
-        """Test case for create_database_user
-
-        Создание пользователя базы данных  # noqa: E501
-        """
-        pass
-
-    def test_delete_database(self):
-        """Test case for delete_database
-
-        Удаление базы данных  # noqa: E501
-        """
-        pass
-
-    def test_delete_database_backup(self):
-        """Test case for delete_database_backup
-
-        Удаление бэкапа базы данных  # noqa: E501
-        """
-        pass
-
-    def test_delete_database_cluster(self):
-        """Test case for delete_database_cluster
-
-        Удаление кластера базы данных  # noqa: E501
-        """
-        pass
-
-    def test_delete_database_instance(self):
-        """Test case for delete_database_instance
-
-        Удаление инстанса базы данных  # noqa: E501
-        """
-        pass
-
-    def test_delete_database_user(self):
-        """Test case for delete_database_user
-
-        Удаление пользователя базы данных  # noqa: E501
-        """
-        pass
-
-    def test_get_database(self):
-        """Test case for get_database
-
-        Получение базы данных  # noqa: E501
-        """
-        pass
-
-    def test_get_database_auto_backups_settings(self):
-        """Test case for get_database_auto_backups_settings
-
-        Получение настроек автобэкапов базы данных  # noqa: E501
-        """
-        pass
-
-    def test_get_database_backup(self):
-        """Test case for get_database_backup
-
-        Получение бэкапа базы данных  # noqa: E501
-        """
-        pass
-
-    def test_get_database_backups(self):
-        """Test case for get_database_backups
-
-        Список бэкапов базы данных  # noqa: E501
-        """
-        pass
-
-    def test_get_database_cluster(self):
-        """Test case for get_database_cluster
-
-        Получение кластера базы данных  # noqa: E501
-        """
-        pass
-
-    def test_get_database_cluster_types(self):
-        """Test case for get_database_cluster_types
-
-        Получение списка типов кластеров баз данных  # noqa: E501
-        """
-        pass
-
-    def test_get_database_clusters(self):
-        """Test case for get_database_clusters
-
-        Получение списка кластеров баз данных  # noqa: E501
-        """
-        pass
-
-    def test_get_database_instance(self):
-        """Test case for get_database_instance
-
-        Получение инстанса базы данных  # noqa: E501
-        """
-        pass
-
-    def test_get_database_instances(self):
-        """Test case for get_database_instances
-
-        Получение списка инстансов баз данных  # noqa: E501
-        """
-        pass
-
-    def test_get_database_user(self):
-        """Test case for get_database_user
-
-        Получение пользователя базы данных  # noqa: E501
-        """
-        pass
-
-    def test_get_database_users(self):
-        """Test case for get_database_users
-
-        Получение списка пользователей базы данных  # noqa: E501
-        """
-        pass
-
-    def test_get_databases(self):
-        """Test case for get_databases
-
-        Получение списка всех баз данных  # noqa: E501
-        """
-        pass
-
-    def test_get_databases_presets(self):
-        """Test case for get_databases_presets
-
-        Получение списка тарифов для баз данных  # noqa: E501
-        """
-        pass
-
-    def test_restore_database_from_backup(self):
-        """Test case for restore_database_from_backup
-
-        Восстановление базы данных из бэкапа  # noqa: E501
-        """
-        pass
-
-    def test_update_database(self):
-        """Test case for update_database
-
-        Обновление базы данных  # noqa: E501
-        """
-        pass
-
-    def test_update_database_auto_backups_settings(self):
-        """Test case for update_database_auto_backups_settings
-
-        Изменение настроек автобэкапов базы данных  # noqa: E501
-        """
-        pass
-
-    def test_update_database_cluster(self):
-        """Test case for update_database_cluster
-
-        Изменение кластера базы данных  # noqa: E501
-        """
-        pass
-
-    def test_update_database_instance(self):
-        """Test case for update_database_instance
-
-        Изменение инстанса базы данных  # noqa: E501
-        """
-        pass
-
-    def test_update_database_user(self):
-        """Test case for update_database_user
-
-        Изменение пользователя базы данных  # noqa: E501
-        """
-        pass
-
+    def testGetDatabaseClusterTypes200Response(self):
+        """Test GetDatabaseClusterTypes200Response"""
+        # inst_req_only = self.make_instance(include_optional=False)
+        # inst_req_and_optional = self.make_instance(include_optional=True)
 
 if __name__ == '__main__':
     unittest.main()

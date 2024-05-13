@@ -99,6 +99,7 @@ docs/DatabaseAdmin.md
 docs/DatabaseCluster.md
 docs/DatabaseClusterDiskStats.md
 docs/DatabaseInstance.md
+docs/DatabaseType.md
 docs/DatabasesApi.md
 docs/Db.md
 docs/DbDiskStats.md
@@ -170,6 +171,7 @@ docs/GetConfigurators200Response.md
 docs/GetCountries200Response.md
 docs/GetDatabaseAutoBackupsSettings200Response.md
 docs/GetDatabaseBackups200Response.md
+docs/GetDatabaseClusterTypes200Response.md
 docs/GetDatabaseClusters200Response.md
 docs/GetDatabaseInstances200Response.md
 docs/GetDatabaseUsers200Response.md
@@ -454,6 +456,7 @@ test/test_database_admin.py
 test/test_database_cluster.py
 test/test_database_cluster_disk_stats.py
 test/test_database_instance.py
+test/test_database_type.py
 test/test_databases_api.py
 test/test_db.py
 test/test_db_disk_stats.py
@@ -525,6 +528,7 @@ test/test_get_configurators200_response.py
 test/test_get_countries200_response.py
 test/test_get_database_auto_backups_settings200_response.py
 test/test_get_database_backups200_response.py
+test/test_get_database_cluster_types200_response.py
 test/test_get_database_clusters200_response.py
 test/test_get_database_instances200_response.py
 test/test_get_database_users200_response.py
@@ -823,6 +827,7 @@ timeweb_cloud_api/models/database_admin.py
 timeweb_cloud_api/models/database_cluster.py
 timeweb_cloud_api/models/database_cluster_disk_stats.py
 timeweb_cloud_api/models/database_instance.py
+timeweb_cloud_api/models/database_type.py
 timeweb_cloud_api/models/db.py
 timeweb_cloud_api/models/db_disk_stats.py
 timeweb_cloud_api/models/db_type.py
@@ -889,6 +894,7 @@ timeweb_cloud_api/models/get_configurators200_response.py
 timeweb_cloud_api/models/get_countries200_response.py
 timeweb_cloud_api/models/get_database_auto_backups_settings200_response.py
 timeweb_cloud_api/models/get_database_backups200_response.py
+timeweb_cloud_api/models/get_database_cluster_types200_response.py
 timeweb_cloud_api/models/get_database_clusters200_response.py
 timeweb_cloud_api/models/get_database_instances200_response.py
 timeweb_cloud_api/models/get_database_users200_response.py
