@@ -54,7 +54,7 @@ class FloatingIPApi(object):
     def bind_floating_ip(self, floating_ip_id : Annotated[Any, Field(..., description="Идентификатор плавающего IP")], bind_floating_ip : BindFloatingIp, **kwargs) -> None:  # noqa: E501
         """Привязать IP к сервису  # noqa: E501
 
-        Чтобы привязать IP к сервису, отправьте POST-запрос на `/api/v1/floating-ip/{floating_ip_id}/bind`.  # noqa: E501
+        Чтобы привязать IP к сервису, отправьте POST-запрос на `/api/v1/floating-ips/{floating_ip_id}/bind`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -85,7 +85,7 @@ class FloatingIPApi(object):
     def bind_floating_ip_with_http_info(self, floating_ip_id : Annotated[Any, Field(..., description="Идентификатор плавающего IP")], bind_floating_ip : BindFloatingIp, **kwargs) -> ApiResponse:  # noqa: E501
         """Привязать IP к сервису  # noqa: E501
 
-        Чтобы привязать IP к сервису, отправьте POST-запрос на `/api/v1/floating-ip/{floating_ip_id}/bind`.  # noqa: E501
+        Чтобы привязать IP к сервису, отправьте POST-запрос на `/api/v1/floating-ips/{floating_ip_id}/bind`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -769,7 +769,7 @@ class FloatingIPApi(object):
     def unbind_floating_ip(self, floating_ip_id : Annotated[Any, Field(..., description="Идентификатор плавающего IP")], **kwargs) -> None:  # noqa: E501
         """Отвязать IP от сервиса  # noqa: E501
 
-        Чтобы отвязать IP от сервиса, отправьте POST-запрос на `/api/v1/floating-ip/{floating_ip_id}/unbind`.  # noqa: E501
+        Чтобы отвязать IP от сервиса, отправьте POST-запрос на `/api/v1/floating-ips/{floating_ip_id}/unbind`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -798,7 +798,7 @@ class FloatingIPApi(object):
     def unbind_floating_ip_with_http_info(self, floating_ip_id : Annotated[Any, Field(..., description="Идентификатор плавающего IP")], **kwargs) -> ApiResponse:  # noqa: E501
         """Отвязать IP от сервиса  # noqa: E501
 
-        Чтобы отвязать IP от сервиса, отправьте POST-запрос на `/api/v1/floating-ip/{floating_ip_id}/unbind`.  # noqa: E501
+        Чтобы отвязать IP от сервиса, отправьте POST-запрос на `/api/v1/floating-ips/{floating_ip_id}/unbind`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
