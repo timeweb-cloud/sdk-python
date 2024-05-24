@@ -3869,7 +3869,7 @@ class ServersApi(object):
 
     @validate_arguments
     def perform_action_on_server(self, server_id : Annotated[Any, Field(..., description="Уникальный идентификатор облачного сервера.")], perform_action_on_server_request : PerformActionOnServerRequest, **kwargs) -> None:  # noqa: E501
-        """Выполнение действия над сервером  # noqa: E501
+        """(Deprecated) Выполнение действия над сервером  # noqa: E501
 
         Чтобы выполнить действие над сервером, отправьте POST-запрос на `/api/v1/servers/{server_id}/action`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -3900,7 +3900,7 @@ class ServersApi(object):
 
     @validate_arguments
     def perform_action_on_server_with_http_info(self, server_id : Annotated[Any, Field(..., description="Уникальный идентификатор облачного сервера.")], perform_action_on_server_request : PerformActionOnServerRequest, **kwargs) -> ApiResponse:  # noqa: E501
-        """Выполнение действия над сервером  # noqa: E501
+        """(Deprecated) Выполнение действия над сервером  # noqa: E501
 
         Чтобы выполнить действие над сервером, отправьте POST-запрос на `/api/v1/servers/{server_id}/action`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -3937,6 +3937,8 @@ class ServersApi(object):
                  returns the request thread.
         :rtype: None
         """
+
+        warnings.warn("POST /api/v1/servers/{server_id}/action is deprecated.", DeprecationWarning)
 
         _params = locals()
 
