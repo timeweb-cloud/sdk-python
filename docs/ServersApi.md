@@ -4,6 +4,7 @@ All URIs are relative to *https://api.timeweb.cloud*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**action_on_server**](ServersApi.md#action_on_server) | **POST** /api/v2/{account_id}/servers/{server_id}/{action} | Выполнение действия над сервером
 [**add_server_ip**](ServersApi.md#add_server_ip) | **POST** /api/v1/servers/{server_id}/ips | Добавление IP-адреса сервера
 [**clone_server**](ServersApi.md#clone_server) | **POST** /api/v1/servers/{server_id}/clone | Клонирование сервера
 [**create_server**](ServersApi.md#create_server) | **POST** /api/v1/servers | Создание сервера
@@ -38,6 +39,88 @@ Method | HTTP request | Description
 [**update_server_nat**](ServersApi.md#update_server_nat) | **PATCH** /api/v1/servers/{server_id}/local-networks/nat-mode | Изменение правил маршрутизации трафика сервера (NAT)
 [**update_server_os_boot_mode**](ServersApi.md#update_server_os_boot_mode) | **POST** /api/v1/servers/{server_id}/boot-mode | Выбор типа загрузки операционной системы сервера
 
+
+# **action_on_server**
+> action_on_server(server_id, action)
+
+Выполнение действия над сервером
+
+Чтобы выполнить действие над сервером, отправьте POST-запрос на `/api/v2/{account_id}/servers/{server_id}/{action}`.
+
+### Example
+
+* Bearer (JWT) Authentication (Bearer):
+```python
+import time
+import os
+import timeweb_cloud_api
+from timeweb_cloud_api.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.timeweb.cloud
+# See configuration.py for a list of all supported configuration parameters.
+configuration = timeweb_cloud_api.Configuration(
+    host = "https://api.timeweb.cloud"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): Bearer
+configuration = timeweb_cloud_api.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = timeweb_cloud_api.ServersApi(api_client)
+    server_id = 1051 # object | Уникальный идентификатор облачного сервера.
+    action = install # object | Действие над сервером
+
+    try:
+        # Выполнение действия над сервером
+        api_instance.action_on_server(server_id, action)
+    except Exception as e:
+        print("Exception when calling ServersApi->action_on_server: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **server_id** | [**object**](.md)| Уникальный идентификатор облачного сервера. | 
+ **action** | [**object**](.md)| Действие над сервером | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | Успешное выполнение действия |  -  |
+**400** |  |  -  |
+**401** |  |  -  |
+**403** |  |  -  |
+**404** |  |  -  |
+**409** |  |  -  |
+**429** |  |  -  |
+**500** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **add_server_ip**
 > AddServerIP201Response add_server_ip(server_id, add_server_ip_request)
@@ -2124,7 +2207,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **perform_action_on_server**
-> perform_action_on_server(server_id, perform_action_on_server_request)
+> perform_action_on_server(server_id, perform_action_on_server_request=perform_action_on_server_request)
 
 Выполнение действия над сервером
 
@@ -2162,11 +2245,11 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.ServersApi(api_client)
     server_id = 1051 # object | Уникальный идентификатор облачного сервера.
-    perform_action_on_server_request = timeweb_cloud_api.PerformActionOnServerRequest() # PerformActionOnServerRequest | 
+    perform_action_on_server_request = timeweb_cloud_api.PerformActionOnServerRequest() # PerformActionOnServerRequest |  (optional)
 
     try:
         # Выполнение действия над сервером
-        api_instance.perform_action_on_server(server_id, perform_action_on_server_request)
+        api_instance.perform_action_on_server(server_id, perform_action_on_server_request=perform_action_on_server_request)
     except Exception as e:
         print("Exception when calling ServersApi->perform_action_on_server: %s\n" % e)
 ```
@@ -2177,7 +2260,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **server_id** | [**object**](.md)| Уникальный идентификатор облачного сервера. | 
- **perform_action_on_server_request** | [**PerformActionOnServerRequest**](PerformActionOnServerRequest.md)|  | 
+ **perform_action_on_server_request** | [**PerformActionOnServerRequest**](PerformActionOnServerRequest.md)|  | [optional] 
 
 ### Return type
 

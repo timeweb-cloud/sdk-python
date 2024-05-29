@@ -29,6 +29,13 @@ class TestServersApi(unittest.TestCase):
     def tearDown(self):
         pass
 
+    def test_action_on_server(self):
+        """Test case for action_on_server
+
+        Выполнение действия над сервером  # noqa: E501
+        """
+        pass
+
     def test_add_server_ip(self):
         """Test case for add_server_ip
 
