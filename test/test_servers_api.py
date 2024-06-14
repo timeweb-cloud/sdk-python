@@ -29,13 +29,6 @@ class TestServersApi(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def test_action_on_server(self):
-        """Test case for action_on_server
-
-        Выполнение действия над сервером  # noqa: E501
-        """
-        pass
-
     def test_add_server_ip(self):
         """Test case for add_server_ip
 
@@ -197,10 +190,24 @@ class TestServersApi(unittest.TestCase):
         """
         pass
 
+    def test_hard_shutdown_server(self):
+        """Test case for hard_shutdown_server
+
+        Принудительное выключение сервера  # noqa: E501
+        """
+        pass
+
     def test_image_unmount_and_server_reload(self):
         """Test case for image_unmount_and_server_reload
 
         Отмонтирование ISO образа и перезагрузка сервера  # noqa: E501
+        """
+        pass
+
+    def test_install_server(self):
+        """Test case for install_server
+
+        Установка сервера  # noqa: E501
         """
         pass
 
@@ -215,6 +222,34 @@ class TestServersApi(unittest.TestCase):
         """Test case for perform_action_on_server
 
         Выполнение действия над сервером  # noqa: E501
+        """
+        pass
+
+    def test_reboot_server(self):
+        """Test case for reboot_server
+
+        Перезагрузка сервера  # noqa: E501
+        """
+        pass
+
+    def test_reset_server_password(self):
+        """Test case for reset_server_password
+
+        Сброс пароля сервера  # noqa: E501
+        """
+        pass
+
+    def test_shutdown_server(self):
+        """Test case for shutdown_server
+
+        Выключение сервера  # noqa: E501
+        """
+        pass
+
+    def test_start_server(self):
+        """Test case for start_server
+
+        Запуск сервера  # noqa: E501
         """
         pass
 
