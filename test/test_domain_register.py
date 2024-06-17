@@ -43,7 +43,6 @@ class TestDomainRegister(unittest.TestCase):
                 fqdn = somedomain.ru, 
                 is_autoprolong_enabled = true, 
                 is_whois_privacy_enabled = true, 
-                ns = None, 
                 period = P1Y, 
                 person_id = 123
             )

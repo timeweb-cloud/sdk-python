@@ -31,10 +31,9 @@ class DomainRegister(BaseModel):
     fqdn: Optional[Any] = Field(..., description="Полное имя домена.")
     is_autoprolong_enabled: Optional[Any] = Field(None, description="Это логическое значение, которое показывает, включено ли автопродление домена.")
     is_whois_privacy_enabled: Optional[Any] = Field(None, description="Это логическое значение, которое показывает, включено ли скрытие данных администратора домена для whois. Опция недоступна для доменов в зонах .ru и .рф.")
-    ns: Optional[Any] = Field(None, description="Name-серверы для регистрации домена. Если не передавать этот параметр, будут использованы наши стандартные name-серверы. Нужно указать как минимум 2 name-сервера.")
     period: Optional[DomainPaymentPeriod] = None
     person_id: Optional[Any] = Field(..., description="Идентификатор администратора, на которого регистрируется домен.")
-    __properties = ["action", "fqdn", "is_autoprolong_enabled", "is_whois_privacy_enabled", "ns", "period", "person_id"]
+    __properties = ["action", "fqdn", "is_autoprolong_enabled", "is_whois_privacy_enabled", "period", "person_id"]
 
     @validator('action')
     def action_validate_enum(cls, value):
@@ -90,11 +89,6 @@ class DomainRegister(BaseModel):
         if self.is_whois_privacy_enabled is None and "is_whois_privacy_enabled" in self.__fields_set__:
             _dict['is_whois_privacy_enabled'] = None
 
-        # set to None if ns (nullable) is None
-        # and __fields_set__ contains the field
-        if self.ns is None and "ns" in self.__fields_set__:
-            _dict['ns'] = None
-
         # set to None if person_id (nullable) is None
         # and __fields_set__ contains the field
         if self.person_id is None and "person_id" in self.__fields_set__:
@@ -116,7 +110,6 @@ class DomainRegister(BaseModel):
             "fqdn": obj.get("fqdn"),
             "is_autoprolong_enabled": obj.get("is_autoprolong_enabled"),
             "is_whois_privacy_enabled": obj.get("is_whois_privacy_enabled"),
-            "ns": obj.get("ns"),
             "period": obj.get("period"),
             "person_id": obj.get("person_id")
         })
