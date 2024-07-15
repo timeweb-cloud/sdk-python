@@ -464,7 +464,6 @@ Class | Method | HTTP request | Description
 *ServersApi* | [**get_software**](docs/ServersApi.md#get_software) | **GET** /api/v1/software/servers | Получение списка ПО из маркетплейса
 *ServersApi* | [**hard_shutdown_server**](docs/ServersApi.md#hard_shutdown_server) | **POST** /api/v1/servers/{server_id}/hard-shutdown | Принудительное выключение сервера
 *ServersApi* | [**image_unmount_and_server_reload**](docs/ServersApi.md#image_unmount_and_server_reload) | **POST** /api/v1/servers/{server_id}/image-unmount | Отмонтирование ISO образа и перезагрузка сервера
-*ServersApi* | [**install_server**](docs/ServersApi.md#install_server) | **POST** /api/v1/servers/{server_id}/install | Установка сервера
 *ServersApi* | [**perform_action_on_backup**](docs/ServersApi.md#perform_action_on_backup) | **POST** /api/v1/servers/{server_id}/disks/{disk_id}/backups/{backup_id}/action | Выполнение действия над бэкапом диска сервера
 *ServersApi* | [**perform_action_on_server**](docs/ServersApi.md#perform_action_on_server) | **POST** /api/v1/servers/{server_id}/action | Выполнение действия над сервером
 *ServersApi* | [**reboot_server**](docs/ServersApi.md#reboot_server) | **POST** /api/v1/servers/{server_id}/reboot | Перезагрузка сервера

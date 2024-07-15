@@ -204,13 +204,6 @@ class TestServersApi(unittest.TestCase):
         """
         pass
 
-    def test_install_server(self):
-        """Test case for install_server
-
-        Установка сервера  # noqa: E501
-        """
-        pass
-
     def test_perform_action_on_backup(self):
         """Test case for perform_action_on_backup
 

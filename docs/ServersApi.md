@@ -29,7 +29,6 @@ Method | HTTP request | Description
 [**get_software**](ServersApi.md#get_software) | **GET** /api/v1/software/servers | Получение списка ПО из маркетплейса
 [**hard_shutdown_server**](ServersApi.md#hard_shutdown_server) | **POST** /api/v1/servers/{server_id}/hard-shutdown | Принудительное выключение сервера
 [**image_unmount_and_server_reload**](ServersApi.md#image_unmount_and_server_reload) | **POST** /api/v1/servers/{server_id}/image-unmount | Отмонтирование ISO образа и перезагрузка сервера
-[**install_server**](ServersApi.md#install_server) | **POST** /api/v1/servers/{server_id}/install | Установка сервера
 [**perform_action_on_backup**](ServersApi.md#perform_action_on_backup) | **POST** /api/v1/servers/{server_id}/disks/{disk_id}/backups/{backup_id}/action | Выполнение действия над бэкапом диска сервера
 [**perform_action_on_server**](ServersApi.md#perform_action_on_server) | **POST** /api/v1/servers/{server_id}/action | Выполнение действия над сервером
 [**reboot_server**](ServersApi.md#reboot_server) | **POST** /api/v1/servers/{server_id}/reboot | Перезагрузка сервера
@@ -2116,85 +2115,6 @@ void (empty response body)
 **400** |  |  -  |
 **401** |  |  -  |
 **404** |  |  -  |
-**429** |  |  -  |
-**500** |  |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **install_server**
-> install_server(server_id)
-
-Установка сервера
-
-Чтобы установить сервер, отправьте POST-запрос на `/api/v1/servers/{server_id}/install`.
-
-### Example
-
-* Bearer (JWT) Authentication (Bearer):
-```python
-import time
-import os
-import timeweb_cloud_api
-from timeweb_cloud_api.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to https://api.timeweb.cloud
-# See configuration.py for a list of all supported configuration parameters.
-configuration = timeweb_cloud_api.Configuration(
-    host = "https://api.timeweb.cloud"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure Bearer authorization (JWT): Bearer
-configuration = timeweb_cloud_api.Configuration(
-    access_token = os.environ["BEARER_TOKEN"]
-)
-
-# Enter a context with an instance of the API client
-with timeweb_cloud_api.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = timeweb_cloud_api.ServersApi(api_client)
-    server_id = 1051 # object | Уникальный идентификатор облачного сервера.
-
-    try:
-        # Установка сервера
-        api_instance.install_server(server_id)
-    except Exception as e:
-        print("Exception when calling ServersApi->install_server: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **server_id** | [**object**](.md)| Уникальный идентификатор облачного сервера. | 
-
-### Return type
-
-void (empty response body)
-
-### Authorization
-
-[Bearer](../README.md#Bearer)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**204** | Успешное выполнение действия |  -  |
-**400** |  |  -  |
-**401** |  |  -  |
-**403** |  |  -  |
-**409** |  |  -  |
 **429** |  |  -  |
 **500** |  |  -  |
 
