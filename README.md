@@ -257,6 +257,27 @@ Class | Method | HTTP request | Description
 *AccountApi* | [**update_auth_restrictions_by_countries**](docs/AccountApi.md#update_auth_restrictions_by_countries) | **POST** /api/v1/auth/access/countries/enabled | Включение/отключение ограничений по стране
 *AccountApi* | [**update_auth_restrictions_by_ip**](docs/AccountApi.md#update_auth_restrictions_by_ip) | **POST** /api/v1/auth/access/ips/enabled | Включение/отключение ограничений по IP-адресу
 *AccountApi* | [**update_notification_settings**](docs/AccountApi.md#update_notification_settings) | **PATCH** /api/v1/account/notification-settings | Изменение настроек уведомлений аккаунта
+*AppsApi* | [**add_provider**](docs/AppsApi.md#add_provider) | **POST** /api/v1/vcs-provider | Привязка vcs провайдера
+*AppsApi* | [**create_app**](docs/AppsApi.md#create_app) | **POST** /api/v1/apps | Создание приложения
+*AppsApi* | [**create_deploy**](docs/AppsApi.md#create_deploy) | **POST** /api/v1/apps/{app_id}/deploy | Запуск деплоя приложения
+*AppsApi* | [**delete_app**](docs/AppsApi.md#delete_app) | **DELETE** /api/v1/apps/{app_id} | Удаление приложения
+*AppsApi* | [**delete_provider**](docs/AppsApi.md#delete_provider) | **DELETE** /api/v1/vcs-provider/{provider_id} | Отвязка vcs провайдера от аккаунта
+*AppsApi* | [**deploy_action**](docs/AppsApi.md#deploy_action) | **POST** /api/v1/apps/{app_id}/deploy/{deploy_id}/stop | Остановка деплоя приложения
+*AppsApi* | [**get_app**](docs/AppsApi.md#get_app) | **GET** /api/v1/apps/{app_id} | Получение приложения по id
+*AppsApi* | [**get_app_deploys**](docs/AppsApi.md#get_app_deploys) | **GET** /api/v1/apps/{app_id}/deploys | Получение списка деплоев приложения
+*AppsApi* | [**get_app_logs**](docs/AppsApi.md#get_app_logs) | **GET** /api/v1/apps/{app_id}/logs | Получение логов приложения
+*AppsApi* | [**get_app_statistics**](docs/AppsApi.md#get_app_statistics) | **GET** /api/v1/apps/{app_id}/statistics | Получение статистики приложения
+*AppsApi* | [**get_apps**](docs/AppsApi.md#get_apps) | **GET** /api/v1/apps | Получение списка приложений
+*AppsApi* | [**get_apps_presets**](docs/AppsApi.md#get_apps_presets) | **GET** /api/v1/presets/apps | Получение списка доступных тарифов для приложения
+*AppsApi* | [**get_branches**](docs/AppsApi.md#get_branches) | **GET** /api/v1/vcs-provider/{provider_id}/repository/{repository_id} | Получение списка веток репозитория
+*AppsApi* | [**get_commits**](docs/AppsApi.md#get_commits) | **GET** /api/v1/vcs-provider/{provider_id}/repository/{repository_id}/branch | Получение списка коммитов ветки репозитория
+*AppsApi* | [**get_deploy_logs**](docs/AppsApi.md#get_deploy_logs) | **GET** /api/v1/apps/{app_id}/deploy/{deploy_id}/logs | Получение логов деплоя приложения
+*AppsApi* | [**get_deploy_settings**](docs/AppsApi.md#get_deploy_settings) | **GET** /api/v1/deploy-settings/apps | Получение списка дефолтных настроек деплоя для приложения
+*AppsApi* | [**get_frameworks**](docs/AppsApi.md#get_frameworks) | **GET** /api/v1/frameworks/apps | Получение списка доступных фреймворков для приложения
+*AppsApi* | [**get_providers**](docs/AppsApi.md#get_providers) | **GET** /api/v1/vcs-provider | Получение списка vcs провайдеров
+*AppsApi* | [**get_repositories**](docs/AppsApi.md#get_repositories) | **GET** /api/v1/vcs-provider/{provider_id} | Получение списка репозиториев vcs провайдера
+*AppsApi* | [**update_app_settings**](docs/AppsApi.md#update_app_settings) | **PATCH** /api/v1/apps/{app_id} | Изменение настроек приложения
+*AppsApi* | [**update_app_state**](docs/AppsApi.md#update_app_state) | **PATCH** /api/v1/apps/{app_id}/action/{action} | Изменение состояния приложения
 *BalancersApi* | [**add_ips_to_balancer**](docs/BalancersApi.md#add_ips_to_balancer) | **POST** /api/v1/balancers/{balancer_id}/ips | Добавление IP-адресов к балансировщику
 *BalancersApi* | [**create_balancer**](docs/BalancersApi.md#create_balancer) | **POST** /api/v1/balancers | Создание бaлансировщика
 *BalancersApi* | [**create_balancer_rule**](docs/BalancersApi.md#create_balancer_rule) | **POST** /api/v1/balancers/{balancer_id}/rules | Создание правила для балансировщика
@@ -490,17 +511,22 @@ Class | Method | HTTP request | Description
 
  - [AddBalancerToProject200Response](docs/AddBalancerToProject200Response.md)
  - [AddBalancerToProjectRequest](docs/AddBalancerToProjectRequest.md)
+ - [AddBitbucket](docs/AddBitbucket.md)
  - [AddClusterToProjectRequest](docs/AddClusterToProjectRequest.md)
  - [AddCountries](docs/AddCountries.md)
  - [AddCountriesToAllowedList201Response](docs/AddCountriesToAllowedList201Response.md)
  - [AddCountriesToAllowedListRequest](docs/AddCountriesToAllowedListRequest.md)
  - [AddDatabaseToProjectRequest](docs/AddDatabaseToProjectRequest.md)
  - [AddDedicatedServerToProjectRequest](docs/AddDedicatedServerToProjectRequest.md)
+ - [AddGit](docs/AddGit.md)
+ - [AddGithub](docs/AddGithub.md)
+ - [AddGitlab](docs/AddGitlab.md)
  - [AddIPsToAllowedList201Response](docs/AddIPsToAllowedList201Response.md)
  - [AddIPsToAllowedListRequest](docs/AddIPsToAllowedListRequest.md)
  - [AddIPsToBalancerRequest](docs/AddIPsToBalancerRequest.md)
  - [AddIps](docs/AddIps.md)
  - [AddKeyToServerRequest](docs/AddKeyToServerRequest.md)
+ - [AddProvider201Response](docs/AddProvider201Response.md)
  - [AddServerIP201Response](docs/AddServerIP201Response.md)
  - [AddServerIPRequest](docs/AddServerIPRequest.md)
  - [AddServerToProjectRequest](docs/AddServerToProjectRequest.md)
@@ -511,15 +537,22 @@ Class | Method | HTTP request | Description
  - [AddSubdomain201Response](docs/AddSubdomain201Response.md)
  - [AddedSubdomain](docs/AddedSubdomain.md)
  - [ApiKey](docs/ApiKey.md)
+ - [App](docs/App.md)
+ - [AppConfiguration](docs/AppConfiguration.md)
+ - [AppDiskStatus](docs/AppDiskStatus.md)
+ - [AppProvider](docs/AppProvider.md)
+ - [AppsPresets](docs/AppsPresets.md)
  - [AutoBackup](docs/AutoBackup.md)
  - [AutoReplyIsDisabled](docs/AutoReplyIsDisabled.md)
  - [AutoReplyIsEnabled](docs/AutoReplyIsEnabled.md)
  - [AvailabilityZone](docs/AvailabilityZone.md)
+ - [AvailableFrameworks](docs/AvailableFrameworks.md)
  - [Backup](docs/Backup.md)
  - [Balancer](docs/Balancer.md)
  - [BaseError](docs/BaseError.md)
  - [BindFloatingIp](docs/BindFloatingIp.md)
  - [Bonus](docs/Bonus.md)
+ - [Branch](docs/Branch.md)
  - [Bucket](docs/Bucket.md)
  - [BucketDiskStats](docs/BucketDiskStats.md)
  - [BucketUser](docs/BucketUser.md)
@@ -530,10 +563,13 @@ Class | Method | HTTP request | Description
  - [ClusterResponse](docs/ClusterResponse.md)
  - [Clusterk8s](docs/Clusterk8s.md)
  - [ClustersResponse](docs/ClustersResponse.md)
+ - [Commit](docs/Commit.md)
  - [ConfigParameters](docs/ConfigParameters.md)
  - [CopyStorageFileRequest](docs/CopyStorageFileRequest.md)
  - [CreateAdmin](docs/CreateAdmin.md)
  - [CreateApiKey](docs/CreateApiKey.md)
+ - [CreateApp](docs/CreateApp.md)
+ - [CreateApp201Response](docs/CreateApp201Response.md)
  - [CreateBalancer](docs/CreateBalancer.md)
  - [CreateBalancer200Response](docs/CreateBalancer200Response.md)
  - [CreateBalancerRule200Response](docs/CreateBalancerRule200Response.md)
@@ -549,6 +585,8 @@ Class | Method | HTTP request | Description
  - [CreateDbAutoBackups](docs/CreateDbAutoBackups.md)
  - [CreateDedicatedServer](docs/CreateDedicatedServer.md)
  - [CreateDedicatedServer201Response](docs/CreateDedicatedServer201Response.md)
+ - [CreateDeploy201Response](docs/CreateDeploy201Response.md)
+ - [CreateDeployRequest](docs/CreateDeployRequest.md)
  - [CreateDns](docs/CreateDns.md)
  - [CreateDomainDNSRecord201Response](docs/CreateDomainDNSRecord201Response.md)
  - [CreateDomainMailbox201Response](docs/CreateDomainMailbox201Response.md)
@@ -603,6 +641,8 @@ Class | Method | HTTP request | Description
  - [DeleteServiceResponse](docs/DeleteServiceResponse.md)
  - [DeleteStorage200Response](docs/DeleteStorage200Response.md)
  - [DeleteStorageFileRequest](docs/DeleteStorageFileRequest.md)
+ - [Deploy](docs/Deploy.md)
+ - [DeployStatus](docs/DeployStatus.md)
  - [DnsRecord](docs/DnsRecord.md)
  - [DnsRecordData](docs/DnsRecordData.md)
  - [Domain](docs/Domain.md)
@@ -634,15 +674,22 @@ Class | Method | HTTP request | Description
  - [ForwardingIncomingIsEnabled](docs/ForwardingIncomingIsEnabled.md)
  - [ForwardingOutgoingIsDisabled](docs/ForwardingOutgoingIsDisabled.md)
  - [ForwardingOutgoingIsEnabled](docs/ForwardingOutgoingIsEnabled.md)
+ - [Frameworks](docs/Frameworks.md)
  - [Free](docs/Free.md)
  - [GetAccountStatus200Response](docs/GetAccountStatus200Response.md)
  - [GetAllProjectResources200Response](docs/GetAllProjectResources200Response.md)
+ - [GetApp200Response](docs/GetApp200Response.md)
+ - [GetAppDeploys200Response](docs/GetAppDeploys200Response.md)
+ - [GetAppLogs200Response](docs/GetAppLogs200Response.md)
+ - [GetApps200Response](docs/GetApps200Response.md)
  - [GetAuthAccessSettings200Response](docs/GetAuthAccessSettings200Response.md)
  - [GetAuthAccessSettings200ResponseWhiteList](docs/GetAuthAccessSettings200ResponseWhiteList.md)
  - [GetBalancerIPs200Response](docs/GetBalancerIPs200Response.md)
  - [GetBalancerRules200Response](docs/GetBalancerRules200Response.md)
  - [GetBalancers200Response](docs/GetBalancers200Response.md)
  - [GetBalancersPresets200Response](docs/GetBalancersPresets200Response.md)
+ - [GetBranches200Response](docs/GetBranches200Response.md)
+ - [GetCommits200Response](docs/GetCommits200Response.md)
  - [GetConfigurators200Response](docs/GetConfigurators200Response.md)
  - [GetCountries200Response](docs/GetCountries200Response.md)
  - [GetDatabaseAutoBackupsSettings200Response](docs/GetDatabaseAutoBackupsSettings200Response.md)
@@ -656,6 +703,8 @@ Class | Method | HTTP request | Description
  - [GetDedicatedServerPresetAdditionalServices200Response](docs/GetDedicatedServerPresetAdditionalServices200Response.md)
  - [GetDedicatedServers200Response](docs/GetDedicatedServers200Response.md)
  - [GetDedicatedServersPresets200Response](docs/GetDedicatedServersPresets200Response.md)
+ - [GetDeployLogs200Response](docs/GetDeployLogs200Response.md)
+ - [GetDeploySettings200Response](docs/GetDeploySettings200Response.md)
  - [GetDomain200Response](docs/GetDomain200Response.md)
  - [GetDomainDNSRecords200Response](docs/GetDomainDNSRecords200Response.md)
  - [GetDomainMailInfo200Response](docs/GetDomainMailInfo200Response.md)
@@ -675,6 +724,8 @@ Class | Method | HTTP request | Description
  - [GetProjectDatabases200Response](docs/GetProjectDatabases200Response.md)
  - [GetProjectStorages200Response](docs/GetProjectStorages200Response.md)
  - [GetProjects200Response](docs/GetProjects200Response.md)
+ - [GetProviders200Response](docs/GetProviders200Response.md)
+ - [GetRepositories200Response](docs/GetRepositories200Response.md)
  - [GetServerDiskAutoBackupSettings200Response](docs/GetServerDiskAutoBackupSettings200Response.md)
  - [GetServerDiskBackup200Response](docs/GetServerDiskBackup200Response.md)
  - [GetServerDiskBackups200Response](docs/GetServerDiskBackups200Response.md)
@@ -741,11 +792,14 @@ Class | Method | HTTP request | Description
  - [PresetsStorage](docs/PresetsStorage.md)
  - [Project](docs/Project.md)
  - [ProjectResource](docs/ProjectResource.md)
+ - [Provider](docs/Provider.md)
+ - [Providers](docs/Providers.md)
  - [Quota](docs/Quota.md)
  - [RefreshApiKey](docs/RefreshApiKey.md)
  - [RemoveCountries](docs/RemoveCountries.md)
  - [RemoveIps](docs/RemoveIps.md)
  - [RenameStorageFileRequest](docs/RenameStorageFileRequest.md)
+ - [Repository](docs/Repository.md)
  - [Resource](docs/Resource.md)
  - [ResourceTransfer](docs/ResourceTransfer.md)
  - [ResourceType](docs/ResourceType.md)
@@ -779,6 +833,7 @@ Class | Method | HTTP request | Description
  - [TransferStorageRequest](docs/TransferStorageRequest.md)
  - [URLType](docs/URLType.md)
  - [UpdateAdmin](docs/UpdateAdmin.md)
+ - [UpdateAppSettings200Response](docs/UpdateAppSettings200Response.md)
  - [UpdateAuthRestrictionsByCountriesRequest](docs/UpdateAuthRestrictionsByCountriesRequest.md)
  - [UpdateBalancer](docs/UpdateBalancer.md)
  - [UpdateCluster](docs/UpdateCluster.md)
@@ -808,6 +863,7 @@ Class | Method | HTTP request | Description
  - [UpdateStorageUserRequest](docs/UpdateStorageUserRequest.md)
  - [UpdateToken200Response](docs/UpdateToken200Response.md)
  - [UpdateVpc](docs/UpdateVpc.md)
+ - [UpdeteSettings](docs/UpdeteSettings.md)
  - [UploadSuccessful](docs/UploadSuccessful.md)
  - [UploadSuccessfulResponse](docs/UploadSuccessfulResponse.md)
  - [UrlStatus](docs/UrlStatus.md)

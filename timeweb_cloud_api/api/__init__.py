@@ -3,6 +3,7 @@
 # import apis into api package
 from timeweb_cloud_api.api.api_keys_api import APIKeysApi
 from timeweb_cloud_api.api.account_api import AccountApi
+from timeweb_cloud_api.api.apps_api import AppsApi
 from timeweb_cloud_api.api.balancers_api import BalancersApi
 from timeweb_cloud_api.api.databases_api import DatabasesApi
 from timeweb_cloud_api.api.dedicated_servers_api import DedicatedServersApi
