@@ -52,7 +52,7 @@ class TestCreateApp(unittest.TestCase):
                 preset_id = 42, 
                 env_version = 18, 
                 framework = django, 
-                index_dir = dist, 
+                index_dir = /dist, 
                 run_cmd = npm start
             )
         else :

@@ -218,7 +218,6 @@ from timeweb_cloud_api.models.frameworks import Frameworks
 from timeweb_cloud_api.models.free import Free
 from timeweb_cloud_api.models.get_account_status200_response import GetAccountStatus200Response
 from timeweb_cloud_api.models.get_all_project_resources200_response import GetAllProjectResources200Response
-from timeweb_cloud_api.models.get_app200_response import GetApp200Response
 from timeweb_cloud_api.models.get_app_deploys200_response import GetAppDeploys200Response
 from timeweb_cloud_api.models.get_app_logs200_response import GetAppLogs200Response
 from timeweb_cloud_api.models.get_apps200_response import GetApps200Response

@@ -33,8 +33,8 @@ class UpdeteSettings(BaseModel):
     branch_name: Optional[Any] = Field(None, description="Название ветки репозитория из которой необходимо собрать приложение.")
     commit_sha: Optional[Any] = Field(None, description="Хэш коммита.")
     env_version: Optional[Any] = Field(None, description="Версия окружения.")
-    index_dir: Optional[Any] = Field(None, description="Директория с индексным файлом. Обязателен для приложений `type: frontend`. Не используется для приложений `type: backend`.")
-    run_cmd: Optional[Any] = Field(None, description="Команда для запуска приложения. Обязателен для приложений `type: backend`. Не используется для приложений `type: frontend`.")
+    index_dir: Optional[Any] = Field(None, description="Путь к директории с индексным файлом. Используется для приложений `type: frontend`. Не используется для приложений `type: backend`. Значение всегда должно начинаться с `/`.")
+    run_cmd: Optional[Any] = Field(None, description="Команда для запуска приложения. Используется для приложений `type: backend`. Не используется для приложений `type: frontend`.")
     framework: Optional[Frameworks] = None
     name: Optional[Any] = Field(None, description="Имя приложения.")
     comment: Optional[Any] = Field(None, description="Комментарий к приложения.")

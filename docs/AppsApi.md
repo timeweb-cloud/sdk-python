@@ -521,7 +521,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_app**
-> GetApp200Response get_app(app_id)
+> CreateApp201Response get_app(app_id)
 
 Получение приложения по id
 
@@ -534,7 +534,7 @@ Name | Type | Description  | Notes
 import time
 import os
 import timeweb_cloud_api
-from timeweb_cloud_api.models.get_app200_response import GetApp200Response
+from timeweb_cloud_api.models.create_app201_response import CreateApp201Response
 from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
@@ -578,7 +578,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetApp200Response**](GetApp200Response.md)
+[**CreateApp201Response**](CreateApp201Response.md)
 
 ### Authorization
 

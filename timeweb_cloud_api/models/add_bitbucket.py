@@ -28,7 +28,7 @@ class AddBitbucket(BaseModel):
     """
     provider_type: Optional[Any] = Field(..., description="Тип провайдера.")
     provider_token: Optional[Any] = Field(..., description="Токен доступа. <br> Для Bitbucket необходимо использовать 'App password'. Инструкции по созданию можно найти в <a target='_blank' href='https://support.atlassian.com/bitbucket-cloud/docs/create-an-app-password/'>документации Bitbucket</a>. <br> Установите следующие разрешения: `Account: Read`, `Projects: Read`, `Repositories: Read`, `Webhooks: Read and write`")
-    login: Optional[Any] = Field(..., description="Логин пользователя BitBucket.")
+    login: Optional[Any] = Field(..., description="Логин пользователя Bitbucket.")
     __properties = ["provider_type", "provider_token", "login"]
 
     @validator('provider_type')

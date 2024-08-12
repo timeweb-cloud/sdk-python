@@ -24,10 +24,10 @@ from pydantic import BaseModel, Field, validator
 
 class AddGitlab(BaseModel):
     """
-    Добавление аккаунта gitlab
+    Добавление аккаунта GitLab
     """
     provider_type: Optional[Any] = Field(..., description="Тип провайдера.")
-    provider_token: Optional[Any] = Field(..., description="Токен доступа. <br> Для Gitlab необходимо использовать персональный токен доступа. Инструкции по созданию можно найти в <a target='_blank' href='https://docs.gitlab.com/ee/user/profile/personal_access_tokens.html#create-a-personal-access-token'>документации GitLab</a>. <br> Установите следующие разрешения: `api`")
+    provider_token: Optional[Any] = Field(..., description="Токен доступа. <br> Для GitLab необходимо использовать персональный токен доступа. Инструкции по созданию можно найти в <a target='_blank' href='https://docs.GitLab.com/ee/user/profile/personal_access_tokens.html#create-a-personal-access-token'>документации GitLab</a>. <br> Установите следующие разрешения: `api`")
     __properties = ["provider_type", "provider_token"]
 
     @validator('provider_type')
@@ -36,8 +36,8 @@ class AddGitlab(BaseModel):
         if value is None:
             return value
 
-        if value not in ('gitlab'):
-            raise ValueError("must be one of enum values ('gitlab')")
+        if value not in ('Gitlab'):
+            raise ValueError("must be one of enum values ('Gitlab')")
         return value
 
     class Config:

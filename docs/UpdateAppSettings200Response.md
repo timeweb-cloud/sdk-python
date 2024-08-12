@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**app** | **object** |  | 
+**app** | [**App**](App.md) |  | 
 **meta** | [**Meta**](Meta.md) |  | 
 
 ## Example

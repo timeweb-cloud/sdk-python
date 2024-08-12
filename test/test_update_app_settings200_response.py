@@ -39,13 +39,95 @@ class TestUpdateAppSettings200Response(unittest.TestCase):
         model = timeweb_cloud_api.models.update_app_settings200_response.UpdateAppSettings200Response()  # noqa: E501
         if include_optional :
             return UpdateAppSettings200Response(
-                app = None, 
+                app = timeweb_cloud_api.models.app.app(
+                    id = 1, 
+                    type = backend, 
+                    name = app_example, 
+                    status = active, 
+                    provider = timeweb_cloud_api.models.app_provider.app_provider(
+                        id = 826e9a9d-40cd-49b1-b547-0c439834498b, 
+                        type = github, ), 
+                    ip = 165.23.54.161., 
+                    domains = null, 
+                    framework = django, 
+                    location = ru-1, 
+                    repository = timeweb_cloud_api.models.repository.repository(
+                        id = eb4e1796-78ce-4232-a824-3c3f4dfaf98f, 
+                        name = app-example-express, 
+                        full_name = example-repo/app-example-express, 
+                        url = https://github.com/example-repo/app-example-express, 
+                        is_private = false, 
+                        is_allowed_webhook = true, ), 
+                    env_version = 18, 
+                    envs = {NODE_ENV=production}, 
+                    branch_name = master, 
+                    is_auto_deploy = true, 
+                    commit_sha = 7d3a6dcca79d2c29e3fe7456ca1598e70d484d7c, 
+                    comment = example comment, 
+                    preset_id = 42, 
+                    index_dir = dist, 
+                    build_cmd = npm run build, 
+                    run_cmd = npm start, 
+                    configuration = timeweb_cloud_api.models.app_configuration.app_configuration(
+                        cpu = 1, 
+                        ram = 1024, 
+                        network_bandwidth = 1000, 
+                        cpu_frequency = 3.3, 
+                        disk_type = nvme, ), 
+                    disk_status = timeweb_cloud_api.models.app_disk_status.app_disk_status(
+                        used = 4509, 
+                        size = 15360, 
+                        disk_id = 19769639, ), 
+                    is_qemu_agent = true, 
+                    language = node, 
+                    start_time = 2024-07-24T10:38:44.000Z, ), 
                 meta = timeweb_cloud_api.models.meta.meta(
                     total = 10, )
             )
         else :
             return UpdateAppSettings200Response(
-                app = None,
+                app = timeweb_cloud_api.models.app.app(
+                    id = 1, 
+                    type = backend, 
+                    name = app_example, 
+                    status = active, 
+                    provider = timeweb_cloud_api.models.app_provider.app_provider(
+                        id = 826e9a9d-40cd-49b1-b547-0c439834498b, 
+                        type = github, ), 
+                    ip = 165.23.54.161., 
+                    domains = null, 
+                    framework = django, 
+                    location = ru-1, 
+                    repository = timeweb_cloud_api.models.repository.repository(
+                        id = eb4e1796-78ce-4232-a824-3c3f4dfaf98f, 
+                        name = app-example-express, 
+                        full_name = example-repo/app-example-express, 
+                        url = https://github.com/example-repo/app-example-express, 
+                        is_private = false, 
+                        is_allowed_webhook = true, ), 
+                    env_version = 18, 
+                    envs = {NODE_ENV=production}, 
+                    branch_name = master, 
+                    is_auto_deploy = true, 
+                    commit_sha = 7d3a6dcca79d2c29e3fe7456ca1598e70d484d7c, 
+                    comment = example comment, 
+                    preset_id = 42, 
+                    index_dir = dist, 
+                    build_cmd = npm run build, 
+                    run_cmd = npm start, 
+                    configuration = timeweb_cloud_api.models.app_configuration.app_configuration(
+                        cpu = 1, 
+                        ram = 1024, 
+                        network_bandwidth = 1000, 
+                        cpu_frequency = 3.3, 
+                        disk_type = nvme, ), 
+                    disk_status = timeweb_cloud_api.models.app_disk_status.app_disk_status(
+                        used = 4509, 
+                        size = 15360, 
+                        disk_id = 19769639, ), 
+                    is_qemu_agent = true, 
+                    language = node, 
+                    start_time = 2024-07-24T10:38:44.000Z, ),
                 meta = timeweb_cloud_api.models.meta.meta(
                     total = 10, ),
         )

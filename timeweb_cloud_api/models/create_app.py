@@ -40,7 +40,7 @@ class CreateApp(BaseModel):
     preset_id: Optional[Any] = Field(..., description="Идентификатор тарифа.")
     env_version: Optional[Any] = Field(None, description="Версия окружения.")
     framework: Frameworks = Field(...)
-    index_dir: Optional[Any] = Field(None, description="Директория с индексным файлом. Обязателен для приложений `type: frontend`. Не используется для приложений `type: backend`. Должно начинаться с `/`.")
+    index_dir: Optional[Any] = Field(None, description="Путь к директории с индексным файлом. Обязателен для приложений `type: frontend`. Не используется для приложений `type: backend`. Значение всегда должно начинаться с `/`.")
     run_cmd: Optional[Any] = Field(None, description="Команда для запуска приложения. Обязателен для приложений `type: backend`. Не используется для приложений `type: frontend`.")
     __properties = ["provider_id", "type", "repository_id", "build_cmd", "envs", "branch_name", "is_auto_deploy", "commit_sha", "name", "comment", "preset_id", "env_version", "framework", "index_dir", "run_cmd"]
 

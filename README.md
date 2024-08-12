@@ -678,7 +678,6 @@ Class | Method | HTTP request | Description
  - [Free](docs/Free.md)
  - [GetAccountStatus200Response](docs/GetAccountStatus200Response.md)
  - [GetAllProjectResources200Response](docs/GetAllProjectResources200Response.md)
- - [GetApp200Response](docs/GetApp200Response.md)
  - [GetAppDeploys200Response](docs/GetAppDeploys200Response.md)
  - [GetAppLogs200Response](docs/GetAppLogs200Response.md)
  - [GetApps200Response](docs/GetApps200Response.md)

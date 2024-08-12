@@ -182,7 +182,6 @@ docs/Frameworks.md
 docs/Free.md
 docs/GetAccountStatus200Response.md
 docs/GetAllProjectResources200Response.md
-docs/GetApp200Response.md
 docs/GetAppDeploys200Response.md
 docs/GetAppLogs200Response.md
 docs/GetApps200Response.md
@@ -575,7 +574,6 @@ test/test_frameworks.py
 test/test_free.py
 test/test_get_account_status200_response.py
 test/test_get_all_project_resources200_response.py
-test/test_get_app200_response.py
 test/test_get_app_deploys200_response.py
 test/test_get_app_logs200_response.py
 test/test_get_apps200_response.py
@@ -977,7 +975,6 @@ timeweb_cloud_api/models/frameworks.py
 timeweb_cloud_api/models/free.py
 timeweb_cloud_api/models/get_account_status200_response.py
 timeweb_cloud_api/models/get_all_project_resources200_response.py
-timeweb_cloud_api/models/get_app200_response.py
 timeweb_cloud_api/models/get_app_deploys200_response.py
 timeweb_cloud_api/models/get_app_logs200_response.py
 timeweb_cloud_api/models/get_apps200_response.py

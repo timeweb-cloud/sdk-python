@@ -24,10 +24,10 @@ from pydantic import BaseModel, Field, validator
 
 class AddGithub(BaseModel):
     """
-    Добавление аккаунта github
+    Добавление аккаунта GitHub
     """
     provider_type: Optional[Any] = Field(..., description="Тип провайдера.")
-    provider_token: Optional[Any] = Field(..., description="Токен доступа. <br> Для GitHub необходимо использовать 'Fine-grained personal access token'. Инструкции по созданию можно найти в <a target='_blank' href='https://docs.github.com/ru/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-fine-grained-personal-access-token'>документации GitHub</a>. <br> Выберите репозитории, к которым хотите предоставить доступ, и установите следующие разрешения: `Webhooks: read and write`, `Contents: read-only`.")
+    provider_token: Optional[Any] = Field(..., description="Токен доступа. <br> Для GitHub необходимо использовать 'Fine-grained personal access token'. Инструкции по созданию можно найти в <a target='_blank' href='https://docs.GitHub.com/ru/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-fine-grained-personal-access-token'>документации GitHub</a>. <br> Выберите репозитории, к которым хотите предоставить доступ, и установите следующие разрешения: `Webhooks: read and write`, `Contents: read-only`.")
     __properties = ["provider_type", "provider_token"]
 
     @validator('provider_type')
@@ -36,8 +36,8 @@ class AddGithub(BaseModel):
         if value is None:
             return value
 
-        if value not in ('github'):
-            raise ValueError("must be one of enum values ('github')")
+        if value not in ('Github'):
+            raise ValueError("must be one of enum values ('Github')")
         return value
 
     class Config:

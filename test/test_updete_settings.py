@@ -45,7 +45,7 @@ class TestUpdeteSettings(unittest.TestCase):
                 branch_name = master, 
                 commit_sha = 7d3a6dcca79d2c29e3fe7456ca1598e70d484d7c, 
                 env_version = 18, 
-                index_dir = dist, 
+                index_dir = /dist, 
                 run_cmd = npm start, 
                 framework = django, 
                 name = app_example, 

@@ -39,12 +39,12 @@ class TestAddGithub(unittest.TestCase):
         model = timeweb_cloud_api.models.add_github.AddGithub()  # noqa: E501
         if include_optional :
             return AddGithub(
-                provider_type = github, 
+                provider_type = GitHub, 
                 provider_token = None
             )
         else :
             return AddGithub(
-                provider_type = github,
+                provider_type = GitHub,
                 provider_token = None,
         )
         """

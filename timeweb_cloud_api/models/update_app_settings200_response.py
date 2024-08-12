@@ -19,15 +19,16 @@ import re  # noqa: F401
 import json
 
 
-from typing import Any, Optional
+
 from pydantic import BaseModel, Field
+from timeweb_cloud_api.models.app import App
 from timeweb_cloud_api.models.meta import Meta
 
 class UpdateAppSettings200Response(BaseModel):
     """
     UpdateAppSettings200Response
     """
-    app: Optional[Any] = Field(...)
+    app: App = Field(...)
     meta: Meta = Field(...)
     __properties = ["app", "meta"]
 
@@ -55,14 +56,12 @@ class UpdateAppSettings200Response(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
+        # override the default output from pydantic by calling `to_dict()` of app
+        if self.app:
+            _dict['app'] = self.app.to_dict()
         # override the default output from pydantic by calling `to_dict()` of meta
         if self.meta:
             _dict['meta'] = self.meta.to_dict()
-        # set to None if app (nullable) is None
-        # and __fields_set__ contains the field
-        if self.app is None and "app" in self.__fields_set__:
-            _dict['app'] = None
-
         return _dict
 
     @classmethod
@@ -75,7 +74,7 @@ class UpdateAppSettings200Response(BaseModel):
             return UpdateAppSettings200Response.parse_obj(obj)
 
         _obj = UpdateAppSettings200Response.parse_obj({
-            "app": obj.get("app"),
+            "app": App.from_dict(obj.get("app")) if obj.get("app") is not None else None,
             "meta": Meta.from_dict(obj.get("meta")) if obj.get("meta") is not None else None
         })
         return _obj

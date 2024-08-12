@@ -32,7 +32,6 @@ from timeweb_cloud_api.models.create_app import CreateApp
 from timeweb_cloud_api.models.create_app201_response import CreateApp201Response
 from timeweb_cloud_api.models.create_deploy201_response import CreateDeploy201Response
 from timeweb_cloud_api.models.create_deploy_request import CreateDeployRequest
-from timeweb_cloud_api.models.get_app200_response import GetApp200Response
 from timeweb_cloud_api.models.get_app_deploys200_response import GetAppDeploys200Response
 from timeweb_cloud_api.models.get_app_logs200_response import GetAppLogs200Response
 from timeweb_cloud_api.models.get_apps200_response import GetApps200Response
@@ -950,7 +949,7 @@ class AppsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def get_app(self, app_id : Any, **kwargs) -> GetApp200Response:  # noqa: E501
+    def get_app(self, app_id : Any, **kwargs) -> CreateApp201Response:  # noqa: E501
         """Получение приложения по id  # noqa: E501
 
         Чтобы получить приложение по id, отправьте GET-запрос на `/api/v1/apps/{app_id}`.  # noqa: E501
@@ -971,7 +970,7 @@ class AppsApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: GetApp200Response
+        :rtype: CreateApp201Response
         """
         kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
@@ -1013,7 +1012,7 @@ class AppsApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: tuple(GetApp200Response, status_code(int), headers(HTTPHeaderDict))
+        :rtype: tuple(CreateApp201Response, status_code(int), headers(HTTPHeaderDict))
         """
 
         _params = locals()
@@ -1068,7 +1067,7 @@ class AppsApi(object):
         _auth_settings = ['Bearer']  # noqa: E501
 
         _response_types_map = {
-            '200': "GetApp200Response",
+            '200': "CreateApp201Response",
             '400': None,
             '401': None,
             '403': None,
