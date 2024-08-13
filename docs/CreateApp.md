@@ -13,12 +13,12 @@ Name | Type | Description | Notes
 **is_auto_deploy** | **object** | Автоматический деплой. | 
 **commit_sha** | **object** | Хэш коммита из которого необходимо собрать приложение. | 
 **name** | **object** | Имя приложения. | 
-**comment** | **object** | Комментарий к приложения. | 
+**comment** | **object** | Комментарий к приложению. | 
 **preset_id** | **object** | Идентификатор тарифа. | 
 **env_version** | **object** | Версия окружения. | [optional] 
 **framework** | [**Frameworks**](Frameworks.md) |  | 
 **index_dir** | **object** | Путь к директории с индексным файлом. Обязателен для приложений &#x60;type: frontend&#x60;. Не используется для приложений &#x60;type: backend&#x60;. Значение всегда должно начинаться с &#x60;/&#x60;. | [optional] 
-**run_cmd** | **object** | Команда для запуска приложения. Обязателен для приложений &#x60;type: backend&#x60;. Не используется для приложений &#x60;type: frontend&#x60;. | [optional] 
+**run_cmd** | **object** | Команда для запуска приложения. Обязательна для приложений &#x60;type: backend&#x60;. Не используется для приложений &#x60;type: frontend&#x60;. | [optional] 
 
 ## Example
 

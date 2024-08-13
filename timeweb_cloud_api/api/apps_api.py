@@ -2169,7 +2169,7 @@ class AppsApi(object):
     def get_deploy_logs(self, app_id : Any, deploy_id : Any, debug : Annotated[Optional[Any], Field(description="Управляет выводом логов деплоя")] = None, **kwargs) -> GetDeployLogs200Response:  # noqa: E501
         """Получение логов деплоя приложения  # noqa: E501
 
-        Чтобы получить информацию о деплое, отправьте GET-запрос на `/app/{app_id}/deploy/{deploy_id}`.  # noqa: E501
+        Чтобы получить информацию о деплое, отправьте GET-запрос на `api/v1/apps/{app_id}/deploy/{deploy_id}/logs`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -2202,7 +2202,7 @@ class AppsApi(object):
     def get_deploy_logs_with_http_info(self, app_id : Any, deploy_id : Any, debug : Annotated[Optional[Any], Field(description="Управляет выводом логов деплоя")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Получение логов деплоя приложения  # noqa: E501
 
-        Чтобы получить информацию о деплое, отправьте GET-запрос на `/app/{app_id}/deploy/{deploy_id}`.  # noqa: E501
+        Чтобы получить информацию о деплое, отправьте GET-запрос на `api/v1/apps/{app_id}/deploy/{deploy_id}/logs`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 

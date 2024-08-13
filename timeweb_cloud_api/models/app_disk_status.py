@@ -24,7 +24,7 @@ from pydantic import BaseModel, Field
 
 class AppDiskStatus(BaseModel):
     """
-    Объект с конфигурацией диска. Определено для приложений `type: backend`.Для приложений `type: frontend` всегда null.
+    Объект с конфигурацией диска. Определен для приложений `type: backend`.Для приложений `type: frontend` всегда null.
     """
     used: Optional[Any] = Field(None, description="Использованное пространство диска.")
     size: Optional[Any] = Field(None, description="Размер диска.")

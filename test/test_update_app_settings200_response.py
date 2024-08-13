@@ -65,7 +65,7 @@ class TestUpdateAppSettings200Response(unittest.TestCase):
                     commit_sha = 7d3a6dcca79d2c29e3fe7456ca1598e70d484d7c, 
                     comment = example comment, 
                     preset_id = 42, 
-                    index_dir = dist, 
+                    index_dir = /dist, 
                     build_cmd = npm run build, 
                     run_cmd = npm start, 
                     configuration = timeweb_cloud_api.models.app_configuration.app_configuration(
@@ -112,7 +112,7 @@ class TestUpdateAppSettings200Response(unittest.TestCase):
                     commit_sha = 7d3a6dcca79d2c29e3fe7456ca1598e70d484d7c, 
                     comment = example comment, 
                     preset_id = 42, 
-                    index_dir = dist, 
+                    index_dir = /dist, 
                     build_cmd = npm run build, 
                     run_cmd = npm start, 
                     configuration = timeweb_cloud_api.models.app_configuration.app_configuration(

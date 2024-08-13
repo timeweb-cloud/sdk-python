@@ -36,12 +36,12 @@ class CreateApp(BaseModel):
     is_auto_deploy: Optional[Any] = Field(..., description="Автоматический деплой.")
     commit_sha: Optional[Any] = Field(..., description="Хэш коммита из которого необходимо собрать приложение.")
     name: Optional[Any] = Field(..., description="Имя приложения.")
-    comment: Optional[Any] = Field(..., description="Комментарий к приложения.")
+    comment: Optional[Any] = Field(..., description="Комментарий к приложению.")
     preset_id: Optional[Any] = Field(..., description="Идентификатор тарифа.")
     env_version: Optional[Any] = Field(None, description="Версия окружения.")
     framework: Frameworks = Field(...)
     index_dir: Optional[Any] = Field(None, description="Путь к директории с индексным файлом. Обязателен для приложений `type: frontend`. Не используется для приложений `type: backend`. Значение всегда должно начинаться с `/`.")
-    run_cmd: Optional[Any] = Field(None, description="Команда для запуска приложения. Обязателен для приложений `type: backend`. Не используется для приложений `type: frontend`.")
+    run_cmd: Optional[Any] = Field(None, description="Команда для запуска приложения. Обязательна для приложений `type: backend`. Не используется для приложений `type: frontend`.")
     __properties = ["provider_id", "type", "repository_id", "build_cmd", "envs", "branch_name", "is_auto_deploy", "commit_sha", "name", "comment", "preset_id", "env_version", "framework", "index_dir", "run_cmd"]
 
     @validator('type')

@@ -24,7 +24,7 @@ from pydantic import BaseModel, Field, validator
 
 class AppConfiguration(BaseModel):
     """
-    Объект с конфигурацией сервера. Определено для приложений `type: backend`.Для приложений `type: frontend` всегда null.
+    Объект с конфигурацией сервера. Определен для приложений `type: backend`.Для приложений `type: frontend` всегда null.
     """
     cpu: Optional[Any] = Field(None, description="Количество ядер процессора.")
     ram: Optional[Any] = Field(None, description="Объем оперативной памяти (в МБ).")

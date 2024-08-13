@@ -22,9 +22,9 @@ Name | Type | Description | Notes
 **commit_sha** | **object** | Хэш коммита из которого собрано приложеие. | 
 **comment** | **object** | Комментарий к приложению. | 
 **preset_id** | **object** | Идентификатор тарифа. | 
-**index_dir** | **object** | Директория с индексным файлом. Определено для приложений &#x60;type: frontend&#x60;. Для приложений &#x60;type: backend&#x60; всегда null. | 
+**index_dir** | **object** | Путь к директории с индексным файлом. Определен для приложений &#x60;type: frontend&#x60;. Для приложений &#x60;type: backend&#x60; всегда null. | 
 **build_cmd** | **object** | Команда сборки приложения. | 
-**run_cmd** | **object** | Команда для запуска приложения. Определено для приложений &#x60;type: backend&#x60;. Для приложений &#x60;type: frontend&#x60; всегда null. | 
+**run_cmd** | **object** | Команда для запуска приложения. Определена для приложений &#x60;type: backend&#x60;. Для приложений &#x60;type: frontend&#x60; всегда null. | 
 **configuration** | [**AppConfiguration**](AppConfiguration.md) |  | 
 **disk_status** | [**AppDiskStatus**](AppDiskStatus.md) |  | 
 **is_qemu_agent** | **object** | Включен ли агент QEMU. | 

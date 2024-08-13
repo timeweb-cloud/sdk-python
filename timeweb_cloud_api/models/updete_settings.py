@@ -37,7 +37,7 @@ class UpdeteSettings(BaseModel):
     run_cmd: Optional[Any] = Field(None, description="Команда для запуска приложения. Используется для приложений `type: backend`. Не используется для приложений `type: frontend`.")
     framework: Optional[Frameworks] = None
     name: Optional[Any] = Field(None, description="Имя приложения.")
-    comment: Optional[Any] = Field(None, description="Комментарий к приложения.")
+    comment: Optional[Any] = Field(None, description="Комментарий к приложению.")
     preset_id: Optional[Any] = Field(None, description="Идентификатор тарифа.")
     __properties = ["is_auto_deploy", "build_cmd", "envs", "branch_name", "commit_sha", "env_version", "index_dir", "run_cmd", "framework", "name", "comment", "preset_id"]
 

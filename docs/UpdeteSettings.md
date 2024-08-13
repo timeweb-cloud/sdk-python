@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **run_cmd** | **object** | Команда для запуска приложения. Используется для приложений &#x60;type: backend&#x60;. Не используется для приложений &#x60;type: frontend&#x60;. | [optional] 
 **framework** | [**Frameworks**](Frameworks.md) |  | [optional] 
 **name** | **object** | Имя приложения. | [optional] 
-**comment** | **object** | Комментарий к приложения. | [optional] 
+**comment** | **object** | Комментарий к приложению. | [optional] 
 **preset_id** | **object** | Идентификатор тарифа. | [optional] 
 
 ## Example
