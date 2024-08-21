@@ -66,7 +66,7 @@ class ProjectsApi(object):
 
     @validate_arguments
     def add_balancer_to_project(self, project_id : Annotated[Any, Field(..., description="Уникальный идентификатор проекта.")], add_balancer_to_project_request : AddBalancerToProjectRequest, **kwargs) -> AddBalancerToProject200Response:  # noqa: E501
-        """(Deprecated) Добавление балансировщика в проект  # noqa: E501
+        """Добавление балансировщика в проект  # noqa: E501
 
         Чтобы добавить балансировщик в проект, отправьте POST-запрос на `/api/v1/projects/{project_id}/resources/balancers`, задав необходимые атрибуты.  Балансировщик будет добавлен в указанный проект. Тело ответа будет содержать объект JSON с информацией о добавленном балансировщике.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -97,7 +97,7 @@ class ProjectsApi(object):
 
     @validate_arguments
     def add_balancer_to_project_with_http_info(self, project_id : Annotated[Any, Field(..., description="Уникальный идентификатор проекта.")], add_balancer_to_project_request : AddBalancerToProjectRequest, **kwargs) -> ApiResponse:  # noqa: E501
-        """(Deprecated) Добавление балансировщика в проект  # noqa: E501
+        """Добавление балансировщика в проект  # noqa: E501
 
         Чтобы добавить балансировщик в проект, отправьте POST-запрос на `/api/v1/projects/{project_id}/resources/balancers`, задав необходимые атрибуты.  Балансировщик будет добавлен в указанный проект. Тело ответа будет содержать объект JSON с информацией о добавленном балансировщике.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -134,8 +134,6 @@ class ProjectsApi(object):
                  returns the request thread.
         :rtype: tuple(AddBalancerToProject200Response, status_code(int), headers(HTTPHeaderDict))
         """
-
-        warnings.warn("POST /api/v1/projects/{project_id}/resources/balancers is deprecated.", DeprecationWarning)
 
         _params = locals()
 
@@ -227,7 +225,7 @@ class ProjectsApi(object):
 
     @validate_arguments
     def add_cluster_to_project(self, project_id : Annotated[Any, Field(..., description="Уникальный идентификатор проекта.")], add_cluster_to_project_request : AddClusterToProjectRequest, **kwargs) -> AddBalancerToProject200Response:  # noqa: E501
-        """(Deprecated) Добавление кластера в проект  # noqa: E501
+        """Добавление кластера в проект  # noqa: E501
 
         Чтобы добавить кластер в проект, отправьте POST-запрос на `/api/v1/projects/{project_id}/resources/clusters`, задав необходимые атрибуты.  Кластер будет добавлен в указанный проект. Тело ответа будет содержать объект JSON с информацией о добавленном кластере.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -258,7 +256,7 @@ class ProjectsApi(object):
 
     @validate_arguments
     def add_cluster_to_project_with_http_info(self, project_id : Annotated[Any, Field(..., description="Уникальный идентификатор проекта.")], add_cluster_to_project_request : AddClusterToProjectRequest, **kwargs) -> ApiResponse:  # noqa: E501
-        """(Deprecated) Добавление кластера в проект  # noqa: E501
+        """Добавление кластера в проект  # noqa: E501
 
         Чтобы добавить кластер в проект, отправьте POST-запрос на `/api/v1/projects/{project_id}/resources/clusters`, задав необходимые атрибуты.  Кластер будет добавлен в указанный проект. Тело ответа будет содержать объект JSON с информацией о добавленном кластере.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -295,8 +293,6 @@ class ProjectsApi(object):
                  returns the request thread.
         :rtype: tuple(AddBalancerToProject200Response, status_code(int), headers(HTTPHeaderDict))
         """
-
-        warnings.warn("POST /api/v1/projects/{project_id}/resources/clusters is deprecated.", DeprecationWarning)
 
         _params = locals()
 
@@ -388,7 +384,7 @@ class ProjectsApi(object):
 
     @validate_arguments
     def add_database_to_project(self, project_id : Annotated[Any, Field(..., description="Уникальный идентификатор проекта.")], add_database_to_project_request : AddDatabaseToProjectRequest, **kwargs) -> AddBalancerToProject200Response:  # noqa: E501
-        """(Deprecated) Добавление базы данных в проект  # noqa: E501
+        """Добавление базы данных в проект  # noqa: E501
 
         Чтобы добавить базу данных в проект, отправьте POST-запрос на `/api/v1/projects/{project_id}/resources/databases`, задав необходимые атрибуты.  База данных будет добавлена в указанный проект. Тело ответа будет содержать объект JSON с информацией о добавленной базе данных.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -419,7 +415,7 @@ class ProjectsApi(object):
 
     @validate_arguments
     def add_database_to_project_with_http_info(self, project_id : Annotated[Any, Field(..., description="Уникальный идентификатор проекта.")], add_database_to_project_request : AddDatabaseToProjectRequest, **kwargs) -> ApiResponse:  # noqa: E501
-        """(Deprecated) Добавление базы данных в проект  # noqa: E501
+        """Добавление базы данных в проект  # noqa: E501
 
         Чтобы добавить базу данных в проект, отправьте POST-запрос на `/api/v1/projects/{project_id}/resources/databases`, задав необходимые атрибуты.  База данных будет добавлена в указанный проект. Тело ответа будет содержать объект JSON с информацией о добавленной базе данных.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -456,8 +452,6 @@ class ProjectsApi(object):
                  returns the request thread.
         :rtype: tuple(AddBalancerToProject200Response, status_code(int), headers(HTTPHeaderDict))
         """
-
-        warnings.warn("POST /api/v1/projects/{project_id}/resources/databases is deprecated.", DeprecationWarning)
 
         _params = locals()
 
@@ -549,7 +543,7 @@ class ProjectsApi(object):
 
     @validate_arguments
     def add_dedicated_server_to_project(self, project_id : Annotated[Any, Field(..., description="Уникальный идентификатор проекта.")], add_dedicated_server_to_project_request : AddDedicatedServerToProjectRequest, **kwargs) -> AddBalancerToProject200Response:  # noqa: E501
-        """(Deprecated) Добавление выделенного сервера в проект  # noqa: E501
+        """Добавление выделенного сервера в проект  # noqa: E501
 
         Чтобы добавить выделенный сервер в проект, отправьте POST-запрос на `/api/v1/projects/{project_id}/resources/dedicated`, задав необходимые атрибуты.  Выделенный сервер будет добавлен в указанный проект. Тело ответа будет содержать объект JSON с информацией о добавленном выделенном сервере.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -580,7 +574,7 @@ class ProjectsApi(object):
 
     @validate_arguments
     def add_dedicated_server_to_project_with_http_info(self, project_id : Annotated[Any, Field(..., description="Уникальный идентификатор проекта.")], add_dedicated_server_to_project_request : AddDedicatedServerToProjectRequest, **kwargs) -> ApiResponse:  # noqa: E501
-        """(Deprecated) Добавление выделенного сервера в проект  # noqa: E501
+        """Добавление выделенного сервера в проект  # noqa: E501
 
         Чтобы добавить выделенный сервер в проект, отправьте POST-запрос на `/api/v1/projects/{project_id}/resources/dedicated`, задав необходимые атрибуты.  Выделенный сервер будет добавлен в указанный проект. Тело ответа будет содержать объект JSON с информацией о добавленном выделенном сервере.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -617,8 +611,6 @@ class ProjectsApi(object):
                  returns the request thread.
         :rtype: tuple(AddBalancerToProject200Response, status_code(int), headers(HTTPHeaderDict))
         """
-
-        warnings.warn("POST /api/v1/projects/{project_id}/resources/dedicated is deprecated.", DeprecationWarning)
 
         _params = locals()
 
@@ -710,7 +702,7 @@ class ProjectsApi(object):
 
     @validate_arguments
     def add_server_to_project(self, project_id : Annotated[Any, Field(..., description="Уникальный идентификатор проекта.")], add_server_to_project_request : AddServerToProjectRequest, **kwargs) -> AddBalancerToProject200Response:  # noqa: E501
-        """(Deprecated) Добавление сервера в проект  # noqa: E501
+        """Добавление сервера в проект  # noqa: E501
 
         Чтобы добавить сервер в проект, отправьте POST-запрос на `/api/v1/projects/{project_id}/resources/servers`, задав необходимые атрибуты.  Сервер будет добавлен в указанный проект. Тело ответа будет содержать объект JSON с информацией о добавленном сервере.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -741,7 +733,7 @@ class ProjectsApi(object):
 
     @validate_arguments
     def add_server_to_project_with_http_info(self, project_id : Annotated[Any, Field(..., description="Уникальный идентификатор проекта.")], add_server_to_project_request : AddServerToProjectRequest, **kwargs) -> ApiResponse:  # noqa: E501
-        """(Deprecated) Добавление сервера в проект  # noqa: E501
+        """Добавление сервера в проект  # noqa: E501
 
         Чтобы добавить сервер в проект, отправьте POST-запрос на `/api/v1/projects/{project_id}/resources/servers`, задав необходимые атрибуты.  Сервер будет добавлен в указанный проект. Тело ответа будет содержать объект JSON с информацией о добавленном сервере.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -778,8 +770,6 @@ class ProjectsApi(object):
                  returns the request thread.
         :rtype: tuple(AddBalancerToProject200Response, status_code(int), headers(HTTPHeaderDict))
         """
-
-        warnings.warn("POST /api/v1/projects/{project_id}/resources/servers is deprecated.", DeprecationWarning)
 
         _params = locals()
 
@@ -871,7 +861,7 @@ class ProjectsApi(object):
 
     @validate_arguments
     def add_storage_to_project(self, project_id : Annotated[Any, Field(..., description="Уникальный идентификатор проекта.")], add_storage_to_project_request : AddStorageToProjectRequest, **kwargs) -> AddBalancerToProject200Response:  # noqa: E501
-        """(Deprecated) Добавление хранилища в проект  # noqa: E501
+        """Добавление хранилища в проект  # noqa: E501
 
         Чтобы добавить хранилище в проект, отправьте POST-запрос на `/api/v1/projects/{project_id}/resources/buckets`, задав необходимые атрибуты.  Хранилище будет добавлено в указанный проект. Тело ответа будет содержать объект JSON с информацией о добавленном хранилище.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -902,7 +892,7 @@ class ProjectsApi(object):
 
     @validate_arguments
     def add_storage_to_project_with_http_info(self, project_id : Annotated[Any, Field(..., description="Уникальный идентификатор проекта.")], add_storage_to_project_request : AddStorageToProjectRequest, **kwargs) -> ApiResponse:  # noqa: E501
-        """(Deprecated) Добавление хранилища в проект  # noqa: E501
+        """Добавление хранилища в проект  # noqa: E501
 
         Чтобы добавить хранилище в проект, отправьте POST-запрос на `/api/v1/projects/{project_id}/resources/buckets`, задав необходимые атрибуты.  Хранилище будет добавлено в указанный проект. Тело ответа будет содержать объект JSON с информацией о добавленном хранилище.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -939,8 +929,6 @@ class ProjectsApi(object):
                  returns the request thread.
         :rtype: tuple(AddBalancerToProject200Response, status_code(int), headers(HTTPHeaderDict))
         """
-
-        warnings.warn("POST /api/v1/projects/{project_id}/resources/buckets is deprecated.", DeprecationWarning)
 
         _params = locals()
 
@@ -1315,7 +1303,7 @@ class ProjectsApi(object):
 
     @validate_arguments
     def get_account_balancers(self, **kwargs) -> GetBalancers200Response:  # noqa: E501
-        """(Deprecated) Получение списка всех балансировщиков на аккаунте  # noqa: E501
+        """Получение списка всех балансировщиков на аккаунте  # noqa: E501
 
         Чтобы получить список всех балансировщиков на аккаунте, отправьте GET-запрос на `/api/v1/projects/resources/balancers`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -1342,7 +1330,7 @@ class ProjectsApi(object):
 
     @validate_arguments
     def get_account_balancers_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
-        """(Deprecated) Получение списка всех балансировщиков на аккаунте  # noqa: E501
+        """Получение списка всех балансировщиков на аккаунте  # noqa: E501
 
         Чтобы получить список всех балансировщиков на аккаунте, отправьте GET-запрос на `/api/v1/projects/resources/balancers`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -1375,8 +1363,6 @@ class ProjectsApi(object):
                  returns the request thread.
         :rtype: tuple(GetBalancers200Response, status_code(int), headers(HTTPHeaderDict))
         """
-
-        warnings.warn("GET /api/v1/projects/resources/balancers is deprecated.", DeprecationWarning)
 
         _params = locals()
 
@@ -1453,7 +1439,7 @@ class ProjectsApi(object):
 
     @validate_arguments
     def get_account_clusters(self, **kwargs) -> GetProjectClusters200Response:  # noqa: E501
-        """(Deprecated) Получение списка всех кластеров на аккаунте  # noqa: E501
+        """Получение списка всех кластеров на аккаунте  # noqa: E501
 
         Чтобы получить список всех кластеров на аккаунте, отправьте GET-запрос на `/api/v1/projects/resources/clusters`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -1480,7 +1466,7 @@ class ProjectsApi(object):
 
     @validate_arguments
     def get_account_clusters_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
-        """(Deprecated) Получение списка всех кластеров на аккаунте  # noqa: E501
+        """Получение списка всех кластеров на аккаунте  # noqa: E501
 
         Чтобы получить список всех кластеров на аккаунте, отправьте GET-запрос на `/api/v1/projects/resources/clusters`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -1513,8 +1499,6 @@ class ProjectsApi(object):
                  returns the request thread.
         :rtype: tuple(GetProjectClusters200Response, status_code(int), headers(HTTPHeaderDict))
         """
-
-        warnings.warn("GET /api/v1/projects/resources/clusters is deprecated.", DeprecationWarning)
 
         _params = locals()
 
@@ -1591,7 +1575,7 @@ class ProjectsApi(object):
 
     @validate_arguments
     def get_account_databases(self, **kwargs) -> GetProjectDatabases200Response:  # noqa: E501
-        """(Deprecated) Получение списка всех баз данных на аккаунте  # noqa: E501
+        """Получение списка всех баз данных на аккаунте  # noqa: E501
 
         Чтобы получить список всех баз данных на аккаунте, отправьте GET-запрос на `/api/v1/projects/resources/databases`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -1618,7 +1602,7 @@ class ProjectsApi(object):
 
     @validate_arguments
     def get_account_databases_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
-        """(Deprecated) Получение списка всех баз данных на аккаунте  # noqa: E501
+        """Получение списка всех баз данных на аккаунте  # noqa: E501
 
         Чтобы получить список всех баз данных на аккаунте, отправьте GET-запрос на `/api/v1/projects/resources/databases`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -1651,8 +1635,6 @@ class ProjectsApi(object):
                  returns the request thread.
         :rtype: tuple(GetProjectDatabases200Response, status_code(int), headers(HTTPHeaderDict))
         """
-
-        warnings.warn("GET /api/v1/projects/resources/databases is deprecated.", DeprecationWarning)
 
         _params = locals()
 
@@ -1729,7 +1711,7 @@ class ProjectsApi(object):
 
     @validate_arguments
     def get_account_dedicated_servers(self, **kwargs) -> GetDedicatedServers200Response:  # noqa: E501
-        """(Deprecated) Получение списка всех выделенных серверов на аккаунте  # noqa: E501
+        """Получение списка всех выделенных серверов на аккаунте  # noqa: E501
 
         Чтобы получить список всех выделенных серверов на аккаунте, отправьте GET-запрос на `/api/v1/projects/resources/dedicated`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -1756,7 +1738,7 @@ class ProjectsApi(object):
 
     @validate_arguments
     def get_account_dedicated_servers_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
-        """(Deprecated) Получение списка всех выделенных серверов на аккаунте  # noqa: E501
+        """Получение списка всех выделенных серверов на аккаунте  # noqa: E501
 
         Чтобы получить список всех выделенных серверов на аккаунте, отправьте GET-запрос на `/api/v1/projects/resources/dedicated`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -1789,8 +1771,6 @@ class ProjectsApi(object):
                  returns the request thread.
         :rtype: tuple(GetDedicatedServers200Response, status_code(int), headers(HTTPHeaderDict))
         """
-
-        warnings.warn("GET /api/v1/projects/resources/dedicated is deprecated.", DeprecationWarning)
 
         _params = locals()
 
@@ -1867,7 +1847,7 @@ class ProjectsApi(object):
 
     @validate_arguments
     def get_account_servers(self, **kwargs) -> GetServers200Response:  # noqa: E501
-        """(Deprecated) Получение списка всех серверов на аккаунте  # noqa: E501
+        """Получение списка всех серверов на аккаунте  # noqa: E501
 
         Чтобы получить список всех серверов на аккаунте, отправьте GET-запрос на `/api/v1/projects/resources/servers`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -1894,7 +1874,7 @@ class ProjectsApi(object):
 
     @validate_arguments
     def get_account_servers_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
-        """(Deprecated) Получение списка всех серверов на аккаунте  # noqa: E501
+        """Получение списка всех серверов на аккаунте  # noqa: E501
 
         Чтобы получить список всех серверов на аккаунте, отправьте GET-запрос на `/api/v1/projects/resources/servers`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -1927,8 +1907,6 @@ class ProjectsApi(object):
                  returns the request thread.
         :rtype: tuple(GetServers200Response, status_code(int), headers(HTTPHeaderDict))
         """
-
-        warnings.warn("GET /api/v1/projects/resources/servers is deprecated.", DeprecationWarning)
 
         _params = locals()
 
@@ -2005,7 +1983,7 @@ class ProjectsApi(object):
 
     @validate_arguments
     def get_account_storages(self, **kwargs) -> GetProjectStorages200Response:  # noqa: E501
-        """(Deprecated) Получение списка всех хранилищ на аккаунте  # noqa: E501
+        """Получение списка всех хранилищ на аккаунте  # noqa: E501
 
         Чтобы получить список всех хранилищ на аккаунте, отправьте GET-запрос на `/api/v1/projects/resources/buckets`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -2032,7 +2010,7 @@ class ProjectsApi(object):
 
     @validate_arguments
     def get_account_storages_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
-        """(Deprecated) Получение списка всех хранилищ на аккаунте  # noqa: E501
+        """Получение списка всех хранилищ на аккаунте  # noqa: E501
 
         Чтобы получить список всех хранилищ на аккаунте, отправьте GET-запрос на `/api/v1/projects/resources/buckets`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -2065,8 +2043,6 @@ class ProjectsApi(object):
                  returns the request thread.
         :rtype: tuple(GetProjectStorages200Response, status_code(int), headers(HTTPHeaderDict))
         """
-
-        warnings.warn("GET /api/v1/projects/resources/buckets is deprecated.", DeprecationWarning)
 
         _params = locals()
 
@@ -2143,7 +2119,7 @@ class ProjectsApi(object):
 
     @validate_arguments
     def get_all_project_resources(self, project_id : Annotated[Any, Field(..., description="Уникальный идентификатор проекта.")], **kwargs) -> GetAllProjectResources200Response:  # noqa: E501
-        """(Deprecated) Получение всех ресурсов проекта  # noqa: E501
+        """Получение всех ресурсов проекта  # noqa: E501
 
         Чтобы получить все ресурсы проекта, отправьте GET-запрос на `/api/v1/projects/{project_id}/resources`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -2172,7 +2148,7 @@ class ProjectsApi(object):
 
     @validate_arguments
     def get_all_project_resources_with_http_info(self, project_id : Annotated[Any, Field(..., description="Уникальный идентификатор проекта.")], **kwargs) -> ApiResponse:  # noqa: E501
-        """(Deprecated) Получение всех ресурсов проекта  # noqa: E501
+        """Получение всех ресурсов проекта  # noqa: E501
 
         Чтобы получить все ресурсы проекта, отправьте GET-запрос на `/api/v1/projects/{project_id}/resources`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -2207,8 +2183,6 @@ class ProjectsApi(object):
                  returns the request thread.
         :rtype: tuple(GetAllProjectResources200Response, status_code(int), headers(HTTPHeaderDict))
         """
-
-        warnings.warn("GET /api/v1/projects/{project_id}/resources is deprecated.", DeprecationWarning)
 
         _params = locals()
 
@@ -2433,7 +2407,7 @@ class ProjectsApi(object):
 
     @validate_arguments
     def get_project_balancers(self, project_id : Annotated[Any, Field(..., description="Уникальный идентификатор проекта.")], **kwargs) -> GetBalancers200Response:  # noqa: E501
-        """(Deprecated) Получение списка балансировщиков проекта  # noqa: E501
+        """Получение списка балансировщиков проекта  # noqa: E501
 
         Чтобы получить список балансировщиков проекта, отправьте GET-запрос на `/api/v1/projects/{project_id}/resources/balancers`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -2462,7 +2436,7 @@ class ProjectsApi(object):
 
     @validate_arguments
     def get_project_balancers_with_http_info(self, project_id : Annotated[Any, Field(..., description="Уникальный идентификатор проекта.")], **kwargs) -> ApiResponse:  # noqa: E501
-        """(Deprecated) Получение списка балансировщиков проекта  # noqa: E501
+        """Получение списка балансировщиков проекта  # noqa: E501
 
         Чтобы получить список балансировщиков проекта, отправьте GET-запрос на `/api/v1/projects/{project_id}/resources/balancers`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -2497,8 +2471,6 @@ class ProjectsApi(object):
                  returns the request thread.
         :rtype: tuple(GetBalancers200Response, status_code(int), headers(HTTPHeaderDict))
         """
-
-        warnings.warn("GET /api/v1/projects/{project_id}/resources/balancers is deprecated.", DeprecationWarning)
 
         _params = locals()
 
@@ -2579,7 +2551,7 @@ class ProjectsApi(object):
 
     @validate_arguments
     def get_project_clusters(self, project_id : Annotated[Any, Field(..., description="Уникальный идентификатор проекта.")], **kwargs) -> GetProjectClusters200Response:  # noqa: E501
-        """(Deprecated) Получение списка кластеров проекта  # noqa: E501
+        """Получение списка кластеров проекта  # noqa: E501
 
         Чтобы получить список кластеров проекта, отправьте GET-запрос на `/api/v1/projects/{project_id}/resources/clusters`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -2608,7 +2580,7 @@ class ProjectsApi(object):
 
     @validate_arguments
     def get_project_clusters_with_http_info(self, project_id : Annotated[Any, Field(..., description="Уникальный идентификатор проекта.")], **kwargs) -> ApiResponse:  # noqa: E501
-        """(Deprecated) Получение списка кластеров проекта  # noqa: E501
+        """Получение списка кластеров проекта  # noqa: E501
 
         Чтобы получить список кластеров проекта, отправьте GET-запрос на `/api/v1/projects/{project_id}/resources/clusters`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -2643,8 +2615,6 @@ class ProjectsApi(object):
                  returns the request thread.
         :rtype: tuple(GetProjectClusters200Response, status_code(int), headers(HTTPHeaderDict))
         """
-
-        warnings.warn("GET /api/v1/projects/{project_id}/resources/clusters is deprecated.", DeprecationWarning)
 
         _params = locals()
 
@@ -2725,7 +2695,7 @@ class ProjectsApi(object):
 
     @validate_arguments
     def get_project_databases(self, project_id : Annotated[Any, Field(..., description="Уникальный идентификатор проекта.")], **kwargs) -> GetProjectDatabases200Response:  # noqa: E501
-        """(Deprecated) Получение списка баз данных проекта  # noqa: E501
+        """Получение списка баз данных проекта  # noqa: E501
 
         Чтобы получить список баз данных проекта, отправьте GET-запрос на `/api/v1/projects/{project_id}/resources/databases`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -2754,7 +2724,7 @@ class ProjectsApi(object):
 
     @validate_arguments
     def get_project_databases_with_http_info(self, project_id : Annotated[Any, Field(..., description="Уникальный идентификатор проекта.")], **kwargs) -> ApiResponse:  # noqa: E501
-        """(Deprecated) Получение списка баз данных проекта  # noqa: E501
+        """Получение списка баз данных проекта  # noqa: E501
 
         Чтобы получить список баз данных проекта, отправьте GET-запрос на `/api/v1/projects/{project_id}/resources/databases`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -2789,8 +2759,6 @@ class ProjectsApi(object):
                  returns the request thread.
         :rtype: tuple(GetProjectDatabases200Response, status_code(int), headers(HTTPHeaderDict))
         """
-
-        warnings.warn("GET /api/v1/projects/{project_id}/resources/databases is deprecated.", DeprecationWarning)
 
         _params = locals()
 
@@ -2871,7 +2839,7 @@ class ProjectsApi(object):
 
     @validate_arguments
     def get_project_dedicated_servers(self, project_id : Annotated[Any, Field(..., description="Уникальный идентификатор проекта.")], **kwargs) -> GetDedicatedServers200Response:  # noqa: E501
-        """(Deprecated) Получение списка выделенных серверов проекта  # noqa: E501
+        """Получение списка выделенных серверов проекта  # noqa: E501
 
         Чтобы получить список выделенных серверов проекта, отправьте GET-запрос на `/api/v1/projects/{project_id}/resources/dedicated`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -2900,7 +2868,7 @@ class ProjectsApi(object):
 
     @validate_arguments
     def get_project_dedicated_servers_with_http_info(self, project_id : Annotated[Any, Field(..., description="Уникальный идентификатор проекта.")], **kwargs) -> ApiResponse:  # noqa: E501
-        """(Deprecated) Получение списка выделенных серверов проекта  # noqa: E501
+        """Получение списка выделенных серверов проекта  # noqa: E501
 
         Чтобы получить список выделенных серверов проекта, отправьте GET-запрос на `/api/v1/projects/{project_id}/resources/dedicated`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -2935,8 +2903,6 @@ class ProjectsApi(object):
                  returns the request thread.
         :rtype: tuple(GetDedicatedServers200Response, status_code(int), headers(HTTPHeaderDict))
         """
-
-        warnings.warn("GET /api/v1/projects/{project_id}/resources/dedicated is deprecated.", DeprecationWarning)
 
         _params = locals()
 
@@ -3017,7 +2983,7 @@ class ProjectsApi(object):
 
     @validate_arguments
     def get_project_servers(self, project_id : Annotated[Any, Field(..., description="Уникальный идентификатор проекта.")], **kwargs) -> GetServers200Response:  # noqa: E501
-        """(Deprecated) Получение списка серверов проекта  # noqa: E501
+        """Получение списка серверов проекта  # noqa: E501
 
         Чтобы получить список серверов проекта, отправьте GET-запрос на `/api/v1/projects/{project_id}/resources/servers`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -3046,7 +3012,7 @@ class ProjectsApi(object):
 
     @validate_arguments
     def get_project_servers_with_http_info(self, project_id : Annotated[Any, Field(..., description="Уникальный идентификатор проекта.")], **kwargs) -> ApiResponse:  # noqa: E501
-        """(Deprecated) Получение списка серверов проекта  # noqa: E501
+        """Получение списка серверов проекта  # noqa: E501
 
         Чтобы получить список серверов проекта, отправьте GET-запрос на `/api/v1/projects/{project_id}/resources/servers`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -3081,8 +3047,6 @@ class ProjectsApi(object):
                  returns the request thread.
         :rtype: tuple(GetServers200Response, status_code(int), headers(HTTPHeaderDict))
         """
-
-        warnings.warn("GET /api/v1/projects/{project_id}/resources/servers is deprecated.", DeprecationWarning)
 
         _params = locals()
 
@@ -3163,7 +3127,7 @@ class ProjectsApi(object):
 
     @validate_arguments
     def get_project_storages(self, project_id : Annotated[Any, Field(..., description="Уникальный идентификатор проекта.")], **kwargs) -> GetProjectStorages200Response:  # noqa: E501
-        """(Deprecated) Получение списка хранилищ проекта  # noqa: E501
+        """Получение списка хранилищ проекта  # noqa: E501
 
         Чтобы получить список хранилищ проекта, отправьте GET-запрос на `/api/v1/projects/{project_id}/resources/buckets`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -3192,7 +3156,7 @@ class ProjectsApi(object):
 
     @validate_arguments
     def get_project_storages_with_http_info(self, project_id : Annotated[Any, Field(..., description="Уникальный идентификатор проекта.")], **kwargs) -> ApiResponse:  # noqa: E501
-        """(Deprecated) Получение списка хранилищ проекта  # noqa: E501
+        """Получение списка хранилищ проекта  # noqa: E501
 
         Чтобы получить список хранилищ проекта, отправьте GET-запрос на `/api/v1/projects/{project_id}/resources/buckets`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -3227,8 +3191,6 @@ class ProjectsApi(object):
                  returns the request thread.
         :rtype: tuple(GetProjectStorages200Response, status_code(int), headers(HTTPHeaderDict))
         """
-
-        warnings.warn("GET /api/v1/projects/{project_id}/resources/buckets is deprecated.", DeprecationWarning)
 
         _params = locals()
 
