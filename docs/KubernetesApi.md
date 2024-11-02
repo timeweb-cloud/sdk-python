@@ -944,7 +944,7 @@ Name | Type | Description  | Notes
 
 Получение ресурсов кластера
 
-Чтобы получить ресурсы кластера, отправьте GET-запрос в `/api/v1/k8s/clusters/{cluster_id}/resources`.
+Устаревший метод, работает только для старых кластеров. \\  Чтобы получить ресурсы кластера, отправьте GET-запрос в `/api/v1/k8s/clusters/{cluster_id}/resources`.
 
 ### Example
 

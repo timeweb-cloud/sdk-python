@@ -1717,9 +1717,9 @@ class KubernetesApi(object):
 
     @validate_arguments
     def get_cluster_resources(self, cluster_id : Annotated[Any, Field(..., description="Уникальный идентификатор кластера")], **kwargs) -> ResourcesResponse:  # noqa: E501
-        """Получение ресурсов кластера  # noqa: E501
+        """(Deprecated) Получение ресурсов кластера  # noqa: E501
 
-        Чтобы получить ресурсы кластера, отправьте GET-запрос в `/api/v1/k8s/clusters/{cluster_id}/resources`.  # noqa: E501
+        Устаревший метод, работает только для старых кластеров. \\  Чтобы получить ресурсы кластера, отправьте GET-запрос в `/api/v1/k8s/clusters/{cluster_id}/resources`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -1746,9 +1746,9 @@ class KubernetesApi(object):
 
     @validate_arguments
     def get_cluster_resources_with_http_info(self, cluster_id : Annotated[Any, Field(..., description="Уникальный идентификатор кластера")], **kwargs) -> ApiResponse:  # noqa: E501
-        """Получение ресурсов кластера  # noqa: E501
+        """(Deprecated) Получение ресурсов кластера  # noqa: E501
 
-        Чтобы получить ресурсы кластера, отправьте GET-запрос в `/api/v1/k8s/clusters/{cluster_id}/resources`.  # noqa: E501
+        Устаревший метод, работает только для старых кластеров. \\  Чтобы получить ресурсы кластера, отправьте GET-запрос в `/api/v1/k8s/clusters/{cluster_id}/resources`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -1781,6 +1781,8 @@ class KubernetesApi(object):
                  returns the request thread.
         :rtype: tuple(ResourcesResponse, status_code(int), headers(HTTPHeaderDict))
         """
+
+        warnings.warn("GET /api/v1/k8s/clusters/{cluster_id}/resources is deprecated.", DeprecationWarning)
 
         _params = locals()
 
