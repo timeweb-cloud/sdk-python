@@ -17,8 +17,8 @@ Method | HTTP request | Description
 [**get_cluster_nodes_from_group**](KubernetesApi.md#get_cluster_nodes_from_group) | **GET** /api/v1/k8s/clusters/{cluster_id}/groups/{group_id}/nodes | Получение списка нод, принадлежащих группе
 [**get_cluster_resources**](KubernetesApi.md#get_cluster_resources) | **GET** /api/v1/k8s/clusters/{cluster_id}/resources | Получение ресурсов кластера
 [**get_clusters**](KubernetesApi.md#get_clusters) | **GET** /api/v1/k8s/clusters | Получение списка кластеров
-[**get_k8_s_network_drivers**](KubernetesApi.md#get_k8_s_network_drivers) | **GET** /api/v1/k8s/network_drivers | Получение списка сетевых драйверов k8s
-[**get_k8_s_versions**](KubernetesApi.md#get_k8_s_versions) | **GET** /api/v1/k8s/k8s_versions | Получение списка версий k8s
+[**get_k8_s_network_drivers**](KubernetesApi.md#get_k8_s_network_drivers) | **GET** /api/v1/k8s/network-drivers | Получение списка сетевых драйверов k8s
+[**get_k8_s_versions**](KubernetesApi.md#get_k8_s_versions) | **GET** /api/v1/k8s/k8s-versions | Получение списка версий k8s
 [**get_kubernetes_presets**](KubernetesApi.md#get_kubernetes_presets) | **GET** /api/v1/presets/k8s | Получение списка тарифов
 [**increase_count_of_nodes_in_group**](KubernetesApi.md#increase_count_of_nodes_in_group) | **POST** /api/v1/k8s/clusters/{cluster_id}/groups/{group_id}/nodes | Увеличение количества нод в группе на указанное количество
 [**reduce_count_of_nodes_in_group**](KubernetesApi.md#reduce_count_of_nodes_in_group) | **DELETE** /api/v1/k8s/clusters/{cluster_id}/groups/{group_id}/nodes | Уменьшение количества нод в группе на указанное количество
@@ -1108,7 +1108,7 @@ Name | Type | Description  | Notes
 
 Получение списка сетевых драйверов k8s
 
-Чтобы получить список сетевых драйверов k8s, отправьте GET-запрос в `/api/v1/k8s/network_drivers`.
+Чтобы получить список сетевых драйверов k8s, отправьте GET-запрос в `/api/v1/k8s/network-drivers`.
 
 ### Example
 
@@ -1184,7 +1184,7 @@ This endpoint does not need any parameter.
 
 Получение списка версий k8s
 
-Чтобы получить список версий k8s, отправьте GET-запрос в `/api/v1/k8s/k8s_versions`.
+Чтобы получить список версий k8s, отправьте GET-запрос в `/api/v1/k8s/k8s-versions`.
 
 ### Example
 

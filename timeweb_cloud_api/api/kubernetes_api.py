@@ -2017,7 +2017,7 @@ class KubernetesApi(object):
     def get_k8_s_network_drivers(self, **kwargs) -> NetworkDriversResponse:  # noqa: E501
         """Получение списка сетевых драйверов k8s  # noqa: E501
 
-        Чтобы получить список сетевых драйверов k8s, отправьте GET-запрос в `/api/v1/k8s/network_drivers`.  # noqa: E501
+        Чтобы получить список сетевых драйверов k8s, отправьте GET-запрос в `/api/v1/k8s/network-drivers`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -2044,7 +2044,7 @@ class KubernetesApi(object):
     def get_k8_s_network_drivers_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
         """Получение списка сетевых драйверов k8s  # noqa: E501
 
-        Чтобы получить список сетевых драйверов k8s, отправьте GET-запрос в `/api/v1/k8s/network_drivers`.  # noqa: E501
+        Чтобы получить список сетевых драйверов k8s, отправьте GET-запрос в `/api/v1/k8s/network-drivers`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -2132,7 +2132,7 @@ class KubernetesApi(object):
         }
 
         return self.api_client.call_api(
-            '/api/v1/k8s/network_drivers', 'GET',
+            '/api/v1/k8s/network-drivers', 'GET',
             _path_params,
             _query_params,
             _header_params,
@@ -2152,7 +2152,7 @@ class KubernetesApi(object):
     def get_k8_s_versions(self, **kwargs) -> K8SVersionsResponse:  # noqa: E501
         """Получение списка версий k8s  # noqa: E501
 
-        Чтобы получить список версий k8s, отправьте GET-запрос в `/api/v1/k8s/k8s_versions`.  # noqa: E501
+        Чтобы получить список версий k8s, отправьте GET-запрос в `/api/v1/k8s/k8s-versions`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -2179,7 +2179,7 @@ class KubernetesApi(object):
     def get_k8_s_versions_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
         """Получение списка версий k8s  # noqa: E501
 
-        Чтобы получить список версий k8s, отправьте GET-запрос в `/api/v1/k8s/k8s_versions`.  # noqa: E501
+        Чтобы получить список версий k8s, отправьте GET-запрос в `/api/v1/k8s/k8s-versions`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -2267,7 +2267,7 @@ class KubernetesApi(object):
         }
 
         return self.api_client.call_api(
-            '/api/v1/k8s/k8s_versions', 'GET',
+            '/api/v1/k8s/k8s-versions', 'GET',
             _path_params,
             _query_params,
             _header_params,
