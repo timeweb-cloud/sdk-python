@@ -118,6 +118,7 @@ docs/DatabaseCluster.md
 docs/DatabaseClusterDiskStats.md
 docs/DatabaseInstance.md
 docs/DatabaseType.md
+docs/DatabaseTypeRequirements.md
 docs/DatabasesApi.md
 docs/Db.md
 docs/DbDiskStats.md
@@ -510,6 +511,7 @@ test/test_database_cluster.py
 test/test_database_cluster_disk_stats.py
 test/test_database_instance.py
 test/test_database_type.py
+test/test_database_type_requirements.py
 test/test_databases_api.py
 test/test_db.py
 test/test_db_disk_stats.py
@@ -916,6 +918,7 @@ timeweb_cloud_api/models/database_cluster.py
 timeweb_cloud_api/models/database_cluster_disk_stats.py
 timeweb_cloud_api/models/database_instance.py
 timeweb_cloud_api/models/database_type.py
+timeweb_cloud_api/models/database_type_requirements.py
 timeweb_cloud_api/models/db.py
 timeweb_cloud_api/models/db_disk_stats.py
 timeweb_cloud_api/models/db_type.py

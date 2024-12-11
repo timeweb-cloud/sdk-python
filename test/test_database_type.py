@@ -41,13 +41,19 @@ class TestDatabaseType(unittest.TestCase):
             return DatabaseType(
                 name = mysql, 
                 version = 5.7, 
-                type = mysql5
+                type = mysql5, 
+                is_available_replication = true, 
+                requirements = timeweb_cloud_api.models.database_type_requirements.database_type_requirements(
+                    cpu_min = 1, 
+                    ram_min = 8192, 
+                    disk_min = 1024, )
             )
         else :
             return DatabaseType(
                 name = mysql,
                 version = 5.7,
                 type = mysql5,
+                is_available_replication = true,
         )
         """
 

@@ -13,91 +13,45 @@
 """
 
 
-from __future__ import annotations
-import pprint
-import re  # noqa: F401
-import json
+import unittest
+import datetime
 
+import timeweb_cloud_api
+from timeweb_cloud_api.models.database_type_requirements import DatabaseTypeRequirements  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
-from typing import Any, Optional
-from pydantic import BaseModel, Field
-from timeweb_cloud_api.models.database_type_requirements import DatabaseTypeRequirements
+class TestDatabaseTypeRequirements(unittest.TestCase):
+    """DatabaseTypeRequirements unit test stubs"""
 
-class DatabaseType(BaseModel):
-    """
-    Тип кластера базы данных
-    """
-    name: Optional[Any] = Field(..., description="Название кластера базы данных.")
-    version: Optional[Any] = Field(..., description="Версия кластера базы данных.")
-    type: Optional[Any] = Field(..., description="Тип кластера базы данных. Передается при создании кластера в поле `type`")
-    is_available_replication: Optional[Any] = Field(..., description="Поддерживает ли база данных репликацию.")
-    requirements: Optional[DatabaseTypeRequirements] = None
-    __properties = ["name", "version", "type", "is_available_replication", "requirements"]
+    def setUp(self):
+        pass
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
+    def tearDown(self):
+        pass
 
-    def to_str(self) -> str:
-        """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+    def make_instance(self, include_optional):
+        """Test DatabaseTypeRequirements
+            include_option is a boolean, when False only required
+            params are included, when True both required and
+            optional params are included """
+        # uncomment below to create an instance of `DatabaseTypeRequirements`
+        """
+        model = timeweb_cloud_api.models.database_type_requirements.DatabaseTypeRequirements()  # noqa: E501
+        if include_optional :
+            return DatabaseTypeRequirements(
+                cpu_min = 1, 
+                ram_min = 8192, 
+                disk_min = 1024
+            )
+        else :
+            return DatabaseTypeRequirements(
+        )
+        """
 
-    def to_json(self) -> str:
-        """Returns the JSON representation of the model using alias"""
-        return json.dumps(self.to_dict())
+    def testDatabaseTypeRequirements(self):
+        """Test DatabaseTypeRequirements"""
+        # inst_req_only = self.make_instance(include_optional=False)
+        # inst_req_and_optional = self.make_instance(include_optional=True)
 
-    @classmethod
-    def from_json(cls, json_str: str) -> DatabaseType:
-        """Create an instance of DatabaseType from a JSON string"""
-        return cls.from_dict(json.loads(json_str))
-
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of requirements
-        if self.requirements:
-            _dict['requirements'] = self.requirements.to_dict()
-        # set to None if name (nullable) is None
-        # and __fields_set__ contains the field
-        if self.name is None and "name" in self.__fields_set__:
-            _dict['name'] = None
-
-        # set to None if version (nullable) is None
-        # and __fields_set__ contains the field
-        if self.version is None and "version" in self.__fields_set__:
-            _dict['version'] = None
-
-        # set to None if type (nullable) is None
-        # and __fields_set__ contains the field
-        if self.type is None and "type" in self.__fields_set__:
-            _dict['type'] = None
-
-        # set to None if is_available_replication (nullable) is None
-        # and __fields_set__ contains the field
-        if self.is_available_replication is None and "is_available_replication" in self.__fields_set__:
-            _dict['is_available_replication'] = None
-
-        return _dict
-
-    @classmethod
-    def from_dict(cls, obj: dict) -> DatabaseType:
-        """Create an instance of DatabaseType from a dict"""
-        if obj is None:
-            return None
-
-        if not isinstance(obj, dict):
-            return DatabaseType.parse_obj(obj)
-
-        _obj = DatabaseType.parse_obj({
-            "name": obj.get("name"),
-            "version": obj.get("version"),
-            "type": obj.get("type"),
-            "is_available_replication": obj.get("is_available_replication"),
-            "requirements": DatabaseTypeRequirements.from_dict(obj.get("requirements")) if obj.get("requirements") is not None else None
-        })
-        return _obj
-
+if __name__ == '__main__':
+    unittest.main()

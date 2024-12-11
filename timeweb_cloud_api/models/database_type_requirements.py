@@ -21,18 +21,15 @@ import json
 
 from typing import Any, Optional
 from pydantic import BaseModel, Field
-from timeweb_cloud_api.models.database_type_requirements import DatabaseTypeRequirements
 
-class DatabaseType(BaseModel):
+class DatabaseTypeRequirements(BaseModel):
     """
-    Тип кластера базы данных
+    Требования к кластеру базы данных.
     """
-    name: Optional[Any] = Field(..., description="Название кластера базы данных.")
-    version: Optional[Any] = Field(..., description="Версия кластера базы данных.")
-    type: Optional[Any] = Field(..., description="Тип кластера базы данных. Передается при создании кластера в поле `type`")
-    is_available_replication: Optional[Any] = Field(..., description="Поддерживает ли база данных репликацию.")
-    requirements: Optional[DatabaseTypeRequirements] = None
-    __properties = ["name", "version", "type", "is_available_replication", "requirements"]
+    cpu_min: Optional[Any] = Field(None, description="Минимальное количество CPU.")
+    ram_min: Optional[Any] = Field(None, description="Минимальный объем оперативной памяти.")
+    disk_min: Optional[Any] = Field(None, description="Минимальный объем дискового пространства.")
+    __properties = ["cpu_min", "ram_min", "disk_min"]
 
     class Config:
         """Pydantic configuration"""
@@ -48,8 +45,8 @@ class DatabaseType(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> DatabaseType:
-        """Create an instance of DatabaseType from a JSON string"""
+    def from_json(cls, json_str: str) -> DatabaseTypeRequirements:
+        """Create an instance of DatabaseTypeRequirements from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self):
@@ -58,46 +55,36 @@ class DatabaseType(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of requirements
-        if self.requirements:
-            _dict['requirements'] = self.requirements.to_dict()
-        # set to None if name (nullable) is None
+        # set to None if cpu_min (nullable) is None
         # and __fields_set__ contains the field
-        if self.name is None and "name" in self.__fields_set__:
-            _dict['name'] = None
+        if self.cpu_min is None and "cpu_min" in self.__fields_set__:
+            _dict['cpu_min'] = None
 
-        # set to None if version (nullable) is None
+        # set to None if ram_min (nullable) is None
         # and __fields_set__ contains the field
-        if self.version is None and "version" in self.__fields_set__:
-            _dict['version'] = None
+        if self.ram_min is None and "ram_min" in self.__fields_set__:
+            _dict['ram_min'] = None
 
-        # set to None if type (nullable) is None
+        # set to None if disk_min (nullable) is None
         # and __fields_set__ contains the field
-        if self.type is None and "type" in self.__fields_set__:
-            _dict['type'] = None
-
-        # set to None if is_available_replication (nullable) is None
-        # and __fields_set__ contains the field
-        if self.is_available_replication is None and "is_available_replication" in self.__fields_set__:
-            _dict['is_available_replication'] = None
+        if self.disk_min is None and "disk_min" in self.__fields_set__:
+            _dict['disk_min'] = None
 
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> DatabaseType:
-        """Create an instance of DatabaseType from a dict"""
+    def from_dict(cls, obj: dict) -> DatabaseTypeRequirements:
+        """Create an instance of DatabaseTypeRequirements from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return DatabaseType.parse_obj(obj)
+            return DatabaseTypeRequirements.parse_obj(obj)
 
-        _obj = DatabaseType.parse_obj({
-            "name": obj.get("name"),
-            "version": obj.get("version"),
-            "type": obj.get("type"),
-            "is_available_replication": obj.get("is_available_replication"),
-            "requirements": DatabaseTypeRequirements.from_dict(obj.get("requirements")) if obj.get("requirements") is not None else None
+        _obj = DatabaseTypeRequirements.parse_obj({
+            "cpu_min": obj.get("cpu_min"),
+            "ram_min": obj.get("ram_min"),
+            "disk_min": obj.get("disk_min")
         })
         return _obj
 

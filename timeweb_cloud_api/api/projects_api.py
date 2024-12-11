@@ -3273,7 +3273,7 @@ class ProjectsApi(object):
     def get_projects(self, **kwargs) -> GetProjects200Response:  # noqa: E501
         """Получение списка проектов  # noqa: E501
 
-        Чтобы получить список всех проектов на вашем аккаунте, отправьте GET-запрос на `/api/v1/dedicated-servers`.   Тело ответа будет представлять собой объект JSON с ключом `projects`.  # noqa: E501
+        Чтобы получить список всех проектов на вашем аккаунте, отправьте GET-запрос на `/api/v1/projects`.   Тело ответа будет представлять собой объект JSON с ключом `projects`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -3300,7 +3300,7 @@ class ProjectsApi(object):
     def get_projects_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
         """Получение списка проектов  # noqa: E501
 
-        Чтобы получить список всех проектов на вашем аккаунте, отправьте GET-запрос на `/api/v1/dedicated-servers`.   Тело ответа будет представлять собой объект JSON с ключом `projects`.  # noqa: E501
+        Чтобы получить список всех проектов на вашем аккаунте, отправьте GET-запрос на `/api/v1/projects`.   Тело ответа будет представлять собой объект JSON с ключом `projects`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 

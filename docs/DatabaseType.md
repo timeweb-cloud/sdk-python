@@ -8,6 +8,8 @@ Name | Type | Description | Notes
 **name** | **object** | Название кластера базы данных. | 
 **version** | **object** | Версия кластера базы данных. | 
 **type** | **object** | Тип кластера базы данных. Передается при создании кластера в поле &#x60;type&#x60; | 
+**is_available_replication** | **object** | Поддерживает ли база данных репликацию. | 
+**requirements** | [**DatabaseTypeRequirements**](DatabaseTypeRequirements.md) |  | [optional] 
 
 ## Example
 

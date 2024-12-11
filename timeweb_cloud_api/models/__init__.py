@@ -125,6 +125,7 @@ from timeweb_cloud_api.models.database_cluster import DatabaseCluster
 from timeweb_cloud_api.models.database_cluster_disk_stats import DatabaseClusterDiskStats
 from timeweb_cloud_api.models.database_instance import DatabaseInstance
 from timeweb_cloud_api.models.database_type import DatabaseType
+from timeweb_cloud_api.models.database_type_requirements import DatabaseTypeRequirements
 from timeweb_cloud_api.models.db import Db
 from timeweb_cloud_api.models.db_disk_stats import DbDiskStats
 from timeweb_cloud_api.models.db_type import DbType
