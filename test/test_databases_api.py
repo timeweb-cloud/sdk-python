@@ -162,6 +162,13 @@ class TestDatabasesApi(unittest.TestCase):
         """
         pass
 
+    def test_get_database_parameters(self):
+        """Test case for get_database_parameters
+
+        Получение списка параметров баз данных  # noqa: E501
+        """
+        pass
+
     def test_get_database_user(self):
         """Test case for get_database_user
 

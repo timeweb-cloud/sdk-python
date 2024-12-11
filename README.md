@@ -310,6 +310,7 @@ Class | Method | HTTP request | Description
 *DatabasesApi* | [**get_database_clusters**](docs/DatabasesApi.md#get_database_clusters) | **GET** /api/v1/databases | Получение списка кластеров баз данных
 *DatabasesApi* | [**get_database_instance**](docs/DatabasesApi.md#get_database_instance) | **GET** /api/v1/databases/{db_cluster_id}/instances/{instance_id} | Получение инстанса базы данных
 *DatabasesApi* | [**get_database_instances**](docs/DatabasesApi.md#get_database_instances) | **GET** /api/v1/databases/{db_cluster_id}/instances | Получение списка инстансов баз данных
+*DatabasesApi* | [**get_database_parameters**](docs/DatabasesApi.md#get_database_parameters) | **GET** /api/v1/dbs/parameters | Получение списка параметров баз данных
 *DatabasesApi* | [**get_database_user**](docs/DatabasesApi.md#get_database_user) | **GET** /api/v1/databases/{db_cluster_id}/admins/{admin_id} | Получение пользователя базы данных
 *DatabasesApi* | [**get_database_users**](docs/DatabasesApi.md#get_database_users) | **GET** /api/v1/databases/{db_cluster_id}/admins | Получение списка пользователей базы данных
 *DatabasesApi* | [**get_databases**](docs/DatabasesApi.md#get_databases) | **GET** /api/v1/dbs | Получение списка всех баз данных
