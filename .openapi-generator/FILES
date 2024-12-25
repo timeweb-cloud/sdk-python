@@ -97,6 +97,8 @@ docs/CreateFolderInStorageRequest.md
 docs/CreateInstance.md
 docs/CreateKey201Response.md
 docs/CreateKeyRequest.md
+docs/CreateNetworkDrive.md
+docs/CreateNetworkDrive201Response.md
 docs/CreateProject.md
 docs/CreateProject201Response.md
 docs/CreateRule.md
@@ -222,6 +224,9 @@ docs/GetKeys200Response.md
 docs/GetLocations200Response.md
 docs/GetMailQuota200Response.md
 docs/GetMailboxes200Response.md
+docs/GetNetworkDrives200Response.md
+docs/GetNetworkDrivesAvailableResources200Response.md
+docs/GetNetworkDrivesPresets200Response.md
 docs/GetNotificationSettings200Response.md
 docs/GetOsList200Response.md
 docs/GetProjectClusters200Response.md
@@ -277,8 +282,15 @@ docs/MailboxForwardingOutgoing.md
 docs/MailboxSpamFilter.md
 docs/MasterPresetOutApi.md
 docs/Meta.md
+docs/MountNetworkDrive.md
 docs/Network.md
+docs/NetworkDrive.md
+docs/NetworkDriveAvailableResource.md
+docs/NetworkDrivePreset.md
+docs/NetworkDrivePresetRead.md
+docs/NetworkDrivePresetWrite.md
 docs/NetworkDriversResponse.md
+docs/NetworkDrivesApi.md
 docs/NodeCount.md
 docs/NodeGroupIn.md
 docs/NodeGroupOut.md
@@ -360,6 +372,7 @@ docs/UpdateInstance.md
 docs/UpdateKeyRequest.md
 docs/UpdateMailQuotaRequest.md
 docs/UpdateMailbox.md
+docs/UpdateNetworkDrive.md
 docs/UpdateNotificationSettingsRequest.md
 docs/UpdateProject.md
 docs/UpdateRule.md
@@ -490,6 +503,8 @@ test/test_create_folder_in_storage_request.py
 test/test_create_instance.py
 test/test_create_key201_response.py
 test/test_create_key_request.py
+test/test_create_network_drive.py
+test/test_create_network_drive201_response.py
 test/test_create_project.py
 test/test_create_project201_response.py
 test/test_create_rule.py
@@ -615,6 +630,9 @@ test/test_get_keys200_response.py
 test/test_get_locations200_response.py
 test/test_get_mail_quota200_response.py
 test/test_get_mailboxes200_response.py
+test/test_get_network_drives200_response.py
+test/test_get_network_drives_available_resources200_response.py
+test/test_get_network_drives_presets200_response.py
 test/test_get_notification_settings200_response.py
 test/test_get_os_list200_response.py
 test/test_get_project_clusters200_response.py
@@ -670,8 +688,15 @@ test/test_mailbox_forwarding_outgoing.py
 test/test_mailbox_spam_filter.py
 test/test_master_preset_out_api.py
 test/test_meta.py
+test/test_mount_network_drive.py
 test/test_network.py
+test/test_network_drive.py
+test/test_network_drive_available_resource.py
+test/test_network_drive_preset.py
+test/test_network_drive_preset_read.py
+test/test_network_drive_preset_write.py
 test/test_network_drivers_response.py
+test/test_network_drives_api.py
 test/test_node_count.py
 test/test_node_group_in.py
 test/test_node_group_out.py
@@ -752,6 +777,7 @@ test/test_update_instance.py
 test/test_update_key_request.py
 test/test_update_mail_quota_request.py
 test/test_update_mailbox.py
+test/test_update_network_drive.py
 test/test_update_notification_settings_request.py
 test/test_update_project.py
 test/test_update_rule.py
@@ -798,6 +824,7 @@ timeweb_cloud_api/api/images_api.py
 timeweb_cloud_api/api/kubernetes_api.py
 timeweb_cloud_api/api/locations_api.py
 timeweb_cloud_api/api/mail_api.py
+timeweb_cloud_api/api/network_drives_api.py
 timeweb_cloud_api/api/projects_api.py
 timeweb_cloud_api/api/s3_api.py
 timeweb_cloud_api/api/servers_api.py
@@ -897,6 +924,8 @@ timeweb_cloud_api/models/create_folder_in_storage_request.py
 timeweb_cloud_api/models/create_instance.py
 timeweb_cloud_api/models/create_key201_response.py
 timeweb_cloud_api/models/create_key_request.py
+timeweb_cloud_api/models/create_network_drive.py
+timeweb_cloud_api/models/create_network_drive201_response.py
 timeweb_cloud_api/models/create_project.py
 timeweb_cloud_api/models/create_project201_response.py
 timeweb_cloud_api/models/create_rule.py
@@ -1017,6 +1046,9 @@ timeweb_cloud_api/models/get_keys200_response.py
 timeweb_cloud_api/models/get_locations200_response.py
 timeweb_cloud_api/models/get_mail_quota200_response.py
 timeweb_cloud_api/models/get_mailboxes200_response.py
+timeweb_cloud_api/models/get_network_drives200_response.py
+timeweb_cloud_api/models/get_network_drives_available_resources200_response.py
+timeweb_cloud_api/models/get_network_drives_presets200_response.py
 timeweb_cloud_api/models/get_notification_settings200_response.py
 timeweb_cloud_api/models/get_os_list200_response.py
 timeweb_cloud_api/models/get_project_clusters200_response.py
@@ -1068,7 +1100,13 @@ timeweb_cloud_api/models/mailbox_forwarding_outgoing.py
 timeweb_cloud_api/models/mailbox_spam_filter.py
 timeweb_cloud_api/models/master_preset_out_api.py
 timeweb_cloud_api/models/meta.py
+timeweb_cloud_api/models/mount_network_drive.py
 timeweb_cloud_api/models/network.py
+timeweb_cloud_api/models/network_drive.py
+timeweb_cloud_api/models/network_drive_available_resource.py
+timeweb_cloud_api/models/network_drive_preset.py
+timeweb_cloud_api/models/network_drive_preset_read.py
+timeweb_cloud_api/models/network_drive_preset_write.py
 timeweb_cloud_api/models/network_drivers_response.py
 timeweb_cloud_api/models/node_count.py
 timeweb_cloud_api/models/node_group_in.py
@@ -1146,6 +1184,7 @@ timeweb_cloud_api/models/update_instance.py
 timeweb_cloud_api/models/update_key_request.py
 timeweb_cloud_api/models/update_mail_quota_request.py
 timeweb_cloud_api/models/update_mailbox.py
+timeweb_cloud_api/models/update_network_drive.py
 timeweb_cloud_api/models/update_notification_settings_request.py
 timeweb_cloud_api/models/update_project.py
 timeweb_cloud_api/models/update_rule.py

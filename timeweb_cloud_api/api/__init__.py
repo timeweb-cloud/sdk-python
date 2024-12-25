@@ -14,6 +14,7 @@ from timeweb_cloud_api.api.images_api import ImagesApi
 from timeweb_cloud_api.api.kubernetes_api import KubernetesApi
 from timeweb_cloud_api.api.locations_api import LocationsApi
 from timeweb_cloud_api.api.mail_api import MailApi
+from timeweb_cloud_api.api.network_drives_api import NetworkDrivesApi
 from timeweb_cloud_api.api.projects_api import ProjectsApi
 from timeweb_cloud_api.api.s3_api import S3Api
 from timeweb_cloud_api.api.ssh_api import SSHApi
