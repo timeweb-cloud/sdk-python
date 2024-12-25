@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **status** | **object** | Статус сетевого диска. | 
 **availability_zone** | [**AvailabilityZone**](AvailabilityZone.md) |  | 
 **type** | **object** | Тип сетевого диска. | 
-**preset_id** | **object** | Идентификатор сетевого диска. | 
+**preset_id** | **object** | Идентификатор тарифа. | 
 
 ## Example
 

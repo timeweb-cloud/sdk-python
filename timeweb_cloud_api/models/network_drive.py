@@ -36,7 +36,7 @@ class NetworkDrive(BaseModel):
     status: Optional[Any] = Field(..., description="Статус сетевого диска.")
     availability_zone: AvailabilityZone = Field(...)
     type: Optional[Any] = Field(..., description="Тип сетевого диска.")
-    preset_id: Optional[Any] = Field(..., description="Идентификатор сетевого диска.")
+    preset_id: Optional[Any] = Field(..., description="Идентификатор тарифа.")
     __properties = ["id", "name", "comment", "size", "service_list", "location", "status", "availability_zone", "type", "preset_id"]
 
     @validator('location')
