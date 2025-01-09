@@ -97,6 +97,8 @@ docs/CreateFolderInStorageRequest.md
 docs/CreateInstance.md
 docs/CreateKey201Response.md
 docs/CreateKeyRequest.md
+docs/CreateMultipleDomainMailboxes201Response.md
+docs/CreateMultipleDomainMailboxesRequest.md
 docs/CreateNetworkDrive.md
 docs/CreateNetworkDrive201Response.md
 docs/CreateProject.md
@@ -503,6 +505,8 @@ test/test_create_folder_in_storage_request.py
 test/test_create_instance.py
 test/test_create_key201_response.py
 test/test_create_key_request.py
+test/test_create_multiple_domain_mailboxes201_response.py
+test/test_create_multiple_domain_mailboxes_request.py
 test/test_create_network_drive.py
 test/test_create_network_drive201_response.py
 test/test_create_project.py
@@ -924,6 +928,8 @@ timeweb_cloud_api/models/create_folder_in_storage_request.py
 timeweb_cloud_api/models/create_instance.py
 timeweb_cloud_api/models/create_key201_response.py
 timeweb_cloud_api/models/create_key_request.py
+timeweb_cloud_api/models/create_multiple_domain_mailboxes201_response.py
+timeweb_cloud_api/models/create_multiple_domain_mailboxes_request.py
 timeweb_cloud_api/models/create_network_drive.py
 timeweb_cloud_api/models/create_network_drive201_response.py
 timeweb_cloud_api/models/create_project.py

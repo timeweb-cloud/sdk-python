@@ -5,6 +5,7 @@ All URIs are relative to *https://api.timeweb.cloud*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**create_domain_mailbox**](MailApi.md#create_domain_mailbox) | **POST** /api/v1/mail/domains/{domain} | Создание почтового ящика
+[**create_multiple_domain_mailboxes**](MailApi.md#create_multiple_domain_mailboxes) | **POST** /api/v1/mail/domains/{domain}/batch | Множественное создание почтовых ящиков
 [**delete_mailbox**](MailApi.md#delete_mailbox) | **DELETE** /api/v1/mail/domains/{domain}/mailboxes/{mailbox} | Удаление почтового ящика
 [**get_domain_mail_info**](MailApi.md#get_domain_mail_info) | **GET** /api/v1/mail/domains/{domain}/info | Получение почтовой информации о домене
 [**get_domain_mailboxes**](MailApi.md#get_domain_mailboxes) | **GET** /api/v1/mail/domains/{domain} | Получение списка почтовых ящиков домена
@@ -94,6 +95,93 @@ Name | Type | Description  | Notes
 **201** | Ответ будет представлять собой объект JSON c ключом &#x60;mailbox&#x60;. |  -  |
 **400** |  |  -  |
 **401** |  |  -  |
+**403** |  |  -  |
+**404** |  |  -  |
+**429** |  |  -  |
+**500** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **create_multiple_domain_mailboxes**
+> CreateMultipleDomainMailboxes201Response create_multiple_domain_mailboxes(domain, create_multiple_domain_mailboxes_request)
+
+Множественное создание почтовых ящиков
+
+Чтобы создать почтовый ящики, отправьте POST-запрос на `/api/v1/mail/domains/{domain}/batch`.
+
+### Example
+
+* Bearer (JWT) Authentication (Bearer):
+```python
+import time
+import os
+import timeweb_cloud_api
+from timeweb_cloud_api.models.create_multiple_domain_mailboxes201_response import CreateMultipleDomainMailboxes201Response
+from timeweb_cloud_api.models.create_multiple_domain_mailboxes_request import CreateMultipleDomainMailboxesRequest
+from timeweb_cloud_api.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.timeweb.cloud
+# See configuration.py for a list of all supported configuration parameters.
+configuration = timeweb_cloud_api.Configuration(
+    host = "https://api.timeweb.cloud"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): Bearer
+configuration = timeweb_cloud_api.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = timeweb_cloud_api.MailApi(api_client)
+    domain = somedomain.ru # object | Полное имя домена
+    create_multiple_domain_mailboxes_request = timeweb_cloud_api.CreateMultipleDomainMailboxesRequest() # CreateMultipleDomainMailboxesRequest | 
+
+    try:
+        # Множественное создание почтовых ящиков
+        api_response = api_instance.create_multiple_domain_mailboxes(domain, create_multiple_domain_mailboxes_request)
+        print("The response of MailApi->create_multiple_domain_mailboxes:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling MailApi->create_multiple_domain_mailboxes: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **domain** | [**object**](.md)| Полное имя домена | 
+ **create_multiple_domain_mailboxes_request** | [**CreateMultipleDomainMailboxesRequest**](CreateMultipleDomainMailboxesRequest.md)|  | 
+
+### Return type
+
+[**CreateMultipleDomainMailboxes201Response**](CreateMultipleDomainMailboxes201Response.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | Ответ будет представлять собой объект JSON c ключом &#x60;mailboxes&#x60;. |  -  |
+**400** |  |  -  |
+**401** |  |  -  |
+**403** |  |  -  |
+**404** |  |  -  |
 **429** |  |  -  |
 **500** |  |  -  |
 
@@ -173,6 +261,8 @@ void (empty response body)
 **204** | Успешное удаление почтового ящика |  -  |
 **400** |  |  -  |
 **401** |  |  -  |
+**403** |  |  -  |
+**404** |  |  -  |
 **429** |  |  -  |
 **500** |  |  -  |
 
@@ -253,6 +343,8 @@ Name | Type | Description  | Notes
 **200** | Ответ будет представлять собой объект JSON c ключом &#x60;domain_info&#x60;. |  -  |
 **400** |  |  -  |
 **401** |  |  -  |
+**403** |  |  -  |
+**404** |  |  -  |
 **429** |  |  -  |
 **500** |  |  -  |
 
@@ -339,6 +431,8 @@ Name | Type | Description  | Notes
 **200** | Ответ будет представлять собой объект JSON c ключом &#x60;mailboxes&#x60;. |  -  |
 **400** |  |  -  |
 **401** |  |  -  |
+**403** |  |  -  |
+**404** |  |  -  |
 **429** |  |  -  |
 **500** |  |  -  |
 
@@ -415,6 +509,7 @@ This endpoint does not need any parameter.
 **200** | Ответ будет представлять собой объект JSON c ключом &#x60;quota&#x60;. |  -  |
 **400** |  |  -  |
 **401** |  |  -  |
+**403** |  |  -  |
 **429** |  |  -  |
 **500** |  |  -  |
 
@@ -497,6 +592,8 @@ Name | Type | Description  | Notes
 **200** | Ответ будет представлять собой объект JSON c ключом &#x60;mailbox&#x60;. |  -  |
 **400** |  |  -  |
 **401** |  |  -  |
+**403** |  |  -  |
+**404** |  |  -  |
 **429** |  |  -  |
 **500** |  |  -  |
 
@@ -581,6 +678,7 @@ Name | Type | Description  | Notes
 **200** | Ответ будет представлять собой объект JSON c ключом &#x60;mailboxes&#x60;. |  -  |
 **400** |  |  -  |
 **401** |  |  -  |
+**403** |  |  -  |
 **429** |  |  -  |
 **500** |  |  -  |
 
@@ -664,6 +762,8 @@ Name | Type | Description  | Notes
 **200** | Ответ будет представлять собой объект JSON c ключом &#x60;domain_info&#x60;. |  -  |
 **400** |  |  -  |
 **401** |  |  -  |
+**403** |  |  -  |
+**404** |  |  -  |
 **429** |  |  -  |
 **500** |  |  -  |
 
@@ -745,6 +845,7 @@ Name | Type | Description  | Notes
 **200** | Ответ будет представлять собой объект JSON c ключом &#x60;quota&#x60;. |  -  |
 **400** |  |  -  |
 **401** |  |  -  |
+**403** |  |  -  |
 **429** |  |  -  |
 **500** |  |  -  |
 
@@ -830,6 +931,8 @@ Name | Type | Description  | Notes
 **200** | Ответ будет представлять собой объект JSON c ключом &#x60;mailbox&#x60;. |  -  |
 **400** |  |  -  |
 **401** |  |  -  |
+**403** |  |  -  |
+**404** |  |  -  |
 **429** |  |  -  |
 **500** |  |  -  |
 

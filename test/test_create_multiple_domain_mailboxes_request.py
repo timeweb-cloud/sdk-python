@@ -13,92 +13,44 @@
 """
 
 
-from __future__ import annotations
-import pprint
-import re  # noqa: F401
-import json
+import unittest
+import datetime
 
+import timeweb_cloud_api
+from timeweb_cloud_api.models.create_multiple_domain_mailboxes_request import CreateMultipleDomainMailboxesRequest  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
-from typing import Any, Optional
-from pydantic import BaseModel, Field
+class TestCreateMultipleDomainMailboxesRequest(unittest.TestCase):
+    """CreateMultipleDomainMailboxesRequest unit test stubs"""
 
-class CreateApiKey(BaseModel):
-    """
-    CreateApiKey
-    """
-    name: Optional[Any] = Field(..., description="Имя, установленное для токена.")
-    expire: Optional[Any] = Field(None, description="Значение времени, указанное в комбинированном формате даты и времени ISO8601, которое представляет, когда истекает токен.")
-    is_able_to_delete: Optional[Any] = Field(None, description="Это логическое значение, которое показывает, можно ли удалять управляемые сервисы при помощи данного токена без подтверждения через Телеграм, когда это подтверждение включено.")
-    roles: Optional[Any] = Field(None, description="Роли, которые могут быть назначены токену.")
-    projects: Optional[Any] = Field(None, description="Список идентификаторов проектов, к которым привязан токен. Если передан null - доступ к проектам не ограничен.")
-    __properties = ["name", "expire", "is_able_to_delete", "roles", "projects"]
+    def setUp(self):
+        pass
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
+    def tearDown(self):
+        pass
 
-    def to_str(self) -> str:
-        """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+    def make_instance(self, include_optional):
+        """Test CreateMultipleDomainMailboxesRequest
+            include_option is a boolean, when False only required
+            params are included, when True both required and
+            optional params are included """
+        # uncomment below to create an instance of `CreateMultipleDomainMailboxesRequest`
+        """
+        model = timeweb_cloud_api.models.create_multiple_domain_mailboxes_request.CreateMultipleDomainMailboxesRequest()  # noqa: E501
+        if include_optional :
+            return CreateMultipleDomainMailboxesRequest(
+                mailboxes = None
+            )
+        else :
+            return CreateMultipleDomainMailboxesRequest(
+                mailboxes = None,
+        )
+        """
 
-    def to_json(self) -> str:
-        """Returns the JSON representation of the model using alias"""
-        return json.dumps(self.to_dict())
+    def testCreateMultipleDomainMailboxesRequest(self):
+        """Test CreateMultipleDomainMailboxesRequest"""
+        # inst_req_only = self.make_instance(include_optional=False)
+        # inst_req_and_optional = self.make_instance(include_optional=True)
 
-    @classmethod
-    def from_json(cls, json_str: str) -> CreateApiKey:
-        """Create an instance of CreateApiKey from a JSON string"""
-        return cls.from_dict(json.loads(json_str))
-
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
-        # set to None if name (nullable) is None
-        # and __fields_set__ contains the field
-        if self.name is None and "name" in self.__fields_set__:
-            _dict['name'] = None
-
-        # set to None if expire (nullable) is None
-        # and __fields_set__ contains the field
-        if self.expire is None and "expire" in self.__fields_set__:
-            _dict['expire'] = None
-
-        # set to None if is_able_to_delete (nullable) is None
-        # and __fields_set__ contains the field
-        if self.is_able_to_delete is None and "is_able_to_delete" in self.__fields_set__:
-            _dict['is_able_to_delete'] = None
-
-        # set to None if roles (nullable) is None
-        # and __fields_set__ contains the field
-        if self.roles is None and "roles" in self.__fields_set__:
-            _dict['roles'] = None
-
-        # set to None if projects (nullable) is None
-        # and __fields_set__ contains the field
-        if self.projects is None and "projects" in self.__fields_set__:
-            _dict['projects'] = None
-
-        return _dict
-
-    @classmethod
-    def from_dict(cls, obj: dict) -> CreateApiKey:
-        """Create an instance of CreateApiKey from a dict"""
-        if obj is None:
-            return None
-
-        if not isinstance(obj, dict):
-            return CreateApiKey.parse_obj(obj)
-
-        _obj = CreateApiKey.parse_obj({
-            "name": obj.get("name"),
-            "expire": obj.get("expire"),
-            "is_able_to_delete": obj.get("is_able_to_delete"),
-            "roles": obj.get("roles"),
-            "projects": obj.get("projects")
-        })
-        return _obj
-
+if __name__ == '__main__':
+    unittest.main()

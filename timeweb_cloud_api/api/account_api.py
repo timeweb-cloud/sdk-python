@@ -771,7 +771,6 @@ class AccountApi(object):
             '400': None,
             '401': None,
             '403': None,
-            '404': None,
             '429': None,
             '500': None,
         }
@@ -1178,7 +1177,6 @@ class AccountApi(object):
             '400': None,
             '401': None,
             '403': None,
-            '404': None,
             '429': None,
             '500': None,
         }
@@ -1315,7 +1313,6 @@ class AccountApi(object):
             '400': None,
             '401': None,
             '403': None,
-            '404': None,
             '429': None,
             '500': None,
         }
@@ -1746,6 +1743,7 @@ class AccountApi(object):
             '200': "GetNotificationSettings200Response",
             '400': None,
             '401': None,
+            '403': None,
             '429': None,
             '500': None,
         }

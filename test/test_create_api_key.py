@@ -41,7 +41,9 @@ class TestCreateApiKey(unittest.TestCase):
             return CreateApiKey(
                 name = Example, 
                 expire = 2022-10-25T15:15:45.000Z, 
-                is_able_to_delete = true
+                is_able_to_delete = true, 
+                roles = None, 
+                projects = [123, 321]
             )
         else :
             return CreateApiKey(

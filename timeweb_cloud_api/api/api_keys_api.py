@@ -181,7 +181,6 @@ class APIKeysApi(object):
             '400': None,
             '401': None,
             '403': None,
-            '404': None,
             '429': None,
             '500': None,
         }
@@ -451,7 +450,6 @@ class APIKeysApi(object):
             '400': None,
             '401': None,
             '403': None,
-            '404': None,
             '429': None,
             '500': None,
         }

@@ -36,6 +36,13 @@ class TestMailApi(unittest.TestCase):
         """
         pass
 
+    def test_create_multiple_domain_mailboxes(self):
+        """Test case for create_multiple_domain_mailboxes
+
+        Множественное создание почтовых ящиков  # noqa: E501
+        """
+        pass
+
     def test_delete_mailbox(self):
         """Test case for delete_mailbox
 

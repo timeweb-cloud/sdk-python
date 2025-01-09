@@ -22,16 +22,12 @@ import json
 from typing import Any, Optional
 from pydantic import BaseModel, Field
 
-class CreateApiKey(BaseModel):
+class CreateMultipleDomainMailboxes201Response(BaseModel):
     """
-    CreateApiKey
+    CreateMultipleDomainMailboxes201Response
     """
-    name: Optional[Any] = Field(..., description="Имя, установленное для токена.")
-    expire: Optional[Any] = Field(None, description="Значение времени, указанное в комбинированном формате даты и времени ISO8601, которое представляет, когда истекает токен.")
-    is_able_to_delete: Optional[Any] = Field(None, description="Это логическое значение, которое показывает, можно ли удалять управляемые сервисы при помощи данного токена без подтверждения через Телеграм, когда это подтверждение включено.")
-    roles: Optional[Any] = Field(None, description="Роли, которые могут быть назначены токену.")
-    projects: Optional[Any] = Field(None, description="Список идентификаторов проектов, к которым привязан токен. Если передан null - доступ к проектам не ограничен.")
-    __properties = ["name", "expire", "is_able_to_delete", "roles", "projects"]
+    mailboxes: Optional[Any] = Field(...)
+    __properties = ["mailboxes"]
 
     class Config:
         """Pydantic configuration"""
@@ -47,8 +43,8 @@ class CreateApiKey(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> CreateApiKey:
-        """Create an instance of CreateApiKey from a JSON string"""
+    def from_json(cls, json_str: str) -> CreateMultipleDomainMailboxes201Response:
+        """Create an instance of CreateMultipleDomainMailboxes201Response from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self):
@@ -57,48 +53,24 @@ class CreateApiKey(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # set to None if name (nullable) is None
+        # set to None if mailboxes (nullable) is None
         # and __fields_set__ contains the field
-        if self.name is None and "name" in self.__fields_set__:
-            _dict['name'] = None
-
-        # set to None if expire (nullable) is None
-        # and __fields_set__ contains the field
-        if self.expire is None and "expire" in self.__fields_set__:
-            _dict['expire'] = None
-
-        # set to None if is_able_to_delete (nullable) is None
-        # and __fields_set__ contains the field
-        if self.is_able_to_delete is None and "is_able_to_delete" in self.__fields_set__:
-            _dict['is_able_to_delete'] = None
-
-        # set to None if roles (nullable) is None
-        # and __fields_set__ contains the field
-        if self.roles is None and "roles" in self.__fields_set__:
-            _dict['roles'] = None
-
-        # set to None if projects (nullable) is None
-        # and __fields_set__ contains the field
-        if self.projects is None and "projects" in self.__fields_set__:
-            _dict['projects'] = None
+        if self.mailboxes is None and "mailboxes" in self.__fields_set__:
+            _dict['mailboxes'] = None
 
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> CreateApiKey:
-        """Create an instance of CreateApiKey from a dict"""
+    def from_dict(cls, obj: dict) -> CreateMultipleDomainMailboxes201Response:
+        """Create an instance of CreateMultipleDomainMailboxes201Response from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return CreateApiKey.parse_obj(obj)
+            return CreateMultipleDomainMailboxes201Response.parse_obj(obj)
 
-        _obj = CreateApiKey.parse_obj({
-            "name": obj.get("name"),
-            "expire": obj.get("expire"),
-            "is_able_to_delete": obj.get("is_able_to_delete"),
-            "roles": obj.get("roles"),
-            "projects": obj.get("projects")
+        _obj = CreateMultipleDomainMailboxes201Response.parse_obj({
+            "mailboxes": obj.get("mailboxes")
         })
         return _obj
 
