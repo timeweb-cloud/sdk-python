@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **object** | Уникальный идентификатор тарифа | 
+**id** | **object** | ID тарифа | 
 **description** | **object** | Описание тарифа | 
 **description_short** | **object** | Краткое описание тарифа | 
 **price** | **object** | Стоимость | 

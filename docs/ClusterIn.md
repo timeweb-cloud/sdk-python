@@ -6,12 +6,15 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **object** | Название кластера | 
 **description** | **object** | Описание кластера | [optional] 
-**ha** | **object** | Описание появится позднее | 
 **k8s_version** | **object** | Версия Kubernetes | 
+**availability_zone** | **object** | Зона доступности | [optional] 
 **network_driver** | **object** | Тип используемого сетевого драйвера в кластере | 
-**ingress** | **object** | Логическое значение, которое показывает, использовать ли Ingress в кластере | 
-**preset_id** | **object** | Идентификатор тарифа мастер-ноды | 
+**is_ingress** | **object** | Логическое значение, которое показывает, использовать ли Ingress в кластере | [optional] 
+**is_k8s_dashboard** | **object** | Логическое значение, которое показывает, использовать ли Kubernetes Dashboard в кластере | [optional] 
+**preset_id** | **object** | ID тарифа мастер-ноды | 
 **worker_groups** | **object** | Группы воркеров в кластере | [optional] 
+**network_id** | **object** | ID приватной сети | [optional] 
+**project_id** | **object** | ID проекта | [optional] 
 
 ## Example
 

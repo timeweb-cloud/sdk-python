@@ -3,7 +3,7 @@
 """
     Timeweb Cloud API
 
-    # Введение API Timeweb Cloud позволяет вам управлять ресурсами в облаке программным способом с использованием обычных HTTP-запросов.  Множество функций, которые доступны в панели управления Timeweb Cloud, также доступны через API, что позволяет вам автоматизировать ваши собственные сценарии.  В этой документации сперва будет описан общий дизайн и принципы работы API, а после этого конкретные конечные точки. Также будут приведены примеры запросов к ним.   ## Запросы Запросы должны выполняться по протоколу `HTTPS`, чтобы гарантировать шифрование транзакций. Поддерживаются следующие методы запроса: |Метод|Применение| |--- |--- | |GET|Извлекает данные о коллекциях и отдельных ресурсах.| |POST|Для коллекций создает новый ресурс этого типа. Также используется для выполнения действий с конкретным ресурсом.| |PUT|Обновляет существующий ресурс.| |PATCH|Некоторые ресурсы поддерживают частичное обновление, то есть обновление только части атрибутов ресурса, в этом случае вместо метода PUT будет использован PATCH.| |DELETE|Удаляет ресурс.|  Методы `POST`, `PUT` и `PATCH` могут включать объект в тело запроса с типом содержимого `application/json`.  ### Параметры в запросах Некоторые коллекции поддерживают пагинацию, поиск или сортировку в запросах. В параметрах запроса требуется передать: - `limit` — обозначает количество записей, которое необходимо вернуть  - `offset` — указывает на смещение, относительно начала списка  - `search` — позволяет указать набор символов для поиска  - `sort` — можно задать правило сортировки коллекции  ## Ответы Запросы вернут один из следующих кодов состояния ответа HTTP:  |Статус|Описание| |--- |--- | |200 OK|Действие с ресурсом было выполнено успешно.| |201 Created|Ресурс был успешно создан. При этом ресурс может быть как уже готовым к использованию, так и находиться в процессе запуска.| |204 No Content|Действие с ресурсом было выполнено успешно, и ответ не содержит дополнительной информации в теле.| |400 Bad Request|Был отправлен неверный запрос, например, в нем отсутствуют обязательные параметры и т. д. Тело ответа будет содержать дополнительную информацию об ошибке.| |401 Unauthorized|Ошибка аутентификации.| |403 Forbidden|Аутентификация прошла успешно, но недостаточно прав для выполнения действия.| |404 Not Found|Запрашиваемый ресурс не найден.| |409 Conflict|Запрос конфликтует с текущим состоянием.| |423 Locked|Ресурс из запроса заблокирован от применения к нему указанного метода.| |429 Too Many Requests|Был достигнут лимит по количеству запросов в единицу времени.| |500 Internal Server Error|При выполнении запроса произошла какая-то внутренняя ошибка. Чтобы решить эту проблему, лучше всего создать тикет в панели управления.|  ### Структура успешного ответа Все конечные точки будут возвращать данные в формате `JSON`. Ответы на `GET`-запросы будут иметь на верхнем уровне следующую структуру атрибутов:  |Название поля|Тип|Описание| |--- |--- |--- | |[entity_name]|object, object[], string[], number[], boolean|Динамическое поле, которое будет меняться в зависимости от запрашиваемого ресурса и будет содержать все атрибуты, необходимые для описания этого ресурса. Например, при запросе списка баз данных будет возвращаться поле `dbs`, а при запросе конкретного облачного сервера `server`. Для некоторых конечных точек в ответе может возвращаться сразу несколько ресурсов.| |meta|object|Опционально. Объект, который содержит вспомогательную информацию о ресурсе. Чаще всего будет встречаться при запросе коллекций и содержать поле `total`, которое будет указывать на количество элементов в коллекции.| |response_id|string|Опционально. В большинстве случаев в ответе будет содержаться уникальный идентификатор ответа в формате UUIDv4, который однозначно указывает на ваш запрос внутри нашей системы. Если вам потребуется задать вопрос нашей поддержке, приложите к вопросу этот идентификатор — так мы сможем найти ответ на него намного быстрее. Также вы можете использовать этот идентификатор, чтобы убедиться, что это новый ответ на запрос и результат не был получен из кэша.|  Пример запроса на получение списка SSH-ключей: ```     HTTP/2.0 200 OK     {       \"ssh_keys\":[           {             \"body\":\"ssh-rsa AAAAB3NzaC1sdfghjkOAsBwWhs= example@device.local\",             \"created_at\":\"2021-09-15T19:52:27Z\",             \"expired_at\":null,             \"id\":5297,             \"is_default\":false,             \"name\":\"example@device.local\",             \"used_at\":null,             \"used_by\":[]           }       ],       \"meta\":{           \"total\":1       },       \"response_id\":\"94608d15-8672-4eed-8ab6-28bd6fa3cdf7\"     } ```  ### Структура ответа с ошибкой |Название поля|Тип|Описание| |--- |--- |--- | |status_code|number|Короткий числовой идентификатор ошибки.| |error_code|string|Короткий текстовый идентификатор ошибки, который уточняет числовой идентификатор и удобен для программной обработки. Самый простой пример — это код `not_found` для ошибки 404.| |message|string, string[]|Опционально. В большинстве случаев в ответе будет содержаться человекочитаемое подробное описание ошибки или ошибок, которые помогут понять, что нужно исправить.| |response_id|string|Опционально. В большинстве случае в ответе будет содержаться уникальный идентификатор ответа в формате UUIDv4, который однозначно указывает на ваш запрос внутри нашей системы. Если вам потребуется задать вопрос нашей поддержке, приложите к вопросу этот идентификатор — так мы сможем найти ответ на него намного быстрее.|  Пример: ```     HTTP/2.0 403 Forbidden     {       \"status_code\": 403,       \"error_code\":  \"forbidden\",       \"message\":     \"You do not have access for the attempted action\",       \"response_id\": \"94608d15-8672-4eed-8ab6-28bd6fa3cdf7\"     } ```  ## Статусы ресурсов Важно учесть, что при создании большинства ресурсов внутри платформы вам будет сразу возвращен ответ от сервера со статусом `200 OK` или `201 Created` и идентификатором созданного ресурса в теле ответа, но при этом этот ресурс может быть ещё в *состоянии запуска*.  Для того чтобы понять, в каком состоянии сейчас находится ваш ресурс, мы добавили поле `status` в ответ на получение информации о ресурсе.  Список статусов будет отличаться в зависимости от типа ресурса. Увидеть поддерживаемый список статусов вы сможете в описании каждого конкретного ресурса.     ## Ограничение скорости запросов (Rate Limiting) Чтобы обеспечить стабильность для всех пользователей, Timeweb Cloud защищает API от всплесков входящего трафика, анализируя количество запросов c каждого аккаунта к каждой конечной точке.  Если ваше приложение отправляет более 20 запросов в секунду на одну конечную точку, то для этого запроса API может вернуть код состояния HTTP `429 Too Many Requests`.   ## Аутентификация Доступ к API осуществляется с помощью JWT-токена. Токенами можно управлять внутри панели управления Timeweb Cloud в разделе *API и Terraform*.  Токен необходимо передавать в заголовке каждого запроса в формате: ```   Authorization: Bearer $TIMEWEB_CLOUD_TOKEN ```  ## Формат примеров API Примеры в этой документации описаны с помощью `curl`, HTTP-клиента командной строки. На компьютерах `Linux` и `macOS` обычно по умолчанию установлен `curl`, и он доступен для загрузки на всех популярных платформах, включая `Windows`.  Каждый пример разделен на несколько строк символом `\\`, который совместим с `bash`. Типичный пример выглядит так: ```   curl -X PATCH      -H \"Content-Type: application/json\"      -H \"Authorization: Bearer $TIMEWEB_CLOUD_TOKEN\"      -d '{\"name\":\"Cute Corvus\",\"comment\":\"Development Server\"}'      \"https://api.timeweb.cloud/api/v1/dedicated/1051\" ``` - Параметр `-X` задает метод запроса. Для согласованности метод будет указан во всех примерах, даже если он явно не требуется для методов `GET`. - Строки `-H` задают требуемые HTTP-заголовки. - Примеры, для которых требуется объект JSON в теле запроса, передают требуемые данные через параметр `-d`.  Чтобы использовать приведенные примеры, не подставляя каждый раз в них свой токен, вы можете добавить токен один раз в переменные окружения в вашей консоли. Например, на `Linux` это можно сделать с помощью команды:  ``` TIMEWEB_CLOUD_TOKEN=\"token\" ```  После этого токен будет автоматически подставляться в ваши запросы.  Обратите внимание, что все значения в этой документации являются примерами. Не полагайтесь на идентификаторы операционных систем, тарифов и т.д., используемые в примерах. Используйте соответствующую конечную точку для получения значений перед созданием ресурсов.   ## Версионирование API построено согласно принципам [семантического версионирования](https://semver.org/lang/ru). Это значит, что мы гарантируем обратную совместимость всех изменений в пределах одной мажорной версии.  Мажорная версия каждой конечной точки обозначается в пути запроса, например, запрос `/api/v1/servers` указывает, что этот метод имеет версию 1.  # noqa: E501
+    # Введение API Timeweb Cloud позволяет вам управлять ресурсами в облаке программным способом с использованием обычных HTTP-запросов.  Множество функций, которые доступны в панели управления Timeweb Cloud, также доступны через API, что позволяет вам автоматизировать ваши собственные сценарии.  В этой документации сперва будет описан общий дизайн и принципы работы API, а после этого конкретные конечные точки. Также будут приведены примеры запросов к ним.   ## Запросы Запросы должны выполняться по протоколу `HTTPS`, чтобы гарантировать шифрование транзакций. Поддерживаются следующие методы запроса: |Метод|Применение| |--- |--- | |GET|Извлекает данные о коллекциях и отдельных ресурсах.| |POST|Для коллекций создает новый ресурс этого типа. Также используется для выполнения действий с конкретным ресурсом.| |PUT|Обновляет существующий ресурс.| |PATCH|Некоторые ресурсы поддерживают частичное обновление, то есть обновление только части атрибутов ресурса, в этом случае вместо метода PUT будет использован PATCH.| |DELETE|Удаляет ресурс.|  Методы `POST`, `PUT` и `PATCH` могут включать объект в тело запроса с типом содержимого `application/json`.  ### Параметры в запросах Некоторые коллекции поддерживают пагинацию, поиск или сортировку в запросах. В параметрах запроса требуется передать: - `limit` — обозначает количество записей, которое необходимо вернуть  - `offset` — указывает на смещение, относительно начала списка  - `search` — позволяет указать набор символов для поиска  - `sort` — можно задать правило сортировки коллекции  ## Ответы Запросы вернут один из следующих кодов состояния ответа HTTP:  |Статус|Описание| |--- |--- | |200 OK|Действие с ресурсом было выполнено успешно.| |201 Created|Ресурс был успешно создан. При этом ресурс может быть как уже готовым к использованию, так и находиться в процессе запуска.| |204 No Content|Действие с ресурсом было выполнено успешно, и ответ не содержит дополнительной информации в теле.| |400 Bad Request|Был отправлен неверный запрос, например, в нем отсутствуют обязательные параметры и т. д. Тело ответа будет содержать дополнительную информацию об ошибке.| |401 Unauthorized|Ошибка аутентификации.| |403 Forbidden|Аутентификация прошла успешно, но недостаточно прав для выполнения действия.| |404 Not Found|Запрашиваемый ресурс не найден.| |409 Conflict|Запрос конфликтует с текущим состоянием.| |423 Locked|Ресурс из запроса заблокирован от применения к нему указанного метода.| |429 Too Many Requests|Был достигнут лимит по количеству запросов в единицу времени.| |500 Internal Server Error|При выполнении запроса произошла какая-то внутренняя ошибка. Чтобы решить эту проблему, лучше всего создать тикет в панели управления.|  ### Структура успешного ответа Все конечные точки будут возвращать данные в формате `JSON`. Ответы на `GET`-запросы будут иметь на верхнем уровне следующую структуру атрибутов:  |Название поля|Тип|Описание| |--- |--- |--- | |[entity_name]|object, object[], string[], number[], boolean|Динамическое поле, которое будет меняться в зависимости от запрашиваемого ресурса и будет содержать все атрибуты, необходимые для описания этого ресурса. Например, при запросе списка баз данных будет возвращаться поле `dbs`, а при запросе конкретного облачного сервера `server`. Для некоторых конечных точек в ответе может возвращаться сразу несколько ресурсов.| |meta|object|Опционально. Объект, который содержит вспомогательную информацию о ресурсе. Чаще всего будет встречаться при запросе коллекций и содержать поле `total`, которое будет указывать на количество элементов в коллекции.| |response_id|string|Опционально. В большинстве случаев в ответе будет содержаться ID ответа в формате UUIDv4, который однозначно указывает на ваш запрос внутри нашей системы. Если вам потребуется задать вопрос нашей поддержке, приложите к вопросу этот ID— так мы сможем найти ответ на него намного быстрее. Также вы можете использовать этот ID, чтобы убедиться, что это новый ответ на запрос и результат не был получен из кэша.|  Пример запроса на получение списка SSH-ключей: ```     HTTP/2.0 200 OK     {       \"ssh_keys\":[           {             \"body\":\"ssh-rsa AAAAB3NzaC1sdfghjkOAsBwWhs= example@device.local\",             \"created_at\":\"2021-09-15T19:52:27Z\",             \"expired_at\":null,             \"id\":5297,             \"is_default\":false,             \"name\":\"example@device.local\",             \"used_at\":null,             \"used_by\":[]           }       ],       \"meta\":{           \"total\":1       },       \"response_id\":\"94608d15-8672-4eed-8ab6-28bd6fa3cdf7\"     } ```  ### Структура ответа с ошибкой |Название поля|Тип|Описание| |--- |--- |--- | |status_code|number|Короткий числовой идентификатор ошибки.| |error_code|string|Короткий текстовый идентификатор ошибки, который уточняет числовой идентификатор и удобен для программной обработки. Самый простой пример — это код `not_found` для ошибки 404.| |message|string, string[]|Опционально. В большинстве случаев в ответе будет содержаться человекочитаемое подробное описание ошибки или ошибок, которые помогут понять, что нужно исправить.| |response_id|string|Опционально. В большинстве случае в ответе будет содержаться ID ответа в формате UUIDv4, который однозначно указывает на ваш запрос внутри нашей системы. Если вам потребуется задать вопрос нашей поддержке, приложите к вопросу этот ID — так мы сможем найти ответ на него намного быстрее.|  Пример: ```     HTTP/2.0 403 Forbidden     {       \"status_code\": 403,       \"error_code\":  \"forbidden\",       \"message\":     \"You do not have access for the attempted action\",       \"response_id\": \"94608d15-8672-4eed-8ab6-28bd6fa3cdf7\"     } ```  ## Статусы ресурсов Важно учесть, что при создании большинства ресурсов внутри платформы вам будет сразу возвращен ответ от сервера со статусом `200 OK` или `201 Created` и ID созданного ресурса в теле ответа, но при этом этот ресурс может быть ещё в *состоянии запуска*.  Для того чтобы понять, в каком состоянии сейчас находится ваш ресурс, мы добавили поле `status` в ответ на получение информации о ресурсе.  Список статусов будет отличаться в зависимости от типа ресурса. Увидеть поддерживаемый список статусов вы сможете в описании каждого конкретного ресурса.     ## Ограничение скорости запросов (Rate Limiting) Чтобы обеспечить стабильность для всех пользователей, Timeweb Cloud защищает API от всплесков входящего трафика, анализируя количество запросов c каждого аккаунта к каждой конечной точке.  Если ваше приложение отправляет более 20 запросов в секунду на одну конечную точку, то для этого запроса API может вернуть код состояния HTTP `429 Too Many Requests`.   ## Аутентификация Доступ к API осуществляется с помощью JWT-токена. Токенами можно управлять внутри панели управления Timeweb Cloud в разделе *API и Terraform*.  Токен необходимо передавать в заголовке каждого запроса в формате: ```   Authorization: Bearer $TIMEWEB_CLOUD_TOKEN ```  ## Формат примеров API Примеры в этой документации описаны с помощью `curl`, HTTP-клиента командной строки. На компьютерах `Linux` и `macOS` обычно по умолчанию установлен `curl`, и он доступен для загрузки на всех популярных платформах, включая `Windows`.  Каждый пример разделен на несколько строк символом `\\`, который совместим с `bash`. Типичный пример выглядит так: ```   curl -X PATCH      -H \"Content-Type: application/json\"      -H \"Authorization: Bearer $TIMEWEB_CLOUD_TOKEN\"      -d '{\"name\":\"Cute Corvus\",\"comment\":\"Development Server\"}'      \"https://api.timeweb.cloud/api/v1/dedicated/1051\" ``` - Параметр `-X` задает метод запроса. Для согласованности метод будет указан во всех примерах, даже если он явно не требуется для методов `GET`. - Строки `-H` задают требуемые HTTP-заголовки. - Примеры, для которых требуется объект JSON в теле запроса, передают требуемые данные через параметр `-d`.  Чтобы использовать приведенные примеры, не подставляя каждый раз в них свой токен, вы можете добавить токен один раз в переменные окружения в вашей консоли. Например, на `Linux` это можно сделать с помощью команды:  ``` TIMEWEB_CLOUD_TOKEN=\"token\" ```  После этого токен будет автоматически подставляться в ваши запросы.  Обратите внимание, что все значения в этой документации являются примерами. Не полагайтесь на IDы операционных систем, тарифов и т.д., используемые в примерах. Используйте соответствующую конечную точку для получения значений перед созданием ресурсов.   ## Версионирование API построено согласно принципам [семантического версионирования](https://semver.org/lang/ru). Это значит, что мы гарантируем обратную совместимость всех изменений в пределах одной мажорной версии.  Мажорная версия каждой конечной точки обозначается в пути запроса, например, запрос `/api/v1/servers` указывает, что этот метод имеет версию 1.  # noqa: E501
 
     The version of the OpenAPI document: 1.0.0
     Contact: info@timeweb.cloud
@@ -65,7 +65,7 @@ class ProjectsApi(object):
         self.api_client = api_client
 
     @validate_arguments
-    def add_balancer_to_project(self, project_id : Annotated[Any, Field(..., description="Уникальный идентификатор проекта.")], add_balancer_to_project_request : AddBalancerToProjectRequest, **kwargs) -> AddBalancerToProject200Response:  # noqa: E501
+    def add_balancer_to_project(self, project_id : Annotated[Any, Field(..., description="ID проекта.")], add_balancer_to_project_request : AddBalancerToProjectRequest, **kwargs) -> AddBalancerToProject200Response:  # noqa: E501
         """Добавление балансировщика в проект  # noqa: E501
 
         Чтобы добавить балансировщик в проект, отправьте POST-запрос на `/api/v1/projects/{project_id}/resources/balancers`, задав необходимые атрибуты.  Балансировщик будет добавлен в указанный проект. Тело ответа будет содержать объект JSON с информацией о добавленном балансировщике.  # noqa: E501
@@ -75,7 +75,7 @@ class ProjectsApi(object):
         >>> thread = api.add_balancer_to_project(project_id, add_balancer_to_project_request, async_req=True)
         >>> result = thread.get()
 
-        :param project_id: Уникальный идентификатор проекта. (required)
+        :param project_id: ID проекта. (required)
         :type project_id: object
         :param add_balancer_to_project_request: (required)
         :type add_balancer_to_project_request: AddBalancerToProjectRequest
@@ -96,7 +96,7 @@ class ProjectsApi(object):
         return self.add_balancer_to_project_with_http_info(project_id, add_balancer_to_project_request, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def add_balancer_to_project_with_http_info(self, project_id : Annotated[Any, Field(..., description="Уникальный идентификатор проекта.")], add_balancer_to_project_request : AddBalancerToProjectRequest, **kwargs) -> ApiResponse:  # noqa: E501
+    def add_balancer_to_project_with_http_info(self, project_id : Annotated[Any, Field(..., description="ID проекта.")], add_balancer_to_project_request : AddBalancerToProjectRequest, **kwargs) -> ApiResponse:  # noqa: E501
         """Добавление балансировщика в проект  # noqa: E501
 
         Чтобы добавить балансировщик в проект, отправьте POST-запрос на `/api/v1/projects/{project_id}/resources/balancers`, задав необходимые атрибуты.  Балансировщик будет добавлен в указанный проект. Тело ответа будет содержать объект JSON с информацией о добавленном балансировщике.  # noqa: E501
@@ -106,7 +106,7 @@ class ProjectsApi(object):
         >>> thread = api.add_balancer_to_project_with_http_info(project_id, add_balancer_to_project_request, async_req=True)
         >>> result = thread.get()
 
-        :param project_id: Уникальный идентификатор проекта. (required)
+        :param project_id: ID проекта. (required)
         :type project_id: object
         :param add_balancer_to_project_request: (required)
         :type add_balancer_to_project_request: AddBalancerToProjectRequest
@@ -225,7 +225,7 @@ class ProjectsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def add_cluster_to_project(self, project_id : Annotated[Any, Field(..., description="Уникальный идентификатор проекта.")], add_cluster_to_project_request : AddClusterToProjectRequest, **kwargs) -> AddBalancerToProject200Response:  # noqa: E501
+    def add_cluster_to_project(self, project_id : Annotated[Any, Field(..., description="ID проекта.")], add_cluster_to_project_request : AddClusterToProjectRequest, **kwargs) -> AddBalancerToProject200Response:  # noqa: E501
         """Добавление кластера в проект  # noqa: E501
 
         Чтобы добавить кластер в проект, отправьте POST-запрос на `/api/v1/projects/{project_id}/resources/clusters`, задав необходимые атрибуты.  Кластер будет добавлен в указанный проект. Тело ответа будет содержать объект JSON с информацией о добавленном кластере.  # noqa: E501
@@ -235,7 +235,7 @@ class ProjectsApi(object):
         >>> thread = api.add_cluster_to_project(project_id, add_cluster_to_project_request, async_req=True)
         >>> result = thread.get()
 
-        :param project_id: Уникальный идентификатор проекта. (required)
+        :param project_id: ID проекта. (required)
         :type project_id: object
         :param add_cluster_to_project_request: (required)
         :type add_cluster_to_project_request: AddClusterToProjectRequest
@@ -256,7 +256,7 @@ class ProjectsApi(object):
         return self.add_cluster_to_project_with_http_info(project_id, add_cluster_to_project_request, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def add_cluster_to_project_with_http_info(self, project_id : Annotated[Any, Field(..., description="Уникальный идентификатор проекта.")], add_cluster_to_project_request : AddClusterToProjectRequest, **kwargs) -> ApiResponse:  # noqa: E501
+    def add_cluster_to_project_with_http_info(self, project_id : Annotated[Any, Field(..., description="ID проекта.")], add_cluster_to_project_request : AddClusterToProjectRequest, **kwargs) -> ApiResponse:  # noqa: E501
         """Добавление кластера в проект  # noqa: E501
 
         Чтобы добавить кластер в проект, отправьте POST-запрос на `/api/v1/projects/{project_id}/resources/clusters`, задав необходимые атрибуты.  Кластер будет добавлен в указанный проект. Тело ответа будет содержать объект JSON с информацией о добавленном кластере.  # noqa: E501
@@ -266,7 +266,7 @@ class ProjectsApi(object):
         >>> thread = api.add_cluster_to_project_with_http_info(project_id, add_cluster_to_project_request, async_req=True)
         >>> result = thread.get()
 
-        :param project_id: Уникальный идентификатор проекта. (required)
+        :param project_id: ID проекта. (required)
         :type project_id: object
         :param add_cluster_to_project_request: (required)
         :type add_cluster_to_project_request: AddClusterToProjectRequest
@@ -385,7 +385,7 @@ class ProjectsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def add_database_to_project(self, project_id : Annotated[Any, Field(..., description="Уникальный идентификатор проекта.")], add_database_to_project_request : AddDatabaseToProjectRequest, **kwargs) -> AddBalancerToProject200Response:  # noqa: E501
+    def add_database_to_project(self, project_id : Annotated[Any, Field(..., description="ID проекта.")], add_database_to_project_request : AddDatabaseToProjectRequest, **kwargs) -> AddBalancerToProject200Response:  # noqa: E501
         """Добавление базы данных в проект  # noqa: E501
 
         Чтобы добавить базу данных в проект, отправьте POST-запрос на `/api/v1/projects/{project_id}/resources/databases`, задав необходимые атрибуты.  База данных будет добавлена в указанный проект. Тело ответа будет содержать объект JSON с информацией о добавленной базе данных.  # noqa: E501
@@ -395,7 +395,7 @@ class ProjectsApi(object):
         >>> thread = api.add_database_to_project(project_id, add_database_to_project_request, async_req=True)
         >>> result = thread.get()
 
-        :param project_id: Уникальный идентификатор проекта. (required)
+        :param project_id: ID проекта. (required)
         :type project_id: object
         :param add_database_to_project_request: (required)
         :type add_database_to_project_request: AddDatabaseToProjectRequest
@@ -416,7 +416,7 @@ class ProjectsApi(object):
         return self.add_database_to_project_with_http_info(project_id, add_database_to_project_request, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def add_database_to_project_with_http_info(self, project_id : Annotated[Any, Field(..., description="Уникальный идентификатор проекта.")], add_database_to_project_request : AddDatabaseToProjectRequest, **kwargs) -> ApiResponse:  # noqa: E501
+    def add_database_to_project_with_http_info(self, project_id : Annotated[Any, Field(..., description="ID проекта.")], add_database_to_project_request : AddDatabaseToProjectRequest, **kwargs) -> ApiResponse:  # noqa: E501
         """Добавление базы данных в проект  # noqa: E501
 
         Чтобы добавить базу данных в проект, отправьте POST-запрос на `/api/v1/projects/{project_id}/resources/databases`, задав необходимые атрибуты.  База данных будет добавлена в указанный проект. Тело ответа будет содержать объект JSON с информацией о добавленной базе данных.  # noqa: E501
@@ -426,7 +426,7 @@ class ProjectsApi(object):
         >>> thread = api.add_database_to_project_with_http_info(project_id, add_database_to_project_request, async_req=True)
         >>> result = thread.get()
 
-        :param project_id: Уникальный идентификатор проекта. (required)
+        :param project_id: ID проекта. (required)
         :type project_id: object
         :param add_database_to_project_request: (required)
         :type add_database_to_project_request: AddDatabaseToProjectRequest
@@ -545,7 +545,7 @@ class ProjectsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def add_dedicated_server_to_project(self, project_id : Annotated[Any, Field(..., description="Уникальный идентификатор проекта.")], add_dedicated_server_to_project_request : AddDedicatedServerToProjectRequest, **kwargs) -> AddBalancerToProject200Response:  # noqa: E501
+    def add_dedicated_server_to_project(self, project_id : Annotated[Any, Field(..., description="ID проекта.")], add_dedicated_server_to_project_request : AddDedicatedServerToProjectRequest, **kwargs) -> AddBalancerToProject200Response:  # noqa: E501
         """Добавление выделенного сервера в проект  # noqa: E501
 
         Чтобы добавить выделенный сервер в проект, отправьте POST-запрос на `/api/v1/projects/{project_id}/resources/dedicated`, задав необходимые атрибуты.  Выделенный сервер будет добавлен в указанный проект. Тело ответа будет содержать объект JSON с информацией о добавленном выделенном сервере.  # noqa: E501
@@ -555,7 +555,7 @@ class ProjectsApi(object):
         >>> thread = api.add_dedicated_server_to_project(project_id, add_dedicated_server_to_project_request, async_req=True)
         >>> result = thread.get()
 
-        :param project_id: Уникальный идентификатор проекта. (required)
+        :param project_id: ID проекта. (required)
         :type project_id: object
         :param add_dedicated_server_to_project_request: (required)
         :type add_dedicated_server_to_project_request: AddDedicatedServerToProjectRequest
@@ -576,7 +576,7 @@ class ProjectsApi(object):
         return self.add_dedicated_server_to_project_with_http_info(project_id, add_dedicated_server_to_project_request, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def add_dedicated_server_to_project_with_http_info(self, project_id : Annotated[Any, Field(..., description="Уникальный идентификатор проекта.")], add_dedicated_server_to_project_request : AddDedicatedServerToProjectRequest, **kwargs) -> ApiResponse:  # noqa: E501
+    def add_dedicated_server_to_project_with_http_info(self, project_id : Annotated[Any, Field(..., description="ID проекта.")], add_dedicated_server_to_project_request : AddDedicatedServerToProjectRequest, **kwargs) -> ApiResponse:  # noqa: E501
         """Добавление выделенного сервера в проект  # noqa: E501
 
         Чтобы добавить выделенный сервер в проект, отправьте POST-запрос на `/api/v1/projects/{project_id}/resources/dedicated`, задав необходимые атрибуты.  Выделенный сервер будет добавлен в указанный проект. Тело ответа будет содержать объект JSON с информацией о добавленном выделенном сервере.  # noqa: E501
@@ -586,7 +586,7 @@ class ProjectsApi(object):
         >>> thread = api.add_dedicated_server_to_project_with_http_info(project_id, add_dedicated_server_to_project_request, async_req=True)
         >>> result = thread.get()
 
-        :param project_id: Уникальный идентификатор проекта. (required)
+        :param project_id: ID проекта. (required)
         :type project_id: object
         :param add_dedicated_server_to_project_request: (required)
         :type add_dedicated_server_to_project_request: AddDedicatedServerToProjectRequest
@@ -705,7 +705,7 @@ class ProjectsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def add_server_to_project(self, project_id : Annotated[Any, Field(..., description="Уникальный идентификатор проекта.")], add_server_to_project_request : AddServerToProjectRequest, **kwargs) -> AddBalancerToProject200Response:  # noqa: E501
+    def add_server_to_project(self, project_id : Annotated[Any, Field(..., description="ID проекта.")], add_server_to_project_request : AddServerToProjectRequest, **kwargs) -> AddBalancerToProject200Response:  # noqa: E501
         """Добавление сервера в проект  # noqa: E501
 
         Чтобы добавить сервер в проект, отправьте POST-запрос на `/api/v1/projects/{project_id}/resources/servers`, задав необходимые атрибуты.  Сервер будет добавлен в указанный проект. Тело ответа будет содержать объект JSON с информацией о добавленном сервере.  # noqa: E501
@@ -715,7 +715,7 @@ class ProjectsApi(object):
         >>> thread = api.add_server_to_project(project_id, add_server_to_project_request, async_req=True)
         >>> result = thread.get()
 
-        :param project_id: Уникальный идентификатор проекта. (required)
+        :param project_id: ID проекта. (required)
         :type project_id: object
         :param add_server_to_project_request: (required)
         :type add_server_to_project_request: AddServerToProjectRequest
@@ -736,7 +736,7 @@ class ProjectsApi(object):
         return self.add_server_to_project_with_http_info(project_id, add_server_to_project_request, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def add_server_to_project_with_http_info(self, project_id : Annotated[Any, Field(..., description="Уникальный идентификатор проекта.")], add_server_to_project_request : AddServerToProjectRequest, **kwargs) -> ApiResponse:  # noqa: E501
+    def add_server_to_project_with_http_info(self, project_id : Annotated[Any, Field(..., description="ID проекта.")], add_server_to_project_request : AddServerToProjectRequest, **kwargs) -> ApiResponse:  # noqa: E501
         """Добавление сервера в проект  # noqa: E501
 
         Чтобы добавить сервер в проект, отправьте POST-запрос на `/api/v1/projects/{project_id}/resources/servers`, задав необходимые атрибуты.  Сервер будет добавлен в указанный проект. Тело ответа будет содержать объект JSON с информацией о добавленном сервере.  # noqa: E501
@@ -746,7 +746,7 @@ class ProjectsApi(object):
         >>> thread = api.add_server_to_project_with_http_info(project_id, add_server_to_project_request, async_req=True)
         >>> result = thread.get()
 
-        :param project_id: Уникальный идентификатор проекта. (required)
+        :param project_id: ID проекта. (required)
         :type project_id: object
         :param add_server_to_project_request: (required)
         :type add_server_to_project_request: AddServerToProjectRequest
@@ -865,7 +865,7 @@ class ProjectsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def add_storage_to_project(self, project_id : Annotated[Any, Field(..., description="Уникальный идентификатор проекта.")], add_storage_to_project_request : AddStorageToProjectRequest, **kwargs) -> AddBalancerToProject200Response:  # noqa: E501
+    def add_storage_to_project(self, project_id : Annotated[Any, Field(..., description="ID проекта.")], add_storage_to_project_request : AddStorageToProjectRequest, **kwargs) -> AddBalancerToProject200Response:  # noqa: E501
         """Добавление хранилища в проект  # noqa: E501
 
         Чтобы добавить хранилище в проект, отправьте POST-запрос на `/api/v1/projects/{project_id}/resources/buckets`, задав необходимые атрибуты.  Хранилище будет добавлено в указанный проект. Тело ответа будет содержать объект JSON с информацией о добавленном хранилище.  # noqa: E501
@@ -875,7 +875,7 @@ class ProjectsApi(object):
         >>> thread = api.add_storage_to_project(project_id, add_storage_to_project_request, async_req=True)
         >>> result = thread.get()
 
-        :param project_id: Уникальный идентификатор проекта. (required)
+        :param project_id: ID проекта. (required)
         :type project_id: object
         :param add_storage_to_project_request: (required)
         :type add_storage_to_project_request: AddStorageToProjectRequest
@@ -896,7 +896,7 @@ class ProjectsApi(object):
         return self.add_storage_to_project_with_http_info(project_id, add_storage_to_project_request, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def add_storage_to_project_with_http_info(self, project_id : Annotated[Any, Field(..., description="Уникальный идентификатор проекта.")], add_storage_to_project_request : AddStorageToProjectRequest, **kwargs) -> ApiResponse:  # noqa: E501
+    def add_storage_to_project_with_http_info(self, project_id : Annotated[Any, Field(..., description="ID проекта.")], add_storage_to_project_request : AddStorageToProjectRequest, **kwargs) -> ApiResponse:  # noqa: E501
         """Добавление хранилища в проект  # noqa: E501
 
         Чтобы добавить хранилище в проект, отправьте POST-запрос на `/api/v1/projects/{project_id}/resources/buckets`, задав необходимые атрибуты.  Хранилище будет добавлено в указанный проект. Тело ответа будет содержать объект JSON с информацией о добавленном хранилище.  # noqa: E501
@@ -906,7 +906,7 @@ class ProjectsApi(object):
         >>> thread = api.add_storage_to_project_with_http_info(project_id, add_storage_to_project_request, async_req=True)
         >>> result = thread.get()
 
-        :param project_id: Уникальный идентификатор проекта. (required)
+        :param project_id: ID проекта. (required)
         :type project_id: object
         :param add_storage_to_project_request: (required)
         :type add_storage_to_project_request: AddStorageToProjectRequest
@@ -1176,7 +1176,7 @@ class ProjectsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def delete_project(self, project_id : Annotated[Any, Field(..., description="Уникальный идентификатор проекта.")], **kwargs) -> None:  # noqa: E501
+    def delete_project(self, project_id : Annotated[Any, Field(..., description="ID проекта.")], **kwargs) -> None:  # noqa: E501
         """Удаление проекта  # noqa: E501
 
         Чтобы удалить проект, отправьте запрос DELETE в `api/v1/projects/{project_id}`.  # noqa: E501
@@ -1186,7 +1186,7 @@ class ProjectsApi(object):
         >>> thread = api.delete_project(project_id, async_req=True)
         >>> result = thread.get()
 
-        :param project_id: Уникальный идентификатор проекта. (required)
+        :param project_id: ID проекта. (required)
         :type project_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -1205,7 +1205,7 @@ class ProjectsApi(object):
         return self.delete_project_with_http_info(project_id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def delete_project_with_http_info(self, project_id : Annotated[Any, Field(..., description="Уникальный идентификатор проекта.")], **kwargs) -> ApiResponse:  # noqa: E501
+    def delete_project_with_http_info(self, project_id : Annotated[Any, Field(..., description="ID проекта.")], **kwargs) -> ApiResponse:  # noqa: E501
         """Удаление проекта  # noqa: E501
 
         Чтобы удалить проект, отправьте запрос DELETE в `api/v1/projects/{project_id}`.  # noqa: E501
@@ -1215,7 +1215,7 @@ class ProjectsApi(object):
         >>> thread = api.delete_project_with_http_info(project_id, async_req=True)
         >>> result = thread.get()
 
-        :param project_id: Уникальный идентификатор проекта. (required)
+        :param project_id: ID проекта. (required)
         :type project_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -2119,7 +2119,7 @@ class ProjectsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def get_all_project_resources(self, project_id : Annotated[Any, Field(..., description="Уникальный идентификатор проекта.")], **kwargs) -> GetAllProjectResources200Response:  # noqa: E501
+    def get_all_project_resources(self, project_id : Annotated[Any, Field(..., description="ID проекта.")], **kwargs) -> GetAllProjectResources200Response:  # noqa: E501
         """Получение всех ресурсов проекта  # noqa: E501
 
         Чтобы получить все ресурсы проекта, отправьте GET-запрос на `/api/v1/projects/{project_id}/resources`.  # noqa: E501
@@ -2129,7 +2129,7 @@ class ProjectsApi(object):
         >>> thread = api.get_all_project_resources(project_id, async_req=True)
         >>> result = thread.get()
 
-        :param project_id: Уникальный идентификатор проекта. (required)
+        :param project_id: ID проекта. (required)
         :type project_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -2148,7 +2148,7 @@ class ProjectsApi(object):
         return self.get_all_project_resources_with_http_info(project_id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def get_all_project_resources_with_http_info(self, project_id : Annotated[Any, Field(..., description="Уникальный идентификатор проекта.")], **kwargs) -> ApiResponse:  # noqa: E501
+    def get_all_project_resources_with_http_info(self, project_id : Annotated[Any, Field(..., description="ID проекта.")], **kwargs) -> ApiResponse:  # noqa: E501
         """Получение всех ресурсов проекта  # noqa: E501
 
         Чтобы получить все ресурсы проекта, отправьте GET-запрос на `/api/v1/projects/{project_id}/resources`.  # noqa: E501
@@ -2158,7 +2158,7 @@ class ProjectsApi(object):
         >>> thread = api.get_all_project_resources_with_http_info(project_id, async_req=True)
         >>> result = thread.get()
 
-        :param project_id: Уникальный идентификатор проекта. (required)
+        :param project_id: ID проекта. (required)
         :type project_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -2264,17 +2264,17 @@ class ProjectsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def get_project(self, project_id : Annotated[Any, Field(..., description="Уникальный идентификатор проекта.")], **kwargs) -> CreateProject201Response:  # noqa: E501
-        """Получение проекта по идентификатору  # noqa: E501
+    def get_project(self, project_id : Annotated[Any, Field(..., description="ID проекта.")], **kwargs) -> CreateProject201Response:  # noqa: E501
+        """Получение проекта по ID  # noqa: E501
 
-        Чтобы получить проект по идентификатору, отправьте GET-запрос на `/api/v1/projects/{project_id}`.  # noqa: E501
+        Чтобы получить проект по ID, отправьте GET-запрос на `/api/v1/projects/{project_id}`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
         >>> thread = api.get_project(project_id, async_req=True)
         >>> result = thread.get()
 
-        :param project_id: Уникальный идентификатор проекта. (required)
+        :param project_id: ID проекта. (required)
         :type project_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -2293,17 +2293,17 @@ class ProjectsApi(object):
         return self.get_project_with_http_info(project_id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def get_project_with_http_info(self, project_id : Annotated[Any, Field(..., description="Уникальный идентификатор проекта.")], **kwargs) -> ApiResponse:  # noqa: E501
-        """Получение проекта по идентификатору  # noqa: E501
+    def get_project_with_http_info(self, project_id : Annotated[Any, Field(..., description="ID проекта.")], **kwargs) -> ApiResponse:  # noqa: E501
+        """Получение проекта по ID  # noqa: E501
 
-        Чтобы получить проект по идентификатору, отправьте GET-запрос на `/api/v1/projects/{project_id}`.  # noqa: E501
+        Чтобы получить проект по ID, отправьте GET-запрос на `/api/v1/projects/{project_id}`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
         >>> thread = api.get_project_with_http_info(project_id, async_req=True)
         >>> result = thread.get()
 
-        :param project_id: Уникальный идентификатор проекта. (required)
+        :param project_id: ID проекта. (required)
         :type project_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -2409,7 +2409,7 @@ class ProjectsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def get_project_balancers(self, project_id : Annotated[Any, Field(..., description="Уникальный идентификатор проекта.")], **kwargs) -> GetBalancers200Response:  # noqa: E501
+    def get_project_balancers(self, project_id : Annotated[Any, Field(..., description="ID проекта.")], **kwargs) -> GetBalancers200Response:  # noqa: E501
         """Получение списка балансировщиков проекта  # noqa: E501
 
         Чтобы получить список балансировщиков проекта, отправьте GET-запрос на `/api/v1/projects/{project_id}/resources/balancers`.  # noqa: E501
@@ -2419,7 +2419,7 @@ class ProjectsApi(object):
         >>> thread = api.get_project_balancers(project_id, async_req=True)
         >>> result = thread.get()
 
-        :param project_id: Уникальный идентификатор проекта. (required)
+        :param project_id: ID проекта. (required)
         :type project_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -2438,7 +2438,7 @@ class ProjectsApi(object):
         return self.get_project_balancers_with_http_info(project_id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def get_project_balancers_with_http_info(self, project_id : Annotated[Any, Field(..., description="Уникальный идентификатор проекта.")], **kwargs) -> ApiResponse:  # noqa: E501
+    def get_project_balancers_with_http_info(self, project_id : Annotated[Any, Field(..., description="ID проекта.")], **kwargs) -> ApiResponse:  # noqa: E501
         """Получение списка балансировщиков проекта  # noqa: E501
 
         Чтобы получить список балансировщиков проекта, отправьте GET-запрос на `/api/v1/projects/{project_id}/resources/balancers`.  # noqa: E501
@@ -2448,7 +2448,7 @@ class ProjectsApi(object):
         >>> thread = api.get_project_balancers_with_http_info(project_id, async_req=True)
         >>> result = thread.get()
 
-        :param project_id: Уникальный идентификатор проекта. (required)
+        :param project_id: ID проекта. (required)
         :type project_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -2554,7 +2554,7 @@ class ProjectsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def get_project_clusters(self, project_id : Annotated[Any, Field(..., description="Уникальный идентификатор проекта.")], **kwargs) -> GetProjectClusters200Response:  # noqa: E501
+    def get_project_clusters(self, project_id : Annotated[Any, Field(..., description="ID проекта.")], **kwargs) -> GetProjectClusters200Response:  # noqa: E501
         """Получение списка кластеров проекта  # noqa: E501
 
         Чтобы получить список кластеров проекта, отправьте GET-запрос на `/api/v1/projects/{project_id}/resources/clusters`.  # noqa: E501
@@ -2564,7 +2564,7 @@ class ProjectsApi(object):
         >>> thread = api.get_project_clusters(project_id, async_req=True)
         >>> result = thread.get()
 
-        :param project_id: Уникальный идентификатор проекта. (required)
+        :param project_id: ID проекта. (required)
         :type project_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -2583,7 +2583,7 @@ class ProjectsApi(object):
         return self.get_project_clusters_with_http_info(project_id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def get_project_clusters_with_http_info(self, project_id : Annotated[Any, Field(..., description="Уникальный идентификатор проекта.")], **kwargs) -> ApiResponse:  # noqa: E501
+    def get_project_clusters_with_http_info(self, project_id : Annotated[Any, Field(..., description="ID проекта.")], **kwargs) -> ApiResponse:  # noqa: E501
         """Получение списка кластеров проекта  # noqa: E501
 
         Чтобы получить список кластеров проекта, отправьте GET-запрос на `/api/v1/projects/{project_id}/resources/clusters`.  # noqa: E501
@@ -2593,7 +2593,7 @@ class ProjectsApi(object):
         >>> thread = api.get_project_clusters_with_http_info(project_id, async_req=True)
         >>> result = thread.get()
 
-        :param project_id: Уникальный идентификатор проекта. (required)
+        :param project_id: ID проекта. (required)
         :type project_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -2699,7 +2699,7 @@ class ProjectsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def get_project_databases(self, project_id : Annotated[Any, Field(..., description="Уникальный идентификатор проекта.")], **kwargs) -> GetProjectDatabases200Response:  # noqa: E501
+    def get_project_databases(self, project_id : Annotated[Any, Field(..., description="ID проекта.")], **kwargs) -> GetProjectDatabases200Response:  # noqa: E501
         """Получение списка баз данных проекта  # noqa: E501
 
         Чтобы получить список баз данных проекта, отправьте GET-запрос на `/api/v1/projects/{project_id}/resources/databases`.  # noqa: E501
@@ -2709,7 +2709,7 @@ class ProjectsApi(object):
         >>> thread = api.get_project_databases(project_id, async_req=True)
         >>> result = thread.get()
 
-        :param project_id: Уникальный идентификатор проекта. (required)
+        :param project_id: ID проекта. (required)
         :type project_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -2728,7 +2728,7 @@ class ProjectsApi(object):
         return self.get_project_databases_with_http_info(project_id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def get_project_databases_with_http_info(self, project_id : Annotated[Any, Field(..., description="Уникальный идентификатор проекта.")], **kwargs) -> ApiResponse:  # noqa: E501
+    def get_project_databases_with_http_info(self, project_id : Annotated[Any, Field(..., description="ID проекта.")], **kwargs) -> ApiResponse:  # noqa: E501
         """Получение списка баз данных проекта  # noqa: E501
 
         Чтобы получить список баз данных проекта, отправьте GET-запрос на `/api/v1/projects/{project_id}/resources/databases`.  # noqa: E501
@@ -2738,7 +2738,7 @@ class ProjectsApi(object):
         >>> thread = api.get_project_databases_with_http_info(project_id, async_req=True)
         >>> result = thread.get()
 
-        :param project_id: Уникальный идентификатор проекта. (required)
+        :param project_id: ID проекта. (required)
         :type project_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -2844,7 +2844,7 @@ class ProjectsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def get_project_dedicated_servers(self, project_id : Annotated[Any, Field(..., description="Уникальный идентификатор проекта.")], **kwargs) -> GetDedicatedServers200Response:  # noqa: E501
+    def get_project_dedicated_servers(self, project_id : Annotated[Any, Field(..., description="ID проекта.")], **kwargs) -> GetDedicatedServers200Response:  # noqa: E501
         """Получение списка выделенных серверов проекта  # noqa: E501
 
         Чтобы получить список выделенных серверов проекта, отправьте GET-запрос на `/api/v1/projects/{project_id}/resources/dedicated`.  # noqa: E501
@@ -2854,7 +2854,7 @@ class ProjectsApi(object):
         >>> thread = api.get_project_dedicated_servers(project_id, async_req=True)
         >>> result = thread.get()
 
-        :param project_id: Уникальный идентификатор проекта. (required)
+        :param project_id: ID проекта. (required)
         :type project_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -2873,7 +2873,7 @@ class ProjectsApi(object):
         return self.get_project_dedicated_servers_with_http_info(project_id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def get_project_dedicated_servers_with_http_info(self, project_id : Annotated[Any, Field(..., description="Уникальный идентификатор проекта.")], **kwargs) -> ApiResponse:  # noqa: E501
+    def get_project_dedicated_servers_with_http_info(self, project_id : Annotated[Any, Field(..., description="ID проекта.")], **kwargs) -> ApiResponse:  # noqa: E501
         """Получение списка выделенных серверов проекта  # noqa: E501
 
         Чтобы получить список выделенных серверов проекта, отправьте GET-запрос на `/api/v1/projects/{project_id}/resources/dedicated`.  # noqa: E501
@@ -2883,7 +2883,7 @@ class ProjectsApi(object):
         >>> thread = api.get_project_dedicated_servers_with_http_info(project_id, async_req=True)
         >>> result = thread.get()
 
-        :param project_id: Уникальный идентификатор проекта. (required)
+        :param project_id: ID проекта. (required)
         :type project_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -2989,7 +2989,7 @@ class ProjectsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def get_project_servers(self, project_id : Annotated[Any, Field(..., description="Уникальный идентификатор проекта.")], **kwargs) -> GetServers200Response:  # noqa: E501
+    def get_project_servers(self, project_id : Annotated[Any, Field(..., description="ID проекта.")], **kwargs) -> GetServers200Response:  # noqa: E501
         """Получение списка серверов проекта  # noqa: E501
 
         Чтобы получить список серверов проекта, отправьте GET-запрос на `/api/v1/projects/{project_id}/resources/servers`.  # noqa: E501
@@ -2999,7 +2999,7 @@ class ProjectsApi(object):
         >>> thread = api.get_project_servers(project_id, async_req=True)
         >>> result = thread.get()
 
-        :param project_id: Уникальный идентификатор проекта. (required)
+        :param project_id: ID проекта. (required)
         :type project_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -3018,7 +3018,7 @@ class ProjectsApi(object):
         return self.get_project_servers_with_http_info(project_id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def get_project_servers_with_http_info(self, project_id : Annotated[Any, Field(..., description="Уникальный идентификатор проекта.")], **kwargs) -> ApiResponse:  # noqa: E501
+    def get_project_servers_with_http_info(self, project_id : Annotated[Any, Field(..., description="ID проекта.")], **kwargs) -> ApiResponse:  # noqa: E501
         """Получение списка серверов проекта  # noqa: E501
 
         Чтобы получить список серверов проекта, отправьте GET-запрос на `/api/v1/projects/{project_id}/resources/servers`.  # noqa: E501
@@ -3028,7 +3028,7 @@ class ProjectsApi(object):
         >>> thread = api.get_project_servers_with_http_info(project_id, async_req=True)
         >>> result = thread.get()
 
-        :param project_id: Уникальный идентификатор проекта. (required)
+        :param project_id: ID проекта. (required)
         :type project_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -3134,7 +3134,7 @@ class ProjectsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def get_project_storages(self, project_id : Annotated[Any, Field(..., description="Уникальный идентификатор проекта.")], **kwargs) -> GetProjectStorages200Response:  # noqa: E501
+    def get_project_storages(self, project_id : Annotated[Any, Field(..., description="ID проекта.")], **kwargs) -> GetProjectStorages200Response:  # noqa: E501
         """Получение списка хранилищ проекта  # noqa: E501
 
         Чтобы получить список хранилищ проекта, отправьте GET-запрос на `/api/v1/projects/{project_id}/resources/buckets`.  # noqa: E501
@@ -3144,7 +3144,7 @@ class ProjectsApi(object):
         >>> thread = api.get_project_storages(project_id, async_req=True)
         >>> result = thread.get()
 
-        :param project_id: Уникальный идентификатор проекта. (required)
+        :param project_id: ID проекта. (required)
         :type project_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -3163,7 +3163,7 @@ class ProjectsApi(object):
         return self.get_project_storages_with_http_info(project_id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def get_project_storages_with_http_info(self, project_id : Annotated[Any, Field(..., description="Уникальный идентификатор проекта.")], **kwargs) -> ApiResponse:  # noqa: E501
+    def get_project_storages_with_http_info(self, project_id : Annotated[Any, Field(..., description="ID проекта.")], **kwargs) -> ApiResponse:  # noqa: E501
         """Получение списка хранилищ проекта  # noqa: E501
 
         Чтобы получить список хранилищ проекта, отправьте GET-запрос на `/api/v1/projects/{project_id}/resources/buckets`.  # noqa: E501
@@ -3173,7 +3173,7 @@ class ProjectsApi(object):
         >>> thread = api.get_project_storages_with_http_info(project_id, async_req=True)
         >>> result = thread.get()
 
-        :param project_id: Уникальный идентификатор проекта. (required)
+        :param project_id: ID проекта. (required)
         :type project_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -3414,7 +3414,7 @@ class ProjectsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def transfer_resource_to_another_project(self, project_id : Annotated[Any, Field(..., description="Уникальный идентификатор проекта.")], resource_transfer : ResourceTransfer, **kwargs) -> AddBalancerToProject200Response:  # noqa: E501
+    def transfer_resource_to_another_project(self, project_id : Annotated[Any, Field(..., description="ID проекта.")], resource_transfer : ResourceTransfer, **kwargs) -> AddBalancerToProject200Response:  # noqa: E501
         """Перенести ресурс в другой проект  # noqa: E501
 
         Чтобы перенести ресурс в другой проект, отправьте запрос PUT в `api/v1/projects/{project_id}/resources/transfer`.   # noqa: E501
@@ -3424,7 +3424,7 @@ class ProjectsApi(object):
         >>> thread = api.transfer_resource_to_another_project(project_id, resource_transfer, async_req=True)
         >>> result = thread.get()
 
-        :param project_id: Уникальный идентификатор проекта. (required)
+        :param project_id: ID проекта. (required)
         :type project_id: object
         :param resource_transfer: (required)
         :type resource_transfer: ResourceTransfer
@@ -3445,7 +3445,7 @@ class ProjectsApi(object):
         return self.transfer_resource_to_another_project_with_http_info(project_id, resource_transfer, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def transfer_resource_to_another_project_with_http_info(self, project_id : Annotated[Any, Field(..., description="Уникальный идентификатор проекта.")], resource_transfer : ResourceTransfer, **kwargs) -> ApiResponse:  # noqa: E501
+    def transfer_resource_to_another_project_with_http_info(self, project_id : Annotated[Any, Field(..., description="ID проекта.")], resource_transfer : ResourceTransfer, **kwargs) -> ApiResponse:  # noqa: E501
         """Перенести ресурс в другой проект  # noqa: E501
 
         Чтобы перенести ресурс в другой проект, отправьте запрос PUT в `api/v1/projects/{project_id}/resources/transfer`.   # noqa: E501
@@ -3455,7 +3455,7 @@ class ProjectsApi(object):
         >>> thread = api.transfer_resource_to_another_project_with_http_info(project_id, resource_transfer, async_req=True)
         >>> result = thread.get()
 
-        :param project_id: Уникальный идентификатор проекта. (required)
+        :param project_id: ID проекта. (required)
         :type project_id: object
         :param resource_transfer: (required)
         :type resource_transfer: ResourceTransfer
@@ -3574,7 +3574,7 @@ class ProjectsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def update_project(self, project_id : Annotated[Any, Field(..., description="Уникальный идентификатор проекта.")], update_project : UpdateProject, **kwargs) -> CreateProject201Response:  # noqa: E501
+    def update_project(self, project_id : Annotated[Any, Field(..., description="ID проекта.")], update_project : UpdateProject, **kwargs) -> CreateProject201Response:  # noqa: E501
         """Изменение проекта  # noqa: E501
 
         Чтобы изменить проект, отправьте запрос PUT в `api/v1/projects/{project_id}`.  # noqa: E501
@@ -3584,7 +3584,7 @@ class ProjectsApi(object):
         >>> thread = api.update_project(project_id, update_project, async_req=True)
         >>> result = thread.get()
 
-        :param project_id: Уникальный идентификатор проекта. (required)
+        :param project_id: ID проекта. (required)
         :type project_id: object
         :param update_project: (required)
         :type update_project: UpdateProject
@@ -3605,7 +3605,7 @@ class ProjectsApi(object):
         return self.update_project_with_http_info(project_id, update_project, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def update_project_with_http_info(self, project_id : Annotated[Any, Field(..., description="Уникальный идентификатор проекта.")], update_project : UpdateProject, **kwargs) -> ApiResponse:  # noqa: E501
+    def update_project_with_http_info(self, project_id : Annotated[Any, Field(..., description="ID проекта.")], update_project : UpdateProject, **kwargs) -> ApiResponse:  # noqa: E501
         """Изменение проекта  # noqa: E501
 
         Чтобы изменить проект, отправьте запрос PUT в `api/v1/projects/{project_id}`.  # noqa: E501
@@ -3615,7 +3615,7 @@ class ProjectsApi(object):
         >>> thread = api.update_project_with_http_info(project_id, update_project, async_req=True)
         >>> result = thread.get()
 
-        :param project_id: Уникальный идентификатор проекта. (required)
+        :param project_id: ID проекта. (required)
         :type project_id: object
         :param update_project: (required)
         :type update_project: UpdateProject

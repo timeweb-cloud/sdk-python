@@ -51,7 +51,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.SSHApi(api_client)
-    server_id = 1051 # object | Уникальный идентификатор облачного сервера.
+    server_id = 1051 # object | ID облачного сервера.
     add_key_to_server_request = timeweb_cloud_api.AddKeyToServerRequest() # AddKeyToServerRequest | 
 
     try:
@@ -66,7 +66,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **server_id** | [**object**](.md)| Уникальный идентификатор облачного сервера. | 
+ **server_id** | [**object**](.md)| ID облачного сервера. | 
  **add_key_to_server_request** | [**AddKeyToServerRequest**](AddKeyToServerRequest.md)|  | 
 
 ### Return type
@@ -215,7 +215,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.SSHApi(api_client)
-    ssh_key_id = 1051 # object | Уникальный идентификатор SSH-ключа
+    ssh_key_id = 1051 # object | ID SSH-ключа
 
     try:
         # Удаление SSH-ключа по уникальному идентификатору
@@ -229,7 +229,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ssh_key_id** | [**object**](.md)| Уникальный идентификатор SSH-ключа | 
+ **ssh_key_id** | [**object**](.md)| ID SSH-ключа | 
 
 ### Return type
 
@@ -294,8 +294,8 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.SSHApi(api_client)
-    server_id = 1051 # object | Уникальный идентификатор облачного сервера.
-    ssh_key_id = 1051 # object | Уникальный идентификатор SSH-ключа
+    server_id = 1051 # object | ID облачного сервера.
+    ssh_key_id = 1051 # object | ID SSH-ключа
 
     try:
         # Удаление SSH-ключей с сервера
@@ -309,8 +309,8 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **server_id** | [**object**](.md)| Уникальный идентификатор облачного сервера. | 
- **ssh_key_id** | [**object**](.md)| Уникальный идентификатор SSH-ключа | 
+ **server_id** | [**object**](.md)| ID облачного сервера. | 
+ **ssh_key_id** | [**object**](.md)| ID SSH-ключа | 
 
 ### Return type
 
@@ -376,7 +376,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.SSHApi(api_client)
-    ssh_key_id = 1051 # object | Уникальный идентификатор SSH-ключа
+    ssh_key_id = 1051 # object | ID SSH-ключа
 
     try:
         # Получение SSH-ключа по уникальному идентификатору
@@ -392,7 +392,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ssh_key_id** | [**object**](.md)| Уникальный идентификатор SSH-ключа | 
+ **ssh_key_id** | [**object**](.md)| ID SSH-ключа | 
 
 ### Return type
 
@@ -537,7 +537,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.SSHApi(api_client)
-    ssh_key_id = 1051 # object | Уникальный идентификатор SSH-ключа
+    ssh_key_id = 1051 # object | ID SSH-ключа
     update_key_request = timeweb_cloud_api.UpdateKeyRequest() # UpdateKeyRequest | 
 
     try:
@@ -554,7 +554,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ssh_key_id** | [**object**](.md)| Уникальный идентификатор SSH-ключа | 
+ **ssh_key_id** | [**object**](.md)| ID SSH-ключа | 
  **update_key_request** | [**UpdateKeyRequest**](UpdateKeyRequest.md)|  | 
 
 ### Return type

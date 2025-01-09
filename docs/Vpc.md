@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **object** | Идентификатор сети. | 
+**id** | **object** | ID сети. | 
 **name** | **object** | Имя сети. | 
 **subnet_v4** | **object** | Маска подсети. | 
 **location** | **object** | Локация сети. | 

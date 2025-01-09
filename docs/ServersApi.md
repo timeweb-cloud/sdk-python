@@ -83,7 +83,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.ServersApi(api_client)
-    server_id = 1051 # object | Уникальный идентификатор облачного сервера.
+    server_id = 1051 # object | ID облачного сервера.
     add_server_ip_request = timeweb_cloud_api.AddServerIPRequest() # AddServerIPRequest | 
 
     try:
@@ -100,7 +100,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **server_id** | [**object**](.md)| Уникальный идентификатор облачного сервера. | 
+ **server_id** | [**object**](.md)| ID облачного сервера. | 
  **add_server_ip_request** | [**AddServerIPRequest**](AddServerIPRequest.md)|  | 
 
 ### Return type
@@ -168,7 +168,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.ServersApi(api_client)
-    server_id = 1051 # object | Уникальный идентификатор облачного сервера.
+    server_id = 1051 # object | ID облачного сервера.
 
     try:
         # Клонирование сервера
@@ -184,7 +184,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **server_id** | [**object**](.md)| Уникальный идентификатор облачного сервера. | 
+ **server_id** | [**object**](.md)| ID облачного сервера. | 
 
 ### Return type
 
@@ -334,7 +334,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.ServersApi(api_client)
-    server_id = 1051 # object | Уникальный идентификатор облачного сервера.
+    server_id = 1051 # object | ID облачного сервера.
     create_server_disk_request = timeweb_cloud_api.CreateServerDiskRequest() # CreateServerDiskRequest |  (optional)
 
     try:
@@ -351,7 +351,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **server_id** | [**object**](.md)| Уникальный идентификатор облачного сервера. | 
+ **server_id** | [**object**](.md)| ID облачного сервера. | 
  **create_server_disk_request** | [**CreateServerDiskRequest**](CreateServerDiskRequest.md)|  | [optional] 
 
 ### Return type
@@ -420,8 +420,8 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.ServersApi(api_client)
-    server_id = 1051 # object | Уникальный идентификатор облачного сервера.
-    disk_id = 1051 # object | Уникальный идентификатор диска сервера.
+    server_id = 1051 # object | ID облачного сервера.
+    disk_id = 1051 # object | ID диска сервера.
     create_server_disk_backup_request = timeweb_cloud_api.CreateServerDiskBackupRequest() # CreateServerDiskBackupRequest |  (optional)
 
     try:
@@ -438,8 +438,8 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **server_id** | [**object**](.md)| Уникальный идентификатор облачного сервера. | 
- **disk_id** | [**object**](.md)| Уникальный идентификатор диска сервера. | 
+ **server_id** | [**object**](.md)| ID облачного сервера. | 
+ **disk_id** | [**object**](.md)| ID диска сервера. | 
  **create_server_disk_backup_request** | [**CreateServerDiskBackupRequest**](CreateServerDiskBackupRequest.md)|  | [optional] 
 
 ### Return type
@@ -506,7 +506,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.ServersApi(api_client)
-    server_id = 1051 # object | Уникальный идентификатор облачного сервера.
+    server_id = 1051 # object | ID облачного сервера.
     hash = 15095f25-aac3-4d60-a788-96cb5136f186 # object | Хеш, который совместно с кодом авторизации надо отправить для удаления, если включено подтверждение удаления сервисов через Телеграм. (optional)
     code = 0000 # object | Код подтверждения, который придет к вам в Телеграм, после запроса удаления, если включено подтверждение удаления сервисов.  При помощи API токена сервисы можно удалять без подтверждения, если параметр токена `is_able_to_delete` установлен в значение `true` (optional)
 
@@ -524,7 +524,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **server_id** | [**object**](.md)| Уникальный идентификатор облачного сервера. | 
+ **server_id** | [**object**](.md)| ID облачного сервера. | 
  **hash** | [**object**](.md)| Хеш, который совместно с кодом авторизации надо отправить для удаления, если включено подтверждение удаления сервисов через Телеграм. | [optional] 
  **code** | [**object**](.md)| Код подтверждения, который придет к вам в Телеграм, после запроса удаления, если включено подтверждение удаления сервисов.  При помощи API токена сервисы можно удалять без подтверждения, если параметр токена &#x60;is_able_to_delete&#x60; установлен в значение &#x60;true&#x60; | [optional] 
 
@@ -593,8 +593,8 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.ServersApi(api_client)
-    server_id = 1051 # object | Уникальный идентификатор облачного сервера.
-    disk_id = 1051 # object | Уникальный идентификатор диска сервера.
+    server_id = 1051 # object | ID облачного сервера.
+    disk_id = 1051 # object | ID диска сервера.
 
     try:
         # Удаление диска сервера
@@ -608,8 +608,8 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **server_id** | [**object**](.md)| Уникальный идентификатор облачного сервера. | 
- **disk_id** | [**object**](.md)| Уникальный идентификатор диска сервера. | 
+ **server_id** | [**object**](.md)| ID облачного сервера. | 
+ **disk_id** | [**object**](.md)| ID диска сервера. | 
 
 ### Return type
 
@@ -675,9 +675,9 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.ServersApi(api_client)
-    server_id = 1051 # object | Уникальный идентификатор облачного сервера.
-    disk_id = 1051 # object | Уникальный идентификатор диска сервера.
-    backup_id = 1051 # object | Уникальный идентификатор бэкапа сервера.
+    server_id = 1051 # object | ID облачного сервера.
+    disk_id = 1051 # object | ID диска сервера.
+    backup_id = 1051 # object | ID бэкапа сервера.
 
     try:
         # Удаление бэкапа диска сервера
@@ -691,9 +691,9 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **server_id** | [**object**](.md)| Уникальный идентификатор облачного сервера. | 
- **disk_id** | [**object**](.md)| Уникальный идентификатор диска сервера. | 
- **backup_id** | [**object**](.md)| Уникальный идентификатор бэкапа сервера. | 
+ **server_id** | [**object**](.md)| ID облачного сервера. | 
+ **disk_id** | [**object**](.md)| ID диска сервера. | 
+ **backup_id** | [**object**](.md)| ID бэкапа сервера. | 
 
 ### Return type
 
@@ -760,7 +760,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.ServersApi(api_client)
-    server_id = 1051 # object | Уникальный идентификатор облачного сервера.
+    server_id = 1051 # object | ID облачного сервера.
     delete_server_ip_request = timeweb_cloud_api.DeleteServerIPRequest() # DeleteServerIPRequest | 
 
     try:
@@ -775,7 +775,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **server_id** | [**object**](.md)| Уникальный идентификатор облачного сервера. | 
+ **server_id** | [**object**](.md)| ID облачного сервера. | 
  **delete_server_ip_request** | [**DeleteServerIPRequest**](DeleteServerIPRequest.md)|  | 
 
 ### Return type
@@ -998,7 +998,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.ServersApi(api_client)
-    server_id = 1051 # object | Уникальный идентификатор облачного сервера.
+    server_id = 1051 # object | ID облачного сервера.
 
     try:
         # Получение сервера
@@ -1014,7 +1014,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **server_id** | [**object**](.md)| Уникальный идентификатор облачного сервера. | 
+ **server_id** | [**object**](.md)| ID облачного сервера. | 
 
 ### Return type
 
@@ -1081,8 +1081,8 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.ServersApi(api_client)
-    server_id = 1051 # object | Уникальный идентификатор облачного сервера.
-    disk_id = 1051 # object | Уникальный идентификатор диска сервера.
+    server_id = 1051 # object | ID облачного сервера.
+    disk_id = 1051 # object | ID диска сервера.
 
     try:
         # Получение диска сервера
@@ -1098,8 +1098,8 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **server_id** | [**object**](.md)| Уникальный идентификатор облачного сервера. | 
- **disk_id** | [**object**](.md)| Уникальный идентификатор диска сервера. | 
+ **server_id** | [**object**](.md)| ID облачного сервера. | 
+ **disk_id** | [**object**](.md)| ID диска сервера. | 
 
 ### Return type
 
@@ -1166,8 +1166,8 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.ServersApi(api_client)
-    server_id = 1051 # object | Уникальный идентификатор облачного сервера.
-    disk_id = 1051 # object | Уникальный идентификатор диска сервера.
+    server_id = 1051 # object | ID облачного сервера.
+    disk_id = 1051 # object | ID диска сервера.
 
     try:
         # Получить настройки автобэкапов диска сервера
@@ -1183,8 +1183,8 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **server_id** | [**object**](.md)| Уникальный идентификатор облачного сервера. | 
- **disk_id** | [**object**](.md)| Уникальный идентификатор диска сервера. | 
+ **server_id** | [**object**](.md)| ID облачного сервера. | 
+ **disk_id** | [**object**](.md)| ID диска сервера. | 
 
 ### Return type
 
@@ -1250,9 +1250,9 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.ServersApi(api_client)
-    server_id = 1051 # object | Уникальный идентификатор облачного сервера.
-    disk_id = 1051 # object | Уникальный идентификатор диска сервера.
-    backup_id = 1051 # object | Уникальный идентификатор бэкапа сервера.
+    server_id = 1051 # object | ID облачного сервера.
+    disk_id = 1051 # object | ID диска сервера.
+    backup_id = 1051 # object | ID бэкапа сервера.
 
     try:
         # Получение бэкапа диска сервера
@@ -1268,9 +1268,9 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **server_id** | [**object**](.md)| Уникальный идентификатор облачного сервера. | 
- **disk_id** | [**object**](.md)| Уникальный идентификатор диска сервера. | 
- **backup_id** | [**object**](.md)| Уникальный идентификатор бэкапа сервера. | 
+ **server_id** | [**object**](.md)| ID облачного сервера. | 
+ **disk_id** | [**object**](.md)| ID диска сервера. | 
+ **backup_id** | [**object**](.md)| ID бэкапа сервера. | 
 
 ### Return type
 
@@ -1336,8 +1336,8 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.ServersApi(api_client)
-    server_id = 1051 # object | Уникальный идентификатор облачного сервера.
-    disk_id = 1051 # object | Уникальный идентификатор диска сервера.
+    server_id = 1051 # object | ID облачного сервера.
+    disk_id = 1051 # object | ID диска сервера.
 
     try:
         # Получение списка бэкапов диска сервера
@@ -1353,8 +1353,8 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **server_id** | [**object**](.md)| Уникальный идентификатор облачного сервера. | 
- **disk_id** | [**object**](.md)| Уникальный идентификатор диска сервера. | 
+ **server_id** | [**object**](.md)| ID облачного сервера. | 
+ **disk_id** | [**object**](.md)| ID диска сервера. | 
 
 ### Return type
 
@@ -1420,7 +1420,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.ServersApi(api_client)
-    server_id = 1051 # object | Уникальный идентификатор облачного сервера.
+    server_id = 1051 # object | ID облачного сервера.
 
     try:
         # Получение списка дисков сервера
@@ -1436,7 +1436,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **server_id** | [**object**](.md)| Уникальный идентификатор облачного сервера. | 
+ **server_id** | [**object**](.md)| ID облачного сервера. | 
 
 ### Return type
 
@@ -1503,7 +1503,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.ServersApi(api_client)
-    server_id = 1051 # object | Уникальный идентификатор облачного сервера.
+    server_id = 1051 # object | ID облачного сервера.
 
     try:
         # Получение списка IP-адресов сервера
@@ -1519,7 +1519,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **server_id** | [**object**](.md)| Уникальный идентификатор облачного сервера. | 
+ **server_id** | [**object**](.md)| ID облачного сервера. | 
 
 ### Return type
 
@@ -1586,7 +1586,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.ServersApi(api_client)
-    server_id = 1051 # object | Уникальный идентификатор облачного сервера.
+    server_id = 1051 # object | ID облачного сервера.
     limit = None # object | Обозначает количество записей, которое необходимо вернуть. (optional)
     offset = None # object | Указывает на смещение относительно начала списка. (optional)
     order = None # object | Сортировка элементов по дате (optional)
@@ -1605,7 +1605,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **server_id** | [**object**](.md)| Уникальный идентификатор облачного сервера. | 
+ **server_id** | [**object**](.md)| ID облачного сервера. | 
  **limit** | [**object**](.md)| Обозначает количество записей, которое необходимо вернуть. | [optional] 
  **offset** | [**object**](.md)| Указывает на смещение относительно начала списка. | [optional] 
  **order** | [**object**](.md)| Сортировка элементов по дате | [optional] 
@@ -1675,7 +1675,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.ServersApi(api_client)
-    server_id = 1051 # object | Уникальный идентификатор облачного сервера.
+    server_id = 1051 # object | ID облачного сервера.
     date_from = None # object | Дата начала сбора статистики. Строка в формате ISO 8061, закодированная в ASCII, пример: `2023-05-25%202023-05-25T14%3A35%3A38`
     date_to = None # object | Дата окончания сбора статистики. Строка в формате ISO 8061, закодированная в ASCII, пример: `2023-05-26%202023-05-25T14%3A35%3A38`
 
@@ -1693,7 +1693,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **server_id** | [**object**](.md)| Уникальный идентификатор облачного сервера. | 
+ **server_id** | [**object**](.md)| ID облачного сервера. | 
  **date_from** | [**object**](.md)| Дата начала сбора статистики. Строка в формате ISO 8061, закодированная в ASCII, пример: &#x60;2023-05-25%202023-05-25T14%3A35%3A38&#x60; | 
  **date_to** | [**object**](.md)| Дата окончания сбора статистики. Строка в формате ISO 8061, закодированная в ASCII, пример: &#x60;2023-05-26%202023-05-25T14%3A35%3A38&#x60; | 
 
@@ -2000,7 +2000,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.ServersApi(api_client)
-    server_id = 1051 # object | Уникальный идентификатор облачного сервера.
+    server_id = 1051 # object | ID облачного сервера.
 
     try:
         # Принудительное выключение сервера
@@ -2014,7 +2014,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **server_id** | [**object**](.md)| Уникальный идентификатор облачного сервера. | 
+ **server_id** | [**object**](.md)| ID облачного сервера. | 
 
 ### Return type
 
@@ -2079,7 +2079,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.ServersApi(api_client)
-    server_id = 1051 # object | Уникальный идентификатор облачного сервера.
+    server_id = 1051 # object | ID облачного сервера.
 
     try:
         # Отмонтирование ISO образа и перезагрузка сервера
@@ -2093,7 +2093,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **server_id** | [**object**](.md)| Уникальный идентификатор облачного сервера. | 
+ **server_id** | [**object**](.md)| ID облачного сервера. | 
 
 ### Return type
 
@@ -2158,9 +2158,9 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.ServersApi(api_client)
-    server_id = 1051 # object | Уникальный идентификатор облачного сервера.
-    disk_id = 1051 # object | Уникальный идентификатор диска сервера.
-    backup_id = 1051 # object | Уникальный идентификатор бэкапа сервера.
+    server_id = 1051 # object | ID облачного сервера.
+    disk_id = 1051 # object | ID диска сервера.
+    backup_id = 1051 # object | ID бэкапа сервера.
     perform_action_on_backup_request = timeweb_cloud_api.PerformActionOnBackupRequest() # PerformActionOnBackupRequest |  (optional)
 
     try:
@@ -2175,9 +2175,9 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **server_id** | [**object**](.md)| Уникальный идентификатор облачного сервера. | 
- **disk_id** | [**object**](.md)| Уникальный идентификатор диска сервера. | 
- **backup_id** | [**object**](.md)| Уникальный идентификатор бэкапа сервера. | 
+ **server_id** | [**object**](.md)| ID облачного сервера. | 
+ **disk_id** | [**object**](.md)| ID диска сервера. | 
+ **backup_id** | [**object**](.md)| ID бэкапа сервера. | 
  **perform_action_on_backup_request** | [**PerformActionOnBackupRequest**](PerformActionOnBackupRequest.md)|  | [optional] 
 
 ### Return type
@@ -2245,7 +2245,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.ServersApi(api_client)
-    server_id = 1051 # object | Уникальный идентификатор облачного сервера.
+    server_id = 1051 # object | ID облачного сервера.
     perform_action_on_server_request = timeweb_cloud_api.PerformActionOnServerRequest() # PerformActionOnServerRequest |  (optional)
 
     try:
@@ -2260,7 +2260,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **server_id** | [**object**](.md)| Уникальный идентификатор облачного сервера. | 
+ **server_id** | [**object**](.md)| ID облачного сервера. | 
  **perform_action_on_server_request** | [**PerformActionOnServerRequest**](PerformActionOnServerRequest.md)|  | [optional] 
 
 ### Return type
@@ -2327,7 +2327,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.ServersApi(api_client)
-    server_id = 1051 # object | Уникальный идентификатор облачного сервера.
+    server_id = 1051 # object | ID облачного сервера.
 
     try:
         # Перезагрузка сервера
@@ -2341,7 +2341,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **server_id** | [**object**](.md)| Уникальный идентификатор облачного сервера. | 
+ **server_id** | [**object**](.md)| ID облачного сервера. | 
 
 ### Return type
 
@@ -2406,7 +2406,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.ServersApi(api_client)
-    server_id = 1051 # object | Уникальный идентификатор облачного сервера.
+    server_id = 1051 # object | ID облачного сервера.
 
     try:
         # Сброс пароля сервера
@@ -2420,7 +2420,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **server_id** | [**object**](.md)| Уникальный идентификатор облачного сервера. | 
+ **server_id** | [**object**](.md)| ID облачного сервера. | 
 
 ### Return type
 
@@ -2484,7 +2484,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.ServersApi(api_client)
-    server_id = 1051 # object | Уникальный идентификатор облачного сервера.
+    server_id = 1051 # object | ID облачного сервера.
 
     try:
         # Выключение сервера
@@ -2498,7 +2498,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **server_id** | [**object**](.md)| Уникальный идентификатор облачного сервера. | 
+ **server_id** | [**object**](.md)| ID облачного сервера. | 
 
 ### Return type
 
@@ -2563,7 +2563,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.ServersApi(api_client)
-    server_id = 1051 # object | Уникальный идентификатор облачного сервера.
+    server_id = 1051 # object | ID облачного сервера.
 
     try:
         # Запуск сервера
@@ -2577,7 +2577,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **server_id** | [**object**](.md)| Уникальный идентификатор облачного сервера. | 
+ **server_id** | [**object**](.md)| ID облачного сервера. | 
 
 ### Return type
 
@@ -2643,7 +2643,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.ServersApi(api_client)
-    server_id = 1051 # object | Уникальный идентификатор облачного сервера.
+    server_id = 1051 # object | ID облачного сервера.
     update_server = timeweb_cloud_api.UpdateServer() # UpdateServer | 
 
     try:
@@ -2660,7 +2660,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **server_id** | [**object**](.md)| Уникальный идентификатор облачного сервера. | 
+ **server_id** | [**object**](.md)| ID облачного сервера. | 
  **update_server** | [**UpdateServer**](UpdateServer.md)|  | 
 
 ### Return type
@@ -2729,8 +2729,8 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.ServersApi(api_client)
-    server_id = 1051 # object | Уникальный идентификатор облачного сервера.
-    disk_id = 1051 # object | Уникальный идентификатор диска сервера.
+    server_id = 1051 # object | ID облачного сервера.
+    disk_id = 1051 # object | ID диска сервера.
     update_server_disk_request = timeweb_cloud_api.UpdateServerDiskRequest() # UpdateServerDiskRequest |  (optional)
 
     try:
@@ -2747,8 +2747,8 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **server_id** | [**object**](.md)| Уникальный идентификатор облачного сервера. | 
- **disk_id** | [**object**](.md)| Уникальный идентификатор диска сервера. | 
+ **server_id** | [**object**](.md)| ID облачного сервера. | 
+ **disk_id** | [**object**](.md)| ID диска сервера. | 
  **update_server_disk_request** | [**UpdateServerDiskRequest**](UpdateServerDiskRequest.md)|  | [optional] 
 
 ### Return type
@@ -2817,8 +2817,8 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.ServersApi(api_client)
-    server_id = 1051 # object | Уникальный идентификатор облачного сервера.
-    disk_id = 1051 # object | Уникальный идентификатор диска сервера.
+    server_id = 1051 # object | ID облачного сервера.
+    disk_id = 1051 # object | ID диска сервера.
     auto_backup = timeweb_cloud_api.AutoBackup() # AutoBackup | При значении `is_enabled`: `true`, поля `copy_count`, `creation_start_at`, `interval` являются обязательными (optional)
 
     try:
@@ -2835,8 +2835,8 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **server_id** | [**object**](.md)| Уникальный идентификатор облачного сервера. | 
- **disk_id** | [**object**](.md)| Уникальный идентификатор диска сервера. | 
+ **server_id** | [**object**](.md)| ID облачного сервера. | 
+ **disk_id** | [**object**](.md)| ID диска сервера. | 
  **auto_backup** | [**AutoBackup**](AutoBackup.md)| При значении &#x60;is_enabled&#x60;: &#x60;true&#x60;, поля &#x60;copy_count&#x60;, &#x60;creation_start_at&#x60;, &#x60;interval&#x60; являются обязательными | [optional] 
 
 ### Return type
@@ -2904,9 +2904,9 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.ServersApi(api_client)
-    server_id = 1051 # object | Уникальный идентификатор облачного сервера.
-    disk_id = 1051 # object | Уникальный идентификатор диска сервера.
-    backup_id = 1051 # object | Уникальный идентификатор бэкапа сервера.
+    server_id = 1051 # object | ID облачного сервера.
+    disk_id = 1051 # object | ID диска сервера.
+    backup_id = 1051 # object | ID бэкапа сервера.
     update_server_disk_backup_request = timeweb_cloud_api.UpdateServerDiskBackupRequest() # UpdateServerDiskBackupRequest |  (optional)
 
     try:
@@ -2923,9 +2923,9 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **server_id** | [**object**](.md)| Уникальный идентификатор облачного сервера. | 
- **disk_id** | [**object**](.md)| Уникальный идентификатор диска сервера. | 
- **backup_id** | [**object**](.md)| Уникальный идентификатор бэкапа сервера. | 
+ **server_id** | [**object**](.md)| ID облачного сервера. | 
+ **disk_id** | [**object**](.md)| ID диска сервера. | 
+ **backup_id** | [**object**](.md)| ID бэкапа сервера. | 
  **update_server_disk_backup_request** | [**UpdateServerDiskBackupRequest**](UpdateServerDiskBackupRequest.md)|  | [optional] 
 
 ### Return type
@@ -2993,7 +2993,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.ServersApi(api_client)
-    server_id = 1051 # object | Уникальный идентификатор облачного сервера.
+    server_id = 1051 # object | ID облачного сервера.
     update_server_ip_request = timeweb_cloud_api.UpdateServerIPRequest() # UpdateServerIPRequest | 
 
     try:
@@ -3010,7 +3010,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **server_id** | [**object**](.md)| Уникальный идентификатор облачного сервера. | 
+ **server_id** | [**object**](.md)| ID облачного сервера. | 
  **update_server_ip_request** | [**UpdateServerIPRequest**](UpdateServerIPRequest.md)|  | 
 
 ### Return type
@@ -3078,7 +3078,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.ServersApi(api_client)
-    server_id = 1051 # object | Уникальный идентификатор облачного сервера.
+    server_id = 1051 # object | ID облачного сервера.
     update_server_nat_request = timeweb_cloud_api.UpdateServerNATRequest() # UpdateServerNATRequest |  (optional)
 
     try:
@@ -3093,7 +3093,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **server_id** | [**object**](.md)| Уникальный идентификатор облачного сервера. | 
+ **server_id** | [**object**](.md)| ID облачного сервера. | 
  **update_server_nat_request** | [**UpdateServerNATRequest**](UpdateServerNATRequest.md)|  | [optional] 
 
 ### Return type
@@ -3161,7 +3161,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.ServersApi(api_client)
-    server_id = 1051 # object | Уникальный идентификатор облачного сервера.
+    server_id = 1051 # object | ID облачного сервера.
     update_server_os_boot_mode_request = timeweb_cloud_api.UpdateServerOSBootModeRequest() # UpdateServerOSBootModeRequest |  (optional)
 
     try:
@@ -3176,7 +3176,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **server_id** | [**object**](.md)| Уникальный идентификатор облачного сервера. | 
+ **server_id** | [**object**](.md)| ID облачного сервера. | 
  **update_server_os_boot_mode_request** | [**UpdateServerOSBootModeRequest**](UpdateServerOSBootModeRequest.md)|  | [optional] 
 
 ### Return type

@@ -3,7 +3,7 @@
 """
     Timeweb Cloud API
 
-    # Введение API Timeweb Cloud позволяет вам управлять ресурсами в облаке программным способом с использованием обычных HTTP-запросов.  Множество функций, которые доступны в панели управления Timeweb Cloud, также доступны через API, что позволяет вам автоматизировать ваши собственные сценарии.  В этой документации сперва будет описан общий дизайн и принципы работы API, а после этого конкретные конечные точки. Также будут приведены примеры запросов к ним.   ## Запросы Запросы должны выполняться по протоколу `HTTPS`, чтобы гарантировать шифрование транзакций. Поддерживаются следующие методы запроса: |Метод|Применение| |--- |--- | |GET|Извлекает данные о коллекциях и отдельных ресурсах.| |POST|Для коллекций создает новый ресурс этого типа. Также используется для выполнения действий с конкретным ресурсом.| |PUT|Обновляет существующий ресурс.| |PATCH|Некоторые ресурсы поддерживают частичное обновление, то есть обновление только части атрибутов ресурса, в этом случае вместо метода PUT будет использован PATCH.| |DELETE|Удаляет ресурс.|  Методы `POST`, `PUT` и `PATCH` могут включать объект в тело запроса с типом содержимого `application/json`.  ### Параметры в запросах Некоторые коллекции поддерживают пагинацию, поиск или сортировку в запросах. В параметрах запроса требуется передать: - `limit` — обозначает количество записей, которое необходимо вернуть  - `offset` — указывает на смещение, относительно начала списка  - `search` — позволяет указать набор символов для поиска  - `sort` — можно задать правило сортировки коллекции  ## Ответы Запросы вернут один из следующих кодов состояния ответа HTTP:  |Статус|Описание| |--- |--- | |200 OK|Действие с ресурсом было выполнено успешно.| |201 Created|Ресурс был успешно создан. При этом ресурс может быть как уже готовым к использованию, так и находиться в процессе запуска.| |204 No Content|Действие с ресурсом было выполнено успешно, и ответ не содержит дополнительной информации в теле.| |400 Bad Request|Был отправлен неверный запрос, например, в нем отсутствуют обязательные параметры и т. д. Тело ответа будет содержать дополнительную информацию об ошибке.| |401 Unauthorized|Ошибка аутентификации.| |403 Forbidden|Аутентификация прошла успешно, но недостаточно прав для выполнения действия.| |404 Not Found|Запрашиваемый ресурс не найден.| |409 Conflict|Запрос конфликтует с текущим состоянием.| |423 Locked|Ресурс из запроса заблокирован от применения к нему указанного метода.| |429 Too Many Requests|Был достигнут лимит по количеству запросов в единицу времени.| |500 Internal Server Error|При выполнении запроса произошла какая-то внутренняя ошибка. Чтобы решить эту проблему, лучше всего создать тикет в панели управления.|  ### Структура успешного ответа Все конечные точки будут возвращать данные в формате `JSON`. Ответы на `GET`-запросы будут иметь на верхнем уровне следующую структуру атрибутов:  |Название поля|Тип|Описание| |--- |--- |--- | |[entity_name]|object, object[], string[], number[], boolean|Динамическое поле, которое будет меняться в зависимости от запрашиваемого ресурса и будет содержать все атрибуты, необходимые для описания этого ресурса. Например, при запросе списка баз данных будет возвращаться поле `dbs`, а при запросе конкретного облачного сервера `server`. Для некоторых конечных точек в ответе может возвращаться сразу несколько ресурсов.| |meta|object|Опционально. Объект, который содержит вспомогательную информацию о ресурсе. Чаще всего будет встречаться при запросе коллекций и содержать поле `total`, которое будет указывать на количество элементов в коллекции.| |response_id|string|Опционально. В большинстве случаев в ответе будет содержаться уникальный идентификатор ответа в формате UUIDv4, который однозначно указывает на ваш запрос внутри нашей системы. Если вам потребуется задать вопрос нашей поддержке, приложите к вопросу этот идентификатор — так мы сможем найти ответ на него намного быстрее. Также вы можете использовать этот идентификатор, чтобы убедиться, что это новый ответ на запрос и результат не был получен из кэша.|  Пример запроса на получение списка SSH-ключей: ```     HTTP/2.0 200 OK     {       \"ssh_keys\":[           {             \"body\":\"ssh-rsa AAAAB3NzaC1sdfghjkOAsBwWhs= example@device.local\",             \"created_at\":\"2021-09-15T19:52:27Z\",             \"expired_at\":null,             \"id\":5297,             \"is_default\":false,             \"name\":\"example@device.local\",             \"used_at\":null,             \"used_by\":[]           }       ],       \"meta\":{           \"total\":1       },       \"response_id\":\"94608d15-8672-4eed-8ab6-28bd6fa3cdf7\"     } ```  ### Структура ответа с ошибкой |Название поля|Тип|Описание| |--- |--- |--- | |status_code|number|Короткий числовой идентификатор ошибки.| |error_code|string|Короткий текстовый идентификатор ошибки, который уточняет числовой идентификатор и удобен для программной обработки. Самый простой пример — это код `not_found` для ошибки 404.| |message|string, string[]|Опционально. В большинстве случаев в ответе будет содержаться человекочитаемое подробное описание ошибки или ошибок, которые помогут понять, что нужно исправить.| |response_id|string|Опционально. В большинстве случае в ответе будет содержаться уникальный идентификатор ответа в формате UUIDv4, который однозначно указывает на ваш запрос внутри нашей системы. Если вам потребуется задать вопрос нашей поддержке, приложите к вопросу этот идентификатор — так мы сможем найти ответ на него намного быстрее.|  Пример: ```     HTTP/2.0 403 Forbidden     {       \"status_code\": 403,       \"error_code\":  \"forbidden\",       \"message\":     \"You do not have access for the attempted action\",       \"response_id\": \"94608d15-8672-4eed-8ab6-28bd6fa3cdf7\"     } ```  ## Статусы ресурсов Важно учесть, что при создании большинства ресурсов внутри платформы вам будет сразу возвращен ответ от сервера со статусом `200 OK` или `201 Created` и идентификатором созданного ресурса в теле ответа, но при этом этот ресурс может быть ещё в *состоянии запуска*.  Для того чтобы понять, в каком состоянии сейчас находится ваш ресурс, мы добавили поле `status` в ответ на получение информации о ресурсе.  Список статусов будет отличаться в зависимости от типа ресурса. Увидеть поддерживаемый список статусов вы сможете в описании каждого конкретного ресурса.     ## Ограничение скорости запросов (Rate Limiting) Чтобы обеспечить стабильность для всех пользователей, Timeweb Cloud защищает API от всплесков входящего трафика, анализируя количество запросов c каждого аккаунта к каждой конечной точке.  Если ваше приложение отправляет более 20 запросов в секунду на одну конечную точку, то для этого запроса API может вернуть код состояния HTTP `429 Too Many Requests`.   ## Аутентификация Доступ к API осуществляется с помощью JWT-токена. Токенами можно управлять внутри панели управления Timeweb Cloud в разделе *API и Terraform*.  Токен необходимо передавать в заголовке каждого запроса в формате: ```   Authorization: Bearer $TIMEWEB_CLOUD_TOKEN ```  ## Формат примеров API Примеры в этой документации описаны с помощью `curl`, HTTP-клиента командной строки. На компьютерах `Linux` и `macOS` обычно по умолчанию установлен `curl`, и он доступен для загрузки на всех популярных платформах, включая `Windows`.  Каждый пример разделен на несколько строк символом `\\`, который совместим с `bash`. Типичный пример выглядит так: ```   curl -X PATCH      -H \"Content-Type: application/json\"      -H \"Authorization: Bearer $TIMEWEB_CLOUD_TOKEN\"      -d '{\"name\":\"Cute Corvus\",\"comment\":\"Development Server\"}'      \"https://api.timeweb.cloud/api/v1/dedicated/1051\" ``` - Параметр `-X` задает метод запроса. Для согласованности метод будет указан во всех примерах, даже если он явно не требуется для методов `GET`. - Строки `-H` задают требуемые HTTP-заголовки. - Примеры, для которых требуется объект JSON в теле запроса, передают требуемые данные через параметр `-d`.  Чтобы использовать приведенные примеры, не подставляя каждый раз в них свой токен, вы можете добавить токен один раз в переменные окружения в вашей консоли. Например, на `Linux` это можно сделать с помощью команды:  ``` TIMEWEB_CLOUD_TOKEN=\"token\" ```  После этого токен будет автоматически подставляться в ваши запросы.  Обратите внимание, что все значения в этой документации являются примерами. Не полагайтесь на идентификаторы операционных систем, тарифов и т.д., используемые в примерах. Используйте соответствующую конечную точку для получения значений перед созданием ресурсов.   ## Версионирование API построено согласно принципам [семантического версионирования](https://semver.org/lang/ru). Это значит, что мы гарантируем обратную совместимость всех изменений в пределах одной мажорной версии.  Мажорная версия каждой конечной точки обозначается в пути запроса, например, запрос `/api/v1/servers` указывает, что этот метод имеет версию 1.  # noqa: E501
+    # Введение API Timeweb Cloud позволяет вам управлять ресурсами в облаке программным способом с использованием обычных HTTP-запросов.  Множество функций, которые доступны в панели управления Timeweb Cloud, также доступны через API, что позволяет вам автоматизировать ваши собственные сценарии.  В этой документации сперва будет описан общий дизайн и принципы работы API, а после этого конкретные конечные точки. Также будут приведены примеры запросов к ним.   ## Запросы Запросы должны выполняться по протоколу `HTTPS`, чтобы гарантировать шифрование транзакций. Поддерживаются следующие методы запроса: |Метод|Применение| |--- |--- | |GET|Извлекает данные о коллекциях и отдельных ресурсах.| |POST|Для коллекций создает новый ресурс этого типа. Также используется для выполнения действий с конкретным ресурсом.| |PUT|Обновляет существующий ресурс.| |PATCH|Некоторые ресурсы поддерживают частичное обновление, то есть обновление только части атрибутов ресурса, в этом случае вместо метода PUT будет использован PATCH.| |DELETE|Удаляет ресурс.|  Методы `POST`, `PUT` и `PATCH` могут включать объект в тело запроса с типом содержимого `application/json`.  ### Параметры в запросах Некоторые коллекции поддерживают пагинацию, поиск или сортировку в запросах. В параметрах запроса требуется передать: - `limit` — обозначает количество записей, которое необходимо вернуть  - `offset` — указывает на смещение, относительно начала списка  - `search` — позволяет указать набор символов для поиска  - `sort` — можно задать правило сортировки коллекции  ## Ответы Запросы вернут один из следующих кодов состояния ответа HTTP:  |Статус|Описание| |--- |--- | |200 OK|Действие с ресурсом было выполнено успешно.| |201 Created|Ресурс был успешно создан. При этом ресурс может быть как уже готовым к использованию, так и находиться в процессе запуска.| |204 No Content|Действие с ресурсом было выполнено успешно, и ответ не содержит дополнительной информации в теле.| |400 Bad Request|Был отправлен неверный запрос, например, в нем отсутствуют обязательные параметры и т. д. Тело ответа будет содержать дополнительную информацию об ошибке.| |401 Unauthorized|Ошибка аутентификации.| |403 Forbidden|Аутентификация прошла успешно, но недостаточно прав для выполнения действия.| |404 Not Found|Запрашиваемый ресурс не найден.| |409 Conflict|Запрос конфликтует с текущим состоянием.| |423 Locked|Ресурс из запроса заблокирован от применения к нему указанного метода.| |429 Too Many Requests|Был достигнут лимит по количеству запросов в единицу времени.| |500 Internal Server Error|При выполнении запроса произошла какая-то внутренняя ошибка. Чтобы решить эту проблему, лучше всего создать тикет в панели управления.|  ### Структура успешного ответа Все конечные точки будут возвращать данные в формате `JSON`. Ответы на `GET`-запросы будут иметь на верхнем уровне следующую структуру атрибутов:  |Название поля|Тип|Описание| |--- |--- |--- | |[entity_name]|object, object[], string[], number[], boolean|Динамическое поле, которое будет меняться в зависимости от запрашиваемого ресурса и будет содержать все атрибуты, необходимые для описания этого ресурса. Например, при запросе списка баз данных будет возвращаться поле `dbs`, а при запросе конкретного облачного сервера `server`. Для некоторых конечных точек в ответе может возвращаться сразу несколько ресурсов.| |meta|object|Опционально. Объект, который содержит вспомогательную информацию о ресурсе. Чаще всего будет встречаться при запросе коллекций и содержать поле `total`, которое будет указывать на количество элементов в коллекции.| |response_id|string|Опционально. В большинстве случаев в ответе будет содержаться ID ответа в формате UUIDv4, который однозначно указывает на ваш запрос внутри нашей системы. Если вам потребуется задать вопрос нашей поддержке, приложите к вопросу этот ID— так мы сможем найти ответ на него намного быстрее. Также вы можете использовать этот ID, чтобы убедиться, что это новый ответ на запрос и результат не был получен из кэша.|  Пример запроса на получение списка SSH-ключей: ```     HTTP/2.0 200 OK     {       \"ssh_keys\":[           {             \"body\":\"ssh-rsa AAAAB3NzaC1sdfghjkOAsBwWhs= example@device.local\",             \"created_at\":\"2021-09-15T19:52:27Z\",             \"expired_at\":null,             \"id\":5297,             \"is_default\":false,             \"name\":\"example@device.local\",             \"used_at\":null,             \"used_by\":[]           }       ],       \"meta\":{           \"total\":1       },       \"response_id\":\"94608d15-8672-4eed-8ab6-28bd6fa3cdf7\"     } ```  ### Структура ответа с ошибкой |Название поля|Тип|Описание| |--- |--- |--- | |status_code|number|Короткий числовой идентификатор ошибки.| |error_code|string|Короткий текстовый идентификатор ошибки, который уточняет числовой идентификатор и удобен для программной обработки. Самый простой пример — это код `not_found` для ошибки 404.| |message|string, string[]|Опционально. В большинстве случаев в ответе будет содержаться человекочитаемое подробное описание ошибки или ошибок, которые помогут понять, что нужно исправить.| |response_id|string|Опционально. В большинстве случае в ответе будет содержаться ID ответа в формате UUIDv4, который однозначно указывает на ваш запрос внутри нашей системы. Если вам потребуется задать вопрос нашей поддержке, приложите к вопросу этот ID — так мы сможем найти ответ на него намного быстрее.|  Пример: ```     HTTP/2.0 403 Forbidden     {       \"status_code\": 403,       \"error_code\":  \"forbidden\",       \"message\":     \"You do not have access for the attempted action\",       \"response_id\": \"94608d15-8672-4eed-8ab6-28bd6fa3cdf7\"     } ```  ## Статусы ресурсов Важно учесть, что при создании большинства ресурсов внутри платформы вам будет сразу возвращен ответ от сервера со статусом `200 OK` или `201 Created` и ID созданного ресурса в теле ответа, но при этом этот ресурс может быть ещё в *состоянии запуска*.  Для того чтобы понять, в каком состоянии сейчас находится ваш ресурс, мы добавили поле `status` в ответ на получение информации о ресурсе.  Список статусов будет отличаться в зависимости от типа ресурса. Увидеть поддерживаемый список статусов вы сможете в описании каждого конкретного ресурса.     ## Ограничение скорости запросов (Rate Limiting) Чтобы обеспечить стабильность для всех пользователей, Timeweb Cloud защищает API от всплесков входящего трафика, анализируя количество запросов c каждого аккаунта к каждой конечной точке.  Если ваше приложение отправляет более 20 запросов в секунду на одну конечную точку, то для этого запроса API может вернуть код состояния HTTP `429 Too Many Requests`.   ## Аутентификация Доступ к API осуществляется с помощью JWT-токена. Токенами можно управлять внутри панели управления Timeweb Cloud в разделе *API и Terraform*.  Токен необходимо передавать в заголовке каждого запроса в формате: ```   Authorization: Bearer $TIMEWEB_CLOUD_TOKEN ```  ## Формат примеров API Примеры в этой документации описаны с помощью `curl`, HTTP-клиента командной строки. На компьютерах `Linux` и `macOS` обычно по умолчанию установлен `curl`, и он доступен для загрузки на всех популярных платформах, включая `Windows`.  Каждый пример разделен на несколько строк символом `\\`, который совместим с `bash`. Типичный пример выглядит так: ```   curl -X PATCH      -H \"Content-Type: application/json\"      -H \"Authorization: Bearer $TIMEWEB_CLOUD_TOKEN\"      -d '{\"name\":\"Cute Corvus\",\"comment\":\"Development Server\"}'      \"https://api.timeweb.cloud/api/v1/dedicated/1051\" ``` - Параметр `-X` задает метод запроса. Для согласованности метод будет указан во всех примерах, даже если он явно не требуется для методов `GET`. - Строки `-H` задают требуемые HTTP-заголовки. - Примеры, для которых требуется объект JSON в теле запроса, передают требуемые данные через параметр `-d`.  Чтобы использовать приведенные примеры, не подставляя каждый раз в них свой токен, вы можете добавить токен один раз в переменные окружения в вашей консоли. Например, на `Linux` это можно сделать с помощью команды:  ``` TIMEWEB_CLOUD_TOKEN=\"token\" ```  После этого токен будет автоматически подставляться в ваши запросы.  Обратите внимание, что все значения в этой документации являются примерами. Не полагайтесь на IDы операционных систем, тарифов и т.д., используемые в примерах. Используйте соответствующую конечную точку для получения значений перед созданием ресурсов.   ## Версионирование API построено согласно принципам [семантического версионирования](https://semver.org/lang/ru). Это значит, что мы гарантируем обратную совместимость всех изменений в пределах одной мажорной версии.  Мажорная версия каждой конечной точки обозначается в пути запроса, например, запрос `/api/v1/servers` указывает, что этот метод имеет версию 1.  # noqa: E501
 
     The version of the OpenAPI document: 1.0.0
     Contact: info@timeweb.cloud
@@ -210,7 +210,7 @@ class KubernetesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def create_cluster_node_group(self, cluster_id : Annotated[Any, Field(..., description="Уникальный идентификатор кластера")], node_group_in : NodeGroupIn, **kwargs) -> NodeGroupResponse:  # noqa: E501
+    def create_cluster_node_group(self, cluster_id : Annotated[Any, Field(..., description="ID кластера")], node_group_in : NodeGroupIn, **kwargs) -> NodeGroupResponse:  # noqa: E501
         """Создание группы нод  # noqa: E501
 
         Чтобы создать группу нод кластера, отправьте POST-запрос в `/api/v1/k8s/clusters/{cluster_id}/groups`.  # noqa: E501
@@ -220,7 +220,7 @@ class KubernetesApi(object):
         >>> thread = api.create_cluster_node_group(cluster_id, node_group_in, async_req=True)
         >>> result = thread.get()
 
-        :param cluster_id: Уникальный идентификатор кластера (required)
+        :param cluster_id: ID кластера (required)
         :type cluster_id: object
         :param node_group_in: (required)
         :type node_group_in: NodeGroupIn
@@ -241,7 +241,7 @@ class KubernetesApi(object):
         return self.create_cluster_node_group_with_http_info(cluster_id, node_group_in, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def create_cluster_node_group_with_http_info(self, cluster_id : Annotated[Any, Field(..., description="Уникальный идентификатор кластера")], node_group_in : NodeGroupIn, **kwargs) -> ApiResponse:  # noqa: E501
+    def create_cluster_node_group_with_http_info(self, cluster_id : Annotated[Any, Field(..., description="ID кластера")], node_group_in : NodeGroupIn, **kwargs) -> ApiResponse:  # noqa: E501
         """Создание группы нод  # noqa: E501
 
         Чтобы создать группу нод кластера, отправьте POST-запрос в `/api/v1/k8s/clusters/{cluster_id}/groups`.  # noqa: E501
@@ -251,7 +251,7 @@ class KubernetesApi(object):
         >>> thread = api.create_cluster_node_group_with_http_info(cluster_id, node_group_in, async_req=True)
         >>> result = thread.get()
 
-        :param cluster_id: Уникальный идентификатор кластера (required)
+        :param cluster_id: ID кластера (required)
         :type cluster_id: object
         :param node_group_in: (required)
         :type node_group_in: NodeGroupIn
@@ -370,7 +370,7 @@ class KubernetesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def delete_cluster(self, cluster_id : Annotated[Any, Field(..., description="Уникальный идентификатор кластера")], hash : Annotated[Optional[Any], Field(description="Хеш, который совместно с кодом авторизации надо отправить для удаления, если включено подтверждение удаления сервисов через Телеграм.")] = None, code : Annotated[Optional[Any], Field(description="Код подтверждения, который придет к вам в Телеграм, после запроса удаления, если включено подтверждение удаления сервисов.  При помощи API токена сервисы можно удалять без подтверждения, если параметр токена `is_able_to_delete` установлен в значение `true`")] = None, **kwargs) -> DeleteCluster200Response:  # noqa: E501
+    def delete_cluster(self, cluster_id : Annotated[Any, Field(..., description="ID кластера")], hash : Annotated[Optional[Any], Field(description="Хеш, который совместно с кодом авторизации надо отправить для удаления, если включено подтверждение удаления сервисов через Телеграм.")] = None, code : Annotated[Optional[Any], Field(description="Код подтверждения, который придет к вам в Телеграм, после запроса удаления, если включено подтверждение удаления сервисов.  При помощи API токена сервисы можно удалять без подтверждения, если параметр токена `is_able_to_delete` установлен в значение `true`")] = None, **kwargs) -> DeleteCluster200Response:  # noqa: E501
         """Удаление кластера  # noqa: E501
 
         Чтобы удалить кластер, отправьте DELETE-запрос в `/api/v1/k8s/clusters/{cluster_id}`  # noqa: E501
@@ -380,7 +380,7 @@ class KubernetesApi(object):
         >>> thread = api.delete_cluster(cluster_id, hash, code, async_req=True)
         >>> result = thread.get()
 
-        :param cluster_id: Уникальный идентификатор кластера (required)
+        :param cluster_id: ID кластера (required)
         :type cluster_id: object
         :param hash: Хеш, который совместно с кодом авторизации надо отправить для удаления, если включено подтверждение удаления сервисов через Телеграм.
         :type hash: object
@@ -403,7 +403,7 @@ class KubernetesApi(object):
         return self.delete_cluster_with_http_info(cluster_id, hash, code, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def delete_cluster_with_http_info(self, cluster_id : Annotated[Any, Field(..., description="Уникальный идентификатор кластера")], hash : Annotated[Optional[Any], Field(description="Хеш, который совместно с кодом авторизации надо отправить для удаления, если включено подтверждение удаления сервисов через Телеграм.")] = None, code : Annotated[Optional[Any], Field(description="Код подтверждения, который придет к вам в Телеграм, после запроса удаления, если включено подтверждение удаления сервисов.  При помощи API токена сервисы можно удалять без подтверждения, если параметр токена `is_able_to_delete` установлен в значение `true`")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def delete_cluster_with_http_info(self, cluster_id : Annotated[Any, Field(..., description="ID кластера")], hash : Annotated[Optional[Any], Field(description="Хеш, который совместно с кодом авторизации надо отправить для удаления, если включено подтверждение удаления сервисов через Телеграм.")] = None, code : Annotated[Optional[Any], Field(description="Код подтверждения, который придет к вам в Телеграм, после запроса удаления, если включено подтверждение удаления сервисов.  При помощи API токена сервисы можно удалять без подтверждения, если параметр токена `is_able_to_delete` установлен в значение `true`")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Удаление кластера  # noqa: E501
 
         Чтобы удалить кластер, отправьте DELETE-запрос в `/api/v1/k8s/clusters/{cluster_id}`  # noqa: E501
@@ -413,7 +413,7 @@ class KubernetesApi(object):
         >>> thread = api.delete_cluster_with_http_info(cluster_id, hash, code, async_req=True)
         >>> result = thread.get()
 
-        :param cluster_id: Уникальный идентификатор кластера (required)
+        :param cluster_id: ID кластера (required)
         :type cluster_id: object
         :param hash: Хеш, который совместно с кодом авторизации надо отправить для удаления, если включено подтверждение удаления сервисов через Телеграм.
         :type hash: object
@@ -532,7 +532,7 @@ class KubernetesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def delete_cluster_node(self, cluster_id : Annotated[Any, Field(..., description="Уникальный идентификатор кластера")], node_id : Annotated[Any, Field(..., description="Уникальный идентификатор группы нод")], **kwargs) -> None:  # noqa: E501
+    def delete_cluster_node(self, cluster_id : Annotated[Any, Field(..., description="ID кластера")], node_id : Annotated[Any, Field(..., description="ID группы нод")], **kwargs) -> None:  # noqa: E501
         """Удаление ноды  # noqa: E501
 
         Чтобы удалить ноду, отправьте DELETE-запрос в `/api/v1/k8s/clusters/{cluster_id}/nodes/{node_id}`.  # noqa: E501
@@ -542,9 +542,9 @@ class KubernetesApi(object):
         >>> thread = api.delete_cluster_node(cluster_id, node_id, async_req=True)
         >>> result = thread.get()
 
-        :param cluster_id: Уникальный идентификатор кластера (required)
+        :param cluster_id: ID кластера (required)
         :type cluster_id: object
-        :param node_id: Уникальный идентификатор группы нод (required)
+        :param node_id: ID группы нод (required)
         :type node_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -563,7 +563,7 @@ class KubernetesApi(object):
         return self.delete_cluster_node_with_http_info(cluster_id, node_id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def delete_cluster_node_with_http_info(self, cluster_id : Annotated[Any, Field(..., description="Уникальный идентификатор кластера")], node_id : Annotated[Any, Field(..., description="Уникальный идентификатор группы нод")], **kwargs) -> ApiResponse:  # noqa: E501
+    def delete_cluster_node_with_http_info(self, cluster_id : Annotated[Any, Field(..., description="ID кластера")], node_id : Annotated[Any, Field(..., description="ID группы нод")], **kwargs) -> ApiResponse:  # noqa: E501
         """Удаление ноды  # noqa: E501
 
         Чтобы удалить ноду, отправьте DELETE-запрос в `/api/v1/k8s/clusters/{cluster_id}/nodes/{node_id}`.  # noqa: E501
@@ -573,9 +573,9 @@ class KubernetesApi(object):
         >>> thread = api.delete_cluster_node_with_http_info(cluster_id, node_id, async_req=True)
         >>> result = thread.get()
 
-        :param cluster_id: Уникальный идентификатор кластера (required)
+        :param cluster_id: ID кластера (required)
         :type cluster_id: object
-        :param node_id: Уникальный идентификатор группы нод (required)
+        :param node_id: ID группы нод (required)
         :type node_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -673,7 +673,7 @@ class KubernetesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def delete_cluster_node_group(self, cluster_id : Annotated[Any, Field(..., description="Уникальный идентификатор кластера")], group_id : Annotated[Any, Field(..., description="Уникальный идентификатор группы")], **kwargs) -> None:  # noqa: E501
+    def delete_cluster_node_group(self, cluster_id : Annotated[Any, Field(..., description="ID кластера")], group_id : Annotated[Any, Field(..., description="ID группы")], **kwargs) -> None:  # noqa: E501
         """Удаление группы нод  # noqa: E501
 
         Чтобы удалить группу нод, отправьте DELETE-запрос в `/api/v1/k8s/clusters/{cluster_id}/groups/{group_id}`.  # noqa: E501
@@ -683,9 +683,9 @@ class KubernetesApi(object):
         >>> thread = api.delete_cluster_node_group(cluster_id, group_id, async_req=True)
         >>> result = thread.get()
 
-        :param cluster_id: Уникальный идентификатор кластера (required)
+        :param cluster_id: ID кластера (required)
         :type cluster_id: object
-        :param group_id: Уникальный идентификатор группы (required)
+        :param group_id: ID группы (required)
         :type group_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -704,7 +704,7 @@ class KubernetesApi(object):
         return self.delete_cluster_node_group_with_http_info(cluster_id, group_id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def delete_cluster_node_group_with_http_info(self, cluster_id : Annotated[Any, Field(..., description="Уникальный идентификатор кластера")], group_id : Annotated[Any, Field(..., description="Уникальный идентификатор группы")], **kwargs) -> ApiResponse:  # noqa: E501
+    def delete_cluster_node_group_with_http_info(self, cluster_id : Annotated[Any, Field(..., description="ID кластера")], group_id : Annotated[Any, Field(..., description="ID группы")], **kwargs) -> ApiResponse:  # noqa: E501
         """Удаление группы нод  # noqa: E501
 
         Чтобы удалить группу нод, отправьте DELETE-запрос в `/api/v1/k8s/clusters/{cluster_id}/groups/{group_id}`.  # noqa: E501
@@ -714,9 +714,9 @@ class KubernetesApi(object):
         >>> thread = api.delete_cluster_node_group_with_http_info(cluster_id, group_id, async_req=True)
         >>> result = thread.get()
 
-        :param cluster_id: Уникальный идентификатор кластера (required)
+        :param cluster_id: ID кластера (required)
         :type cluster_id: object
-        :param group_id: Уникальный идентификатор группы (required)
+        :param group_id: ID группы (required)
         :type group_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -814,7 +814,7 @@ class KubernetesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def get_cluster(self, cluster_id : Annotated[Any, Field(..., description="Уникальный идентификатор кластера")], **kwargs) -> ClusterResponse:  # noqa: E501
+    def get_cluster(self, cluster_id : Annotated[Any, Field(..., description="ID кластера")], **kwargs) -> ClusterResponse:  # noqa: E501
         """Получение информации о кластере  # noqa: E501
 
         Чтобы получить информацию о кластере, отправьте GET-запрос в `/api/v1/k8s/clusters/{cluster_id}`  # noqa: E501
@@ -824,7 +824,7 @@ class KubernetesApi(object):
         >>> thread = api.get_cluster(cluster_id, async_req=True)
         >>> result = thread.get()
 
-        :param cluster_id: Уникальный идентификатор кластера (required)
+        :param cluster_id: ID кластера (required)
         :type cluster_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -843,7 +843,7 @@ class KubernetesApi(object):
         return self.get_cluster_with_http_info(cluster_id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def get_cluster_with_http_info(self, cluster_id : Annotated[Any, Field(..., description="Уникальный идентификатор кластера")], **kwargs) -> ApiResponse:  # noqa: E501
+    def get_cluster_with_http_info(self, cluster_id : Annotated[Any, Field(..., description="ID кластера")], **kwargs) -> ApiResponse:  # noqa: E501
         """Получение информации о кластере  # noqa: E501
 
         Чтобы получить информацию о кластере, отправьте GET-запрос в `/api/v1/k8s/clusters/{cluster_id}`  # noqa: E501
@@ -853,7 +853,7 @@ class KubernetesApi(object):
         >>> thread = api.get_cluster_with_http_info(cluster_id, async_req=True)
         >>> result = thread.get()
 
-        :param cluster_id: Уникальный идентификатор кластера (required)
+        :param cluster_id: ID кластера (required)
         :type cluster_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -959,7 +959,7 @@ class KubernetesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def get_cluster_kubeconfig(self, cluster_id : Annotated[Any, Field(..., description="Уникальный идентификатор кластера")], **kwargs) -> object:  # noqa: E501
+    def get_cluster_kubeconfig(self, cluster_id : Annotated[Any, Field(..., description="ID кластера")], **kwargs) -> object:  # noqa: E501
         """Получение файла kubeconfig  # noqa: E501
 
         Чтобы получить файл kubeconfig, отправьте GET-запрос в `/api/v1/k8s/clusters/{cluster_id}/kubeconfig`.  # noqa: E501
@@ -969,7 +969,7 @@ class KubernetesApi(object):
         >>> thread = api.get_cluster_kubeconfig(cluster_id, async_req=True)
         >>> result = thread.get()
 
-        :param cluster_id: Уникальный идентификатор кластера (required)
+        :param cluster_id: ID кластера (required)
         :type cluster_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -988,7 +988,7 @@ class KubernetesApi(object):
         return self.get_cluster_kubeconfig_with_http_info(cluster_id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def get_cluster_kubeconfig_with_http_info(self, cluster_id : Annotated[Any, Field(..., description="Уникальный идентификатор кластера")], **kwargs) -> ApiResponse:  # noqa: E501
+    def get_cluster_kubeconfig_with_http_info(self, cluster_id : Annotated[Any, Field(..., description="ID кластера")], **kwargs) -> ApiResponse:  # noqa: E501
         """Получение файла kubeconfig  # noqa: E501
 
         Чтобы получить файл kubeconfig, отправьте GET-запрос в `/api/v1/k8s/clusters/{cluster_id}/kubeconfig`.  # noqa: E501
@@ -998,7 +998,7 @@ class KubernetesApi(object):
         >>> thread = api.get_cluster_kubeconfig_with_http_info(cluster_id, async_req=True)
         >>> result = thread.get()
 
-        :param cluster_id: Уникальный идентификатор кластера (required)
+        :param cluster_id: ID кластера (required)
         :type cluster_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -1104,7 +1104,7 @@ class KubernetesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def get_cluster_node_group(self, cluster_id : Annotated[Any, Field(..., description="Уникальный идентификатор кластера")], group_id : Annotated[Any, Field(..., description="Уникальный идентификатор группы")], **kwargs) -> NodeGroupResponse:  # noqa: E501
+    def get_cluster_node_group(self, cluster_id : Annotated[Any, Field(..., description="ID кластера")], group_id : Annotated[Any, Field(..., description="ID группы")], **kwargs) -> NodeGroupResponse:  # noqa: E501
         """Получение информации о группе нод  # noqa: E501
 
         Чтобы получить информацию о группе нод, отправьте GET-запрос в `/api/v1/k8s/clusters/{cluster_id}/groups/{group_id}`.  # noqa: E501
@@ -1114,9 +1114,9 @@ class KubernetesApi(object):
         >>> thread = api.get_cluster_node_group(cluster_id, group_id, async_req=True)
         >>> result = thread.get()
 
-        :param cluster_id: Уникальный идентификатор кластера (required)
+        :param cluster_id: ID кластера (required)
         :type cluster_id: object
-        :param group_id: Уникальный идентификатор группы (required)
+        :param group_id: ID группы (required)
         :type group_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -1135,7 +1135,7 @@ class KubernetesApi(object):
         return self.get_cluster_node_group_with_http_info(cluster_id, group_id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def get_cluster_node_group_with_http_info(self, cluster_id : Annotated[Any, Field(..., description="Уникальный идентификатор кластера")], group_id : Annotated[Any, Field(..., description="Уникальный идентификатор группы")], **kwargs) -> ApiResponse:  # noqa: E501
+    def get_cluster_node_group_with_http_info(self, cluster_id : Annotated[Any, Field(..., description="ID кластера")], group_id : Annotated[Any, Field(..., description="ID группы")], **kwargs) -> ApiResponse:  # noqa: E501
         """Получение информации о группе нод  # noqa: E501
 
         Чтобы получить информацию о группе нод, отправьте GET-запрос в `/api/v1/k8s/clusters/{cluster_id}/groups/{group_id}`.  # noqa: E501
@@ -1145,9 +1145,9 @@ class KubernetesApi(object):
         >>> thread = api.get_cluster_node_group_with_http_info(cluster_id, group_id, async_req=True)
         >>> result = thread.get()
 
-        :param cluster_id: Уникальный идентификатор кластера (required)
+        :param cluster_id: ID кластера (required)
         :type cluster_id: object
-        :param group_id: Уникальный идентификатор группы (required)
+        :param group_id: ID группы (required)
         :type group_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -1257,7 +1257,7 @@ class KubernetesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def get_cluster_node_groups(self, cluster_id : Annotated[Any, Field(..., description="Уникальный идентификатор кластера")], **kwargs) -> NodeGroupsResponse:  # noqa: E501
+    def get_cluster_node_groups(self, cluster_id : Annotated[Any, Field(..., description="ID кластера")], **kwargs) -> NodeGroupsResponse:  # noqa: E501
         """Получение групп нод кластера  # noqa: E501
 
         Чтобы получить группы нод кластера, отправьте GET-запрос в `/api/v1/k8s/clusters/{cluster_id}/groups`.  # noqa: E501
@@ -1267,7 +1267,7 @@ class KubernetesApi(object):
         >>> thread = api.get_cluster_node_groups(cluster_id, async_req=True)
         >>> result = thread.get()
 
-        :param cluster_id: Уникальный идентификатор кластера (required)
+        :param cluster_id: ID кластера (required)
         :type cluster_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -1286,7 +1286,7 @@ class KubernetesApi(object):
         return self.get_cluster_node_groups_with_http_info(cluster_id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def get_cluster_node_groups_with_http_info(self, cluster_id : Annotated[Any, Field(..., description="Уникальный идентификатор кластера")], **kwargs) -> ApiResponse:  # noqa: E501
+    def get_cluster_node_groups_with_http_info(self, cluster_id : Annotated[Any, Field(..., description="ID кластера")], **kwargs) -> ApiResponse:  # noqa: E501
         """Получение групп нод кластера  # noqa: E501
 
         Чтобы получить группы нод кластера, отправьте GET-запрос в `/api/v1/k8s/clusters/{cluster_id}/groups`.  # noqa: E501
@@ -1296,7 +1296,7 @@ class KubernetesApi(object):
         >>> thread = api.get_cluster_node_groups_with_http_info(cluster_id, async_req=True)
         >>> result = thread.get()
 
-        :param cluster_id: Уникальный идентификатор кластера (required)
+        :param cluster_id: ID кластера (required)
         :type cluster_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -1402,7 +1402,7 @@ class KubernetesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def get_cluster_nodes(self, cluster_id : Annotated[Any, Field(..., description="Уникальный идентификатор кластера")], **kwargs) -> NodesResponse:  # noqa: E501
+    def get_cluster_nodes(self, cluster_id : Annotated[Any, Field(..., description="ID кластера")], **kwargs) -> NodesResponse:  # noqa: E501
         """Получение списка нод  # noqa: E501
 
         Чтобы получить список нод, отправьте GET-запрос в `/api/v1/k8s/clusters/{cluster_id}/nodes`.  # noqa: E501
@@ -1412,7 +1412,7 @@ class KubernetesApi(object):
         >>> thread = api.get_cluster_nodes(cluster_id, async_req=True)
         >>> result = thread.get()
 
-        :param cluster_id: Уникальный идентификатор кластера (required)
+        :param cluster_id: ID кластера (required)
         :type cluster_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -1431,7 +1431,7 @@ class KubernetesApi(object):
         return self.get_cluster_nodes_with_http_info(cluster_id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def get_cluster_nodes_with_http_info(self, cluster_id : Annotated[Any, Field(..., description="Уникальный идентификатор кластера")], **kwargs) -> ApiResponse:  # noqa: E501
+    def get_cluster_nodes_with_http_info(self, cluster_id : Annotated[Any, Field(..., description="ID кластера")], **kwargs) -> ApiResponse:  # noqa: E501
         """Получение списка нод  # noqa: E501
 
         Чтобы получить список нод, отправьте GET-запрос в `/api/v1/k8s/clusters/{cluster_id}/nodes`.  # noqa: E501
@@ -1441,7 +1441,7 @@ class KubernetesApi(object):
         >>> thread = api.get_cluster_nodes_with_http_info(cluster_id, async_req=True)
         >>> result = thread.get()
 
-        :param cluster_id: Уникальный идентификатор кластера (required)
+        :param cluster_id: ID кластера (required)
         :type cluster_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -1547,7 +1547,7 @@ class KubernetesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def get_cluster_nodes_from_group(self, cluster_id : Annotated[Any, Field(..., description="Уникальный идентификатор кластера")], group_id : Annotated[Any, Field(..., description="Уникальный идентификатор группы")], limit : Annotated[Optional[Any], Field(description="Обозначает количество записей, которое необходимо вернуть.")] = None, offset : Annotated[Optional[Any], Field(description="Указывает на смещение, относительно начала списка.")] = None, **kwargs) -> NodesResponse:  # noqa: E501
+    def get_cluster_nodes_from_group(self, cluster_id : Annotated[Any, Field(..., description="ID кластера")], group_id : Annotated[Any, Field(..., description="ID группы")], limit : Annotated[Optional[Any], Field(description="Обозначает количество записей, которое необходимо вернуть.")] = None, offset : Annotated[Optional[Any], Field(description="Указывает на смещение, относительно начала списка.")] = None, **kwargs) -> NodesResponse:  # noqa: E501
         """Получение списка нод, принадлежащих группе  # noqa: E501
 
         Чтобы получить список нод принадлежащих группе, отправьте GET-запрос в `/api/v1/k8s/clusters/{cluster_id}/groups/{group_id}/nodes`.  # noqa: E501
@@ -1557,9 +1557,9 @@ class KubernetesApi(object):
         >>> thread = api.get_cluster_nodes_from_group(cluster_id, group_id, limit, offset, async_req=True)
         >>> result = thread.get()
 
-        :param cluster_id: Уникальный идентификатор кластера (required)
+        :param cluster_id: ID кластера (required)
         :type cluster_id: object
-        :param group_id: Уникальный идентификатор группы (required)
+        :param group_id: ID группы (required)
         :type group_id: object
         :param limit: Обозначает количество записей, которое необходимо вернуть.
         :type limit: object
@@ -1582,7 +1582,7 @@ class KubernetesApi(object):
         return self.get_cluster_nodes_from_group_with_http_info(cluster_id, group_id, limit, offset, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def get_cluster_nodes_from_group_with_http_info(self, cluster_id : Annotated[Any, Field(..., description="Уникальный идентификатор кластера")], group_id : Annotated[Any, Field(..., description="Уникальный идентификатор группы")], limit : Annotated[Optional[Any], Field(description="Обозначает количество записей, которое необходимо вернуть.")] = None, offset : Annotated[Optional[Any], Field(description="Указывает на смещение, относительно начала списка.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def get_cluster_nodes_from_group_with_http_info(self, cluster_id : Annotated[Any, Field(..., description="ID кластера")], group_id : Annotated[Any, Field(..., description="ID группы")], limit : Annotated[Optional[Any], Field(description="Обозначает количество записей, которое необходимо вернуть.")] = None, offset : Annotated[Optional[Any], Field(description="Указывает на смещение, относительно начала списка.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Получение списка нод, принадлежащих группе  # noqa: E501
 
         Чтобы получить список нод принадлежащих группе, отправьте GET-запрос в `/api/v1/k8s/clusters/{cluster_id}/groups/{group_id}/nodes`.  # noqa: E501
@@ -1592,9 +1592,9 @@ class KubernetesApi(object):
         >>> thread = api.get_cluster_nodes_from_group_with_http_info(cluster_id, group_id, limit, offset, async_req=True)
         >>> result = thread.get()
 
-        :param cluster_id: Уникальный идентификатор кластера (required)
+        :param cluster_id: ID кластера (required)
         :type cluster_id: object
-        :param group_id: Уникальный идентификатор группы (required)
+        :param group_id: ID группы (required)
         :type group_id: object
         :param limit: Обозначает количество записей, которое необходимо вернуть.
         :type limit: object
@@ -1716,7 +1716,7 @@ class KubernetesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def get_cluster_resources(self, cluster_id : Annotated[Any, Field(..., description="Уникальный идентификатор кластера")], **kwargs) -> ResourcesResponse:  # noqa: E501
+    def get_cluster_resources(self, cluster_id : Annotated[Any, Field(..., description="ID кластера")], **kwargs) -> ResourcesResponse:  # noqa: E501
         """(Deprecated) Получение ресурсов кластера  # noqa: E501
 
         Устаревший метод, работает только для старых кластеров. \\  Чтобы получить ресурсы кластера, отправьте GET-запрос в `/api/v1/k8s/clusters/{cluster_id}/resources`.  # noqa: E501
@@ -1726,7 +1726,7 @@ class KubernetesApi(object):
         >>> thread = api.get_cluster_resources(cluster_id, async_req=True)
         >>> result = thread.get()
 
-        :param cluster_id: Уникальный идентификатор кластера (required)
+        :param cluster_id: ID кластера (required)
         :type cluster_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -1745,7 +1745,7 @@ class KubernetesApi(object):
         return self.get_cluster_resources_with_http_info(cluster_id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def get_cluster_resources_with_http_info(self, cluster_id : Annotated[Any, Field(..., description="Уникальный идентификатор кластера")], **kwargs) -> ApiResponse:  # noqa: E501
+    def get_cluster_resources_with_http_info(self, cluster_id : Annotated[Any, Field(..., description="ID кластера")], **kwargs) -> ApiResponse:  # noqa: E501
         """(Deprecated) Получение ресурсов кластера  # noqa: E501
 
         Устаревший метод, работает только для старых кластеров. \\  Чтобы получить ресурсы кластера, отправьте GET-запрос в `/api/v1/k8s/clusters/{cluster_id}/resources`.  # noqa: E501
@@ -1755,7 +1755,7 @@ class KubernetesApi(object):
         >>> thread = api.get_cluster_resources_with_http_info(cluster_id, async_req=True)
         >>> result = thread.get()
 
-        :param cluster_id: Уникальный идентификатор кластера (required)
+        :param cluster_id: ID кластера (required)
         :type cluster_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -2419,7 +2419,7 @@ class KubernetesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def increase_count_of_nodes_in_group(self, cluster_id : Annotated[Any, Field(..., description="Уникальный идентификатор кластера")], group_id : Annotated[Any, Field(..., description="Уникальный идентификатор группы")], node_count : NodeCount, **kwargs) -> NodesResponse:  # noqa: E501
+    def increase_count_of_nodes_in_group(self, cluster_id : Annotated[Any, Field(..., description="ID кластера")], group_id : Annotated[Any, Field(..., description="ID группы")], node_count : NodeCount, **kwargs) -> NodesResponse:  # noqa: E501
         """Увеличение количества нод в группе на указанное количество  # noqa: E501
 
         Чтобы увеличить количество нод в группе на указанное значение, отправьте POST-запрос на `/api/v1/k8s/clusters/{cluster_id}/groups/{group_id}/nodes`  # noqa: E501
@@ -2429,9 +2429,9 @@ class KubernetesApi(object):
         >>> thread = api.increase_count_of_nodes_in_group(cluster_id, group_id, node_count, async_req=True)
         >>> result = thread.get()
 
-        :param cluster_id: Уникальный идентификатор кластера (required)
+        :param cluster_id: ID кластера (required)
         :type cluster_id: object
-        :param group_id: Уникальный идентификатор группы (required)
+        :param group_id: ID группы (required)
         :type group_id: object
         :param node_count: (required)
         :type node_count: NodeCount
@@ -2452,7 +2452,7 @@ class KubernetesApi(object):
         return self.increase_count_of_nodes_in_group_with_http_info(cluster_id, group_id, node_count, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def increase_count_of_nodes_in_group_with_http_info(self, cluster_id : Annotated[Any, Field(..., description="Уникальный идентификатор кластера")], group_id : Annotated[Any, Field(..., description="Уникальный идентификатор группы")], node_count : NodeCount, **kwargs) -> ApiResponse:  # noqa: E501
+    def increase_count_of_nodes_in_group_with_http_info(self, cluster_id : Annotated[Any, Field(..., description="ID кластера")], group_id : Annotated[Any, Field(..., description="ID группы")], node_count : NodeCount, **kwargs) -> ApiResponse:  # noqa: E501
         """Увеличение количества нод в группе на указанное количество  # noqa: E501
 
         Чтобы увеличить количество нод в группе на указанное значение, отправьте POST-запрос на `/api/v1/k8s/clusters/{cluster_id}/groups/{group_id}/nodes`  # noqa: E501
@@ -2462,9 +2462,9 @@ class KubernetesApi(object):
         >>> thread = api.increase_count_of_nodes_in_group_with_http_info(cluster_id, group_id, node_count, async_req=True)
         >>> result = thread.get()
 
-        :param cluster_id: Уникальный идентификатор кластера (required)
+        :param cluster_id: ID кластера (required)
         :type cluster_id: object
-        :param group_id: Уникальный идентификатор группы (required)
+        :param group_id: ID группы (required)
         :type group_id: object
         :param node_count: (required)
         :type node_count: NodeCount
@@ -2587,7 +2587,7 @@ class KubernetesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def reduce_count_of_nodes_in_group(self, cluster_id : Annotated[Any, Field(..., description="Уникальный идентификатор кластера")], group_id : Annotated[Any, Field(..., description="Уникальный идентификатор группы")], node_count : NodeCount, **kwargs) -> None:  # noqa: E501
+    def reduce_count_of_nodes_in_group(self, cluster_id : Annotated[Any, Field(..., description="ID кластера")], group_id : Annotated[Any, Field(..., description="ID группы")], node_count : NodeCount, **kwargs) -> None:  # noqa: E501
         """Уменьшение количества нод в группе на указанное количество  # noqa: E501
 
         Чтобы уменьшить количество нод в группе на указанное значение, отправьте DELETE-запрос в `/api/v1/k8s/clusters/{cluster_id}/groups/{group_id}/nodes`.  # noqa: E501
@@ -2597,9 +2597,9 @@ class KubernetesApi(object):
         >>> thread = api.reduce_count_of_nodes_in_group(cluster_id, group_id, node_count, async_req=True)
         >>> result = thread.get()
 
-        :param cluster_id: Уникальный идентификатор кластера (required)
+        :param cluster_id: ID кластера (required)
         :type cluster_id: object
-        :param group_id: Уникальный идентификатор группы (required)
+        :param group_id: ID группы (required)
         :type group_id: object
         :param node_count: (required)
         :type node_count: NodeCount
@@ -2620,7 +2620,7 @@ class KubernetesApi(object):
         return self.reduce_count_of_nodes_in_group_with_http_info(cluster_id, group_id, node_count, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def reduce_count_of_nodes_in_group_with_http_info(self, cluster_id : Annotated[Any, Field(..., description="Уникальный идентификатор кластера")], group_id : Annotated[Any, Field(..., description="Уникальный идентификатор группы")], node_count : NodeCount, **kwargs) -> ApiResponse:  # noqa: E501
+    def reduce_count_of_nodes_in_group_with_http_info(self, cluster_id : Annotated[Any, Field(..., description="ID кластера")], group_id : Annotated[Any, Field(..., description="ID группы")], node_count : NodeCount, **kwargs) -> ApiResponse:  # noqa: E501
         """Уменьшение количества нод в группе на указанное количество  # noqa: E501
 
         Чтобы уменьшить количество нод в группе на указанное значение, отправьте DELETE-запрос в `/api/v1/k8s/clusters/{cluster_id}/groups/{group_id}/nodes`.  # noqa: E501
@@ -2630,9 +2630,9 @@ class KubernetesApi(object):
         >>> thread = api.reduce_count_of_nodes_in_group_with_http_info(cluster_id, group_id, node_count, async_req=True)
         >>> result = thread.get()
 
-        :param cluster_id: Уникальный идентификатор кластера (required)
+        :param cluster_id: ID кластера (required)
         :type cluster_id: object
-        :param group_id: Уникальный идентификатор группы (required)
+        :param group_id: ID группы (required)
         :type group_id: object
         :param node_count: (required)
         :type node_count: NodeCount
@@ -2743,7 +2743,7 @@ class KubernetesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def update_cluster(self, cluster_id : Annotated[Any, Field(..., description="Уникальный идентификатор кластера")], cluster_edit : ClusterEdit, **kwargs) -> ClusterResponse:  # noqa: E501
+    def update_cluster(self, cluster_id : Annotated[Any, Field(..., description="ID кластера")], cluster_edit : ClusterEdit, **kwargs) -> ClusterResponse:  # noqa: E501
         """Обновление информации о кластере  # noqa: E501
 
         Чтобы обновить информацию о кластере, отправьте PATCH-запрос в `/api/v1/k8s/clusters/{cluster_id}`  # noqa: E501
@@ -2753,7 +2753,7 @@ class KubernetesApi(object):
         >>> thread = api.update_cluster(cluster_id, cluster_edit, async_req=True)
         >>> result = thread.get()
 
-        :param cluster_id: Уникальный идентификатор кластера (required)
+        :param cluster_id: ID кластера (required)
         :type cluster_id: object
         :param cluster_edit: (required)
         :type cluster_edit: ClusterEdit
@@ -2774,7 +2774,7 @@ class KubernetesApi(object):
         return self.update_cluster_with_http_info(cluster_id, cluster_edit, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def update_cluster_with_http_info(self, cluster_id : Annotated[Any, Field(..., description="Уникальный идентификатор кластера")], cluster_edit : ClusterEdit, **kwargs) -> ApiResponse:  # noqa: E501
+    def update_cluster_with_http_info(self, cluster_id : Annotated[Any, Field(..., description="ID кластера")], cluster_edit : ClusterEdit, **kwargs) -> ApiResponse:  # noqa: E501
         """Обновление информации о кластере  # noqa: E501
 
         Чтобы обновить информацию о кластере, отправьте PATCH-запрос в `/api/v1/k8s/clusters/{cluster_id}`  # noqa: E501
@@ -2784,7 +2784,7 @@ class KubernetesApi(object):
         >>> thread = api.update_cluster_with_http_info(cluster_id, cluster_edit, async_req=True)
         >>> result = thread.get()
 
-        :param cluster_id: Уникальный идентификатор кластера (required)
+        :param cluster_id: ID кластера (required)
         :type cluster_id: object
         :param cluster_edit: (required)
         :type cluster_edit: ClusterEdit

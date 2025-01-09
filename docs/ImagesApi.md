@@ -136,7 +136,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.ImagesApi(api_client)
-    image_id = None # object | Идентификатор образа
+    image_id = None # object | ID образа
     image_url_in = timeweb_cloud_api.ImageUrlIn() # ImageUrlIn | 
 
     try:
@@ -153,7 +153,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **image_id** | [**object**](.md)| Идентификатор образа | 
+ **image_id** | [**object**](.md)| ID образа | 
  **image_url_in** | [**ImageUrlIn**](ImageUrlIn.md)|  | 
 
 ### Return type
@@ -219,7 +219,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.ImagesApi(api_client)
-    image_id = None # object | Идентификатор образа
+    image_id = None # object | ID образа
 
     try:
         # Удаление образа
@@ -233,7 +233,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **image_id** | [**object**](.md)| Идентификатор образа | 
+ **image_id** | [**object**](.md)| ID образа | 
 
 ### Return type
 
@@ -296,8 +296,8 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.ImagesApi(api_client)
-    image_id = None # object | Идентификатор образа
-    image_url_id = None # object | Идентификатор ссылки
+    image_id = None # object | ID образа
+    image_url_id = None # object | ID ссылки
 
     try:
         # Удаление ссылки на образ
@@ -311,8 +311,8 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **image_id** | [**object**](.md)| Идентификатор образа | 
- **image_url_id** | [**object**](.md)| Идентификатор ссылки | 
+ **image_id** | [**object**](.md)| ID образа | 
+ **image_url_id** | [**object**](.md)| ID ссылки | 
 
 ### Return type
 
@@ -376,7 +376,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.ImagesApi(api_client)
-    image_id = None # object | Идентификатор образа
+    image_id = None # object | ID образа
 
     try:
         # Получение информации о образе
@@ -392,7 +392,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **image_id** | [**object**](.md)| Идентификатор образа | 
+ **image_id** | [**object**](.md)| ID образа | 
 
 ### Return type
 
@@ -457,8 +457,8 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.ImagesApi(api_client)
-    image_id = None # object | Идентификатор образа
-    image_url_id = None # object | Идентификатор ссылки
+    image_id = None # object | ID образа
+    image_url_id = None # object | ID ссылки
 
     try:
         # Получение информации о ссылке на скачивание образа
@@ -474,8 +474,8 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **image_id** | [**object**](.md)| Идентификатор образа | 
- **image_url_id** | [**object**](.md)| Идентификатор ссылки | 
+ **image_id** | [**object**](.md)| ID образа | 
+ **image_url_id** | [**object**](.md)| ID ссылки | 
 
 ### Return type
 
@@ -540,7 +540,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.ImagesApi(api_client)
-    image_id = None # object | Идентификатор образа
+    image_id = None # object | ID образа
     limit = None # object |  (optional)
     offset = None # object |  (optional)
 
@@ -558,7 +558,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **image_id** | [**object**](.md)| Идентификатор образа | 
+ **image_id** | [**object**](.md)| ID образа | 
  **limit** | [**object**](.md)|  | [optional] 
  **offset** | [**object**](.md)|  | [optional] 
 
@@ -708,7 +708,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.ImagesApi(api_client)
-    image_id = None # object | Идентификатор образа
+    image_id = None # object | ID образа
     image_update_api = timeweb_cloud_api.ImageUpdateAPI() # ImageUpdateAPI | 
 
     try:
@@ -725,7 +725,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **image_id** | [**object**](.md)| Идентификатор образа | 
+ **image_id** | [**object**](.md)| ID образа | 
  **image_update_api** | [**ImageUpdateAPI**](ImageUpdateAPI.md)|  | 
 
 ### Return type

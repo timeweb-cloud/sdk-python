@@ -145,7 +145,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.KubernetesApi(api_client)
-    cluster_id = None # object | Уникальный идентификатор кластера
+    cluster_id = None # object | ID кластера
     node_group_in = timeweb_cloud_api.NodeGroupIn() # NodeGroupIn | 
 
     try:
@@ -162,7 +162,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **cluster_id** | [**object**](.md)| Уникальный идентификатор кластера | 
+ **cluster_id** | [**object**](.md)| ID кластера | 
  **node_group_in** | [**NodeGroupIn**](NodeGroupIn.md)|  | 
 
 ### Return type
@@ -229,7 +229,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.KubernetesApi(api_client)
-    cluster_id = None # object | Уникальный идентификатор кластера
+    cluster_id = None # object | ID кластера
     hash = 15095f25-aac3-4d60-a788-96cb5136f186 # object | Хеш, который совместно с кодом авторизации надо отправить для удаления, если включено подтверждение удаления сервисов через Телеграм. (optional)
     code = 0000 # object | Код подтверждения, который придет к вам в Телеграм, после запроса удаления, если включено подтверждение удаления сервисов.  При помощи API токена сервисы можно удалять без подтверждения, если параметр токена `is_able_to_delete` установлен в значение `true` (optional)
 
@@ -247,7 +247,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **cluster_id** | [**object**](.md)| Уникальный идентификатор кластера | 
+ **cluster_id** | [**object**](.md)| ID кластера | 
  **hash** | [**object**](.md)| Хеш, который совместно с кодом авторизации надо отправить для удаления, если включено подтверждение удаления сервисов через Телеграм. | [optional] 
  **code** | [**object**](.md)| Код подтверждения, который придет к вам в Телеграм, после запроса удаления, если включено подтверждение удаления сервисов.  При помощи API токена сервисы можно удалять без подтверждения, если параметр токена &#x60;is_able_to_delete&#x60; установлен в значение &#x60;true&#x60; | [optional] 
 
@@ -315,8 +315,8 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.KubernetesApi(api_client)
-    cluster_id = None # object | Уникальный идентификатор кластера
-    node_id = None # object | Уникальный идентификатор группы нод
+    cluster_id = None # object | ID кластера
+    node_id = None # object | ID группы нод
 
     try:
         # Удаление ноды
@@ -330,8 +330,8 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **cluster_id** | [**object**](.md)| Уникальный идентификатор кластера | 
- **node_id** | [**object**](.md)| Уникальный идентификатор группы нод | 
+ **cluster_id** | [**object**](.md)| ID кластера | 
+ **node_id** | [**object**](.md)| ID группы нод | 
 
 ### Return type
 
@@ -396,8 +396,8 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.KubernetesApi(api_client)
-    cluster_id = None # object | Уникальный идентификатор кластера
-    group_id = None # object | Уникальный идентификатор группы
+    cluster_id = None # object | ID кластера
+    group_id = None # object | ID группы
 
     try:
         # Удаление группы нод
@@ -411,8 +411,8 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **cluster_id** | [**object**](.md)| Уникальный идентификатор кластера | 
- **group_id** | [**object**](.md)| Уникальный идентификатор группы | 
+ **cluster_id** | [**object**](.md)| ID кластера | 
+ **group_id** | [**object**](.md)| ID группы | 
 
 ### Return type
 
@@ -478,7 +478,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.KubernetesApi(api_client)
-    cluster_id = None # object | Уникальный идентификатор кластера
+    cluster_id = None # object | ID кластера
 
     try:
         # Получение информации о кластере
@@ -494,7 +494,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **cluster_id** | [**object**](.md)| Уникальный идентификатор кластера | 
+ **cluster_id** | [**object**](.md)| ID кластера | 
 
 ### Return type
 
@@ -559,7 +559,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.KubernetesApi(api_client)
-    cluster_id = None # object | Уникальный идентификатор кластера
+    cluster_id = None # object | ID кластера
 
     try:
         # Получение файла kubeconfig
@@ -575,7 +575,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **cluster_id** | [**object**](.md)| Уникальный идентификатор кластера | 
+ **cluster_id** | [**object**](.md)| ID кластера | 
 
 ### Return type
 
@@ -641,8 +641,8 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.KubernetesApi(api_client)
-    cluster_id = None # object | Уникальный идентификатор кластера
-    group_id = None # object | Уникальный идентификатор группы
+    cluster_id = None # object | ID кластера
+    group_id = None # object | ID группы
 
     try:
         # Получение информации о группе нод
@@ -658,8 +658,8 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **cluster_id** | [**object**](.md)| Уникальный идентификатор кластера | 
- **group_id** | [**object**](.md)| Уникальный идентификатор группы | 
+ **cluster_id** | [**object**](.md)| ID кластера | 
+ **group_id** | [**object**](.md)| ID группы | 
 
 ### Return type
 
@@ -725,7 +725,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.KubernetesApi(api_client)
-    cluster_id = None # object | Уникальный идентификатор кластера
+    cluster_id = None # object | ID кластера
 
     try:
         # Получение групп нод кластера
@@ -741,7 +741,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **cluster_id** | [**object**](.md)| Уникальный идентификатор кластера | 
+ **cluster_id** | [**object**](.md)| ID кластера | 
 
 ### Return type
 
@@ -807,7 +807,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.KubernetesApi(api_client)
-    cluster_id = None # object | Уникальный идентификатор кластера
+    cluster_id = None # object | ID кластера
 
     try:
         # Получение списка нод
@@ -823,7 +823,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **cluster_id** | [**object**](.md)| Уникальный идентификатор кластера | 
+ **cluster_id** | [**object**](.md)| ID кластера | 
 
 ### Return type
 
@@ -889,8 +889,8 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.KubernetesApi(api_client)
-    cluster_id = None # object | Уникальный идентификатор кластера
-    group_id = None # object | Уникальный идентификатор группы
+    cluster_id = None # object | ID кластера
+    group_id = None # object | ID группы
     limit = None # object | Обозначает количество записей, которое необходимо вернуть. (optional)
     offset = None # object | Указывает на смещение, относительно начала списка. (optional)
 
@@ -908,8 +908,8 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **cluster_id** | [**object**](.md)| Уникальный идентификатор кластера | 
- **group_id** | [**object**](.md)| Уникальный идентификатор группы | 
+ **cluster_id** | [**object**](.md)| ID кластера | 
+ **group_id** | [**object**](.md)| ID группы | 
  **limit** | [**object**](.md)| Обозначает количество записей, которое необходимо вернуть. | [optional] 
  **offset** | [**object**](.md)| Указывает на смещение, относительно начала списка. | [optional] 
 
@@ -977,7 +977,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.KubernetesApi(api_client)
-    cluster_id = None # object | Уникальный идентификатор кластера
+    cluster_id = None # object | ID кластера
 
     try:
         # Получение ресурсов кластера
@@ -993,7 +993,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **cluster_id** | [**object**](.md)| Уникальный идентификатор кластера | 
+ **cluster_id** | [**object**](.md)| ID кластера | 
 
 ### Return type
 
@@ -1370,8 +1370,8 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.KubernetesApi(api_client)
-    cluster_id = None # object | Уникальный идентификатор кластера
-    group_id = None # object | Уникальный идентификатор группы
+    cluster_id = None # object | ID кластера
+    group_id = None # object | ID группы
     node_count = timeweb_cloud_api.NodeCount() # NodeCount | 
 
     try:
@@ -1388,8 +1388,8 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **cluster_id** | [**object**](.md)| Уникальный идентификатор кластера | 
- **group_id** | [**object**](.md)| Уникальный идентификатор группы | 
+ **cluster_id** | [**object**](.md)| ID кластера | 
+ **group_id** | [**object**](.md)| ID группы | 
  **node_count** | [**NodeCount**](NodeCount.md)|  | 
 
 ### Return type
@@ -1456,8 +1456,8 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.KubernetesApi(api_client)
-    cluster_id = None # object | Уникальный идентификатор кластера
-    group_id = None # object | Уникальный идентификатор группы
+    cluster_id = None # object | ID кластера
+    group_id = None # object | ID группы
     node_count = timeweb_cloud_api.NodeCount() # NodeCount | 
 
     try:
@@ -1472,8 +1472,8 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **cluster_id** | [**object**](.md)| Уникальный идентификатор кластера | 
- **group_id** | [**object**](.md)| Уникальный идентификатор группы | 
+ **cluster_id** | [**object**](.md)| ID кластера | 
+ **group_id** | [**object**](.md)| ID группы | 
  **node_count** | [**NodeCount**](NodeCount.md)|  | 
 
 ### Return type
@@ -1541,7 +1541,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.KubernetesApi(api_client)
-    cluster_id = None # object | Уникальный идентификатор кластера
+    cluster_id = None # object | ID кластера
     cluster_edit = timeweb_cloud_api.ClusterEdit() # ClusterEdit | 
 
     try:
@@ -1558,7 +1558,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **cluster_id** | [**object**](.md)| Уникальный идентификатор кластера | 
+ **cluster_id** | [**object**](.md)| ID кластера | 
  **cluster_edit** | [**ClusterEdit**](ClusterEdit.md)|  | 
 
 ### Return type

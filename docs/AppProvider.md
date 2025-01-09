@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **object** | Уникальный идентификатор провайдера. | 
+**id** | **object** | ID провайдера. | 
 **type** | [**Providers**](Providers.md) |  | 
 
 ## Example

@@ -5,7 +5,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **object** | Уникальный идентификатор диска. | 
+**id** | **object** | ID диска. | 
 **logged_at** | **object** | Дата лога. | 
 **event** | **object** | Событие сервера. | 
 

@@ -4,19 +4,20 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **object** | Уникальный идентификатор кластера | 
+**id** | **object** | ID кластера | 
 **name** | **object** | Название | 
 **created_at** | **object** | Дата и время создания кластера в формате ISO8601 | 
 **status** | **object** | Статус | 
 **description** | **object** | Описание | 
-**ha** | **object** | Описание появится позже | 
 **k8s_version** | **object** | Версия Kubernetes | 
 **network_driver** | **object** | Используемый сетевой драйвер | 
 **ingress** | **object** | Логическое значение, показывающее, включен ли Ingress | 
-**preset_id** | **object** | Идентификатор тарифа мастер-ноды | 
+**preset_id** | **object** | ID тарифа мастер-ноды | 
 **cpu** | **object** | Общее количество ядер | [optional] 
 **ram** | **object** | Общее количество памяти | [optional] 
 **disk** | **object** | Общее дисковое пространство | [optional] 
+**availability_zone** | **object** | Зона доступности | [optional] 
+**project_id** | **object** | Идентификатор проекта | [optional] 
 
 ## Example
 

@@ -4,9 +4,9 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **object** | Идентификатор ссылки | 
+**id** | **object** | ID ссылки | 
 **created_at** | **object** | Дата и время создания ссылки | 
-**image** | **object** | Идентификатор образа | 
+**image** | **object** | ID образа | 
 **type** | [**URLType**](URLType.md) |  | 
 **url** | **object** | Ссылка на скачивание | [optional] 
 **status** | [**UrlStatus**](UrlStatus.md) |  | 

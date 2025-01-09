@@ -130,7 +130,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.APIKeysApi(api_client)
-    token_id = None # object | Идентификатор токена
+    token_id = None # object | ID токена
 
     try:
         # Удалить токен
@@ -144,7 +144,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **token_id** | [**object**](.md)| Идентификатор токена | 
+ **token_id** | [**object**](.md)| ID токена | 
 
 ### Return type
 
@@ -288,7 +288,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.APIKeysApi(api_client)
-    token_id = None # object | Идентификатор токена
+    token_id = None # object | ID токена
     refresh_api_key = timeweb_cloud_api.RefreshApiKey() # RefreshApiKey | 
 
     try:
@@ -305,7 +305,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **token_id** | [**object**](.md)| Идентификатор токена | 
+ **token_id** | [**object**](.md)| ID токена | 
  **refresh_api_key** | [**RefreshApiKey**](RefreshApiKey.md)|  | 
 
 ### Return type
@@ -373,7 +373,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.APIKeysApi(api_client)
-    token_id = None # object | Идентификатор токена
+    token_id = None # object | ID токена
     edit_api_key = timeweb_cloud_api.EditApiKey() # EditApiKey | 
 
     try:
@@ -390,7 +390,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **token_id** | [**object**](.md)| Идентификатор токена | 
+ **token_id** | [**object**](.md)| ID токена | 
  **edit_api_key** | [**EditApiKey**](EditApiKey.md)|  | 
 
 ### Return type

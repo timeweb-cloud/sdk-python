@@ -5,7 +5,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **object** | Идентификатор владельца файла. | [optional] 
+**id** | **object** | ID владельца файла. | [optional] 
 **display_name** | **object** | Имя владельца файла. | [optional] 
 
 ## Example

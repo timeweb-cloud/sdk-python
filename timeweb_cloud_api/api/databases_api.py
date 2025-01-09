@@ -3,7 +3,7 @@
 """
     Timeweb Cloud API
 
-    # Введение API Timeweb Cloud позволяет вам управлять ресурсами в облаке программным способом с использованием обычных HTTP-запросов.  Множество функций, которые доступны в панели управления Timeweb Cloud, также доступны через API, что позволяет вам автоматизировать ваши собственные сценарии.  В этой документации сперва будет описан общий дизайн и принципы работы API, а после этого конкретные конечные точки. Также будут приведены примеры запросов к ним.   ## Запросы Запросы должны выполняться по протоколу `HTTPS`, чтобы гарантировать шифрование транзакций. Поддерживаются следующие методы запроса: |Метод|Применение| |--- |--- | |GET|Извлекает данные о коллекциях и отдельных ресурсах.| |POST|Для коллекций создает новый ресурс этого типа. Также используется для выполнения действий с конкретным ресурсом.| |PUT|Обновляет существующий ресурс.| |PATCH|Некоторые ресурсы поддерживают частичное обновление, то есть обновление только части атрибутов ресурса, в этом случае вместо метода PUT будет использован PATCH.| |DELETE|Удаляет ресурс.|  Методы `POST`, `PUT` и `PATCH` могут включать объект в тело запроса с типом содержимого `application/json`.  ### Параметры в запросах Некоторые коллекции поддерживают пагинацию, поиск или сортировку в запросах. В параметрах запроса требуется передать: - `limit` — обозначает количество записей, которое необходимо вернуть  - `offset` — указывает на смещение, относительно начала списка  - `search` — позволяет указать набор символов для поиска  - `sort` — можно задать правило сортировки коллекции  ## Ответы Запросы вернут один из следующих кодов состояния ответа HTTP:  |Статус|Описание| |--- |--- | |200 OK|Действие с ресурсом было выполнено успешно.| |201 Created|Ресурс был успешно создан. При этом ресурс может быть как уже готовым к использованию, так и находиться в процессе запуска.| |204 No Content|Действие с ресурсом было выполнено успешно, и ответ не содержит дополнительной информации в теле.| |400 Bad Request|Был отправлен неверный запрос, например, в нем отсутствуют обязательные параметры и т. д. Тело ответа будет содержать дополнительную информацию об ошибке.| |401 Unauthorized|Ошибка аутентификации.| |403 Forbidden|Аутентификация прошла успешно, но недостаточно прав для выполнения действия.| |404 Not Found|Запрашиваемый ресурс не найден.| |409 Conflict|Запрос конфликтует с текущим состоянием.| |423 Locked|Ресурс из запроса заблокирован от применения к нему указанного метода.| |429 Too Many Requests|Был достигнут лимит по количеству запросов в единицу времени.| |500 Internal Server Error|При выполнении запроса произошла какая-то внутренняя ошибка. Чтобы решить эту проблему, лучше всего создать тикет в панели управления.|  ### Структура успешного ответа Все конечные точки будут возвращать данные в формате `JSON`. Ответы на `GET`-запросы будут иметь на верхнем уровне следующую структуру атрибутов:  |Название поля|Тип|Описание| |--- |--- |--- | |[entity_name]|object, object[], string[], number[], boolean|Динамическое поле, которое будет меняться в зависимости от запрашиваемого ресурса и будет содержать все атрибуты, необходимые для описания этого ресурса. Например, при запросе списка баз данных будет возвращаться поле `dbs`, а при запросе конкретного облачного сервера `server`. Для некоторых конечных точек в ответе может возвращаться сразу несколько ресурсов.| |meta|object|Опционально. Объект, который содержит вспомогательную информацию о ресурсе. Чаще всего будет встречаться при запросе коллекций и содержать поле `total`, которое будет указывать на количество элементов в коллекции.| |response_id|string|Опционально. В большинстве случаев в ответе будет содержаться уникальный идентификатор ответа в формате UUIDv4, который однозначно указывает на ваш запрос внутри нашей системы. Если вам потребуется задать вопрос нашей поддержке, приложите к вопросу этот идентификатор — так мы сможем найти ответ на него намного быстрее. Также вы можете использовать этот идентификатор, чтобы убедиться, что это новый ответ на запрос и результат не был получен из кэша.|  Пример запроса на получение списка SSH-ключей: ```     HTTP/2.0 200 OK     {       \"ssh_keys\":[           {             \"body\":\"ssh-rsa AAAAB3NzaC1sdfghjkOAsBwWhs= example@device.local\",             \"created_at\":\"2021-09-15T19:52:27Z\",             \"expired_at\":null,             \"id\":5297,             \"is_default\":false,             \"name\":\"example@device.local\",             \"used_at\":null,             \"used_by\":[]           }       ],       \"meta\":{           \"total\":1       },       \"response_id\":\"94608d15-8672-4eed-8ab6-28bd6fa3cdf7\"     } ```  ### Структура ответа с ошибкой |Название поля|Тип|Описание| |--- |--- |--- | |status_code|number|Короткий числовой идентификатор ошибки.| |error_code|string|Короткий текстовый идентификатор ошибки, который уточняет числовой идентификатор и удобен для программной обработки. Самый простой пример — это код `not_found` для ошибки 404.| |message|string, string[]|Опционально. В большинстве случаев в ответе будет содержаться человекочитаемое подробное описание ошибки или ошибок, которые помогут понять, что нужно исправить.| |response_id|string|Опционально. В большинстве случае в ответе будет содержаться уникальный идентификатор ответа в формате UUIDv4, который однозначно указывает на ваш запрос внутри нашей системы. Если вам потребуется задать вопрос нашей поддержке, приложите к вопросу этот идентификатор — так мы сможем найти ответ на него намного быстрее.|  Пример: ```     HTTP/2.0 403 Forbidden     {       \"status_code\": 403,       \"error_code\":  \"forbidden\",       \"message\":     \"You do not have access for the attempted action\",       \"response_id\": \"94608d15-8672-4eed-8ab6-28bd6fa3cdf7\"     } ```  ## Статусы ресурсов Важно учесть, что при создании большинства ресурсов внутри платформы вам будет сразу возвращен ответ от сервера со статусом `200 OK` или `201 Created` и идентификатором созданного ресурса в теле ответа, но при этом этот ресурс может быть ещё в *состоянии запуска*.  Для того чтобы понять, в каком состоянии сейчас находится ваш ресурс, мы добавили поле `status` в ответ на получение информации о ресурсе.  Список статусов будет отличаться в зависимости от типа ресурса. Увидеть поддерживаемый список статусов вы сможете в описании каждого конкретного ресурса.     ## Ограничение скорости запросов (Rate Limiting) Чтобы обеспечить стабильность для всех пользователей, Timeweb Cloud защищает API от всплесков входящего трафика, анализируя количество запросов c каждого аккаунта к каждой конечной точке.  Если ваше приложение отправляет более 20 запросов в секунду на одну конечную точку, то для этого запроса API может вернуть код состояния HTTP `429 Too Many Requests`.   ## Аутентификация Доступ к API осуществляется с помощью JWT-токена. Токенами можно управлять внутри панели управления Timeweb Cloud в разделе *API и Terraform*.  Токен необходимо передавать в заголовке каждого запроса в формате: ```   Authorization: Bearer $TIMEWEB_CLOUD_TOKEN ```  ## Формат примеров API Примеры в этой документации описаны с помощью `curl`, HTTP-клиента командной строки. На компьютерах `Linux` и `macOS` обычно по умолчанию установлен `curl`, и он доступен для загрузки на всех популярных платформах, включая `Windows`.  Каждый пример разделен на несколько строк символом `\\`, который совместим с `bash`. Типичный пример выглядит так: ```   curl -X PATCH      -H \"Content-Type: application/json\"      -H \"Authorization: Bearer $TIMEWEB_CLOUD_TOKEN\"      -d '{\"name\":\"Cute Corvus\",\"comment\":\"Development Server\"}'      \"https://api.timeweb.cloud/api/v1/dedicated/1051\" ``` - Параметр `-X` задает метод запроса. Для согласованности метод будет указан во всех примерах, даже если он явно не требуется для методов `GET`. - Строки `-H` задают требуемые HTTP-заголовки. - Примеры, для которых требуется объект JSON в теле запроса, передают требуемые данные через параметр `-d`.  Чтобы использовать приведенные примеры, не подставляя каждый раз в них свой токен, вы можете добавить токен один раз в переменные окружения в вашей консоли. Например, на `Linux` это можно сделать с помощью команды:  ``` TIMEWEB_CLOUD_TOKEN=\"token\" ```  После этого токен будет автоматически подставляться в ваши запросы.  Обратите внимание, что все значения в этой документации являются примерами. Не полагайтесь на идентификаторы операционных систем, тарифов и т.д., используемые в примерах. Используйте соответствующую конечную точку для получения значений перед созданием ресурсов.   ## Версионирование API построено согласно принципам [семантического версионирования](https://semver.org/lang/ru). Это значит, что мы гарантируем обратную совместимость всех изменений в пределах одной мажорной версии.  Мажорная версия каждой конечной точки обозначается в пути запроса, например, запрос `/api/v1/servers` указывает, что этот метод имеет версию 1.  # noqa: E501
+    # Введение API Timeweb Cloud позволяет вам управлять ресурсами в облаке программным способом с использованием обычных HTTP-запросов.  Множество функций, которые доступны в панели управления Timeweb Cloud, также доступны через API, что позволяет вам автоматизировать ваши собственные сценарии.  В этой документации сперва будет описан общий дизайн и принципы работы API, а после этого конкретные конечные точки. Также будут приведены примеры запросов к ним.   ## Запросы Запросы должны выполняться по протоколу `HTTPS`, чтобы гарантировать шифрование транзакций. Поддерживаются следующие методы запроса: |Метод|Применение| |--- |--- | |GET|Извлекает данные о коллекциях и отдельных ресурсах.| |POST|Для коллекций создает новый ресурс этого типа. Также используется для выполнения действий с конкретным ресурсом.| |PUT|Обновляет существующий ресурс.| |PATCH|Некоторые ресурсы поддерживают частичное обновление, то есть обновление только части атрибутов ресурса, в этом случае вместо метода PUT будет использован PATCH.| |DELETE|Удаляет ресурс.|  Методы `POST`, `PUT` и `PATCH` могут включать объект в тело запроса с типом содержимого `application/json`.  ### Параметры в запросах Некоторые коллекции поддерживают пагинацию, поиск или сортировку в запросах. В параметрах запроса требуется передать: - `limit` — обозначает количество записей, которое необходимо вернуть  - `offset` — указывает на смещение, относительно начала списка  - `search` — позволяет указать набор символов для поиска  - `sort` — можно задать правило сортировки коллекции  ## Ответы Запросы вернут один из следующих кодов состояния ответа HTTP:  |Статус|Описание| |--- |--- | |200 OK|Действие с ресурсом было выполнено успешно.| |201 Created|Ресурс был успешно создан. При этом ресурс может быть как уже готовым к использованию, так и находиться в процессе запуска.| |204 No Content|Действие с ресурсом было выполнено успешно, и ответ не содержит дополнительной информации в теле.| |400 Bad Request|Был отправлен неверный запрос, например, в нем отсутствуют обязательные параметры и т. д. Тело ответа будет содержать дополнительную информацию об ошибке.| |401 Unauthorized|Ошибка аутентификации.| |403 Forbidden|Аутентификация прошла успешно, но недостаточно прав для выполнения действия.| |404 Not Found|Запрашиваемый ресурс не найден.| |409 Conflict|Запрос конфликтует с текущим состоянием.| |423 Locked|Ресурс из запроса заблокирован от применения к нему указанного метода.| |429 Too Many Requests|Был достигнут лимит по количеству запросов в единицу времени.| |500 Internal Server Error|При выполнении запроса произошла какая-то внутренняя ошибка. Чтобы решить эту проблему, лучше всего создать тикет в панели управления.|  ### Структура успешного ответа Все конечные точки будут возвращать данные в формате `JSON`. Ответы на `GET`-запросы будут иметь на верхнем уровне следующую структуру атрибутов:  |Название поля|Тип|Описание| |--- |--- |--- | |[entity_name]|object, object[], string[], number[], boolean|Динамическое поле, которое будет меняться в зависимости от запрашиваемого ресурса и будет содержать все атрибуты, необходимые для описания этого ресурса. Например, при запросе списка баз данных будет возвращаться поле `dbs`, а при запросе конкретного облачного сервера `server`. Для некоторых конечных точек в ответе может возвращаться сразу несколько ресурсов.| |meta|object|Опционально. Объект, который содержит вспомогательную информацию о ресурсе. Чаще всего будет встречаться при запросе коллекций и содержать поле `total`, которое будет указывать на количество элементов в коллекции.| |response_id|string|Опционально. В большинстве случаев в ответе будет содержаться ID ответа в формате UUIDv4, который однозначно указывает на ваш запрос внутри нашей системы. Если вам потребуется задать вопрос нашей поддержке, приложите к вопросу этот ID— так мы сможем найти ответ на него намного быстрее. Также вы можете использовать этот ID, чтобы убедиться, что это новый ответ на запрос и результат не был получен из кэша.|  Пример запроса на получение списка SSH-ключей: ```     HTTP/2.0 200 OK     {       \"ssh_keys\":[           {             \"body\":\"ssh-rsa AAAAB3NzaC1sdfghjkOAsBwWhs= example@device.local\",             \"created_at\":\"2021-09-15T19:52:27Z\",             \"expired_at\":null,             \"id\":5297,             \"is_default\":false,             \"name\":\"example@device.local\",             \"used_at\":null,             \"used_by\":[]           }       ],       \"meta\":{           \"total\":1       },       \"response_id\":\"94608d15-8672-4eed-8ab6-28bd6fa3cdf7\"     } ```  ### Структура ответа с ошибкой |Название поля|Тип|Описание| |--- |--- |--- | |status_code|number|Короткий числовой идентификатор ошибки.| |error_code|string|Короткий текстовый идентификатор ошибки, который уточняет числовой идентификатор и удобен для программной обработки. Самый простой пример — это код `not_found` для ошибки 404.| |message|string, string[]|Опционально. В большинстве случаев в ответе будет содержаться человекочитаемое подробное описание ошибки или ошибок, которые помогут понять, что нужно исправить.| |response_id|string|Опционально. В большинстве случае в ответе будет содержаться ID ответа в формате UUIDv4, который однозначно указывает на ваш запрос внутри нашей системы. Если вам потребуется задать вопрос нашей поддержке, приложите к вопросу этот ID — так мы сможем найти ответ на него намного быстрее.|  Пример: ```     HTTP/2.0 403 Forbidden     {       \"status_code\": 403,       \"error_code\":  \"forbidden\",       \"message\":     \"You do not have access for the attempted action\",       \"response_id\": \"94608d15-8672-4eed-8ab6-28bd6fa3cdf7\"     } ```  ## Статусы ресурсов Важно учесть, что при создании большинства ресурсов внутри платформы вам будет сразу возвращен ответ от сервера со статусом `200 OK` или `201 Created` и ID созданного ресурса в теле ответа, но при этом этот ресурс может быть ещё в *состоянии запуска*.  Для того чтобы понять, в каком состоянии сейчас находится ваш ресурс, мы добавили поле `status` в ответ на получение информации о ресурсе.  Список статусов будет отличаться в зависимости от типа ресурса. Увидеть поддерживаемый список статусов вы сможете в описании каждого конкретного ресурса.     ## Ограничение скорости запросов (Rate Limiting) Чтобы обеспечить стабильность для всех пользователей, Timeweb Cloud защищает API от всплесков входящего трафика, анализируя количество запросов c каждого аккаунта к каждой конечной точке.  Если ваше приложение отправляет более 20 запросов в секунду на одну конечную точку, то для этого запроса API может вернуть код состояния HTTP `429 Too Many Requests`.   ## Аутентификация Доступ к API осуществляется с помощью JWT-токена. Токенами можно управлять внутри панели управления Timeweb Cloud в разделе *API и Terraform*.  Токен необходимо передавать в заголовке каждого запроса в формате: ```   Authorization: Bearer $TIMEWEB_CLOUD_TOKEN ```  ## Формат примеров API Примеры в этой документации описаны с помощью `curl`, HTTP-клиента командной строки. На компьютерах `Linux` и `macOS` обычно по умолчанию установлен `curl`, и он доступен для загрузки на всех популярных платформах, включая `Windows`.  Каждый пример разделен на несколько строк символом `\\`, который совместим с `bash`. Типичный пример выглядит так: ```   curl -X PATCH      -H \"Content-Type: application/json\"      -H \"Authorization: Bearer $TIMEWEB_CLOUD_TOKEN\"      -d '{\"name\":\"Cute Corvus\",\"comment\":\"Development Server\"}'      \"https://api.timeweb.cloud/api/v1/dedicated/1051\" ``` - Параметр `-X` задает метод запроса. Для согласованности метод будет указан во всех примерах, даже если он явно не требуется для методов `GET`. - Строки `-H` задают требуемые HTTP-заголовки. - Примеры, для которых требуется объект JSON в теле запроса, передают требуемые данные через параметр `-d`.  Чтобы использовать приведенные примеры, не подставляя каждый раз в них свой токен, вы можете добавить токен один раз в переменные окружения в вашей консоли. Например, на `Linux` это можно сделать с помощью команды:  ``` TIMEWEB_CLOUD_TOKEN=\"token\" ```  После этого токен будет автоматически подставляться в ваши запросы.  Обратите внимание, что все значения в этой документации являются примерами. Не полагайтесь на IDы операционных систем, тарифов и т.д., используемые в примерах. Используйте соответствующую конечную точку для получения значений перед созданием ресурсов.   ## Версионирование API построено согласно принципам [семантического версионирования](https://semver.org/lang/ru). Это значит, что мы гарантируем обратную совместимость всех изменений в пределах одной мажорной версии.  Мажорная версия каждой конечной точки обозначается в пути запроса, например, запрос `/api/v1/servers` указывает, что этот метод имеет версию 1.  # noqa: E501
 
     The version of the OpenAPI document: 1.0.0
     Contact: info@timeweb.cloud
@@ -224,7 +224,7 @@ class DatabasesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def create_database_backup(self, db_id : Annotated[Any, Field(..., description="Идентификатор базы данных")], **kwargs) -> CreateDatabaseBackup201Response:  # noqa: E501
+    def create_database_backup(self, db_id : Annotated[Any, Field(..., description="ID базы данных")], **kwargs) -> CreateDatabaseBackup201Response:  # noqa: E501
         """Создание бэкапа базы данных  # noqa: E501
 
         Чтобы создать бэкап базы данных, отправьте запрос POST в `api/v1/dbs/{db_id}/backups`.   # noqa: E501
@@ -234,7 +234,7 @@ class DatabasesApi(object):
         >>> thread = api.create_database_backup(db_id, async_req=True)
         >>> result = thread.get()
 
-        :param db_id: Идентификатор базы данных (required)
+        :param db_id: ID базы данных (required)
         :type db_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -253,7 +253,7 @@ class DatabasesApi(object):
         return self.create_database_backup_with_http_info(db_id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def create_database_backup_with_http_info(self, db_id : Annotated[Any, Field(..., description="Идентификатор базы данных")], **kwargs) -> ApiResponse:  # noqa: E501
+    def create_database_backup_with_http_info(self, db_id : Annotated[Any, Field(..., description="ID базы данных")], **kwargs) -> ApiResponse:  # noqa: E501
         """Создание бэкапа базы данных  # noqa: E501
 
         Чтобы создать бэкап базы данных, отправьте запрос POST в `api/v1/dbs/{db_id}/backups`.   # noqa: E501
@@ -263,7 +263,7 @@ class DatabasesApi(object):
         >>> thread = api.create_database_backup_with_http_info(db_id, async_req=True)
         >>> result = thread.get()
 
-        :param db_id: Идентификатор базы данных (required)
+        :param db_id: ID базы данных (required)
         :type db_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -522,7 +522,7 @@ class DatabasesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def create_database_instance(self, db_cluster_id : Annotated[Any, Field(..., description="Идентификатор кластера базы данных")], create_instance : CreateInstance, **kwargs) -> CreateDatabaseInstance201Response:  # noqa: E501
+    def create_database_instance(self, db_cluster_id : Annotated[Any, Field(..., description="ID кластера базы данных")], create_instance : CreateInstance, **kwargs) -> CreateDatabaseInstance201Response:  # noqa: E501
         """Создание инстанса базы данных  # noqa: E501
 
         Чтобы создать инстанс базы данных, отправьте POST-запрос на `/api/v1/databases/{db_cluster_id}/instances`.\\    Существующие пользователи не будут иметь доступа к новой базе данных после создания. Вы можете изменить привилегии для пользователя через <a href='#tag/Bazy-dannyh/operation/updateDatabaseUser'>метод изменения пользователя</a>   # noqa: E501
@@ -532,7 +532,7 @@ class DatabasesApi(object):
         >>> thread = api.create_database_instance(db_cluster_id, create_instance, async_req=True)
         >>> result = thread.get()
 
-        :param db_cluster_id: Идентификатор кластера базы данных (required)
+        :param db_cluster_id: ID кластера базы данных (required)
         :type db_cluster_id: object
         :param create_instance: (required)
         :type create_instance: CreateInstance
@@ -553,7 +553,7 @@ class DatabasesApi(object):
         return self.create_database_instance_with_http_info(db_cluster_id, create_instance, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def create_database_instance_with_http_info(self, db_cluster_id : Annotated[Any, Field(..., description="Идентификатор кластера базы данных")], create_instance : CreateInstance, **kwargs) -> ApiResponse:  # noqa: E501
+    def create_database_instance_with_http_info(self, db_cluster_id : Annotated[Any, Field(..., description="ID кластера базы данных")], create_instance : CreateInstance, **kwargs) -> ApiResponse:  # noqa: E501
         """Создание инстанса базы данных  # noqa: E501
 
         Чтобы создать инстанс базы данных, отправьте POST-запрос на `/api/v1/databases/{db_cluster_id}/instances`.\\    Существующие пользователи не будут иметь доступа к новой базе данных после создания. Вы можете изменить привилегии для пользователя через <a href='#tag/Bazy-dannyh/operation/updateDatabaseUser'>метод изменения пользователя</a>   # noqa: E501
@@ -563,7 +563,7 @@ class DatabasesApi(object):
         >>> thread = api.create_database_instance_with_http_info(db_cluster_id, create_instance, async_req=True)
         >>> result = thread.get()
 
-        :param db_cluster_id: Идентификатор кластера базы данных (required)
+        :param db_cluster_id: ID кластера базы данных (required)
         :type db_cluster_id: object
         :param create_instance: (required)
         :type create_instance: CreateInstance
@@ -682,7 +682,7 @@ class DatabasesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def create_database_user(self, db_cluster_id : Annotated[Any, Field(..., description="Идентификатор кластера базы данных")], create_admin : CreateAdmin, **kwargs) -> CreateDatabaseUser201Response:  # noqa: E501
+    def create_database_user(self, db_cluster_id : Annotated[Any, Field(..., description="ID кластера базы данных")], create_admin : CreateAdmin, **kwargs) -> CreateDatabaseUser201Response:  # noqa: E501
         """Создание пользователя базы данных  # noqa: E501
 
         Чтобы создать пользователя базы данных, отправьте POST-запрос на `/api/v1/databases/{db_cluster_id}/admins`.  # noqa: E501
@@ -692,7 +692,7 @@ class DatabasesApi(object):
         >>> thread = api.create_database_user(db_cluster_id, create_admin, async_req=True)
         >>> result = thread.get()
 
-        :param db_cluster_id: Идентификатор кластера базы данных (required)
+        :param db_cluster_id: ID кластера базы данных (required)
         :type db_cluster_id: object
         :param create_admin: (required)
         :type create_admin: CreateAdmin
@@ -713,7 +713,7 @@ class DatabasesApi(object):
         return self.create_database_user_with_http_info(db_cluster_id, create_admin, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def create_database_user_with_http_info(self, db_cluster_id : Annotated[Any, Field(..., description="Идентификатор кластера базы данных")], create_admin : CreateAdmin, **kwargs) -> ApiResponse:  # noqa: E501
+    def create_database_user_with_http_info(self, db_cluster_id : Annotated[Any, Field(..., description="ID кластера базы данных")], create_admin : CreateAdmin, **kwargs) -> ApiResponse:  # noqa: E501
         """Создание пользователя базы данных  # noqa: E501
 
         Чтобы создать пользователя базы данных, отправьте POST-запрос на `/api/v1/databases/{db_cluster_id}/admins`.  # noqa: E501
@@ -723,7 +723,7 @@ class DatabasesApi(object):
         >>> thread = api.create_database_user_with_http_info(db_cluster_id, create_admin, async_req=True)
         >>> result = thread.get()
 
-        :param db_cluster_id: Идентификатор кластера базы данных (required)
+        :param db_cluster_id: ID кластера базы данных (required)
         :type db_cluster_id: object
         :param create_admin: (required)
         :type create_admin: CreateAdmin
@@ -842,7 +842,7 @@ class DatabasesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def delete_database(self, db_id : Annotated[Any, Field(..., description="Идентификатор базы данных")], hash : Annotated[Optional[Any], Field(description="Хеш, который совместно с кодом авторизации надо отправить для удаления, если включено подтверждение удаления сервисов через Телеграм.")] = None, code : Annotated[Optional[Any], Field(description="Код подтверждения, который придет к вам в Телеграм, после запроса удаления, если включено подтверждение удаления сервисов.  При помощи API токена сервисы можно удалять без подтверждения, если параметр токена `is_able_to_delete` установлен в значение `true`")] = None, **kwargs) -> DeleteDatabase200Response:  # noqa: E501
+    def delete_database(self, db_id : Annotated[Any, Field(..., description="ID базы данных")], hash : Annotated[Optional[Any], Field(description="Хеш, который совместно с кодом авторизации надо отправить для удаления, если включено подтверждение удаления сервисов через Телеграм.")] = None, code : Annotated[Optional[Any], Field(description="Код подтверждения, который придет к вам в Телеграм, после запроса удаления, если включено подтверждение удаления сервисов.  При помощи API токена сервисы можно удалять без подтверждения, если параметр токена `is_able_to_delete` установлен в значение `true`")] = None, **kwargs) -> DeleteDatabase200Response:  # noqa: E501
         """(Deprecated) Удаление базы данных  # noqa: E501
 
         Чтобы удалить базу данных, отправьте запрос DELETE в `api/v1/dbs/{db_id}`.   # noqa: E501
@@ -852,7 +852,7 @@ class DatabasesApi(object):
         >>> thread = api.delete_database(db_id, hash, code, async_req=True)
         >>> result = thread.get()
 
-        :param db_id: Идентификатор базы данных (required)
+        :param db_id: ID базы данных (required)
         :type db_id: object
         :param hash: Хеш, который совместно с кодом авторизации надо отправить для удаления, если включено подтверждение удаления сервисов через Телеграм.
         :type hash: object
@@ -875,7 +875,7 @@ class DatabasesApi(object):
         return self.delete_database_with_http_info(db_id, hash, code, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def delete_database_with_http_info(self, db_id : Annotated[Any, Field(..., description="Идентификатор базы данных")], hash : Annotated[Optional[Any], Field(description="Хеш, который совместно с кодом авторизации надо отправить для удаления, если включено подтверждение удаления сервисов через Телеграм.")] = None, code : Annotated[Optional[Any], Field(description="Код подтверждения, который придет к вам в Телеграм, после запроса удаления, если включено подтверждение удаления сервисов.  При помощи API токена сервисы можно удалять без подтверждения, если параметр токена `is_able_to_delete` установлен в значение `true`")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def delete_database_with_http_info(self, db_id : Annotated[Any, Field(..., description="ID базы данных")], hash : Annotated[Optional[Any], Field(description="Хеш, который совместно с кодом авторизации надо отправить для удаления, если включено подтверждение удаления сервисов через Телеграм.")] = None, code : Annotated[Optional[Any], Field(description="Код подтверждения, который придет к вам в Телеграм, после запроса удаления, если включено подтверждение удаления сервисов.  При помощи API токена сервисы можно удалять без подтверждения, если параметр токена `is_able_to_delete` установлен в значение `true`")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """(Deprecated) Удаление базы данных  # noqa: E501
 
         Чтобы удалить базу данных, отправьте запрос DELETE в `api/v1/dbs/{db_id}`.   # noqa: E501
@@ -885,7 +885,7 @@ class DatabasesApi(object):
         >>> thread = api.delete_database_with_http_info(db_id, hash, code, async_req=True)
         >>> result = thread.get()
 
-        :param db_id: Идентификатор базы данных (required)
+        :param db_id: ID базы данных (required)
         :type db_id: object
         :param hash: Хеш, который совместно с кодом авторизации надо отправить для удаления, если включено подтверждение удаления сервисов через Телеграм.
         :type hash: object
@@ -1006,7 +1006,7 @@ class DatabasesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def delete_database_backup(self, db_id : Annotated[Any, Field(..., description="Идентификатор базы данных")], backup_id : Annotated[Any, Field(..., description="Идентификатор резевной копии")], **kwargs) -> None:  # noqa: E501
+    def delete_database_backup(self, db_id : Annotated[Any, Field(..., description="ID базы данных")], backup_id : Annotated[Any, Field(..., description="ID резевной копии")], **kwargs) -> None:  # noqa: E501
         """Удаление бэкапа базы данных  # noqa: E501
 
         Чтобы удалить бэкап базы данных, отправьте запрос DELETE в `api/v1/dbs/{db_id}/backups/{backup_id}`.   # noqa: E501
@@ -1016,9 +1016,9 @@ class DatabasesApi(object):
         >>> thread = api.delete_database_backup(db_id, backup_id, async_req=True)
         >>> result = thread.get()
 
-        :param db_id: Идентификатор базы данных (required)
+        :param db_id: ID базы данных (required)
         :type db_id: object
-        :param backup_id: Идентификатор резевной копии (required)
+        :param backup_id: ID резевной копии (required)
         :type backup_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -1037,7 +1037,7 @@ class DatabasesApi(object):
         return self.delete_database_backup_with_http_info(db_id, backup_id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def delete_database_backup_with_http_info(self, db_id : Annotated[Any, Field(..., description="Идентификатор базы данных")], backup_id : Annotated[Any, Field(..., description="Идентификатор резевной копии")], **kwargs) -> ApiResponse:  # noqa: E501
+    def delete_database_backup_with_http_info(self, db_id : Annotated[Any, Field(..., description="ID базы данных")], backup_id : Annotated[Any, Field(..., description="ID резевной копии")], **kwargs) -> ApiResponse:  # noqa: E501
         """Удаление бэкапа базы данных  # noqa: E501
 
         Чтобы удалить бэкап базы данных, отправьте запрос DELETE в `api/v1/dbs/{db_id}/backups/{backup_id}`.   # noqa: E501
@@ -1047,9 +1047,9 @@ class DatabasesApi(object):
         >>> thread = api.delete_database_backup_with_http_info(db_id, backup_id, async_req=True)
         >>> result = thread.get()
 
-        :param db_id: Идентификатор базы данных (required)
+        :param db_id: ID базы данных (required)
         :type db_id: object
-        :param backup_id: Идентификатор резевной копии (required)
+        :param backup_id: ID резевной копии (required)
         :type backup_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -1147,7 +1147,7 @@ class DatabasesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def delete_database_cluster(self, db_cluster_id : Annotated[Any, Field(..., description="Идентификатор кластера базы данных")], hash : Annotated[Optional[Any], Field(description="Хеш, который совместно с кодом авторизации надо отправить для удаления, если включено подтверждение удаления сервисов через Телеграм.")] = None, code : Annotated[Optional[Any], Field(description="Код подтверждения, который придет к вам в Телеграм, после запроса удаления, если включено подтверждение удаления сервисов.  При помощи API токена сервисы можно удалять без подтверждения, если параметр токена `is_able_to_delete` установлен в значение `true`")] = None, **kwargs) -> DeleteDatabaseCluster200Response:  # noqa: E501
+    def delete_database_cluster(self, db_cluster_id : Annotated[Any, Field(..., description="ID кластера базы данных")], hash : Annotated[Optional[Any], Field(description="Хеш, который совместно с кодом авторизации надо отправить для удаления, если включено подтверждение удаления сервисов через Телеграм.")] = None, code : Annotated[Optional[Any], Field(description="Код подтверждения, который придет к вам в Телеграм, после запроса удаления, если включено подтверждение удаления сервисов.  При помощи API токена сервисы можно удалять без подтверждения, если параметр токена `is_able_to_delete` установлен в значение `true`")] = None, **kwargs) -> DeleteDatabaseCluster200Response:  # noqa: E501
         """Удаление кластера базы данных  # noqa: E501
 
         Чтобы удалить кластер базы данных, отправьте DELETE-запрос на `/api/v1/databases/{db_cluster_id}`.  # noqa: E501
@@ -1157,7 +1157,7 @@ class DatabasesApi(object):
         >>> thread = api.delete_database_cluster(db_cluster_id, hash, code, async_req=True)
         >>> result = thread.get()
 
-        :param db_cluster_id: Идентификатор кластера базы данных (required)
+        :param db_cluster_id: ID кластера базы данных (required)
         :type db_cluster_id: object
         :param hash: Хеш, который совместно с кодом авторизации надо отправить для удаления, если включено подтверждение удаления сервисов через Телеграм.
         :type hash: object
@@ -1180,7 +1180,7 @@ class DatabasesApi(object):
         return self.delete_database_cluster_with_http_info(db_cluster_id, hash, code, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def delete_database_cluster_with_http_info(self, db_cluster_id : Annotated[Any, Field(..., description="Идентификатор кластера базы данных")], hash : Annotated[Optional[Any], Field(description="Хеш, который совместно с кодом авторизации надо отправить для удаления, если включено подтверждение удаления сервисов через Телеграм.")] = None, code : Annotated[Optional[Any], Field(description="Код подтверждения, который придет к вам в Телеграм, после запроса удаления, если включено подтверждение удаления сервисов.  При помощи API токена сервисы можно удалять без подтверждения, если параметр токена `is_able_to_delete` установлен в значение `true`")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def delete_database_cluster_with_http_info(self, db_cluster_id : Annotated[Any, Field(..., description="ID кластера базы данных")], hash : Annotated[Optional[Any], Field(description="Хеш, который совместно с кодом авторизации надо отправить для удаления, если включено подтверждение удаления сервисов через Телеграм.")] = None, code : Annotated[Optional[Any], Field(description="Код подтверждения, который придет к вам в Телеграм, после запроса удаления, если включено подтверждение удаления сервисов.  При помощи API токена сервисы можно удалять без подтверждения, если параметр токена `is_able_to_delete` установлен в значение `true`")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Удаление кластера базы данных  # noqa: E501
 
         Чтобы удалить кластер базы данных, отправьте DELETE-запрос на `/api/v1/databases/{db_cluster_id}`.  # noqa: E501
@@ -1190,7 +1190,7 @@ class DatabasesApi(object):
         >>> thread = api.delete_database_cluster_with_http_info(db_cluster_id, hash, code, async_req=True)
         >>> result = thread.get()
 
-        :param db_cluster_id: Идентификатор кластера базы данных (required)
+        :param db_cluster_id: ID кластера базы данных (required)
         :type db_cluster_id: object
         :param hash: Хеш, который совместно с кодом авторизации надо отправить для удаления, если включено подтверждение удаления сервисов через Телеграм.
         :type hash: object
@@ -1309,7 +1309,7 @@ class DatabasesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def delete_database_instance(self, db_cluster_id : Annotated[Any, Field(..., description="Идентификатор кластера базы данных")], instance_id : Annotated[Any, Field(..., description="Идентификатор инстанса базы данных")], **kwargs) -> None:  # noqa: E501
+    def delete_database_instance(self, db_cluster_id : Annotated[Any, Field(..., description="ID кластера базы данных")], instance_id : Annotated[Any, Field(..., description="ID инстанса базы данных")], **kwargs) -> None:  # noqa: E501
         """Удаление инстанса базы данных  # noqa: E501
 
         Чтобы удалить инстанс базы данных, отправьте DELETE-запрос на `/api/v1/databases/{db_cluster_id}/instances/{instance_id}`.  # noqa: E501
@@ -1319,9 +1319,9 @@ class DatabasesApi(object):
         >>> thread = api.delete_database_instance(db_cluster_id, instance_id, async_req=True)
         >>> result = thread.get()
 
-        :param db_cluster_id: Идентификатор кластера базы данных (required)
+        :param db_cluster_id: ID кластера базы данных (required)
         :type db_cluster_id: object
-        :param instance_id: Идентификатор инстанса базы данных (required)
+        :param instance_id: ID инстанса базы данных (required)
         :type instance_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -1340,7 +1340,7 @@ class DatabasesApi(object):
         return self.delete_database_instance_with_http_info(db_cluster_id, instance_id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def delete_database_instance_with_http_info(self, db_cluster_id : Annotated[Any, Field(..., description="Идентификатор кластера базы данных")], instance_id : Annotated[Any, Field(..., description="Идентификатор инстанса базы данных")], **kwargs) -> ApiResponse:  # noqa: E501
+    def delete_database_instance_with_http_info(self, db_cluster_id : Annotated[Any, Field(..., description="ID кластера базы данных")], instance_id : Annotated[Any, Field(..., description="ID инстанса базы данных")], **kwargs) -> ApiResponse:  # noqa: E501
         """Удаление инстанса базы данных  # noqa: E501
 
         Чтобы удалить инстанс базы данных, отправьте DELETE-запрос на `/api/v1/databases/{db_cluster_id}/instances/{instance_id}`.  # noqa: E501
@@ -1350,9 +1350,9 @@ class DatabasesApi(object):
         >>> thread = api.delete_database_instance_with_http_info(db_cluster_id, instance_id, async_req=True)
         >>> result = thread.get()
 
-        :param db_cluster_id: Идентификатор кластера базы данных (required)
+        :param db_cluster_id: ID кластера базы данных (required)
         :type db_cluster_id: object
-        :param instance_id: Идентификатор инстанса базы данных (required)
+        :param instance_id: ID инстанса базы данных (required)
         :type instance_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -1450,7 +1450,7 @@ class DatabasesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def delete_database_user(self, db_cluster_id : Annotated[Any, Field(..., description="Идентификатор кластера базы данных")], admin_id : Annotated[Any, Field(..., description="Идентификатор пользователя базы данных")], **kwargs) -> None:  # noqa: E501
+    def delete_database_user(self, db_cluster_id : Annotated[Any, Field(..., description="ID кластера базы данных")], admin_id : Annotated[Any, Field(..., description="ID пользователя базы данных")], **kwargs) -> None:  # noqa: E501
         """Удаление пользователя базы данных  # noqa: E501
 
         Чтобы удалить пользователя базы данных на вашем аккаунте, отправьте DELETE-запрос на `/api/v1/databases/{db_cluster_id}/admins/{admin_id}`.  # noqa: E501
@@ -1460,9 +1460,9 @@ class DatabasesApi(object):
         >>> thread = api.delete_database_user(db_cluster_id, admin_id, async_req=True)
         >>> result = thread.get()
 
-        :param db_cluster_id: Идентификатор кластера базы данных (required)
+        :param db_cluster_id: ID кластера базы данных (required)
         :type db_cluster_id: object
-        :param admin_id: Идентификатор пользователя базы данных (required)
+        :param admin_id: ID пользователя базы данных (required)
         :type admin_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -1481,7 +1481,7 @@ class DatabasesApi(object):
         return self.delete_database_user_with_http_info(db_cluster_id, admin_id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def delete_database_user_with_http_info(self, db_cluster_id : Annotated[Any, Field(..., description="Идентификатор кластера базы данных")], admin_id : Annotated[Any, Field(..., description="Идентификатор пользователя базы данных")], **kwargs) -> ApiResponse:  # noqa: E501
+    def delete_database_user_with_http_info(self, db_cluster_id : Annotated[Any, Field(..., description="ID кластера базы данных")], admin_id : Annotated[Any, Field(..., description="ID пользователя базы данных")], **kwargs) -> ApiResponse:  # noqa: E501
         """Удаление пользователя базы данных  # noqa: E501
 
         Чтобы удалить пользователя базы данных на вашем аккаунте, отправьте DELETE-запрос на `/api/v1/databases/{db_cluster_id}/admins/{admin_id}`.  # noqa: E501
@@ -1491,9 +1491,9 @@ class DatabasesApi(object):
         >>> thread = api.delete_database_user_with_http_info(db_cluster_id, admin_id, async_req=True)
         >>> result = thread.get()
 
-        :param db_cluster_id: Идентификатор кластера базы данных (required)
+        :param db_cluster_id: ID кластера базы данных (required)
         :type db_cluster_id: object
-        :param admin_id: Идентификатор пользователя базы данных (required)
+        :param admin_id: ID пользователя базы данных (required)
         :type admin_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -1591,7 +1591,7 @@ class DatabasesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def get_database(self, db_id : Annotated[Any, Field(..., description="Идентификатор базы данных")], **kwargs) -> CreateDatabase201Response:  # noqa: E501
+    def get_database(self, db_id : Annotated[Any, Field(..., description="ID базы данных")], **kwargs) -> CreateDatabase201Response:  # noqa: E501
         """(Deprecated) Получение базы данных  # noqa: E501
 
         Чтобы отобразить информацию об отдельной базе данных, отправьте запрос GET на `api/v1/dbs/{db_id}`.   # noqa: E501
@@ -1601,7 +1601,7 @@ class DatabasesApi(object):
         >>> thread = api.get_database(db_id, async_req=True)
         >>> result = thread.get()
 
-        :param db_id: Идентификатор базы данных (required)
+        :param db_id: ID базы данных (required)
         :type db_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -1620,7 +1620,7 @@ class DatabasesApi(object):
         return self.get_database_with_http_info(db_id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def get_database_with_http_info(self, db_id : Annotated[Any, Field(..., description="Идентификатор базы данных")], **kwargs) -> ApiResponse:  # noqa: E501
+    def get_database_with_http_info(self, db_id : Annotated[Any, Field(..., description="ID базы данных")], **kwargs) -> ApiResponse:  # noqa: E501
         """(Deprecated) Получение базы данных  # noqa: E501
 
         Чтобы отобразить информацию об отдельной базе данных, отправьте запрос GET на `api/v1/dbs/{db_id}`.   # noqa: E501
@@ -1630,7 +1630,7 @@ class DatabasesApi(object):
         >>> thread = api.get_database_with_http_info(db_id, async_req=True)
         >>> result = thread.get()
 
-        :param db_id: Идентификатор базы данных (required)
+        :param db_id: ID базы данных (required)
         :type db_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -1738,7 +1738,7 @@ class DatabasesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def get_database_auto_backups_settings(self, db_id : Annotated[Any, Field(..., description="Идентификатор базы данных")], **kwargs) -> GetDatabaseAutoBackupsSettings200Response:  # noqa: E501
+    def get_database_auto_backups_settings(self, db_id : Annotated[Any, Field(..., description="ID базы данных")], **kwargs) -> GetDatabaseAutoBackupsSettings200Response:  # noqa: E501
         """Получение настроек автобэкапов базы данных  # noqa: E501
 
         Чтобы получить список настроек автобэкапов базы данных, отправьте запрос GET в `api/v1/dbs/{db_id}/auto-backups`  # noqa: E501
@@ -1748,7 +1748,7 @@ class DatabasesApi(object):
         >>> thread = api.get_database_auto_backups_settings(db_id, async_req=True)
         >>> result = thread.get()
 
-        :param db_id: Идентификатор базы данных (required)
+        :param db_id: ID базы данных (required)
         :type db_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -1767,7 +1767,7 @@ class DatabasesApi(object):
         return self.get_database_auto_backups_settings_with_http_info(db_id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def get_database_auto_backups_settings_with_http_info(self, db_id : Annotated[Any, Field(..., description="Идентификатор базы данных")], **kwargs) -> ApiResponse:  # noqa: E501
+    def get_database_auto_backups_settings_with_http_info(self, db_id : Annotated[Any, Field(..., description="ID базы данных")], **kwargs) -> ApiResponse:  # noqa: E501
         """Получение настроек автобэкапов базы данных  # noqa: E501
 
         Чтобы получить список настроек автобэкапов базы данных, отправьте запрос GET в `api/v1/dbs/{db_id}/auto-backups`  # noqa: E501
@@ -1777,7 +1777,7 @@ class DatabasesApi(object):
         >>> thread = api.get_database_auto_backups_settings_with_http_info(db_id, async_req=True)
         >>> result = thread.get()
 
-        :param db_id: Идентификатор базы данных (required)
+        :param db_id: ID базы данных (required)
         :type db_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -1883,7 +1883,7 @@ class DatabasesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def get_database_backup(self, db_id : Annotated[Any, Field(..., description="Идентификатор базы данных")], backup_id : Annotated[Any, Field(..., description="Идентификатор резевной копии")], **kwargs) -> CreateDatabaseBackup201Response:  # noqa: E501
+    def get_database_backup(self, db_id : Annotated[Any, Field(..., description="ID базы данных")], backup_id : Annotated[Any, Field(..., description="ID резевной копии")], **kwargs) -> CreateDatabaseBackup201Response:  # noqa: E501
         """Получение бэкапа базы данных  # noqa: E501
 
         Чтобы получить бэкап базы данных, отправьте запрос GET в `api/v1/dbs/{db_id}/backups/{backup_id}`.   # noqa: E501
@@ -1893,9 +1893,9 @@ class DatabasesApi(object):
         >>> thread = api.get_database_backup(db_id, backup_id, async_req=True)
         >>> result = thread.get()
 
-        :param db_id: Идентификатор базы данных (required)
+        :param db_id: ID базы данных (required)
         :type db_id: object
-        :param backup_id: Идентификатор резевной копии (required)
+        :param backup_id: ID резевной копии (required)
         :type backup_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -1914,7 +1914,7 @@ class DatabasesApi(object):
         return self.get_database_backup_with_http_info(db_id, backup_id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def get_database_backup_with_http_info(self, db_id : Annotated[Any, Field(..., description="Идентификатор базы данных")], backup_id : Annotated[Any, Field(..., description="Идентификатор резевной копии")], **kwargs) -> ApiResponse:  # noqa: E501
+    def get_database_backup_with_http_info(self, db_id : Annotated[Any, Field(..., description="ID базы данных")], backup_id : Annotated[Any, Field(..., description="ID резевной копии")], **kwargs) -> ApiResponse:  # noqa: E501
         """Получение бэкапа базы данных  # noqa: E501
 
         Чтобы получить бэкап базы данных, отправьте запрос GET в `api/v1/dbs/{db_id}/backups/{backup_id}`.   # noqa: E501
@@ -1924,9 +1924,9 @@ class DatabasesApi(object):
         >>> thread = api.get_database_backup_with_http_info(db_id, backup_id, async_req=True)
         >>> result = thread.get()
 
-        :param db_id: Идентификатор базы данных (required)
+        :param db_id: ID базы данных (required)
         :type db_id: object
-        :param backup_id: Идентификатор резевной копии (required)
+        :param backup_id: ID резевной копии (required)
         :type backup_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -2036,7 +2036,7 @@ class DatabasesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def get_database_backups(self, db_id : Annotated[Any, Field(..., description="Идентификатор базы данных")], limit : Annotated[Optional[Any], Field(description="Обозначает количество записей, которое необходимо вернуть.")] = None, offset : Annotated[Optional[Any], Field(description="Указывает на смещение относительно начала списка.")] = None, **kwargs) -> GetDatabaseBackups200Response:  # noqa: E501
+    def get_database_backups(self, db_id : Annotated[Any, Field(..., description="ID базы данных")], limit : Annotated[Optional[Any], Field(description="Обозначает количество записей, которое необходимо вернуть.")] = None, offset : Annotated[Optional[Any], Field(description="Указывает на смещение относительно начала списка.")] = None, **kwargs) -> GetDatabaseBackups200Response:  # noqa: E501
         """Список бэкапов базы данных  # noqa: E501
 
         Чтобы получить список бэкапов базы данных, отправьте запрос GET в `api/v1/dbs/{db_id}/backups`.   # noqa: E501
@@ -2046,7 +2046,7 @@ class DatabasesApi(object):
         >>> thread = api.get_database_backups(db_id, limit, offset, async_req=True)
         >>> result = thread.get()
 
-        :param db_id: Идентификатор базы данных (required)
+        :param db_id: ID базы данных (required)
         :type db_id: object
         :param limit: Обозначает количество записей, которое необходимо вернуть.
         :type limit: object
@@ -2069,7 +2069,7 @@ class DatabasesApi(object):
         return self.get_database_backups_with_http_info(db_id, limit, offset, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def get_database_backups_with_http_info(self, db_id : Annotated[Any, Field(..., description="Идентификатор базы данных")], limit : Annotated[Optional[Any], Field(description="Обозначает количество записей, которое необходимо вернуть.")] = None, offset : Annotated[Optional[Any], Field(description="Указывает на смещение относительно начала списка.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def get_database_backups_with_http_info(self, db_id : Annotated[Any, Field(..., description="ID базы данных")], limit : Annotated[Optional[Any], Field(description="Обозначает количество записей, которое необходимо вернуть.")] = None, offset : Annotated[Optional[Any], Field(description="Указывает на смещение относительно начала списка.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Список бэкапов базы данных  # noqa: E501
 
         Чтобы получить список бэкапов базы данных, отправьте запрос GET в `api/v1/dbs/{db_id}/backups`.   # noqa: E501
@@ -2079,7 +2079,7 @@ class DatabasesApi(object):
         >>> thread = api.get_database_backups_with_http_info(db_id, limit, offset, async_req=True)
         >>> result = thread.get()
 
-        :param db_id: Идентификатор базы данных (required)
+        :param db_id: ID базы данных (required)
         :type db_id: object
         :param limit: Обозначает количество записей, которое необходимо вернуть.
         :type limit: object
@@ -2197,7 +2197,7 @@ class DatabasesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def get_database_cluster(self, db_cluster_id : Annotated[Any, Field(..., description="Идентификатор кластера базы данных")], **kwargs) -> CreateDatabaseCluster201Response:  # noqa: E501
+    def get_database_cluster(self, db_cluster_id : Annotated[Any, Field(..., description="ID кластера базы данных")], **kwargs) -> CreateDatabaseCluster201Response:  # noqa: E501
         """Получение кластера базы данных  # noqa: E501
 
         Чтобы получить кластер базы данных на вашем аккаунте, отправьте GET-запрос на `/api/v1/databases/{db_cluster_id}`.  # noqa: E501
@@ -2207,7 +2207,7 @@ class DatabasesApi(object):
         >>> thread = api.get_database_cluster(db_cluster_id, async_req=True)
         >>> result = thread.get()
 
-        :param db_cluster_id: Идентификатор кластера базы данных (required)
+        :param db_cluster_id: ID кластера базы данных (required)
         :type db_cluster_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -2226,7 +2226,7 @@ class DatabasesApi(object):
         return self.get_database_cluster_with_http_info(db_cluster_id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def get_database_cluster_with_http_info(self, db_cluster_id : Annotated[Any, Field(..., description="Идентификатор кластера базы данных")], **kwargs) -> ApiResponse:  # noqa: E501
+    def get_database_cluster_with_http_info(self, db_cluster_id : Annotated[Any, Field(..., description="ID кластера базы данных")], **kwargs) -> ApiResponse:  # noqa: E501
         """Получение кластера базы данных  # noqa: E501
 
         Чтобы получить кластер базы данных на вашем аккаунте, отправьте GET-запрос на `/api/v1/databases/{db_cluster_id}`.  # noqa: E501
@@ -2236,7 +2236,7 @@ class DatabasesApi(object):
         >>> thread = api.get_database_cluster_with_http_info(db_cluster_id, async_req=True)
         >>> result = thread.get()
 
-        :param db_cluster_id: Идентификатор кластера базы данных (required)
+        :param db_cluster_id: ID кластера базы данных (required)
         :type db_cluster_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -2632,7 +2632,7 @@ class DatabasesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def get_database_instance(self, db_cluster_id : Annotated[Any, Field(..., description="Идентификатор кластера базы данных")], instance_id : Annotated[Any, Field(..., description="Идентификатор инстанса базы данных")], **kwargs) -> CreateDatabaseInstance201Response:  # noqa: E501
+    def get_database_instance(self, db_cluster_id : Annotated[Any, Field(..., description="ID кластера базы данных")], instance_id : Annotated[Any, Field(..., description="ID инстанса базы данных")], **kwargs) -> CreateDatabaseInstance201Response:  # noqa: E501
         """Получение инстанса базы данных  # noqa: E501
 
         Чтобы получить инстанс базы данных, отправьте GET-запрос на `/api/v1/databases/{db_cluster_id}/instances/{instance_id}`.  # noqa: E501
@@ -2642,9 +2642,9 @@ class DatabasesApi(object):
         >>> thread = api.get_database_instance(db_cluster_id, instance_id, async_req=True)
         >>> result = thread.get()
 
-        :param db_cluster_id: Идентификатор кластера базы данных (required)
+        :param db_cluster_id: ID кластера базы данных (required)
         :type db_cluster_id: object
-        :param instance_id: Идентификатор инстанса базы данных (required)
+        :param instance_id: ID инстанса базы данных (required)
         :type instance_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -2663,7 +2663,7 @@ class DatabasesApi(object):
         return self.get_database_instance_with_http_info(db_cluster_id, instance_id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def get_database_instance_with_http_info(self, db_cluster_id : Annotated[Any, Field(..., description="Идентификатор кластера базы данных")], instance_id : Annotated[Any, Field(..., description="Идентификатор инстанса базы данных")], **kwargs) -> ApiResponse:  # noqa: E501
+    def get_database_instance_with_http_info(self, db_cluster_id : Annotated[Any, Field(..., description="ID кластера базы данных")], instance_id : Annotated[Any, Field(..., description="ID инстанса базы данных")], **kwargs) -> ApiResponse:  # noqa: E501
         """Получение инстанса базы данных  # noqa: E501
 
         Чтобы получить инстанс базы данных, отправьте GET-запрос на `/api/v1/databases/{db_cluster_id}/instances/{instance_id}`.  # noqa: E501
@@ -2673,9 +2673,9 @@ class DatabasesApi(object):
         >>> thread = api.get_database_instance_with_http_info(db_cluster_id, instance_id, async_req=True)
         >>> result = thread.get()
 
-        :param db_cluster_id: Идентификатор кластера базы данных (required)
+        :param db_cluster_id: ID кластера базы данных (required)
         :type db_cluster_id: object
-        :param instance_id: Идентификатор инстанса базы данных (required)
+        :param instance_id: ID инстанса базы данных (required)
         :type instance_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -2785,7 +2785,7 @@ class DatabasesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def get_database_instances(self, db_cluster_id : Annotated[Any, Field(..., description="Идентификатор кластера базы данных")], **kwargs) -> GetDatabaseInstances200Response:  # noqa: E501
+    def get_database_instances(self, db_cluster_id : Annotated[Any, Field(..., description="ID кластера базы данных")], **kwargs) -> GetDatabaseInstances200Response:  # noqa: E501
         """Получение списка инстансов баз данных  # noqa: E501
 
         Чтобы получить список баз данных на вашем аккаунте, отправьте GET-запрос на `/api/v1/databases/{db_cluster_id}/instances`.  # noqa: E501
@@ -2795,7 +2795,7 @@ class DatabasesApi(object):
         >>> thread = api.get_database_instances(db_cluster_id, async_req=True)
         >>> result = thread.get()
 
-        :param db_cluster_id: Идентификатор кластера базы данных (required)
+        :param db_cluster_id: ID кластера базы данных (required)
         :type db_cluster_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -2814,7 +2814,7 @@ class DatabasesApi(object):
         return self.get_database_instances_with_http_info(db_cluster_id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def get_database_instances_with_http_info(self, db_cluster_id : Annotated[Any, Field(..., description="Идентификатор кластера базы данных")], **kwargs) -> ApiResponse:  # noqa: E501
+    def get_database_instances_with_http_info(self, db_cluster_id : Annotated[Any, Field(..., description="ID кластера базы данных")], **kwargs) -> ApiResponse:  # noqa: E501
         """Получение списка инстансов баз данных  # noqa: E501
 
         Чтобы получить список баз данных на вашем аккаунте, отправьте GET-запрос на `/api/v1/databases/{db_cluster_id}/instances`.  # noqa: E501
@@ -2824,7 +2824,7 @@ class DatabasesApi(object):
         >>> thread = api.get_database_instances_with_http_info(db_cluster_id, async_req=True)
         >>> result = thread.get()
 
-        :param db_cluster_id: Идентификатор кластера базы данных (required)
+        :param db_cluster_id: ID кластера базы данных (required)
         :type db_cluster_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -3067,7 +3067,7 @@ class DatabasesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def get_database_user(self, db_cluster_id : Annotated[Any, Field(..., description="Идентификатор кластера базы данных")], admin_id : Annotated[Any, Field(..., description="Идентификатор пользователя базы данных")], **kwargs) -> CreateDatabaseUser201Response:  # noqa: E501
+    def get_database_user(self, db_cluster_id : Annotated[Any, Field(..., description="ID кластера базы данных")], admin_id : Annotated[Any, Field(..., description="ID пользователя базы данных")], **kwargs) -> CreateDatabaseUser201Response:  # noqa: E501
         """Получение пользователя базы данных  # noqa: E501
 
         Чтобы получить пользователя базы данных на вашем аккаунте, отправьте GET-запрос на `/api/v1/databases/{db_cluster_id}/admins/{admin_id}`.  # noqa: E501
@@ -3077,9 +3077,9 @@ class DatabasesApi(object):
         >>> thread = api.get_database_user(db_cluster_id, admin_id, async_req=True)
         >>> result = thread.get()
 
-        :param db_cluster_id: Идентификатор кластера базы данных (required)
+        :param db_cluster_id: ID кластера базы данных (required)
         :type db_cluster_id: object
-        :param admin_id: Идентификатор пользователя базы данных (required)
+        :param admin_id: ID пользователя базы данных (required)
         :type admin_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -3098,7 +3098,7 @@ class DatabasesApi(object):
         return self.get_database_user_with_http_info(db_cluster_id, admin_id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def get_database_user_with_http_info(self, db_cluster_id : Annotated[Any, Field(..., description="Идентификатор кластера базы данных")], admin_id : Annotated[Any, Field(..., description="Идентификатор пользователя базы данных")], **kwargs) -> ApiResponse:  # noqa: E501
+    def get_database_user_with_http_info(self, db_cluster_id : Annotated[Any, Field(..., description="ID кластера базы данных")], admin_id : Annotated[Any, Field(..., description="ID пользователя базы данных")], **kwargs) -> ApiResponse:  # noqa: E501
         """Получение пользователя базы данных  # noqa: E501
 
         Чтобы получить пользователя базы данных на вашем аккаунте, отправьте GET-запрос на `/api/v1/databases/{db_cluster_id}/admins/{admin_id}`.  # noqa: E501
@@ -3108,9 +3108,9 @@ class DatabasesApi(object):
         >>> thread = api.get_database_user_with_http_info(db_cluster_id, admin_id, async_req=True)
         >>> result = thread.get()
 
-        :param db_cluster_id: Идентификатор кластера базы данных (required)
+        :param db_cluster_id: ID кластера базы данных (required)
         :type db_cluster_id: object
-        :param admin_id: Идентификатор пользователя базы данных (required)
+        :param admin_id: ID пользователя базы данных (required)
         :type admin_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -3220,7 +3220,7 @@ class DatabasesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def get_database_users(self, db_cluster_id : Annotated[Any, Field(..., description="Идентификатор кластера базы данных")], **kwargs) -> GetDatabaseUsers200Response:  # noqa: E501
+    def get_database_users(self, db_cluster_id : Annotated[Any, Field(..., description="ID кластера базы данных")], **kwargs) -> GetDatabaseUsers200Response:  # noqa: E501
         """Получение списка пользователей базы данных  # noqa: E501
 
         Чтобы получить список пользователей базы данных на вашем аккаунте, отправьте GET-запрос на `/api/v1/databases/{db_cluster_id}/admins`.  # noqa: E501
@@ -3230,7 +3230,7 @@ class DatabasesApi(object):
         >>> thread = api.get_database_users(db_cluster_id, async_req=True)
         >>> result = thread.get()
 
-        :param db_cluster_id: Идентификатор кластера базы данных (required)
+        :param db_cluster_id: ID кластера базы данных (required)
         :type db_cluster_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -3249,7 +3249,7 @@ class DatabasesApi(object):
         return self.get_database_users_with_http_info(db_cluster_id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def get_database_users_with_http_info(self, db_cluster_id : Annotated[Any, Field(..., description="Идентификатор кластера базы данных")], **kwargs) -> ApiResponse:  # noqa: E501
+    def get_database_users_with_http_info(self, db_cluster_id : Annotated[Any, Field(..., description="ID кластера базы данных")], **kwargs) -> ApiResponse:  # noqa: E501
         """Получение списка пользователей базы данных  # noqa: E501
 
         Чтобы получить список пользователей базы данных на вашем аккаунте, отправьте GET-запрос на `/api/v1/databases/{db_cluster_id}/admins`.  # noqa: E501
@@ -3259,7 +3259,7 @@ class DatabasesApi(object):
         >>> thread = api.get_database_users_with_http_info(db_cluster_id, async_req=True)
         >>> result = thread.get()
 
-        :param db_cluster_id: Идентификатор кластера базы данных (required)
+        :param db_cluster_id: ID кластера базы данных (required)
         :type db_cluster_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -3657,7 +3657,7 @@ class DatabasesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def restore_database_from_backup(self, db_id : Annotated[Any, Field(..., description="Идентификатор базы данных")], backup_id : Annotated[Any, Field(..., description="Идентификатор резевной копии")], **kwargs) -> None:  # noqa: E501
+    def restore_database_from_backup(self, db_id : Annotated[Any, Field(..., description="ID базы данных")], backup_id : Annotated[Any, Field(..., description="ID резевной копии")], **kwargs) -> None:  # noqa: E501
         """Восстановление базы данных из бэкапа  # noqa: E501
 
         Чтобы восстановить базу данных из бэкапа, отправьте запрос PUT в `api/v1/dbs/{db_id}/backups/{backup_id}`.   # noqa: E501
@@ -3667,9 +3667,9 @@ class DatabasesApi(object):
         >>> thread = api.restore_database_from_backup(db_id, backup_id, async_req=True)
         >>> result = thread.get()
 
-        :param db_id: Идентификатор базы данных (required)
+        :param db_id: ID базы данных (required)
         :type db_id: object
-        :param backup_id: Идентификатор резевной копии (required)
+        :param backup_id: ID резевной копии (required)
         :type backup_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -3688,7 +3688,7 @@ class DatabasesApi(object):
         return self.restore_database_from_backup_with_http_info(db_id, backup_id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def restore_database_from_backup_with_http_info(self, db_id : Annotated[Any, Field(..., description="Идентификатор базы данных")], backup_id : Annotated[Any, Field(..., description="Идентификатор резевной копии")], **kwargs) -> ApiResponse:  # noqa: E501
+    def restore_database_from_backup_with_http_info(self, db_id : Annotated[Any, Field(..., description="ID базы данных")], backup_id : Annotated[Any, Field(..., description="ID резевной копии")], **kwargs) -> ApiResponse:  # noqa: E501
         """Восстановление базы данных из бэкапа  # noqa: E501
 
         Чтобы восстановить базу данных из бэкапа, отправьте запрос PUT в `api/v1/dbs/{db_id}/backups/{backup_id}`.   # noqa: E501
@@ -3698,9 +3698,9 @@ class DatabasesApi(object):
         >>> thread = api.restore_database_from_backup_with_http_info(db_id, backup_id, async_req=True)
         >>> result = thread.get()
 
-        :param db_id: Идентификатор базы данных (required)
+        :param db_id: ID базы данных (required)
         :type db_id: object
-        :param backup_id: Идентификатор резевной копии (required)
+        :param backup_id: ID резевной копии (required)
         :type backup_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -3802,7 +3802,7 @@ class DatabasesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def update_database(self, db_id : Annotated[Any, Field(..., description="Идентификатор базы данных")], update_db : UpdateDb, **kwargs) -> CreateDatabase201Response:  # noqa: E501
+    def update_database(self, db_id : Annotated[Any, Field(..., description="ID базы данных")], update_db : UpdateDb, **kwargs) -> CreateDatabase201Response:  # noqa: E501
         """(Deprecated) Обновление базы данных  # noqa: E501
 
         Чтобы обновить только определенные атрибуты базы данных, отправьте запрос PATCH в `api/v1/dbs/{db_id}`.   # noqa: E501
@@ -3812,7 +3812,7 @@ class DatabasesApi(object):
         >>> thread = api.update_database(db_id, update_db, async_req=True)
         >>> result = thread.get()
 
-        :param db_id: Идентификатор базы данных (required)
+        :param db_id: ID базы данных (required)
         :type db_id: object
         :param update_db: (required)
         :type update_db: UpdateDb
@@ -3833,7 +3833,7 @@ class DatabasesApi(object):
         return self.update_database_with_http_info(db_id, update_db, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def update_database_with_http_info(self, db_id : Annotated[Any, Field(..., description="Идентификатор базы данных")], update_db : UpdateDb, **kwargs) -> ApiResponse:  # noqa: E501
+    def update_database_with_http_info(self, db_id : Annotated[Any, Field(..., description="ID базы данных")], update_db : UpdateDb, **kwargs) -> ApiResponse:  # noqa: E501
         """(Deprecated) Обновление базы данных  # noqa: E501
 
         Чтобы обновить только определенные атрибуты базы данных, отправьте запрос PATCH в `api/v1/dbs/{db_id}`.   # noqa: E501
@@ -3843,7 +3843,7 @@ class DatabasesApi(object):
         >>> thread = api.update_database_with_http_info(db_id, update_db, async_req=True)
         >>> result = thread.get()
 
-        :param db_id: Идентификатор базы данных (required)
+        :param db_id: ID базы данных (required)
         :type db_id: object
         :param update_db: (required)
         :type update_db: UpdateDb
@@ -3964,7 +3964,7 @@ class DatabasesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def update_database_auto_backups_settings(self, db_id : Annotated[Any, Field(..., description="Идентификатор базы данных")], auto_backup : Annotated[Optional[AutoBackup], Field(description="При значении `is_enabled`: `true`, поля `copy_count`, `creation_start_at`, `interval` являются обязательными")] = None, **kwargs) -> GetDatabaseAutoBackupsSettings200Response:  # noqa: E501
+    def update_database_auto_backups_settings(self, db_id : Annotated[Any, Field(..., description="ID базы данных")], auto_backup : Annotated[Optional[AutoBackup], Field(description="При значении `is_enabled`: `true`, поля `copy_count`, `creation_start_at`, `interval` являются обязательными")] = None, **kwargs) -> GetDatabaseAutoBackupsSettings200Response:  # noqa: E501
         """Изменение настроек автобэкапов базы данных  # noqa: E501
 
         Чтобы изменить список настроек автобэкапов базы данных, отправьте запрос PATCH в `api/v1/dbs/{db_id}/auto-backups`  # noqa: E501
@@ -3974,7 +3974,7 @@ class DatabasesApi(object):
         >>> thread = api.update_database_auto_backups_settings(db_id, auto_backup, async_req=True)
         >>> result = thread.get()
 
-        :param db_id: Идентификатор базы данных (required)
+        :param db_id: ID базы данных (required)
         :type db_id: object
         :param auto_backup: При значении `is_enabled`: `true`, поля `copy_count`, `creation_start_at`, `interval` являются обязательными
         :type auto_backup: AutoBackup
@@ -3995,7 +3995,7 @@ class DatabasesApi(object):
         return self.update_database_auto_backups_settings_with_http_info(db_id, auto_backup, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def update_database_auto_backups_settings_with_http_info(self, db_id : Annotated[Any, Field(..., description="Идентификатор базы данных")], auto_backup : Annotated[Optional[AutoBackup], Field(description="При значении `is_enabled`: `true`, поля `copy_count`, `creation_start_at`, `interval` являются обязательными")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def update_database_auto_backups_settings_with_http_info(self, db_id : Annotated[Any, Field(..., description="ID базы данных")], auto_backup : Annotated[Optional[AutoBackup], Field(description="При значении `is_enabled`: `true`, поля `copy_count`, `creation_start_at`, `interval` являются обязательными")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Изменение настроек автобэкапов базы данных  # noqa: E501
 
         Чтобы изменить список настроек автобэкапов базы данных, отправьте запрос PATCH в `api/v1/dbs/{db_id}/auto-backups`  # noqa: E501
@@ -4005,7 +4005,7 @@ class DatabasesApi(object):
         >>> thread = api.update_database_auto_backups_settings_with_http_info(db_id, auto_backup, async_req=True)
         >>> result = thread.get()
 
-        :param db_id: Идентификатор базы данных (required)
+        :param db_id: ID базы данных (required)
         :type db_id: object
         :param auto_backup: При значении `is_enabled`: `true`, поля `copy_count`, `creation_start_at`, `interval` являются обязательными
         :type auto_backup: AutoBackup
@@ -4124,7 +4124,7 @@ class DatabasesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def update_database_cluster(self, db_cluster_id : Annotated[Any, Field(..., description="Идентификатор кластера базы данных")], update_cluster : UpdateCluster, **kwargs) -> CreateDatabaseCluster201Response:  # noqa: E501
+    def update_database_cluster(self, db_cluster_id : Annotated[Any, Field(..., description="ID кластера базы данных")], update_cluster : UpdateCluster, **kwargs) -> CreateDatabaseCluster201Response:  # noqa: E501
         """Изменение кластера базы данных  # noqa: E501
 
         Чтобы изменить кластер базы данных на вашем аккаунте, отправьте PATCH-запрос на `/api/v1/databases/{db_cluster_id}`.  # noqa: E501
@@ -4134,7 +4134,7 @@ class DatabasesApi(object):
         >>> thread = api.update_database_cluster(db_cluster_id, update_cluster, async_req=True)
         >>> result = thread.get()
 
-        :param db_cluster_id: Идентификатор кластера базы данных (required)
+        :param db_cluster_id: ID кластера базы данных (required)
         :type db_cluster_id: object
         :param update_cluster: (required)
         :type update_cluster: UpdateCluster
@@ -4155,7 +4155,7 @@ class DatabasesApi(object):
         return self.update_database_cluster_with_http_info(db_cluster_id, update_cluster, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def update_database_cluster_with_http_info(self, db_cluster_id : Annotated[Any, Field(..., description="Идентификатор кластера базы данных")], update_cluster : UpdateCluster, **kwargs) -> ApiResponse:  # noqa: E501
+    def update_database_cluster_with_http_info(self, db_cluster_id : Annotated[Any, Field(..., description="ID кластера базы данных")], update_cluster : UpdateCluster, **kwargs) -> ApiResponse:  # noqa: E501
         """Изменение кластера базы данных  # noqa: E501
 
         Чтобы изменить кластер базы данных на вашем аккаунте, отправьте PATCH-запрос на `/api/v1/databases/{db_cluster_id}`.  # noqa: E501
@@ -4165,7 +4165,7 @@ class DatabasesApi(object):
         >>> thread = api.update_database_cluster_with_http_info(db_cluster_id, update_cluster, async_req=True)
         >>> result = thread.get()
 
-        :param db_cluster_id: Идентификатор кластера базы данных (required)
+        :param db_cluster_id: ID кластера базы данных (required)
         :type db_cluster_id: object
         :param update_cluster: (required)
         :type update_cluster: UpdateCluster
@@ -4284,7 +4284,7 @@ class DatabasesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def update_database_instance(self, db_cluster_id : Annotated[Any, Field(..., description="Идентификатор кластера базы данных")], update_instance : UpdateInstance, **kwargs) -> CreateDatabaseInstance201Response:  # noqa: E501
+    def update_database_instance(self, db_cluster_id : Annotated[Any, Field(..., description="ID кластера базы данных")], update_instance : UpdateInstance, **kwargs) -> CreateDatabaseInstance201Response:  # noqa: E501
         """Изменение инстанса базы данных  # noqa: E501
 
         Чтобы изменить инстанс базы данных, отправьте PATCH-запрос на `/api/v1/databases/{db_cluster_id}/instances/{instance_id}`.  # noqa: E501
@@ -4294,7 +4294,7 @@ class DatabasesApi(object):
         >>> thread = api.update_database_instance(db_cluster_id, update_instance, async_req=True)
         >>> result = thread.get()
 
-        :param db_cluster_id: Идентификатор кластера базы данных (required)
+        :param db_cluster_id: ID кластера базы данных (required)
         :type db_cluster_id: object
         :param update_instance: (required)
         :type update_instance: UpdateInstance
@@ -4315,7 +4315,7 @@ class DatabasesApi(object):
         return self.update_database_instance_with_http_info(db_cluster_id, update_instance, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def update_database_instance_with_http_info(self, db_cluster_id : Annotated[Any, Field(..., description="Идентификатор кластера базы данных")], update_instance : UpdateInstance, **kwargs) -> ApiResponse:  # noqa: E501
+    def update_database_instance_with_http_info(self, db_cluster_id : Annotated[Any, Field(..., description="ID кластера базы данных")], update_instance : UpdateInstance, **kwargs) -> ApiResponse:  # noqa: E501
         """Изменение инстанса базы данных  # noqa: E501
 
         Чтобы изменить инстанс базы данных, отправьте PATCH-запрос на `/api/v1/databases/{db_cluster_id}/instances/{instance_id}`.  # noqa: E501
@@ -4325,7 +4325,7 @@ class DatabasesApi(object):
         >>> thread = api.update_database_instance_with_http_info(db_cluster_id, update_instance, async_req=True)
         >>> result = thread.get()
 
-        :param db_cluster_id: Идентификатор кластера базы данных (required)
+        :param db_cluster_id: ID кластера базы данных (required)
         :type db_cluster_id: object
         :param update_instance: (required)
         :type update_instance: UpdateInstance
@@ -4444,7 +4444,7 @@ class DatabasesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def update_database_user(self, db_cluster_id : Annotated[Any, Field(..., description="Идентификатор кластера базы данных")], admin_id : Annotated[Any, Field(..., description="Идентификатор пользователя базы данных")], update_admin : UpdateAdmin, **kwargs) -> CreateDatabaseUser201Response:  # noqa: E501
+    def update_database_user(self, db_cluster_id : Annotated[Any, Field(..., description="ID кластера базы данных")], admin_id : Annotated[Any, Field(..., description="ID пользователя базы данных")], update_admin : UpdateAdmin, **kwargs) -> CreateDatabaseUser201Response:  # noqa: E501
         """Изменение пользователя базы данных  # noqa: E501
 
         Чтобы изменить пользователя базы данных на вашем аккаунте, отправьте PATCH-запрос на `/api/v1/databases/{db_cluster_id}/admins/{admin_id}`.  # noqa: E501
@@ -4454,9 +4454,9 @@ class DatabasesApi(object):
         >>> thread = api.update_database_user(db_cluster_id, admin_id, update_admin, async_req=True)
         >>> result = thread.get()
 
-        :param db_cluster_id: Идентификатор кластера базы данных (required)
+        :param db_cluster_id: ID кластера базы данных (required)
         :type db_cluster_id: object
-        :param admin_id: Идентификатор пользователя базы данных (required)
+        :param admin_id: ID пользователя базы данных (required)
         :type admin_id: object
         :param update_admin: (required)
         :type update_admin: UpdateAdmin
@@ -4477,7 +4477,7 @@ class DatabasesApi(object):
         return self.update_database_user_with_http_info(db_cluster_id, admin_id, update_admin, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def update_database_user_with_http_info(self, db_cluster_id : Annotated[Any, Field(..., description="Идентификатор кластера базы данных")], admin_id : Annotated[Any, Field(..., description="Идентификатор пользователя базы данных")], update_admin : UpdateAdmin, **kwargs) -> ApiResponse:  # noqa: E501
+    def update_database_user_with_http_info(self, db_cluster_id : Annotated[Any, Field(..., description="ID кластера базы данных")], admin_id : Annotated[Any, Field(..., description="ID пользователя базы данных")], update_admin : UpdateAdmin, **kwargs) -> ApiResponse:  # noqa: E501
         """Изменение пользователя базы данных  # noqa: E501
 
         Чтобы изменить пользователя базы данных на вашем аккаунте, отправьте PATCH-запрос на `/api/v1/databases/{db_cluster_id}/admins/{admin_id}`.  # noqa: E501
@@ -4487,9 +4487,9 @@ class DatabasesApi(object):
         >>> thread = api.update_database_user_with_http_info(db_cluster_id, admin_id, update_admin, async_req=True)
         >>> result = thread.get()
 
-        :param db_cluster_id: Идентификатор кластера базы данных (required)
+        :param db_cluster_id: ID кластера базы данных (required)
         :type db_cluster_id: object
-        :param admin_id: Идентификатор пользователя базы данных (required)
+        :param admin_id: ID пользователя базы данных (required)
         :type admin_id: object
         :param update_admin: (required)
         :type update_admin: UpdateAdmin

@@ -157,7 +157,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.DatabasesApi(api_client)
-    db_id = None # object | Идентификатор базы данных
+    db_id = None # object | ID базы данных
 
     try:
         # Создание бэкапа базы данных
@@ -173,7 +173,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **db_id** | [**object**](.md)| Идентификатор базы данных | 
+ **db_id** | [**object**](.md)| ID базы данных | 
 
 ### Return type
 
@@ -324,7 +324,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.DatabasesApi(api_client)
-    db_cluster_id = None # object | Идентификатор кластера базы данных
+    db_cluster_id = None # object | ID кластера базы данных
     create_instance = timeweb_cloud_api.CreateInstance() # CreateInstance | 
 
     try:
@@ -341,7 +341,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **db_cluster_id** | [**object**](.md)| Идентификатор кластера базы данных | 
+ **db_cluster_id** | [**object**](.md)| ID кластера базы данных | 
  **create_instance** | [**CreateInstance**](CreateInstance.md)|  | 
 
 ### Return type
@@ -409,7 +409,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.DatabasesApi(api_client)
-    db_cluster_id = None # object | Идентификатор кластера базы данных
+    db_cluster_id = None # object | ID кластера базы данных
     create_admin = timeweb_cloud_api.CreateAdmin() # CreateAdmin | 
 
     try:
@@ -426,7 +426,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **db_cluster_id** | [**object**](.md)| Идентификатор кластера базы данных | 
+ **db_cluster_id** | [**object**](.md)| ID кластера базы данных | 
  **create_admin** | [**CreateAdmin**](CreateAdmin.md)|  | 
 
 ### Return type
@@ -493,7 +493,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.DatabasesApi(api_client)
-    db_id = None # object | Идентификатор базы данных
+    db_id = None # object | ID базы данных
     hash = 15095f25-aac3-4d60-a788-96cb5136f186 # object | Хеш, который совместно с кодом авторизации надо отправить для удаления, если включено подтверждение удаления сервисов через Телеграм. (optional)
     code = 0000 # object | Код подтверждения, который придет к вам в Телеграм, после запроса удаления, если включено подтверждение удаления сервисов.  При помощи API токена сервисы можно удалять без подтверждения, если параметр токена `is_able_to_delete` установлен в значение `true` (optional)
 
@@ -511,7 +511,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **db_id** | [**object**](.md)| Идентификатор базы данных | 
+ **db_id** | [**object**](.md)| ID базы данных | 
  **hash** | [**object**](.md)| Хеш, который совместно с кодом авторизации надо отправить для удаления, если включено подтверждение удаления сервисов через Телеграм. | [optional] 
  **code** | [**object**](.md)| Код подтверждения, который придет к вам в Телеграм, после запроса удаления, если включено подтверждение удаления сервисов.  При помощи API токена сервисы можно удалять без подтверждения, если параметр токена &#x60;is_able_to_delete&#x60; установлен в значение &#x60;true&#x60; | [optional] 
 
@@ -579,8 +579,8 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.DatabasesApi(api_client)
-    db_id = None # object | Идентификатор базы данных
-    backup_id = None # object | Идентификатор резевной копии
+    db_id = None # object | ID базы данных
+    backup_id = None # object | ID резевной копии
 
     try:
         # Удаление бэкапа базы данных
@@ -594,8 +594,8 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **db_id** | [**object**](.md)| Идентификатор базы данных | 
- **backup_id** | [**object**](.md)| Идентификатор резевной копии | 
+ **db_id** | [**object**](.md)| ID базы данных | 
+ **backup_id** | [**object**](.md)| ID резевной копии | 
 
 ### Return type
 
@@ -661,7 +661,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.DatabasesApi(api_client)
-    db_cluster_id = None # object | Идентификатор кластера базы данных
+    db_cluster_id = None # object | ID кластера базы данных
     hash = 15095f25-aac3-4d60-a788-96cb5136f186 # object | Хеш, который совместно с кодом авторизации надо отправить для удаления, если включено подтверждение удаления сервисов через Телеграм. (optional)
     code = 0000 # object | Код подтверждения, который придет к вам в Телеграм, после запроса удаления, если включено подтверждение удаления сервисов.  При помощи API токена сервисы можно удалять без подтверждения, если параметр токена `is_able_to_delete` установлен в значение `true` (optional)
 
@@ -679,7 +679,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **db_cluster_id** | [**object**](.md)| Идентификатор кластера базы данных | 
+ **db_cluster_id** | [**object**](.md)| ID кластера базы данных | 
  **hash** | [**object**](.md)| Хеш, который совместно с кодом авторизации надо отправить для удаления, если включено подтверждение удаления сервисов через Телеграм. | [optional] 
  **code** | [**object**](.md)| Код подтверждения, который придет к вам в Телеграм, после запроса удаления, если включено подтверждение удаления сервисов.  При помощи API токена сервисы можно удалять без подтверждения, если параметр токена &#x60;is_able_to_delete&#x60; установлен в значение &#x60;true&#x60; | [optional] 
 
@@ -747,8 +747,8 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.DatabasesApi(api_client)
-    db_cluster_id = None # object | Идентификатор кластера базы данных
-    instance_id = None # object | Идентификатор инстанса базы данных
+    db_cluster_id = None # object | ID кластера базы данных
+    instance_id = None # object | ID инстанса базы данных
 
     try:
         # Удаление инстанса базы данных
@@ -762,8 +762,8 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **db_cluster_id** | [**object**](.md)| Идентификатор кластера базы данных | 
- **instance_id** | [**object**](.md)| Идентификатор инстанса базы данных | 
+ **db_cluster_id** | [**object**](.md)| ID кластера базы данных | 
+ **instance_id** | [**object**](.md)| ID инстанса базы данных | 
 
 ### Return type
 
@@ -828,8 +828,8 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.DatabasesApi(api_client)
-    db_cluster_id = None # object | Идентификатор кластера базы данных
-    admin_id = None # object | Идентификатор пользователя базы данных
+    db_cluster_id = None # object | ID кластера базы данных
+    admin_id = None # object | ID пользователя базы данных
 
     try:
         # Удаление пользователя базы данных
@@ -843,8 +843,8 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **db_cluster_id** | [**object**](.md)| Идентификатор кластера базы данных | 
- **admin_id** | [**object**](.md)| Идентификатор пользователя базы данных | 
+ **db_cluster_id** | [**object**](.md)| ID кластера базы данных | 
+ **admin_id** | [**object**](.md)| ID пользователя базы данных | 
 
 ### Return type
 
@@ -910,7 +910,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.DatabasesApi(api_client)
-    db_id = None # object | Идентификатор базы данных
+    db_id = None # object | ID базы данных
 
     try:
         # Получение базы данных
@@ -926,7 +926,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **db_id** | [**object**](.md)| Идентификатор базы данных | 
+ **db_id** | [**object**](.md)| ID базы данных | 
 
 ### Return type
 
@@ -992,7 +992,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.DatabasesApi(api_client)
-    db_id = None # object | Идентификатор базы данных
+    db_id = None # object | ID базы данных
 
     try:
         # Получение настроек автобэкапов базы данных
@@ -1008,7 +1008,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **db_id** | [**object**](.md)| Идентификатор базы данных | 
+ **db_id** | [**object**](.md)| ID базы данных | 
 
 ### Return type
 
@@ -1074,8 +1074,8 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.DatabasesApi(api_client)
-    db_id = None # object | Идентификатор базы данных
-    backup_id = None # object | Идентификатор резевной копии
+    db_id = None # object | ID базы данных
+    backup_id = None # object | ID резевной копии
 
     try:
         # Получение бэкапа базы данных
@@ -1091,8 +1091,8 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **db_id** | [**object**](.md)| Идентификатор базы данных | 
- **backup_id** | [**object**](.md)| Идентификатор резевной копии | 
+ **db_id** | [**object**](.md)| ID базы данных | 
+ **backup_id** | [**object**](.md)| ID резевной копии | 
 
 ### Return type
 
@@ -1158,7 +1158,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.DatabasesApi(api_client)
-    db_id = None # object | Идентификатор базы данных
+    db_id = None # object | ID базы данных
     limit = None # object | Обозначает количество записей, которое необходимо вернуть. (optional)
     offset = None # object | Указывает на смещение относительно начала списка. (optional)
 
@@ -1176,7 +1176,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **db_id** | [**object**](.md)| Идентификатор базы данных | 
+ **db_id** | [**object**](.md)| ID базы данных | 
  **limit** | [**object**](.md)| Обозначает количество записей, которое необходимо вернуть. | [optional] 
  **offset** | [**object**](.md)| Указывает на смещение относительно начала списка. | [optional] 
 
@@ -1244,7 +1244,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.DatabasesApi(api_client)
-    db_cluster_id = None # object | Идентификатор кластера базы данных
+    db_cluster_id = None # object | ID кластера базы данных
 
     try:
         # Получение кластера базы данных
@@ -1260,7 +1260,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **db_cluster_id** | [**object**](.md)| Идентификатор кластера базы данных | 
+ **db_cluster_id** | [**object**](.md)| ID кластера базы данных | 
 
 ### Return type
 
@@ -1488,8 +1488,8 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.DatabasesApi(api_client)
-    db_cluster_id = None # object | Идентификатор кластера базы данных
-    instance_id = None # object | Идентификатор инстанса базы данных
+    db_cluster_id = None # object | ID кластера базы данных
+    instance_id = None # object | ID инстанса базы данных
 
     try:
         # Получение инстанса базы данных
@@ -1505,8 +1505,8 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **db_cluster_id** | [**object**](.md)| Идентификатор кластера базы данных | 
- **instance_id** | [**object**](.md)| Идентификатор инстанса базы данных | 
+ **db_cluster_id** | [**object**](.md)| ID кластера базы данных | 
+ **instance_id** | [**object**](.md)| ID инстанса базы данных | 
 
 ### Return type
 
@@ -1572,7 +1572,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.DatabasesApi(api_client)
-    db_cluster_id = None # object | Идентификатор кластера базы данных
+    db_cluster_id = None # object | ID кластера базы данных
 
     try:
         # Получение списка инстансов баз данных
@@ -1588,7 +1588,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **db_cluster_id** | [**object**](.md)| Идентификатор кластера базы данных | 
+ **db_cluster_id** | [**object**](.md)| ID кластера базы данных | 
 
 ### Return type
 
@@ -1731,8 +1731,8 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.DatabasesApi(api_client)
-    db_cluster_id = None # object | Идентификатор кластера базы данных
-    admin_id = None # object | Идентификатор пользователя базы данных
+    db_cluster_id = None # object | ID кластера базы данных
+    admin_id = None # object | ID пользователя базы данных
 
     try:
         # Получение пользователя базы данных
@@ -1748,8 +1748,8 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **db_cluster_id** | [**object**](.md)| Идентификатор кластера базы данных | 
- **admin_id** | [**object**](.md)| Идентификатор пользователя базы данных | 
+ **db_cluster_id** | [**object**](.md)| ID кластера базы данных | 
+ **admin_id** | [**object**](.md)| ID пользователя базы данных | 
 
 ### Return type
 
@@ -1815,7 +1815,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.DatabasesApi(api_client)
-    db_cluster_id = None # object | Идентификатор кластера базы данных
+    db_cluster_id = None # object | ID кластера базы данных
 
     try:
         # Получение списка пользователей базы данных
@@ -1831,7 +1831,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **db_cluster_id** | [**object**](.md)| Идентификатор кластера базы данных | 
+ **db_cluster_id** | [**object**](.md)| ID кластера базы данных | 
 
 ### Return type
 
@@ -2058,8 +2058,8 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.DatabasesApi(api_client)
-    db_id = None # object | Идентификатор базы данных
-    backup_id = None # object | Идентификатор резевной копии
+    db_id = None # object | ID базы данных
+    backup_id = None # object | ID резевной копии
 
     try:
         # Восстановление базы данных из бэкапа
@@ -2073,8 +2073,8 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **db_id** | [**object**](.md)| Идентификатор базы данных | 
- **backup_id** | [**object**](.md)| Идентификатор резевной копии | 
+ **db_id** | [**object**](.md)| ID базы данных | 
+ **backup_id** | [**object**](.md)| ID резевной копии | 
 
 ### Return type
 
@@ -2142,7 +2142,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.DatabasesApi(api_client)
-    db_id = None # object | Идентификатор базы данных
+    db_id = None # object | ID базы данных
     update_db = timeweb_cloud_api.UpdateDb() # UpdateDb | 
 
     try:
@@ -2159,7 +2159,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **db_id** | [**object**](.md)| Идентификатор базы данных | 
+ **db_id** | [**object**](.md)| ID базы данных | 
  **update_db** | [**UpdateDb**](UpdateDb.md)|  | 
 
 ### Return type
@@ -2227,7 +2227,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.DatabasesApi(api_client)
-    db_id = None # object | Идентификатор базы данных
+    db_id = None # object | ID базы данных
     auto_backup = timeweb_cloud_api.AutoBackup() # AutoBackup | При значении `is_enabled`: `true`, поля `copy_count`, `creation_start_at`, `interval` являются обязательными (optional)
 
     try:
@@ -2244,7 +2244,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **db_id** | [**object**](.md)| Идентификатор базы данных | 
+ **db_id** | [**object**](.md)| ID базы данных | 
  **auto_backup** | [**AutoBackup**](AutoBackup.md)| При значении &#x60;is_enabled&#x60;: &#x60;true&#x60;, поля &#x60;copy_count&#x60;, &#x60;creation_start_at&#x60;, &#x60;interval&#x60; являются обязательными | [optional] 
 
 ### Return type
@@ -2312,7 +2312,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.DatabasesApi(api_client)
-    db_cluster_id = None # object | Идентификатор кластера базы данных
+    db_cluster_id = None # object | ID кластера базы данных
     update_cluster = timeweb_cloud_api.UpdateCluster() # UpdateCluster | 
 
     try:
@@ -2329,7 +2329,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **db_cluster_id** | [**object**](.md)| Идентификатор кластера базы данных | 
+ **db_cluster_id** | [**object**](.md)| ID кластера базы данных | 
  **update_cluster** | [**UpdateCluster**](UpdateCluster.md)|  | 
 
 ### Return type
@@ -2397,7 +2397,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.DatabasesApi(api_client)
-    db_cluster_id = None # object | Идентификатор кластера базы данных
+    db_cluster_id = None # object | ID кластера базы данных
     update_instance = timeweb_cloud_api.UpdateInstance() # UpdateInstance | 
 
     try:
@@ -2414,7 +2414,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **db_cluster_id** | [**object**](.md)| Идентификатор кластера базы данных | 
+ **db_cluster_id** | [**object**](.md)| ID кластера базы данных | 
  **update_instance** | [**UpdateInstance**](UpdateInstance.md)|  | 
 
 ### Return type
@@ -2482,8 +2482,8 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.DatabasesApi(api_client)
-    db_cluster_id = None # object | Идентификатор кластера базы данных
-    admin_id = None # object | Идентификатор пользователя базы данных
+    db_cluster_id = None # object | ID кластера базы данных
+    admin_id = None # object | ID пользователя базы данных
     update_admin = timeweb_cloud_api.UpdateAdmin() # UpdateAdmin | 
 
     try:
@@ -2500,8 +2500,8 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **db_cluster_id** | [**object**](.md)| Идентификатор кластера базы данных | 
- **admin_id** | [**object**](.md)| Идентификатор пользователя базы данных | 
+ **db_cluster_id** | [**object**](.md)| ID кластера базы данных | 
+ **admin_id** | [**object**](.md)| ID пользователя базы данных | 
  **update_admin** | [**UpdateAdmin**](UpdateAdmin.md)|  | 
 
 ### Return type

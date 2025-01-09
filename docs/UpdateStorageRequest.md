@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**preset_id** | **object** | Идентификатор тарифа. | [optional] 
+**preset_id** | **object** | ID тарифа. | [optional] 
 **bucket_type** | **object** | Тип хранилища. | [optional] 
 
 ## Example

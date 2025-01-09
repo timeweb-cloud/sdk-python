@@ -19,7 +19,7 @@ Method | HTTP request | Description
 [**get_domain_request**](DomainsApi.md#get_domain_request) | **GET** /api/v1/domains-requests/{request_id} | Получение заявки на регистрацию/продление/трансфер домена
 [**get_domain_requests**](DomainsApi.md#get_domain_requests) | **GET** /api/v1/domains-requests | Получение списка заявок на регистрацию/продление/трансфер домена
 [**get_domains**](DomainsApi.md#get_domains) | **GET** /api/v1/domains | Получение списка всех доменов
-[**get_tld**](DomainsApi.md#get_tld) | **GET** /api/v1/tlds/{tld_id} | Получить информацию о доменной зоне по идентификатору
+[**get_tld**](DomainsApi.md#get_tld) | **GET** /api/v1/tlds/{tld_id} | Получить информацию о доменной зоне по ID
 [**get_tlds**](DomainsApi.md#get_tlds) | **GET** /api/v1/tlds | Получить информацию о доменных зонах
 [**update_domain_auto_prolongation**](DomainsApi.md#update_domain_auto_prolongation) | **PATCH** /api/v1/domains/{fqdn} | Включение/выключение автопродления домена
 [**update_domain_dns_record**](DomainsApi.md#update_domain_dns_record) | **PATCH** /api/v1/domains/{fqdn}/dns-records/{record_id} | Обновить информацию о DNS-записи домена или поддомена
@@ -551,7 +551,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.DomainsApi(api_client)
     fqdn = somedomain.ru # object | Полное имя домена или поддомена.
-    record_id = 123 # object | Идентификатор DNS-записи домена или поддомена.
+    record_id = 123 # object | ID DNS-записи домена или поддомена.
 
     try:
         # Удалить информацию о DNS-записи для домена или поддомена
@@ -566,7 +566,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **fqdn** | [**object**](.md)| Полное имя домена или поддомена. | 
- **record_id** | [**object**](.md)| Идентификатор DNS-записи домена или поддомена. | 
+ **record_id** | [**object**](.md)| ID DNS-записи домена или поддомена. | 
 
 ### Return type
 
@@ -1044,7 +1044,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.DomainsApi(api_client)
-    request_id = 123 # object | Идентификатор заявки на регистрацию/продление/трансфер домена.
+    request_id = 123 # object | ID заявки на регистрацию/продление/трансфер домена.
 
     try:
         # Получение заявки на регистрацию/продление/трансфер домена
@@ -1060,7 +1060,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **request_id** | [**object**](.md)| Идентификатор заявки на регистрацию/продление/трансфер домена. | 
+ **request_id** | [**object**](.md)| ID заявки на регистрацию/продление/трансфер домена. | 
 
 ### Return type
 
@@ -1125,7 +1125,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.DomainsApi(api_client)
-    person_id = 123 # object | Идентификатор администратора, на которого зарегистрирован домен. (optional)
+    person_id = 123 # object | ID администратора, на которого зарегистрирован домен. (optional)
 
     try:
         # Получение списка заявок на регистрацию/продление/трансфер домена
@@ -1141,7 +1141,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **person_id** | [**object**](.md)| Идентификатор администратора, на которого зарегистрирован домен. | [optional] 
+ **person_id** | [**object**](.md)| ID администратора, на которого зарегистрирован домен. | [optional] 
 
 ### Return type
 
@@ -1260,9 +1260,9 @@ Name | Type | Description  | Notes
 # **get_tld**
 > GetTLD200Response get_tld(tld_id)
 
-Получить информацию о доменной зоне по идентификатору
+Получить информацию о доменной зоне по ID
 
-Чтобы получить информацию о доменной зоне по идентификатору, отправьте запрос GET на `/api/v1/tlds/{tld_id}`.
+Чтобы получить информацию о доменной зоне по ID, отправьте запрос GET на `/api/v1/tlds/{tld_id}`.
 
 ### Example
 
@@ -1295,10 +1295,10 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.DomainsApi(api_client)
-    tld_id = 123 # object | Идентификатор доменной зоны.
+    tld_id = 123 # object | ID доменной зоны.
 
     try:
-        # Получить информацию о доменной зоне по идентификатору
+        # Получить информацию о доменной зоне по ID
         api_response = api_instance.get_tld(tld_id)
         print("The response of DomainsApi->get_tld:\n")
         pprint(api_response)
@@ -1311,7 +1311,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **tld_id** | [**object**](.md)| Идентификатор доменной зоны. | 
+ **tld_id** | [**object**](.md)| ID доменной зоны. | 
 
 ### Return type
 
@@ -1545,7 +1545,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.DomainsApi(api_client)
     fqdn = somedomain.ru # object | Полное имя домена или поддомена.
-    record_id = 123 # object | Идентификатор DNS-записи домена или поддомена.
+    record_id = 123 # object | ID DNS-записи домена или поддомена.
     create_dns = timeweb_cloud_api.CreateDns() # CreateDns | 
 
     try:
@@ -1563,7 +1563,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **fqdn** | [**object**](.md)| Полное имя домена или поддомена. | 
- **record_id** | [**object**](.md)| Идентификатор DNS-записи домена или поддомена. | 
+ **record_id** | [**object**](.md)| ID DNS-записи домена или поддомена. | 
  **create_dns** | [**CreateDns**](CreateDns.md)|  | 
 
 ### Return type
@@ -1714,7 +1714,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.DomainsApi(api_client)
-    request_id = 123 # object | Идентификатор заявки на регистрацию/продление/трансфер домена.
+    request_id = 123 # object | ID заявки на регистрацию/продление/трансфер домена.
     use = timeweb_cloud_api.Use() # Use | 
 
     try:
@@ -1731,7 +1731,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **request_id** | [**object**](.md)| Идентификатор заявки на регистрацию/продление/трансфер домена. | 
+ **request_id** | [**object**](.md)| ID заявки на регистрацию/продление/трансфер домена. | 
  **use** | [**Use**](Use.md)|  | 
 
 ### Return type

@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **is_send_bill_letters** | **object** | Это логическое значение, которое показывает, требуется ли отправлять счета на почту. | 
 **company_info** | [**StatusCompanyInfo**](StatusCompanyInfo.md) |  | 
 **last_password_changed_at** | **object** | Значение времени, указанное в комбинированном формате даты и времени ISO8601, которое представляет, когда последний раз изменялся пароль. | 
-**ym_client_id** | **object** | Идентификатор аккаунта для яндекс метрики. | 
+**ym_client_id** | **object** | ID аккаунта для яндекс метрики. | 
 
 ## Example
 

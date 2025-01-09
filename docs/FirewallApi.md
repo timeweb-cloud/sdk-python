@@ -59,8 +59,8 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.FirewallApi(api_client)
-    group_id = None # object | Идентификатор группы правил
-    resource_id = None # object | Идентификатор ресурса
+    group_id = None # object | ID группы правил
+    resource_id = None # object | ID ресурса
     resource_type = timeweb_cloud_api.ResourceType() # ResourceType |  (optional)
 
     try:
@@ -77,8 +77,8 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **group_id** | [**object**](.md)| Идентификатор группы правил | 
- **resource_id** | [**object**](.md)| Идентификатор ресурса | 
+ **group_id** | [**object**](.md)| ID группы правил | 
+ **resource_id** | [**object**](.md)| ID ресурса | 
  **resource_type** | [**ResourceType**](.md)|  | [optional] 
 
 ### Return type
@@ -227,7 +227,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.FirewallApi(api_client)
-    group_id = None # object | Идентификатор группы правил
+    group_id = None # object | ID группы правил
     firewall_rule_in_api = timeweb_cloud_api.FirewallRuleInAPI() # FirewallRuleInAPI | 
 
     try:
@@ -244,7 +244,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **group_id** | [**object**](.md)| Идентификатор группы правил | 
+ **group_id** | [**object**](.md)| ID группы правил | 
  **firewall_rule_in_api** | [**FirewallRuleInAPI**](FirewallRuleInAPI.md)|  | 
 
 ### Return type
@@ -308,7 +308,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.FirewallApi(api_client)
-    group_id = None # object | Идентификатор группы правил
+    group_id = None # object | ID группы правил
 
     try:
         # Удаление группы правил
@@ -322,7 +322,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **group_id** | [**object**](.md)| Идентификатор группы правил | 
+ **group_id** | [**object**](.md)| ID группы правил | 
 
 ### Return type
 
@@ -386,8 +386,8 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.FirewallApi(api_client)
-    group_id = None # object | Идентификатор группы правил
-    rule_id = None # object | Идентификатор правила
+    group_id = None # object | ID группы правил
+    rule_id = None # object | ID правила
 
     try:
         # Удаление firewall правила
@@ -401,8 +401,8 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **group_id** | [**object**](.md)| Идентификатор группы правил | 
- **rule_id** | [**object**](.md)| Идентификатор правила | 
+ **group_id** | [**object**](.md)| ID группы правил | 
+ **rule_id** | [**object**](.md)| ID правила | 
 
 ### Return type
 
@@ -467,8 +467,8 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.FirewallApi(api_client)
-    group_id = None # object | Идентификатор группы правил
-    resource_id = None # object | Идентификатор ресурса
+    group_id = None # object | ID группы правил
+    resource_id = None # object | ID ресурса
     resource_type = timeweb_cloud_api.ResourceType() # ResourceType |  (optional)
 
     try:
@@ -483,8 +483,8 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **group_id** | [**object**](.md)| Идентификатор группы правил | 
- **resource_id** | [**object**](.md)| Идентификатор ресурса | 
+ **group_id** | [**object**](.md)| ID группы правил | 
+ **resource_id** | [**object**](.md)| ID ресурса | 
  **resource_type** | [**ResourceType**](.md)|  | [optional] 
 
 ### Return type
@@ -550,7 +550,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.FirewallApi(api_client)
-    group_id = None # object | Идентификатор группы правил
+    group_id = None # object | ID группы правил
 
     try:
         # Получение информации о группе правил
@@ -566,7 +566,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **group_id** | [**object**](.md)| Идентификатор группы правил | 
+ **group_id** | [**object**](.md)| ID группы правил | 
 
 ### Return type
 
@@ -631,7 +631,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.FirewallApi(api_client)
-    group_id = None # object | Идентификатор группы правил
+    group_id = None # object | ID группы правил
     limit = None # object | Обозначает количество записей, которое необходимо вернуть. (optional)
     offset = None # object | Указывает на смещение относительно начала списка. (optional)
 
@@ -649,7 +649,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **group_id** | [**object**](.md)| Идентификатор группы правил | 
+ **group_id** | [**object**](.md)| ID группы правил | 
  **limit** | [**object**](.md)| Обозначает количество записей, которое необходимо вернуть. | [optional] 
  **offset** | [**object**](.md)| Указывает на смещение относительно начала списка. | [optional] 
 
@@ -715,8 +715,8 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.FirewallApi(api_client)
-    rule_id = None # object | Идентификатор правила
-    group_id = None # object | Идентификатор группы правил
+    rule_id = None # object | ID правила
+    group_id = None # object | ID группы правил
 
     try:
         # Получение информации о правиле
@@ -732,8 +732,8 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **rule_id** | [**object**](.md)| Идентификатор правила | 
- **group_id** | [**object**](.md)| Идентификатор группы правил | 
+ **rule_id** | [**object**](.md)| ID правила | 
+ **group_id** | [**object**](.md)| ID группы правил | 
 
 ### Return type
 
@@ -798,7 +798,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.FirewallApi(api_client)
-    group_id = None # object | Идентификатор группы правил
+    group_id = None # object | ID группы правил
     limit = None # object | Обозначает количество записей, которое необходимо вернуть. (optional)
     offset = None # object | Указывает на смещение относительно начала списка. (optional)
 
@@ -816,7 +816,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **group_id** | [**object**](.md)| Идентификатор группы правил | 
+ **group_id** | [**object**](.md)| ID группы правил | 
  **limit** | [**object**](.md)| Обозначает количество записей, которое необходимо вернуть. | [optional] 
  **offset** | [**object**](.md)| Указывает на смещение относительно начала списка. | [optional] 
 
@@ -1052,7 +1052,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.FirewallApi(api_client)
-    group_id = None # object | Идентификатор группы правил
+    group_id = None # object | ID группы правил
     firewall_group_in_api = timeweb_cloud_api.FirewallGroupInAPI() # FirewallGroupInAPI | 
 
     try:
@@ -1069,7 +1069,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **group_id** | [**object**](.md)| Идентификатор группы правил | 
+ **group_id** | [**object**](.md)| ID группы правил | 
  **firewall_group_in_api** | [**FirewallGroupInAPI**](FirewallGroupInAPI.md)|  | 
 
 ### Return type
@@ -1136,8 +1136,8 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.FirewallApi(api_client)
-    group_id = None # object | Идентификатор группы правил
-    rule_id = None # object | Идентификатор правила
+    group_id = None # object | ID группы правил
+    rule_id = None # object | ID правила
     firewall_rule_in_api = timeweb_cloud_api.FirewallRuleInAPI() # FirewallRuleInAPI | 
 
     try:
@@ -1154,8 +1154,8 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **group_id** | [**object**](.md)| Идентификатор группы правил | 
- **rule_id** | [**object**](.md)| Идентификатор правила | 
+ **group_id** | [**object**](.md)| ID группы правил | 
+ **rule_id** | [**object**](.md)| ID правила | 
  **firewall_rule_in_api** | [**FirewallRuleInAPI**](FirewallRuleInAPI.md)|  | 
 
 ### Return type

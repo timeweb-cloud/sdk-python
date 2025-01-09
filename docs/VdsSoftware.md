@@ -5,7 +5,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **object** | Уникальный идентификатор ПО из маркетплейса. | [optional] 
+**id** | **object** | ID ПО из маркетплейса. | [optional] 
 **name** | **object** | Название ПО из маркетплейса. | [optional] 
 
 ## Example

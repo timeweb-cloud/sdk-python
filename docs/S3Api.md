@@ -144,7 +144,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.S3Api(api_client)
-    bucket_id = 1051 # object | Уникальный идентификатор хранилища.
+    bucket_id = 1051 # object | ID хранилища.
     add_storage_subdomains_request = timeweb_cloud_api.AddStorageSubdomainsRequest() # AddStorageSubdomainsRequest | 
 
     try:
@@ -161,7 +161,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **bucket_id** | [**object**](.md)| Уникальный идентификатор хранилища. | 
+ **bucket_id** | [**object**](.md)| ID хранилища. | 
  **add_storage_subdomains_request** | [**AddStorageSubdomainsRequest**](AddStorageSubdomainsRequest.md)|  | 
 
 ### Return type
@@ -228,7 +228,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.S3Api(api_client)
-    bucket_id = 1051 # object | Уникальный идентификатор хранилища.
+    bucket_id = 1051 # object | ID хранилища.
     copy_storage_file_request = timeweb_cloud_api.CopyStorageFileRequest() # CopyStorageFileRequest | 
 
     try:
@@ -243,7 +243,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **bucket_id** | [**object**](.md)| Уникальный идентификатор хранилища. | 
+ **bucket_id** | [**object**](.md)| ID хранилища. | 
  **copy_storage_file_request** | [**CopyStorageFileRequest**](CopyStorageFileRequest.md)|  | 
 
 ### Return type
@@ -310,7 +310,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.S3Api(api_client)
-    bucket_id = 1051 # object | Уникальный идентификатор хранилища.
+    bucket_id = 1051 # object | ID хранилища.
     create_folder_in_storage_request = timeweb_cloud_api.CreateFolderInStorageRequest() # CreateFolderInStorageRequest | 
 
     try:
@@ -325,7 +325,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **bucket_id** | [**object**](.md)| Уникальный идентификатор хранилища. | 
+ **bucket_id** | [**object**](.md)| ID хранилища. | 
  **create_folder_in_storage_request** | [**CreateFolderInStorageRequest**](CreateFolderInStorageRequest.md)|  | 
 
 ### Return type
@@ -476,7 +476,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.S3Api(api_client)
-    bucket_id = 1051 # object | Уникальный идентификатор хранилища.
+    bucket_id = 1051 # object | ID хранилища.
     hash = 15095f25-aac3-4d60-a788-96cb5136f186 # object | Хеш, который совместно с кодом авторизации надо отправить для удаления, если включено подтверждение удаления сервисов через Телеграм. (optional)
     code = 0000 # object | Код подтверждения, который придет к вам в Телеграм, после запроса удаления, если включено подтверждение удаления сервисов.  При помощи API токена сервисы можно удалять без подтверждения, если параметр токена `is_able_to_delete` установлен в значение `true` (optional)
 
@@ -494,7 +494,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **bucket_id** | [**object**](.md)| Уникальный идентификатор хранилища. | 
+ **bucket_id** | [**object**](.md)| ID хранилища. | 
  **hash** | [**object**](.md)| Хеш, который совместно с кодом авторизации надо отправить для удаления, если включено подтверждение удаления сервисов через Телеграм. | [optional] 
  **code** | [**object**](.md)| Код подтверждения, который придет к вам в Телеграм, после запроса удаления, если включено подтверждение удаления сервисов.  При помощи API токена сервисы можно удалять без подтверждения, если параметр токена &#x60;is_able_to_delete&#x60; установлен в значение &#x60;true&#x60; | [optional] 
 
@@ -563,7 +563,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.S3Api(api_client)
-    bucket_id = 1051 # object | Уникальный идентификатор хранилища.
+    bucket_id = 1051 # object | ID хранилища.
     delete_storage_file_request = timeweb_cloud_api.DeleteStorageFileRequest() # DeleteStorageFileRequest | 
     is_multipart = true # object | Это логическое значение, которое используется для обозначения multipart-загрузки. (optional)
 
@@ -579,7 +579,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **bucket_id** | [**object**](.md)| Уникальный идентификатор хранилища. | 
+ **bucket_id** | [**object**](.md)| ID хранилища. | 
  **delete_storage_file_request** | [**DeleteStorageFileRequest**](DeleteStorageFileRequest.md)|  | 
  **is_multipart** | [**object**](.md)| Это логическое значение, которое используется для обозначения multipart-загрузки. | [optional] 
 
@@ -648,7 +648,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.S3Api(api_client)
-    bucket_id = 1051 # object | Уникальный идентификатор хранилища.
+    bucket_id = 1051 # object | ID хранилища.
     add_storage_subdomains_request = timeweb_cloud_api.AddStorageSubdomainsRequest() # AddStorageSubdomainsRequest | 
 
     try:
@@ -665,7 +665,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **bucket_id** | [**object**](.md)| Уникальный идентификатор хранилища. | 
+ **bucket_id** | [**object**](.md)| ID хранилища. | 
  **add_storage_subdomains_request** | [**AddStorageSubdomainsRequest**](AddStorageSubdomainsRequest.md)|  | 
 
 ### Return type
@@ -732,7 +732,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.S3Api(api_client)
-    bucket_id = 1051 # object | Уникальный идентификатор хранилища.
+    bucket_id = 1051 # object | ID хранилища.
     prefix = example # object | Префикс для поиска файла. (optional)
     is_multipart = true # object | Это логическое значение, которое используется для обозначения multipart-загрузки. (optional)
 
@@ -750,7 +750,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **bucket_id** | [**object**](.md)| Уникальный идентификатор хранилища. | 
+ **bucket_id** | [**object**](.md)| ID хранилища. | 
  **prefix** | [**object**](.md)| Префикс для поиска файла. | [optional] 
  **is_multipart** | [**object**](.md)| Это логическое значение, которое используется для обозначения multipart-загрузки. | [optional] 
 
@@ -818,7 +818,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.S3Api(api_client)
-    bucket_id = 1051 # object | Уникальный идентификатор хранилища.
+    bucket_id = 1051 # object | ID хранилища.
 
     try:
         # Получение списка поддоменов хранилища
@@ -834,7 +834,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **bucket_id** | [**object**](.md)| Уникальный идентификатор хранилища. | 
+ **bucket_id** | [**object**](.md)| ID хранилища. | 
 
 ### Return type
 
@@ -900,7 +900,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.S3Api(api_client)
-    bucket_id = 1051 # object | Уникальный идентификатор хранилища.
+    bucket_id = 1051 # object | ID хранилища.
 
     try:
         # Получение статуса переноса хранилища от стороннего S3 в Timeweb Cloud
@@ -916,7 +916,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **bucket_id** | [**object**](.md)| Уникальный идентификатор хранилища. | 
+ **bucket_id** | [**object**](.md)| ID хранилища. | 
 
 ### Return type
 
@@ -1216,7 +1216,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.S3Api(api_client)
-    bucket_id = 1051 # object | Уникальный идентификатор хранилища.
+    bucket_id = 1051 # object | ID хранилища.
     rename_storage_file_request = timeweb_cloud_api.RenameStorageFileRequest() # RenameStorageFileRequest | 
 
     try:
@@ -1231,7 +1231,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **bucket_id** | [**object**](.md)| Уникальный идентификатор хранилища. | 
+ **bucket_id** | [**object**](.md)| ID хранилища. | 
  **rename_storage_file_request** | [**RenameStorageFileRequest**](RenameStorageFileRequest.md)|  | 
 
 ### Return type
@@ -1379,7 +1379,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.S3Api(api_client)
-    bucket_id = 1051 # object | Уникальный идентификатор хранилища.
+    bucket_id = 1051 # object | ID хранилища.
     update_storage_request = timeweb_cloud_api.UpdateStorageRequest() # UpdateStorageRequest | 
 
     try:
@@ -1396,7 +1396,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **bucket_id** | [**object**](.md)| Уникальный идентификатор хранилища. | 
+ **bucket_id** | [**object**](.md)| ID хранилища. | 
  **update_storage_request** | [**UpdateStorageRequest**](UpdateStorageRequest.md)|  | 
 
 ### Return type
@@ -1464,7 +1464,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.S3Api(api_client)
-    user_id = 1051 # object | Уникальный идентификатор пользователя хранилища.
+    user_id = 1051 # object | ID пользователя хранилища.
     update_storage_user_request = timeweb_cloud_api.UpdateStorageUserRequest() # UpdateStorageUserRequest | 
 
     try:
@@ -1481,7 +1481,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **user_id** | [**object**](.md)| Уникальный идентификатор пользователя хранилища. | 
+ **user_id** | [**object**](.md)| ID пользователя хранилища. | 
  **update_storage_user_request** | [**UpdateStorageUserRequest**](UpdateStorageUserRequest.md)|  | 
 
 ### Return type
@@ -1547,7 +1547,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.S3Api(api_client)
-    bucket_id = 1051 # object | Уникальный идентификатор хранилища.
+    bucket_id = 1051 # object | ID хранилища.
     files = None # object | 
     path = test1/tes2 # object | Путь до директории в хранилище (optional)
 
@@ -1563,7 +1563,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **bucket_id** | [**object**](.md)| Уникальный идентификатор хранилища. | 
+ **bucket_id** | [**object**](.md)| ID хранилища. | 
  **files** | [**object**](object.md)|  | 
  **path** | [**object**](.md)| Путь до директории в хранилище | [optional] 
 

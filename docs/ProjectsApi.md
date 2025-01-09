@@ -19,7 +19,7 @@ Method | HTTP request | Description
 [**get_account_servers**](ProjectsApi.md#get_account_servers) | **GET** /api/v1/projects/resources/servers | Получение списка всех серверов на аккаунте
 [**get_account_storages**](ProjectsApi.md#get_account_storages) | **GET** /api/v1/projects/resources/buckets | Получение списка всех хранилищ на аккаунте
 [**get_all_project_resources**](ProjectsApi.md#get_all_project_resources) | **GET** /api/v1/projects/{project_id}/resources | Получение всех ресурсов проекта
-[**get_project**](ProjectsApi.md#get_project) | **GET** /api/v1/projects/{project_id} | Получение проекта по идентификатору
+[**get_project**](ProjectsApi.md#get_project) | **GET** /api/v1/projects/{project_id} | Получение проекта по ID
 [**get_project_balancers**](ProjectsApi.md#get_project_balancers) | **GET** /api/v1/projects/{project_id}/resources/balancers | Получение списка балансировщиков проекта
 [**get_project_clusters**](ProjectsApi.md#get_project_clusters) | **GET** /api/v1/projects/{project_id}/resources/clusters | Получение списка кластеров проекта
 [**get_project_databases**](ProjectsApi.md#get_project_databases) | **GET** /api/v1/projects/{project_id}/resources/databases | Получение списка баз данных проекта
@@ -70,7 +70,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.ProjectsApi(api_client)
-    project_id = 99 # object | Уникальный идентификатор проекта.
+    project_id = 99 # object | ID проекта.
     add_balancer_to_project_request = timeweb_cloud_api.AddBalancerToProjectRequest() # AddBalancerToProjectRequest | 
 
     try:
@@ -87,7 +87,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | [**object**](.md)| Уникальный идентификатор проекта. | 
+ **project_id** | [**object**](.md)| ID проекта. | 
  **add_balancer_to_project_request** | [**AddBalancerToProjectRequest**](AddBalancerToProjectRequest.md)|  | 
 
 ### Return type
@@ -155,7 +155,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.ProjectsApi(api_client)
-    project_id = 99 # object | Уникальный идентификатор проекта.
+    project_id = 99 # object | ID проекта.
     add_cluster_to_project_request = timeweb_cloud_api.AddClusterToProjectRequest() # AddClusterToProjectRequest | 
 
     try:
@@ -172,7 +172,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | [**object**](.md)| Уникальный идентификатор проекта. | 
+ **project_id** | [**object**](.md)| ID проекта. | 
  **add_cluster_to_project_request** | [**AddClusterToProjectRequest**](AddClusterToProjectRequest.md)|  | 
 
 ### Return type
@@ -240,7 +240,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.ProjectsApi(api_client)
-    project_id = 99 # object | Уникальный идентификатор проекта.
+    project_id = 99 # object | ID проекта.
     add_database_to_project_request = timeweb_cloud_api.AddDatabaseToProjectRequest() # AddDatabaseToProjectRequest | 
 
     try:
@@ -257,7 +257,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | [**object**](.md)| Уникальный идентификатор проекта. | 
+ **project_id** | [**object**](.md)| ID проекта. | 
  **add_database_to_project_request** | [**AddDatabaseToProjectRequest**](AddDatabaseToProjectRequest.md)|  | 
 
 ### Return type
@@ -325,7 +325,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.ProjectsApi(api_client)
-    project_id = 99 # object | Уникальный идентификатор проекта.
+    project_id = 99 # object | ID проекта.
     add_dedicated_server_to_project_request = timeweb_cloud_api.AddDedicatedServerToProjectRequest() # AddDedicatedServerToProjectRequest | 
 
     try:
@@ -342,7 +342,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | [**object**](.md)| Уникальный идентификатор проекта. | 
+ **project_id** | [**object**](.md)| ID проекта. | 
  **add_dedicated_server_to_project_request** | [**AddDedicatedServerToProjectRequest**](AddDedicatedServerToProjectRequest.md)|  | 
 
 ### Return type
@@ -410,7 +410,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.ProjectsApi(api_client)
-    project_id = 99 # object | Уникальный идентификатор проекта.
+    project_id = 99 # object | ID проекта.
     add_server_to_project_request = timeweb_cloud_api.AddServerToProjectRequest() # AddServerToProjectRequest | 
 
     try:
@@ -427,7 +427,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | [**object**](.md)| Уникальный идентификатор проекта. | 
+ **project_id** | [**object**](.md)| ID проекта. | 
  **add_server_to_project_request** | [**AddServerToProjectRequest**](AddServerToProjectRequest.md)|  | 
 
 ### Return type
@@ -495,7 +495,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.ProjectsApi(api_client)
-    project_id = 99 # object | Уникальный идентификатор проекта.
+    project_id = 99 # object | ID проекта.
     add_storage_to_project_request = timeweb_cloud_api.AddStorageToProjectRequest() # AddStorageToProjectRequest | 
 
     try:
@@ -512,7 +512,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | [**object**](.md)| Уникальный идентификатор проекта. | 
+ **project_id** | [**object**](.md)| ID проекта. | 
  **add_storage_to_project_request** | [**AddStorageToProjectRequest**](AddStorageToProjectRequest.md)|  | 
 
 ### Return type
@@ -660,7 +660,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.ProjectsApi(api_client)
-    project_id = 99 # object | Уникальный идентификатор проекта.
+    project_id = 99 # object | ID проекта.
 
     try:
         # Удаление проекта
@@ -674,7 +674,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | [**object**](.md)| Уникальный идентификатор проекта. | 
+ **project_id** | [**object**](.md)| ID проекта. | 
 
 ### Return type
 
@@ -1196,7 +1196,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.ProjectsApi(api_client)
-    project_id = 99 # object | Уникальный идентификатор проекта.
+    project_id = 99 # object | ID проекта.
 
     try:
         # Получение всех ресурсов проекта
@@ -1212,7 +1212,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | [**object**](.md)| Уникальный идентификатор проекта. | 
+ **project_id** | [**object**](.md)| ID проекта. | 
 
 ### Return type
 
@@ -1243,9 +1243,9 @@ Name | Type | Description  | Notes
 # **get_project**
 > CreateProject201Response get_project(project_id)
 
-Получение проекта по идентификатору
+Получение проекта по ID
 
-Чтобы получить проект по идентификатору, отправьте GET-запрос на `/api/v1/projects/{project_id}`.
+Чтобы получить проект по ID, отправьте GET-запрос на `/api/v1/projects/{project_id}`.
 
 ### Example
 
@@ -1278,10 +1278,10 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.ProjectsApi(api_client)
-    project_id = 99 # object | Уникальный идентификатор проекта.
+    project_id = 99 # object | ID проекта.
 
     try:
-        # Получение проекта по идентификатору
+        # Получение проекта по ID
         api_response = api_instance.get_project(project_id)
         print("The response of ProjectsApi->get_project:\n")
         pprint(api_response)
@@ -1294,7 +1294,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | [**object**](.md)| Уникальный идентификатор проекта. | 
+ **project_id** | [**object**](.md)| ID проекта. | 
 
 ### Return type
 
@@ -1360,7 +1360,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.ProjectsApi(api_client)
-    project_id = 99 # object | Уникальный идентификатор проекта.
+    project_id = 99 # object | ID проекта.
 
     try:
         # Получение списка балансировщиков проекта
@@ -1376,7 +1376,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | [**object**](.md)| Уникальный идентификатор проекта. | 
+ **project_id** | [**object**](.md)| ID проекта. | 
 
 ### Return type
 
@@ -1442,7 +1442,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.ProjectsApi(api_client)
-    project_id = 99 # object | Уникальный идентификатор проекта.
+    project_id = 99 # object | ID проекта.
 
     try:
         # Получение списка кластеров проекта
@@ -1458,7 +1458,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | [**object**](.md)| Уникальный идентификатор проекта. | 
+ **project_id** | [**object**](.md)| ID проекта. | 
 
 ### Return type
 
@@ -1524,7 +1524,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.ProjectsApi(api_client)
-    project_id = 99 # object | Уникальный идентификатор проекта.
+    project_id = 99 # object | ID проекта.
 
     try:
         # Получение списка баз данных проекта
@@ -1540,7 +1540,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | [**object**](.md)| Уникальный идентификатор проекта. | 
+ **project_id** | [**object**](.md)| ID проекта. | 
 
 ### Return type
 
@@ -1606,7 +1606,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.ProjectsApi(api_client)
-    project_id = 99 # object | Уникальный идентификатор проекта.
+    project_id = 99 # object | ID проекта.
 
     try:
         # Получение списка выделенных серверов проекта
@@ -1622,7 +1622,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | [**object**](.md)| Уникальный идентификатор проекта. | 
+ **project_id** | [**object**](.md)| ID проекта. | 
 
 ### Return type
 
@@ -1688,7 +1688,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.ProjectsApi(api_client)
-    project_id = 99 # object | Уникальный идентификатор проекта.
+    project_id = 99 # object | ID проекта.
 
     try:
         # Получение списка серверов проекта
@@ -1704,7 +1704,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | [**object**](.md)| Уникальный идентификатор проекта. | 
+ **project_id** | [**object**](.md)| ID проекта. | 
 
 ### Return type
 
@@ -1770,7 +1770,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.ProjectsApi(api_client)
-    project_id = 99 # object | Уникальный идентификатор проекта.
+    project_id = 99 # object | ID проекта.
 
     try:
         # Получение списка хранилищ проекта
@@ -1786,7 +1786,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | [**object**](.md)| Уникальный идентификатор проекта. | 
+ **project_id** | [**object**](.md)| ID проекта. | 
 
 ### Return type
 
@@ -1929,7 +1929,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.ProjectsApi(api_client)
-    project_id = 99 # object | Уникальный идентификатор проекта.
+    project_id = 99 # object | ID проекта.
     resource_transfer = timeweb_cloud_api.ResourceTransfer() # ResourceTransfer | 
 
     try:
@@ -1946,7 +1946,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | [**object**](.md)| Уникальный идентификатор проекта. | 
+ **project_id** | [**object**](.md)| ID проекта. | 
  **resource_transfer** | [**ResourceTransfer**](ResourceTransfer.md)|  | 
 
 ### Return type
@@ -2014,7 +2014,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.ProjectsApi(api_client)
-    project_id = 99 # object | Уникальный идентификатор проекта.
+    project_id = 99 # object | ID проекта.
     update_project = timeweb_cloud_api.UpdateProject() # UpdateProject | 
 
     try:
@@ -2031,7 +2031,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | [**object**](.md)| Уникальный идентификатор проекта. | 
+ **project_id** | [**object**](.md)| ID проекта. | 
  **update_project** | [**UpdateProject**](UpdateProject.md)|  | 
 
 ### Return type

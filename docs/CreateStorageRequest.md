@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **object** | Название хранилища. | 
 **type** | **object** | Тип хранилища. | 
-**preset_id** | **object** | Идентификатор тарифа. | 
+**preset_id** | **object** | ID тарифа. | 
 
 ## Example
 

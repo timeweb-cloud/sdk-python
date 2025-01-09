@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **password** | **object** | Пароль для подключения к базе данных. | [optional] 
 **name** | **object** | Название базы данных. | [optional] 
-**preset_id** | **object** | Идентификатор тарифа. | [optional] 
+**preset_id** | **object** | ID тарифа. | [optional] 
 **config_parameters** | [**ConfigParameters**](ConfigParameters.md) |  | [optional] 
 **is_external_ip** | **object** | Использовать или нет внешний IP. | [optional] 
 

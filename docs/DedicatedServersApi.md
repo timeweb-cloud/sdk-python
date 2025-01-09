@@ -133,7 +133,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.DedicatedServersApi(api_client)
-    dedicated_id = 1051 # object | Уникальный идентификатор выделенного сервера.
+    dedicated_id = 1051 # object | ID выделенного сервера.
 
     try:
         # Удаление выделенного сервера
@@ -147,7 +147,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **dedicated_id** | [**object**](.md)| Уникальный идентификатор выделенного сервера. | 
+ **dedicated_id** | [**object**](.md)| ID выделенного сервера. | 
 
 ### Return type
 
@@ -213,7 +213,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.DedicatedServersApi(api_client)
-    dedicated_id = 1051 # object | Уникальный идентификатор выделенного сервера.
+    dedicated_id = 1051 # object | ID выделенного сервера.
 
     try:
         # Получение выделенного сервера
@@ -229,7 +229,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **dedicated_id** | [**object**](.md)| Уникальный идентификатор выделенного сервера. | 
+ **dedicated_id** | [**object**](.md)| ID выделенного сервера. | 
 
 ### Return type
 
@@ -295,7 +295,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.DedicatedServersApi(api_client)
-    preset_id = 1051 # object | Уникальный идентификатор тарифа выделенного сервера.
+    preset_id = 1051 # object | ID тарифа выделенного сервера.
 
     try:
         # Получение дополнительных услуг для выделенного сервера
@@ -311,7 +311,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **preset_id** | [**object**](.md)| Уникальный идентификатор тарифа выделенного сервера. | 
+ **preset_id** | [**object**](.md)| ID тарифа выделенного сервера. | 
 
 ### Return type
 
@@ -538,7 +538,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.DedicatedServersApi(api_client)
-    dedicated_id = 1051 # object | Уникальный идентификатор выделенного сервера.
+    dedicated_id = 1051 # object | ID выделенного сервера.
     update_dedicated_server_request = timeweb_cloud_api.UpdateDedicatedServerRequest() # UpdateDedicatedServerRequest |  (optional)
 
     try:
@@ -555,7 +555,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **dedicated_id** | [**object**](.md)| Уникальный идентификатор выделенного сервера. | 
+ **dedicated_id** | [**object**](.md)| ID выделенного сервера. | 
  **update_dedicated_server_request** | [**UpdateDedicatedServerRequest**](UpdateDedicatedServerRequest.md)|  | [optional] 
 
 ### Return type

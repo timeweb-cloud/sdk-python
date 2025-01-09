@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **object** | Уникальный идентификатор ПО из маркетплейса. | [optional] 
+**id** | **object** | ID ПО из маркетплейса. | [optional] 
 **name** | **object** | Имя ПО из маркетплейса. | [optional] 
 **os_ids** | **object** | Список id операционных систем, на которых доступна установка ПО. | [optional] 
 **description** | **object** | Описание ПО из маркетплейса. | [optional] 

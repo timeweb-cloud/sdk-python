@@ -4,9 +4,9 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**app_id** | **object** | Идентификатор приложения. | 
+**app_id** | **object** | ID приложения. | 
 **commit_sha** | **object** | Хэш коммита. | 
-**id** | **object** | Идентификатор. | 
+**id** | **object** | ID. | 
 **started_at** | **object** | Время запуска деплоя. | 
 **ended_at** | **object** | Время окончания деплоя. Определено для завершенных деплоев | 
 **status** | [**DeployStatus**](DeployStatus.md) |  | 

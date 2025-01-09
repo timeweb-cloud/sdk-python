@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**provider_id** | **object** | Идентификатор провайдера. | 
+**provider_id** | **object** | ID провайдера. | 
 **login** | **object** | Логин пользователя. | 
 **provider_type** | [**Providers**](Providers.md) |  | 
 

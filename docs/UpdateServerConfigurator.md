@@ -5,7 +5,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**configurator_id** | **object** | Уникальный идентификатор конфигуратора сервера. | [optional] 
+**configurator_id** | **object** | ID конфигуратора сервера. | [optional] 
 **disk** | **object** | Размер диска в МБ. | [optional] 
 **cpu** | **object** | Количество ядер процессора. | [optional] 
 **ram** | **object** | Размер ОЗУ сервера в МБ. | [optional] 

@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **object** | Идентификатор сервисв. | 
+**id** | **object** | ID сервисв. | 
 **name** | **object** | Имя сервиса. | 
 **public_ip** | **object** | Публичный IP-адрес сервиса | [optional] 
 **local_ip** | **object** | Приватный IP-адрес сервиса | [optional] 

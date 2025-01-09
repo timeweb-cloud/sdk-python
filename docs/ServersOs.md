@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **object** | Уникальный идентификатор операционной системы. | [optional] 
+**id** | **object** | ID операционной системы. | [optional] 
 **family** | **object** | Семейство операционной системы. | [optional] 
 **name** | **object** | Название операционной системы. | [optional] 
 **version** | **object** | Версия операционной системы. | [optional] 

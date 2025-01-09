@@ -5,7 +5,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **object** | Уникальный идентификатор для каждого экземпляра базы данных. Автоматически генерируется при создании. | 
+**id** | **object** | ID для каждого экземпляра базы данных. Автоматически генерируется при создании. | 
 **created_at** | **object** | Значение времени, указанное в комбинированном формате даты и времени ISO8601, которое представляет, когда была создана база данных. | 
 **location** | **object** | Локация сервера. | 
 **name** | **object** | Название кластера базы данных. | 
@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **hash_type** | **object** | Тип хеширования кластера базы данных (mysql5 | mysql | postgres). | 
 **port** | **object** | Порт | 
 **status** | **object** | Текущий статус кластера базы данных. | 
-**preset_id** | **object** | Идентификатор тарифа. | 
+**preset_id** | **object** | ID тарифа. | 
 **disk_stats** | [**DatabaseClusterDiskStats**](DatabaseClusterDiskStats.md) |  | 
 **config_parameters** | [**ConfigParameters**](ConfigParameters.md) |  | 
 **is_enabled_public_network** | **object** | Доступность публичного IP-адреса | 

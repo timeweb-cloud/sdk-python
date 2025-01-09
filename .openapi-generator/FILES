@@ -295,6 +295,7 @@ docs/NetworkDriversResponse.md
 docs/NetworkDrivesApi.md
 docs/NodeCount.md
 docs/NodeGroupIn.md
+docs/NodeGroupInConfiguration.md
 docs/NodeGroupOut.md
 docs/NodeGroupResponse.md
 docs/NodeGroupsResponse.md
@@ -347,6 +348,7 @@ docs/ServersOsRequirements.md
 docs/ServersPreset.md
 docs/ServersSoftware.md
 docs/ServersSoftwareRequirements.md
+docs/SetLabels.md
 docs/SettingCondition.md
 docs/SpamFilterIsDisabled.md
 docs/SpamFilterIsEnabled.md
@@ -703,6 +705,7 @@ test/test_network_drivers_response.py
 test/test_network_drives_api.py
 test/test_node_count.py
 test/test_node_group_in.py
+test/test_node_group_in_configuration.py
 test/test_node_group_out.py
 test/test_node_group_response.py
 test/test_node_groups_response.py
@@ -754,6 +757,7 @@ test/test_servers_os_requirements.py
 test/test_servers_preset.py
 test/test_servers_software.py
 test/test_servers_software_requirements.py
+test/test_set_labels.py
 test/test_setting_condition.py
 test/test_spam_filter_is_disabled.py
 test/test_spam_filter_is_enabled.py
@@ -1116,6 +1120,7 @@ timeweb_cloud_api/models/network_drive_preset_write.py
 timeweb_cloud_api/models/network_drivers_response.py
 timeweb_cloud_api/models/node_count.py
 timeweb_cloud_api/models/node_group_in.py
+timeweb_cloud_api/models/node_group_in_configuration.py
 timeweb_cloud_api/models/node_group_out.py
 timeweb_cloud_api/models/node_group_response.py
 timeweb_cloud_api/models/node_groups_response.py
@@ -1164,6 +1169,7 @@ timeweb_cloud_api/models/servers_os_requirements.py
 timeweb_cloud_api/models/servers_preset.py
 timeweb_cloud_api/models/servers_software.py
 timeweb_cloud_api/models/servers_software_requirements.py
+timeweb_cloud_api/models/set_labels.py
 timeweb_cloud_api/models/setting_condition.py
 timeweb_cloud_api/models/spam_filter_is_disabled.py
 timeweb_cloud_api/models/spam_filter_is_enabled.py

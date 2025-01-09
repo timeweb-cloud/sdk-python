@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**resource_id** | **object** | Уникальный идентификатор сервиса. | 
+**resource_id** | **object** | ID сервиса. | 
 **resource_type** | **object** | Тип ресурса. | 
 **ip** | **object** | IP-адрес сервиса. | [optional] 
 **availability_zone** | [**AvailabilityZone**](AvailabilityZone.md) |  | 

@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **used** | **object** | Использованное пространство диска. | [optional] 
 **size** | **object** | Размер диска. | [optional] 
-**disk_id** | **object** | Идентификатор диска. | [optional] 
+**disk_id** | **object** | ID диска. | [optional] 
 
 ## Example
 

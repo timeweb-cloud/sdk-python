@@ -5,12 +5,12 @@ All URIs are relative to *https://api.timeweb.cloud*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**create_vpc**](VPCApi.md#create_vpc) | **POST** /api/v2/vpcs | Создание VPC
-[**delete_vpc**](VPCApi.md#delete_vpc) | **DELETE** /api/v1/vpcs/{vpc_id} | Удаление VPC по идентификатору сети
+[**delete_vpc**](VPCApi.md#delete_vpc) | **DELETE** /api/v1/vpcs/{vpc_id} | Удаление VPC по ID сети
 [**get_vpc**](VPCApi.md#get_vpc) | **GET** /api/v2/vpcs/{vpc_id} | Получение VPC
 [**get_vpc_ports**](VPCApi.md#get_vpc_ports) | **GET** /api/v1/vpcs/{vpc_id}/ports | Получение списка портов для VPC
 [**get_vpc_services**](VPCApi.md#get_vpc_services) | **GET** /api/v2/vpcs/{vpc_id}/services | Получение списка сервисов в VPC
 [**get_vpcs**](VPCApi.md#get_vpcs) | **GET** /api/v2/vpcs | Получение списка VPCs
-[**update_vpcs**](VPCApi.md#update_vpcs) | **PATCH** /api/v2/vpcs/{vpc_id} | Изменение VPC по идентификатору сети
+[**update_vpcs**](VPCApi.md#update_vpcs) | **PATCH** /api/v2/vpcs/{vpc_id} | Изменение VPC по ID сети
 
 
 # **create_vpc**
@@ -99,7 +99,7 @@ Name | Type | Description  | Notes
 # **delete_vpc**
 > CreateVPC201Response delete_vpc(vpc_id)
 
-Удаление VPC по идентификатору сети
+Удаление VPC по ID сети
 
 Чтобы удалить VPC, отправьте DELETE-запрос на `/api/v1/vpcs/{vpc_id}`
 
@@ -134,10 +134,10 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.VPCApi(api_client)
-    vpc_id = network-1234567890 # object | Идентификатор сети
+    vpc_id = network-1234567890 # object | ID сети
 
     try:
-        # Удаление VPC по идентификатору сети
+        # Удаление VPC по ID сети
         api_response = api_instance.delete_vpc(vpc_id)
         print("The response of VPCApi->delete_vpc:\n")
         pprint(api_response)
@@ -150,7 +150,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **vpc_id** | [**object**](.md)| Идентификатор сети | 
+ **vpc_id** | [**object**](.md)| ID сети | 
 
 ### Return type
 
@@ -216,7 +216,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.VPCApi(api_client)
-    vpc_id = network-1234567890 # object | Идентификатор сети
+    vpc_id = network-1234567890 # object | ID сети
 
     try:
         # Получение VPC
@@ -232,7 +232,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **vpc_id** | [**object**](.md)| Идентификатор сети | 
+ **vpc_id** | [**object**](.md)| ID сети | 
 
 ### Return type
 
@@ -298,7 +298,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.VPCApi(api_client)
-    vpc_id = network-1234567890 # object | Идентификатор сети
+    vpc_id = network-1234567890 # object | ID сети
 
     try:
         # Получение списка портов для VPC
@@ -314,7 +314,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **vpc_id** | [**object**](.md)| Идентификатор сети | 
+ **vpc_id** | [**object**](.md)| ID сети | 
 
 ### Return type
 
@@ -380,7 +380,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.VPCApi(api_client)
-    vpc_id = network-1234567890 # object | Идентификатор сети
+    vpc_id = network-1234567890 # object | ID сети
 
     try:
         # Получение списка сервисов в VPC
@@ -396,7 +396,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **vpc_id** | [**object**](.md)| Идентификатор сети | 
+ **vpc_id** | [**object**](.md)| ID сети | 
 
 ### Return type
 
@@ -505,7 +505,7 @@ This endpoint does not need any parameter.
 # **update_vpcs**
 > CreateVPC201Response update_vpcs(vpc_id, update_vpc)
 
-Изменение VPC по идентификатору сети
+Изменение VPC по ID сети
 
 Чтобы изменить VPC, отправьте PATCH-запрос на `/api/v2/vpcs/{vpc_id}`
 
@@ -541,11 +541,11 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.VPCApi(api_client)
-    vpc_id = network-1234567890 # object | Идентификатор сети
+    vpc_id = network-1234567890 # object | ID сети
     update_vpc = timeweb_cloud_api.UpdateVpc() # UpdateVpc | 
 
     try:
-        # Изменение VPC по идентификатору сети
+        # Изменение VPC по ID сети
         api_response = api_instance.update_vpcs(vpc_id, update_vpc)
         print("The response of VPCApi->update_vpcs:\n")
         pprint(api_response)
@@ -558,7 +558,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **vpc_id** | [**object**](.md)| Идентификатор сети | 
+ **vpc_id** | [**object**](.md)| ID сети | 
  **update_vpc** | [**UpdateVpc**](UpdateVpc.md)|  | 
 
 ### Return type

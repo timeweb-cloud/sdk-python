@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **object** | Уникальный идентификатор SSH-ключа | 
+**id** | **object** | ID SSH-ключа | 
 **name** | **object** | Название SSH-ключа | 
 **body** | **object** | Тело SSH-ключа | 
 **created_at** | **object** | Дата создания ключа | 

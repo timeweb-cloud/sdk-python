@@ -5,7 +5,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **object** | Идентификатор компании. | 
+**id** | **object** | ID компании. | 
 **name** | **object** | Название компании. | 
 
 ## Example

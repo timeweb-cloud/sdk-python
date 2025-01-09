@@ -5,7 +5,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **object** | Уникальный идентификатор тарифа выделенного сервера. | 
+**id** | **object** | ID тарифа выделенного сервера. | 
 **description** | **object** | Описание характеристик тарифа выделенного сервера. | 
 **is_ipmi_enabled** | **object** | Это логическое значение, которое показывает, доступен ли IPMI у данного тарифа. | 
 **cpu** | [**DedicatedServerPresetCpu**](DedicatedServerPresetCpu.md) |  | 
