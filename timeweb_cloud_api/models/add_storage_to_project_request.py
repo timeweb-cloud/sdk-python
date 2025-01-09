@@ -26,7 +26,7 @@ class AddStorageToProjectRequest(BaseModel):
     """
     AddStorageToProjectRequest
     """
-    resource_id: Optional[Any] = Field(..., description="Идентификатор добавляемого хранилища.")
+    resource_id: Optional[Any] = Field(..., description="ID добавляемого хранилища.")
     __properties = ["resource_id"]
 
     class Config:

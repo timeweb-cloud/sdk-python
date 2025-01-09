@@ -26,8 +26,8 @@ class ResourceTransfer(BaseModel):
     """
     ResourceTransfer
     """
-    to_project: Optional[Any] = Field(..., description="Идентификатор проекта, куда переносится ресурс.")
-    resource_id: Optional[Any] = Field(..., description="Идентификатор перемещаемого ресурса (сервера, хранилища, кластера, балансировщика, базы данных или выделенного сервера).")
+    to_project: Optional[Any] = Field(..., description="ID проекта, куда переносится ресурс.")
+    resource_id: Optional[Any] = Field(..., description="ID перемещаемого ресурса (сервера, хранилища, кластера, балансировщика, базы данных или выделенного сервера).")
     resource_type: Optional[Any] = Field(..., description="Тип перемещаемого ресурса.")
     __properties = ["to_project", "resource_id", "resource_type"]
 

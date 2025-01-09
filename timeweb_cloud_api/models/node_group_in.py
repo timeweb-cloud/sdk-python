@@ -28,7 +28,7 @@ class NodeGroupIn(BaseModel):
     NodeGroupIn
     """
     name: Optional[Any] = Field(..., description="Название группы")
-    preset_id: Optional[Any] = Field(None, description="Идентификатор тарифа воркер-ноды. Нельзя передавать вместе с `configuration`. Локация воркер-нод должна совпадать с локацией кластера")
+    preset_id: Optional[Any] = Field(None, description="ID тарифа воркер-ноды. Нельзя передавать вместе с `configuration`. Локация воркер-нод должна совпадать с локацией кластера")
     configuration: Optional[NodeGroupInConfiguration] = None
     node_count: Optional[Any] = Field(..., description="Количество нод в группе")
     labels: Optional[Any] = Field(None, description="Лейблы для группы нод")

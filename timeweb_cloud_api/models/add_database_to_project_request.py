@@ -26,7 +26,7 @@ class AddDatabaseToProjectRequest(BaseModel):
     """
     AddDatabaseToProjectRequest
     """
-    resource_id: Optional[Any] = Field(..., description="Идентификатор добавляемой базы данных.")
+    resource_id: Optional[Any] = Field(..., description="ID добавляемой базы данных.")
     __properties = ["resource_id"]
 
     class Config:

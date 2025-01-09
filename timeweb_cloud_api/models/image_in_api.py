@@ -28,12 +28,12 @@ class ImageInAPI(BaseModel):
     """
     ImageInAPI
     """
-    name: Optional[Any] = Field(None, description="Имя образа")
-    description: Optional[Any] = Field(None, description="Описание образа")
-    disk_id: Optional[Any] = Field(None, description="Идентификатор диска, для которого создается образ")
-    upload_url: Optional[Any] = Field(None, description="Cсылка для загрузки образа")
-    location: Optional[Location] = None
-    os: Optional[OS] = None
+    name: Optional[Any] = Field(None, description="Имя образа.")
+    description: Optional[Any] = Field(None, description="Описание образа.")
+    disk_id: Optional[Any] = Field(None, description="ID диска, для которого создается образ.")
+    upload_url: Optional[Any] = Field(None, description="Ссылка для загрузки образа.")
+    location: Location = Field(...)
+    os: OS = Field(...)
     __properties = ["name", "description", "disk_id", "upload_url", "location", "os"]
 
     class Config:

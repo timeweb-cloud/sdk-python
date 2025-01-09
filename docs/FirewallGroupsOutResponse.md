@@ -4,9 +4,9 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**response_id** | **object** | Идентификатор запроса | [optional] 
+**response_id** | **object** | ID запроса. | [optional] 
 **meta** | [**Meta**](Meta.md) |  | 
-**groups** | **object** | Массив объектов Групп правил | 
+**groups** | **object** |  | 
 
 ## Example
 

@@ -4,9 +4,9 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**response_id** | **object** | ID запроса | [optional] 
+**response_id** | **object** | ID запроса. | [optional] 
 **meta** | [**Meta**](Meta.md) |  | 
-**downloads** | **object** | Массив объектов \&quot;Ссылка на загрузку\&quot; | 
+**downloads** | **object** |  | 
 
 ## Example
 

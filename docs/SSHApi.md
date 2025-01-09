@@ -6,11 +6,11 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**add_key_to_server**](SSHApi.md#add_key_to_server) | **POST** /api/v1/servers/{server_id}/ssh-keys | Добавление SSH-ключей на сервер
 [**create_key**](SSHApi.md#create_key) | **POST** /api/v1/ssh-keys | Создание SSH-ключа
-[**delete_key**](SSHApi.md#delete_key) | **DELETE** /api/v1/ssh-keys/{ssh_key_id} | Удаление SSH-ключа по уникальному идентификатору
+[**delete_key**](SSHApi.md#delete_key) | **DELETE** /api/v1/ssh-keys/{ssh_key_id} | Удаление SSH-ключа по ID
 [**delete_key_from_server**](SSHApi.md#delete_key_from_server) | **DELETE** /api/v1/servers/{server_id}/ssh-keys/{ssh_key_id} | Удаление SSH-ключей с сервера
-[**get_key**](SSHApi.md#get_key) | **GET** /api/v1/ssh-keys/{ssh_key_id} | Получение SSH-ключа по уникальному идентификатору
+[**get_key**](SSHApi.md#get_key) | **GET** /api/v1/ssh-keys/{ssh_key_id} | Получение SSH-ключа по ID
 [**get_keys**](SSHApi.md#get_keys) | **GET** /api/v1/ssh-keys | Получение списка SSH-ключей
-[**update_key**](SSHApi.md#update_key) | **PATCH** /api/v1/ssh-keys/{ssh_key_id} | Изменение SSH-ключа по уникальному идентификатору
+[**update_key**](SSHApi.md#update_key) | **PATCH** /api/v1/ssh-keys/{ssh_key_id} | Изменение SSH-ключа по ID
 
 
 # **add_key_to_server**
@@ -181,7 +181,7 @@ Name | Type | Description  | Notes
 # **delete_key**
 > delete_key(ssh_key_id)
 
-Удаление SSH-ключа по уникальному идентификатору
+Удаление SSH-ключа по ID
 
 Чтобы удалить SSH-ключ, отправьте DELETE-запрос на `/api/v1/ssh-keys/{ssh_key_id}`
 
@@ -215,10 +215,10 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.SSHApi(api_client)
-    ssh_key_id = 1051 # object | ID SSH-ключа
+    ssh_key_id = 1051 # object | ID SSH-ключа.
 
     try:
-        # Удаление SSH-ключа по уникальному идентификатору
+        # Удаление SSH-ключа по ID
         api_instance.delete_key(ssh_key_id)
     except Exception as e:
         print("Exception when calling SSHApi->delete_key: %s\n" % e)
@@ -229,7 +229,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ssh_key_id** | [**object**](.md)| ID SSH-ключа | 
+ **ssh_key_id** | [**object**](.md)| ID SSH-ключа. | 
 
 ### Return type
 
@@ -295,7 +295,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.SSHApi(api_client)
     server_id = 1051 # object | ID облачного сервера.
-    ssh_key_id = 1051 # object | ID SSH-ключа
+    ssh_key_id = 1051 # object | ID SSH-ключа.
 
     try:
         # Удаление SSH-ключей с сервера
@@ -310,7 +310,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **server_id** | [**object**](.md)| ID облачного сервера. | 
- **ssh_key_id** | [**object**](.md)| ID SSH-ключа | 
+ **ssh_key_id** | [**object**](.md)| ID SSH-ключа. | 
 
 ### Return type
 
@@ -341,7 +341,7 @@ void (empty response body)
 # **get_key**
 > GetKey200Response get_key(ssh_key_id)
 
-Получение SSH-ключа по уникальному идентификатору
+Получение SSH-ключа по ID
 
 Чтобы получить SSH-ключ, отправьте GET-запрос на `/api/v1/ssh-keys/{ssh_key_id}`
 
@@ -376,10 +376,10 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.SSHApi(api_client)
-    ssh_key_id = 1051 # object | ID SSH-ключа
+    ssh_key_id = 1051 # object | ID SSH-ключа.
 
     try:
-        # Получение SSH-ключа по уникальному идентификатору
+        # Получение SSH-ключа по ID
         api_response = api_instance.get_key(ssh_key_id)
         print("The response of SSHApi->get_key:\n")
         pprint(api_response)
@@ -392,7 +392,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ssh_key_id** | [**object**](.md)| ID SSH-ключа | 
+ **ssh_key_id** | [**object**](.md)| ID SSH-ключа. | 
 
 ### Return type
 
@@ -501,7 +501,7 @@ This endpoint does not need any parameter.
 # **update_key**
 > GetKey200Response update_key(ssh_key_id, update_key_request)
 
-Изменение SSH-ключа по уникальному идентификатору
+Изменение SSH-ключа по ID
 
 Чтобы изменить SSH-ключ, отправьте PATCH-запрос на `/api/v1/ssh-keys/{ssh_key_id}`
 
@@ -537,11 +537,11 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.SSHApi(api_client)
-    ssh_key_id = 1051 # object | ID SSH-ключа
+    ssh_key_id = 1051 # object | ID SSH-ключа.
     update_key_request = timeweb_cloud_api.UpdateKeyRequest() # UpdateKeyRequest | 
 
     try:
-        # Изменение SSH-ключа по уникальному идентификатору
+        # Изменение SSH-ключа по ID
         api_response = api_instance.update_key(ssh_key_id, update_key_request)
         print("The response of SSHApi->update_key:\n")
         pprint(api_response)
@@ -554,7 +554,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ssh_key_id** | [**object**](.md)| ID SSH-ключа | 
+ **ssh_key_id** | [**object**](.md)| ID SSH-ключа. | 
  **update_key_request** | [**UpdateKeyRequest**](UpdateKeyRequest.md)|  | 
 
 ### Return type

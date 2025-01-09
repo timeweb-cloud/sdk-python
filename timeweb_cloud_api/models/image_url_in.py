@@ -29,7 +29,7 @@ class ImageUrlIn(BaseModel):
     ImageUrlIn
     """
     type: Optional[URLType] = None
-    filename: Optional[Any] = Field(None, description="Имя файла для загрузки в облачное хранилище")
+    filename: Optional[Any] = Field(None, description="Имя файла для загрузки в облачное хранилище.")
     auth: Optional[ImageUrlAuth] = None
     __properties = ["type", "filename", "auth"]
 

@@ -62,7 +62,8 @@ class TestDedicatedServer(unittest.TestCase):
                 plan_id = 2377, 
                 price = 5490, 
                 location = ru-1, 
-                autoinstall_ready = 2
+                autoinstall_ready = 2, 
+                password = password
             )
         else :
             return DedicatedServer(
@@ -90,6 +91,7 @@ class TestDedicatedServer(unittest.TestCase):
                 price = 5490,
                 location = ru-1,
                 autoinstall_ready = 2,
+                password = password,
         )
         """
 

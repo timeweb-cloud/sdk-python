@@ -46,7 +46,7 @@ class TestFloatingIPApi(unittest.TestCase):
     def test_delete_floating_ip(self):
         """Test case for delete_floating_ip
 
-        Удаление плавающего IP по идентификатору  # noqa: E501
+        Удаление плавающего IP по ID  # noqa: E501
         """
         pass
 
@@ -74,7 +74,7 @@ class TestFloatingIPApi(unittest.TestCase):
     def test_update_floating_ip(self):
         """Test case for update_floating_ip
 
-        Изменение плавающего IP по идентификатору  # noqa: E501
+        Изменение плавающего IP по ID  # noqa: E501
         """
         pass
 

@@ -205,7 +205,7 @@ class NetworkDrivesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def delete_network_drive(self, network_drive_id : Annotated[Any, Field(..., description="Идентификатор сетевого диска")], **kwargs) -> None:  # noqa: E501
+    def delete_network_drive(self, network_drive_id : Annotated[Any, Field(..., description="ID сетевого диска")], **kwargs) -> None:  # noqa: E501
         """Удаление сетевого диска по идентификатору  # noqa: E501
 
         Чтобы удалить сетевой диск, отправьте DELETE-запрос на `/api/v1/network-drives/{network_drive_id}`  # noqa: E501
@@ -215,7 +215,7 @@ class NetworkDrivesApi(object):
         >>> thread = api.delete_network_drive(network_drive_id, async_req=True)
         >>> result = thread.get()
 
-        :param network_drive_id: Идентификатор сетевого диска (required)
+        :param network_drive_id: ID сетевого диска (required)
         :type network_drive_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -234,7 +234,7 @@ class NetworkDrivesApi(object):
         return self.delete_network_drive_with_http_info(network_drive_id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def delete_network_drive_with_http_info(self, network_drive_id : Annotated[Any, Field(..., description="Идентификатор сетевого диска")], **kwargs) -> ApiResponse:  # noqa: E501
+    def delete_network_drive_with_http_info(self, network_drive_id : Annotated[Any, Field(..., description="ID сетевого диска")], **kwargs) -> ApiResponse:  # noqa: E501
         """Удаление сетевого диска по идентификатору  # noqa: E501
 
         Чтобы удалить сетевой диск, отправьте DELETE-запрос на `/api/v1/network-drives/{network_drive_id}`  # noqa: E501
@@ -244,7 +244,7 @@ class NetworkDrivesApi(object):
         >>> thread = api.delete_network_drive_with_http_info(network_drive_id, async_req=True)
         >>> result = thread.get()
 
-        :param network_drive_id: Идентификатор сетевого диска (required)
+        :param network_drive_id: ID сетевого диска (required)
         :type network_drive_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -338,7 +338,7 @@ class NetworkDrivesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def get_network_drive(self, network_drive_id : Annotated[Any, Field(..., description="Идентификатор сетевого диска")], **kwargs) -> CreateNetworkDrive201Response:  # noqa: E501
+    def get_network_drive(self, network_drive_id : Annotated[Any, Field(..., description="ID сетевого диска")], **kwargs) -> CreateNetworkDrive201Response:  # noqa: E501
         """Получение сетевого диска  # noqa: E501
 
         Чтобы отобразить информацию об отдельном сетевом диске, отправьте запрос GET на `api/v1/network-drives/{network_drive_id}`.  # noqa: E501
@@ -348,7 +348,7 @@ class NetworkDrivesApi(object):
         >>> thread = api.get_network_drive(network_drive_id, async_req=True)
         >>> result = thread.get()
 
-        :param network_drive_id: Идентификатор сетевого диска (required)
+        :param network_drive_id: ID сетевого диска (required)
         :type network_drive_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -367,7 +367,7 @@ class NetworkDrivesApi(object):
         return self.get_network_drive_with_http_info(network_drive_id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def get_network_drive_with_http_info(self, network_drive_id : Annotated[Any, Field(..., description="Идентификатор сетевого диска")], **kwargs) -> ApiResponse:  # noqa: E501
+    def get_network_drive_with_http_info(self, network_drive_id : Annotated[Any, Field(..., description="ID сетевого диска")], **kwargs) -> ApiResponse:  # noqa: E501
         """Получение сетевого диска  # noqa: E501
 
         Чтобы отобразить информацию об отдельном сетевом диске, отправьте запрос GET на `api/v1/network-drives/{network_drive_id}`.  # noqa: E501
@@ -377,7 +377,7 @@ class NetworkDrivesApi(object):
         >>> thread = api.get_network_drive_with_http_info(network_drive_id, async_req=True)
         >>> result = thread.get()
 
-        :param network_drive_id: Идентификатор сетевого диска (required)
+        :param network_drive_id: ID сетевого диска (required)
         :type network_drive_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -894,7 +894,7 @@ class NetworkDrivesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def mount_network_drive(self, network_drive_id : Annotated[Any, Field(..., description="Идентификатор сетевого диска")], mount_network_drive : MountNetworkDrive, **kwargs) -> None:  # noqa: E501
+    def mount_network_drive(self, network_drive_id : Annotated[Any, Field(..., description="ID сетевого диска")], mount_network_drive : MountNetworkDrive, **kwargs) -> None:  # noqa: E501
         """Подключить сетевой диск к сервису  # noqa: E501
 
         Чтобы подключить сетевой диск к сервису, отправьте POST-запрос на `/api/v1/network-drives/{network_drive_id}/mount`.  # noqa: E501
@@ -904,7 +904,7 @@ class NetworkDrivesApi(object):
         >>> thread = api.mount_network_drive(network_drive_id, mount_network_drive, async_req=True)
         >>> result = thread.get()
 
-        :param network_drive_id: Идентификатор сетевого диска (required)
+        :param network_drive_id: ID сетевого диска (required)
         :type network_drive_id: object
         :param mount_network_drive: (required)
         :type mount_network_drive: MountNetworkDrive
@@ -925,7 +925,7 @@ class NetworkDrivesApi(object):
         return self.mount_network_drive_with_http_info(network_drive_id, mount_network_drive, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def mount_network_drive_with_http_info(self, network_drive_id : Annotated[Any, Field(..., description="Идентификатор сетевого диска")], mount_network_drive : MountNetworkDrive, **kwargs) -> ApiResponse:  # noqa: E501
+    def mount_network_drive_with_http_info(self, network_drive_id : Annotated[Any, Field(..., description="ID сетевого диска")], mount_network_drive : MountNetworkDrive, **kwargs) -> ApiResponse:  # noqa: E501
         """Подключить сетевой диск к сервису  # noqa: E501
 
         Чтобы подключить сетевой диск к сервису, отправьте POST-запрос на `/api/v1/network-drives/{network_drive_id}/mount`.  # noqa: E501
@@ -935,7 +935,7 @@ class NetworkDrivesApi(object):
         >>> thread = api.mount_network_drive_with_http_info(network_drive_id, mount_network_drive, async_req=True)
         >>> result = thread.get()
 
-        :param network_drive_id: Идентификатор сетевого диска (required)
+        :param network_drive_id: ID сетевого диска (required)
         :type network_drive_id: object
         :param mount_network_drive: (required)
         :type mount_network_drive: MountNetworkDrive
@@ -1042,7 +1042,7 @@ class NetworkDrivesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def unmount_network_drive(self, network_drive_id : Annotated[Any, Field(..., description="Идентификатор сетевого диска")], **kwargs) -> None:  # noqa: E501
+    def unmount_network_drive(self, network_drive_id : Annotated[Any, Field(..., description="ID сетевого диска")], **kwargs) -> None:  # noqa: E501
         """Отключить сетевой диск от сервиса  # noqa: E501
 
         Чтобы отключить сетевой диск от сервиса, отправьте POST-запрос на `/api/v1/network-drives/{network_drive_id}/unmount`.  # noqa: E501
@@ -1052,7 +1052,7 @@ class NetworkDrivesApi(object):
         >>> thread = api.unmount_network_drive(network_drive_id, async_req=True)
         >>> result = thread.get()
 
-        :param network_drive_id: Идентификатор сетевого диска (required)
+        :param network_drive_id: ID сетевого диска (required)
         :type network_drive_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -1071,7 +1071,7 @@ class NetworkDrivesApi(object):
         return self.unmount_network_drive_with_http_info(network_drive_id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def unmount_network_drive_with_http_info(self, network_drive_id : Annotated[Any, Field(..., description="Идентификатор сетевого диска")], **kwargs) -> ApiResponse:  # noqa: E501
+    def unmount_network_drive_with_http_info(self, network_drive_id : Annotated[Any, Field(..., description="ID сетевого диска")], **kwargs) -> ApiResponse:  # noqa: E501
         """Отключить сетевой диск от сервиса  # noqa: E501
 
         Чтобы отключить сетевой диск от сервиса, отправьте POST-запрос на `/api/v1/network-drives/{network_drive_id}/unmount`.  # noqa: E501
@@ -1081,7 +1081,7 @@ class NetworkDrivesApi(object):
         >>> thread = api.unmount_network_drive_with_http_info(network_drive_id, async_req=True)
         >>> result = thread.get()
 
-        :param network_drive_id: Идентификатор сетевого диска (required)
+        :param network_drive_id: ID сетевого диска (required)
         :type network_drive_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -1175,8 +1175,8 @@ class NetworkDrivesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def update_network_drive(self, network_drive_id : Annotated[Any, Field(..., description="Идентификатор сетевого диска")], update_network_drive : UpdateNetworkDrive, **kwargs) -> CreateNetworkDrive201Response:  # noqa: E501
-        """Изменение сетевого диска по идентификатору  # noqa: E501
+    def update_network_drive(self, network_drive_id : Annotated[Any, Field(..., description="ID сетевого диска")], update_network_drive : UpdateNetworkDrive, **kwargs) -> CreateNetworkDrive201Response:  # noqa: E501
+        """Изменение сетевого диска по ID  # noqa: E501
 
         Чтобы изменить сетевой диск, отправьте PATCH-запрос на `/api/v1/network-drives/{network_drive_id}`  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -1185,7 +1185,7 @@ class NetworkDrivesApi(object):
         >>> thread = api.update_network_drive(network_drive_id, update_network_drive, async_req=True)
         >>> result = thread.get()
 
-        :param network_drive_id: Идентификатор сетевого диска (required)
+        :param network_drive_id: ID сетевого диска (required)
         :type network_drive_id: object
         :param update_network_drive: (required)
         :type update_network_drive: UpdateNetworkDrive
@@ -1206,8 +1206,8 @@ class NetworkDrivesApi(object):
         return self.update_network_drive_with_http_info(network_drive_id, update_network_drive, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def update_network_drive_with_http_info(self, network_drive_id : Annotated[Any, Field(..., description="Идентификатор сетевого диска")], update_network_drive : UpdateNetworkDrive, **kwargs) -> ApiResponse:  # noqa: E501
-        """Изменение сетевого диска по идентификатору  # noqa: E501
+    def update_network_drive_with_http_info(self, network_drive_id : Annotated[Any, Field(..., description="ID сетевого диска")], update_network_drive : UpdateNetworkDrive, **kwargs) -> ApiResponse:  # noqa: E501
+        """Изменение сетевого диска по ID  # noqa: E501
 
         Чтобы изменить сетевой диск, отправьте PATCH-запрос на `/api/v1/network-drives/{network_drive_id}`  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -1216,7 +1216,7 @@ class NetworkDrivesApi(object):
         >>> thread = api.update_network_drive_with_http_info(network_drive_id, update_network_drive, async_req=True)
         >>> result = thread.get()
 
-        :param network_drive_id: Идентификатор сетевого диска (required)
+        :param network_drive_id: ID сетевого диска (required)
         :type network_drive_id: object
         :param update_network_drive: (required)
         :type update_network_drive: UpdateNetworkDrive

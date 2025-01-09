@@ -58,7 +58,7 @@ class BalancersApi(object):
         self.api_client = api_client
 
     @validate_arguments
-    def add_ips_to_balancer(self, balancer_id : Annotated[Any, Field(..., description="Идентификатор балансировщика")], add_ips_to_balancer_request : AddIPsToBalancerRequest, **kwargs) -> None:  # noqa: E501
+    def add_ips_to_balancer(self, balancer_id : Annotated[Any, Field(..., description="ID балансировщика")], add_ips_to_balancer_request : AddIPsToBalancerRequest, **kwargs) -> None:  # noqa: E501
         """Добавление IP-адресов к балансировщику  # noqa: E501
 
         Чтобы добавить `IP`-адреса к балансировщику, отправьте запрос POST в `api/v1/balancers/{balancer_id}/ips`.   # noqa: E501
@@ -68,7 +68,7 @@ class BalancersApi(object):
         >>> thread = api.add_ips_to_balancer(balancer_id, add_ips_to_balancer_request, async_req=True)
         >>> result = thread.get()
 
-        :param balancer_id: Идентификатор балансировщика (required)
+        :param balancer_id: ID балансировщика (required)
         :type balancer_id: object
         :param add_ips_to_balancer_request: (required)
         :type add_ips_to_balancer_request: AddIPsToBalancerRequest
@@ -89,7 +89,7 @@ class BalancersApi(object):
         return self.add_ips_to_balancer_with_http_info(balancer_id, add_ips_to_balancer_request, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def add_ips_to_balancer_with_http_info(self, balancer_id : Annotated[Any, Field(..., description="Идентификатор балансировщика")], add_ips_to_balancer_request : AddIPsToBalancerRequest, **kwargs) -> ApiResponse:  # noqa: E501
+    def add_ips_to_balancer_with_http_info(self, balancer_id : Annotated[Any, Field(..., description="ID балансировщика")], add_ips_to_balancer_request : AddIPsToBalancerRequest, **kwargs) -> ApiResponse:  # noqa: E501
         """Добавление IP-адресов к балансировщику  # noqa: E501
 
         Чтобы добавить `IP`-адреса к балансировщику, отправьте запрос POST в `api/v1/balancers/{balancer_id}/ips`.   # noqa: E501
@@ -99,7 +99,7 @@ class BalancersApi(object):
         >>> thread = api.add_ips_to_balancer_with_http_info(balancer_id, add_ips_to_balancer_request, async_req=True)
         >>> result = thread.get()
 
-        :param balancer_id: Идентификатор балансировщика (required)
+        :param balancer_id: ID балансировщика (required)
         :type balancer_id: object
         :param add_ips_to_balancer_request: (required)
         :type add_ips_to_balancer_request: AddIPsToBalancerRequest
@@ -358,7 +358,7 @@ class BalancersApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def create_balancer_rule(self, balancer_id : Annotated[Any, Field(..., description="Идентификатор балансировщика")], create_rule : CreateRule, **kwargs) -> CreateBalancerRule200Response:  # noqa: E501
+    def create_balancer_rule(self, balancer_id : Annotated[Any, Field(..., description="ID балансировщика")], create_rule : CreateRule, **kwargs) -> CreateBalancerRule200Response:  # noqa: E501
         """Создание правила для балансировщика  # noqa: E501
 
         Чтобы создать правило для балансировщика, отправьте запрос POST в `api/v1/balancers/{balancer_id}/rules`.   # noqa: E501
@@ -368,7 +368,7 @@ class BalancersApi(object):
         >>> thread = api.create_balancer_rule(balancer_id, create_rule, async_req=True)
         >>> result = thread.get()
 
-        :param balancer_id: Идентификатор балансировщика (required)
+        :param balancer_id: ID балансировщика (required)
         :type balancer_id: object
         :param create_rule: (required)
         :type create_rule: CreateRule
@@ -389,7 +389,7 @@ class BalancersApi(object):
         return self.create_balancer_rule_with_http_info(balancer_id, create_rule, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def create_balancer_rule_with_http_info(self, balancer_id : Annotated[Any, Field(..., description="Идентификатор балансировщика")], create_rule : CreateRule, **kwargs) -> ApiResponse:  # noqa: E501
+    def create_balancer_rule_with_http_info(self, balancer_id : Annotated[Any, Field(..., description="ID балансировщика")], create_rule : CreateRule, **kwargs) -> ApiResponse:  # noqa: E501
         """Создание правила для балансировщика  # noqa: E501
 
         Чтобы создать правило для балансировщика, отправьте запрос POST в `api/v1/balancers/{balancer_id}/rules`.   # noqa: E501
@@ -399,7 +399,7 @@ class BalancersApi(object):
         >>> thread = api.create_balancer_rule_with_http_info(balancer_id, create_rule, async_req=True)
         >>> result = thread.get()
 
-        :param balancer_id: Идентификатор балансировщика (required)
+        :param balancer_id: ID балансировщика (required)
         :type balancer_id: object
         :param create_rule: (required)
         :type create_rule: CreateRule
@@ -518,7 +518,7 @@ class BalancersApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def delete_balancer(self, balancer_id : Annotated[Any, Field(..., description="Идентификатор балансировщика")], hash : Annotated[Optional[Any], Field(description="Хеш, который совместно с кодом авторизации надо отправить для удаления, если включено подтверждение удаления сервисов через Телеграм.")] = None, code : Annotated[Optional[Any], Field(description="Код подтверждения, который придет к вам в Телеграм, после запроса удаления, если включено подтверждение удаления сервисов.  При помощи API токена сервисы можно удалять без подтверждения, если параметр токена `is_able_to_delete` установлен в значение `true`")] = None, **kwargs) -> DeleteBalancer200Response:  # noqa: E501
+    def delete_balancer(self, balancer_id : Annotated[Any, Field(..., description="ID балансировщика")], hash : Annotated[Optional[Any], Field(description="Хеш, который совместно с кодом авторизации надо отправить для удаления, если включено подтверждение удаления сервисов через Телеграм.")] = None, code : Annotated[Optional[Any], Field(description="Код подтверждения, который придет к вам в Телеграм, после запроса удаления, если включено подтверждение удаления сервисов.  При помощи API токена сервисы можно удалять без подтверждения, если параметр токена `is_able_to_delete` установлен в значение `true`")] = None, **kwargs) -> DeleteBalancer200Response:  # noqa: E501
         """Удаление балансировщика  # noqa: E501
 
         Чтобы удалить балансировщик, отправьте запрос DELETE в `api/v1/balancers/{balancer_id}`.   # noqa: E501
@@ -528,7 +528,7 @@ class BalancersApi(object):
         >>> thread = api.delete_balancer(balancer_id, hash, code, async_req=True)
         >>> result = thread.get()
 
-        :param balancer_id: Идентификатор балансировщика (required)
+        :param balancer_id: ID балансировщика (required)
         :type balancer_id: object
         :param hash: Хеш, который совместно с кодом авторизации надо отправить для удаления, если включено подтверждение удаления сервисов через Телеграм.
         :type hash: object
@@ -551,7 +551,7 @@ class BalancersApi(object):
         return self.delete_balancer_with_http_info(balancer_id, hash, code, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def delete_balancer_with_http_info(self, balancer_id : Annotated[Any, Field(..., description="Идентификатор балансировщика")], hash : Annotated[Optional[Any], Field(description="Хеш, который совместно с кодом авторизации надо отправить для удаления, если включено подтверждение удаления сервисов через Телеграм.")] = None, code : Annotated[Optional[Any], Field(description="Код подтверждения, который придет к вам в Телеграм, после запроса удаления, если включено подтверждение удаления сервисов.  При помощи API токена сервисы можно удалять без подтверждения, если параметр токена `is_able_to_delete` установлен в значение `true`")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def delete_balancer_with_http_info(self, balancer_id : Annotated[Any, Field(..., description="ID балансировщика")], hash : Annotated[Optional[Any], Field(description="Хеш, который совместно с кодом авторизации надо отправить для удаления, если включено подтверждение удаления сервисов через Телеграм.")] = None, code : Annotated[Optional[Any], Field(description="Код подтверждения, который придет к вам в Телеграм, после запроса удаления, если включено подтверждение удаления сервисов.  При помощи API токена сервисы можно удалять без подтверждения, если параметр токена `is_able_to_delete` установлен в значение `true`")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Удаление балансировщика  # noqa: E501
 
         Чтобы удалить балансировщик, отправьте запрос DELETE в `api/v1/balancers/{balancer_id}`.   # noqa: E501
@@ -561,7 +561,7 @@ class BalancersApi(object):
         >>> thread = api.delete_balancer_with_http_info(balancer_id, hash, code, async_req=True)
         >>> result = thread.get()
 
-        :param balancer_id: Идентификатор балансировщика (required)
+        :param balancer_id: ID балансировщика (required)
         :type balancer_id: object
         :param hash: Хеш, который совместно с кодом авторизации надо отправить для удаления, если включено подтверждение удаления сервисов через Телеграм.
         :type hash: object
@@ -680,7 +680,7 @@ class BalancersApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def delete_balancer_rule(self, balancer_id : Annotated[Any, Field(..., description="Идентификатор балансировщика")], rule_id : Annotated[Any, Field(..., description="Идентификатор правила для балансировщика")], **kwargs) -> None:  # noqa: E501
+    def delete_balancer_rule(self, balancer_id : Annotated[Any, Field(..., description="ID балансировщика")], rule_id : Annotated[Any, Field(..., description="ID правила для балансировщика")], **kwargs) -> None:  # noqa: E501
         """Удаление правила для балансировщика  # noqa: E501
 
         Чтобы удалить правило для балансировщика, отправьте запрос DELETE в `api/v1/balancers/{balancer_id}/rules/{rule_id}`.   # noqa: E501
@@ -690,9 +690,9 @@ class BalancersApi(object):
         >>> thread = api.delete_balancer_rule(balancer_id, rule_id, async_req=True)
         >>> result = thread.get()
 
-        :param balancer_id: Идентификатор балансировщика (required)
+        :param balancer_id: ID балансировщика (required)
         :type balancer_id: object
-        :param rule_id: Идентификатор правила для балансировщика (required)
+        :param rule_id: ID правила для балансировщика (required)
         :type rule_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -711,7 +711,7 @@ class BalancersApi(object):
         return self.delete_balancer_rule_with_http_info(balancer_id, rule_id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def delete_balancer_rule_with_http_info(self, balancer_id : Annotated[Any, Field(..., description="Идентификатор балансировщика")], rule_id : Annotated[Any, Field(..., description="Идентификатор правила для балансировщика")], **kwargs) -> ApiResponse:  # noqa: E501
+    def delete_balancer_rule_with_http_info(self, balancer_id : Annotated[Any, Field(..., description="ID балансировщика")], rule_id : Annotated[Any, Field(..., description="ID правила для балансировщика")], **kwargs) -> ApiResponse:  # noqa: E501
         """Удаление правила для балансировщика  # noqa: E501
 
         Чтобы удалить правило для балансировщика, отправьте запрос DELETE в `api/v1/balancers/{balancer_id}/rules/{rule_id}`.   # noqa: E501
@@ -721,9 +721,9 @@ class BalancersApi(object):
         >>> thread = api.delete_balancer_rule_with_http_info(balancer_id, rule_id, async_req=True)
         >>> result = thread.get()
 
-        :param balancer_id: Идентификатор балансировщика (required)
+        :param balancer_id: ID балансировщика (required)
         :type balancer_id: object
-        :param rule_id: Идентификатор правила для балансировщика (required)
+        :param rule_id: ID правила для балансировщика (required)
         :type rule_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -821,7 +821,7 @@ class BalancersApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def delete_ips_from_balancer(self, balancer_id : Annotated[Any, Field(..., description="Идентификатор балансировщика")], add_ips_to_balancer_request : AddIPsToBalancerRequest, **kwargs) -> None:  # noqa: E501
+    def delete_ips_from_balancer(self, balancer_id : Annotated[Any, Field(..., description="ID балансировщика")], add_ips_to_balancer_request : AddIPsToBalancerRequest, **kwargs) -> None:  # noqa: E501
         """Удаление IP-адресов из балансировщика  # noqa: E501
 
         Чтобы удалить `IP`-адреса из балансировщика, отправьте запрос DELETE в `api/v1/balancers/{balancer_id}/ips`.   # noqa: E501
@@ -831,7 +831,7 @@ class BalancersApi(object):
         >>> thread = api.delete_ips_from_balancer(balancer_id, add_ips_to_balancer_request, async_req=True)
         >>> result = thread.get()
 
-        :param balancer_id: Идентификатор балансировщика (required)
+        :param balancer_id: ID балансировщика (required)
         :type balancer_id: object
         :param add_ips_to_balancer_request: (required)
         :type add_ips_to_balancer_request: AddIPsToBalancerRequest
@@ -852,7 +852,7 @@ class BalancersApi(object):
         return self.delete_ips_from_balancer_with_http_info(balancer_id, add_ips_to_balancer_request, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def delete_ips_from_balancer_with_http_info(self, balancer_id : Annotated[Any, Field(..., description="Идентификатор балансировщика")], add_ips_to_balancer_request : AddIPsToBalancerRequest, **kwargs) -> ApiResponse:  # noqa: E501
+    def delete_ips_from_balancer_with_http_info(self, balancer_id : Annotated[Any, Field(..., description="ID балансировщика")], add_ips_to_balancer_request : AddIPsToBalancerRequest, **kwargs) -> ApiResponse:  # noqa: E501
         """Удаление IP-адресов из балансировщика  # noqa: E501
 
         Чтобы удалить `IP`-адреса из балансировщика, отправьте запрос DELETE в `api/v1/balancers/{balancer_id}/ips`.   # noqa: E501
@@ -862,7 +862,7 @@ class BalancersApi(object):
         >>> thread = api.delete_ips_from_balancer_with_http_info(balancer_id, add_ips_to_balancer_request, async_req=True)
         >>> result = thread.get()
 
-        :param balancer_id: Идентификатор балансировщика (required)
+        :param balancer_id: ID балансировщика (required)
         :type balancer_id: object
         :param add_ips_to_balancer_request: (required)
         :type add_ips_to_balancer_request: AddIPsToBalancerRequest
@@ -969,7 +969,7 @@ class BalancersApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def get_balancer(self, balancer_id : Annotated[Any, Field(..., description="Идентификатор балансировщика")], **kwargs) -> CreateBalancer200Response:  # noqa: E501
+    def get_balancer(self, balancer_id : Annotated[Any, Field(..., description="ID балансировщика")], **kwargs) -> CreateBalancer200Response:  # noqa: E501
         """Получение бaлансировщика  # noqa: E501
 
         Чтобы отобразить информацию об отдельном балансировщике, отправьте запрос GET на `api/v1/balancers/{balancer_id}`.   # noqa: E501
@@ -979,7 +979,7 @@ class BalancersApi(object):
         >>> thread = api.get_balancer(balancer_id, async_req=True)
         >>> result = thread.get()
 
-        :param balancer_id: Идентификатор балансировщика (required)
+        :param balancer_id: ID балансировщика (required)
         :type balancer_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -998,7 +998,7 @@ class BalancersApi(object):
         return self.get_balancer_with_http_info(balancer_id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def get_balancer_with_http_info(self, balancer_id : Annotated[Any, Field(..., description="Идентификатор балансировщика")], **kwargs) -> ApiResponse:  # noqa: E501
+    def get_balancer_with_http_info(self, balancer_id : Annotated[Any, Field(..., description="ID балансировщика")], **kwargs) -> ApiResponse:  # noqa: E501
         """Получение бaлансировщика  # noqa: E501
 
         Чтобы отобразить информацию об отдельном балансировщике, отправьте запрос GET на `api/v1/balancers/{balancer_id}`.   # noqa: E501
@@ -1008,7 +1008,7 @@ class BalancersApi(object):
         >>> thread = api.get_balancer_with_http_info(balancer_id, async_req=True)
         >>> result = thread.get()
 
-        :param balancer_id: Идентификатор балансировщика (required)
+        :param balancer_id: ID балансировщика (required)
         :type balancer_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -1114,7 +1114,7 @@ class BalancersApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def get_balancer_ips(self, balancer_id : Annotated[Any, Field(..., description="Идентификатор балансировщика")], **kwargs) -> GetBalancerIPs200Response:  # noqa: E501
+    def get_balancer_ips(self, balancer_id : Annotated[Any, Field(..., description="ID балансировщика")], **kwargs) -> GetBalancerIPs200Response:  # noqa: E501
         """Получение списка IP-адресов балансировщика  # noqa: E501
 
         Чтобы добавить `IP`-адреса к балансировщику, отправьте запрос GET в `api/v1/balancers/{balancer_id}/ips`.   # noqa: E501
@@ -1124,7 +1124,7 @@ class BalancersApi(object):
         >>> thread = api.get_balancer_ips(balancer_id, async_req=True)
         >>> result = thread.get()
 
-        :param balancer_id: Идентификатор балансировщика (required)
+        :param balancer_id: ID балансировщика (required)
         :type balancer_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -1143,7 +1143,7 @@ class BalancersApi(object):
         return self.get_balancer_ips_with_http_info(balancer_id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def get_balancer_ips_with_http_info(self, balancer_id : Annotated[Any, Field(..., description="Идентификатор балансировщика")], **kwargs) -> ApiResponse:  # noqa: E501
+    def get_balancer_ips_with_http_info(self, balancer_id : Annotated[Any, Field(..., description="ID балансировщика")], **kwargs) -> ApiResponse:  # noqa: E501
         """Получение списка IP-адресов балансировщика  # noqa: E501
 
         Чтобы добавить `IP`-адреса к балансировщику, отправьте запрос GET в `api/v1/balancers/{balancer_id}/ips`.   # noqa: E501
@@ -1153,7 +1153,7 @@ class BalancersApi(object):
         >>> thread = api.get_balancer_ips_with_http_info(balancer_id, async_req=True)
         >>> result = thread.get()
 
-        :param balancer_id: Идентификатор балансировщика (required)
+        :param balancer_id: ID балансировщика (required)
         :type balancer_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -1259,7 +1259,7 @@ class BalancersApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def get_balancer_rules(self, balancer_id : Annotated[Any, Field(..., description="Идентификатор балансировщика")], **kwargs) -> GetBalancerRules200Response:  # noqa: E501
+    def get_balancer_rules(self, balancer_id : Annotated[Any, Field(..., description="ID балансировщика")], **kwargs) -> GetBalancerRules200Response:  # noqa: E501
         """Получение правил балансировщика  # noqa: E501
 
         Чтобы получить правила балансировщика, отправьте запрос GET в `api/v1/balancers/{balancer_id}/rules`.   # noqa: E501
@@ -1269,7 +1269,7 @@ class BalancersApi(object):
         >>> thread = api.get_balancer_rules(balancer_id, async_req=True)
         >>> result = thread.get()
 
-        :param balancer_id: Идентификатор балансировщика (required)
+        :param balancer_id: ID балансировщика (required)
         :type balancer_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -1288,7 +1288,7 @@ class BalancersApi(object):
         return self.get_balancer_rules_with_http_info(balancer_id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def get_balancer_rules_with_http_info(self, balancer_id : Annotated[Any, Field(..., description="Идентификатор балансировщика")], **kwargs) -> ApiResponse:  # noqa: E501
+    def get_balancer_rules_with_http_info(self, balancer_id : Annotated[Any, Field(..., description="ID балансировщика")], **kwargs) -> ApiResponse:  # noqa: E501
         """Получение правил балансировщика  # noqa: E501
 
         Чтобы получить правила балансировщика, отправьте запрос GET в `api/v1/balancers/{balancer_id}/rules`.   # noqa: E501
@@ -1298,7 +1298,7 @@ class BalancersApi(object):
         >>> thread = api.get_balancer_rules_with_http_info(balancer_id, async_req=True)
         >>> result = thread.get()
 
-        :param balancer_id: Идентификатор балансировщика (required)
+        :param balancer_id: ID балансировщика (required)
         :type balancer_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -1694,7 +1694,7 @@ class BalancersApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def update_balancer(self, balancer_id : Annotated[Any, Field(..., description="Идентификатор балансировщика")], update_balancer : UpdateBalancer, **kwargs) -> CreateBalancer200Response:  # noqa: E501
+    def update_balancer(self, balancer_id : Annotated[Any, Field(..., description="ID балансировщика")], update_balancer : UpdateBalancer, **kwargs) -> CreateBalancer200Response:  # noqa: E501
         """Обновление балансировщика  # noqa: E501
 
         Чтобы обновить только определенные атрибуты балансировщика, отправьте запрос PATCH в `api/v1/balancers/{balancer_id}`.   # noqa: E501
@@ -1704,7 +1704,7 @@ class BalancersApi(object):
         >>> thread = api.update_balancer(balancer_id, update_balancer, async_req=True)
         >>> result = thread.get()
 
-        :param balancer_id: Идентификатор балансировщика (required)
+        :param balancer_id: ID балансировщика (required)
         :type balancer_id: object
         :param update_balancer: (required)
         :type update_balancer: UpdateBalancer
@@ -1725,7 +1725,7 @@ class BalancersApi(object):
         return self.update_balancer_with_http_info(balancer_id, update_balancer, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def update_balancer_with_http_info(self, balancer_id : Annotated[Any, Field(..., description="Идентификатор балансировщика")], update_balancer : UpdateBalancer, **kwargs) -> ApiResponse:  # noqa: E501
+    def update_balancer_with_http_info(self, balancer_id : Annotated[Any, Field(..., description="ID балансировщика")], update_balancer : UpdateBalancer, **kwargs) -> ApiResponse:  # noqa: E501
         """Обновление балансировщика  # noqa: E501
 
         Чтобы обновить только определенные атрибуты балансировщика, отправьте запрос PATCH в `api/v1/balancers/{balancer_id}`.   # noqa: E501
@@ -1735,7 +1735,7 @@ class BalancersApi(object):
         >>> thread = api.update_balancer_with_http_info(balancer_id, update_balancer, async_req=True)
         >>> result = thread.get()
 
-        :param balancer_id: Идентификатор балансировщика (required)
+        :param balancer_id: ID балансировщика (required)
         :type balancer_id: object
         :param update_balancer: (required)
         :type update_balancer: UpdateBalancer
@@ -1854,7 +1854,7 @@ class BalancersApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def update_balancer_rule(self, balancer_id : Annotated[Any, Field(..., description="Идентификатор балансировщика")], rule_id : Annotated[Any, Field(..., description="Идентификатор правила для балансировщика")], update_rule : UpdateRule, **kwargs) -> CreateBalancerRule200Response:  # noqa: E501
+    def update_balancer_rule(self, balancer_id : Annotated[Any, Field(..., description="ID балансировщика")], rule_id : Annotated[Any, Field(..., description="ID правила для балансировщика")], update_rule : UpdateRule, **kwargs) -> CreateBalancerRule200Response:  # noqa: E501
         """Обновление правила для балансировщика  # noqa: E501
 
         Чтобы обновить правило для балансировщика, отправьте запрос PATCH в `api/v1/balancers/{balancer_id}/rules/{rule_id}`.   # noqa: E501
@@ -1864,9 +1864,9 @@ class BalancersApi(object):
         >>> thread = api.update_balancer_rule(balancer_id, rule_id, update_rule, async_req=True)
         >>> result = thread.get()
 
-        :param balancer_id: Идентификатор балансировщика (required)
+        :param balancer_id: ID балансировщика (required)
         :type balancer_id: object
-        :param rule_id: Идентификатор правила для балансировщика (required)
+        :param rule_id: ID правила для балансировщика (required)
         :type rule_id: object
         :param update_rule: (required)
         :type update_rule: UpdateRule
@@ -1887,7 +1887,7 @@ class BalancersApi(object):
         return self.update_balancer_rule_with_http_info(balancer_id, rule_id, update_rule, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def update_balancer_rule_with_http_info(self, balancer_id : Annotated[Any, Field(..., description="Идентификатор балансировщика")], rule_id : Annotated[Any, Field(..., description="Идентификатор правила для балансировщика")], update_rule : UpdateRule, **kwargs) -> ApiResponse:  # noqa: E501
+    def update_balancer_rule_with_http_info(self, balancer_id : Annotated[Any, Field(..., description="ID балансировщика")], rule_id : Annotated[Any, Field(..., description="ID правила для балансировщика")], update_rule : UpdateRule, **kwargs) -> ApiResponse:  # noqa: E501
         """Обновление правила для балансировщика  # noqa: E501
 
         Чтобы обновить правило для балансировщика, отправьте запрос PATCH в `api/v1/balancers/{balancer_id}/rules/{rule_id}`.   # noqa: E501
@@ -1897,9 +1897,9 @@ class BalancersApi(object):
         >>> thread = api.update_balancer_rule_with_http_info(balancer_id, rule_id, update_rule, async_req=True)
         >>> result = thread.get()
 
-        :param balancer_id: Идентификатор балансировщика (required)
+        :param balancer_id: ID балансировщика (required)
         :type balancer_id: object
-        :param rule_id: Идентификатор правила для балансировщика (required)
+        :param rule_id: ID правила для балансировщика (required)
         :type rule_id: object
         :param update_rule: (required)
         :type update_rule: UpdateRule

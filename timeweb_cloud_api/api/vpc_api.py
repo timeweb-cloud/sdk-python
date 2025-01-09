@@ -204,7 +204,7 @@ class VPCApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def delete_vpc(self, vpc_id : Annotated[Any, Field(..., description="ID сети")], **kwargs) -> CreateVPC201Response:  # noqa: E501
+    def delete_vpc(self, vpc_id : Annotated[Any, Field(..., description="ID сети")], **kwargs) -> None:  # noqa: E501
         """Удаление VPC по ID сети  # noqa: E501
 
         Чтобы удалить VPC, отправьте DELETE-запрос на `/api/v1/vpcs/{vpc_id}`  # noqa: E501
@@ -225,7 +225,7 @@ class VPCApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: CreateVPC201Response
+        :rtype: None
         """
         kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
@@ -267,7 +267,7 @@ class VPCApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: tuple(CreateVPC201Response, status_code(int), headers(HTTPHeaderDict))
+        :rtype: None
         """
 
         _params = locals()
@@ -314,22 +314,10 @@ class VPCApi(object):
         _files = {}
         # process the body parameter
         _body_params = None
-        # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
-
         # authentication setting
         _auth_settings = ['Bearer']  # noqa: E501
 
-        _response_types_map = {
-            '204': "CreateVPC201Response",
-            '400': None,
-            '401': None,
-            '403': None,
-            '404': None,
-            '429': None,
-            '500': None,
-        }
+        _response_types_map = {}
 
         return self.api_client.call_api(
             '/api/v1/vpcs/{vpc_id}', 'DELETE',

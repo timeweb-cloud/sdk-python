@@ -40,35 +40,39 @@ class TestImageOutResponse(unittest.TestCase):
         if include_optional :
             return ImageOutResponse(
                 response_id = None, 
-                image = timeweb_cloud_api.models.image_out_api.ImageOutAPI(
+                image = timeweb_cloud_api.models.image.image(
                     id = null, 
                     status = new, 
                     created_at = null, 
                     deleted_at = null, 
                     size = null, 
+                    virtual_size = null, 
                     name = null, 
                     description = null, 
                     disk_id = null, 
-                    location = null, 
+                    location = ru-1, 
                     os = centos, 
                     progress = null, 
-                    is_custom = null, )
+                    is_custom = null, 
+                    type = qcow2, )
             )
         else :
             return ImageOutResponse(
-                image = timeweb_cloud_api.models.image_out_api.ImageOutAPI(
+                image = timeweb_cloud_api.models.image.image(
                     id = null, 
                     status = new, 
                     created_at = null, 
                     deleted_at = null, 
                     size = null, 
+                    virtual_size = null, 
                     name = null, 
                     description = null, 
                     disk_id = null, 
-                    location = null, 
+                    location = ru-1, 
                     os = centos, 
                     progress = null, 
-                    is_custom = null, ),
+                    is_custom = null, 
+                    type = qcow2, ),
         )
         """
 

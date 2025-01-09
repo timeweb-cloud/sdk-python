@@ -29,7 +29,7 @@ class ProjectResource(BaseModel):
     """
     id: Optional[Any] = Field(..., description="ID для каждого ресурса проекта. Автоматически генерируется при создании.")
     created_at: Optional[Any] = Field(..., description="Значение времени, указанное в комбинированном формате даты и времени ISO8601, которое представляет, когда был создан ресурс.")
-    resource_id: Optional[Any] = Field(..., description="Идентификатор ресурса проекта (сервера, хранилища, кластера, балансировщика, базы данных или выделенного сервера).")
+    resource_id: Optional[Any] = Field(..., description="ID ресурса проекта (сервера, хранилища, кластера, балансировщика, базы данных или выделенного сервера).")
     project: Project = Field(...)
     type: Optional[Any] = Field(..., description="Тип ресурса проекта")
     __properties = ["id", "created_at", "resource_id", "project", "type"]

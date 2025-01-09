@@ -21,14 +21,14 @@ import json
 
 from typing import Any, Optional
 from pydantic import BaseModel, Field
-from timeweb_cloud_api.models.image_out_api import ImageOutAPI
+from timeweb_cloud_api.models.image import Image
 
 class ImageOutResponse(BaseModel):
     """
     ImageOutResponse
     """
-    response_id: Optional[Any] = Field(None, description="Идентификатор запроса")
-    image: ImageOutAPI = Field(...)
+    response_id: Optional[Any] = Field(None, description="ID запроса.")
+    image: Image = Field(...)
     __properties = ["response_id", "image"]
 
     class Config:
@@ -76,7 +76,7 @@ class ImageOutResponse(BaseModel):
 
         _obj = ImageOutResponse.parse_obj({
             "response_id": obj.get("response_id"),
-            "image": ImageOutAPI.from_dict(obj.get("image")) if obj.get("image") is not None else None
+            "image": Image.from_dict(obj.get("image")) if obj.get("image") is not None else None
         })
         return _obj
 

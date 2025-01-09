@@ -88,7 +88,7 @@ class TestNetworkDrivesApi(unittest.TestCase):
     def test_update_network_drive(self):
         """Test case for update_network_drive
 
-        Изменение сетевого диска по идентификатору  # noqa: E501
+        Изменение сетевого диска по ID  # noqa: E501
         """
         pass
 

@@ -4,11 +4,11 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**description** | **object** | Описание правила | [optional] 
+**description** | **object** | Описание правила. | [optional] 
 **direction** | [**FirewallRuleDirection**](FirewallRuleDirection.md) |  | 
-**port** | **object** | Порт или диапазон портов, в случае tcp или udp | [optional] 
+**port** | **object** | Порт или диапазон портов, в случае tcp или udp. | [optional] 
 **protocol** | [**FirewallRuleProtocol**](FirewallRuleProtocol.md) |  | 
-**cidr** | **object** | Сетевой адрес или подсеть. Поддерживаются протоколы IPv4  и IPv6 | [optional] 
+**cidr** | **object** | Сетевой адрес или подсеть. Поддерживаются протоколы IPv4  и IPv.6 | [optional] 
 
 ## Example
 

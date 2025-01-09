@@ -27,7 +27,7 @@ class FloatingIp(BaseModel):
     """
     FloatingIp
     """
-    id: Optional[Any] = Field(..., description="Идентификатор IP.")
+    id: Optional[Any] = Field(..., description="ID IP.")
     ip: Optional[Any] = Field(..., description="IP-адрес")
     is_ddos_guard: Optional[Any] = Field(..., description="Это логическое значение, которое показывает, включена ли защита от DDoS.")
     availability_zone: AvailabilityZone = Field(...)

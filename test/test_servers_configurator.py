@@ -56,7 +56,10 @@ class TestServersConfigurator(unittest.TestCase):
                     disk_max = 30720, 
                     network_bandwidth_min = 200, 
                     network_bandwidth_step = 100, 
-                    network_bandwidth_max = 1000, )
+                    network_bandwidth_max = 1000, 
+                    gpu_min = 1, 
+                    gpu_max = 4, 
+                    gpu_step = 1, )
             )
         else :
             return ServersConfigurator(
@@ -77,7 +80,10 @@ class TestServersConfigurator(unittest.TestCase):
                     disk_max = 30720, 
                     network_bandwidth_min = 200, 
                     network_bandwidth_step = 100, 
-                    network_bandwidth_max = 1000, ),
+                    network_bandwidth_max = 1000, 
+                    gpu_min = 1, 
+                    gpu_max = 4, 
+                    gpu_step = 1, ),
         )
         """
 

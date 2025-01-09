@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **id** | **object** | ID тарифа выделенного сервера. | 
 **description** | **object** | Описание характеристик тарифа выделенного сервера. | 
 **is_ipmi_enabled** | **object** | Это логическое значение, которое показывает, доступен ли IPMI у данного тарифа. | 
+**is_pre_installed** | **object** | Это логическое значение, которое показывает, готов ли выделенный сервер к моментальной выдаче. | 
 **cpu** | [**DedicatedServerPresetCpu**](DedicatedServerPresetCpu.md) |  | 
 **disk** | [**DedicatedServerPresetDisk**](DedicatedServerPresetDisk.md) |  | 
 **price** | **object** | Стоимость тарифа выделенного сервера | [optional] 

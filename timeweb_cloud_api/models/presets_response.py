@@ -21,14 +21,14 @@ import json
 
 from typing import Any, Optional
 from pydantic import BaseModel, Field
-from timeweb_cloud_api.models.meta import Meta
+from timeweb_cloud_api.models.schemas_meta import SchemasMeta
 
 class PresetsResponse(BaseModel):
     """
     PresetsResponse
     """
-    response_id: Optional[Any] = Field(None, description="Идентификатор запроса")
-    meta: Meta = Field(...)
+    response_id: Optional[Any] = Field(None, description="ID запроса")
+    meta: SchemasMeta = Field(...)
     k8s_presets: Optional[Any] = Field(..., description="Массив тарифов k8s")
     __properties = ["response_id", "meta", "k8s_presets"]
 
@@ -82,7 +82,7 @@ class PresetsResponse(BaseModel):
 
         _obj = PresetsResponse.parse_obj({
             "response_id": obj.get("response_id"),
-            "meta": Meta.from_dict(obj.get("meta")) if obj.get("meta") is not None else None,
+            "meta": SchemasMeta.from_dict(obj.get("meta")) if obj.get("meta") is not None else None,
             "k8s_presets": obj.get("k8s_presets")
         })
         return _obj

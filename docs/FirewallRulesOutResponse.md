@@ -4,9 +4,9 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**response_id** | **object** | Идентификатор запроса | [optional] 
+**response_id** | **object** | ID запроса. | [optional] 
 **meta** | [**Meta**](Meta.md) |  | 
-**rules** | **object** | Массив объектов Firewall правил | 
+**rules** | **object** |  | 
 
 ## Example
 

@@ -4,8 +4,8 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**name** | **object** | Имя группы правил | 
-**description** | **object** | Описание группы правил | [optional] 
+**name** | **object** | Имя группы правил. | 
+**description** | **object** | Описание группы правил. | [optional] 
 
 ## Example
 

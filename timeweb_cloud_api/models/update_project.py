@@ -28,7 +28,7 @@ class UpdateProject(BaseModel):
     """
     name: Optional[Any] = Field(None, description="Удобочитаемое имя проекта. Максимальная длина — 255 символов.")
     description: Optional[Any] = Field(None, description="Описание проекта. Максимальная длина — 255 символов.")
-    avatar_id: Optional[Any] = Field(None, description="Идентификатор аватара пользователя. Описание методов работы с аватарами появится позднее.")
+    avatar_id: Optional[Any] = Field(None, description="ID аватара пользователя. Описание методов работы с аватарами появится позднее.")
     __properties = ["name", "description", "avatar_id"]
 
     class Config:

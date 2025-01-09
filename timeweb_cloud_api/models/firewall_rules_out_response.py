@@ -27,9 +27,9 @@ class FirewallRulesOutResponse(BaseModel):
     """
     FirewallRulesOutResponse
     """
-    response_id: Optional[Any] = Field(None, description="Идентификатор запроса")
+    response_id: Optional[Any] = Field(None, description="ID запроса.")
     meta: Meta = Field(...)
-    rules: Optional[Any] = Field(..., description="Массив объектов Firewall правил")
+    rules: Optional[Any] = Field(...)
     __properties = ["response_id", "meta", "rules"]
 
     class Config:

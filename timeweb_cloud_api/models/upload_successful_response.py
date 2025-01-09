@@ -27,7 +27,7 @@ class UploadSuccessfulResponse(BaseModel):
     """
     UploadSuccessfulResponse
     """
-    response_id: Optional[Any] = Field(None, description="Идентификатор запроса")
+    response_id: Optional[Any] = Field(None, description="ID запроса.")
     upload_successful: UploadSuccessful = Field(...)
     __properties = ["response_id", "upload_successful"]
 

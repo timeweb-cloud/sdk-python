@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **object** | Идентификатор IP. | 
+**id** | **object** | ID IP. | 
 **ip** | **object** | IP-адрес | 
 **is_ddos_guard** | **object** | Это логическое значение, которое показывает, включена ли защита от DDoS. | 
 **availability_zone** | [**AvailabilityZone**](AvailabilityZone.md) |  | 

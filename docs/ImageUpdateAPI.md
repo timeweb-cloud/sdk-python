@@ -4,8 +4,8 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**name** | **object** | Имя образа | [optional] 
-**description** | **object** | Описание образа | [optional] 
+**name** | **object** | Имя образа. | [optional] 
+**description** | **object** | Описание образа. | [optional] 
 
 ## Example
 

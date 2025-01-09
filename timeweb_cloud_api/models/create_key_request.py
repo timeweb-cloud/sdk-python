@@ -26,9 +26,9 @@ class CreateKeyRequest(BaseModel):
     """
     CreateKeyRequest
     """
-    body: Optional[Any] = Field(..., description="Тело SSH-ключа")
-    is_default: Optional[Any] = Field(..., description="Будет ли выбираться SSH-ключ по умолчанию при создании сервера  ")
-    name: Optional[Any] = Field(..., description="Название SSH-ключа")
+    body: Optional[Any] = Field(..., description="Тело SSH-ключа.")
+    is_default: Optional[Any] = Field(..., description="Будет ли выбираться SSH-ключ по умолчанию при создании сервера.  ")
+    name: Optional[Any] = Field(..., description="Название SSH-ключа.")
     __properties = ["body", "is_default", "name"]
 
     class Config:

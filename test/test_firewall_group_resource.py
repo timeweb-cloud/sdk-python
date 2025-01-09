@@ -13,67 +13,46 @@
 """
 
 
-from __future__ import annotations
-import pprint
-import re  # noqa: F401
-import json
+import unittest
+import datetime
 
+import timeweb_cloud_api
+from timeweb_cloud_api.models.firewall_group_resource import FirewallGroupResource  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
-from typing import Any, Optional
-from pydantic import BaseModel, Field
-from timeweb_cloud_api.models.resource_type import ResourceType
+class TestFirewallGroupResource(unittest.TestCase):
+    """FirewallGroupResource unit test stubs"""
 
-class FirewallGroupResourceOutAPI(BaseModel):
-    """
-    FirewallGroupResourceOutAPI
-    """
-    id: Optional[Any] = Field(..., description="resource id")
-    type: ResourceType = Field(...)
-    __properties = ["id", "type"]
+    def setUp(self):
+        pass
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
+    def tearDown(self):
+        pass
 
-    def to_str(self) -> str:
-        """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+    def make_instance(self, include_optional):
+        """Test FirewallGroupResource
+            include_option is a boolean, when False only required
+            params are included, when True both required and
+            optional params are included """
+        # uncomment below to create an instance of `FirewallGroupResource`
+        """
+        model = timeweb_cloud_api.models.firewall_group_resource.FirewallGroupResource()  # noqa: E501
+        if include_optional :
+            return FirewallGroupResource(
+                id = None, 
+                type = server
+            )
+        else :
+            return FirewallGroupResource(
+                id = None,
+                type = server,
+        )
+        """
 
-    def to_json(self) -> str:
-        """Returns the JSON representation of the model using alias"""
-        return json.dumps(self.to_dict())
+    def testFirewallGroupResource(self):
+        """Test FirewallGroupResource"""
+        # inst_req_only = self.make_instance(include_optional=False)
+        # inst_req_and_optional = self.make_instance(include_optional=True)
 
-    @classmethod
-    def from_json(cls, json_str: str) -> FirewallGroupResourceOutAPI:
-        """Create an instance of FirewallGroupResourceOutAPI from a JSON string"""
-        return cls.from_dict(json.loads(json_str))
-
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
-        # set to None if id (nullable) is None
-        # and __fields_set__ contains the field
-        if self.id is None and "id" in self.__fields_set__:
-            _dict['id'] = None
-
-        return _dict
-
-    @classmethod
-    def from_dict(cls, obj: dict) -> FirewallGroupResourceOutAPI:
-        """Create an instance of FirewallGroupResourceOutAPI from a dict"""
-        if obj is None:
-            return None
-
-        if not isinstance(obj, dict):
-            return FirewallGroupResourceOutAPI.parse_obj(obj)
-
-        _obj = FirewallGroupResourceOutAPI.parse_obj({
-            "id": obj.get("id"),
-            "type": obj.get("type")
-        })
-        return _obj
-
+if __name__ == '__main__':
+    unittest.main()

@@ -51,7 +51,7 @@ class FloatingIPApi(object):
         self.api_client = api_client
 
     @validate_arguments
-    def bind_floating_ip(self, floating_ip_id : Annotated[Any, Field(..., description="Идентификатор плавающего IP")], bind_floating_ip : BindFloatingIp, **kwargs) -> None:  # noqa: E501
+    def bind_floating_ip(self, floating_ip_id : Annotated[Any, Field(..., description="ID плавающего IP")], bind_floating_ip : BindFloatingIp, **kwargs) -> None:  # noqa: E501
         """Привязать IP к сервису  # noqa: E501
 
         Чтобы привязать IP к сервису, отправьте POST-запрос на `/api/v1/floating-ips/{floating_ip_id}/bind`.  # noqa: E501
@@ -61,7 +61,7 @@ class FloatingIPApi(object):
         >>> thread = api.bind_floating_ip(floating_ip_id, bind_floating_ip, async_req=True)
         >>> result = thread.get()
 
-        :param floating_ip_id: Идентификатор плавающего IP (required)
+        :param floating_ip_id: ID плавающего IP (required)
         :type floating_ip_id: object
         :param bind_floating_ip: (required)
         :type bind_floating_ip: BindFloatingIp
@@ -82,7 +82,7 @@ class FloatingIPApi(object):
         return self.bind_floating_ip_with_http_info(floating_ip_id, bind_floating_ip, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def bind_floating_ip_with_http_info(self, floating_ip_id : Annotated[Any, Field(..., description="Идентификатор плавающего IP")], bind_floating_ip : BindFloatingIp, **kwargs) -> ApiResponse:  # noqa: E501
+    def bind_floating_ip_with_http_info(self, floating_ip_id : Annotated[Any, Field(..., description="ID плавающего IP")], bind_floating_ip : BindFloatingIp, **kwargs) -> ApiResponse:  # noqa: E501
         """Привязать IP к сервису  # noqa: E501
 
         Чтобы привязать IP к сервису, отправьте POST-запрос на `/api/v1/floating-ips/{floating_ip_id}/bind`.  # noqa: E501
@@ -92,7 +92,7 @@ class FloatingIPApi(object):
         >>> thread = api.bind_floating_ip_with_http_info(floating_ip_id, bind_floating_ip, async_req=True)
         >>> result = thread.get()
 
-        :param floating_ip_id: Идентификатор плавающего IP (required)
+        :param floating_ip_id: ID плавающего IP (required)
         :type floating_ip_id: object
         :param bind_floating_ip: (required)
         :type bind_floating_ip: BindFloatingIp
@@ -351,8 +351,8 @@ class FloatingIPApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def delete_floating_ip(self, floating_ip_id : Annotated[Any, Field(..., description="Идентификатор плавающего IP")], **kwargs) -> None:  # noqa: E501
-        """Удаление плавающего IP по идентификатору  # noqa: E501
+    def delete_floating_ip(self, floating_ip_id : Annotated[Any, Field(..., description="ID плавающего IP")], **kwargs) -> None:  # noqa: E501
+        """Удаление плавающего IP по ID  # noqa: E501
 
         Чтобы удалить плавающий IP, отправьте DELETE-запрос на `/api/v1/floating-ips/{floating_ip_id}`  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -361,7 +361,7 @@ class FloatingIPApi(object):
         >>> thread = api.delete_floating_ip(floating_ip_id, async_req=True)
         >>> result = thread.get()
 
-        :param floating_ip_id: Идентификатор плавающего IP (required)
+        :param floating_ip_id: ID плавающего IP (required)
         :type floating_ip_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -380,8 +380,8 @@ class FloatingIPApi(object):
         return self.delete_floating_ip_with_http_info(floating_ip_id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def delete_floating_ip_with_http_info(self, floating_ip_id : Annotated[Any, Field(..., description="Идентификатор плавающего IP")], **kwargs) -> ApiResponse:  # noqa: E501
-        """Удаление плавающего IP по идентификатору  # noqa: E501
+    def delete_floating_ip_with_http_info(self, floating_ip_id : Annotated[Any, Field(..., description="ID плавающего IP")], **kwargs) -> ApiResponse:  # noqa: E501
+        """Удаление плавающего IP по ID  # noqa: E501
 
         Чтобы удалить плавающий IP, отправьте DELETE-запрос на `/api/v1/floating-ips/{floating_ip_id}`  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -390,7 +390,7 @@ class FloatingIPApi(object):
         >>> thread = api.delete_floating_ip_with_http_info(floating_ip_id, async_req=True)
         >>> result = thread.get()
 
-        :param floating_ip_id: Идентификатор плавающего IP (required)
+        :param floating_ip_id: ID плавающего IP (required)
         :type floating_ip_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -484,7 +484,7 @@ class FloatingIPApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def get_floating_ip(self, floating_ip_id : Annotated[Any, Field(..., description="Идентификатор плавающего IP")], **kwargs) -> CreateFloatingIp201Response:  # noqa: E501
+    def get_floating_ip(self, floating_ip_id : Annotated[Any, Field(..., description="ID плавающего IP")], **kwargs) -> CreateFloatingIp201Response:  # noqa: E501
         """Получение плавающего IP  # noqa: E501
 
         Чтобы отобразить информацию об отдельном плавающем IP, отправьте запрос GET на `api/v1/floating-ips/{floating_ip_id}`.  # noqa: E501
@@ -494,7 +494,7 @@ class FloatingIPApi(object):
         >>> thread = api.get_floating_ip(floating_ip_id, async_req=True)
         >>> result = thread.get()
 
-        :param floating_ip_id: Идентификатор плавающего IP (required)
+        :param floating_ip_id: ID плавающего IP (required)
         :type floating_ip_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -513,7 +513,7 @@ class FloatingIPApi(object):
         return self.get_floating_ip_with_http_info(floating_ip_id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def get_floating_ip_with_http_info(self, floating_ip_id : Annotated[Any, Field(..., description="Идентификатор плавающего IP")], **kwargs) -> ApiResponse:  # noqa: E501
+    def get_floating_ip_with_http_info(self, floating_ip_id : Annotated[Any, Field(..., description="ID плавающего IP")], **kwargs) -> ApiResponse:  # noqa: E501
         """Получение плавающего IP  # noqa: E501
 
         Чтобы отобразить информацию об отдельном плавающем IP, отправьте запрос GET на `api/v1/floating-ips/{floating_ip_id}`.  # noqa: E501
@@ -523,7 +523,7 @@ class FloatingIPApi(object):
         >>> thread = api.get_floating_ip_with_http_info(floating_ip_id, async_req=True)
         >>> result = thread.get()
 
-        :param floating_ip_id: Идентификатор плавающего IP (required)
+        :param floating_ip_id: ID плавающего IP (required)
         :type floating_ip_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -766,7 +766,7 @@ class FloatingIPApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def unbind_floating_ip(self, floating_ip_id : Annotated[Any, Field(..., description="Идентификатор плавающего IP")], **kwargs) -> None:  # noqa: E501
+    def unbind_floating_ip(self, floating_ip_id : Annotated[Any, Field(..., description="ID плавающего IP")], **kwargs) -> None:  # noqa: E501
         """Отвязать IP от сервиса  # noqa: E501
 
         Чтобы отвязать IP от сервиса, отправьте POST-запрос на `/api/v1/floating-ips/{floating_ip_id}/unbind`.  # noqa: E501
@@ -776,7 +776,7 @@ class FloatingIPApi(object):
         >>> thread = api.unbind_floating_ip(floating_ip_id, async_req=True)
         >>> result = thread.get()
 
-        :param floating_ip_id: Идентификатор плавающего IP (required)
+        :param floating_ip_id: ID плавающего IP (required)
         :type floating_ip_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -795,7 +795,7 @@ class FloatingIPApi(object):
         return self.unbind_floating_ip_with_http_info(floating_ip_id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def unbind_floating_ip_with_http_info(self, floating_ip_id : Annotated[Any, Field(..., description="Идентификатор плавающего IP")], **kwargs) -> ApiResponse:  # noqa: E501
+    def unbind_floating_ip_with_http_info(self, floating_ip_id : Annotated[Any, Field(..., description="ID плавающего IP")], **kwargs) -> ApiResponse:  # noqa: E501
         """Отвязать IP от сервиса  # noqa: E501
 
         Чтобы отвязать IP от сервиса, отправьте POST-запрос на `/api/v1/floating-ips/{floating_ip_id}/unbind`.  # noqa: E501
@@ -805,7 +805,7 @@ class FloatingIPApi(object):
         >>> thread = api.unbind_floating_ip_with_http_info(floating_ip_id, async_req=True)
         >>> result = thread.get()
 
-        :param floating_ip_id: Идентификатор плавающего IP (required)
+        :param floating_ip_id: ID плавающего IP (required)
         :type floating_ip_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -899,8 +899,8 @@ class FloatingIPApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def update_floating_ip(self, floating_ip_id : Annotated[Any, Field(..., description="Идентификатор плавающего IP")], update_floating_ip : UpdateFloatingIp, **kwargs) -> CreateFloatingIp201Response:  # noqa: E501
-        """Изменение плавающего IP по идентификатору  # noqa: E501
+    def update_floating_ip(self, floating_ip_id : Annotated[Any, Field(..., description="ID плавающего IP")], update_floating_ip : UpdateFloatingIp, **kwargs) -> CreateFloatingIp201Response:  # noqa: E501
+        """Изменение плавающего IP по ID  # noqa: E501
 
         Чтобы изменить плавающий IP, отправьте PATCH-запрос на `/api/v1/floating-ips/{floating_ip_id}`  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -909,7 +909,7 @@ class FloatingIPApi(object):
         >>> thread = api.update_floating_ip(floating_ip_id, update_floating_ip, async_req=True)
         >>> result = thread.get()
 
-        :param floating_ip_id: Идентификатор плавающего IP (required)
+        :param floating_ip_id: ID плавающего IP (required)
         :type floating_ip_id: object
         :param update_floating_ip: (required)
         :type update_floating_ip: UpdateFloatingIp
@@ -930,8 +930,8 @@ class FloatingIPApi(object):
         return self.update_floating_ip_with_http_info(floating_ip_id, update_floating_ip, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def update_floating_ip_with_http_info(self, floating_ip_id : Annotated[Any, Field(..., description="Идентификатор плавающего IP")], update_floating_ip : UpdateFloatingIp, **kwargs) -> ApiResponse:  # noqa: E501
-        """Изменение плавающего IP по идентификатору  # noqa: E501
+    def update_floating_ip_with_http_info(self, floating_ip_id : Annotated[Any, Field(..., description="ID плавающего IP")], update_floating_ip : UpdateFloatingIp, **kwargs) -> ApiResponse:  # noqa: E501
+        """Изменение плавающего IP по ID  # noqa: E501
 
         Чтобы изменить плавающий IP, отправьте PATCH-запрос на `/api/v1/floating-ips/{floating_ip_id}`  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -940,7 +940,7 @@ class FloatingIPApi(object):
         >>> thread = api.update_floating_ip_with_http_info(floating_ip_id, update_floating_ip, async_req=True)
         >>> result = thread.get()
 
-        :param floating_ip_id: Идентификатор плавающего IP (required)
+        :param floating_ip_id: ID плавающего IP (required)
         :type floating_ip_id: object
         :param update_floating_ip: (required)
         :type update_floating_ip: UpdateFloatingIp

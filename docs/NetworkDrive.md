@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **object** | Идентификатор сетевого диска. | 
+**id** | **object** | ID сетевого диска. | 
 **name** | **object** | Название сетевого диска. | 
 **comment** | **object** | Комментарий | 
 **size** | **object** | Размер диска в Гб | 
@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **status** | **object** | Статус сетевого диска. | 
 **availability_zone** | [**AvailabilityZone**](AvailabilityZone.md) |  | 
 **type** | **object** | Тип сетевого диска. | 
-**preset_id** | **object** | Идентификатор тарифа. | 
+**preset_id** | **object** | ID тарифа. | 
 
 ## Example
 

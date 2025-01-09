@@ -21,14 +21,14 @@ import json
 
 from typing import Any, Optional
 from pydantic import BaseModel, Field
-from timeweb_cloud_api.models.image_download_api import ImageDownloadAPI
+from timeweb_cloud_api.models.image_download import ImageDownload
 
 class ImageDownloadResponse(BaseModel):
     """
     ImageDownloadResponse
     """
-    response_id: Optional[Any] = Field(None, description="ID запроса")
-    download: ImageDownloadAPI = Field(...)
+    response_id: Optional[Any] = Field(None, description="ID запроса.")
+    download: ImageDownload = Field(...)
     __properties = ["response_id", "download"]
 
     class Config:
@@ -76,7 +76,7 @@ class ImageDownloadResponse(BaseModel):
 
         _obj = ImageDownloadResponse.parse_obj({
             "response_id": obj.get("response_id"),
-            "download": ImageDownloadAPI.from_dict(obj.get("download")) if obj.get("download") is not None else None
+            "download": ImageDownload.from_dict(obj.get("download")) if obj.get("download") is not None else None
         })
         return _obj
 

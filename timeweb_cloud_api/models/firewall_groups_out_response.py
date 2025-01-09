@@ -27,9 +27,9 @@ class FirewallGroupsOutResponse(BaseModel):
     """
     FirewallGroupsOutResponse
     """
-    response_id: Optional[Any] = Field(None, description="Идентификатор запроса")
+    response_id: Optional[Any] = Field(None, description="ID запроса.")
     meta: Meta = Field(...)
-    groups: Optional[Any] = Field(..., description="Массив объектов Групп правил")
+    groups: Optional[Any] = Field(...)
     __properties = ["response_id", "meta", "groups"]
 
     class Config:

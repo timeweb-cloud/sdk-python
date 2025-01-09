@@ -13,54 +13,85 @@
 """
 
 
-import unittest
-import datetime
+from __future__ import annotations
+import pprint
+import re  # noqa: F401
+import json
 
-import timeweb_cloud_api
-from timeweb_cloud_api.models.firewall_group_out_api import FirewallGroupOutAPI  # noqa: E501
-from timeweb_cloud_api.rest import ApiException
 
-class TestFirewallGroupOutAPI(unittest.TestCase):
-    """FirewallGroupOutAPI unit test stubs"""
+from typing import Any, Optional
+from pydantic import BaseModel, Field
 
-    def setUp(self):
-        pass
+class ComponentsSchemasBaseError(BaseModel):
+    """
+    ComponentsSchemasBaseError
+    """
+    status_code: Optional[Any] = Field(...)
+    error_code: Optional[Any] = Field(...)
+    message: Optional[Any] = Field(...)
+    response_id: Optional[Any] = None
+    __properties = ["status_code", "error_code", "message", "response_id"]
 
-    def tearDown(self):
-        pass
+    class Config:
+        """Pydantic configuration"""
+        allow_population_by_field_name = True
+        validate_assignment = True
 
-    def make_instance(self, include_optional):
-        """Test FirewallGroupOutAPI
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
-        # uncomment below to create an instance of `FirewallGroupOutAPI`
-        """
-        model = timeweb_cloud_api.models.firewall_group_out_api.FirewallGroupOutAPI()  # noqa: E501
-        if include_optional :
-            return FirewallGroupOutAPI(
-                id = None, 
-                created_at = None, 
-                updated_at = None, 
-                name = None, 
-                description = None, 
-                policy = ACCEPT
-            )
-        else :
-            return FirewallGroupOutAPI(
-                id = None,
-                created_at = None,
-                updated_at = None,
-                name = None,
-                description = None,
-                policy = ACCEPT,
-        )
-        """
+    def to_str(self) -> str:
+        """Returns the string representation of the model using alias"""
+        return pprint.pformat(self.dict(by_alias=True))
 
-    def testFirewallGroupOutAPI(self):
-        """Test FirewallGroupOutAPI"""
-        # inst_req_only = self.make_instance(include_optional=False)
-        # inst_req_and_optional = self.make_instance(include_optional=True)
+    def to_json(self) -> str:
+        """Returns the JSON representation of the model using alias"""
+        return json.dumps(self.to_dict())
 
-if __name__ == '__main__':
-    unittest.main()
+    @classmethod
+    def from_json(cls, json_str: str) -> ComponentsSchemasBaseError:
+        """Create an instance of ComponentsSchemasBaseError from a JSON string"""
+        return cls.from_dict(json.loads(json_str))
+
+    def to_dict(self):
+        """Returns the dictionary representation of the model using alias"""
+        _dict = self.dict(by_alias=True,
+                          exclude={
+                          },
+                          exclude_none=True)
+        # set to None if status_code (nullable) is None
+        # and __fields_set__ contains the field
+        if self.status_code is None and "status_code" in self.__fields_set__:
+            _dict['status_code'] = None
+
+        # set to None if error_code (nullable) is None
+        # and __fields_set__ contains the field
+        if self.error_code is None and "error_code" in self.__fields_set__:
+            _dict['error_code'] = None
+
+        # set to None if message (nullable) is None
+        # and __fields_set__ contains the field
+        if self.message is None and "message" in self.__fields_set__:
+            _dict['message'] = None
+
+        # set to None if response_id (nullable) is None
+        # and __fields_set__ contains the field
+        if self.response_id is None and "response_id" in self.__fields_set__:
+            _dict['response_id'] = None
+
+        return _dict
+
+    @classmethod
+    def from_dict(cls, obj: dict) -> ComponentsSchemasBaseError:
+        """Create an instance of ComponentsSchemasBaseError from a dict"""
+        if obj is None:
+            return None
+
+        if not isinstance(obj, dict):
+            return ComponentsSchemasBaseError.parse_obj(obj)
+
+        _obj = ComponentsSchemasBaseError.parse_obj({
+            "status_code": obj.get("status_code"),
+            "error_code": obj.get("error_code"),
+            "message": obj.get("message"),
+            "response_id": obj.get("response_id")
+        })
+        return _obj
+

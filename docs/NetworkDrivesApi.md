@@ -12,7 +12,7 @@ Method | HTTP request | Description
 [**get_network_drives_presets**](NetworkDrivesApi.md#get_network_drives_presets) | **GET** /api/v1/presets/network-drives | Получение списка доступных тарифов для сетевого диска
 [**mount_network_drive**](NetworkDrivesApi.md#mount_network_drive) | **POST** /api/v1/network-drives/{network_drive_id}/bind | Подключить сетевой диск к сервису
 [**unmount_network_drive**](NetworkDrivesApi.md#unmount_network_drive) | **POST** /api/v1/network-drives/{network_drive_id}/unbind | Отключить сетевой диск от сервиса
-[**update_network_drive**](NetworkDrivesApi.md#update_network_drive) | **PATCH** /api/v1/network-drives/{network_drive_id} | Изменение сетевого диска по идентификатору
+[**update_network_drive**](NetworkDrivesApi.md#update_network_drive) | **PATCH** /api/v1/network-drives/{network_drive_id} | Изменение сетевого диска по ID
 
 
 # **create_network_drive**
@@ -135,7 +135,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.NetworkDrivesApi(api_client)
-    network_drive_id = 87fa289f-1513-4c4d-8d49-5707f411f14b # object | Идентификатор сетевого диска
+    network_drive_id = 87fa289f-1513-4c4d-8d49-5707f411f14b # object | ID сетевого диска
 
     try:
         # Удаление сетевого диска по идентификатору
@@ -149,7 +149,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **network_drive_id** | [**object**](.md)| Идентификатор сетевого диска | 
+ **network_drive_id** | [**object**](.md)| ID сетевого диска | 
 
 ### Return type
 
@@ -215,7 +215,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.NetworkDrivesApi(api_client)
-    network_drive_id = 87fa289f-1513-4c4d-8d49-5707f411f14b # object | Идентификатор сетевого диска
+    network_drive_id = 87fa289f-1513-4c4d-8d49-5707f411f14b # object | ID сетевого диска
 
     try:
         # Получение сетевого диска
@@ -231,7 +231,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **network_drive_id** | [**object**](.md)| Идентификатор сетевого диска | 
+ **network_drive_id** | [**object**](.md)| ID сетевого диска | 
 
 ### Return type
 
@@ -531,7 +531,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.NetworkDrivesApi(api_client)
-    network_drive_id = 87fa289f-1513-4c4d-8d49-5707f411f14b # object | Идентификатор сетевого диска
+    network_drive_id = 87fa289f-1513-4c4d-8d49-5707f411f14b # object | ID сетевого диска
     mount_network_drive = timeweb_cloud_api.MountNetworkDrive() # MountNetworkDrive | 
 
     try:
@@ -546,7 +546,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **network_drive_id** | [**object**](.md)| Идентификатор сетевого диска | 
+ **network_drive_id** | [**object**](.md)| ID сетевого диска | 
  **mount_network_drive** | [**MountNetworkDrive**](MountNetworkDrive.md)|  | 
 
 ### Return type
@@ -612,7 +612,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.NetworkDrivesApi(api_client)
-    network_drive_id = 87fa289f-1513-4c4d-8d49-5707f411f14b # object | Идентификатор сетевого диска
+    network_drive_id = 87fa289f-1513-4c4d-8d49-5707f411f14b # object | ID сетевого диска
 
     try:
         # Отключить сетевой диск от сервиса
@@ -626,7 +626,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **network_drive_id** | [**object**](.md)| Идентификатор сетевого диска | 
+ **network_drive_id** | [**object**](.md)| ID сетевого диска | 
 
 ### Return type
 
@@ -657,7 +657,7 @@ void (empty response body)
 # **update_network_drive**
 > CreateNetworkDrive201Response update_network_drive(network_drive_id, update_network_drive)
 
-Изменение сетевого диска по идентификатору
+Изменение сетевого диска по ID
 
 Чтобы изменить сетевой диск, отправьте PATCH-запрос на `/api/v1/network-drives/{network_drive_id}`
 
@@ -693,11 +693,11 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.NetworkDrivesApi(api_client)
-    network_drive_id = 87fa289f-1513-4c4d-8d49-5707f411f14b # object | Идентификатор сетевого диска
+    network_drive_id = 87fa289f-1513-4c4d-8d49-5707f411f14b # object | ID сетевого диска
     update_network_drive = timeweb_cloud_api.UpdateNetworkDrive() # UpdateNetworkDrive | 
 
     try:
-        # Изменение сетевого диска по идентификатору
+        # Изменение сетевого диска по ID
         api_response = api_instance.update_network_drive(network_drive_id, update_network_drive)
         print("The response of NetworkDrivesApi->update_network_drive:\n")
         pprint(api_response)
@@ -710,7 +710,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **network_drive_id** | [**object**](.md)| Идентификатор сетевого диска | 
+ **network_drive_id** | [**object**](.md)| ID сетевого диска | 
  **update_network_drive** | [**UpdateNetworkDrive**](UpdateNetworkDrive.md)|  | 
 
 ### Return type

@@ -204,7 +204,7 @@ class ImagesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def create_image_download_url(self, image_id : Annotated[Any, Field(..., description="ID образа")], image_url_in : ImageUrlIn, **kwargs) -> ImageDownloadResponse:  # noqa: E501
+    def create_image_download_url(self, image_id : Annotated[Any, Field(..., description="ID образа.")], image_url_in : ImageUrlIn, **kwargs) -> ImageDownloadResponse:  # noqa: E501
         """Создание ссылки на скачивание образа  # noqa: E501
 
         Чтобы создать ссылку на скачивание образа, отправьте запрос POST в `/api/v1/images/{image_id}/download-url`.  # noqa: E501
@@ -214,7 +214,7 @@ class ImagesApi(object):
         >>> thread = api.create_image_download_url(image_id, image_url_in, async_req=True)
         >>> result = thread.get()
 
-        :param image_id: ID образа (required)
+        :param image_id: ID образа. (required)
         :type image_id: object
         :param image_url_in: (required)
         :type image_url_in: ImageUrlIn
@@ -235,7 +235,7 @@ class ImagesApi(object):
         return self.create_image_download_url_with_http_info(image_id, image_url_in, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def create_image_download_url_with_http_info(self, image_id : Annotated[Any, Field(..., description="ID образа")], image_url_in : ImageUrlIn, **kwargs) -> ApiResponse:  # noqa: E501
+    def create_image_download_url_with_http_info(self, image_id : Annotated[Any, Field(..., description="ID образа.")], image_url_in : ImageUrlIn, **kwargs) -> ApiResponse:  # noqa: E501
         """Создание ссылки на скачивание образа  # noqa: E501
 
         Чтобы создать ссылку на скачивание образа, отправьте запрос POST в `/api/v1/images/{image_id}/download-url`.  # noqa: E501
@@ -245,7 +245,7 @@ class ImagesApi(object):
         >>> thread = api.create_image_download_url_with_http_info(image_id, image_url_in, async_req=True)
         >>> result = thread.get()
 
-        :param image_id: ID образа (required)
+        :param image_id: ID образа. (required)
         :type image_id: object
         :param image_url_in: (required)
         :type image_url_in: ImageUrlIn
@@ -364,7 +364,7 @@ class ImagesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def delete_image(self, image_id : Annotated[Any, Field(..., description="ID образа")], **kwargs) -> None:  # noqa: E501
+    def delete_image(self, image_id : Annotated[Any, Field(..., description="ID образа.")], **kwargs) -> None:  # noqa: E501
         """Удаление образа  # noqa: E501
 
         Чтобы удалить образ, отправьте запрос DELETE в `/api/v1/images/{image_id}`.  # noqa: E501
@@ -374,7 +374,7 @@ class ImagesApi(object):
         >>> thread = api.delete_image(image_id, async_req=True)
         >>> result = thread.get()
 
-        :param image_id: ID образа (required)
+        :param image_id: ID образа. (required)
         :type image_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -393,7 +393,7 @@ class ImagesApi(object):
         return self.delete_image_with_http_info(image_id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def delete_image_with_http_info(self, image_id : Annotated[Any, Field(..., description="ID образа")], **kwargs) -> ApiResponse:  # noqa: E501
+    def delete_image_with_http_info(self, image_id : Annotated[Any, Field(..., description="ID образа.")], **kwargs) -> ApiResponse:  # noqa: E501
         """Удаление образа  # noqa: E501
 
         Чтобы удалить образ, отправьте запрос DELETE в `/api/v1/images/{image_id}`.  # noqa: E501
@@ -403,7 +403,7 @@ class ImagesApi(object):
         >>> thread = api.delete_image_with_http_info(image_id, async_req=True)
         >>> result = thread.get()
 
-        :param image_id: ID образа (required)
+        :param image_id: ID образа. (required)
         :type image_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -497,7 +497,7 @@ class ImagesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def delete_image_download_url(self, image_id : Annotated[Any, Field(..., description="ID образа")], image_url_id : Annotated[Any, Field(..., description="ID ссылки")], **kwargs) -> None:  # noqa: E501
+    def delete_image_download_url(self, image_id : Annotated[Any, Field(..., description="ID образа.")], image_url_id : Annotated[Any, Field(..., description="ID ссылки.")], **kwargs) -> None:  # noqa: E501
         """Удаление ссылки на образ  # noqa: E501
 
         Чтобы удалить ссылку на образ, отправьте DELETE запрос в `/api/v1/images/{image_id}/download-url/{image_url_id}`.  # noqa: E501
@@ -507,9 +507,9 @@ class ImagesApi(object):
         >>> thread = api.delete_image_download_url(image_id, image_url_id, async_req=True)
         >>> result = thread.get()
 
-        :param image_id: ID образа (required)
+        :param image_id: ID образа. (required)
         :type image_id: object
-        :param image_url_id: ID ссылки (required)
+        :param image_url_id: ID ссылки. (required)
         :type image_url_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -528,7 +528,7 @@ class ImagesApi(object):
         return self.delete_image_download_url_with_http_info(image_id, image_url_id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def delete_image_download_url_with_http_info(self, image_id : Annotated[Any, Field(..., description="ID образа")], image_url_id : Annotated[Any, Field(..., description="ID ссылки")], **kwargs) -> ApiResponse:  # noqa: E501
+    def delete_image_download_url_with_http_info(self, image_id : Annotated[Any, Field(..., description="ID образа.")], image_url_id : Annotated[Any, Field(..., description="ID ссылки.")], **kwargs) -> ApiResponse:  # noqa: E501
         """Удаление ссылки на образ  # noqa: E501
 
         Чтобы удалить ссылку на образ, отправьте DELETE запрос в `/api/v1/images/{image_id}/download-url/{image_url_id}`.  # noqa: E501
@@ -538,9 +538,9 @@ class ImagesApi(object):
         >>> thread = api.delete_image_download_url_with_http_info(image_id, image_url_id, async_req=True)
         >>> result = thread.get()
 
-        :param image_id: ID образа (required)
+        :param image_id: ID образа. (required)
         :type image_id: object
-        :param image_url_id: ID ссылки (required)
+        :param image_url_id: ID ссылки. (required)
         :type image_url_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -638,7 +638,7 @@ class ImagesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def get_image(self, image_id : Annotated[Any, Field(..., description="ID образа")], **kwargs) -> ImageOutResponse:  # noqa: E501
+    def get_image(self, image_id : Annotated[Any, Field(..., description="ID образа.")], **kwargs) -> ImageOutResponse:  # noqa: E501
         """Получение информации о образе  # noqa: E501
 
         Чтобы получить образ, отправьте запрос GET в `/api/v1/images/{image_id}`.  # noqa: E501
@@ -648,7 +648,7 @@ class ImagesApi(object):
         >>> thread = api.get_image(image_id, async_req=True)
         >>> result = thread.get()
 
-        :param image_id: ID образа (required)
+        :param image_id: ID образа. (required)
         :type image_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -667,7 +667,7 @@ class ImagesApi(object):
         return self.get_image_with_http_info(image_id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def get_image_with_http_info(self, image_id : Annotated[Any, Field(..., description="ID образа")], **kwargs) -> ApiResponse:  # noqa: E501
+    def get_image_with_http_info(self, image_id : Annotated[Any, Field(..., description="ID образа.")], **kwargs) -> ApiResponse:  # noqa: E501
         """Получение информации о образе  # noqa: E501
 
         Чтобы получить образ, отправьте запрос GET в `/api/v1/images/{image_id}`.  # noqa: E501
@@ -677,7 +677,7 @@ class ImagesApi(object):
         >>> thread = api.get_image_with_http_info(image_id, async_req=True)
         >>> result = thread.get()
 
-        :param image_id: ID образа (required)
+        :param image_id: ID образа. (required)
         :type image_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -782,7 +782,7 @@ class ImagesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def get_image_download_url(self, image_id : Annotated[Any, Field(..., description="ID образа")], image_url_id : Annotated[Any, Field(..., description="ID ссылки")], **kwargs) -> ImageDownloadResponse:  # noqa: E501
+    def get_image_download_url(self, image_id : Annotated[Any, Field(..., description="ID образа.")], image_url_id : Annotated[Any, Field(..., description="ID ссылки.")], **kwargs) -> ImageDownloadResponse:  # noqa: E501
         """Получение информации о ссылке на скачивание образа  # noqa: E501
 
         Чтобы получить информацию о ссылке на скачивание образа, отправьте запрос GET в `/api/v1/images/{image_id}/download-url/{image_url_id}`.  # noqa: E501
@@ -792,9 +792,9 @@ class ImagesApi(object):
         >>> thread = api.get_image_download_url(image_id, image_url_id, async_req=True)
         >>> result = thread.get()
 
-        :param image_id: ID образа (required)
+        :param image_id: ID образа. (required)
         :type image_id: object
-        :param image_url_id: ID ссылки (required)
+        :param image_url_id: ID ссылки. (required)
         :type image_url_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -813,7 +813,7 @@ class ImagesApi(object):
         return self.get_image_download_url_with_http_info(image_id, image_url_id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def get_image_download_url_with_http_info(self, image_id : Annotated[Any, Field(..., description="ID образа")], image_url_id : Annotated[Any, Field(..., description="ID ссылки")], **kwargs) -> ApiResponse:  # noqa: E501
+    def get_image_download_url_with_http_info(self, image_id : Annotated[Any, Field(..., description="ID образа.")], image_url_id : Annotated[Any, Field(..., description="ID ссылки.")], **kwargs) -> ApiResponse:  # noqa: E501
         """Получение информации о ссылке на скачивание образа  # noqa: E501
 
         Чтобы получить информацию о ссылке на скачивание образа, отправьте запрос GET в `/api/v1/images/{image_id}/download-url/{image_url_id}`.  # noqa: E501
@@ -823,9 +823,9 @@ class ImagesApi(object):
         >>> thread = api.get_image_download_url_with_http_info(image_id, image_url_id, async_req=True)
         >>> result = thread.get()
 
-        :param image_id: ID образа (required)
+        :param image_id: ID образа. (required)
         :type image_id: object
-        :param image_url_id: ID ссылки (required)
+        :param image_url_id: ID ссылки. (required)
         :type image_url_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -934,7 +934,7 @@ class ImagesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def get_image_download_urls(self, image_id : Annotated[Any, Field(..., description="ID образа")], limit : Optional[Any] = None, offset : Optional[Any] = None, **kwargs) -> ImageDownloadsResponse:  # noqa: E501
+    def get_image_download_urls(self, image_id : Annotated[Any, Field(..., description="ID образа.")], limit : Optional[Any] = None, offset : Optional[Any] = None, **kwargs) -> ImageDownloadsResponse:  # noqa: E501
         """Получение информации о ссылках на скачивание образов  # noqa: E501
 
         Чтобы получить информацию о ссылках на скачивание образов, отправьте запрос GET в `/api/v1/images/{image_id}/download-url`.  # noqa: E501
@@ -944,7 +944,7 @@ class ImagesApi(object):
         >>> thread = api.get_image_download_urls(image_id, limit, offset, async_req=True)
         >>> result = thread.get()
 
-        :param image_id: ID образа (required)
+        :param image_id: ID образа. (required)
         :type image_id: object
         :param limit:
         :type limit: object
@@ -967,7 +967,7 @@ class ImagesApi(object):
         return self.get_image_download_urls_with_http_info(image_id, limit, offset, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def get_image_download_urls_with_http_info(self, image_id : Annotated[Any, Field(..., description="ID образа")], limit : Optional[Any] = None, offset : Optional[Any] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def get_image_download_urls_with_http_info(self, image_id : Annotated[Any, Field(..., description="ID образа.")], limit : Optional[Any] = None, offset : Optional[Any] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Получение информации о ссылках на скачивание образов  # noqa: E501
 
         Чтобы получить информацию о ссылках на скачивание образов, отправьте запрос GET в `/api/v1/images/{image_id}/download-url`.  # noqa: E501
@@ -977,7 +977,7 @@ class ImagesApi(object):
         >>> thread = api.get_image_download_urls_with_http_info(image_id, limit, offset, async_req=True)
         >>> result = thread.get()
 
-        :param image_id: ID образа (required)
+        :param image_id: ID образа. (required)
         :type image_id: object
         :param limit:
         :type limit: object
@@ -1245,7 +1245,7 @@ class ImagesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def update_image(self, image_id : Annotated[Any, Field(..., description="ID образа")], image_update_api : ImageUpdateAPI, **kwargs) -> ImageOutResponse:  # noqa: E501
+    def update_image(self, image_id : Annotated[Any, Field(..., description="ID образа.")], image_update_api : ImageUpdateAPI, **kwargs) -> ImageOutResponse:  # noqa: E501
         """Обновление информации о образе  # noqa: E501
 
         Чтобы обновить только определенные атрибуты образа, отправьте запрос PATCH в `/api/v1/images/{image_id}`.  # noqa: E501
@@ -1255,7 +1255,7 @@ class ImagesApi(object):
         >>> thread = api.update_image(image_id, image_update_api, async_req=True)
         >>> result = thread.get()
 
-        :param image_id: ID образа (required)
+        :param image_id: ID образа. (required)
         :type image_id: object
         :param image_update_api: (required)
         :type image_update_api: ImageUpdateAPI
@@ -1276,7 +1276,7 @@ class ImagesApi(object):
         return self.update_image_with_http_info(image_id, image_update_api, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def update_image_with_http_info(self, image_id : Annotated[Any, Field(..., description="ID образа")], image_update_api : ImageUpdateAPI, **kwargs) -> ApiResponse:  # noqa: E501
+    def update_image_with_http_info(self, image_id : Annotated[Any, Field(..., description="ID образа.")], image_update_api : ImageUpdateAPI, **kwargs) -> ApiResponse:  # noqa: E501
         """Обновление информации о образе  # noqa: E501
 
         Чтобы обновить только определенные атрибуты образа, отправьте запрос PATCH в `/api/v1/images/{image_id}`.  # noqa: E501
@@ -1286,7 +1286,7 @@ class ImagesApi(object):
         >>> thread = api.update_image_with_http_info(image_id, image_update_api, async_req=True)
         >>> result = thread.get()
 
-        :param image_id: ID образа (required)
+        :param image_id: ID образа. (required)
         :type image_id: object
         :param image_update_api: (required)
         :type image_update_api: ImageUpdateAPI

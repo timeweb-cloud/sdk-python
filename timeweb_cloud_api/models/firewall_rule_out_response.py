@@ -21,14 +21,14 @@ import json
 
 from typing import Any, Optional
 from pydantic import BaseModel, Field
-from timeweb_cloud_api.models.firewall_rule_out_api import FirewallRuleOutAPI
+from timeweb_cloud_api.models.firewall_rule import FirewallRule
 
 class FirewallRuleOutResponse(BaseModel):
     """
     FirewallRuleOutResponse
     """
-    response_id: Optional[Any] = Field(None, description="Идентификатор запроса")
-    rule: FirewallRuleOutAPI = Field(...)
+    response_id: Optional[Any] = Field(None, description="ID запроса.")
+    rule: FirewallRule = Field(...)
     __properties = ["response_id", "rule"]
 
     class Config:
@@ -76,7 +76,7 @@ class FirewallRuleOutResponse(BaseModel):
 
         _obj = FirewallRuleOutResponse.parse_obj({
             "response_id": obj.get("response_id"),
-            "rule": FirewallRuleOutAPI.from_dict(obj.get("rule")) if obj.get("rule") is not None else None
+            "rule": FirewallRule.from_dict(obj.get("rule")) if obj.get("rule") is not None else None
         })
         return _obj
 

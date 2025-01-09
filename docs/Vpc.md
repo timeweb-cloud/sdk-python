@@ -9,8 +9,10 @@ Name | Type | Description | Notes
 **subnet_v4** | **object** | Маска подсети. | 
 **location** | **object** | Локация сети. | 
 **created_at** | **object** | Дата создания сети. | 
-**description** | **object** | Описание. | [optional] 
+**description** | **object** | Описание. | 
 **availability_zone** | [**AvailabilityZone**](AvailabilityZone.md) |  | 
+**public_ip** | **object** | Публичный IP-адрес сети. | 
+**type** | **object** | Тип сети. | 
 
 ## Example
 

@@ -4,8 +4,8 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**response_id** | **object** | Идентификатор запроса | [optional] 
-**meta** | [**Meta**](Meta.md) |  | 
+**response_id** | **object** | ID запроса | [optional] 
+**meta** | [**SchemasMeta**](SchemasMeta.md) |  | 
 **network_drivers** | **object** | Массив сетевых драйверов k8s | 
 
 ## Example

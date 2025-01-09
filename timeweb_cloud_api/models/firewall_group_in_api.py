@@ -26,8 +26,8 @@ class FirewallGroupInAPI(BaseModel):
     """
     FirewallGroupInAPI
     """
-    name: Optional[Any] = Field(..., description="Имя группы правил")
-    description: Optional[Any] = Field(None, description="Описание группы правил")
+    name: Optional[Any] = Field(..., description="Имя группы правил.")
+    description: Optional[Any] = Field(None, description="Описание группы правил.")
     __properties = ["name", "description"]
 
     class Config:

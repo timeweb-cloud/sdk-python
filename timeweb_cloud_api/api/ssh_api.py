@@ -352,8 +352,8 @@ class SSHApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def delete_key(self, ssh_key_id : Annotated[Any, Field(..., description="ID SSH-ключа")], **kwargs) -> None:  # noqa: E501
-        """Удаление SSH-ключа по уникальному идентификатору  # noqa: E501
+    def delete_key(self, ssh_key_id : Annotated[Any, Field(..., description="ID SSH-ключа.")], **kwargs) -> None:  # noqa: E501
+        """Удаление SSH-ключа по ID  # noqa: E501
 
         Чтобы удалить SSH-ключ, отправьте DELETE-запрос на `/api/v1/ssh-keys/{ssh_key_id}`  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -362,7 +362,7 @@ class SSHApi(object):
         >>> thread = api.delete_key(ssh_key_id, async_req=True)
         >>> result = thread.get()
 
-        :param ssh_key_id: ID SSH-ключа (required)
+        :param ssh_key_id: ID SSH-ключа. (required)
         :type ssh_key_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -381,8 +381,8 @@ class SSHApi(object):
         return self.delete_key_with_http_info(ssh_key_id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def delete_key_with_http_info(self, ssh_key_id : Annotated[Any, Field(..., description="ID SSH-ключа")], **kwargs) -> ApiResponse:  # noqa: E501
-        """Удаление SSH-ключа по уникальному идентификатору  # noqa: E501
+    def delete_key_with_http_info(self, ssh_key_id : Annotated[Any, Field(..., description="ID SSH-ключа.")], **kwargs) -> ApiResponse:  # noqa: E501
+        """Удаление SSH-ключа по ID  # noqa: E501
 
         Чтобы удалить SSH-ключ, отправьте DELETE-запрос на `/api/v1/ssh-keys/{ssh_key_id}`  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -391,7 +391,7 @@ class SSHApi(object):
         >>> thread = api.delete_key_with_http_info(ssh_key_id, async_req=True)
         >>> result = thread.get()
 
-        :param ssh_key_id: ID SSH-ключа (required)
+        :param ssh_key_id: ID SSH-ключа. (required)
         :type ssh_key_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -485,7 +485,7 @@ class SSHApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def delete_key_from_server(self, server_id : Annotated[Any, Field(..., description="ID облачного сервера.")], ssh_key_id : Annotated[Any, Field(..., description="ID SSH-ключа")], **kwargs) -> None:  # noqa: E501
+    def delete_key_from_server(self, server_id : Annotated[Any, Field(..., description="ID облачного сервера.")], ssh_key_id : Annotated[Any, Field(..., description="ID SSH-ключа.")], **kwargs) -> None:  # noqa: E501
         """Удаление SSH-ключей с сервера  # noqa: E501
 
         Чтобы удалить SSH-ключ с сервера, отправьте DELETE-запрос на `/api/v1/servers/{server_id}/ssh-keys/{ssh_key_id}`  # noqa: E501
@@ -497,7 +497,7 @@ class SSHApi(object):
 
         :param server_id: ID облачного сервера. (required)
         :type server_id: object
-        :param ssh_key_id: ID SSH-ключа (required)
+        :param ssh_key_id: ID SSH-ключа. (required)
         :type ssh_key_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -516,7 +516,7 @@ class SSHApi(object):
         return self.delete_key_from_server_with_http_info(server_id, ssh_key_id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def delete_key_from_server_with_http_info(self, server_id : Annotated[Any, Field(..., description="ID облачного сервера.")], ssh_key_id : Annotated[Any, Field(..., description="ID SSH-ключа")], **kwargs) -> ApiResponse:  # noqa: E501
+    def delete_key_from_server_with_http_info(self, server_id : Annotated[Any, Field(..., description="ID облачного сервера.")], ssh_key_id : Annotated[Any, Field(..., description="ID SSH-ключа.")], **kwargs) -> ApiResponse:  # noqa: E501
         """Удаление SSH-ключей с сервера  # noqa: E501
 
         Чтобы удалить SSH-ключ с сервера, отправьте DELETE-запрос на `/api/v1/servers/{server_id}/ssh-keys/{ssh_key_id}`  # noqa: E501
@@ -528,7 +528,7 @@ class SSHApi(object):
 
         :param server_id: ID облачного сервера. (required)
         :type server_id: object
-        :param ssh_key_id: ID SSH-ключа (required)
+        :param ssh_key_id: ID SSH-ключа. (required)
         :type ssh_key_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -626,8 +626,8 @@ class SSHApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def get_key(self, ssh_key_id : Annotated[Any, Field(..., description="ID SSH-ключа")], **kwargs) -> GetKey200Response:  # noqa: E501
-        """Получение SSH-ключа по уникальному идентификатору  # noqa: E501
+    def get_key(self, ssh_key_id : Annotated[Any, Field(..., description="ID SSH-ключа.")], **kwargs) -> GetKey200Response:  # noqa: E501
+        """Получение SSH-ключа по ID  # noqa: E501
 
         Чтобы получить SSH-ключ, отправьте GET-запрос на `/api/v1/ssh-keys/{ssh_key_id}`  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -636,7 +636,7 @@ class SSHApi(object):
         >>> thread = api.get_key(ssh_key_id, async_req=True)
         >>> result = thread.get()
 
-        :param ssh_key_id: ID SSH-ключа (required)
+        :param ssh_key_id: ID SSH-ключа. (required)
         :type ssh_key_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -655,8 +655,8 @@ class SSHApi(object):
         return self.get_key_with_http_info(ssh_key_id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def get_key_with_http_info(self, ssh_key_id : Annotated[Any, Field(..., description="ID SSH-ключа")], **kwargs) -> ApiResponse:  # noqa: E501
-        """Получение SSH-ключа по уникальному идентификатору  # noqa: E501
+    def get_key_with_http_info(self, ssh_key_id : Annotated[Any, Field(..., description="ID SSH-ключа.")], **kwargs) -> ApiResponse:  # noqa: E501
+        """Получение SSH-ключа по ID  # noqa: E501
 
         Чтобы получить SSH-ключ, отправьте GET-запрос на `/api/v1/ssh-keys/{ssh_key_id}`  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -665,7 +665,7 @@ class SSHApi(object):
         >>> thread = api.get_key_with_http_info(ssh_key_id, async_req=True)
         >>> result = thread.get()
 
-        :param ssh_key_id: ID SSH-ключа (required)
+        :param ssh_key_id: ID SSH-ключа. (required)
         :type ssh_key_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -908,8 +908,8 @@ class SSHApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def update_key(self, ssh_key_id : Annotated[Any, Field(..., description="ID SSH-ключа")], update_key_request : UpdateKeyRequest, **kwargs) -> GetKey200Response:  # noqa: E501
-        """Изменение SSH-ключа по уникальному идентификатору  # noqa: E501
+    def update_key(self, ssh_key_id : Annotated[Any, Field(..., description="ID SSH-ключа.")], update_key_request : UpdateKeyRequest, **kwargs) -> GetKey200Response:  # noqa: E501
+        """Изменение SSH-ключа по ID  # noqa: E501
 
         Чтобы изменить SSH-ключ, отправьте PATCH-запрос на `/api/v1/ssh-keys/{ssh_key_id}`  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -918,7 +918,7 @@ class SSHApi(object):
         >>> thread = api.update_key(ssh_key_id, update_key_request, async_req=True)
         >>> result = thread.get()
 
-        :param ssh_key_id: ID SSH-ключа (required)
+        :param ssh_key_id: ID SSH-ключа. (required)
         :type ssh_key_id: object
         :param update_key_request: (required)
         :type update_key_request: UpdateKeyRequest
@@ -939,8 +939,8 @@ class SSHApi(object):
         return self.update_key_with_http_info(ssh_key_id, update_key_request, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def update_key_with_http_info(self, ssh_key_id : Annotated[Any, Field(..., description="ID SSH-ключа")], update_key_request : UpdateKeyRequest, **kwargs) -> ApiResponse:  # noqa: E501
-        """Изменение SSH-ключа по уникальному идентификатору  # noqa: E501
+    def update_key_with_http_info(self, ssh_key_id : Annotated[Any, Field(..., description="ID SSH-ключа.")], update_key_request : UpdateKeyRequest, **kwargs) -> ApiResponse:  # noqa: E501
+        """Изменение SSH-ключа по ID  # noqa: E501
 
         Чтобы изменить SSH-ключ, отправьте PATCH-запрос на `/api/v1/ssh-keys/{ssh_key_id}`  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -949,7 +949,7 @@ class SSHApi(object):
         >>> thread = api.update_key_with_http_info(ssh_key_id, update_key_request, async_req=True)
         >>> result = thread.get()
 
-        :param ssh_key_id: ID SSH-ключа (required)
+        :param ssh_key_id: ID SSH-ключа. (required)
         :type ssh_key_id: object
         :param update_key_request: (required)
         :type update_key_request: UpdateKeyRequest

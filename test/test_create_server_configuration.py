@@ -42,7 +42,8 @@ class TestCreateServerConfiguration(unittest.TestCase):
                 configurator_id = 11, 
                 disk = 15360, 
                 cpu = 1, 
-                ram = 2048
+                ram = 2048, 
+                gpu = 1
             )
         else :
             return CreateServerConfiguration(

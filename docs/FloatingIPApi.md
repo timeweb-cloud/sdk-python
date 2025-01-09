@@ -6,11 +6,11 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**bind_floating_ip**](FloatingIPApi.md#bind_floating_ip) | **POST** /api/v1/floating-ips/{floating_ip_id}/bind | Привязать IP к сервису
 [**create_floating_ip**](FloatingIPApi.md#create_floating_ip) | **POST** /api/v1/floating-ips | Создание плавающего IP
-[**delete_floating_ip**](FloatingIPApi.md#delete_floating_ip) | **DELETE** /api/v1/floating-ips/{floating_ip_id} | Удаление плавающего IP по идентификатору
+[**delete_floating_ip**](FloatingIPApi.md#delete_floating_ip) | **DELETE** /api/v1/floating-ips/{floating_ip_id} | Удаление плавающего IP по ID
 [**get_floating_ip**](FloatingIPApi.md#get_floating_ip) | **GET** /api/v1/floating-ips/{floating_ip_id} | Получение плавающего IP
 [**get_floating_ips**](FloatingIPApi.md#get_floating_ips) | **GET** /api/v1/floating-ips | Получение списка плавающих IP
 [**unbind_floating_ip**](FloatingIPApi.md#unbind_floating_ip) | **POST** /api/v1/floating-ips/{floating_ip_id}/unbind | Отвязать IP от сервиса
-[**update_floating_ip**](FloatingIPApi.md#update_floating_ip) | **PATCH** /api/v1/floating-ips/{floating_ip_id} | Изменение плавающего IP по идентификатору
+[**update_floating_ip**](FloatingIPApi.md#update_floating_ip) | **PATCH** /api/v1/floating-ips/{floating_ip_id} | Изменение плавающего IP по ID
 
 
 # **bind_floating_ip**
@@ -51,7 +51,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.FloatingIPApi(api_client)
-    floating_ip_id = 87fa289f-1513-4c4d-8d49-5707f411f14b # object | Идентификатор плавающего IP
+    floating_ip_id = 87fa289f-1513-4c4d-8d49-5707f411f14b # object | ID плавающего IP
     bind_floating_ip = timeweb_cloud_api.BindFloatingIp() # BindFloatingIp | 
 
     try:
@@ -66,7 +66,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **floating_ip_id** | [**object**](.md)| Идентификатор плавающего IP | 
+ **floating_ip_id** | [**object**](.md)| ID плавающего IP | 
  **bind_floating_ip** | [**BindFloatingIp**](BindFloatingIp.md)|  | 
 
 ### Return type
@@ -181,7 +181,7 @@ Name | Type | Description  | Notes
 # **delete_floating_ip**
 > delete_floating_ip(floating_ip_id)
 
-Удаление плавающего IP по идентификатору
+Удаление плавающего IP по ID
 
 Чтобы удалить плавающий IP, отправьте DELETE-запрос на `/api/v1/floating-ips/{floating_ip_id}`
 
@@ -215,10 +215,10 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.FloatingIPApi(api_client)
-    floating_ip_id = 87fa289f-1513-4c4d-8d49-5707f411f14b # object | Идентификатор плавающего IP
+    floating_ip_id = 87fa289f-1513-4c4d-8d49-5707f411f14b # object | ID плавающего IP
 
     try:
-        # Удаление плавающего IP по идентификатору
+        # Удаление плавающего IP по ID
         api_instance.delete_floating_ip(floating_ip_id)
     except Exception as e:
         print("Exception when calling FloatingIPApi->delete_floating_ip: %s\n" % e)
@@ -229,7 +229,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **floating_ip_id** | [**object**](.md)| Идентификатор плавающего IP | 
+ **floating_ip_id** | [**object**](.md)| ID плавающего IP | 
 
 ### Return type
 
@@ -295,7 +295,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.FloatingIPApi(api_client)
-    floating_ip_id = 87fa289f-1513-4c4d-8d49-5707f411f14b # object | Идентификатор плавающего IP
+    floating_ip_id = 87fa289f-1513-4c4d-8d49-5707f411f14b # object | ID плавающего IP
 
     try:
         # Получение плавающего IP
@@ -311,7 +311,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **floating_ip_id** | [**object**](.md)| Идентификатор плавающего IP | 
+ **floating_ip_id** | [**object**](.md)| ID плавающего IP | 
 
 ### Return type
 
@@ -454,7 +454,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.FloatingIPApi(api_client)
-    floating_ip_id = 87fa289f-1513-4c4d-8d49-5707f411f14b # object | Идентификатор плавающего IP
+    floating_ip_id = 87fa289f-1513-4c4d-8d49-5707f411f14b # object | ID плавающего IP
 
     try:
         # Отвязать IP от сервиса
@@ -468,7 +468,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **floating_ip_id** | [**object**](.md)| Идентификатор плавающего IP | 
+ **floating_ip_id** | [**object**](.md)| ID плавающего IP | 
 
 ### Return type
 
@@ -499,7 +499,7 @@ void (empty response body)
 # **update_floating_ip**
 > CreateFloatingIp201Response update_floating_ip(floating_ip_id, update_floating_ip)
 
-Изменение плавающего IP по идентификатору
+Изменение плавающего IP по ID
 
 Чтобы изменить плавающий IP, отправьте PATCH-запрос на `/api/v1/floating-ips/{floating_ip_id}`
 
@@ -535,11 +535,11 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.FloatingIPApi(api_client)
-    floating_ip_id = 87fa289f-1513-4c4d-8d49-5707f411f14b # object | Идентификатор плавающего IP
+    floating_ip_id = 87fa289f-1513-4c4d-8d49-5707f411f14b # object | ID плавающего IP
     update_floating_ip = timeweb_cloud_api.UpdateFloatingIp() # UpdateFloatingIp | 
 
     try:
-        # Изменение плавающего IP по идентификатору
+        # Изменение плавающего IP по ID
         api_response = api_instance.update_floating_ip(floating_ip_id, update_floating_ip)
         print("The response of FloatingIPApi->update_floating_ip:\n")
         pprint(api_response)
@@ -552,7 +552,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **floating_ip_id** | [**object**](.md)| Идентификатор плавающего IP | 
+ **floating_ip_id** | [**object**](.md)| ID плавающего IP | 
  **update_floating_ip** | [**UpdateFloatingIp**](UpdateFloatingIp.md)|  | 
 
 ### Return type

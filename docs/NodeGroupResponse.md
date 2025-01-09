@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**response_id** | **object** | Идентификатор запроса | [optional] 
+**response_id** | **object** | ID запроса | [optional] 
 **node_group** | [**NodeGroupOut**](NodeGroupOut.md) |  | 
 
 ## Example

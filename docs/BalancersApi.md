@@ -57,7 +57,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.BalancersApi(api_client)
-    balancer_id = None # object | Идентификатор балансировщика
+    balancer_id = None # object | ID балансировщика
     add_ips_to_balancer_request = timeweb_cloud_api.AddIPsToBalancerRequest() # AddIPsToBalancerRequest | 
 
     try:
@@ -72,7 +72,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **balancer_id** | [**object**](.md)| Идентификатор балансировщика | 
+ **balancer_id** | [**object**](.md)| ID балансировщика | 
  **add_ips_to_balancer_request** | [**AddIPsToBalancerRequest**](AddIPsToBalancerRequest.md)|  | 
 
 ### Return type
@@ -223,7 +223,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.BalancersApi(api_client)
-    balancer_id = None # object | Идентификатор балансировщика
+    balancer_id = None # object | ID балансировщика
     create_rule = timeweb_cloud_api.CreateRule() # CreateRule | 
 
     try:
@@ -240,7 +240,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **balancer_id** | [**object**](.md)| Идентификатор балансировщика | 
+ **balancer_id** | [**object**](.md)| ID балансировщика | 
  **create_rule** | [**CreateRule**](CreateRule.md)|  | 
 
 ### Return type
@@ -307,7 +307,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.BalancersApi(api_client)
-    balancer_id = None # object | Идентификатор балансировщика
+    balancer_id = None # object | ID балансировщика
     hash = 15095f25-aac3-4d60-a788-96cb5136f186 # object | Хеш, который совместно с кодом авторизации надо отправить для удаления, если включено подтверждение удаления сервисов через Телеграм. (optional)
     code = 0000 # object | Код подтверждения, который придет к вам в Телеграм, после запроса удаления, если включено подтверждение удаления сервисов.  При помощи API токена сервисы можно удалять без подтверждения, если параметр токена `is_able_to_delete` установлен в значение `true` (optional)
 
@@ -325,7 +325,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **balancer_id** | [**object**](.md)| Идентификатор балансировщика | 
+ **balancer_id** | [**object**](.md)| ID балансировщика | 
  **hash** | [**object**](.md)| Хеш, который совместно с кодом авторизации надо отправить для удаления, если включено подтверждение удаления сервисов через Телеграм. | [optional] 
  **code** | [**object**](.md)| Код подтверждения, который придет к вам в Телеграм, после запроса удаления, если включено подтверждение удаления сервисов.  При помощи API токена сервисы можно удалять без подтверждения, если параметр токена &#x60;is_able_to_delete&#x60; установлен в значение &#x60;true&#x60; | [optional] 
 
@@ -393,8 +393,8 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.BalancersApi(api_client)
-    balancer_id = None # object | Идентификатор балансировщика
-    rule_id = None # object | Идентификатор правила для балансировщика
+    balancer_id = None # object | ID балансировщика
+    rule_id = None # object | ID правила для балансировщика
 
     try:
         # Удаление правила для балансировщика
@@ -408,8 +408,8 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **balancer_id** | [**object**](.md)| Идентификатор балансировщика | 
- **rule_id** | [**object**](.md)| Идентификатор правила для балансировщика | 
+ **balancer_id** | [**object**](.md)| ID балансировщика | 
+ **rule_id** | [**object**](.md)| ID правила для балансировщика | 
 
 ### Return type
 
@@ -475,7 +475,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.BalancersApi(api_client)
-    balancer_id = None # object | Идентификатор балансировщика
+    balancer_id = None # object | ID балансировщика
     add_ips_to_balancer_request = timeweb_cloud_api.AddIPsToBalancerRequest() # AddIPsToBalancerRequest | 
 
     try:
@@ -490,7 +490,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **balancer_id** | [**object**](.md)| Идентификатор балансировщика | 
+ **balancer_id** | [**object**](.md)| ID балансировщика | 
  **add_ips_to_balancer_request** | [**AddIPsToBalancerRequest**](AddIPsToBalancerRequest.md)|  | 
 
 ### Return type
@@ -557,7 +557,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.BalancersApi(api_client)
-    balancer_id = None # object | Идентификатор балансировщика
+    balancer_id = None # object | ID балансировщика
 
     try:
         # Получение бaлансировщика
@@ -573,7 +573,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **balancer_id** | [**object**](.md)| Идентификатор балансировщика | 
+ **balancer_id** | [**object**](.md)| ID балансировщика | 
 
 ### Return type
 
@@ -639,7 +639,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.BalancersApi(api_client)
-    balancer_id = None # object | Идентификатор балансировщика
+    balancer_id = None # object | ID балансировщика
 
     try:
         # Получение списка IP-адресов балансировщика
@@ -655,7 +655,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **balancer_id** | [**object**](.md)| Идентификатор балансировщика | 
+ **balancer_id** | [**object**](.md)| ID балансировщика | 
 
 ### Return type
 
@@ -721,7 +721,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.BalancersApi(api_client)
-    balancer_id = None # object | Идентификатор балансировщика
+    balancer_id = None # object | ID балансировщика
 
     try:
         # Получение правил балансировщика
@@ -737,7 +737,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **balancer_id** | [**object**](.md)| Идентификатор балансировщика | 
+ **balancer_id** | [**object**](.md)| ID балансировщика | 
 
 ### Return type
 
@@ -966,7 +966,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.BalancersApi(api_client)
-    balancer_id = None # object | Идентификатор балансировщика
+    balancer_id = None # object | ID балансировщика
     update_balancer = timeweb_cloud_api.UpdateBalancer() # UpdateBalancer | 
 
     try:
@@ -983,7 +983,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **balancer_id** | [**object**](.md)| Идентификатор балансировщика | 
+ **balancer_id** | [**object**](.md)| ID балансировщика | 
  **update_balancer** | [**UpdateBalancer**](UpdateBalancer.md)|  | 
 
 ### Return type
@@ -1051,8 +1051,8 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.BalancersApi(api_client)
-    balancer_id = None # object | Идентификатор балансировщика
-    rule_id = None # object | Идентификатор правила для балансировщика
+    balancer_id = None # object | ID балансировщика
+    rule_id = None # object | ID правила для балансировщика
     update_rule = timeweb_cloud_api.UpdateRule() # UpdateRule | 
 
     try:
@@ -1069,8 +1069,8 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **balancer_id** | [**object**](.md)| Идентификатор балансировщика | 
- **rule_id** | [**object**](.md)| Идентификатор правила для балансировщика | 
+ **balancer_id** | [**object**](.md)| ID балансировщика | 
+ **rule_id** | [**object**](.md)| ID правила для балансировщика | 
  **update_rule** | [**UpdateRule**](UpdateRule.md)|  | 
 
 ### Return type

@@ -17,11 +17,11 @@ import unittest
 import datetime
 
 import timeweb_cloud_api
-from timeweb_cloud_api.models.firewall_group_resource_out_api import FirewallGroupResourceOutAPI  # noqa: E501
+from timeweb_cloud_api.models.image_download import ImageDownload  # noqa: E501
 from timeweb_cloud_api.rest import ApiException
 
-class TestFirewallGroupResourceOutAPI(unittest.TestCase):
-    """FirewallGroupResourceOutAPI unit test stubs"""
+class TestImageDownload(unittest.TestCase):
+    """ImageDownload unit test stubs"""
 
     def setUp(self):
         pass
@@ -30,27 +30,36 @@ class TestFirewallGroupResourceOutAPI(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test FirewallGroupResourceOutAPI
+        """Test ImageDownload
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # uncomment below to create an instance of `FirewallGroupResourceOutAPI`
+        # uncomment below to create an instance of `ImageDownload`
         """
-        model = timeweb_cloud_api.models.firewall_group_resource_out_api.FirewallGroupResourceOutAPI()  # noqa: E501
+        model = timeweb_cloud_api.models.image_download.ImageDownload()  # noqa: E501
         if include_optional :
-            return FirewallGroupResourceOutAPI(
+            return ImageDownload(
                 id = None, 
-                type = server
+                created_at = None, 
+                image = None, 
+                type = timeweb, 
+                url = None, 
+                status = process, 
+                progress = None
             )
         else :
-            return FirewallGroupResourceOutAPI(
+            return ImageDownload(
                 id = None,
-                type = server,
+                created_at = None,
+                image = None,
+                type = timeweb,
+                status = process,
+                progress = None,
         )
         """
 
-    def testFirewallGroupResourceOutAPI(self):
-        """Test FirewallGroupResourceOutAPI"""
+    def testImageDownload(self):
+        """Test ImageDownload"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

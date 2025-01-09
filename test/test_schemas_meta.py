@@ -17,11 +17,11 @@ import unittest
 import datetime
 
 import timeweb_cloud_api
-from timeweb_cloud_api.models.image_download_api import ImageDownloadAPI  # noqa: E501
+from timeweb_cloud_api.models.schemas_meta import SchemasMeta  # noqa: E501
 from timeweb_cloud_api.rest import ApiException
 
-class TestImageDownloadAPI(unittest.TestCase):
-    """ImageDownloadAPI unit test stubs"""
+class TestSchemasMeta(unittest.TestCase):
+    """SchemasMeta unit test stubs"""
 
     def setUp(self):
         pass
@@ -30,36 +30,25 @@ class TestImageDownloadAPI(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test ImageDownloadAPI
+        """Test SchemasMeta
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # uncomment below to create an instance of `ImageDownloadAPI`
+        # uncomment below to create an instance of `SchemasMeta`
         """
-        model = timeweb_cloud_api.models.image_download_api.ImageDownloadAPI()  # noqa: E501
+        model = timeweb_cloud_api.models.schemas_meta.SchemasMeta()  # noqa: E501
         if include_optional :
-            return ImageDownloadAPI(
-                id = None, 
-                created_at = None, 
-                image = None, 
-                type = timeweb, 
-                url = None, 
-                status = process, 
-                progress = None
+            return SchemasMeta(
+                total = None
             )
         else :
-            return ImageDownloadAPI(
-                id = None,
-                created_at = None,
-                image = None,
-                type = timeweb,
-                status = process,
-                progress = None,
+            return SchemasMeta(
+                total = None,
         )
         """
 
-    def testImageDownloadAPI(self):
-        """Test ImageDownloadAPI"""
+    def testSchemasMeta(self):
+        """Test SchemasMeta"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **id** | **object** | ID группы | 
 **name** | **object** | Название группы | 
 **created_at** | **object** | Дата и время создания группы в формате ISO8601 | 
-**preset_id** | **object** | Идентификатор тарифа мастер-ноды | 
+**preset_id** | **object** | ID тарифа мастер-ноды | 
 **node_count** | **object** | Количество нод в группе | 
 
 ## Example

@@ -26,7 +26,7 @@ class AddClusterToProjectRequest(BaseModel):
     """
     AddClusterToProjectRequest
     """
-    resource_id: Optional[Any] = Field(..., description="Идентификатор добавляемого кластера.")
+    resource_id: Optional[Any] = Field(..., description="ID добавляемого кластера.")
     __properties = ["resource_id"]
 
     class Config:

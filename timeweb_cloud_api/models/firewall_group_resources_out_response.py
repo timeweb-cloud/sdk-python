@@ -27,7 +27,7 @@ class FirewallGroupResourcesOutResponse(BaseModel):
     """
     FirewallGroupResourcesOutResponse
     """
-    response_id: Optional[Any] = Field(None, description="Идентификатор запроса")
+    response_id: Optional[Any] = Field(None, description="ID запроса.")
     meta: Meta = Field(...)
     resources: Optional[Any] = Field(...)
     __properties = ["response_id", "meta", "resources"]

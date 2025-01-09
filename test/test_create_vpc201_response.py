@@ -46,7 +46,9 @@ class TestCreateVPC201Response(unittest.TestCase):
                     location = ru-1, 
                     created_at = 2023-02-06T17:33:13Z, 
                     description = Сеть для примера, 
-                    availability_zone = spb-1, )
+                    availability_zone = spb-1, 
+                    public_ip = null, 
+                    type = ovn, )
             )
         else :
             return CreateVPC201Response(
@@ -57,7 +59,9 @@ class TestCreateVPC201Response(unittest.TestCase):
                     location = ru-1, 
                     created_at = 2023-02-06T17:33:13Z, 
                     description = Сеть для примера, 
-                    availability_zone = spb-1, ),
+                    availability_zone = spb-1, 
+                    public_ip = null, 
+                    type = ovn, ),
         )
         """
 

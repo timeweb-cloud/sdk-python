@@ -13,65 +13,95 @@
 """
 
 
-import unittest
-import datetime
+from __future__ import annotations
+import pprint
+import re  # noqa: F401
+import json
 
-import timeweb_cloud_api
-from timeweb_cloud_api.models.image_out_api import ImageOutAPI  # noqa: E501
-from timeweb_cloud_api.rest import ApiException
 
-class TestImageOutAPI(unittest.TestCase):
-    """ImageOutAPI unit test stubs"""
+from typing import Any, Optional
+from pydantic import BaseModel, Field
+from timeweb_cloud_api.models.policy import Policy
 
-    def setUp(self):
-        pass
+class FirewallGroup(BaseModel):
+    """
+    FirewallGroup
+    """
+    id: Optional[Any] = Field(..., description="ID группы правил.")
+    created_at: Optional[Any] = Field(..., description="Дата и время создания.")
+    updated_at: Optional[Any] = Field(..., description="Дата и время последнего обновления.")
+    name: Optional[Any] = Field(..., description="Имя группы правил.")
+    description: Optional[Any] = Field(..., description="Описание группы правил.")
+    policy: Policy = Field(...)
+    __properties = ["id", "created_at", "updated_at", "name", "description", "policy"]
 
-    def tearDown(self):
-        pass
+    class Config:
+        """Pydantic configuration"""
+        allow_population_by_field_name = True
+        validate_assignment = True
 
-    def make_instance(self, include_optional):
-        """Test ImageOutAPI
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
-        # uncomment below to create an instance of `ImageOutAPI`
-        """
-        model = timeweb_cloud_api.models.image_out_api.ImageOutAPI()  # noqa: E501
-        if include_optional :
-            return ImageOutAPI(
-                id = None, 
-                status = new, 
-                created_at = None, 
-                deleted_at = None, 
-                size = None, 
-                name = None, 
-                description = None, 
-                disk_id = None, 
-                location = None, 
-                os = centos, 
-                progress = None, 
-                is_custom = None
-            )
-        else :
-            return ImageOutAPI(
-                id = None,
-                status = new,
-                created_at = None,
-                deleted_at = None,
-                size = None,
-                name = None,
-                description = None,
-                disk_id = None,
-                os = centos,
-                progress = None,
-                is_custom = None,
-        )
-        """
+    def to_str(self) -> str:
+        """Returns the string representation of the model using alias"""
+        return pprint.pformat(self.dict(by_alias=True))
 
-    def testImageOutAPI(self):
-        """Test ImageOutAPI"""
-        # inst_req_only = self.make_instance(include_optional=False)
-        # inst_req_and_optional = self.make_instance(include_optional=True)
+    def to_json(self) -> str:
+        """Returns the JSON representation of the model using alias"""
+        return json.dumps(self.to_dict())
 
-if __name__ == '__main__':
-    unittest.main()
+    @classmethod
+    def from_json(cls, json_str: str) -> FirewallGroup:
+        """Create an instance of FirewallGroup from a JSON string"""
+        return cls.from_dict(json.loads(json_str))
+
+    def to_dict(self):
+        """Returns the dictionary representation of the model using alias"""
+        _dict = self.dict(by_alias=True,
+                          exclude={
+                          },
+                          exclude_none=True)
+        # set to None if id (nullable) is None
+        # and __fields_set__ contains the field
+        if self.id is None and "id" in self.__fields_set__:
+            _dict['id'] = None
+
+        # set to None if created_at (nullable) is None
+        # and __fields_set__ contains the field
+        if self.created_at is None and "created_at" in self.__fields_set__:
+            _dict['created_at'] = None
+
+        # set to None if updated_at (nullable) is None
+        # and __fields_set__ contains the field
+        if self.updated_at is None and "updated_at" in self.__fields_set__:
+            _dict['updated_at'] = None
+
+        # set to None if name (nullable) is None
+        # and __fields_set__ contains the field
+        if self.name is None and "name" in self.__fields_set__:
+            _dict['name'] = None
+
+        # set to None if description (nullable) is None
+        # and __fields_set__ contains the field
+        if self.description is None and "description" in self.__fields_set__:
+            _dict['description'] = None
+
+        return _dict
+
+    @classmethod
+    def from_dict(cls, obj: dict) -> FirewallGroup:
+        """Create an instance of FirewallGroup from a dict"""
+        if obj is None:
+            return None
+
+        if not isinstance(obj, dict):
+            return FirewallGroup.parse_obj(obj)
+
+        _obj = FirewallGroup.parse_obj({
+            "id": obj.get("id"),
+            "created_at": obj.get("created_at"),
+            "updated_at": obj.get("updated_at"),
+            "name": obj.get("name"),
+            "description": obj.get("description"),
+            "policy": obj.get("policy")
+        })
+        return _obj
+

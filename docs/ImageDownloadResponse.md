@@ -4,8 +4,8 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**response_id** | **object** | ID запроса | [optional] 
-**download** | [**ImageDownloadAPI**](ImageDownloadAPI.md) |  | 
+**response_id** | **object** | ID запроса. | [optional] 
+**download** | [**ImageDownload**](ImageDownload.md) |  | 
 
 ## Example
 

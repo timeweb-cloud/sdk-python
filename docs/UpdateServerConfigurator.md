@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **disk** | **object** | Размер диска в МБ. | [optional] 
 **cpu** | **object** | Количество ядер процессора. | [optional] 
 **ram** | **object** | Размер ОЗУ сервера в МБ. | [optional] 
+**gpu** | **object** | Количество видеокарт. | [optional] 
 
 ## Example
 

@@ -29,7 +29,7 @@ class CreateNetworkDrive(BaseModel):
     name: Optional[Any] = Field(..., description="Название сетевого диска.")
     comment: Optional[Any] = Field(None, description="Комментарий")
     size: Optional[Any] = Field(..., description="Размер диска в Гб")
-    preset_id: Optional[Any] = Field(..., description="Идентификатор сетевого диска.")
+    preset_id: Optional[Any] = Field(..., description="ID сетевого диска.")
     __properties = ["name", "comment", "size", "preset_id"]
 
     class Config:

@@ -29,7 +29,7 @@ class NodeGroupOut(BaseModel):
     id: Optional[Any] = Field(..., description="ID группы")
     name: Optional[Any] = Field(..., description="Название группы")
     created_at: Optional[Any] = Field(..., description="Дата и время создания группы в формате ISO8601")
-    preset_id: Optional[Any] = Field(..., description="Идентификатор тарифа мастер-ноды")
+    preset_id: Optional[Any] = Field(..., description="ID тарифа мастер-ноды")
     node_count: Optional[Any] = Field(..., description="Количество нод в группе")
     __properties = ["id", "name", "created_at", "preset_id", "node_count"]
 

@@ -26,7 +26,7 @@ class AddKeyToServerRequest(BaseModel):
     """
     AddKeyToServerRequest
     """
-    ssh_key_ids: Optional[Any] = Field(..., description="Массив уникальных идентификаторов SSH-ключей")
+    ssh_key_ids: Optional[Any] = Field(..., description="Массив ID SSH-ключей")
     __properties = ["ssh_key_ids"]
 
     class Config:

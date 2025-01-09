@@ -27,7 +27,7 @@ class NodeGroupResponse(BaseModel):
     """
     NodeGroupResponse
     """
-    response_id: Optional[Any] = Field(None, description="Идентификатор запроса")
+    response_id: Optional[Any] = Field(None, description="ID запроса")
     node_group: NodeGroupOut = Field(...)
     __properties = ["response_id", "node_group"]
 

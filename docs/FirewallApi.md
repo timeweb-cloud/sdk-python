@@ -59,7 +59,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.FirewallApi(api_client)
-    group_id = None # object | ID группы правил
+    group_id = None # object | ID группы правил.
     resource_id = None # object | ID ресурса
     resource_type = timeweb_cloud_api.ResourceType() # ResourceType |  (optional)
 
@@ -77,7 +77,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **group_id** | [**object**](.md)| ID группы правил | 
+ **group_id** | [**object**](.md)| ID группы правил. | 
  **resource_id** | [**object**](.md)| ID ресурса | 
  **resource_type** | [**ResourceType**](.md)|  | [optional] 
 
@@ -97,7 +97,7 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**201** | Ресурс добавлен к группе |  -  |
+**201** | Объект JSON c ключом &#x60;resources&#x60; |  -  |
 **400** |  |  -  |
 **401** |  |  -  |
 **429** |  |  -  |
@@ -145,7 +145,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.FirewallApi(api_client)
     firewall_group_in_api = timeweb_cloud_api.FirewallGroupInAPI() # FirewallGroupInAPI | 
-    policy = None # object | Тип группы правил (optional)
+    policy = None # object | Тип группы правил. (optional)
 
     try:
         # Создание группы правил
@@ -162,7 +162,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **firewall_group_in_api** | [**FirewallGroupInAPI**](FirewallGroupInAPI.md)|  | 
- **policy** | [**object**](.md)| Тип группы правил | [optional] 
+ **policy** | [**object**](.md)| Тип группы правил. | [optional] 
 
 ### Return type
 
@@ -180,7 +180,7 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**201** | Группа правил создана |  -  |
+**201** | Объект JSON c ключом &#x60;group&#x60; |  -  |
 **400** |  |  -  |
 **401** |  |  -  |
 **429** |  |  -  |
@@ -227,7 +227,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.FirewallApi(api_client)
-    group_id = None # object | ID группы правил
+    group_id = None # object | ID группы правил.
     firewall_rule_in_api = timeweb_cloud_api.FirewallRuleInAPI() # FirewallRuleInAPI | 
 
     try:
@@ -244,7 +244,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **group_id** | [**object**](.md)| ID группы правил | 
+ **group_id** | [**object**](.md)| ID группы правил. | 
  **firewall_rule_in_api** | [**FirewallRuleInAPI**](FirewallRuleInAPI.md)|  | 
 
 ### Return type
@@ -263,7 +263,7 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**201** | Правило создано |  -  |
+**201** | Объект JSON c ключом &#x60;rule&#x60; |  -  |
 **400** |  |  -  |
 **401** |  |  -  |
 **429** |  |  -  |
@@ -308,7 +308,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.FirewallApi(api_client)
-    group_id = None # object | ID группы правил
+    group_id = None # object | ID группы правил.
 
     try:
         # Удаление группы правил
@@ -322,7 +322,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **group_id** | [**object**](.md)| ID группы правил | 
+ **group_id** | [**object**](.md)| ID группы правил. | 
 
 ### Return type
 
@@ -386,7 +386,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.FirewallApi(api_client)
-    group_id = None # object | ID группы правил
+    group_id = None # object | ID группы правил.
     rule_id = None # object | ID правила
 
     try:
@@ -401,7 +401,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **group_id** | [**object**](.md)| ID группы правил | 
+ **group_id** | [**object**](.md)| ID группы правил. | 
  **rule_id** | [**object**](.md)| ID правила | 
 
 ### Return type
@@ -467,7 +467,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.FirewallApi(api_client)
-    group_id = None # object | ID группы правил
+    group_id = None # object | ID группы правил.
     resource_id = None # object | ID ресурса
     resource_type = timeweb_cloud_api.ResourceType() # ResourceType |  (optional)
 
@@ -483,7 +483,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **group_id** | [**object**](.md)| ID группы правил | 
+ **group_id** | [**object**](.md)| ID группы правил. | 
  **resource_id** | [**object**](.md)| ID ресурса | 
  **resource_type** | [**ResourceType**](.md)|  | [optional] 
 
@@ -550,7 +550,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.FirewallApi(api_client)
-    group_id = None # object | ID группы правил
+    group_id = None # object | ID группы правил.
 
     try:
         # Получение информации о группе правил
@@ -566,7 +566,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **group_id** | [**object**](.md)| ID группы правил | 
+ **group_id** | [**object**](.md)| ID группы правил. | 
 
 ### Return type
 
@@ -584,7 +584,7 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Информация о группе правил |  -  |
+**200** | Объект JSON c ключом &#x60;group&#x60; |  -  |
 **400** |  |  -  |
 **401** |  |  -  |
 **404** |  |  -  |
@@ -631,7 +631,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.FirewallApi(api_client)
-    group_id = None # object | ID группы правил
+    group_id = None # object | ID группы правил.
     limit = None # object | Обозначает количество записей, которое необходимо вернуть. (optional)
     offset = None # object | Указывает на смещение относительно начала списка. (optional)
 
@@ -649,7 +649,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **group_id** | [**object**](.md)| ID группы правил | 
+ **group_id** | [**object**](.md)| ID группы правил. | 
  **limit** | [**object**](.md)| Обозначает количество записей, которое необходимо вернуть. | [optional] 
  **offset** | [**object**](.md)| Указывает на смещение относительно начала списка. | [optional] 
 
@@ -669,7 +669,7 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Список слинкованных ресурсов |  -  |
+**200** | Объект JSON c ключом &#x60;resources&#x60; |  -  |
 **400** |  |  -  |
 **401** |  |  -  |
 **429** |  |  -  |
@@ -715,8 +715,8 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.FirewallApi(api_client)
-    rule_id = None # object | ID правила
-    group_id = None # object | ID группы правил
+    rule_id = None # object | ID правила.
+    group_id = None # object | ID группы правил.
 
     try:
         # Получение информации о правиле
@@ -732,8 +732,8 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **rule_id** | [**object**](.md)| ID правила | 
- **group_id** | [**object**](.md)| ID группы правил | 
+ **rule_id** | [**object**](.md)| ID правила. | 
+ **group_id** | [**object**](.md)| ID группы правил. | 
 
 ### Return type
 
@@ -751,7 +751,7 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Информация о правиле |  -  |
+**200** | Объект JSON c ключом &#x60;rule&#x60; |  -  |
 **400** |  |  -  |
 **401** |  |  -  |
 **404** |  |  -  |
@@ -798,7 +798,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.FirewallApi(api_client)
-    group_id = None # object | ID группы правил
+    group_id = None # object | ID группы правил.
     limit = None # object | Обозначает количество записей, которое необходимо вернуть. (optional)
     offset = None # object | Указывает на смещение относительно начала списка. (optional)
 
@@ -816,7 +816,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **group_id** | [**object**](.md)| ID группы правил | 
+ **group_id** | [**object**](.md)| ID группы правил. | 
  **limit** | [**object**](.md)| Обозначает количество записей, которое необходимо вернуть. | [optional] 
  **offset** | [**object**](.md)| Указывает на смещение относительно начала списка. | [optional] 
 
@@ -836,7 +836,7 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Список правил |  -  |
+**200** | Объект JSON c ключом &#x60;rules&#x60; |  -  |
 **400** |  |  -  |
 **401** |  |  -  |
 **429** |  |  -  |
@@ -918,7 +918,7 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Список групп правил |  -  |
+**200** | Объект JSON c ключом &#x60;groups&#x60; |  -  |
 **400** |  |  -  |
 **401** |  |  -  |
 **429** |  |  -  |
@@ -965,7 +965,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.FirewallApi(api_client)
-    resource_id = None # object | Идентификатор ресурса
+    resource_id = None # object | ID ресурса
     resource_type = timeweb_cloud_api.ResourceType() # ResourceType | 
     limit = None # object | Обозначает количество записей, которое необходимо вернуть. (optional)
     offset = None # object | Указывает на смещение относительно начала списка. (optional)
@@ -984,7 +984,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **resource_id** | [**object**](.md)| Идентификатор ресурса | 
+ **resource_id** | [**object**](.md)| ID ресурса | 
  **resource_type** | [**ResourceType**](.md)|  | 
  **limit** | [**object**](.md)| Обозначает количество записей, которое необходимо вернуть. | [optional] 
  **offset** | [**object**](.md)| Указывает на смещение относительно начала списка. | [optional] 
@@ -1005,7 +1005,7 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Список групп правил |  -  |
+**200** | Объект JSON c ключом &#x60;groups&#x60; |  -  |
 **400** |  |  -  |
 **401** |  |  -  |
 **429** |  |  -  |
@@ -1052,7 +1052,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.FirewallApi(api_client)
-    group_id = None # object | ID группы правил
+    group_id = None # object | ID группы правил.
     firewall_group_in_api = timeweb_cloud_api.FirewallGroupInAPI() # FirewallGroupInAPI | 
 
     try:
@@ -1069,7 +1069,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **group_id** | [**object**](.md)| ID группы правил | 
+ **group_id** | [**object**](.md)| ID группы правил. | 
  **firewall_group_in_api** | [**FirewallGroupInAPI**](FirewallGroupInAPI.md)|  | 
 
 ### Return type
@@ -1088,7 +1088,7 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**201** | Группа правил обновлена |  -  |
+**201** | Объект JSON c ключом &#x60;group&#x60; |  -  |
 **400** |  |  -  |
 **401** |  |  -  |
 **404** |  |  -  |
@@ -1136,7 +1136,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.FirewallApi(api_client)
-    group_id = None # object | ID группы правил
+    group_id = None # object | ID группы правил.
     rule_id = None # object | ID правила
     firewall_rule_in_api = timeweb_cloud_api.FirewallRuleInAPI() # FirewallRuleInAPI | 
 
@@ -1154,7 +1154,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **group_id** | [**object**](.md)| ID группы правил | 
+ **group_id** | [**object**](.md)| ID группы правил. | 
  **rule_id** | [**object**](.md)| ID правила | 
  **firewall_rule_in_api** | [**FirewallRuleInAPI**](FirewallRuleInAPI.md)|  | 
 
@@ -1174,7 +1174,7 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**201** | Правило обновлено |  -  |
+**201** | Объект JSON c ключом &#x60;rule&#x60; |  -  |
 **400** |  |  -  |
 **401** |  |  -  |
 **404** |  |  -  |

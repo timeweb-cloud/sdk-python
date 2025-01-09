@@ -40,7 +40,7 @@ class TestImageDownloadResponse(unittest.TestCase):
         if include_optional :
             return ImageDownloadResponse(
                 response_id = None, 
-                download = timeweb_cloud_api.models.image_download_api.ImageDownloadAPI(
+                download = timeweb_cloud_api.models.image_download.image-download(
                     id = null, 
                     created_at = null, 
                     image = null, 
@@ -51,7 +51,7 @@ class TestImageDownloadResponse(unittest.TestCase):
             )
         else :
             return ImageDownloadResponse(
-                download = timeweb_cloud_api.models.image_download_api.ImageDownloadAPI(
+                download = timeweb_cloud_api.models.image_download.image-download(
                     id = null, 
                     created_at = null, 
                     image = null, 

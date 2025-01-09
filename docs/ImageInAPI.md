@@ -4,12 +4,12 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**name** | **object** | Имя образа | [optional] 
-**description** | **object** | Описание образа | [optional] 
-**disk_id** | **object** | Идентификатор диска, для которого создается образ | [optional] 
-**upload_url** | **object** | Cсылка для загрузки образа | [optional] 
-**location** | [**Location**](Location.md) |  | [optional] 
-**os** | [**OS**](OS.md) |  | [optional] 
+**name** | **object** | Имя образа. | [optional] 
+**description** | **object** | Описание образа. | [optional] 
+**disk_id** | **object** | ID диска, для которого создается образ. | [optional] 
+**upload_url** | **object** | Ссылка для загрузки образа. | [optional] 
+**location** | [**Location**](Location.md) |  | 
+**os** | [**OS**](OS.md) |  | 
 
 ## Example
 

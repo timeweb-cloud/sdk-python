@@ -55,7 +55,7 @@ class FirewallApi(object):
         self.api_client = api_client
 
     @validate_arguments
-    def add_resource_to_group(self, group_id : Annotated[Any, Field(..., description="ID группы правил")], resource_id : Annotated[Any, Field(..., description="ID ресурса")], resource_type : Optional[ResourceType] = None, **kwargs) -> FirewallGroupResourceOutResponse:  # noqa: E501
+    def add_resource_to_group(self, group_id : Annotated[Any, Field(..., description="ID группы правил.")], resource_id : Annotated[Any, Field(..., description="ID ресурса")], resource_type : Optional[ResourceType] = None, **kwargs) -> FirewallGroupResourceOutResponse:  # noqa: E501
         """Линковка ресурса в firewall group  # noqa: E501
 
         Чтобы слинковать ресурс с группой правил, отправьте POST запрос на `/api/v1/firewall/groups/{group_id}/resources/{resource_id}`  # noqa: E501
@@ -65,7 +65,7 @@ class FirewallApi(object):
         >>> thread = api.add_resource_to_group(group_id, resource_id, resource_type, async_req=True)
         >>> result = thread.get()
 
-        :param group_id: ID группы правил (required)
+        :param group_id: ID группы правил. (required)
         :type group_id: object
         :param resource_id: ID ресурса (required)
         :type resource_id: object
@@ -88,7 +88,7 @@ class FirewallApi(object):
         return self.add_resource_to_group_with_http_info(group_id, resource_id, resource_type, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def add_resource_to_group_with_http_info(self, group_id : Annotated[Any, Field(..., description="ID группы правил")], resource_id : Annotated[Any, Field(..., description="ID ресурса")], resource_type : Optional[ResourceType] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def add_resource_to_group_with_http_info(self, group_id : Annotated[Any, Field(..., description="ID группы правил.")], resource_id : Annotated[Any, Field(..., description="ID ресурса")], resource_type : Optional[ResourceType] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Линковка ресурса в firewall group  # noqa: E501
 
         Чтобы слинковать ресурс с группой правил, отправьте POST запрос на `/api/v1/firewall/groups/{group_id}/resources/{resource_id}`  # noqa: E501
@@ -98,7 +98,7 @@ class FirewallApi(object):
         >>> thread = api.add_resource_to_group_with_http_info(group_id, resource_id, resource_type, async_req=True)
         >>> result = thread.get()
 
-        :param group_id: ID группы правил (required)
+        :param group_id: ID группы правил. (required)
         :type group_id: object
         :param resource_id: ID ресурса (required)
         :type resource_id: object
@@ -214,7 +214,7 @@ class FirewallApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def create_group(self, firewall_group_in_api : FirewallGroupInAPI, policy : Annotated[Optional[Any], Field(description="Тип группы правил")] = None, **kwargs) -> FirewallGroupOutResponse:  # noqa: E501
+    def create_group(self, firewall_group_in_api : FirewallGroupInAPI, policy : Annotated[Optional[Any], Field(description="Тип группы правил.")] = None, **kwargs) -> FirewallGroupOutResponse:  # noqa: E501
         """Создание группы правил  # noqa: E501
 
         Чтобы создать группу правил, отправьте POST запрос на `/api/v1/firewall/groups`  # noqa: E501
@@ -226,7 +226,7 @@ class FirewallApi(object):
 
         :param firewall_group_in_api: (required)
         :type firewall_group_in_api: FirewallGroupInAPI
-        :param policy: Тип группы правил
+        :param policy: Тип группы правил.
         :type policy: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -245,7 +245,7 @@ class FirewallApi(object):
         return self.create_group_with_http_info(firewall_group_in_api, policy, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def create_group_with_http_info(self, firewall_group_in_api : FirewallGroupInAPI, policy : Annotated[Optional[Any], Field(description="Тип группы правил")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def create_group_with_http_info(self, firewall_group_in_api : FirewallGroupInAPI, policy : Annotated[Optional[Any], Field(description="Тип группы правил.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Создание группы правил  # noqa: E501
 
         Чтобы создать группу правил, отправьте POST запрос на `/api/v1/firewall/groups`  # noqa: E501
@@ -257,7 +257,7 @@ class FirewallApi(object):
 
         :param firewall_group_in_api: (required)
         :type firewall_group_in_api: FirewallGroupInAPI
-        :param policy: Тип группы правил
+        :param policy: Тип группы правил.
         :type policy: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -372,7 +372,7 @@ class FirewallApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def create_group_rule(self, group_id : Annotated[Any, Field(..., description="ID группы правил")], firewall_rule_in_api : FirewallRuleInAPI, **kwargs) -> FirewallRuleOutResponse:  # noqa: E501
+    def create_group_rule(self, group_id : Annotated[Any, Field(..., description="ID группы правил.")], firewall_rule_in_api : FirewallRuleInAPI, **kwargs) -> FirewallRuleOutResponse:  # noqa: E501
         """Создание firewall правила  # noqa: E501
 
         Чтобы создать правило в группе, отправьте POST запрос на `/api/v1/firewall/groups/{group_id}/rules`  # noqa: E501
@@ -382,7 +382,7 @@ class FirewallApi(object):
         >>> thread = api.create_group_rule(group_id, firewall_rule_in_api, async_req=True)
         >>> result = thread.get()
 
-        :param group_id: ID группы правил (required)
+        :param group_id: ID группы правил. (required)
         :type group_id: object
         :param firewall_rule_in_api: (required)
         :type firewall_rule_in_api: FirewallRuleInAPI
@@ -403,7 +403,7 @@ class FirewallApi(object):
         return self.create_group_rule_with_http_info(group_id, firewall_rule_in_api, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def create_group_rule_with_http_info(self, group_id : Annotated[Any, Field(..., description="ID группы правил")], firewall_rule_in_api : FirewallRuleInAPI, **kwargs) -> ApiResponse:  # noqa: E501
+    def create_group_rule_with_http_info(self, group_id : Annotated[Any, Field(..., description="ID группы правил.")], firewall_rule_in_api : FirewallRuleInAPI, **kwargs) -> ApiResponse:  # noqa: E501
         """Создание firewall правила  # noqa: E501
 
         Чтобы создать правило в группе, отправьте POST запрос на `/api/v1/firewall/groups/{group_id}/rules`  # noqa: E501
@@ -413,7 +413,7 @@ class FirewallApi(object):
         >>> thread = api.create_group_rule_with_http_info(group_id, firewall_rule_in_api, async_req=True)
         >>> result = thread.get()
 
-        :param group_id: ID группы правил (required)
+        :param group_id: ID группы правил. (required)
         :type group_id: object
         :param firewall_rule_in_api: (required)
         :type firewall_rule_in_api: FirewallRuleInAPI
@@ -530,7 +530,7 @@ class FirewallApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def delete_group(self, group_id : Annotated[Any, Field(..., description="ID группы правил")], **kwargs) -> None:  # noqa: E501
+    def delete_group(self, group_id : Annotated[Any, Field(..., description="ID группы правил.")], **kwargs) -> None:  # noqa: E501
         """Удаление группы правил  # noqa: E501
 
         Чтобы удалить группу правил, отправьте DELETE запрос на `/api/v1/firewall/groups/{group_id}`  # noqa: E501
@@ -540,7 +540,7 @@ class FirewallApi(object):
         >>> thread = api.delete_group(group_id, async_req=True)
         >>> result = thread.get()
 
-        :param group_id: ID группы правил (required)
+        :param group_id: ID группы правил. (required)
         :type group_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -559,7 +559,7 @@ class FirewallApi(object):
         return self.delete_group_with_http_info(group_id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def delete_group_with_http_info(self, group_id : Annotated[Any, Field(..., description="ID группы правил")], **kwargs) -> ApiResponse:  # noqa: E501
+    def delete_group_with_http_info(self, group_id : Annotated[Any, Field(..., description="ID группы правил.")], **kwargs) -> ApiResponse:  # noqa: E501
         """Удаление группы правил  # noqa: E501
 
         Чтобы удалить группу правил, отправьте DELETE запрос на `/api/v1/firewall/groups/{group_id}`  # noqa: E501
@@ -569,7 +569,7 @@ class FirewallApi(object):
         >>> thread = api.delete_group_with_http_info(group_id, async_req=True)
         >>> result = thread.get()
 
-        :param group_id: ID группы правил (required)
+        :param group_id: ID группы правил. (required)
         :type group_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -663,7 +663,7 @@ class FirewallApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def delete_group_rule(self, group_id : Annotated[Any, Field(..., description="ID группы правил")], rule_id : Annotated[Any, Field(..., description="ID правила")], **kwargs) -> None:  # noqa: E501
+    def delete_group_rule(self, group_id : Annotated[Any, Field(..., description="ID группы правил.")], rule_id : Annotated[Any, Field(..., description="ID правила")], **kwargs) -> None:  # noqa: E501
         """Удаление firewall правила  # noqa: E501
 
         Чтобы удалить правило, отправьте DELETE запрос на `/api/v1/firewall/groups/{group_id}/rules/{rule_id}`  # noqa: E501
@@ -673,7 +673,7 @@ class FirewallApi(object):
         >>> thread = api.delete_group_rule(group_id, rule_id, async_req=True)
         >>> result = thread.get()
 
-        :param group_id: ID группы правил (required)
+        :param group_id: ID группы правил. (required)
         :type group_id: object
         :param rule_id: ID правила (required)
         :type rule_id: object
@@ -694,7 +694,7 @@ class FirewallApi(object):
         return self.delete_group_rule_with_http_info(group_id, rule_id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def delete_group_rule_with_http_info(self, group_id : Annotated[Any, Field(..., description="ID группы правил")], rule_id : Annotated[Any, Field(..., description="ID правила")], **kwargs) -> ApiResponse:  # noqa: E501
+    def delete_group_rule_with_http_info(self, group_id : Annotated[Any, Field(..., description="ID группы правил.")], rule_id : Annotated[Any, Field(..., description="ID правила")], **kwargs) -> ApiResponse:  # noqa: E501
         """Удаление firewall правила  # noqa: E501
 
         Чтобы удалить правило, отправьте DELETE запрос на `/api/v1/firewall/groups/{group_id}/rules/{rule_id}`  # noqa: E501
@@ -704,7 +704,7 @@ class FirewallApi(object):
         >>> thread = api.delete_group_rule_with_http_info(group_id, rule_id, async_req=True)
         >>> result = thread.get()
 
-        :param group_id: ID группы правил (required)
+        :param group_id: ID группы правил. (required)
         :type group_id: object
         :param rule_id: ID правила (required)
         :type rule_id: object
@@ -804,7 +804,7 @@ class FirewallApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def delete_resource_from_group(self, group_id : Annotated[Any, Field(..., description="ID группы правил")], resource_id : Annotated[Any, Field(..., description="ID ресурса")], resource_type : Optional[ResourceType] = None, **kwargs) -> None:  # noqa: E501
+    def delete_resource_from_group(self, group_id : Annotated[Any, Field(..., description="ID группы правил.")], resource_id : Annotated[Any, Field(..., description="ID ресурса")], resource_type : Optional[ResourceType] = None, **kwargs) -> None:  # noqa: E501
         """Отлинковка ресурса из firewall group  # noqa: E501
 
         Чтобы отлинковать ресурс от группы правил, отправьте DELETE запрос на `/api/v1/firewall/groups/{group_id}/resources/{resource_id}`  # noqa: E501
@@ -814,7 +814,7 @@ class FirewallApi(object):
         >>> thread = api.delete_resource_from_group(group_id, resource_id, resource_type, async_req=True)
         >>> result = thread.get()
 
-        :param group_id: ID группы правил (required)
+        :param group_id: ID группы правил. (required)
         :type group_id: object
         :param resource_id: ID ресурса (required)
         :type resource_id: object
@@ -837,7 +837,7 @@ class FirewallApi(object):
         return self.delete_resource_from_group_with_http_info(group_id, resource_id, resource_type, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def delete_resource_from_group_with_http_info(self, group_id : Annotated[Any, Field(..., description="ID группы правил")], resource_id : Annotated[Any, Field(..., description="ID ресурса")], resource_type : Optional[ResourceType] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def delete_resource_from_group_with_http_info(self, group_id : Annotated[Any, Field(..., description="ID группы правил.")], resource_id : Annotated[Any, Field(..., description="ID ресурса")], resource_type : Optional[ResourceType] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Отлинковка ресурса из firewall group  # noqa: E501
 
         Чтобы отлинковать ресурс от группы правил, отправьте DELETE запрос на `/api/v1/firewall/groups/{group_id}/resources/{resource_id}`  # noqa: E501
@@ -847,7 +847,7 @@ class FirewallApi(object):
         >>> thread = api.delete_resource_from_group_with_http_info(group_id, resource_id, resource_type, async_req=True)
         >>> result = thread.get()
 
-        :param group_id: ID группы правил (required)
+        :param group_id: ID группы правил. (required)
         :type group_id: object
         :param resource_id: ID ресурса (required)
         :type resource_id: object
@@ -953,7 +953,7 @@ class FirewallApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def get_group(self, group_id : Annotated[Any, Field(..., description="ID группы правил")], **kwargs) -> FirewallGroupOutResponse:  # noqa: E501
+    def get_group(self, group_id : Annotated[Any, Field(..., description="ID группы правил.")], **kwargs) -> FirewallGroupOutResponse:  # noqa: E501
         """Получение информации о группе правил  # noqa: E501
 
         Чтобы получить информацию о группе правил, отправьте GET запрос на `/api/v1/firewall/groups/{group_id}`  # noqa: E501
@@ -963,7 +963,7 @@ class FirewallApi(object):
         >>> thread = api.get_group(group_id, async_req=True)
         >>> result = thread.get()
 
-        :param group_id: ID группы правил (required)
+        :param group_id: ID группы правил. (required)
         :type group_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -982,7 +982,7 @@ class FirewallApi(object):
         return self.get_group_with_http_info(group_id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def get_group_with_http_info(self, group_id : Annotated[Any, Field(..., description="ID группы правил")], **kwargs) -> ApiResponse:  # noqa: E501
+    def get_group_with_http_info(self, group_id : Annotated[Any, Field(..., description="ID группы правил.")], **kwargs) -> ApiResponse:  # noqa: E501
         """Получение информации о группе правил  # noqa: E501
 
         Чтобы получить информацию о группе правил, отправьте GET запрос на `/api/v1/firewall/groups/{group_id}`  # noqa: E501
@@ -992,7 +992,7 @@ class FirewallApi(object):
         >>> thread = api.get_group_with_http_info(group_id, async_req=True)
         >>> result = thread.get()
 
-        :param group_id: ID группы правил (required)
+        :param group_id: ID группы правил. (required)
         :type group_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -1097,7 +1097,7 @@ class FirewallApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def get_group_resources(self, group_id : Annotated[Any, Field(..., description="ID группы правил")], limit : Annotated[Optional[Any], Field(description="Обозначает количество записей, которое необходимо вернуть.")] = None, offset : Annotated[Optional[Any], Field(description="Указывает на смещение относительно начала списка.")] = None, **kwargs) -> FirewallGroupResourcesOutResponse:  # noqa: E501
+    def get_group_resources(self, group_id : Annotated[Any, Field(..., description="ID группы правил.")], limit : Annotated[Optional[Any], Field(description="Обозначает количество записей, которое необходимо вернуть.")] = None, offset : Annotated[Optional[Any], Field(description="Указывает на смещение относительно начала списка.")] = None, **kwargs) -> FirewallGroupResourcesOutResponse:  # noqa: E501
         """Получение слинкованных ресурсов  # noqa: E501
 
         Чтобы получить слинкованных ресурсов для группы правил, отправьте GET запрос на `/api/v1/firewall/groups/{group_id}/resources`  # noqa: E501
@@ -1107,7 +1107,7 @@ class FirewallApi(object):
         >>> thread = api.get_group_resources(group_id, limit, offset, async_req=True)
         >>> result = thread.get()
 
-        :param group_id: ID группы правил (required)
+        :param group_id: ID группы правил. (required)
         :type group_id: object
         :param limit: Обозначает количество записей, которое необходимо вернуть.
         :type limit: object
@@ -1130,7 +1130,7 @@ class FirewallApi(object):
         return self.get_group_resources_with_http_info(group_id, limit, offset, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def get_group_resources_with_http_info(self, group_id : Annotated[Any, Field(..., description="ID группы правил")], limit : Annotated[Optional[Any], Field(description="Обозначает количество записей, которое необходимо вернуть.")] = None, offset : Annotated[Optional[Any], Field(description="Указывает на смещение относительно начала списка.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def get_group_resources_with_http_info(self, group_id : Annotated[Any, Field(..., description="ID группы правил.")], limit : Annotated[Optional[Any], Field(description="Обозначает количество записей, которое необходимо вернуть.")] = None, offset : Annotated[Optional[Any], Field(description="Указывает на смещение относительно начала списка.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Получение слинкованных ресурсов  # noqa: E501
 
         Чтобы получить слинкованных ресурсов для группы правил, отправьте GET запрос на `/api/v1/firewall/groups/{group_id}/resources`  # noqa: E501
@@ -1140,7 +1140,7 @@ class FirewallApi(object):
         >>> thread = api.get_group_resources_with_http_info(group_id, limit, offset, async_req=True)
         >>> result = thread.get()
 
-        :param group_id: ID группы правил (required)
+        :param group_id: ID группы правил. (required)
         :type group_id: object
         :param limit: Обозначает количество записей, которое необходимо вернуть.
         :type limit: object
@@ -1256,7 +1256,7 @@ class FirewallApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def get_group_rule(self, rule_id : Annotated[Any, Field(..., description="ID правила")], group_id : Annotated[Any, Field(..., description="ID группы правил")], **kwargs) -> FirewallRuleOutResponse:  # noqa: E501
+    def get_group_rule(self, rule_id : Annotated[Any, Field(..., description="ID правила.")], group_id : Annotated[Any, Field(..., description="ID группы правил.")], **kwargs) -> FirewallRuleOutResponse:  # noqa: E501
         """Получение информации о правиле  # noqa: E501
 
         Чтобы получить инфомрацию о правиле, отправьте GET запрос на `/api/v1/firewall/groups/{group_id}/rules/{rule_id}`  # noqa: E501
@@ -1266,9 +1266,9 @@ class FirewallApi(object):
         >>> thread = api.get_group_rule(rule_id, group_id, async_req=True)
         >>> result = thread.get()
 
-        :param rule_id: ID правила (required)
+        :param rule_id: ID правила. (required)
         :type rule_id: object
-        :param group_id: ID группы правил (required)
+        :param group_id: ID группы правил. (required)
         :type group_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -1287,7 +1287,7 @@ class FirewallApi(object):
         return self.get_group_rule_with_http_info(rule_id, group_id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def get_group_rule_with_http_info(self, rule_id : Annotated[Any, Field(..., description="ID правила")], group_id : Annotated[Any, Field(..., description="ID группы правил")], **kwargs) -> ApiResponse:  # noqa: E501
+    def get_group_rule_with_http_info(self, rule_id : Annotated[Any, Field(..., description="ID правила.")], group_id : Annotated[Any, Field(..., description="ID группы правил.")], **kwargs) -> ApiResponse:  # noqa: E501
         """Получение информации о правиле  # noqa: E501
 
         Чтобы получить инфомрацию о правиле, отправьте GET запрос на `/api/v1/firewall/groups/{group_id}/rules/{rule_id}`  # noqa: E501
@@ -1297,9 +1297,9 @@ class FirewallApi(object):
         >>> thread = api.get_group_rule_with_http_info(rule_id, group_id, async_req=True)
         >>> result = thread.get()
 
-        :param rule_id: ID правила (required)
+        :param rule_id: ID правила. (required)
         :type rule_id: object
-        :param group_id: ID группы правил (required)
+        :param group_id: ID группы правил. (required)
         :type group_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -1408,7 +1408,7 @@ class FirewallApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def get_group_rules(self, group_id : Annotated[Any, Field(..., description="ID группы правил")], limit : Annotated[Optional[Any], Field(description="Обозначает количество записей, которое необходимо вернуть.")] = None, offset : Annotated[Optional[Any], Field(description="Указывает на смещение относительно начала списка.")] = None, **kwargs) -> FirewallRulesOutResponse:  # noqa: E501
+    def get_group_rules(self, group_id : Annotated[Any, Field(..., description="ID группы правил.")], limit : Annotated[Optional[Any], Field(description="Обозначает количество записей, которое необходимо вернуть.")] = None, offset : Annotated[Optional[Any], Field(description="Указывает на смещение относительно начала списка.")] = None, **kwargs) -> FirewallRulesOutResponse:  # noqa: E501
         """Получение списка правил  # noqa: E501
 
         Чтобы получить список правил в группе, отправьте GET запрос на `/api/v1/firewall/groups/{group_id}/rules`  # noqa: E501
@@ -1418,7 +1418,7 @@ class FirewallApi(object):
         >>> thread = api.get_group_rules(group_id, limit, offset, async_req=True)
         >>> result = thread.get()
 
-        :param group_id: ID группы правил (required)
+        :param group_id: ID группы правил. (required)
         :type group_id: object
         :param limit: Обозначает количество записей, которое необходимо вернуть.
         :type limit: object
@@ -1441,7 +1441,7 @@ class FirewallApi(object):
         return self.get_group_rules_with_http_info(group_id, limit, offset, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def get_group_rules_with_http_info(self, group_id : Annotated[Any, Field(..., description="ID группы правил")], limit : Annotated[Optional[Any], Field(description="Обозначает количество записей, которое необходимо вернуть.")] = None, offset : Annotated[Optional[Any], Field(description="Указывает на смещение относительно начала списка.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def get_group_rules_with_http_info(self, group_id : Annotated[Any, Field(..., description="ID группы правил.")], limit : Annotated[Optional[Any], Field(description="Обозначает количество записей, которое необходимо вернуть.")] = None, offset : Annotated[Optional[Any], Field(description="Указывает на смещение относительно начала списка.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Получение списка правил  # noqa: E501
 
         Чтобы получить список правил в группе, отправьте GET запрос на `/api/v1/firewall/groups/{group_id}/rules`  # noqa: E501
@@ -1451,7 +1451,7 @@ class FirewallApi(object):
         >>> thread = api.get_group_rules_with_http_info(group_id, limit, offset, async_req=True)
         >>> result = thread.get()
 
-        :param group_id: ID группы правил (required)
+        :param group_id: ID группы правил. (required)
         :type group_id: object
         :param limit: Обозначает количество записей, которое необходимо вернуть.
         :type limit: object
@@ -1718,7 +1718,7 @@ class FirewallApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def get_rules_for_resource(self, resource_id : Annotated[Any, Field(..., description="Идентификатор ресурса")], resource_type : ResourceType, limit : Annotated[Optional[Any], Field(description="Обозначает количество записей, которое необходимо вернуть.")] = None, offset : Annotated[Optional[Any], Field(description="Указывает на смещение относительно начала списка.")] = None, **kwargs) -> FirewallGroupsOutResponse:  # noqa: E501
+    def get_rules_for_resource(self, resource_id : Annotated[Any, Field(..., description="ID ресурса")], resource_type : ResourceType, limit : Annotated[Optional[Any], Field(description="Обозначает количество записей, которое необходимо вернуть.")] = None, offset : Annotated[Optional[Any], Field(description="Указывает на смещение относительно начала списка.")] = None, **kwargs) -> FirewallGroupsOutResponse:  # noqa: E501
         """Получение групп правил для ресурса  # noqa: E501
 
         Чтобы получить список групп правил, с которыми слинкован ресурс, отправьте GET запрос на `/api/v1/firewall/service/{resource_type}/{resource_id}`  # noqa: E501
@@ -1728,7 +1728,7 @@ class FirewallApi(object):
         >>> thread = api.get_rules_for_resource(resource_id, resource_type, limit, offset, async_req=True)
         >>> result = thread.get()
 
-        :param resource_id: Идентификатор ресурса (required)
+        :param resource_id: ID ресурса (required)
         :type resource_id: object
         :param resource_type: (required)
         :type resource_type: ResourceType
@@ -1753,7 +1753,7 @@ class FirewallApi(object):
         return self.get_rules_for_resource_with_http_info(resource_id, resource_type, limit, offset, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def get_rules_for_resource_with_http_info(self, resource_id : Annotated[Any, Field(..., description="Идентификатор ресурса")], resource_type : ResourceType, limit : Annotated[Optional[Any], Field(description="Обозначает количество записей, которое необходимо вернуть.")] = None, offset : Annotated[Optional[Any], Field(description="Указывает на смещение относительно начала списка.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def get_rules_for_resource_with_http_info(self, resource_id : Annotated[Any, Field(..., description="ID ресурса")], resource_type : ResourceType, limit : Annotated[Optional[Any], Field(description="Обозначает количество записей, которое необходимо вернуть.")] = None, offset : Annotated[Optional[Any], Field(description="Указывает на смещение относительно начала списка.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Получение групп правил для ресурса  # noqa: E501
 
         Чтобы получить список групп правил, с которыми слинкован ресурс, отправьте GET запрос на `/api/v1/firewall/service/{resource_type}/{resource_id}`  # noqa: E501
@@ -1763,7 +1763,7 @@ class FirewallApi(object):
         >>> thread = api.get_rules_for_resource_with_http_info(resource_id, resource_type, limit, offset, async_req=True)
         >>> result = thread.get()
 
-        :param resource_id: Идентификатор ресурса (required)
+        :param resource_id: ID ресурса (required)
         :type resource_id: object
         :param resource_type: (required)
         :type resource_type: ResourceType
@@ -1885,7 +1885,7 @@ class FirewallApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def update_group(self, group_id : Annotated[Any, Field(..., description="ID группы правил")], firewall_group_in_api : FirewallGroupInAPI, **kwargs) -> FirewallGroupOutResponse:  # noqa: E501
+    def update_group(self, group_id : Annotated[Any, Field(..., description="ID группы правил.")], firewall_group_in_api : FirewallGroupInAPI, **kwargs) -> FirewallGroupOutResponse:  # noqa: E501
         """Обновление группы правил  # noqa: E501
 
         Чтобы изменить группу правил, отправьте PATCH запрос на `/api/v1/firewall/groups/{group_id}`  # noqa: E501
@@ -1895,7 +1895,7 @@ class FirewallApi(object):
         >>> thread = api.update_group(group_id, firewall_group_in_api, async_req=True)
         >>> result = thread.get()
 
-        :param group_id: ID группы правил (required)
+        :param group_id: ID группы правил. (required)
         :type group_id: object
         :param firewall_group_in_api: (required)
         :type firewall_group_in_api: FirewallGroupInAPI
@@ -1916,7 +1916,7 @@ class FirewallApi(object):
         return self.update_group_with_http_info(group_id, firewall_group_in_api, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def update_group_with_http_info(self, group_id : Annotated[Any, Field(..., description="ID группы правил")], firewall_group_in_api : FirewallGroupInAPI, **kwargs) -> ApiResponse:  # noqa: E501
+    def update_group_with_http_info(self, group_id : Annotated[Any, Field(..., description="ID группы правил.")], firewall_group_in_api : FirewallGroupInAPI, **kwargs) -> ApiResponse:  # noqa: E501
         """Обновление группы правил  # noqa: E501
 
         Чтобы изменить группу правил, отправьте PATCH запрос на `/api/v1/firewall/groups/{group_id}`  # noqa: E501
@@ -1926,7 +1926,7 @@ class FirewallApi(object):
         >>> thread = api.update_group_with_http_info(group_id, firewall_group_in_api, async_req=True)
         >>> result = thread.get()
 
-        :param group_id: ID группы правил (required)
+        :param group_id: ID группы правил. (required)
         :type group_id: object
         :param firewall_group_in_api: (required)
         :type firewall_group_in_api: FirewallGroupInAPI
@@ -2044,7 +2044,7 @@ class FirewallApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def update_group_rule(self, group_id : Annotated[Any, Field(..., description="ID группы правил")], rule_id : Annotated[Any, Field(..., description="ID правила")], firewall_rule_in_api : FirewallRuleInAPI, **kwargs) -> FirewallRuleOutResponse:  # noqa: E501
+    def update_group_rule(self, group_id : Annotated[Any, Field(..., description="ID группы правил.")], rule_id : Annotated[Any, Field(..., description="ID правила")], firewall_rule_in_api : FirewallRuleInAPI, **kwargs) -> FirewallRuleOutResponse:  # noqa: E501
         """Обновление firewall правила  # noqa: E501
 
         Чтобы изменить правило, отправьте PATCH запрос на `/api/v1/firewall/groups/{group_id}/rules/{rule_id}`  # noqa: E501
@@ -2054,7 +2054,7 @@ class FirewallApi(object):
         >>> thread = api.update_group_rule(group_id, rule_id, firewall_rule_in_api, async_req=True)
         >>> result = thread.get()
 
-        :param group_id: ID группы правил (required)
+        :param group_id: ID группы правил. (required)
         :type group_id: object
         :param rule_id: ID правила (required)
         :type rule_id: object
@@ -2077,7 +2077,7 @@ class FirewallApi(object):
         return self.update_group_rule_with_http_info(group_id, rule_id, firewall_rule_in_api, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def update_group_rule_with_http_info(self, group_id : Annotated[Any, Field(..., description="ID группы правил")], rule_id : Annotated[Any, Field(..., description="ID правила")], firewall_rule_in_api : FirewallRuleInAPI, **kwargs) -> ApiResponse:  # noqa: E501
+    def update_group_rule_with_http_info(self, group_id : Annotated[Any, Field(..., description="ID группы правил.")], rule_id : Annotated[Any, Field(..., description="ID правила")], firewall_rule_in_api : FirewallRuleInAPI, **kwargs) -> ApiResponse:  # noqa: E501
         """Обновление firewall правила  # noqa: E501
 
         Чтобы изменить правило, отправьте PATCH запрос на `/api/v1/firewall/groups/{group_id}/rules/{rule_id}`  # noqa: E501
@@ -2087,7 +2087,7 @@ class FirewallApi(object):
         >>> thread = api.update_group_rule_with_http_info(group_id, rule_id, firewall_rule_in_api, async_req=True)
         >>> result = thread.get()
 
-        :param group_id: ID группы правил (required)
+        :param group_id: ID группы правил. (required)
         :type group_id: object
         :param rule_id: ID правила (required)
         :type rule_id: object

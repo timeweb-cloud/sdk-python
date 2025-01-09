@@ -4,9 +4,9 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**body** | **object** | Тело SSH-ключа | [optional] 
-**is_default** | **object** | Будет ли выбираться SSH-ключ по умолчанию при создании сервера | [optional] 
-**name** | **object** | Название SSH-ключа | [optional] 
+**body** | **object** | Тело SSH-ключа. | [optional] 
+**is_default** | **object** | Будет ли выбираться SSH-ключ по умолчанию при создании сервера. | [optional] 
+**name** | **object** | Название SSH-ключа. | [optional] 
 
 ## Example
 

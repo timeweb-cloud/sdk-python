@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**resource_id** | **object** | Идентификатор добавляемой базы данных. | 
+**resource_id** | **object** | ID добавляемой базы данных. | 
 
 ## Example
 

@@ -24,17 +24,17 @@ from pydantic import BaseModel, Field
 from timeweb_cloud_api.models.url_status import UrlStatus
 from timeweb_cloud_api.models.url_type import URLType
 
-class ImageDownloadAPI(BaseModel):
+class ImageDownload(BaseModel):
     """
-    ImageDownloadAPI
+    ImageDownload
     """
-    id: Optional[Any] = Field(..., description="ID ссылки")
-    created_at: Optional[Any] = Field(..., description="Дата и время создания ссылки")
-    image: Optional[Any] = Field(..., description="ID образа")
+    id: Optional[Any] = Field(..., description="ID ссылки.")
+    created_at: Optional[Any] = Field(..., description="Значение времени, указанное в комбинированном формате даты и времени ISO8601, которое представляет, когда была создана ссылка.")
+    image: Optional[Any] = Field(..., description="ID образа.")
     type: URLType = Field(...)
-    url: Optional[Any] = Field(None, description="Ссылка на скачивание")
+    url: Optional[Any] = Field(None, description="Ссылка на скачивание.")
     status: UrlStatus = Field(...)
-    progress: Optional[Any] = Field(..., description="Прогресс загрузки образа")
+    progress: Optional[Any] = Field(..., description="Прогресс загрузки образа.")
     __properties = ["id", "created_at", "image", "type", "url", "status", "progress"]
 
     class Config:
@@ -51,8 +51,8 @@ class ImageDownloadAPI(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> ImageDownloadAPI:
-        """Create an instance of ImageDownloadAPI from a JSON string"""
+    def from_json(cls, json_str: str) -> ImageDownload:
+        """Create an instance of ImageDownload from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self):
@@ -89,15 +89,15 @@ class ImageDownloadAPI(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> ImageDownloadAPI:
-        """Create an instance of ImageDownloadAPI from a dict"""
+    def from_dict(cls, obj: dict) -> ImageDownload:
+        """Create an instance of ImageDownload from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return ImageDownloadAPI.parse_obj(obj)
+            return ImageDownload.parse_obj(obj)
 
-        _obj = ImageDownloadAPI.parse_obj({
+        _obj = ImageDownload.parse_obj({
             "id": obj.get("id"),
             "created_at": obj.get("created_at"),
             "image": obj.get("image"),

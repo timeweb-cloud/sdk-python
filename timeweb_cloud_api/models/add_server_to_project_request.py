@@ -26,7 +26,7 @@ class AddServerToProjectRequest(BaseModel):
     """
     AddServerToProjectRequest
     """
-    resource_id: Optional[Any] = Field(..., description="Идентификатор добавляемого сервера.")
+    resource_id: Optional[Any] = Field(..., description="ID добавляемого сервера.")
     __properties = ["resource_id"]
 
     class Config:

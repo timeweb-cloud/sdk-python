@@ -26,8 +26,8 @@ class ImageUpdateAPI(BaseModel):
     """
     ImageUpdateAPI
     """
-    name: Optional[Any] = Field(None, description="Имя образа")
-    description: Optional[Any] = Field(None, description="Описание образа")
+    name: Optional[Any] = Field(None, description="Имя образа.")
+    description: Optional[Any] = Field(None, description="Описание образа.")
     __properties = ["name", "description"]
 
     class Config:

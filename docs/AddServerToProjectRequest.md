@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**resource_id** | **object** | Идентификатор добавляемого сервера. | 
+**resource_id** | **object** | ID добавляемого сервера. | 
 
 ## Example
 

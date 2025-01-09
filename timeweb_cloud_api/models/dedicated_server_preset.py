@@ -32,12 +32,13 @@ class DedicatedServerPreset(BaseModel):
     id: Optional[Any] = Field(..., description="ID тарифа выделенного сервера.")
     description: Optional[Any] = Field(..., description="Описание характеристик тарифа выделенного сервера.")
     is_ipmi_enabled: Optional[Any] = Field(..., description="Это логическое значение, которое показывает, доступен ли IPMI у данного тарифа.")
+    is_pre_installed: Optional[Any] = Field(..., description="Это логическое значение, которое показывает, готов ли выделенный сервер к моментальной выдаче.")
     cpu: DedicatedServerPresetCpu = Field(...)
     disk: DedicatedServerPresetDisk = Field(...)
     price: Optional[Any] = Field(None, description="Стоимость тарифа выделенного сервера")
     memory: DedicatedServerPresetMemory = Field(...)
     location: Optional[Any] = Field(..., description="Локация.")
-    __properties = ["id", "description", "is_ipmi_enabled", "cpu", "disk", "price", "memory", "location"]
+    __properties = ["id", "description", "is_ipmi_enabled", "is_pre_installed", "cpu", "disk", "price", "memory", "location"]
 
     @validator('location')
     def location_validate_enum(cls, value):
@@ -45,8 +46,8 @@ class DedicatedServerPreset(BaseModel):
         if value is None:
             return value
 
-        if value not in ('ru-1', 'ru-2', 'kz-1', 'pl-1'):
-            raise ValueError("must be one of enum values ('ru-1', 'ru-2', 'kz-1', 'pl-1')")
+        if value not in ('ru-1', 'ru-2', 'kz-1', 'pl-1', 'nl-1', 'us-2', 'tr-1', 'de-1', 'fi-1'):
+            raise ValueError("must be one of enum values ('ru-1', 'ru-2', 'kz-1', 'pl-1', 'nl-1', 'us-2', 'tr-1', 'de-1', 'fi-1')")
         return value
 
     class Config:
@@ -97,6 +98,11 @@ class DedicatedServerPreset(BaseModel):
         if self.is_ipmi_enabled is None and "is_ipmi_enabled" in self.__fields_set__:
             _dict['is_ipmi_enabled'] = None
 
+        # set to None if is_pre_installed (nullable) is None
+        # and __fields_set__ contains the field
+        if self.is_pre_installed is None and "is_pre_installed" in self.__fields_set__:
+            _dict['is_pre_installed'] = None
+
         # set to None if price (nullable) is None
         # and __fields_set__ contains the field
         if self.price is None and "price" in self.__fields_set__:
@@ -122,6 +128,7 @@ class DedicatedServerPreset(BaseModel):
             "id": obj.get("id"),
             "description": obj.get("description"),
             "is_ipmi_enabled": obj.get("is_ipmi_enabled"),
+            "is_pre_installed": obj.get("is_pre_installed"),
             "cpu": DedicatedServerPresetCpu.from_dict(obj.get("cpu")) if obj.get("cpu") is not None else None,
             "disk": DedicatedServerPresetDisk.from_dict(obj.get("disk")) if obj.get("disk") is not None else None,
             "price": obj.get("price"),

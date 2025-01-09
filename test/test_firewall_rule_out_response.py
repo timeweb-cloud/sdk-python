@@ -40,7 +40,7 @@ class TestFirewallRuleOutResponse(unittest.TestCase):
         if include_optional :
             return FirewallRuleOutResponse(
                 response_id = None, 
-                rule = timeweb_cloud_api.models.firewall_rule_out_api.FirewallRuleOutAPI(
+                rule = timeweb_cloud_api.models.firewall_rule.firewall-rule(
                     id = null, 
                     description = null, 
                     direction = ingress, 
@@ -51,7 +51,7 @@ class TestFirewallRuleOutResponse(unittest.TestCase):
             )
         else :
             return FirewallRuleOutResponse(
-                rule = timeweb_cloud_api.models.firewall_rule_out_api.FirewallRuleOutAPI(
+                rule = timeweb_cloud_api.models.firewall_rule.firewall-rule(
                     id = null, 
                     description = null, 
                     direction = ingress, 

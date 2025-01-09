@@ -16,6 +16,9 @@ Name | Type | Description | Notes
 **network_bandwidth_min** | **object** | Минимальныая пропускная способноть интернет-канала (в Мб) | 
 **network_bandwidth_step** | **object** | Размер шага пропускной способноти интернет-канала (в Мб) | 
 **network_bandwidth_max** | **object** | Максимальная пропускная способноть интернет-канала (в Мб) | 
+**gpu_min** | **object** | Минимальное количество видеокарт | 
+**gpu_max** | **object** | Максимальное количество видеокарт | 
+**gpu_step** | **object** | Размер шага видеокарт | 
 
 ## Example
 

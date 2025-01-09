@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **type** | [**URLType**](URLType.md) |  | [optional] 
-**filename** | **object** | Имя файла для загрузки в облачное хранилище | [optional] 
+**filename** | **object** | Имя файла для загрузки в облачное хранилище. | [optional] 
 **auth** | [**ImageUrlAuth**](ImageUrlAuth.md) |  | [optional] 
 
 ## Example

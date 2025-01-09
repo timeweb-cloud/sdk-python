@@ -63,7 +63,8 @@ class TestCreateDedicatedServer201Response(unittest.TestCase):
                     plan_id = 2377, 
                     price = 5490, 
                     location = ru-1, 
-                    autoinstall_ready = 2, )
+                    autoinstall_ready = 2, 
+                    password = password, )
             )
         else :
             return CreateDedicatedServer201Response(
@@ -91,7 +92,8 @@ class TestCreateDedicatedServer201Response(unittest.TestCase):
                     plan_id = 2377, 
                     price = 5490, 
                     location = ru-1, 
-                    autoinstall_ready = 2, ),
+                    autoinstall_ready = 2, 
+                    password = password, ),
         )
         """
 

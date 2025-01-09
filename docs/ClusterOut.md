@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 **ram** | **object** | Общее количество памяти | [optional] 
 **disk** | **object** | Общее дисковое пространство | [optional] 
 **availability_zone** | **object** | Зона доступности | [optional] 
-**project_id** | **object** | Идентификатор проекта | [optional] 
+**project_id** | **object** | ID проекта | [optional] 
 
 ## Example
 

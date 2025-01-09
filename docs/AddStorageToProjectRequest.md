@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**resource_id** | **object** | Идентификатор добавляемого хранилища. | 
+**resource_id** | **object** | ID добавляемого хранилища. | 
 
 ## Example
 

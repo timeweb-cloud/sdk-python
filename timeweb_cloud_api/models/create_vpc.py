@@ -40,8 +40,8 @@ class CreateVpc(BaseModel):
         if value is None:
             return value
 
-        if value not in ('ru-1', 'pl-1'):
-            raise ValueError("must be one of enum values ('ru-1', 'pl-1')")
+        if value not in ('ru-1', 'ru-2', 'pl-1', 'nl-1'):
+            raise ValueError("must be one of enum values ('ru-1', 'ru-2', 'pl-1', 'nl-1')")
         return value
 
     class Config:

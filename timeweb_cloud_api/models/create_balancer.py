@@ -41,7 +41,7 @@ class CreateBalancer(BaseModel):
     timeout: Optional[Any] = Field(..., description="Таймаут ответа балансировщика.")
     fall: Optional[Any] = Field(..., description="Порог количества ошибок.")
     rise: Optional[Any] = Field(..., description="Порог количества успешных ответов.")
-    preset_id: Optional[Any] = Field(..., description="Идентификатор тарифа.")
+    preset_id: Optional[Any] = Field(..., description="ID тарифа.")
     network: Optional[Network] = None
     availability_zone: Optional[AvailabilityZone] = None
     __properties = ["name", "algo", "is_sticky", "is_use_proxy", "is_ssl", "is_keepalive", "proto", "port", "path", "inter", "timeout", "fall", "rise", "preset_id", "network", "availability_zone"]

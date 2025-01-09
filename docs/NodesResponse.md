@@ -4,8 +4,8 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**response_id** | **object** | Идентификатор запроса | [optional] 
-**meta** | [**Meta**](Meta.md) |  | 
+**response_id** | **object** | ID запроса | [optional] 
+**meta** | [**SchemasMeta**](SchemasMeta.md) |  | 
 **nodes** | **object** | Массив объектов Нода | 
 
 ## Example

@@ -32,9 +32,11 @@ class Vpc(BaseModel):
     subnet_v4: Optional[Any] = Field(..., description="Маска подсети.")
     location: Optional[Any] = Field(..., description="Локация сети.")
     created_at: Optional[Any] = Field(..., description="Дата создания сети.")
-    description: Optional[Any] = Field(None, description="Описание.")
+    description: Optional[Any] = Field(..., description="Описание.")
     availability_zone: AvailabilityZone = Field(...)
-    __properties = ["id", "name", "subnet_v4", "location", "created_at", "description", "availability_zone"]
+    public_ip: Optional[Any] = Field(..., description="Публичный IP-адрес сети.")
+    type: Optional[Any] = Field(..., description="Тип сети.")
+    __properties = ["id", "name", "subnet_v4", "location", "created_at", "description", "availability_zone", "public_ip", "type"]
 
     @validator('location')
     def location_validate_enum(cls, value):
@@ -42,8 +44,18 @@ class Vpc(BaseModel):
         if value is None:
             return value
 
-        if value not in ('ru-1', 'pl-1'):
-            raise ValueError("must be one of enum values ('ru-1', 'pl-1')")
+        if value not in ('ru-1', 'ru-2', 'pl-1', 'nl-1'):
+            raise ValueError("must be one of enum values ('ru-1', 'ru-2', 'pl-1', 'nl-1')")
+        return value
+
+    @validator('type')
+    def type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in ('bgp', 'ovn'):
+            raise ValueError("must be one of enum values ('bgp', 'ovn')")
         return value
 
     class Config:
@@ -100,6 +112,16 @@ class Vpc(BaseModel):
         if self.description is None and "description" in self.__fields_set__:
             _dict['description'] = None
 
+        # set to None if public_ip (nullable) is None
+        # and __fields_set__ contains the field
+        if self.public_ip is None and "public_ip" in self.__fields_set__:
+            _dict['public_ip'] = None
+
+        # set to None if type (nullable) is None
+        # and __fields_set__ contains the field
+        if self.type is None and "type" in self.__fields_set__:
+            _dict['type'] = None
+
         return _dict
 
     @classmethod
@@ -118,7 +140,9 @@ class Vpc(BaseModel):
             "location": obj.get("location"),
             "created_at": obj.get("created_at"),
             "description": obj.get("description"),
-            "availability_zone": obj.get("availability_zone")
+            "availability_zone": obj.get("availability_zone"),
+            "public_ip": obj.get("public_ip"),
+            "type": obj.get("type")
         })
         return _obj
 

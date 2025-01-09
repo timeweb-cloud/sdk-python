@@ -26,12 +26,12 @@ class SshKey(BaseModel):
     """
     SshKey
     """
-    id: Optional[Any] = Field(..., description="ID SSH-ключа")
-    name: Optional[Any] = Field(..., description="Название SSH-ключа")
-    body: Optional[Any] = Field(..., description="Тело SSH-ключа")
-    created_at: Optional[Any] = Field(..., description="Дата создания ключа")
-    used_by: Optional[Any] = Field(..., description="Список серверов, которые используют SSH-ключ")
-    is_default: Optional[Any] = Field(None, description="Будет ли выбираться SSh-ключ по умолчанию при создании сервера")
+    id: Optional[Any] = Field(..., description="ID SSH-ключа.")
+    name: Optional[Any] = Field(..., description="Название SSH-ключа.")
+    body: Optional[Any] = Field(..., description="Тело SSH-ключа.")
+    created_at: Optional[Any] = Field(..., description="Значение времени, указанное в комбинированном формате даты и времени ISO8601, которое представляет, когда был создан SSH-ключ.")
+    used_by: Optional[Any] = Field(..., description="Список серверов, которые используют SSH-ключ.")
+    is_default: Optional[Any] = Field(None, description="Это логическое значение, которое показывает, будет ли выбираться SSH-ключ по умолчанию при создании сервера.")
     __properties = ["id", "name", "body", "created_at", "used_by", "is_default"]
 
     class Config:

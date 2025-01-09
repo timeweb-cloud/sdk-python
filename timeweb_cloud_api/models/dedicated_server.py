@@ -50,7 +50,8 @@ class DedicatedServer(BaseModel):
     price: Optional[Any] = Field(..., description="Стоимость выделенного сервера.")
     location: Optional[Any] = Field(..., description="Локация сервера.")
     autoinstall_ready: Optional[Any] = Field(..., description="Количество готовых к автоматической выдаче серверов. Если значение равно 0, сервер будет установлен через инженеров.")
-    __properties = ["id", "cpu_description", "hdd_description", "ram_description", "created_at", "ip", "ipmi_ip", "ipmi_login", "ipmi_password", "ipv6", "node_id", "name", "comment", "vnc_pass", "status", "os_id", "cp_id", "bandwidth_id", "network_drive_id", "additional_ip_addr_id", "plan_id", "price", "location", "autoinstall_ready"]
+    password: Optional[Any] = Field(..., description="Пароль root сервера или пароль Администратора для серверов Windows.")
+    __properties = ["id", "cpu_description", "hdd_description", "ram_description", "created_at", "ip", "ipmi_ip", "ipmi_login", "ipmi_password", "ipv6", "node_id", "name", "comment", "vnc_pass", "status", "os_id", "cp_id", "bandwidth_id", "network_drive_id", "additional_ip_addr_id", "plan_id", "price", "location", "autoinstall_ready", "password"]
 
     @validator('status')
     def status_validate_enum(cls, value):
@@ -68,8 +69,8 @@ class DedicatedServer(BaseModel):
         if value is None:
             return value
 
-        if value not in ('ru-1', 'pl-1', 'kz-1'):
-            raise ValueError("must be one of enum values ('ru-1', 'pl-1', 'kz-1')")
+        if value not in ('ru-1', 'pl-1', 'kz-1', 'nl-1', 'tr-1', 'us-2', 'de-1', 'fi-1'):
+            raise ValueError("must be one of enum values ('ru-1', 'pl-1', 'kz-1', 'nl-1', 'tr-1', 'us-2', 'de-1', 'fi-1')")
         return value
 
     class Config:
@@ -216,6 +217,11 @@ class DedicatedServer(BaseModel):
         if self.autoinstall_ready is None and "autoinstall_ready" in self.__fields_set__:
             _dict['autoinstall_ready'] = None
 
+        # set to None if password (nullable) is None
+        # and __fields_set__ contains the field
+        if self.password is None and "password" in self.__fields_set__:
+            _dict['password'] = None
+
         return _dict
 
     @classmethod
@@ -251,7 +257,8 @@ class DedicatedServer(BaseModel):
             "plan_id": obj.get("plan_id"),
             "price": obj.get("price"),
             "location": obj.get("location"),
-            "autoinstall_ready": obj.get("autoinstall_ready")
+            "autoinstall_ready": obj.get("autoinstall_ready"),
+            "password": obj.get("password")
         })
         return _obj
 

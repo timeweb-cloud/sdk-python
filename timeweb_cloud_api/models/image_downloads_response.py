@@ -27,9 +27,9 @@ class ImageDownloadsResponse(BaseModel):
     """
     ImageDownloadsResponse
     """
-    response_id: Optional[Any] = Field(None, description="ID запроса")
+    response_id: Optional[Any] = Field(None, description="ID запроса.")
     meta: Meta = Field(...)
-    downloads: Optional[Any] = Field(..., description="Массив объектов \"Ссылка на загрузку\"")
+    downloads: Optional[Any] = Field(...)
     __properties = ["response_id", "meta", "downloads"]
 
     class Config:

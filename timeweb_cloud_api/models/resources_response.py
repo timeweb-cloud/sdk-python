@@ -27,7 +27,7 @@ class ResourcesResponse(BaseModel):
     """
     ResourcesResponse
     """
-    response_id: Optional[Any] = Field(None, description="Идентификатор запроса")
+    response_id: Optional[Any] = Field(None, description="ID запроса")
     resources: Resources = Field(...)
     __properties = ["response_id", "resources"]
 

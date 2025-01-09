@@ -57,6 +57,9 @@ class TestVds(unittest.TestCase):
                 status = on, 
                 start_at = 2022-10-25T15:15:45.000Z, 
                 is_ddos_guard = false, 
+                is_master_ssh = false, 
+                is_dedicated_cpu = false, 
+                gpu = 16, 
                 cpu = 16, 
                 cpu_frequency = 3.3, 
                 ram = 2048, 
@@ -93,6 +96,9 @@ class TestVds(unittest.TestCase):
                 status = on,
                 start_at = 2022-10-25T15:15:45.000Z,
                 is_ddos_guard = false,
+                is_master_ssh = false,
+                is_dedicated_cpu = false,
+                gpu = 16,
                 cpu = 16,
                 cpu_frequency = 3.3,
                 ram = 2048,
@@ -106,6 +112,7 @@ class TestVds(unittest.TestCase):
                     is_custom = true, ),
                 networks = None,
                 cloud_init = #cloud-config,
+                is_qemu_agent = true,
                 availability_zone = spb-1,
         )
         """

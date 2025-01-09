@@ -28,11 +28,11 @@ class FirewallRuleInAPI(BaseModel):
     """
     FirewallRuleInAPI
     """
-    description: Optional[Any] = Field(None, description="Описание правила")
+    description: Optional[Any] = Field(None, description="Описание правила.")
     direction: FirewallRuleDirection = Field(...)
-    port: Optional[Any] = Field(None, description="Порт или диапазон портов, в случае tcp или udp")
+    port: Optional[Any] = Field(None, description="Порт или диапазон портов, в случае tcp или udp.")
     protocol: FirewallRuleProtocol = Field(...)
-    cidr: Optional[Any] = Field(None, description="Сетевой адрес или подсеть. Поддерживаются протоколы IPv4  и IPv6")
+    cidr: Optional[Any] = Field(None, description="Сетевой адрес или подсеть. Поддерживаются протоколы IPv4  и IPv.6")
     __properties = ["description", "direction", "port", "protocol", "cidr"]
 
     class Config:

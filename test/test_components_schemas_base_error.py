@@ -17,11 +17,11 @@ import unittest
 import datetime
 
 import timeweb_cloud_api
-from timeweb_cloud_api.models.firewall_rule_out_api import FirewallRuleOutAPI  # noqa: E501
+from timeweb_cloud_api.models.components_schemas_base_error import ComponentsSchemasBaseError  # noqa: E501
 from timeweb_cloud_api.rest import ApiException
 
-class TestFirewallRuleOutAPI(unittest.TestCase):
-    """FirewallRuleOutAPI unit test stubs"""
+class TestComponentsSchemasBaseError(unittest.TestCase):
+    """ComponentsSchemasBaseError unit test stubs"""
 
     def setUp(self):
         pass
@@ -30,35 +30,30 @@ class TestFirewallRuleOutAPI(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test FirewallRuleOutAPI
+        """Test ComponentsSchemasBaseError
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # uncomment below to create an instance of `FirewallRuleOutAPI`
+        # uncomment below to create an instance of `ComponentsSchemasBaseError`
         """
-        model = timeweb_cloud_api.models.firewall_rule_out_api.FirewallRuleOutAPI()  # noqa: E501
+        model = timeweb_cloud_api.models.components_schemas_base_error.ComponentsSchemasBaseError()  # noqa: E501
         if include_optional :
-            return FirewallRuleOutAPI(
-                id = None, 
-                description = None, 
-                direction = ingress, 
-                protocol = tcp, 
-                port = None, 
-                cidr = None, 
-                group_id = None
+            return ComponentsSchemasBaseError(
+                status_code = None, 
+                error_code = None, 
+                message = None, 
+                response_id = 9c38a13d-ef14-45c7-a23a-1429f6a03824
             )
         else :
-            return FirewallRuleOutAPI(
-                id = None,
-                description = None,
-                direction = ingress,
-                protocol = tcp,
-                group_id = None,
+            return ComponentsSchemasBaseError(
+                status_code = None,
+                error_code = None,
+                message = None,
         )
         """
 
-    def testFirewallRuleOutAPI(self):
-        """Test FirewallRuleOutAPI"""
+    def testComponentsSchemasBaseError(self):
+        """Test ComponentsSchemasBaseError"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

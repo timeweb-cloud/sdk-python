@@ -39,7 +39,7 @@ class ClusterOut(BaseModel):
     ram: Optional[Any] = Field(None, description="Общее количество памяти")
     disk: Optional[Any] = Field(None, description="Общее дисковое пространство")
     availability_zone: Optional[Any] = Field(None, description="Зона доступности")
-    project_id: Optional[Any] = Field(None, description="Идентификатор проекта")
+    project_id: Optional[Any] = Field(None, description="ID проекта")
     __properties = ["id", "name", "created_at", "status", "description", "k8s_version", "network_driver", "ingress", "preset_id", "cpu", "ram", "disk", "availability_zone", "project_id"]
 
     @validator('network_driver')

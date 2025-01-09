@@ -365,11 +365,11 @@ Class | Method | HTTP request | Description
 *FirewallApi* | [**update_group_rule**](docs/FirewallApi.md#update_group_rule) | **PATCH** /api/v1/firewall/groups/{group_id}/rules/{rule_id} | Обновление firewall правила
 *FloatingIPApi* | [**bind_floating_ip**](docs/FloatingIPApi.md#bind_floating_ip) | **POST** /api/v1/floating-ips/{floating_ip_id}/bind | Привязать IP к сервису
 *FloatingIPApi* | [**create_floating_ip**](docs/FloatingIPApi.md#create_floating_ip) | **POST** /api/v1/floating-ips | Создание плавающего IP
-*FloatingIPApi* | [**delete_floating_ip**](docs/FloatingIPApi.md#delete_floating_ip) | **DELETE** /api/v1/floating-ips/{floating_ip_id} | Удаление плавающего IP по идентификатору
+*FloatingIPApi* | [**delete_floating_ip**](docs/FloatingIPApi.md#delete_floating_ip) | **DELETE** /api/v1/floating-ips/{floating_ip_id} | Удаление плавающего IP по ID
 *FloatingIPApi* | [**get_floating_ip**](docs/FloatingIPApi.md#get_floating_ip) | **GET** /api/v1/floating-ips/{floating_ip_id} | Получение плавающего IP
 *FloatingIPApi* | [**get_floating_ips**](docs/FloatingIPApi.md#get_floating_ips) | **GET** /api/v1/floating-ips | Получение списка плавающих IP
 *FloatingIPApi* | [**unbind_floating_ip**](docs/FloatingIPApi.md#unbind_floating_ip) | **POST** /api/v1/floating-ips/{floating_ip_id}/unbind | Отвязать IP от сервиса
-*FloatingIPApi* | [**update_floating_ip**](docs/FloatingIPApi.md#update_floating_ip) | **PATCH** /api/v1/floating-ips/{floating_ip_id} | Изменение плавающего IP по идентификатору
+*FloatingIPApi* | [**update_floating_ip**](docs/FloatingIPApi.md#update_floating_ip) | **PATCH** /api/v1/floating-ips/{floating_ip_id} | Изменение плавающего IP по ID
 *ImagesApi* | [**create_image**](docs/ImagesApi.md#create_image) | **POST** /api/v1/images | Создание образа
 *ImagesApi* | [**create_image_download_url**](docs/ImagesApi.md#create_image_download_url) | **POST** /api/v1/images/{image_id}/download-url | Создание ссылки на скачивание образа
 *ImagesApi* | [**delete_image**](docs/ImagesApi.md#delete_image) | **DELETE** /api/v1/images/{image_id} | Удаление образа
@@ -419,7 +419,7 @@ Class | Method | HTTP request | Description
 *NetworkDrivesApi* | [**get_network_drives_presets**](docs/NetworkDrivesApi.md#get_network_drives_presets) | **GET** /api/v1/presets/network-drives | Получение списка доступных тарифов для сетевого диска
 *NetworkDrivesApi* | [**mount_network_drive**](docs/NetworkDrivesApi.md#mount_network_drive) | **POST** /api/v1/network-drives/{network_drive_id}/bind | Подключить сетевой диск к сервису
 *NetworkDrivesApi* | [**unmount_network_drive**](docs/NetworkDrivesApi.md#unmount_network_drive) | **POST** /api/v1/network-drives/{network_drive_id}/unbind | Отключить сетевой диск от сервиса
-*NetworkDrivesApi* | [**update_network_drive**](docs/NetworkDrivesApi.md#update_network_drive) | **PATCH** /api/v1/network-drives/{network_drive_id} | Изменение сетевого диска по идентификатору
+*NetworkDrivesApi* | [**update_network_drive**](docs/NetworkDrivesApi.md#update_network_drive) | **PATCH** /api/v1/network-drives/{network_drive_id} | Изменение сетевого диска по ID
 *ProjectsApi* | [**add_balancer_to_project**](docs/ProjectsApi.md#add_balancer_to_project) | **POST** /api/v1/projects/{project_id}/resources/balancers | Добавление балансировщика в проект
 *ProjectsApi* | [**add_cluster_to_project**](docs/ProjectsApi.md#add_cluster_to_project) | **POST** /api/v1/projects/{project_id}/resources/clusters | Добавление кластера в проект
 *ProjectsApi* | [**add_database_to_project**](docs/ProjectsApi.md#add_database_to_project) | **POST** /api/v1/projects/{project_id}/resources/databases | Добавление базы данных в проект
@@ -466,11 +466,11 @@ Class | Method | HTTP request | Description
 *S3Api* | [**upload_file_to_storage**](docs/S3Api.md#upload_file_to_storage) | **POST** /api/v1/storages/buckets/{bucket_id}/object-manager/upload | Загрузка файлов в хранилище
 *SSHApi* | [**add_key_to_server**](docs/SSHApi.md#add_key_to_server) | **POST** /api/v1/servers/{server_id}/ssh-keys | Добавление SSH-ключей на сервер
 *SSHApi* | [**create_key**](docs/SSHApi.md#create_key) | **POST** /api/v1/ssh-keys | Создание SSH-ключа
-*SSHApi* | [**delete_key**](docs/SSHApi.md#delete_key) | **DELETE** /api/v1/ssh-keys/{ssh_key_id} | Удаление SSH-ключа по уникальному идентификатору
+*SSHApi* | [**delete_key**](docs/SSHApi.md#delete_key) | **DELETE** /api/v1/ssh-keys/{ssh_key_id} | Удаление SSH-ключа по ID
 *SSHApi* | [**delete_key_from_server**](docs/SSHApi.md#delete_key_from_server) | **DELETE** /api/v1/servers/{server_id}/ssh-keys/{ssh_key_id} | Удаление SSH-ключей с сервера
-*SSHApi* | [**get_key**](docs/SSHApi.md#get_key) | **GET** /api/v1/ssh-keys/{ssh_key_id} | Получение SSH-ключа по уникальному идентификатору
+*SSHApi* | [**get_key**](docs/SSHApi.md#get_key) | **GET** /api/v1/ssh-keys/{ssh_key_id} | Получение SSH-ключа по ID
 *SSHApi* | [**get_keys**](docs/SSHApi.md#get_keys) | **GET** /api/v1/ssh-keys | Получение списка SSH-ключей
-*SSHApi* | [**update_key**](docs/SSHApi.md#update_key) | **PATCH** /api/v1/ssh-keys/{ssh_key_id} | Изменение SSH-ключа по уникальному идентификатору
+*SSHApi* | [**update_key**](docs/SSHApi.md#update_key) | **PATCH** /api/v1/ssh-keys/{ssh_key_id} | Изменение SSH-ключа по ID
 *ServersApi* | [**add_server_ip**](docs/ServersApi.md#add_server_ip) | **POST** /api/v1/servers/{server_id}/ips | Добавление IP-адреса сервера
 *ServersApi* | [**clone_server**](docs/ServersApi.md#clone_server) | **POST** /api/v1/servers/{server_id}/clone | Клонирование сервера
 *ServersApi* | [**create_server**](docs/ServersApi.md#create_server) | **POST** /api/v1/servers | Создание сервера
@@ -575,6 +575,7 @@ Class | Method | HTTP request | Description
  - [Clusterk8s](docs/Clusterk8s.md)
  - [ClustersResponse](docs/ClustersResponse.md)
  - [Commit](docs/Commit.md)
+ - [ComponentsSchemasBaseError](docs/ComponentsSchemasBaseError.md)
  - [ConfigParameters](docs/ConfigParameters.md)
  - [CopyStorageFileRequest](docs/CopyStorageFileRequest.md)
  - [CreateAdmin](docs/CreateAdmin.md)
@@ -672,16 +673,16 @@ Class | Method | HTTP request | Description
  - [DomainTransfer](docs/DomainTransfer.md)
  - [EditApiKey](docs/EditApiKey.md)
  - [Finances](docs/Finances.md)
+ - [FirewallGroup](docs/FirewallGroup.md)
  - [FirewallGroupInAPI](docs/FirewallGroupInAPI.md)
- - [FirewallGroupOutAPI](docs/FirewallGroupOutAPI.md)
  - [FirewallGroupOutResponse](docs/FirewallGroupOutResponse.md)
- - [FirewallGroupResourceOutAPI](docs/FirewallGroupResourceOutAPI.md)
+ - [FirewallGroupResource](docs/FirewallGroupResource.md)
  - [FirewallGroupResourceOutResponse](docs/FirewallGroupResourceOutResponse.md)
  - [FirewallGroupResourcesOutResponse](docs/FirewallGroupResourcesOutResponse.md)
  - [FirewallGroupsOutResponse](docs/FirewallGroupsOutResponse.md)
+ - [FirewallRule](docs/FirewallRule.md)
  - [FirewallRuleDirection](docs/FirewallRuleDirection.md)
  - [FirewallRuleInAPI](docs/FirewallRuleInAPI.md)
- - [FirewallRuleOutAPI](docs/FirewallRuleOutAPI.md)
  - [FirewallRuleOutResponse](docs/FirewallRuleOutResponse.md)
  - [FirewallRuleProtocol](docs/FirewallRuleProtocol.md)
  - [FirewallRulesOutResponse](docs/FirewallRulesOutResponse.md)
@@ -765,11 +766,11 @@ Class | Method | HTTP request | Description
  - [GetVPCPorts200Response](docs/GetVPCPorts200Response.md)
  - [GetVPCServices200Response](docs/GetVPCServices200Response.md)
  - [GetVPCs200Response](docs/GetVPCs200Response.md)
- - [ImageDownloadAPI](docs/ImageDownloadAPI.md)
+ - [Image](docs/Image.md)
+ - [ImageDownload](docs/ImageDownload.md)
  - [ImageDownloadResponse](docs/ImageDownloadResponse.md)
  - [ImageDownloadsResponse](docs/ImageDownloadsResponse.md)
  - [ImageInAPI](docs/ImageInAPI.md)
- - [ImageOutAPI](docs/ImageOutAPI.md)
  - [ImageOutResponse](docs/ImageOutResponse.md)
  - [ImageStatus](docs/ImageStatus.md)
  - [ImageUpdateAPI](docs/ImageUpdateAPI.md)
@@ -835,6 +836,7 @@ Class | Method | HTTP request | Description
  - [S3ObjectOwner](docs/S3ObjectOwner.md)
  - [S3Subdomain](docs/S3Subdomain.md)
  - [SchemasBaseError](docs/SchemasBaseError.md)
+ - [SchemasMeta](docs/SchemasMeta.md)
  - [ServerBackup](docs/ServerBackup.md)
  - [ServerDisk](docs/ServerDisk.md)
  - [ServerIp](docs/ServerIp.md)

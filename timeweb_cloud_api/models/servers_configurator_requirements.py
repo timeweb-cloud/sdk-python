@@ -38,7 +38,10 @@ class ServersConfiguratorRequirements(BaseModel):
     network_bandwidth_min: Optional[Any] = Field(..., description="Минимальныая пропускная способноть интернет-канала (в Мб)")
     network_bandwidth_step: Optional[Any] = Field(..., description="Размер шага пропускной способноти интернет-канала (в Мб)")
     network_bandwidth_max: Optional[Any] = Field(..., description="Максимальная пропускная способноть интернет-канала (в Мб)")
-    __properties = ["cpu_min", "cpu_step", "cpu_max", "ram_min", "ram_step", "ram_max", "disk_min", "disk_step", "disk_max", "network_bandwidth_min", "network_bandwidth_step", "network_bandwidth_max"]
+    gpu_min: Optional[Any] = Field(..., description="Минимальное количество видеокарт")
+    gpu_max: Optional[Any] = Field(..., description="Максимальное количество видеокарт")
+    gpu_step: Optional[Any] = Field(..., description="Размер шага видеокарт")
+    __properties = ["cpu_min", "cpu_step", "cpu_max", "ram_min", "ram_step", "ram_max", "disk_min", "disk_step", "disk_max", "network_bandwidth_min", "network_bandwidth_step", "network_bandwidth_max", "gpu_min", "gpu_max", "gpu_step"]
 
     class Config:
         """Pydantic configuration"""
@@ -124,6 +127,21 @@ class ServersConfiguratorRequirements(BaseModel):
         if self.network_bandwidth_max is None and "network_bandwidth_max" in self.__fields_set__:
             _dict['network_bandwidth_max'] = None
 
+        # set to None if gpu_min (nullable) is None
+        # and __fields_set__ contains the field
+        if self.gpu_min is None and "gpu_min" in self.__fields_set__:
+            _dict['gpu_min'] = None
+
+        # set to None if gpu_max (nullable) is None
+        # and __fields_set__ contains the field
+        if self.gpu_max is None and "gpu_max" in self.__fields_set__:
+            _dict['gpu_max'] = None
+
+        # set to None if gpu_step (nullable) is None
+        # and __fields_set__ contains the field
+        if self.gpu_step is None and "gpu_step" in self.__fields_set__:
+            _dict['gpu_step'] = None
+
         return _dict
 
     @classmethod
@@ -147,7 +165,10 @@ class ServersConfiguratorRequirements(BaseModel):
             "disk_max": obj.get("disk_max"),
             "network_bandwidth_min": obj.get("network_bandwidth_min"),
             "network_bandwidth_step": obj.get("network_bandwidth_step"),
-            "network_bandwidth_max": obj.get("network_bandwidth_max")
+            "network_bandwidth_max": obj.get("network_bandwidth_max"),
+            "gpu_min": obj.get("gpu_min"),
+            "gpu_max": obj.get("gpu_max"),
+            "gpu_step": obj.get("gpu_step")
         })
         return _obj
 

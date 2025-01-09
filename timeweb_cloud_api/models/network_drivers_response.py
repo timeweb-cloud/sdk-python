@@ -21,14 +21,14 @@ import json
 
 from typing import Any, Optional
 from pydantic import BaseModel, Field
-from timeweb_cloud_api.models.meta import Meta
+from timeweb_cloud_api.models.schemas_meta import SchemasMeta
 
 class NetworkDriversResponse(BaseModel):
     """
     NetworkDriversResponse
     """
-    response_id: Optional[Any] = Field(None, description="Идентификатор запроса")
-    meta: Meta = Field(...)
+    response_id: Optional[Any] = Field(None, description="ID запроса")
+    meta: SchemasMeta = Field(...)
     network_drivers: Optional[Any] = Field(..., description="Массив сетевых драйверов k8s")
     __properties = ["response_id", "meta", "network_drivers"]
 
@@ -82,7 +82,7 @@ class NetworkDriversResponse(BaseModel):
 
         _obj = NetworkDriversResponse.parse_obj({
             "response_id": obj.get("response_id"),
-            "meta": Meta.from_dict(obj.get("meta")) if obj.get("meta") is not None else None,
+            "meta": SchemasMeta.from_dict(obj.get("meta")) if obj.get("meta") is not None else None,
             "network_drivers": obj.get("network_drivers")
         })
         return _obj

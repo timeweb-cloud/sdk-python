@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **name** | **object** | Название сетевого диска. | 
 **comment** | **object** | Комментарий | [optional] 
 **size** | **object** | Размер диска в Гб | 
-**preset_id** | **object** | Идентификатор сетевого диска. | 
+**preset_id** | **object** | ID сетевого диска. | 
 
 ## Example
 

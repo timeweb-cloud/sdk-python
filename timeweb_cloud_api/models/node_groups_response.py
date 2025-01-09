@@ -21,14 +21,14 @@ import json
 
 from typing import Any, Optional
 from pydantic import BaseModel, Field
-from timeweb_cloud_api.models.meta import Meta
+from timeweb_cloud_api.models.schemas_meta import SchemasMeta
 
 class NodeGroupsResponse(BaseModel):
     """
     NodeGroupsResponse
     """
-    response_id: Optional[Any] = Field(None, description="Идентификатор запроса")
-    meta: Meta = Field(...)
+    response_id: Optional[Any] = Field(None, description="ID запроса")
+    meta: SchemasMeta = Field(...)
     node_groups: Optional[Any] = Field(..., description="Массив объектов Группа нод")
     __properties = ["response_id", "meta", "node_groups"]
 
@@ -82,7 +82,7 @@ class NodeGroupsResponse(BaseModel):
 
         _obj = NodeGroupsResponse.parse_obj({
             "response_id": obj.get("response_id"),
-            "meta": Meta.from_dict(obj.get("meta")) if obj.get("meta") is not None else None,
+            "meta": SchemasMeta.from_dict(obj.get("meta")) if obj.get("meta") is not None else None,
             "node_groups": obj.get("node_groups")
         })
         return _obj

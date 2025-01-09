@@ -31,8 +31,8 @@ class Vds(BaseModel):
     Сервер
     """
     id: Optional[Any] = Field(..., description="ID для каждого экземпляра сервера. Автоматически генерируется при создании.")
-    name: Optional[Any] = Field(..., description="Удобочитаемое имя, установленное для выделенного сервера.")
-    comment: Optional[Any] = Field(..., description="Комментарий к выделенному серверу.")
+    name: Optional[Any] = Field(..., description="Удобочитаемое имя, установленное для сервера.")
+    comment: Optional[Any] = Field(..., description="Комментарий к серверу.")
     created_at: Optional[Any] = Field(..., description="Дата создания сервера в формате ISO8061.")
     os: VdsOs = Field(...)
     software: VdsSoftware = Field(...)
@@ -43,6 +43,9 @@ class Vds(BaseModel):
     status: Optional[Any] = Field(..., description="Статус сервера.")
     start_at: Optional[Any] = Field(..., description="Значение времени, указанное в комбинированном формате даты и времени ISO8601, которое представляет, когда был запущен сервер.")
     is_ddos_guard: Optional[Any] = Field(..., description="Это логическое значение, которое показывает, включена ли защита от DDoS у данного сервера.")
+    is_master_ssh: Optional[Any] = Field(..., description="Это логическое значение, которое показывает, доступно ли подключение по SSH для поддержки.")
+    is_dedicated_cpu: Optional[Any] = Field(..., description="Это логическое значение, которое показывает, является ли CPU выделенным.")
+    gpu: Optional[Any] = Field(..., description="Количество видеокарт сервера.")
     cpu: Optional[Any] = Field(..., description="Количество ядер процессора сервера.")
     cpu_frequency: Optional[Any] = Field(..., description="Частота ядер процессора сервера.")
     ram: Optional[Any] = Field(..., description="Размер (в Мб) ОЗУ сервера.")
@@ -53,9 +56,9 @@ class Vds(BaseModel):
     image: VdsImage = Field(...)
     networks: Optional[Any] = Field(..., description="Список сетей сервера.")
     cloud_init: Optional[Any] = Field(..., description="Cloud-init скрипт.")
-    is_qemu_agent: Optional[Any] = Field(None, description="Включен ли QEMU-agent на сервере.")
+    is_qemu_agent: Optional[Any] = Field(..., description="Это логическое значение, которое показывает, включен ли QEMU-agent на сервере.")
     availability_zone: AvailabilityZone = Field(...)
-    __properties = ["id", "name", "comment", "created_at", "os", "software", "preset_id", "location", "configurator_id", "boot_mode", "status", "start_at", "is_ddos_guard", "cpu", "cpu_frequency", "ram", "disks", "avatar_id", "vnc_pass", "root_pass", "image", "networks", "cloud_init", "is_qemu_agent", "availability_zone"]
+    __properties = ["id", "name", "comment", "created_at", "os", "software", "preset_id", "location", "configurator_id", "boot_mode", "status", "start_at", "is_ddos_guard", "is_master_ssh", "is_dedicated_cpu", "gpu", "cpu", "cpu_frequency", "ram", "disks", "avatar_id", "vnc_pass", "root_pass", "image", "networks", "cloud_init", "is_qemu_agent", "availability_zone"]
 
     @validator('location')
     def location_validate_enum(cls, value):
@@ -63,8 +66,8 @@ class Vds(BaseModel):
         if value is None:
             return value
 
-        if value not in ('ru-1', 'ru-2', 'pl-1', 'kz-1'):
-            raise ValueError("must be one of enum values ('ru-1', 'ru-2', 'pl-1', 'kz-1')")
+        if value not in ('ru-1', 'ru-2', 'ru-3', 'pl-1', 'kz-1', 'nl-1'):
+            raise ValueError("must be one of enum values ('ru-1', 'ru-2', 'ru-3', 'pl-1', 'kz-1', 'nl-1')")
         return value
 
     @validator('boot_mode')
@@ -175,6 +178,21 @@ class Vds(BaseModel):
         if self.is_ddos_guard is None and "is_ddos_guard" in self.__fields_set__:
             _dict['is_ddos_guard'] = None
 
+        # set to None if is_master_ssh (nullable) is None
+        # and __fields_set__ contains the field
+        if self.is_master_ssh is None and "is_master_ssh" in self.__fields_set__:
+            _dict['is_master_ssh'] = None
+
+        # set to None if is_dedicated_cpu (nullable) is None
+        # and __fields_set__ contains the field
+        if self.is_dedicated_cpu is None and "is_dedicated_cpu" in self.__fields_set__:
+            _dict['is_dedicated_cpu'] = None
+
+        # set to None if gpu (nullable) is None
+        # and __fields_set__ contains the field
+        if self.gpu is None and "gpu" in self.__fields_set__:
+            _dict['gpu'] = None
+
         # set to None if cpu (nullable) is None
         # and __fields_set__ contains the field
         if self.cpu is None and "cpu" in self.__fields_set__:
@@ -250,6 +268,9 @@ class Vds(BaseModel):
             "status": obj.get("status"),
             "start_at": obj.get("start_at"),
             "is_ddos_guard": obj.get("is_ddos_guard"),
+            "is_master_ssh": obj.get("is_master_ssh"),
+            "is_dedicated_cpu": obj.get("is_dedicated_cpu"),
+            "gpu": obj.get("gpu"),
             "cpu": obj.get("cpu"),
             "cpu_frequency": obj.get("cpu_frequency"),
             "ram": obj.get("ram"),

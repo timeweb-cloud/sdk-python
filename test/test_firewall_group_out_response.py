@@ -40,7 +40,7 @@ class TestFirewallGroupOutResponse(unittest.TestCase):
         if include_optional :
             return FirewallGroupOutResponse(
                 response_id = None, 
-                group = timeweb_cloud_api.models.firewall_group_out_api.FirewallGroupOutAPI(
+                group = timeweb_cloud_api.models.firewall_group.firewall-group(
                     id = null, 
                     created_at = null, 
                     updated_at = null, 
@@ -50,7 +50,7 @@ class TestFirewallGroupOutResponse(unittest.TestCase):
             )
         else :
             return FirewallGroupOutResponse(
-                group = timeweb_cloud_api.models.firewall_group_out_api.FirewallGroupOutAPI(
+                group = timeweb_cloud_api.models.firewall_group.firewall-group(
                     id = null, 
                     created_at = null, 
                     updated_at = null, 

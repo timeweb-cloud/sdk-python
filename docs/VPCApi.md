@@ -97,7 +97,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_vpc**
-> CreateVPC201Response delete_vpc(vpc_id)
+> delete_vpc(vpc_id)
 
 Удаление VPC по ID сети
 
@@ -110,7 +110,6 @@ Name | Type | Description  | Notes
 import time
 import os
 import timeweb_cloud_api
-from timeweb_cloud_api.models.create_vpc201_response import CreateVPC201Response
 from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
@@ -138,9 +137,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
     try:
         # Удаление VPC по ID сети
-        api_response = api_instance.delete_vpc(vpc_id)
-        print("The response of VPCApi->delete_vpc:\n")
-        pprint(api_response)
+        api_instance.delete_vpc(vpc_id)
     except Exception as e:
         print("Exception when calling VPCApi->delete_vpc: %s\n" % e)
 ```
@@ -154,7 +151,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CreateVPC201Response**](CreateVPC201Response.md)
+void (empty response body)
 
 ### Authorization
 
@@ -163,12 +160,12 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: Not defined
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**204** | Объект JSON c ключом &#x60;vpc&#x60; |  -  |
+**204** | Успешное выполнение действия |  -  |
 **400** |  |  -  |
 **401** |  |  -  |
 **403** |  |  -  |

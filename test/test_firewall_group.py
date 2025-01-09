@@ -13,133 +13,54 @@
 """
 
 
-from __future__ import annotations
-import pprint
-import re  # noqa: F401
-import json
+import unittest
+import datetime
 
+import timeweb_cloud_api
+from timeweb_cloud_api.models.firewall_group import FirewallGroup  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
-from typing import Any, Optional
-from pydantic import BaseModel, Field
-from timeweb_cloud_api.models.image_status import ImageStatus
-from timeweb_cloud_api.models.os import OS
+class TestFirewallGroup(unittest.TestCase):
+    """FirewallGroup unit test stubs"""
 
-class ImageOutAPI(BaseModel):
-    """
-    ImageOutAPI
-    """
-    id: Optional[Any] = Field(..., description="Идентификатор образа")
-    status: ImageStatus = Field(...)
-    created_at: Optional[Any] = Field(..., description="Дата и время создания")
-    deleted_at: Optional[Any] = Field(..., description="Дата и время удаления")
-    size: Optional[Any] = Field(..., description="Размер в мегабайтах")
-    name: Optional[Any] = Field(..., description="Имя образа")
-    description: Optional[Any] = Field(..., description="Описание образа")
-    disk_id: Optional[Any] = Field(..., description="Идентификатор связанного с образом диска")
-    location: Optional[Any] = Field(None, description="Локация, в которой создан образ")
-    os: OS = Field(...)
-    progress: Optional[Any] = Field(..., description="Процент создания образа")
-    is_custom: Optional[Any] = Field(..., description="Признак указывающий на то является ли образ кастомным")
-    __properties = ["id", "status", "created_at", "deleted_at", "size", "name", "description", "disk_id", "location", "os", "progress", "is_custom"]
+    def setUp(self):
+        pass
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
+    def tearDown(self):
+        pass
 
-    def to_str(self) -> str:
-        """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+    def make_instance(self, include_optional):
+        """Test FirewallGroup
+            include_option is a boolean, when False only required
+            params are included, when True both required and
+            optional params are included """
+        # uncomment below to create an instance of `FirewallGroup`
+        """
+        model = timeweb_cloud_api.models.firewall_group.FirewallGroup()  # noqa: E501
+        if include_optional :
+            return FirewallGroup(
+                id = None, 
+                created_at = None, 
+                updated_at = None, 
+                name = None, 
+                description = None, 
+                policy = ACCEPT
+            )
+        else :
+            return FirewallGroup(
+                id = None,
+                created_at = None,
+                updated_at = None,
+                name = None,
+                description = None,
+                policy = ACCEPT,
+        )
+        """
 
-    def to_json(self) -> str:
-        """Returns the JSON representation of the model using alias"""
-        return json.dumps(self.to_dict())
+    def testFirewallGroup(self):
+        """Test FirewallGroup"""
+        # inst_req_only = self.make_instance(include_optional=False)
+        # inst_req_and_optional = self.make_instance(include_optional=True)
 
-    @classmethod
-    def from_json(cls, json_str: str) -> ImageOutAPI:
-        """Create an instance of ImageOutAPI from a JSON string"""
-        return cls.from_dict(json.loads(json_str))
-
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
-        # set to None if id (nullable) is None
-        # and __fields_set__ contains the field
-        if self.id is None and "id" in self.__fields_set__:
-            _dict['id'] = None
-
-        # set to None if created_at (nullable) is None
-        # and __fields_set__ contains the field
-        if self.created_at is None and "created_at" in self.__fields_set__:
-            _dict['created_at'] = None
-
-        # set to None if deleted_at (nullable) is None
-        # and __fields_set__ contains the field
-        if self.deleted_at is None and "deleted_at" in self.__fields_set__:
-            _dict['deleted_at'] = None
-
-        # set to None if size (nullable) is None
-        # and __fields_set__ contains the field
-        if self.size is None and "size" in self.__fields_set__:
-            _dict['size'] = None
-
-        # set to None if name (nullable) is None
-        # and __fields_set__ contains the field
-        if self.name is None and "name" in self.__fields_set__:
-            _dict['name'] = None
-
-        # set to None if description (nullable) is None
-        # and __fields_set__ contains the field
-        if self.description is None and "description" in self.__fields_set__:
-            _dict['description'] = None
-
-        # set to None if disk_id (nullable) is None
-        # and __fields_set__ contains the field
-        if self.disk_id is None and "disk_id" in self.__fields_set__:
-            _dict['disk_id'] = None
-
-        # set to None if location (nullable) is None
-        # and __fields_set__ contains the field
-        if self.location is None and "location" in self.__fields_set__:
-            _dict['location'] = None
-
-        # set to None if progress (nullable) is None
-        # and __fields_set__ contains the field
-        if self.progress is None and "progress" in self.__fields_set__:
-            _dict['progress'] = None
-
-        # set to None if is_custom (nullable) is None
-        # and __fields_set__ contains the field
-        if self.is_custom is None and "is_custom" in self.__fields_set__:
-            _dict['is_custom'] = None
-
-        return _dict
-
-    @classmethod
-    def from_dict(cls, obj: dict) -> ImageOutAPI:
-        """Create an instance of ImageOutAPI from a dict"""
-        if obj is None:
-            return None
-
-        if not isinstance(obj, dict):
-            return ImageOutAPI.parse_obj(obj)
-
-        _obj = ImageOutAPI.parse_obj({
-            "id": obj.get("id"),
-            "status": obj.get("status"),
-            "created_at": obj.get("created_at"),
-            "deleted_at": obj.get("deleted_at"),
-            "size": obj.get("size"),
-            "name": obj.get("name"),
-            "description": obj.get("description"),
-            "disk_id": obj.get("disk_id"),
-            "location": obj.get("location"),
-            "os": obj.get("os"),
-            "progress": obj.get("progress"),
-            "is_custom": obj.get("is_custom")
-        })
-        return _obj
-
+if __name__ == '__main__':
+    unittest.main()

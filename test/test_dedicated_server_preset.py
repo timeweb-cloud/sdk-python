@@ -42,6 +42,7 @@ class TestDedicatedServerPreset(unittest.TestCase):
                 id = 3017, 
                 description = Gold 6208U / 64 / 1N, 
                 is_ipmi_enabled = true, 
+                is_pre_installed = true, 
                 cpu = timeweb_cloud_api.models.dedicated_server_preset_cpu.dedicated_server_preset_cpu(
                     description = Intel Xeon Gold 6208U\r\n    (16 ядер, 2.9-3.9 ГГц, 32 потока), 
                     description_short = Intel Xeon Gold 6208U, 
@@ -61,6 +62,7 @@ class TestDedicatedServerPreset(unittest.TestCase):
                 id = 3017,
                 description = Gold 6208U / 64 / 1N,
                 is_ipmi_enabled = true,
+                is_pre_installed = true,
                 cpu = timeweb_cloud_api.models.dedicated_server_preset_cpu.dedicated_server_preset_cpu(
                     description = Intel Xeon Gold 6208U\r\n    (16 ядер, 2.9-3.9 ГГц, 32 потока), 
                     description_short = Intel Xeon Gold 6208U, 

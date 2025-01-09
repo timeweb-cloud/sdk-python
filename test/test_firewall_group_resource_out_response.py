@@ -40,13 +40,13 @@ class TestFirewallGroupResourceOutResponse(unittest.TestCase):
         if include_optional :
             return FirewallGroupResourceOutResponse(
                 response_id = None, 
-                resource = timeweb_cloud_api.models.firewall_group_resource_out_api.FirewallGroupResourceOutAPI(
+                resource = timeweb_cloud_api.models.firewall_group_resource.firewall-group-resource(
                     id = null, 
                     type = server, )
             )
         else :
             return FirewallGroupResourceOutResponse(
-                resource = timeweb_cloud_api.models.firewall_group_resource_out_api.FirewallGroupResourceOutAPI(
+                resource = timeweb_cloud_api.models.firewall_group_resource.firewall-group-resource(
                     id = null, 
                     type = server, ),
         )

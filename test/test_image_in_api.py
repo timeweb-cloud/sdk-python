@@ -48,6 +48,8 @@ class TestImageInAPI(unittest.TestCase):
             )
         else :
             return ImageInAPI(
+                location = ru-1,
+                os = centos,
         )
         """
 

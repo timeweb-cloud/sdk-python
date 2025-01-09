@@ -46,7 +46,7 @@ class TestSSHApi(unittest.TestCase):
     def test_delete_key(self):
         """Test case for delete_key
 
-        Удаление SSH-ключа по уникальному идентификатору  # noqa: E501
+        Удаление SSH-ключа по ID  # noqa: E501
         """
         pass
 
@@ -60,7 +60,7 @@ class TestSSHApi(unittest.TestCase):
     def test_get_key(self):
         """Test case for get_key
 
-        Получение SSH-ключа по уникальному идентификатору  # noqa: E501
+        Получение SSH-ключа по ID  # noqa: E501
         """
         pass
 
@@ -74,7 +74,7 @@ class TestSSHApi(unittest.TestCase):
     def test_update_key(self):
         """Test case for update_key
 
-        Изменение SSH-ключа по уникальному идентификатору  # noqa: E501
+        Изменение SSH-ключа по ID  # noqa: E501
         """
         pass
 

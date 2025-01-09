@@ -13,98 +13,54 @@
 """
 
 
-from __future__ import annotations
-import pprint
-import re  # noqa: F401
-import json
+import unittest
+import datetime
 
+import timeweb_cloud_api
+from timeweb_cloud_api.models.firewall_rule import FirewallRule  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
-from typing import Any, Optional
-from pydantic import BaseModel, Field
-from timeweb_cloud_api.models.firewall_rule_direction import FirewallRuleDirection
-from timeweb_cloud_api.models.firewall_rule_protocol import FirewallRuleProtocol
+class TestFirewallRule(unittest.TestCase):
+    """FirewallRule unit test stubs"""
 
-class FirewallRuleOutAPI(BaseModel):
-    """
-    FirewallRuleOutAPI
-    """
-    id: Optional[Any] = Field(..., description="Идентификатор правила")
-    description: Optional[Any] = Field(..., description="Описание правила")
-    direction: FirewallRuleDirection = Field(...)
-    protocol: FirewallRuleProtocol = Field(...)
-    port: Optional[Any] = Field(None, description="Порт или диапазон портов, в случае tcp или udp")
-    cidr: Optional[Any] = Field(None, description="Сетевой адрес или подсеть. Поддерживаются протоколы IPv4  и IPv6")
-    group_id: Optional[Any] = Field(..., description="Идентификатор группы правил")
-    __properties = ["id", "description", "direction", "protocol", "port", "cidr", "group_id"]
+    def setUp(self):
+        pass
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
+    def tearDown(self):
+        pass
 
-    def to_str(self) -> str:
-        """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+    def make_instance(self, include_optional):
+        """Test FirewallRule
+            include_option is a boolean, when False only required
+            params are included, when True both required and
+            optional params are included """
+        # uncomment below to create an instance of `FirewallRule`
+        """
+        model = timeweb_cloud_api.models.firewall_rule.FirewallRule()  # noqa: E501
+        if include_optional :
+            return FirewallRule(
+                id = None, 
+                description = None, 
+                direction = ingress, 
+                protocol = tcp, 
+                port = None, 
+                cidr = None, 
+                group_id = None
+            )
+        else :
+            return FirewallRule(
+                id = None,
+                description = None,
+                direction = ingress,
+                protocol = tcp,
+                group_id = None,
+        )
+        """
 
-    def to_json(self) -> str:
-        """Returns the JSON representation of the model using alias"""
-        return json.dumps(self.to_dict())
+    def testFirewallRule(self):
+        """Test FirewallRule"""
+        # inst_req_only = self.make_instance(include_optional=False)
+        # inst_req_and_optional = self.make_instance(include_optional=True)
 
-    @classmethod
-    def from_json(cls, json_str: str) -> FirewallRuleOutAPI:
-        """Create an instance of FirewallRuleOutAPI from a JSON string"""
-        return cls.from_dict(json.loads(json_str))
-
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
-        # set to None if id (nullable) is None
-        # and __fields_set__ contains the field
-        if self.id is None and "id" in self.__fields_set__:
-            _dict['id'] = None
-
-        # set to None if description (nullable) is None
-        # and __fields_set__ contains the field
-        if self.description is None and "description" in self.__fields_set__:
-            _dict['description'] = None
-
-        # set to None if port (nullable) is None
-        # and __fields_set__ contains the field
-        if self.port is None and "port" in self.__fields_set__:
-            _dict['port'] = None
-
-        # set to None if cidr (nullable) is None
-        # and __fields_set__ contains the field
-        if self.cidr is None and "cidr" in self.__fields_set__:
-            _dict['cidr'] = None
-
-        # set to None if group_id (nullable) is None
-        # and __fields_set__ contains the field
-        if self.group_id is None and "group_id" in self.__fields_set__:
-            _dict['group_id'] = None
-
-        return _dict
-
-    @classmethod
-    def from_dict(cls, obj: dict) -> FirewallRuleOutAPI:
-        """Create an instance of FirewallRuleOutAPI from a dict"""
-        if obj is None:
-            return None
-
-        if not isinstance(obj, dict):
-            return FirewallRuleOutAPI.parse_obj(obj)
-
-        _obj = FirewallRuleOutAPI.parse_obj({
-            "id": obj.get("id"),
-            "description": obj.get("description"),
-            "direction": obj.get("direction"),
-            "protocol": obj.get("protocol"),
-            "port": obj.get("port"),
-            "cidr": obj.get("cidr"),
-            "group_id": obj.get("group_id")
-        })
-        return _obj
-
+if __name__ == '__main__':
+    unittest.main()

@@ -4,8 +4,8 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**response_id** | **object** | Идентификатор запроса | [optional] 
-**group** | [**FirewallGroupOutAPI**](FirewallGroupOutAPI.md) |  | 
+**response_id** | **object** | ID запроса. | [optional] 
+**group** | [**FirewallGroup**](FirewallGroup.md) |  | 
 
 ## Example
 

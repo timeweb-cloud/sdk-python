@@ -21,19 +21,15 @@ import json
 
 from typing import Any, Optional
 from pydantic import BaseModel, Field
-from timeweb_cloud_api.models.policy import Policy
+from timeweb_cloud_api.models.resource_type import ResourceType
 
-class FirewallGroupOutAPI(BaseModel):
+class FirewallGroupResource(BaseModel):
     """
-    FirewallGroupOutAPI
+    FirewallGroupResource
     """
-    id: Optional[Any] = Field(..., description="Идентификатор группы правил")
-    created_at: Optional[Any] = Field(..., description="Дата и время создания")
-    updated_at: Optional[Any] = Field(..., description="Дата и время последнего обновления")
-    name: Optional[Any] = Field(..., description="Имя группы правил")
-    description: Optional[Any] = Field(..., description="Описание группы правил")
-    policy: Policy = Field(...)
-    __properties = ["id", "created_at", "updated_at", "name", "description", "policy"]
+    id: Optional[Any] = Field(..., description="ID ресурса.")
+    type: ResourceType = Field(...)
+    __properties = ["id", "type"]
 
     class Config:
         """Pydantic configuration"""
@@ -49,8 +45,8 @@ class FirewallGroupOutAPI(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> FirewallGroupOutAPI:
-        """Create an instance of FirewallGroupOutAPI from a JSON string"""
+    def from_json(cls, json_str: str) -> FirewallGroupResource:
+        """Create an instance of FirewallGroupResource from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self):
@@ -64,44 +60,20 @@ class FirewallGroupOutAPI(BaseModel):
         if self.id is None and "id" in self.__fields_set__:
             _dict['id'] = None
 
-        # set to None if created_at (nullable) is None
-        # and __fields_set__ contains the field
-        if self.created_at is None and "created_at" in self.__fields_set__:
-            _dict['created_at'] = None
-
-        # set to None if updated_at (nullable) is None
-        # and __fields_set__ contains the field
-        if self.updated_at is None and "updated_at" in self.__fields_set__:
-            _dict['updated_at'] = None
-
-        # set to None if name (nullable) is None
-        # and __fields_set__ contains the field
-        if self.name is None and "name" in self.__fields_set__:
-            _dict['name'] = None
-
-        # set to None if description (nullable) is None
-        # and __fields_set__ contains the field
-        if self.description is None and "description" in self.__fields_set__:
-            _dict['description'] = None
-
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> FirewallGroupOutAPI:
-        """Create an instance of FirewallGroupOutAPI from a dict"""
+    def from_dict(cls, obj: dict) -> FirewallGroupResource:
+        """Create an instance of FirewallGroupResource from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return FirewallGroupOutAPI.parse_obj(obj)
+            return FirewallGroupResource.parse_obj(obj)
 
-        _obj = FirewallGroupOutAPI.parse_obj({
+        _obj = FirewallGroupResource.parse_obj({
             "id": obj.get("id"),
-            "created_at": obj.get("created_at"),
-            "updated_at": obj.get("updated_at"),
-            "name": obj.get("name"),
-            "description": obj.get("description"),
-            "policy": obj.get("policy")
+            "type": obj.get("type")
         })
         return _obj
 

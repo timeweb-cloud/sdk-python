@@ -7,9 +7,9 @@ Name | Type | Description | Notes
 **id** | **object** | ID ноды | 
 **created_at** | **object** | Дата и время создания ноды в формате ISO8601 | 
 **type** | **object** | Тип ноды | 
-**group_id** | **object** | Идентификатор группы нод | 
+**group_id** | **object** | ID группы нод | 
 **status** | **object** | Статус | 
-**preset_id** | **object** | Идентификатор тарифа ноды | 
+**preset_id** | **object** | ID тарифа ноды | 
 **cpu** | **object** | Количество ядер | 
 **ram** | **object** | Количество памяти | 
 **disk** | **object** | Количество пространства | 

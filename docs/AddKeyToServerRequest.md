@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ssh_key_ids** | **object** | Массив уникальных идентификаторов SSH-ключей | 
+**ssh_key_ids** | **object** | Массив ID SSH-ключей | 
 
 ## Example
 

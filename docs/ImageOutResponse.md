@@ -4,8 +4,8 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**response_id** | **object** | Идентификатор запроса | [optional] 
-**image** | [**ImageOutAPI**](ImageOutAPI.md) |  | 
+**response_id** | **object** | ID запроса. | [optional] 
+**image** | [**Image**](Image.md) |  | 
 
 ## Example
 

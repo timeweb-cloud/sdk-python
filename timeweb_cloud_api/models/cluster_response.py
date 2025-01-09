@@ -27,7 +27,7 @@ class ClusterResponse(BaseModel):
     """
     ClusterResponse
     """
-    response_id: Optional[Any] = Field(None, description="Идентификатор запроса")
+    response_id: Optional[Any] = Field(None, description="ID запроса")
     cluster: ClusterOut = Field(...)
     __properties = ["response_id", "cluster"]
 
