@@ -70,8 +70,8 @@ class DatabaseCluster(BaseModel):
         if value is None:
             return value
 
-        if value not in ('started', 'starting', 'stopped', 'no_paid'):
-            raise ValueError("must be one of enum values ('started', 'starting', 'stopped', 'no_paid')")
+        if value not in ('started', 'starting', 'stopped', 'no_paid', 'lan_transfer', 'error', 'blocked', 'backup_recovery', 'rebooting', 'turning_off', 'turning_on'):
+            raise ValueError("must be one of enum values ('started', 'starting', 'stopped', 'no_paid', 'lan_transfer', 'error', 'blocked', 'backup_recovery', 'rebooting', 'turning_off', 'turning_on')")
         return value
 
     class Config:
