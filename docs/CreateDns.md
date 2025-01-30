@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **subdomain** | **object** | Полное имя поддомена. | [optional] 
 **type** | **object** | Тип DNS-записи. | 
 **value** | **object** | Значение DNS-записи. | 
+**ttl** | **object** | Время жизни DNS-записи. | [optional] 
 
 ## Example
 

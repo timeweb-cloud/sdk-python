@@ -30,7 +30,8 @@ class CreateDns(BaseModel):
     subdomain: Optional[Any] = Field(None, description="Полное имя поддомена.")
     type: Optional[Any] = Field(..., description="Тип DNS-записи.")
     value: Optional[Any] = Field(..., description="Значение DNS-записи.")
-    __properties = ["priority", "subdomain", "type", "value"]
+    ttl: Optional[Any] = Field(None, description="Время жизни DNS-записи.")
+    __properties = ["priority", "subdomain", "type", "value", "ttl"]
 
     @validator('type')
     def type_validate_enum(cls, value):
@@ -86,6 +87,11 @@ class CreateDns(BaseModel):
         if self.value is None and "value" in self.__fields_set__:
             _dict['value'] = None
 
+        # set to None if ttl (nullable) is None
+        # and __fields_set__ contains the field
+        if self.ttl is None and "ttl" in self.__fields_set__:
+            _dict['ttl'] = None
+
         return _dict
 
     @classmethod
@@ -101,7 +107,8 @@ class CreateDns(BaseModel):
             "priority": obj.get("priority"),
             "subdomain": obj.get("subdomain"),
             "type": obj.get("type"),
-            "value": obj.get("value")
+            "value": obj.get("value"),
+            "ttl": obj.get("ttl")
         })
         return _obj
 

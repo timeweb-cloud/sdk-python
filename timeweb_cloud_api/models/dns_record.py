@@ -30,7 +30,8 @@ class DnsRecord(BaseModel):
     type: Optional[Any] = Field(..., description="Тип DNS-записи.")
     id: Optional[Any] = Field(None, description="ID DNS-записи.")
     data: DnsRecordData = Field(...)
-    __properties = ["type", "id", "data"]
+    ttl: Optional[Any] = Field(None, description="Время жизни DNS-записи.")
+    __properties = ["type", "id", "data", "ttl"]
 
     @validator('type')
     def type_validate_enum(cls, value):
@@ -79,6 +80,11 @@ class DnsRecord(BaseModel):
         if self.id is None and "id" in self.__fields_set__:
             _dict['id'] = None
 
+        # set to None if ttl (nullable) is None
+        # and __fields_set__ contains the field
+        if self.ttl is None and "ttl" in self.__fields_set__:
+            _dict['ttl'] = None
+
         return _dict
 
     @classmethod
@@ -93,7 +99,8 @@ class DnsRecord(BaseModel):
         _obj = DnsRecord.parse_obj({
             "type": obj.get("type"),
             "id": obj.get("id"),
-            "data": DnsRecordData.from_dict(obj.get("data")) if obj.get("data") is not None else None
+            "data": DnsRecordData.from_dict(obj.get("data")) if obj.get("data") is not None else None,
+            "ttl": obj.get("ttl")
         })
         return _obj
 

@@ -42,7 +42,8 @@ class TestCreateDns(unittest.TestCase):
                 priority = 0, 
                 subdomain = sub.somedomain.ru, 
                 type = A, 
-                value = 192.168.111.123
+                value = 192.168.111.123, 
+                ttl = 600
             )
         else :
             return CreateDns(

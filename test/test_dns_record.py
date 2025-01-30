@@ -44,7 +44,8 @@ class TestDnsRecord(unittest.TestCase):
                 data = timeweb_cloud_api.models.dns_record_data.dns_record_data(
                     priority = 0, 
                     subdomain = sub.somedomain.ru, 
-                    value = 98.76.54.32, )
+                    value = 98.76.54.32, ), 
+                ttl = 600
             )
         else :
             return DnsRecord(
