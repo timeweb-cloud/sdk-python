@@ -10,8 +10,8 @@ Method | HTTP request | Description
 [**get_network_drives**](NetworkDrivesApi.md#get_network_drives) | **GET** /api/v1/network-drives | Получение списка cетевых дисков
 [**get_network_drives_available_resources**](NetworkDrivesApi.md#get_network_drives_available_resources) | **GET** /api/v1/network-drives/available-resources | Получение списка сервисов доступных для подключения диска
 [**get_network_drives_presets**](NetworkDrivesApi.md#get_network_drives_presets) | **GET** /api/v1/presets/network-drives | Получение списка доступных тарифов для сетевого диска
-[**mount_network_drive**](NetworkDrivesApi.md#mount_network_drive) | **POST** /api/v1/network-drives/{network_drive_id}/bind | Подключить сетевой диск к сервису
-[**unmount_network_drive**](NetworkDrivesApi.md#unmount_network_drive) | **POST** /api/v1/network-drives/{network_drive_id}/unbind | Отключить сетевой диск от сервиса
+[**mount_network_drive**](NetworkDrivesApi.md#mount_network_drive) | **POST** /api/v1/network-drives/{network_drive_id}/mount | Подключить сетевой диск к сервису
+[**unmount_network_drive**](NetworkDrivesApi.md#unmount_network_drive) | **POST** /api/v1/network-drives/{network_drive_id}/unmount | Отключить сетевой диск от сервиса
 [**update_network_drive**](NetworkDrivesApi.md#update_network_drive) | **PATCH** /api/v1/network-drives/{network_drive_id} | Изменение сетевого диска по ID
 
 

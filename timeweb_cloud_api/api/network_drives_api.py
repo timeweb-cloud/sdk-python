@@ -1025,7 +1025,7 @@ class NetworkDrivesApi(object):
         _response_types_map = {}
 
         return self.api_client.call_api(
-            '/api/v1/network-drives/{network_drive_id}/bind', 'POST',
+            '/api/v1/network-drives/{network_drive_id}/mount', 'POST',
             _path_params,
             _query_params,
             _header_params,
@@ -1158,7 +1158,7 @@ class NetworkDrivesApi(object):
         _response_types_map = {}
 
         return self.api_client.call_api(
-            '/api/v1/network-drives/{network_drive_id}/unbind', 'POST',
+            '/api/v1/network-drives/{network_drive_id}/unmount', 'POST',
             _path_params,
             _query_params,
             _header_params,
