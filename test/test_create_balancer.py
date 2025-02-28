@@ -56,6 +56,7 @@ class TestCreateBalancer(unittest.TestCase):
                 network = timeweb_cloud_api.models.network.network(
                     id = network-1234567890, 
                     floating_ip = 192.168.0.0, 
+                    local_ip = 192.168.0.0, 
                     ip = 192.168.0.0, ), 
                 availability_zone = spb-1
             )

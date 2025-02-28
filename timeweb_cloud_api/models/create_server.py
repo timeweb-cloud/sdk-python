@@ -30,12 +30,12 @@ class CreateServer(BaseModel):
     CreateServer
     """
     configuration: Optional[CreateServerConfiguration] = None
-    is_ddos_guard: Optional[Any] = Field(..., description="Защита от DDoS. Серверу выдается защищенный IP-адрес с защитой уровня L3 / L4. Для включения защиты уровня L7 необходимо создать тикет в техническую поддержку.")
+    is_ddos_guard: Optional[Any] = Field(None, description="Защита от DDoS. Серверу выдается защищенный IP-адрес с защитой уровня L3 / L4. Для включения защиты уровня L7 необходимо создать тикет в техническую поддержку.")
     os_id: Optional[Any] = Field(None, description="ID операционной системы, которая будет установлена на облачный сервер. Нельзя передавать вместе с `image_id`.")
     image_id: Optional[Any] = Field(None, description="ID образа, который будет установлен на облачный сервер. Нельзя передавать вместе с `os_id`.")
     software_id: Optional[Any] = Field(None, description="ID программного обеспечения сервера.")
     preset_id: Optional[Any] = Field(None, description="ID тарифа сервера. Нельзя передавать вместе с ключом `configurator`.")
-    bandwidth: Optional[Any] = Field(..., description="Пропускная способность тарифа. Доступные значения от 100 до 1000 с шагом 100.")
+    bandwidth: Optional[Any] = Field(None, description="Пропускная способность тарифа. Доступные значения от 100 до 1000 с шагом 100.")
     name: Optional[Any] = Field(..., description="Имя облачного сервера. Максимальная длина — 255 символов, имя должно быть уникальным.")
     avatar_id: Optional[Any] = Field(None, description="ID аватара сервера. Описание методов работы с аватарами появится позднее.")
     comment: Optional[Any] = Field(None, description="Комментарий к облачному серверу. Максимальная длина — 255 символов.")

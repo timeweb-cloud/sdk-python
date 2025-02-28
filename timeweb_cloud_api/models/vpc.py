@@ -36,7 +36,8 @@ class Vpc(BaseModel):
     availability_zone: AvailabilityZone = Field(...)
     public_ip: Optional[Any] = Field(..., description="Публичный IP-адрес сети.")
     type: Optional[Any] = Field(..., description="Тип сети.")
-    __properties = ["id", "name", "subnet_v4", "location", "created_at", "description", "availability_zone", "public_ip", "type"]
+    busy_address: Optional[Any] = Field(..., description="Занятые адреса в сети")
+    __properties = ["id", "name", "subnet_v4", "location", "created_at", "description", "availability_zone", "public_ip", "type", "busy_address"]
 
     @validator('location')
     def location_validate_enum(cls, value):
@@ -122,6 +123,11 @@ class Vpc(BaseModel):
         if self.type is None and "type" in self.__fields_set__:
             _dict['type'] = None
 
+        # set to None if busy_address (nullable) is None
+        # and __fields_set__ contains the field
+        if self.busy_address is None and "busy_address" in self.__fields_set__:
+            _dict['busy_address'] = None
+
         return _dict
 
     @classmethod
@@ -142,7 +148,8 @@ class Vpc(BaseModel):
             "description": obj.get("description"),
             "availability_zone": obj.get("availability_zone"),
             "public_ip": obj.get("public_ip"),
-            "type": obj.get("type")
+            "type": obj.get("type"),
+            "busy_address": obj.get("busy_address")
         })
         return _obj
 

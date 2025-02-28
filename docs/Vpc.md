@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **availability_zone** | [**AvailabilityZone**](AvailabilityZone.md) |  | 
 **public_ip** | **object** | Публичный IP-адрес сети. | 
 **type** | **object** | Тип сети. | 
+**busy_address** | **object** | Занятые адреса в сети | 
 
 ## Example
 

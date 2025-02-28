@@ -48,7 +48,8 @@ class TestCreateVPC201Response(unittest.TestCase):
                     description = Сеть для примера, 
                     availability_zone = spb-1, 
                     public_ip = null, 
-                    type = ovn, )
+                    type = ovn, 
+                    busy_address = [], )
             )
         else :
             return CreateVPC201Response(
@@ -61,7 +62,8 @@ class TestCreateVPC201Response(unittest.TestCase):
                     description = Сеть для примера, 
                     availability_zone = spb-1, 
                     public_ip = null, 
-                    type = ovn, ),
+                    type = ovn, 
+                    busy_address = [], ),
         )
         """
 

@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **object** | ID сети. | 
 **floating_ip** | **object** | Плавающий IP-адрес | [optional] 
+**local_ip** | **object** | IP-адрес в сети. | [optional] 
 **ip** | **object** | IP-адрес в сети. | [optional] 
 
 ## Example

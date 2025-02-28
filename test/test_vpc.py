@@ -47,7 +47,8 @@ class TestVpc(unittest.TestCase):
                 description = Сеть для примера, 
                 availability_zone = spb-1, 
                 public_ip = None, 
-                type = ovn
+                type = ovn, 
+                busy_address = []
             )
         else :
             return Vpc(
@@ -60,6 +61,7 @@ class TestVpc(unittest.TestCase):
                 availability_zone = spb-1,
                 public_ip = None,
                 type = ovn,
+                busy_address = [],
         )
         """
 
