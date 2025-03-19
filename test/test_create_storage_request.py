@@ -40,6 +40,7 @@ class TestCreateStorageRequest(unittest.TestCase):
         if include_optional :
             return CreateStorageRequest(
                 name = test, 
+                description = Bucket of awesome cats, 
                 type = private, 
                 preset_id = 1
             )

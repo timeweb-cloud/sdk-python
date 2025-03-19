@@ -31,8 +31,9 @@ class DatabaseType(BaseModel):
     version: Optional[Any] = Field(..., description="Версия кластера базы данных.")
     type: Optional[Any] = Field(..., description="Тип кластера базы данных. Передается при создании кластера в поле `type`")
     is_available_replication: Optional[Any] = Field(..., description="Поддерживает ли база данных репликацию.")
+    is_deprecated: Optional[Any] = Field(..., description="Устарела ли версия базы.")
     requirements: Optional[DatabaseTypeRequirements] = None
-    __properties = ["name", "version", "type", "is_available_replication", "requirements"]
+    __properties = ["name", "version", "type", "is_available_replication", "is_deprecated", "requirements"]
 
     class Config:
         """Pydantic configuration"""
@@ -81,6 +82,11 @@ class DatabaseType(BaseModel):
         if self.is_available_replication is None and "is_available_replication" in self.__fields_set__:
             _dict['is_available_replication'] = None
 
+        # set to None if is_deprecated (nullable) is None
+        # and __fields_set__ contains the field
+        if self.is_deprecated is None and "is_deprecated" in self.__fields_set__:
+            _dict['is_deprecated'] = None
+
         return _dict
 
     @classmethod
@@ -97,6 +103,7 @@ class DatabaseType(BaseModel):
             "version": obj.get("version"),
             "type": obj.get("type"),
             "is_available_replication": obj.get("is_available_replication"),
+            "is_deprecated": obj.get("is_deprecated"),
             "requirements": DatabaseTypeRequirements.from_dict(obj.get("requirements")) if obj.get("requirements") is not None else None
         })
         return _obj

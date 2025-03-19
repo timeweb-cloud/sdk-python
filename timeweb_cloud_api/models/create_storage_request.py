@@ -27,9 +27,10 @@ class CreateStorageRequest(BaseModel):
     CreateStorageRequest
     """
     name: Optional[Any] = Field(..., description="Название хранилища.")
+    description: Optional[Any] = Field(None, description="Комментарий к хранилищу.")
     type: Optional[Any] = Field(..., description="Тип хранилища.")
     preset_id: Optional[Any] = Field(..., description="ID тарифа.")
-    __properties = ["name", "type", "preset_id"]
+    __properties = ["name", "description", "type", "preset_id"]
 
     @validator('type')
     def type_validate_enum(cls, value):
@@ -70,6 +71,11 @@ class CreateStorageRequest(BaseModel):
         if self.name is None and "name" in self.__fields_set__:
             _dict['name'] = None
 
+        # set to None if description (nullable) is None
+        # and __fields_set__ contains the field
+        if self.description is None and "description" in self.__fields_set__:
+            _dict['description'] = None
+
         # set to None if type (nullable) is None
         # and __fields_set__ contains the field
         if self.type is None and "type" in self.__fields_set__:
@@ -93,6 +99,7 @@ class CreateStorageRequest(BaseModel):
 
         _obj = CreateStorageRequest.parse_obj({
             "name": obj.get("name"),
+            "description": obj.get("description"),
             "type": obj.get("type"),
             "preset_id": obj.get("preset_id")
         })

@@ -43,6 +43,7 @@ class TestDatabaseType(unittest.TestCase):
                 version = 5.7, 
                 type = mysql5, 
                 is_available_replication = true, 
+                is_deprecated = true, 
                 requirements = timeweb_cloud_api.models.database_type_requirements.database_type_requirements(
                     cpu_min = 1, 
                     ram_min = 8192, 
@@ -54,6 +55,7 @@ class TestDatabaseType(unittest.TestCase):
                 version = 5.7,
                 type = mysql5,
                 is_available_replication = true,
+                is_deprecated = true,
         )
         """
 

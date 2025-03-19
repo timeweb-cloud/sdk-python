@@ -41,6 +41,7 @@ class TestBucket(unittest.TestCase):
             return Bucket(
                 id = 1, 
                 name = Cute Quail, 
+                description = Bucket of awesome cats, 
                 disk_stats = timeweb_cloud_api.models.bucket_disk_stats.bucket_disk_stats(
                     size = 10485760, 
                     used = 486.11328125, ), 

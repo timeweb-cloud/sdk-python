@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **object** | Название хранилища. | 
+**description** | **object** | Комментарий к хранилищу. | [optional] 
 **type** | **object** | Тип хранилища. | 
 **preset_id** | **object** | ID тарифа. | 
 

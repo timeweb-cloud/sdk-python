@@ -37,7 +37,7 @@ class CreateCluster(BaseModel):
     type: DbType = Field(...)
     admin: Optional[CreateClusterAdmin] = None
     instance: Optional[CreateClusterInstance] = None
-    hash_type: Optional[Any] = Field(None, description="Тип хеширования базы данных (mysql5 | mysql | postgres).")
+    hash_type: Optional[Any] = Field(None, description="Тип хеширования базы данных (mysql | postgres).")
     preset_id: Optional[Any] = Field(..., description="ID тарифа.")
     config_parameters: Optional[ConfigParameters] = None
     network: Optional[Network] = None

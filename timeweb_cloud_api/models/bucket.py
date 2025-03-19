@@ -29,6 +29,7 @@ class Bucket(BaseModel):
     """
     id: Optional[Any] = Field(..., description="ID для каждого экземпляра хранилища. Автоматически генерируется при создании.")
     name: Optional[Any] = Field(..., description="Удобочитаемое имя, установленное для хранилища.")
+    description: Optional[Any] = Field(None, description="Комментарий к хранилищу.")
     disk_stats: BucketDiskStats = Field(...)
     type: Optional[Any] = Field(..., description="Тип хранилища.")
     preset_id: Optional[Any] = Field(..., description="ID тарифа хранилища.")
@@ -38,7 +39,7 @@ class Bucket(BaseModel):
     hostname: Optional[Any] = Field(..., description="Адрес хранилища для подключения.")
     access_key: Optional[Any] = Field(..., description="Ключ доступа от хранилища.")
     secret_key: Optional[Any] = Field(..., description="Секретный ключ доступа от хранилища.")
-    __properties = ["id", "name", "disk_stats", "type", "preset_id", "status", "object_amount", "location", "hostname", "access_key", "secret_key"]
+    __properties = ["id", "name", "description", "disk_stats", "type", "preset_id", "status", "object_amount", "location", "hostname", "access_key", "secret_key"]
 
     @validator('type')
     def type_validate_enum(cls, value):
@@ -97,6 +98,11 @@ class Bucket(BaseModel):
         if self.name is None and "name" in self.__fields_set__:
             _dict['name'] = None
 
+        # set to None if description (nullable) is None
+        # and __fields_set__ contains the field
+        if self.description is None and "description" in self.__fields_set__:
+            _dict['description'] = None
+
         # set to None if type (nullable) is None
         # and __fields_set__ contains the field
         if self.type is None and "type" in self.__fields_set__:
@@ -151,6 +157,7 @@ class Bucket(BaseModel):
         _obj = Bucket.parse_obj({
             "id": obj.get("id"),
             "name": obj.get("name"),
+            "description": obj.get("description"),
             "disk_stats": BucketDiskStats.from_dict(obj.get("disk_stats")) if obj.get("disk_stats") is not None else None,
             "type": obj.get("type"),
             "preset_id": obj.get("preset_id"),

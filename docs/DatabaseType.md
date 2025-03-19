@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **version** | **object** | Версия кластера базы данных. | 
 **type** | **object** | Тип кластера базы данных. Передается при создании кластера в поле &#x60;type&#x60; | 
 **is_available_replication** | **object** | Поддерживает ли база данных репликацию. | 
+**is_deprecated** | **object** | Устарела ли версия базы. | 
 **requirements** | [**DatabaseTypeRequirements**](DatabaseTypeRequirements.md) |  | [optional] 
 
 ## Example
