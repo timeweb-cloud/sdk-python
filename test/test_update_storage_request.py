@@ -40,6 +40,7 @@ class TestUpdateStorageRequest(unittest.TestCase):
         if include_optional :
             return UpdateStorageRequest(
                 preset_id = 1, 
+                configurator_id = 55, 
                 bucket_type = public, 
                 description = Bucket of awesome cats
             )

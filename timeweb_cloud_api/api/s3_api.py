@@ -953,7 +953,6 @@ class S3Api(object):
 
         _response_types_map = {
             '200': "DeleteStorage200Response",
-            '204': None,
             '400': None,
             '401': None,
             '403': None,

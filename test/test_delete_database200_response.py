@@ -40,12 +40,14 @@ class TestDeleteDatabase200Response(unittest.TestCase):
         if include_optional :
             return DeleteDatabase200Response(
                 database_delete = timeweb_cloud_api.models.delete_service_response.delete-service-response(
-                    hash = 15095f25-aac3-4d60-a788-96cb5136f186, )
+                    hash = 15095f25-aac3-4d60-a788-96cb5136f186, 
+                    is_moved_in_quarantine = false, )
             )
         else :
             return DeleteDatabase200Response(
                 database_delete = timeweb_cloud_api.models.delete_service_response.delete-service-response(
-                    hash = 15095f25-aac3-4d60-a788-96cb5136f186, ),
+                    hash = 15095f25-aac3-4d60-a788-96cb5136f186, 
+                    is_moved_in_quarantine = false, ),
         )
         """
 

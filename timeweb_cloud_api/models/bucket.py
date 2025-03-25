@@ -33,13 +33,16 @@ class Bucket(BaseModel):
     disk_stats: BucketDiskStats = Field(...)
     type: Optional[Any] = Field(..., description="Тип хранилища.")
     preset_id: Optional[Any] = Field(..., description="ID тарифа хранилища.")
+    configurator_id: Optional[Any] = Field(..., description="ID конфигуратора хранилища.")
     status: Optional[Any] = Field(..., description="Статус хранилища.")
     object_amount: Optional[Any] = Field(..., description="Количество файлов в хранилище.")
     location: Optional[Any] = Field(..., description="Регион хранилища.")
     hostname: Optional[Any] = Field(..., description="Адрес хранилища для подключения.")
     access_key: Optional[Any] = Field(..., description="Ключ доступа от хранилища.")
     secret_key: Optional[Any] = Field(..., description="Секретный ключ доступа от хранилища.")
-    __properties = ["id", "name", "description", "disk_stats", "type", "preset_id", "status", "object_amount", "location", "hostname", "access_key", "secret_key"]
+    moved_in_quarantine_at: Optional[Any] = Field(..., description="Дата перемещения в карантин.")
+    storage_class: Optional[Any] = Field(..., description="Класс хранилища.")
+    __properties = ["id", "name", "description", "disk_stats", "type", "preset_id", "configurator_id", "status", "object_amount", "location", "hostname", "access_key", "secret_key", "moved_in_quarantine_at", "storage_class"]
 
     @validator('type')
     def type_validate_enum(cls, value):
@@ -59,6 +62,16 @@ class Bucket(BaseModel):
 
         if value not in ('no_paid', 'created', 'transfer'):
             raise ValueError("must be one of enum values ('no_paid', 'created', 'transfer')")
+        return value
+
+    @validator('storage_class')
+    def storage_class_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in ('cold', 'hot'):
+            raise ValueError("must be one of enum values ('cold', 'hot')")
         return value
 
     class Config:
@@ -113,6 +126,11 @@ class Bucket(BaseModel):
         if self.preset_id is None and "preset_id" in self.__fields_set__:
             _dict['preset_id'] = None
 
+        # set to None if configurator_id (nullable) is None
+        # and __fields_set__ contains the field
+        if self.configurator_id is None and "configurator_id" in self.__fields_set__:
+            _dict['configurator_id'] = None
+
         # set to None if status (nullable) is None
         # and __fields_set__ contains the field
         if self.status is None and "status" in self.__fields_set__:
@@ -143,6 +161,16 @@ class Bucket(BaseModel):
         if self.secret_key is None and "secret_key" in self.__fields_set__:
             _dict['secret_key'] = None
 
+        # set to None if moved_in_quarantine_at (nullable) is None
+        # and __fields_set__ contains the field
+        if self.moved_in_quarantine_at is None and "moved_in_quarantine_at" in self.__fields_set__:
+            _dict['moved_in_quarantine_at'] = None
+
+        # set to None if storage_class (nullable) is None
+        # and __fields_set__ contains the field
+        if self.storage_class is None and "storage_class" in self.__fields_set__:
+            _dict['storage_class'] = None
+
         return _dict
 
     @classmethod
@@ -161,12 +189,15 @@ class Bucket(BaseModel):
             "disk_stats": BucketDiskStats.from_dict(obj.get("disk_stats")) if obj.get("disk_stats") is not None else None,
             "type": obj.get("type"),
             "preset_id": obj.get("preset_id"),
+            "configurator_id": obj.get("configurator_id"),
             "status": obj.get("status"),
             "object_amount": obj.get("object_amount"),
             "location": obj.get("location"),
             "hostname": obj.get("hostname"),
             "access_key": obj.get("access_key"),
-            "secret_key": obj.get("secret_key")
+            "secret_key": obj.get("secret_key"),
+            "moved_in_quarantine_at": obj.get("moved_in_quarantine_at"),
+            "storage_class": obj.get("storage_class")
         })
         return _obj
 

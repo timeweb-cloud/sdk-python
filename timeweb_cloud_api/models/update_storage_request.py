@@ -27,9 +27,10 @@ class UpdateStorageRequest(BaseModel):
     UpdateStorageRequest
     """
     preset_id: Optional[Any] = Field(None, description="ID тарифа.")
+    configurator_id: Optional[Any] = Field(None, description="ID конфигуратора хранилища.")
     bucket_type: Optional[Any] = Field(None, description="Тип хранилища.")
     description: Optional[Any] = Field(None, description="Комментарий к хранилищу.")
-    __properties = ["preset_id", "bucket_type", "description"]
+    __properties = ["preset_id", "configurator_id", "bucket_type", "description"]
 
     @validator('bucket_type')
     def bucket_type_validate_enum(cls, value):
@@ -70,6 +71,11 @@ class UpdateStorageRequest(BaseModel):
         if self.preset_id is None and "preset_id" in self.__fields_set__:
             _dict['preset_id'] = None
 
+        # set to None if configurator_id (nullable) is None
+        # and __fields_set__ contains the field
+        if self.configurator_id is None and "configurator_id" in self.__fields_set__:
+            _dict['configurator_id'] = None
+
         # set to None if bucket_type (nullable) is None
         # and __fields_set__ contains the field
         if self.bucket_type is None and "bucket_type" in self.__fields_set__:
@@ -93,6 +99,7 @@ class UpdateStorageRequest(BaseModel):
 
         _obj = UpdateStorageRequest.parse_obj({
             "preset_id": obj.get("preset_id"),
+            "configurator_id": obj.get("configurator_id"),
             "bucket_type": obj.get("bucket_type"),
             "description": obj.get("description")
         })

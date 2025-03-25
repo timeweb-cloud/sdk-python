@@ -515,7 +515,6 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Объект JSON c ключом &#x60;bucket_delete&#x60; |  -  |
-**204** | Хранилище успешно удалено |  -  |
 **400** |  |  -  |
 **401** |  |  -  |
 **403** |  |  -  |

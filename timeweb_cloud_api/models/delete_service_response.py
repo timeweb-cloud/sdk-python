@@ -26,8 +26,9 @@ class DeleteServiceResponse(BaseModel):
     """
     DeleteServiceResponse
     """
-    hash: Optional[Any] = Field(..., description="Хеш, который совместно с кодом авторизации надо будет отправить для удаления.")
-    __properties = ["hash"]
+    hash: Optional[Any] = Field(None, description="Хеш, который совместно с кодом авторизации надо будет отправить для удаления.")
+    is_moved_in_quarantine: Optional[Any] = Field(None, description="Флаг, указывающий на то, что сервис был перемещен в карантин или был удален немедленно.")
+    __properties = ["hash", "is_moved_in_quarantine"]
 
     class Config:
         """Pydantic configuration"""
@@ -58,6 +59,11 @@ class DeleteServiceResponse(BaseModel):
         if self.hash is None and "hash" in self.__fields_set__:
             _dict['hash'] = None
 
+        # set to None if is_moved_in_quarantine (nullable) is None
+        # and __fields_set__ contains the field
+        if self.is_moved_in_quarantine is None and "is_moved_in_quarantine" in self.__fields_set__:
+            _dict['is_moved_in_quarantine'] = None
+
         return _dict
 
     @classmethod
@@ -70,7 +76,8 @@ class DeleteServiceResponse(BaseModel):
             return DeleteServiceResponse.parse_obj(obj)
 
         _obj = DeleteServiceResponse.parse_obj({
-            "hash": obj.get("hash")
+            "hash": obj.get("hash"),
+            "is_moved_in_quarantine": obj.get("is_moved_in_quarantine")
         })
         return _obj
 

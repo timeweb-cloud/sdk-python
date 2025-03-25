@@ -39,11 +39,11 @@ class TestDeleteServiceResponse(unittest.TestCase):
         model = timeweb_cloud_api.models.delete_service_response.DeleteServiceResponse()  # noqa: E501
         if include_optional :
             return DeleteServiceResponse(
-                hash = 15095f25-aac3-4d60-a788-96cb5136f186
+                hash = 15095f25-aac3-4d60-a788-96cb5136f186, 
+                is_moved_in_quarantine = false
             )
         else :
             return DeleteServiceResponse(
-                hash = 15095f25-aac3-4d60-a788-96cb5136f186,
         )
         """
 

@@ -11,12 +11,15 @@ Name | Type | Description | Notes
 **disk_stats** | [**BucketDiskStats**](BucketDiskStats.md) |  | 
 **type** | **object** | Тип хранилища. | 
 **preset_id** | **object** | ID тарифа хранилища. | 
+**configurator_id** | **object** | ID конфигуратора хранилища. | 
 **status** | **object** | Статус хранилища. | 
 **object_amount** | **object** | Количество файлов в хранилище. | 
 **location** | **object** | Регион хранилища. | 
 **hostname** | **object** | Адрес хранилища для подключения. | 
 **access_key** | **object** | Ключ доступа от хранилища. | 
 **secret_key** | **object** | Секретный ключ доступа от хранилища. | 
+**moved_in_quarantine_at** | **object** | Дата перемещения в карантин. | 
+**storage_class** | **object** | Класс хранилища. | 
 
 ## Example
 

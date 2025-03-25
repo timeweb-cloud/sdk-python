@@ -47,12 +47,15 @@ class TestBucket(unittest.TestCase):
                     used = 486.11328125, ), 
                 type = public, 
                 preset_id = 389, 
+                configurator_id = 55, 
                 status = created, 
                 object_amount = 5, 
                 location = ru-1, 
-                hostname = s3.timeweb.com, 
+                hostname = s3.twcstorage.ru, 
                 access_key = access_key, 
-                secret_key = secret_key
+                secret_key = secret_key, 
+                moved_in_quarantine_at = 2025-01-01T12:00:00Z, 
+                storage_class = cold
             )
         else :
             return Bucket(
@@ -63,12 +66,15 @@ class TestBucket(unittest.TestCase):
                     used = 486.11328125, ),
                 type = public,
                 preset_id = 389,
+                configurator_id = 55,
                 status = created,
                 object_amount = 5,
                 location = ru-1,
-                hostname = s3.timeweb.com,
+                hostname = s3.twcstorage.ru,
                 access_key = access_key,
                 secret_key = secret_key,
+                moved_in_quarantine_at = 2025-01-01T12:00:00Z,
+                storage_class = cold,
         )
         """
 
