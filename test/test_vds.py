@@ -65,6 +65,7 @@ class TestVds(unittest.TestCase):
                 ram = 2048, 
                 disks = None, 
                 avatar_id = avatar, 
+                avatar_link = https://urltoimage.com/avatars/image.png, 
                 vnc_pass = password, 
                 root_pass = password, 
                 image = timeweb_cloud_api.models.vds_image.vds_image(
@@ -104,6 +105,7 @@ class TestVds(unittest.TestCase):
                 ram = 2048,
                 disks = None,
                 avatar_id = avatar,
+                avatar_link = https://urltoimage.com/avatars/image.png,
                 vnc_pass = password,
                 root_pass = password,
                 image = timeweb_cloud_api.models.vds_image.vds_image(

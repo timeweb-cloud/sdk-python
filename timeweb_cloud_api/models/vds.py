@@ -50,7 +50,8 @@ class Vds(BaseModel):
     cpu_frequency: Optional[Any] = Field(..., description="Частота ядер процессора сервера.")
     ram: Optional[Any] = Field(..., description="Размер (в Мб) ОЗУ сервера.")
     disks: Optional[Any] = Field(..., description="Список дисков сервера.")
-    avatar_id: Optional[Any] = Field(..., description="ID аватара сервера. Описание методов работы с аватарами появится позднее.")
+    avatar_id: Optional[Any] = Field(..., description="ID аватара сервера.")
+    avatar_link: Optional[Any] = Field(..., description="Ссылка на аватар сервера.")
     vnc_pass: Optional[Any] = Field(..., description="Пароль от VNC.")
     root_pass: Optional[Any] = Field(..., description="Пароль root сервера или пароль Администратора для серверов Windows.")
     image: VdsImage = Field(...)
@@ -58,7 +59,7 @@ class Vds(BaseModel):
     cloud_init: Optional[Any] = Field(..., description="Cloud-init скрипт.")
     is_qemu_agent: Optional[Any] = Field(..., description="Это логическое значение, которое показывает, включен ли QEMU-agent на сервере.")
     availability_zone: AvailabilityZone = Field(...)
-    __properties = ["id", "name", "comment", "created_at", "os", "software", "preset_id", "location", "configurator_id", "boot_mode", "status", "start_at", "is_ddos_guard", "is_master_ssh", "is_dedicated_cpu", "gpu", "cpu", "cpu_frequency", "ram", "disks", "avatar_id", "vnc_pass", "root_pass", "image", "networks", "cloud_init", "is_qemu_agent", "availability_zone"]
+    __properties = ["id", "name", "comment", "created_at", "os", "software", "preset_id", "location", "configurator_id", "boot_mode", "status", "start_at", "is_ddos_guard", "is_master_ssh", "is_dedicated_cpu", "gpu", "cpu", "cpu_frequency", "ram", "disks", "avatar_id", "avatar_link", "vnc_pass", "root_pass", "image", "networks", "cloud_init", "is_qemu_agent", "availability_zone"]
 
     @validator('location')
     def location_validate_enum(cls, value):
@@ -218,6 +219,11 @@ class Vds(BaseModel):
         if self.avatar_id is None and "avatar_id" in self.__fields_set__:
             _dict['avatar_id'] = None
 
+        # set to None if avatar_link (nullable) is None
+        # and __fields_set__ contains the field
+        if self.avatar_link is None and "avatar_link" in self.__fields_set__:
+            _dict['avatar_link'] = None
+
         # set to None if vnc_pass (nullable) is None
         # and __fields_set__ contains the field
         if self.vnc_pass is None and "vnc_pass" in self.__fields_set__:
@@ -276,6 +282,7 @@ class Vds(BaseModel):
             "ram": obj.get("ram"),
             "disks": obj.get("disks"),
             "avatar_id": obj.get("avatar_id"),
+            "avatar_link": obj.get("avatar_link"),
             "vnc_pass": obj.get("vnc_pass"),
             "root_pass": obj.get("root_pass"),
             "image": VdsImage.from_dict(obj.get("image")) if obj.get("image") is not None else None,

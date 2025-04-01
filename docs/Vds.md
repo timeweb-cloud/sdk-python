@@ -25,7 +25,8 @@ Name | Type | Description | Notes
 **cpu_frequency** | **object** | Частота ядер процессора сервера. | 
 **ram** | **object** | Размер (в Мб) ОЗУ сервера. | 
 **disks** | **object** | Список дисков сервера. | 
-**avatar_id** | **object** | ID аватара сервера. Описание методов работы с аватарами появится позднее. | 
+**avatar_id** | **object** | ID аватара сервера. | 
+**avatar_link** | **object** | Ссылка на аватар сервера. | 
 **vnc_pass** | **object** | Пароль от VNC. | 
 **root_pass** | **object** | Пароль root сервера или пароль Администратора для серверов Windows. | 
 **image** | [**VdsImage**](VdsImage.md) |  | 

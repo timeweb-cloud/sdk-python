@@ -37,7 +37,7 @@ class CreateServer(BaseModel):
     preset_id: Optional[Any] = Field(None, description="ID тарифа сервера. Нельзя передавать вместе с ключом `configurator`.")
     bandwidth: Optional[Any] = Field(None, description="Пропускная способность тарифа. Доступные значения от 100 до 1000 с шагом 100.")
     name: Optional[Any] = Field(..., description="Имя облачного сервера. Максимальная длина — 255 символов, имя должно быть уникальным.")
-    avatar_id: Optional[Any] = Field(None, description="ID аватара сервера. Описание методов работы с аватарами появится позднее.")
+    avatar_id: Optional[Any] = Field(None, description="ID аватара сервера.")
     comment: Optional[Any] = Field(None, description="Комментарий к облачному серверу. Максимальная длина — 255 символов.")
     ssh_keys_ids: Optional[Any] = Field(None, description="Список SSH-ключей.")
     is_local_network: Optional[Any] = Field(None, description="Локальная сеть.")

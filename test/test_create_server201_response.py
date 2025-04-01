@@ -66,6 +66,7 @@ class TestCreateServer201Response(unittest.TestCase):
                     ram = 2048, 
                     disks = null, 
                     avatar_id = avatar, 
+                    avatar_link = https://urltoimage.com/avatars/image.png, 
                     vnc_pass = password, 
                     root_pass = password, 
                     image = timeweb_cloud_api.models.vds_image.vds_image(
@@ -106,6 +107,7 @@ class TestCreateServer201Response(unittest.TestCase):
                     ram = 2048, 
                     disks = null, 
                     avatar_id = avatar, 
+                    avatar_link = https://urltoimage.com/avatars/image.png, 
                     vnc_pass = password, 
                     root_pass = password, 
                     image = timeweb_cloud_api.models.vds_image.vds_image(
