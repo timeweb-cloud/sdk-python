@@ -245,6 +245,7 @@ docs/GetServerDisks200Response.md
 docs/GetServerIPs200Response.md
 docs/GetServerLogs200Response.md
 docs/GetServerStatistics200Response.md
+docs/GetServerStatisticsNew200Response.md
 docs/GetServers200Response.md
 docs/GetServersPresets200Response.md
 docs/GetSoftware200Response.md
@@ -350,6 +351,8 @@ docs/ServersOsRequirements.md
 docs/ServersPreset.md
 docs/ServersSoftware.md
 docs/ServersSoftwareRequirements.md
+docs/ServersStatistics.md
+docs/ServersStatisticsMeta.md
 docs/SetLabels.md
 docs/SettingCondition.md
 docs/SpamFilterIsDisabled.md
@@ -657,6 +660,7 @@ test/test_get_server_disks200_response.py
 test/test_get_server_ips200_response.py
 test/test_get_server_logs200_response.py
 test/test_get_server_statistics200_response.py
+test/test_get_server_statistics_new200_response.py
 test/test_get_servers200_response.py
 test/test_get_servers_presets200_response.py
 test/test_get_software200_response.py
@@ -761,6 +765,8 @@ test/test_servers_os_requirements.py
 test/test_servers_preset.py
 test/test_servers_software.py
 test/test_servers_software_requirements.py
+test/test_servers_statistics.py
+test/test_servers_statistics_meta.py
 test/test_set_labels.py
 test/test_setting_condition.py
 test/test_spam_filter_is_disabled.py
@@ -1079,6 +1085,7 @@ timeweb_cloud_api/models/get_server_disks200_response.py
 timeweb_cloud_api/models/get_server_ips200_response.py
 timeweb_cloud_api/models/get_server_logs200_response.py
 timeweb_cloud_api/models/get_server_statistics200_response.py
+timeweb_cloud_api/models/get_server_statistics_new200_response.py
 timeweb_cloud_api/models/get_servers200_response.py
 timeweb_cloud_api/models/get_servers_presets200_response.py
 timeweb_cloud_api/models/get_software200_response.py
@@ -1175,6 +1182,8 @@ timeweb_cloud_api/models/servers_os_requirements.py
 timeweb_cloud_api/models/servers_preset.py
 timeweb_cloud_api/models/servers_software.py
 timeweb_cloud_api/models/servers_software_requirements.py
+timeweb_cloud_api/models/servers_statistics.py
+timeweb_cloud_api/models/servers_statistics_meta.py
 timeweb_cloud_api/models/set_labels.py
 timeweb_cloud_api/models/setting_condition.py
 timeweb_cloud_api/models/spam_filter_is_disabled.py

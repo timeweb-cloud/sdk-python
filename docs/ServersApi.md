@@ -24,6 +24,7 @@ Method | HTTP request | Description
 [**get_server_ips**](ServersApi.md#get_server_ips) | **GET** /api/v1/servers/{server_id}/ips | Получение списка IP-адресов сервера
 [**get_server_logs**](ServersApi.md#get_server_logs) | **GET** /api/v1/servers/{server_id}/logs | Получение списка логов сервера
 [**get_server_statistics**](ServersApi.md#get_server_statistics) | **GET** /api/v1/servers/{server_id}/statistics | Получение статистики сервера
+[**get_server_statistics_new**](ServersApi.md#get_server_statistics_new) | **GET** /api/v1/servers/{server_id}/statistics/{time_from}/{period}/{keys} | Получение статистики сервера
 [**get_servers**](ServersApi.md#get_servers) | **GET** /api/v1/servers | Получение списка серверов
 [**get_servers_presets**](ServersApi.md#get_servers_presets) | **GET** /api/v1/presets/servers | Получение списка тарифов серверов
 [**get_software**](ServersApi.md#get_software) | **GET** /api/v1/software/servers | Получение списка ПО из маркетплейса
@@ -1714,6 +1715,95 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Объект JSON c ключами &#x60;cpu&#x60;, &#x60;disk&#x60;, &#x60;network_traffic&#x60;, &#x60;ram&#x60; |  -  |
+**400** |  |  -  |
+**401** |  |  -  |
+**403** |  |  -  |
+**404** |  |  -  |
+**409** |  |  -  |
+**429** |  |  -  |
+**500** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_server_statistics_new**
+> GetServerStatisticsNew200Response get_server_statistics_new(server_id, time_from, period, keys)
+
+Получение статистики сервера
+
+Чтобы получить статистику сервера, отправьте GET-запрос на `/api/v1/servers/{server_id}/{time_from}/{period}/{keys}`.
+
+### Example
+
+* Bearer (JWT) Authentication (Bearer):
+```python
+import time
+import os
+import timeweb_cloud_api
+from timeweb_cloud_api.models.get_server_statistics_new200_response import GetServerStatisticsNew200Response
+from timeweb_cloud_api.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.timeweb.cloud
+# See configuration.py for a list of all supported configuration parameters.
+configuration = timeweb_cloud_api.Configuration(
+    host = "https://api.timeweb.cloud"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): Bearer
+configuration = timeweb_cloud_api.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = timeweb_cloud_api.ServersApi(api_client)
+    server_id = 1051 # object | ID облачного сервера.
+    time_from = Wed Apr 02 2025 13:27:02 GMT+0300 (Москва, стандартное время) # object | Дата начала сбора статистики.
+    period = 24 # object | Количество часов за период которых нужна статистика.
+    keys = system.cpu.util;network.request;network.response # object | Ключи выбираемых видов статистики.
+
+    try:
+        # Получение статистики сервера
+        api_response = api_instance.get_server_statistics_new(server_id, time_from, period, keys)
+        print("The response of ServersApi->get_server_statistics_new:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ServersApi->get_server_statistics_new: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **server_id** | [**object**](.md)| ID облачного сервера. | 
+ **time_from** | [**object**](.md)| Дата начала сбора статистики. | 
+ **period** | [**object**](.md)| Количество часов за период которых нужна статистика. | 
+ **keys** | [**object**](.md)| Ключи выбираемых видов статистики. | 
+
+### Return type
+
+[**GetServerStatisticsNew200Response**](GetServerStatisticsNew200Response.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Объект JSON c ключом &#x60;statistics&#x60; |  -  |
 **400** |  |  -  |
 **401** |  |  -  |
 **403** |  |  -  |

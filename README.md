@@ -491,6 +491,7 @@ Class | Method | HTTP request | Description
 *ServersApi* | [**get_server_ips**](docs/ServersApi.md#get_server_ips) | **GET** /api/v1/servers/{server_id}/ips | Получение списка IP-адресов сервера
 *ServersApi* | [**get_server_logs**](docs/ServersApi.md#get_server_logs) | **GET** /api/v1/servers/{server_id}/logs | Получение списка логов сервера
 *ServersApi* | [**get_server_statistics**](docs/ServersApi.md#get_server_statistics) | **GET** /api/v1/servers/{server_id}/statistics | Получение статистики сервера
+*ServersApi* | [**get_server_statistics_new**](docs/ServersApi.md#get_server_statistics_new) | **GET** /api/v1/servers/{server_id}/statistics/{time_from}/{period}/{keys} | Получение статистики сервера
 *ServersApi* | [**get_servers**](docs/ServersApi.md#get_servers) | **GET** /api/v1/servers | Получение списка серверов
 *ServersApi* | [**get_servers_presets**](docs/ServersApi.md#get_servers_presets) | **GET** /api/v1/presets/servers | Получение списка тарифов серверов
 *ServersApi* | [**get_software**](docs/ServersApi.md#get_software) | **GET** /api/v1/software/servers | Получение списка ПО из маркетплейса
@@ -752,6 +753,7 @@ Class | Method | HTTP request | Description
  - [GetServerIPs200Response](docs/GetServerIPs200Response.md)
  - [GetServerLogs200Response](docs/GetServerLogs200Response.md)
  - [GetServerStatistics200Response](docs/GetServerStatistics200Response.md)
+ - [GetServerStatisticsNew200Response](docs/GetServerStatisticsNew200Response.md)
  - [GetServers200Response](docs/GetServers200Response.md)
  - [GetServersPresets200Response](docs/GetServersPresets200Response.md)
  - [GetSoftware200Response](docs/GetSoftware200Response.md)
@@ -848,6 +850,8 @@ Class | Method | HTTP request | Description
  - [ServersPreset](docs/ServersPreset.md)
  - [ServersSoftware](docs/ServersSoftware.md)
  - [ServersSoftwareRequirements](docs/ServersSoftwareRequirements.md)
+ - [ServersStatistics](docs/ServersStatistics.md)
+ - [ServersStatisticsMeta](docs/ServersStatisticsMeta.md)
  - [SetLabels](docs/SetLabels.md)
  - [SettingCondition](docs/SettingCondition.md)
  - [SpamFilterIsDisabled](docs/SpamFilterIsDisabled.md)

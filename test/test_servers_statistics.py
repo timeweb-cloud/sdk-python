@@ -14,294 +14,45 @@
 
 
 import unittest
+import datetime
 
 import timeweb_cloud_api
-from timeweb_cloud_api.api.servers_api import ServersApi  # noqa: E501
+from timeweb_cloud_api.models.servers_statistics import ServersStatistics  # noqa: E501
 from timeweb_cloud_api.rest import ApiException
 
-
-class TestServersApi(unittest.TestCase):
-    """ServersApi unit test stubs"""
+class TestServersStatistics(unittest.TestCase):
+    """ServersStatistics unit test stubs"""
 
     def setUp(self):
-        self.api = timeweb_cloud_api.api.servers_api.ServersApi()  # noqa: E501
+        pass
 
     def tearDown(self):
         pass
 
-    def test_add_server_ip(self):
-        """Test case for add_server_ip
-
-        Добавление IP-адреса сервера  # noqa: E501
+    def make_instance(self, include_optional):
+        """Test ServersStatistics
+            include_option is a boolean, when False only required
+            params are included, when True both required and
+            optional params are included """
+        # uncomment below to create an instance of `ServersStatistics`
         """
-        pass
-
-    def test_clone_server(self):
-        """Test case for clone_server
-
-        Клонирование сервера  # noqa: E501
+        model = timeweb_cloud_api.models.servers_statistics.ServersStatistics()  # noqa: E501
+        if include_optional :
+            return ServersStatistics(
+                name = system.cpu.util, 
+                list = None, 
+                meta = timeweb_cloud_api.models.servers_statistics_meta.servers_statistics_meta(
+                    amount = null, )
+            )
+        else :
+            return ServersStatistics(
+        )
         """
-        pass
 
-    def test_create_server(self):
-        """Test case for create_server
-
-        Создание сервера  # noqa: E501
-        """
-        pass
-
-    def test_create_server_disk(self):
-        """Test case for create_server_disk
-
-        Создание диска сервера  # noqa: E501
-        """
-        pass
-
-    def test_create_server_disk_backup(self):
-        """Test case for create_server_disk_backup
-
-        Создание бэкапа диска сервера  # noqa: E501
-        """
-        pass
-
-    def test_delete_server(self):
-        """Test case for delete_server
-
-        Удаление сервера  # noqa: E501
-        """
-        pass
-
-    def test_delete_server_disk(self):
-        """Test case for delete_server_disk
-
-        Удаление диска сервера  # noqa: E501
-        """
-        pass
-
-    def test_delete_server_disk_backup(self):
-        """Test case for delete_server_disk_backup
-
-        Удаление бэкапа диска сервера  # noqa: E501
-        """
-        pass
-
-    def test_delete_server_ip(self):
-        """Test case for delete_server_ip
-
-        Удаление IP-адреса сервера  # noqa: E501
-        """
-        pass
-
-    def test_get_configurators(self):
-        """Test case for get_configurators
-
-        Получение списка конфигураторов серверов  # noqa: E501
-        """
-        pass
-
-    def test_get_os_list(self):
-        """Test case for get_os_list
-
-        Получение списка операционных систем  # noqa: E501
-        """
-        pass
-
-    def test_get_server(self):
-        """Test case for get_server
-
-        Получение сервера  # noqa: E501
-        """
-        pass
-
-    def test_get_server_disk(self):
-        """Test case for get_server_disk
-
-        Получение диска сервера  # noqa: E501
-        """
-        pass
-
-    def test_get_server_disk_auto_backup_settings(self):
-        """Test case for get_server_disk_auto_backup_settings
-
-        Получить настройки автобэкапов диска сервера  # noqa: E501
-        """
-        pass
-
-    def test_get_server_disk_backup(self):
-        """Test case for get_server_disk_backup
-
-        Получение бэкапа диска сервера  # noqa: E501
-        """
-        pass
-
-    def test_get_server_disk_backups(self):
-        """Test case for get_server_disk_backups
-
-        Получение списка бэкапов диска сервера  # noqa: E501
-        """
-        pass
-
-    def test_get_server_disks(self):
-        """Test case for get_server_disks
-
-        Получение списка дисков сервера  # noqa: E501
-        """
-        pass
-
-    def test_get_server_ips(self):
-        """Test case for get_server_ips
-
-        Получение списка IP-адресов сервера  # noqa: E501
-        """
-        pass
-
-    def test_get_server_logs(self):
-        """Test case for get_server_logs
-
-        Получение списка логов сервера  # noqa: E501
-        """
-        pass
-
-    def test_get_server_statistics(self):
-        """Test case for get_server_statistics
-
-        Получение статистики сервера  # noqa: E501
-        """
-        pass
-
-    def test_get_server_statistics_new(self):
-        """Test case for get_server_statistics_new
-
-        Получение статистики сервера  # noqa: E501
-        """
-        pass
-
-    def test_get_servers(self):
-        """Test case for get_servers
-
-        Получение списка серверов  # noqa: E501
-        """
-        pass
-
-    def test_get_servers_presets(self):
-        """Test case for get_servers_presets
-
-        Получение списка тарифов серверов  # noqa: E501
-        """
-        pass
-
-    def test_get_software(self):
-        """Test case for get_software
-
-        Получение списка ПО из маркетплейса  # noqa: E501
-        """
-        pass
-
-    def test_hard_shutdown_server(self):
-        """Test case for hard_shutdown_server
-
-        Принудительное выключение сервера  # noqa: E501
-        """
-        pass
-
-    def test_image_unmount_and_server_reload(self):
-        """Test case for image_unmount_and_server_reload
-
-        Отмонтирование ISO образа и перезагрузка сервера  # noqa: E501
-        """
-        pass
-
-    def test_perform_action_on_backup(self):
-        """Test case for perform_action_on_backup
-
-        Выполнение действия над бэкапом диска сервера  # noqa: E501
-        """
-        pass
-
-    def test_perform_action_on_server(self):
-        """Test case for perform_action_on_server
-
-        Выполнение действия над сервером  # noqa: E501
-        """
-        pass
-
-    def test_reboot_server(self):
-        """Test case for reboot_server
-
-        Перезагрузка сервера  # noqa: E501
-        """
-        pass
-
-    def test_reset_server_password(self):
-        """Test case for reset_server_password
-
-        Сброс пароля сервера  # noqa: E501
-        """
-        pass
-
-    def test_shutdown_server(self):
-        """Test case for shutdown_server
-
-        Выключение сервера  # noqa: E501
-        """
-        pass
-
-    def test_start_server(self):
-        """Test case for start_server
-
-        Запуск сервера  # noqa: E501
-        """
-        pass
-
-    def test_update_server(self):
-        """Test case for update_server
-
-        Изменение сервера  # noqa: E501
-        """
-        pass
-
-    def test_update_server_disk(self):
-        """Test case for update_server_disk
-
-        Изменение параметров диска сервера  # noqa: E501
-        """
-        pass
-
-    def test_update_server_disk_auto_backup_settings(self):
-        """Test case for update_server_disk_auto_backup_settings
-
-        Изменение настроек автобэкапов диска сервера  # noqa: E501
-        """
-        pass
-
-    def test_update_server_disk_backup(self):
-        """Test case for update_server_disk_backup
-
-        Изменение бэкапа диска сервера  # noqa: E501
-        """
-        pass
-
-    def test_update_server_ip(self):
-        """Test case for update_server_ip
-
-        Изменение IP-адреса сервера  # noqa: E501
-        """
-        pass
-
-    def test_update_server_nat(self):
-        """Test case for update_server_nat
-
-        Изменение правил маршрутизации трафика сервера (NAT)  # noqa: E501
-        """
-        pass
-
-    def test_update_server_os_boot_mode(self):
-        """Test case for update_server_os_boot_mode
-
-        Выбор типа загрузки операционной системы сервера  # noqa: E501
-        """
-        pass
-
+    def testServersStatistics(self):
+        """Test ServersStatistics"""
+        # inst_req_only = self.make_instance(include_optional=False)
+        # inst_req_and_optional = self.make_instance(include_optional=True)
 
 if __name__ == '__main__':
     unittest.main()
