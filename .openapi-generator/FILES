@@ -112,6 +112,7 @@ docs/CreateServerDisk201Response.md
 docs/CreateServerDiskBackup201Response.md
 docs/CreateServerDiskBackupRequest.md
 docs/CreateServerDiskRequest.md
+docs/CreateServerNetwork.md
 docs/CreateStorage201Response.md
 docs/CreateStorageRequest.md
 docs/CreateToken201Response.md
@@ -527,6 +528,7 @@ test/test_create_server_disk201_response.py
 test/test_create_server_disk_backup201_response.py
 test/test_create_server_disk_backup_request.py
 test/test_create_server_disk_request.py
+test/test_create_server_network.py
 test/test_create_storage201_response.py
 test/test_create_storage_request.py
 test/test_create_token201_response.py
@@ -957,6 +959,7 @@ timeweb_cloud_api/models/create_server_disk201_response.py
 timeweb_cloud_api/models/create_server_disk_backup201_response.py
 timeweb_cloud_api/models/create_server_disk_backup_request.py
 timeweb_cloud_api/models/create_server_disk_request.py
+timeweb_cloud_api/models/create_server_network.py
 timeweb_cloud_api/models/create_storage201_response.py
 timeweb_cloud_api/models/create_storage_request.py
 timeweb_cloud_api/models/create_token201_response.py

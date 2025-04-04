@@ -13,68 +13,92 @@
 """
 
 
-import unittest
-import datetime
+from __future__ import annotations
+import pprint
+import re  # noqa: F401
+import json
 
-import timeweb_cloud_api
-from timeweb_cloud_api.models.create_server import CreateServer  # noqa: E501
-from timeweb_cloud_api.rest import ApiException
 
-class TestCreateServer(unittest.TestCase):
-    """CreateServer unit test stubs"""
+from typing import Any, Optional
+from pydantic import BaseModel, Field
 
-    def setUp(self):
-        pass
+class CreateServerNetwork(BaseModel):
+    """
+    Параметры конфигурации приватной сети сервера
+    """
+    id: Optional[Any] = Field(None, description="ID сети")
+    floating_ip: Optional[Any] = Field(None, description="Публичный IP")
+    local_ip: Optional[Any] = Field(None, description="Приватный IP")
+    ip: Optional[Any] = Field(None, description="Приватный IP")
+    network_drive_ids: Optional[Any] = Field(None, description="Массив ID сетевых дисков")
+    __properties = ["id", "floating_ip", "local_ip", "ip", "network_drive_ids"]
 
-    def tearDown(self):
-        pass
+    class Config:
+        """Pydantic configuration"""
+        allow_population_by_field_name = True
+        validate_assignment = True
 
-    def make_instance(self, include_optional):
-        """Test CreateServer
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
-        # uncomment below to create an instance of `CreateServer`
-        """
-        model = timeweb_cloud_api.models.create_server.CreateServer()  # noqa: E501
-        if include_optional :
-            return CreateServer(
-                configuration = timeweb_cloud_api.models.create_server_configuration.create_server_configuration(
-                    configurator_id = 11, 
-                    disk = 15360, 
-                    cpu = 1, 
-                    ram = 2048, 
-                    gpu = 1, ), 
-                is_ddos_guard = true, 
-                os_id = 188, 
-                image_id = 811, 
-                software_id = 199, 
-                preset_id = 81, 
-                bandwidth = 200, 
-                name = name, 
-                avatar_id = avatar, 
-                comment = comment, 
-                ssh_keys_ids = None, 
-                is_local_network = false, 
-                network = timeweb_cloud_api.models.create_server_network.create_server_network(
-                    id = network-2fe8ab6ed82949d09d3db230337254a8, 
-                    floating_ip = 192.168.0.0, 
-                    local_ip = 192.168.0.4, 
-                    ip = 192.168.0.4, 
-                    network_drive_ids = [8d014355-ffb8-41e0-8283-0f58e606c4ff], ), 
-                cloud_init = #cloud-config, 
-                availability_zone = spb-1
-            )
-        else :
-            return CreateServer(
-                name = name,
-        )
-        """
+    def to_str(self) -> str:
+        """Returns the string representation of the model using alias"""
+        return pprint.pformat(self.dict(by_alias=True))
 
-    def testCreateServer(self):
-        """Test CreateServer"""
-        # inst_req_only = self.make_instance(include_optional=False)
-        # inst_req_and_optional = self.make_instance(include_optional=True)
+    def to_json(self) -> str:
+        """Returns the JSON representation of the model using alias"""
+        return json.dumps(self.to_dict())
 
-if __name__ == '__main__':
-    unittest.main()
+    @classmethod
+    def from_json(cls, json_str: str) -> CreateServerNetwork:
+        """Create an instance of CreateServerNetwork from a JSON string"""
+        return cls.from_dict(json.loads(json_str))
+
+    def to_dict(self):
+        """Returns the dictionary representation of the model using alias"""
+        _dict = self.dict(by_alias=True,
+                          exclude={
+                          },
+                          exclude_none=True)
+        # set to None if id (nullable) is None
+        # and __fields_set__ contains the field
+        if self.id is None and "id" in self.__fields_set__:
+            _dict['id'] = None
+
+        # set to None if floating_ip (nullable) is None
+        # and __fields_set__ contains the field
+        if self.floating_ip is None and "floating_ip" in self.__fields_set__:
+            _dict['floating_ip'] = None
+
+        # set to None if local_ip (nullable) is None
+        # and __fields_set__ contains the field
+        if self.local_ip is None and "local_ip" in self.__fields_set__:
+            _dict['local_ip'] = None
+
+        # set to None if ip (nullable) is None
+        # and __fields_set__ contains the field
+        if self.ip is None and "ip" in self.__fields_set__:
+            _dict['ip'] = None
+
+        # set to None if network_drive_ids (nullable) is None
+        # and __fields_set__ contains the field
+        if self.network_drive_ids is None and "network_drive_ids" in self.__fields_set__:
+            _dict['network_drive_ids'] = None
+
+        return _dict
+
+    @classmethod
+    def from_dict(cls, obj: dict) -> CreateServerNetwork:
+        """Create an instance of CreateServerNetwork from a dict"""
+        if obj is None:
+            return None
+
+        if not isinstance(obj, dict):
+            return CreateServerNetwork.parse_obj(obj)
+
+        _obj = CreateServerNetwork.parse_obj({
+            "id": obj.get("id"),
+            "floating_ip": obj.get("floating_ip"),
+            "local_ip": obj.get("local_ip"),
+            "ip": obj.get("ip"),
+            "network_drive_ids": obj.get("network_drive_ids")
+        })
+        return _obj
+

@@ -17,11 +17,11 @@ import unittest
 import datetime
 
 import timeweb_cloud_api
-from timeweb_cloud_api.models.create_server import CreateServer  # noqa: E501
+from timeweb_cloud_api.models.create_server_network import CreateServerNetwork  # noqa: E501
 from timeweb_cloud_api.rest import ApiException
 
-class TestCreateServer(unittest.TestCase):
-    """CreateServer unit test stubs"""
+class TestCreateServerNetwork(unittest.TestCase):
+    """CreateServerNetwork unit test stubs"""
 
     def setUp(self):
         pass
@@ -30,49 +30,28 @@ class TestCreateServer(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test CreateServer
+        """Test CreateServerNetwork
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # uncomment below to create an instance of `CreateServer`
+        # uncomment below to create an instance of `CreateServerNetwork`
         """
-        model = timeweb_cloud_api.models.create_server.CreateServer()  # noqa: E501
+        model = timeweb_cloud_api.models.create_server_network.CreateServerNetwork()  # noqa: E501
         if include_optional :
-            return CreateServer(
-                configuration = timeweb_cloud_api.models.create_server_configuration.create_server_configuration(
-                    configurator_id = 11, 
-                    disk = 15360, 
-                    cpu = 1, 
-                    ram = 2048, 
-                    gpu = 1, ), 
-                is_ddos_guard = true, 
-                os_id = 188, 
-                image_id = 811, 
-                software_id = 199, 
-                preset_id = 81, 
-                bandwidth = 200, 
-                name = name, 
-                avatar_id = avatar, 
-                comment = comment, 
-                ssh_keys_ids = None, 
-                is_local_network = false, 
-                network = timeweb_cloud_api.models.create_server_network.create_server_network(
-                    id = network-2fe8ab6ed82949d09d3db230337254a8, 
-                    floating_ip = 192.168.0.0, 
-                    local_ip = 192.168.0.4, 
-                    ip = 192.168.0.4, 
-                    network_drive_ids = [8d014355-ffb8-41e0-8283-0f58e606c4ff], ), 
-                cloud_init = #cloud-config, 
-                availability_zone = spb-1
+            return CreateServerNetwork(
+                id = network-2fe8ab6ed82949d09d3db230337254a8, 
+                floating_ip = 192.168.0.0, 
+                local_ip = 192.168.0.4, 
+                ip = 192.168.0.4, 
+                network_drive_ids = [8d014355-ffb8-41e0-8283-0f58e606c4ff]
             )
         else :
-            return CreateServer(
-                name = name,
+            return CreateServerNetwork(
         )
         """
 
-    def testCreateServer(self):
-        """Test CreateServer"""
+    def testCreateServerNetwork(self):
+        """Test CreateServerNetwork"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 
