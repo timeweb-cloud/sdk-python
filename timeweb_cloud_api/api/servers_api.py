@@ -3147,7 +3147,7 @@ class ServersApi(object):
     def get_server_statistics_new(self, server_id : Annotated[Any, Field(..., description="ID облачного сервера.")], time_from : Annotated[Any, Field(..., description="Дата начала сбора статистики.")], period : Annotated[Any, Field(..., description="Количество часов за период которых нужна статистика.")], keys : Annotated[Any, Field(..., description="Ключи выбираемых видов статистики.")], **kwargs) -> GetServerStatisticsNew200Response:  # noqa: E501
         """Получение статистики сервера  # noqa: E501
 
-        Чтобы получить статистику сервера, отправьте GET-запрос на `/api/v1/servers/{server_id}/{time_from}/{period}/{keys}`.  # noqa: E501
+        Чтобы получить статистику сервера, отправьте GET-запрос на `/api/v1/servers/{server_id}/statistics/{time_from}/{period}/{keys}`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -3182,7 +3182,7 @@ class ServersApi(object):
     def get_server_statistics_new_with_http_info(self, server_id : Annotated[Any, Field(..., description="ID облачного сервера.")], time_from : Annotated[Any, Field(..., description="Дата начала сбора статистики.")], period : Annotated[Any, Field(..., description="Количество часов за период которых нужна статистика.")], keys : Annotated[Any, Field(..., description="Ключи выбираемых видов статистики.")], **kwargs) -> ApiResponse:  # noqa: E501
         """Получение статистики сервера  # noqa: E501
 
-        Чтобы получить статистику сервера, отправьте GET-запрос на `/api/v1/servers/{server_id}/{time_from}/{period}/{keys}`.  # noqa: E501
+        Чтобы получить статистику сервера, отправьте GET-запрос на `/api/v1/servers/{server_id}/statistics/{time_from}/{period}/{keys}`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
