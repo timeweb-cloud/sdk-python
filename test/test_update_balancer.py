@@ -51,7 +51,12 @@ class TestUpdateBalancer(unittest.TestCase):
                 inter = 10, 
                 timeout = 5, 
                 fall = 3, 
-                rise = 2
+                rise = 2, 
+                maxconn = 10000, 
+                connect_timeout = 5000, 
+                client_timeout = 50000, 
+                server_timeout = 50000, 
+                httprequest_timeout = 10000
             )
         else :
             return UpdateBalancer(

@@ -17,6 +17,11 @@ Name | Type | Description | Notes
 **timeout** | **object** | Таймаут ответа балансировщика. | [optional] 
 **fall** | **object** | Порог количества ошибок. | [optional] 
 **rise** | **object** | Порог количества успешных ответов. | [optional] 
+**maxconn** | **object** | Максимальное количество соединений. | [optional] 
+**connect_timeout** | **object** | Таймаут подключения. | [optional] 
+**client_timeout** | **object** | Таймаут клиента. | [optional] 
+**server_timeout** | **object** | Таймаут сервера. | [optional] 
+**httprequest_timeout** | **object** | Таймаут HTTP запроса. | [optional] 
 
 ## Example
 

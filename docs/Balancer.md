@@ -18,6 +18,11 @@ Name | Type | Description | Notes
 **port** | **object** | Порт балансировщика. | 
 **proto** | **object** | Протокол. | 
 **rise** | **object** | Порог количества успешных ответов. | 
+**maxconn** | **object** | Максимальное количество соединений. | 
+**connect_timeout** | **object** | Таймаут подключения. | 
+**client_timeout** | **object** | Таймаут клиента. | 
+**server_timeout** | **object** | Таймаут сервера. | 
+**httprequest_timeout** | **object** | Таймаут HTTP запроса. | 
 **preset_id** | **object** | ID тарифа. | 
 **is_ssl** | **object** | Это логическое значение, которое показывает, требуется ли перенаправление на SSL. | 
 **status** | **object** | Статус балансировщика. | 

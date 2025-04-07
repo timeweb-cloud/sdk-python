@@ -40,6 +40,11 @@ class Balancer(BaseModel):
     port: Optional[Any] = Field(..., description="Порт балансировщика.")
     proto: Optional[Any] = Field(..., description="Протокол.")
     rise: Optional[Any] = Field(..., description="Порог количества успешных ответов.")
+    maxconn: Optional[Any] = Field(..., description="Максимальное количество соединений.")
+    connect_timeout: Optional[Any] = Field(..., description="Таймаут подключения.")
+    client_timeout: Optional[Any] = Field(..., description="Таймаут клиента.")
+    server_timeout: Optional[Any] = Field(..., description="Таймаут сервера.")
+    httprequest_timeout: Optional[Any] = Field(..., description="Таймаут HTTP запроса.")
     preset_id: Optional[Any] = Field(..., description="ID тарифа.")
     is_ssl: Optional[Any] = Field(..., description="Это логическое значение, которое показывает, требуется ли перенаправление на SSL.")
     status: Optional[Any] = Field(..., description="Статус балансировщика.")
@@ -50,7 +55,7 @@ class Balancer(BaseModel):
     ips: Optional[Any] = Field(..., description="Список IP-адресов, привязанных к балансировщику")
     location: Optional[Any] = Field(..., description="Географическое расположение балансировщика")
     availability_zone: AvailabilityZone = Field(...)
-    __properties = ["id", "algo", "created_at", "fall", "inter", "ip", "local_ip", "is_keepalive", "name", "path", "port", "proto", "rise", "preset_id", "is_ssl", "status", "is_sticky", "timeout", "is_use_proxy", "rules", "ips", "location", "availability_zone"]
+    __properties = ["id", "algo", "created_at", "fall", "inter", "ip", "local_ip", "is_keepalive", "name", "path", "port", "proto", "rise", "maxconn", "connect_timeout", "client_timeout", "server_timeout", "httprequest_timeout", "preset_id", "is_ssl", "status", "is_sticky", "timeout", "is_use_proxy", "rules", "ips", "location", "availability_zone"]
 
     @validator('algo')
     def algo_validate_enum(cls, value):
@@ -181,6 +186,31 @@ class Balancer(BaseModel):
         if self.rise is None and "rise" in self.__fields_set__:
             _dict['rise'] = None
 
+        # set to None if maxconn (nullable) is None
+        # and __fields_set__ contains the field
+        if self.maxconn is None and "maxconn" in self.__fields_set__:
+            _dict['maxconn'] = None
+
+        # set to None if connect_timeout (nullable) is None
+        # and __fields_set__ contains the field
+        if self.connect_timeout is None and "connect_timeout" in self.__fields_set__:
+            _dict['connect_timeout'] = None
+
+        # set to None if client_timeout (nullable) is None
+        # and __fields_set__ contains the field
+        if self.client_timeout is None and "client_timeout" in self.__fields_set__:
+            _dict['client_timeout'] = None
+
+        # set to None if server_timeout (nullable) is None
+        # and __fields_set__ contains the field
+        if self.server_timeout is None and "server_timeout" in self.__fields_set__:
+            _dict['server_timeout'] = None
+
+        # set to None if httprequest_timeout (nullable) is None
+        # and __fields_set__ contains the field
+        if self.httprequest_timeout is None and "httprequest_timeout" in self.__fields_set__:
+            _dict['httprequest_timeout'] = None
+
         # set to None if preset_id (nullable) is None
         # and __fields_set__ contains the field
         if self.preset_id is None and "preset_id" in self.__fields_set__:
@@ -251,6 +281,11 @@ class Balancer(BaseModel):
             "port": obj.get("port"),
             "proto": obj.get("proto"),
             "rise": obj.get("rise"),
+            "maxconn": obj.get("maxconn"),
+            "connect_timeout": obj.get("connect_timeout"),
+            "client_timeout": obj.get("client_timeout"),
+            "server_timeout": obj.get("server_timeout"),
+            "httprequest_timeout": obj.get("httprequest_timeout"),
             "preset_id": obj.get("preset_id"),
             "is_ssl": obj.get("is_ssl"),
             "status": obj.get("status"),

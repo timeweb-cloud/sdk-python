@@ -41,10 +41,15 @@ class CreateBalancer(BaseModel):
     timeout: Optional[Any] = Field(..., description="Таймаут ответа балансировщика.")
     fall: Optional[Any] = Field(..., description="Порог количества ошибок.")
     rise: Optional[Any] = Field(..., description="Порог количества успешных ответов.")
+    maxconn: Optional[Any] = Field(None, description="Максимальное количество соединений.")
+    connect_timeout: Optional[Any] = Field(None, description="Таймаут подключения.")
+    client_timeout: Optional[Any] = Field(None, description="Таймаут клиента.")
+    server_timeout: Optional[Any] = Field(None, description="Таймаут сервера.")
+    httprequest_timeout: Optional[Any] = Field(None, description="Таймаут HTTP запроса.")
     preset_id: Optional[Any] = Field(..., description="ID тарифа.")
     network: Optional[Network] = None
     availability_zone: Optional[AvailabilityZone] = None
-    __properties = ["name", "algo", "is_sticky", "is_use_proxy", "is_ssl", "is_keepalive", "proto", "port", "path", "inter", "timeout", "fall", "rise", "preset_id", "network", "availability_zone"]
+    __properties = ["name", "algo", "is_sticky", "is_use_proxy", "is_ssl", "is_keepalive", "proto", "port", "path", "inter", "timeout", "fall", "rise", "maxconn", "connect_timeout", "client_timeout", "server_timeout", "httprequest_timeout", "preset_id", "network", "availability_zone"]
 
     @validator('algo')
     def algo_validate_enum(cls, value):
@@ -158,6 +163,31 @@ class CreateBalancer(BaseModel):
         if self.rise is None and "rise" in self.__fields_set__:
             _dict['rise'] = None
 
+        # set to None if maxconn (nullable) is None
+        # and __fields_set__ contains the field
+        if self.maxconn is None and "maxconn" in self.__fields_set__:
+            _dict['maxconn'] = None
+
+        # set to None if connect_timeout (nullable) is None
+        # and __fields_set__ contains the field
+        if self.connect_timeout is None and "connect_timeout" in self.__fields_set__:
+            _dict['connect_timeout'] = None
+
+        # set to None if client_timeout (nullable) is None
+        # and __fields_set__ contains the field
+        if self.client_timeout is None and "client_timeout" in self.__fields_set__:
+            _dict['client_timeout'] = None
+
+        # set to None if server_timeout (nullable) is None
+        # and __fields_set__ contains the field
+        if self.server_timeout is None and "server_timeout" in self.__fields_set__:
+            _dict['server_timeout'] = None
+
+        # set to None if httprequest_timeout (nullable) is None
+        # and __fields_set__ contains the field
+        if self.httprequest_timeout is None and "httprequest_timeout" in self.__fields_set__:
+            _dict['httprequest_timeout'] = None
+
         # set to None if preset_id (nullable) is None
         # and __fields_set__ contains the field
         if self.preset_id is None and "preset_id" in self.__fields_set__:
@@ -188,6 +218,11 @@ class CreateBalancer(BaseModel):
             "timeout": obj.get("timeout"),
             "fall": obj.get("fall"),
             "rise": obj.get("rise"),
+            "maxconn": obj.get("maxconn"),
+            "connect_timeout": obj.get("connect_timeout"),
+            "client_timeout": obj.get("client_timeout"),
+            "server_timeout": obj.get("server_timeout"),
+            "httprequest_timeout": obj.get("httprequest_timeout"),
             "preset_id": obj.get("preset_id"),
             "network": Network.from_dict(obj.get("network")) if obj.get("network") is not None else None,
             "availability_zone": obj.get("availability_zone")

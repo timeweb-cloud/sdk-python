@@ -52,6 +52,11 @@ class TestCreateBalancer(unittest.TestCase):
                 timeout = 5, 
                 fall = 3, 
                 rise = 2, 
+                maxconn = 10000, 
+                connect_timeout = 5000, 
+                client_timeout = 50000, 
+                server_timeout = 50000, 
+                httprequest_timeout = 10000, 
                 preset_id = 5, 
                 network = timeweb_cloud_api.models.network.network(
                     id = network-1234567890, 
