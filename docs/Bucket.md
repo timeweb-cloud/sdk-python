@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **type** | **object** | Тип хранилища. | 
 **preset_id** | **object** | ID тарифа хранилища. | 
 **configurator_id** | **object** | ID конфигуратора хранилища. | 
+**avatar_link** | **object** | Ссылка на аватар хранилища. | 
 **status** | **object** | Статус хранилища. | 
 **object_amount** | **object** | Количество файлов в хранилище. | 
 **location** | **object** | Регион хранилища. | 

@@ -24,6 +24,7 @@ Name | Type | Description | Notes
 **preset_id** | **object** | ID тарифа. | 
 **index_dir** | **object** | Путь к директории с индексным файлом. Определен для приложений &#x60;type: frontend&#x60;. Для приложений &#x60;type: backend&#x60; всегда null. | 
 **build_cmd** | **object** | Команда сборки приложения. | 
+**avatar_link** | **object** | Ссылка на аватар приложения. | 
 **run_cmd** | **object** | Команда для запуска приложения. Определена для приложений &#x60;type: backend&#x60;. Для приложений &#x60;type: frontend&#x60; всегда null. | 
 **configuration** | [**AppConfiguration**](AppConfiguration.md) |  | 
 **disk_status** | [**AppDiskStatus**](AppDiskStatus.md) |  | 

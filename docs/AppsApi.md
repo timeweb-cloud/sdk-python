@@ -1600,7 +1600,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_app_settings**
-> UpdateAppSettings200Response update_app_settings(app_id, updete_settings)
+> UpdateAppSettings200Response update_app_settings(app_id, update_settings)
 
 Изменение настроек приложения
 
@@ -1614,7 +1614,7 @@ import time
 import os
 import timeweb_cloud_api
 from timeweb_cloud_api.models.update_app_settings200_response import UpdateAppSettings200Response
-from timeweb_cloud_api.models.updete_settings import UpdeteSettings
+from timeweb_cloud_api.models.update_settings import UpdateSettings
 from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
@@ -1639,11 +1639,11 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.AppsApi(api_client)
     app_id = None # object | 
-    updete_settings = timeweb_cloud_api.UpdeteSettings() # UpdeteSettings | 
+    update_settings = timeweb_cloud_api.UpdateSettings() # UpdateSettings | 
 
     try:
         # Изменение настроек приложения
-        api_response = api_instance.update_app_settings(app_id, updete_settings)
+        api_response = api_instance.update_app_settings(app_id, update_settings)
         print("The response of AppsApi->update_app_settings:\n")
         pprint(api_response)
     except Exception as e:
@@ -1656,7 +1656,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **app_id** | [**object**](.md)|  | 
- **updete_settings** | [**UpdeteSettings**](UpdeteSettings.md)|  | 
+ **update_settings** | [**UpdateSettings**](UpdateSettings.md)|  | 
 
 ### Return type
 

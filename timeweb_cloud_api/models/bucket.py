@@ -34,6 +34,7 @@ class Bucket(BaseModel):
     type: Optional[Any] = Field(..., description="Тип хранилища.")
     preset_id: Optional[Any] = Field(..., description="ID тарифа хранилища.")
     configurator_id: Optional[Any] = Field(..., description="ID конфигуратора хранилища.")
+    avatar_link: Optional[Any] = Field(..., description="Ссылка на аватар хранилища.")
     status: Optional[Any] = Field(..., description="Статус хранилища.")
     object_amount: Optional[Any] = Field(..., description="Количество файлов в хранилище.")
     location: Optional[Any] = Field(..., description="Регион хранилища.")
@@ -42,7 +43,7 @@ class Bucket(BaseModel):
     secret_key: Optional[Any] = Field(..., description="Секретный ключ доступа от хранилища.")
     moved_in_quarantine_at: Optional[Any] = Field(..., description="Дата перемещения в карантин.")
     storage_class: Optional[Any] = Field(..., description="Класс хранилища.")
-    __properties = ["id", "name", "description", "disk_stats", "type", "preset_id", "configurator_id", "status", "object_amount", "location", "hostname", "access_key", "secret_key", "moved_in_quarantine_at", "storage_class"]
+    __properties = ["id", "name", "description", "disk_stats", "type", "preset_id", "configurator_id", "avatar_link", "status", "object_amount", "location", "hostname", "access_key", "secret_key", "moved_in_quarantine_at", "storage_class"]
 
     @validator('type')
     def type_validate_enum(cls, value):
@@ -131,6 +132,11 @@ class Bucket(BaseModel):
         if self.configurator_id is None and "configurator_id" in self.__fields_set__:
             _dict['configurator_id'] = None
 
+        # set to None if avatar_link (nullable) is None
+        # and __fields_set__ contains the field
+        if self.avatar_link is None and "avatar_link" in self.__fields_set__:
+            _dict['avatar_link'] = None
+
         # set to None if status (nullable) is None
         # and __fields_set__ contains the field
         if self.status is None and "status" in self.__fields_set__:
@@ -190,6 +196,7 @@ class Bucket(BaseModel):
             "type": obj.get("type"),
             "preset_id": obj.get("preset_id"),
             "configurator_id": obj.get("configurator_id"),
+            "avatar_link": obj.get("avatar_link"),
             "status": obj.get("status"),
             "object_amount": obj.get("object_amount"),
             "location": obj.get("location"),

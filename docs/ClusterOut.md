@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **description** | **object** | Описание | 
 **k8s_version** | **object** | Версия Kubernetes | 
 **network_driver** | **object** | Используемый сетевой драйвер | 
+**avatar_link** | **object** | Ссылка на аватар кластера. | 
 **ingress** | **object** | Логическое значение, показывающее, включен ли Ingress | 
 **preset_id** | **object** | ID тарифа мастер-ноды | 
 **cpu** | **object** | Общее количество ядер | [optional] 

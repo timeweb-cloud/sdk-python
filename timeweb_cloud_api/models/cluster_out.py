@@ -33,6 +33,7 @@ class ClusterOut(BaseModel):
     description: Optional[Any] = Field(..., description="Описание")
     k8s_version: Optional[Any] = Field(..., description="Версия Kubernetes")
     network_driver: Optional[Any] = Field(..., description="Используемый сетевой драйвер")
+    avatar_link: Optional[Any] = Field(..., description="Ссылка на аватар кластера.")
     ingress: Optional[Any] = Field(..., description="Логическое значение, показывающее, включен ли Ingress")
     preset_id: Optional[Any] = Field(..., description="ID тарифа мастер-ноды")
     cpu: Optional[Any] = Field(None, description="Общее количество ядер")
@@ -40,7 +41,7 @@ class ClusterOut(BaseModel):
     disk: Optional[Any] = Field(None, description="Общее дисковое пространство")
     availability_zone: Optional[Any] = Field(None, description="Зона доступности")
     project_id: Optional[Any] = Field(None, description="ID проекта")
-    __properties = ["id", "name", "created_at", "status", "description", "k8s_version", "network_driver", "ingress", "preset_id", "cpu", "ram", "disk", "availability_zone", "project_id"]
+    __properties = ["id", "name", "created_at", "status", "description", "k8s_version", "network_driver", "avatar_link", "ingress", "preset_id", "cpu", "ram", "disk", "availability_zone", "project_id"]
 
     @validator('network_driver')
     def network_driver_validate_enum(cls, value):
@@ -121,6 +122,11 @@ class ClusterOut(BaseModel):
         if self.network_driver is None and "network_driver" in self.__fields_set__:
             _dict['network_driver'] = None
 
+        # set to None if avatar_link (nullable) is None
+        # and __fields_set__ contains the field
+        if self.avatar_link is None and "avatar_link" in self.__fields_set__:
+            _dict['avatar_link'] = None
+
         # set to None if ingress (nullable) is None
         # and __fields_set__ contains the field
         if self.ingress is None and "ingress" in self.__fields_set__:
@@ -175,6 +181,7 @@ class ClusterOut(BaseModel):
             "description": obj.get("description"),
             "k8s_version": obj.get("k8s_version"),
             "network_driver": obj.get("network_driver"),
+            "avatar_link": obj.get("avatar_link"),
             "ingress": obj.get("ingress"),
             "preset_id": obj.get("preset_id"),
             "cpu": obj.get("cpu"),

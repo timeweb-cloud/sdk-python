@@ -32,6 +32,7 @@ class Domain(BaseModel):
     expiration: Optional[Any] = Field(..., description="Дата окончания срока регистрации домена, для доменов без срока окончания регистрации будет приходить 0000-00-00.")
     fqdn: Optional[Any] = Field(..., description="Полное имя домена.")
     id: Optional[Any] = Field(..., description="ID домена.")
+    avatar_link: Optional[Any] = Field(..., description="Ссылка на аватар домена.")
     is_autoprolong_enabled: Optional[Any] = Field(..., description="Это логическое значение, которое показывает, включено ли автопродление домена.")
     is_premium: Optional[Any] = Field(..., description="Это логическое значение, которое показывает, является ли домен премиальным.")
     is_prolong_allowed: Optional[Any] = Field(..., description="Это логическое значение, которое показывает, можно ли сейчас продлить домен.")
@@ -45,7 +46,7 @@ class Domain(BaseModel):
     request_status: Optional[Any] = Field(..., description="Статус заявки на продление/регистрацию/трансфер домена.")
     subdomains: Optional[Any] = Field(..., description="Список поддоменов.")
     tld_id: Optional[Any] = Field(..., description="ID доменной зоны.")
-    __properties = ["allowed_buy_periods", "days_left", "domain_status", "expiration", "fqdn", "id", "is_autoprolong_enabled", "is_premium", "is_prolong_allowed", "is_technical", "is_whois_privacy_enabled", "linked_ip", "paid_till", "person_id", "premium_prolong_cost", "provider", "request_status", "subdomains", "tld_id"]
+    __properties = ["allowed_buy_periods", "days_left", "domain_status", "expiration", "fqdn", "id", "avatar_link", "is_autoprolong_enabled", "is_premium", "is_prolong_allowed", "is_technical", "is_whois_privacy_enabled", "linked_ip", "paid_till", "person_id", "premium_prolong_cost", "provider", "request_status", "subdomains", "tld_id"]
 
     @validator('domain_status')
     def domain_status_validate_enum(cls, value):
@@ -120,6 +121,11 @@ class Domain(BaseModel):
         # and __fields_set__ contains the field
         if self.id is None and "id" in self.__fields_set__:
             _dict['id'] = None
+
+        # set to None if avatar_link (nullable) is None
+        # and __fields_set__ contains the field
+        if self.avatar_link is None and "avatar_link" in self.__fields_set__:
+            _dict['avatar_link'] = None
 
         # set to None if is_autoprolong_enabled (nullable) is None
         # and __fields_set__ contains the field
@@ -204,6 +210,7 @@ class Domain(BaseModel):
             "expiration": obj.get("expiration"),
             "fqdn": obj.get("fqdn"),
             "id": obj.get("id"),
+            "avatar_link": obj.get("avatar_link"),
             "is_autoprolong_enabled": obj.get("is_autoprolong_enabled"),
             "is_premium": obj.get("is_premium"),
             "is_prolong_allowed": obj.get("is_prolong_allowed"),

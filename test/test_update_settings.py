@@ -17,11 +17,11 @@ import unittest
 import datetime
 
 import timeweb_cloud_api
-from timeweb_cloud_api.models.updete_settings import UpdeteSettings  # noqa: E501
+from timeweb_cloud_api.models.update_settings import UpdateSettings  # noqa: E501
 from timeweb_cloud_api.rest import ApiException
 
-class TestUpdeteSettings(unittest.TestCase):
-    """UpdeteSettings unit test stubs"""
+class TestUpdateSettings(unittest.TestCase):
+    """UpdateSettings unit test stubs"""
 
     def setUp(self):
         pass
@@ -30,15 +30,15 @@ class TestUpdeteSettings(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test UpdeteSettings
+        """Test UpdateSettings
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # uncomment below to create an instance of `UpdeteSettings`
+        # uncomment below to create an instance of `UpdateSettings`
         """
-        model = timeweb_cloud_api.models.updete_settings.UpdeteSettings()  # noqa: E501
+        model = timeweb_cloud_api.models.update_settings.UpdateSettings()  # noqa: E501
         if include_optional :
-            return UpdeteSettings(
+            return UpdateSettings(
                 is_auto_deploy = true, 
                 build_cmd = npm run build, 
                 envs = {NODE_ENV=production}, 
@@ -53,12 +53,12 @@ class TestUpdeteSettings(unittest.TestCase):
                 preset_id = 42
             )
         else :
-            return UpdeteSettings(
+            return UpdateSettings(
         )
         """
 
-    def testUpdeteSettings(self):
-        """Test UpdeteSettings"""
+    def testUpdateSettings(self):
+        """Test UpdateSettings"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

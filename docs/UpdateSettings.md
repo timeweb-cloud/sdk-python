@@ -1,4 +1,4 @@
-# UpdeteSettings
+# UpdateSettings
 
 
 ## Properties
@@ -20,19 +20,19 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from timeweb_cloud_api.models.updete_settings import UpdeteSettings
+from timeweb_cloud_api.models.update_settings import UpdateSettings
 
 # TODO update the JSON string below
 json = "{}"
-# create an instance of UpdeteSettings from a JSON string
-updete_settings_instance = UpdeteSettings.from_json(json)
+# create an instance of UpdateSettings from a JSON string
+update_settings_instance = UpdateSettings.from_json(json)
 # print the JSON string representation of the object
-print UpdeteSettings.to_json()
+print UpdateSettings.to_json()
 
 # convert the object into a dict
-updete_settings_dict = updete_settings_instance.to_dict()
-# create an instance of UpdeteSettings from a dict
-updete_settings_form_dict = updete_settings.from_dict(updete_settings_dict)
+update_settings_dict = update_settings_instance.to_dict()
+# create an instance of UpdateSettings from a dict
+update_settings_form_dict = update_settings.from_dict(update_settings_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

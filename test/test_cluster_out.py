@@ -46,6 +46,7 @@ class TestClusterOut(unittest.TestCase):
                 description = None, 
                 k8s_version = None, 
                 network_driver = kuberouter, 
+                avatar_link = https://urltoimage.com/avatars/image.png, 
                 ingress = None, 
                 preset_id = None, 
                 cpu = None, 
@@ -63,6 +64,7 @@ class TestClusterOut(unittest.TestCase):
                 description = None,
                 k8s_version = None,
                 network_driver = kuberouter,
+                avatar_link = https://urltoimage.com/avatars/image.png,
                 ingress = None,
                 preset_id = None,
         )

@@ -36,13 +36,14 @@ class DatabaseCluster(BaseModel):
     networks: Optional[Any] = Field(..., description="Список сетей кластера базы данных.")
     type: DbType = Field(...)
     hash_type: Optional[Any] = Field(..., description="Тип хеширования кластера базы данных (mysql5 | mysql | postgres).")
+    avatar_link: Optional[Any] = Field(..., description="Ссылка на аватар для базы данных.")
     port: Optional[Any] = Field(..., description="Порт")
     status: Optional[Any] = Field(..., description="Текущий статус кластера базы данных.")
     preset_id: Optional[Any] = Field(..., description="ID тарифа.")
     disk_stats: DatabaseClusterDiskStats = Field(...)
     config_parameters: ConfigParameters = Field(...)
     is_enabled_public_network: Optional[Any] = Field(..., description="Доступность публичного IP-адреса")
-    __properties = ["id", "created_at", "location", "name", "networks", "type", "hash_type", "port", "status", "preset_id", "disk_stats", "config_parameters", "is_enabled_public_network"]
+    __properties = ["id", "created_at", "location", "name", "networks", "type", "hash_type", "avatar_link", "port", "status", "preset_id", "disk_stats", "config_parameters", "is_enabled_public_network"]
 
     @validator('location')
     def location_validate_enum(cls, value):
@@ -134,6 +135,11 @@ class DatabaseCluster(BaseModel):
         if self.hash_type is None and "hash_type" in self.__fields_set__:
             _dict['hash_type'] = None
 
+        # set to None if avatar_link (nullable) is None
+        # and __fields_set__ contains the field
+        if self.avatar_link is None and "avatar_link" in self.__fields_set__:
+            _dict['avatar_link'] = None
+
         # set to None if port (nullable) is None
         # and __fields_set__ contains the field
         if self.port is None and "port" in self.__fields_set__:
@@ -173,6 +179,7 @@ class DatabaseCluster(BaseModel):
             "networks": obj.get("networks"),
             "type": obj.get("type"),
             "hash_type": obj.get("hash_type"),
+            "avatar_link": obj.get("avatar_link"),
             "port": obj.get("port"),
             "status": obj.get("status"),
             "preset_id": obj.get("preset_id"),

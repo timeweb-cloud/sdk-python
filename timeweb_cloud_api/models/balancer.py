@@ -50,12 +50,13 @@ class Balancer(BaseModel):
     status: Optional[Any] = Field(..., description="Статус балансировщика.")
     is_sticky: Optional[Any] = Field(..., description="Это логическое значение, которое показывает, сохраняется ли сессия.")
     timeout: Optional[Any] = Field(..., description="Таймаут ответа балансировщика.")
+    avatar_link: Optional[Any] = Field(..., description="Ссылка на аватар балансировщика.")
     is_use_proxy: Optional[Any] = Field(..., description="Это логическое значение, которое показывает, выступает ли балансировщик в качестве прокси.")
     rules: Optional[Any] = Field(...)
     ips: Optional[Any] = Field(..., description="Список IP-адресов, привязанных к балансировщику")
     location: Optional[Any] = Field(..., description="Географическое расположение балансировщика")
     availability_zone: AvailabilityZone = Field(...)
-    __properties = ["id", "algo", "created_at", "fall", "inter", "ip", "local_ip", "is_keepalive", "name", "path", "port", "proto", "rise", "maxconn", "connect_timeout", "client_timeout", "server_timeout", "httprequest_timeout", "preset_id", "is_ssl", "status", "is_sticky", "timeout", "is_use_proxy", "rules", "ips", "location", "availability_zone"]
+    __properties = ["id", "algo", "created_at", "fall", "inter", "ip", "local_ip", "is_keepalive", "name", "path", "port", "proto", "rise", "maxconn", "connect_timeout", "client_timeout", "server_timeout", "httprequest_timeout", "preset_id", "is_ssl", "status", "is_sticky", "timeout", "avatar_link", "is_use_proxy", "rules", "ips", "location", "availability_zone"]
 
     @validator('algo')
     def algo_validate_enum(cls, value):
@@ -236,6 +237,11 @@ class Balancer(BaseModel):
         if self.timeout is None and "timeout" in self.__fields_set__:
             _dict['timeout'] = None
 
+        # set to None if avatar_link (nullable) is None
+        # and __fields_set__ contains the field
+        if self.avatar_link is None and "avatar_link" in self.__fields_set__:
+            _dict['avatar_link'] = None
+
         # set to None if is_use_proxy (nullable) is None
         # and __fields_set__ contains the field
         if self.is_use_proxy is None and "is_use_proxy" in self.__fields_set__:
@@ -291,6 +297,7 @@ class Balancer(BaseModel):
             "status": obj.get("status"),
             "is_sticky": obj.get("is_sticky"),
             "timeout": obj.get("timeout"),
+            "avatar_link": obj.get("avatar_link"),
             "is_use_proxy": obj.get("is_use_proxy"),
             "rules": obj.get("rules"),
             "ips": obj.get("ips"),

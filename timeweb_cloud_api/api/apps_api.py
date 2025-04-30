@@ -43,7 +43,7 @@ from timeweb_cloud_api.models.get_providers200_response import GetProviders200Re
 from timeweb_cloud_api.models.get_repositories200_response import GetRepositories200Response
 from timeweb_cloud_api.models.get_server_statistics200_response import GetServerStatistics200Response
 from timeweb_cloud_api.models.update_app_settings200_response import UpdateAppSettings200Response
-from timeweb_cloud_api.models.updete_settings import UpdeteSettings
+from timeweb_cloud_api.models.update_settings import UpdateSettings
 
 from timeweb_cloud_api.api_client import ApiClient
 from timeweb_cloud_api.api_response import ApiResponse
@@ -2899,20 +2899,20 @@ class AppsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def update_app_settings(self, app_id : Any, updete_settings : UpdeteSettings, **kwargs) -> UpdateAppSettings200Response:  # noqa: E501
+    def update_app_settings(self, app_id : Any, update_settings : UpdateSettings, **kwargs) -> UpdateAppSettings200Response:  # noqa: E501
         """Изменение настроек приложения  # noqa: E501
 
         Чтобы изменить настройки приложения отправьте PATCH-запрос в `/api/v1/apps/{app_id}`, задав необходимые атрибуты.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.update_app_settings(app_id, updete_settings, async_req=True)
+        >>> thread = api.update_app_settings(app_id, update_settings, async_req=True)
         >>> result = thread.get()
 
         :param app_id: (required)
         :type app_id: object
-        :param updete_settings: (required)
-        :type updete_settings: UpdeteSettings
+        :param update_settings: (required)
+        :type update_settings: UpdateSettings
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request. If one
@@ -2927,23 +2927,23 @@ class AppsApi(object):
         kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             raise ValueError("Error! Please call the update_app_settings_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
-        return self.update_app_settings_with_http_info(app_id, updete_settings, **kwargs)  # noqa: E501
+        return self.update_app_settings_with_http_info(app_id, update_settings, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def update_app_settings_with_http_info(self, app_id : Any, updete_settings : UpdeteSettings, **kwargs) -> ApiResponse:  # noqa: E501
+    def update_app_settings_with_http_info(self, app_id : Any, update_settings : UpdateSettings, **kwargs) -> ApiResponse:  # noqa: E501
         """Изменение настроек приложения  # noqa: E501
 
         Чтобы изменить настройки приложения отправьте PATCH-запрос в `/api/v1/apps/{app_id}`, задав необходимые атрибуты.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.update_app_settings_with_http_info(app_id, updete_settings, async_req=True)
+        >>> thread = api.update_app_settings_with_http_info(app_id, update_settings, async_req=True)
         >>> result = thread.get()
 
         :param app_id: (required)
         :type app_id: object
-        :param updete_settings: (required)
-        :type updete_settings: UpdeteSettings
+        :param update_settings: (required)
+        :type update_settings: UpdateSettings
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
@@ -2973,7 +2973,7 @@ class AppsApi(object):
 
         _all_params = [
             'app_id',
-            'updete_settings'
+            'update_settings'
         ]
         _all_params.extend(
             [
@@ -3014,8 +3014,8 @@ class AppsApi(object):
         _files = {}
         # process the body parameter
         _body_params = None
-        if _params['updete_settings'] is not None:
-            _body_params = _params['updete_settings']
+        if _params['update_settings'] is not None:
+            _body_params = _params['update_settings']
 
         # set the HTTP header `Accept`
         _header_params['Accept'] = self.api_client.select_header_accept(

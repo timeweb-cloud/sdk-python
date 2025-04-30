@@ -66,6 +66,7 @@ class TestApp(unittest.TestCase):
                 preset_id = 42, 
                 index_dir = /dist, 
                 build_cmd = npm run build, 
+                avatar_link = https://urltoimage.com/avatars/image.png, 
                 run_cmd = npm start, 
                 configuration = timeweb_cloud_api.models.app_configuration.app_configuration(
                     cpu = 1, 
@@ -110,6 +111,7 @@ class TestApp(unittest.TestCase):
                 preset_id = 42,
                 index_dir = /dist,
                 build_cmd = npm run build,
+                avatar_link = https://urltoimage.com/avatars/image.png,
                 run_cmd = npm start,
                 configuration = timeweb_cloud_api.models.app_configuration.app_configuration(
                     cpu = 1, 

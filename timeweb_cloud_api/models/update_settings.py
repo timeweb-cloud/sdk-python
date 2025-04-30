@@ -23,9 +23,9 @@ from typing import Any, Optional
 from pydantic import BaseModel, Field
 from timeweb_cloud_api.models.frameworks import Frameworks
 
-class UpdeteSettings(BaseModel):
+class UpdateSettings(BaseModel):
     """
-    UpdeteSettings
+    UpdateSettings
     """
     is_auto_deploy: Optional[Any] = Field(None, description="Автоматический деплой.")
     build_cmd: Optional[Any] = Field(None, description="Команда сборки приложения.")
@@ -55,8 +55,8 @@ class UpdeteSettings(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> UpdeteSettings:
-        """Create an instance of UpdeteSettings from a JSON string"""
+    def from_json(cls, json_str: str) -> UpdateSettings:
+        """Create an instance of UpdateSettings from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self):
@@ -123,15 +123,15 @@ class UpdeteSettings(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> UpdeteSettings:
-        """Create an instance of UpdeteSettings from a dict"""
+    def from_dict(cls, obj: dict) -> UpdateSettings:
+        """Create an instance of UpdateSettings from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return UpdeteSettings.parse_obj(obj)
+            return UpdateSettings.parse_obj(obj)
 
-        _obj = UpdeteSettings.parse_obj({
+        _obj = UpdateSettings.parse_obj({
             "is_auto_deploy": obj.get("is_auto_deploy"),
             "build_cmd": obj.get("build_cmd"),
             "envs": obj.get("envs"),

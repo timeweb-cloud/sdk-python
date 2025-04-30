@@ -50,13 +50,14 @@ class App(BaseModel):
     preset_id: Optional[Any] = Field(..., description="ID тарифа.")
     index_dir: Optional[Any] = Field(..., description="Путь к директории с индексным файлом. Определен для приложений `type: frontend`. Для приложений `type: backend` всегда null.")
     build_cmd: Optional[Any] = Field(..., description="Команда сборки приложения.")
+    avatar_link: Optional[Any] = Field(..., description="Ссылка на аватар приложения.")
     run_cmd: Optional[Any] = Field(..., description="Команда для запуска приложения. Определена для приложений `type: backend`. Для приложений `type: frontend` всегда null.")
     configuration: AppConfiguration = Field(...)
     disk_status: AppDiskStatus = Field(...)
     is_qemu_agent: Optional[Any] = Field(..., description="Включен ли агент QEMU.")
     language: Optional[Any] = Field(..., description="Язык программирования приложения.")
     start_time: Optional[Any] = Field(..., description="Время запуска приложения.")
-    __properties = ["id", "type", "name", "status", "provider", "ip", "domains", "framework", "location", "repository", "env_version", "envs", "branch_name", "is_auto_deploy", "commit_sha", "comment", "preset_id", "index_dir", "build_cmd", "run_cmd", "configuration", "disk_status", "is_qemu_agent", "language", "start_time"]
+    __properties = ["id", "type", "name", "status", "provider", "ip", "domains", "framework", "location", "repository", "env_version", "envs", "branch_name", "is_auto_deploy", "commit_sha", "comment", "preset_id", "index_dir", "build_cmd", "avatar_link", "run_cmd", "configuration", "disk_status", "is_qemu_agent", "language", "start_time"]
 
     @validator('type')
     def type_validate_enum(cls, value):
@@ -204,6 +205,11 @@ class App(BaseModel):
         if self.build_cmd is None and "build_cmd" in self.__fields_set__:
             _dict['build_cmd'] = None
 
+        # set to None if avatar_link (nullable) is None
+        # and __fields_set__ contains the field
+        if self.avatar_link is None and "avatar_link" in self.__fields_set__:
+            _dict['avatar_link'] = None
+
         # set to None if run_cmd (nullable) is None
         # and __fields_set__ contains the field
         if self.run_cmd is None and "run_cmd" in self.__fields_set__:
@@ -255,6 +261,7 @@ class App(BaseModel):
             "preset_id": obj.get("preset_id"),
             "index_dir": obj.get("index_dir"),
             "build_cmd": obj.get("build_cmd"),
+            "avatar_link": obj.get("avatar_link"),
             "run_cmd": obj.get("run_cmd"),
             "configuration": AppConfiguration.from_dict(obj.get("configuration")) if obj.get("configuration") is not None else None,
             "disk_status": AppDiskStatus.from_dict(obj.get("disk_status")) if obj.get("disk_status") is not None else None,
