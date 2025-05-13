@@ -36,8 +36,8 @@ class AddGithub(BaseModel):
         if value is None:
             return value
 
-        if value not in ('Github'):
-            raise ValueError("must be one of enum values ('Github')")
+        if value not in ('github'):
+            raise ValueError("must be one of enum values ('github')")
         return value
 
     class Config:

@@ -19,6 +19,8 @@ Name | Type | Description | Notes
 **framework** | [**Frameworks**](Frameworks.md) |  | 
 **index_dir** | **object** | Путь к директории с индексным файлом. Обязателен для приложений &#x60;type: frontend&#x60;. Не используется для приложений &#x60;type: backend&#x60;. Значение всегда должно начинаться с &#x60;/&#x60;. | [optional] 
 **run_cmd** | **object** | Команда для запуска приложения. Обязательна для приложений &#x60;type: backend&#x60;. Не используется для приложений &#x60;type: frontend&#x60;. | [optional] 
+**system_dependencies** | **object** | Системные зависимости. | [optional] 
+**project_id** | **object** | ID проекта. | [optional] 
 
 ## Example
 

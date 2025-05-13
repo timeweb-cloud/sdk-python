@@ -36,8 +36,8 @@ class AddGitlab(BaseModel):
         if value is None:
             return value
 
-        if value not in ('Gitlab'):
-            raise ValueError("must be one of enum values ('Gitlab')")
+        if value not in ('gitlab'):
+            raise ValueError("must be one of enum values ('gitlab')")
         return value
 
     class Config:

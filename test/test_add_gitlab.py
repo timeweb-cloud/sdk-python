@@ -39,12 +39,12 @@ class TestAddGitlab(unittest.TestCase):
         model = timeweb_cloud_api.models.add_gitlab.AddGitlab()  # noqa: E501
         if include_optional :
             return AddGitlab(
-                provider_type = GitLab, 
+                provider_type = gitlab, 
                 provider_token = None
             )
         else :
             return AddGitlab(
-                provider_type = GitLab,
+                provider_type = gitlab,
                 provider_token = None,
         )
         """

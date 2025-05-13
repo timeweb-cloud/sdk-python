@@ -42,7 +42,9 @@ class CreateApp(BaseModel):
     framework: Frameworks = Field(...)
     index_dir: Optional[Any] = Field(None, description="Путь к директории с индексным файлом. Обязателен для приложений `type: frontend`. Не используется для приложений `type: backend`. Значение всегда должно начинаться с `/`.")
     run_cmd: Optional[Any] = Field(None, description="Команда для запуска приложения. Обязательна для приложений `type: backend`. Не используется для приложений `type: frontend`.")
-    __properties = ["provider_id", "type", "repository_id", "build_cmd", "envs", "branch_name", "is_auto_deploy", "commit_sha", "name", "comment", "preset_id", "env_version", "framework", "index_dir", "run_cmd"]
+    system_dependencies: Optional[Any] = Field(None, description="Системные зависимости.")
+    project_id: Optional[Any] = Field(None, description="ID проекта.")
+    __properties = ["provider_id", "type", "repository_id", "build_cmd", "envs", "branch_name", "is_auto_deploy", "commit_sha", "name", "comment", "preset_id", "env_version", "framework", "index_dir", "run_cmd", "system_dependencies", "project_id"]
 
     @validator('type')
     def type_validate_enum(cls, value):
@@ -148,6 +150,16 @@ class CreateApp(BaseModel):
         if self.run_cmd is None and "run_cmd" in self.__fields_set__:
             _dict['run_cmd'] = None
 
+        # set to None if system_dependencies (nullable) is None
+        # and __fields_set__ contains the field
+        if self.system_dependencies is None and "system_dependencies" in self.__fields_set__:
+            _dict['system_dependencies'] = None
+
+        # set to None if project_id (nullable) is None
+        # and __fields_set__ contains the field
+        if self.project_id is None and "project_id" in self.__fields_set__:
+            _dict['project_id'] = None
+
         return _dict
 
     @classmethod
@@ -174,7 +186,9 @@ class CreateApp(BaseModel):
             "env_version": obj.get("env_version"),
             "framework": obj.get("framework"),
             "index_dir": obj.get("index_dir"),
-            "run_cmd": obj.get("run_cmd")
+            "run_cmd": obj.get("run_cmd"),
+            "system_dependencies": obj.get("system_dependencies"),
+            "project_id": obj.get("project_id")
         })
         return _obj
 

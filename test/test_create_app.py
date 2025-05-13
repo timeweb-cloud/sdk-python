@@ -53,7 +53,9 @@ class TestCreateApp(unittest.TestCase):
                 env_version = 18, 
                 framework = django, 
                 index_dir = /dist, 
-                run_cmd = npm start
+                run_cmd = npm start, 
+                system_dependencies = None, 
+                project_id = 1
             )
         else :
             return CreateApp(

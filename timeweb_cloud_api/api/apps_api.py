@@ -1400,7 +1400,7 @@ class AppsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def get_app_statistics(self, app_id : Any, date_from : Annotated[Any, Field(..., description="Дата начала сбора статистики. Строка в формате ISO 8061, закодированная в ASCII, пример: `2023-05-25%202023-05-25T14%3A35%3A38`")], date_to : Annotated[Any, Field(..., description="Дата окончания сбора статистики. Строка в формате ISO 8061, закодированная в ASCII, пример: `2023-05-26%202023-05-25T14%3A35%3A38`")], **kwargs) -> GetServerStatistics200Response:  # noqa: E501
+    def get_app_statistics(self, app_id : Any, date_from : Annotated[Any, Field(..., description="Дата начала сбора статистики. Строка в формате ISO 8061, закодированная в ASCII, пример: `2023-05-25T14%3A35%3A38`")], date_to : Annotated[Any, Field(..., description="Дата окончания сбора статистики. Строка в формате ISO 8061, закодированная в ASCII, пример: `2023-05-25T14%3A35%3A38`")], **kwargs) -> GetServerStatistics200Response:  # noqa: E501
         """Получение статистики приложения  # noqa: E501
 
         Чтобы получить статистику сервера, отправьте GET-запрос на `/api/v1/apps/{app_id}/statistics`. Метод поддерживает только приложения `type: backend`.  # noqa: E501
@@ -1412,9 +1412,9 @@ class AppsApi(object):
 
         :param app_id: (required)
         :type app_id: object
-        :param date_from: Дата начала сбора статистики. Строка в формате ISO 8061, закодированная в ASCII, пример: `2023-05-25%202023-05-25T14%3A35%3A38` (required)
+        :param date_from: Дата начала сбора статистики. Строка в формате ISO 8061, закодированная в ASCII, пример: `2023-05-25T14%3A35%3A38` (required)
         :type date_from: object
-        :param date_to: Дата окончания сбора статистики. Строка в формате ISO 8061, закодированная в ASCII, пример: `2023-05-26%202023-05-25T14%3A35%3A38` (required)
+        :param date_to: Дата окончания сбора статистики. Строка в формате ISO 8061, закодированная в ASCII, пример: `2023-05-25T14%3A35%3A38` (required)
         :type date_to: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -1433,7 +1433,7 @@ class AppsApi(object):
         return self.get_app_statistics_with_http_info(app_id, date_from, date_to, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def get_app_statistics_with_http_info(self, app_id : Any, date_from : Annotated[Any, Field(..., description="Дата начала сбора статистики. Строка в формате ISO 8061, закодированная в ASCII, пример: `2023-05-25%202023-05-25T14%3A35%3A38`")], date_to : Annotated[Any, Field(..., description="Дата окончания сбора статистики. Строка в формате ISO 8061, закодированная в ASCII, пример: `2023-05-26%202023-05-25T14%3A35%3A38`")], **kwargs) -> ApiResponse:  # noqa: E501
+    def get_app_statistics_with_http_info(self, app_id : Any, date_from : Annotated[Any, Field(..., description="Дата начала сбора статистики. Строка в формате ISO 8061, закодированная в ASCII, пример: `2023-05-25T14%3A35%3A38`")], date_to : Annotated[Any, Field(..., description="Дата окончания сбора статистики. Строка в формате ISO 8061, закодированная в ASCII, пример: `2023-05-25T14%3A35%3A38`")], **kwargs) -> ApiResponse:  # noqa: E501
         """Получение статистики приложения  # noqa: E501
 
         Чтобы получить статистику сервера, отправьте GET-запрос на `/api/v1/apps/{app_id}/statistics`. Метод поддерживает только приложения `type: backend`.  # noqa: E501
@@ -1445,9 +1445,9 @@ class AppsApi(object):
 
         :param app_id: (required)
         :type app_id: object
-        :param date_from: Дата начала сбора статистики. Строка в формате ISO 8061, закодированная в ASCII, пример: `2023-05-25%202023-05-25T14%3A35%3A38` (required)
+        :param date_from: Дата начала сбора статистики. Строка в формате ISO 8061, закодированная в ASCII, пример: `2023-05-25T14%3A35%3A38` (required)
         :type date_from: object
-        :param date_to: Дата окончания сбора статистики. Строка в формате ISO 8061, закодированная в ASCII, пример: `2023-05-26%202023-05-25T14%3A35%3A38` (required)
+        :param date_to: Дата окончания сбора статистики. Строка в формате ISO 8061, закодированная в ASCII, пример: `2023-05-25T14%3A35%3A38` (required)
         :type date_to: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
