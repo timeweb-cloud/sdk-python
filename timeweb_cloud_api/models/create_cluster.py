@@ -26,6 +26,7 @@ from timeweb_cloud_api.models.config_parameters import ConfigParameters
 from timeweb_cloud_api.models.create_cluster_admin import CreateClusterAdmin
 from timeweb_cloud_api.models.create_cluster_instance import CreateClusterInstance
 from timeweb_cloud_api.models.create_db_auto_backups import CreateDbAutoBackups
+from timeweb_cloud_api.models.db_replication import DbReplication
 from timeweb_cloud_api.models.db_type import DbType
 from timeweb_cloud_api.models.network import Network
 
@@ -38,13 +39,16 @@ class CreateCluster(BaseModel):
     admin: Optional[CreateClusterAdmin] = None
     instance: Optional[CreateClusterInstance] = None
     hash_type: Optional[Any] = Field(None, description="Тип хеширования базы данных (mysql | postgres).")
-    preset_id: Optional[Any] = Field(..., description="ID тарифа.")
+    preset_id: Optional[Any] = Field(None, description="ID тарифа. Нельзя передавать вместе с `configurator_id`")
+    configurator_id: Optional[Any] = Field(None, description="ID конфигуратора. Нельзя передавать вместе с `preset_id`")
+    project_id: Optional[Any] = Field(None, description="ID проекта.")
     config_parameters: Optional[ConfigParameters] = None
+    replication: Optional[DbReplication] = None
     network: Optional[Network] = None
     description: Optional[Any] = Field(None, description="Описание кластера базы данных")
     availability_zone: Optional[AvailabilityZone] = None
     auto_backups: Optional[CreateDbAutoBackups] = None
-    __properties = ["name", "type", "admin", "instance", "hash_type", "preset_id", "config_parameters", "network", "description", "availability_zone", "auto_backups"]
+    __properties = ["name", "type", "admin", "instance", "hash_type", "preset_id", "configurator_id", "project_id", "config_parameters", "replication", "network", "description", "availability_zone", "auto_backups"]
 
     @validator('hash_type')
     def hash_type_validate_enum(cls, value):
@@ -89,6 +93,9 @@ class CreateCluster(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of config_parameters
         if self.config_parameters:
             _dict['config_parameters'] = self.config_parameters.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of replication
+        if self.replication:
+            _dict['replication'] = self.replication.to_dict()
         # override the default output from pydantic by calling `to_dict()` of network
         if self.network:
             _dict['network'] = self.network.to_dict()
@@ -109,6 +116,16 @@ class CreateCluster(BaseModel):
         # and __fields_set__ contains the field
         if self.preset_id is None and "preset_id" in self.__fields_set__:
             _dict['preset_id'] = None
+
+        # set to None if configurator_id (nullable) is None
+        # and __fields_set__ contains the field
+        if self.configurator_id is None and "configurator_id" in self.__fields_set__:
+            _dict['configurator_id'] = None
+
+        # set to None if project_id (nullable) is None
+        # and __fields_set__ contains the field
+        if self.project_id is None and "project_id" in self.__fields_set__:
+            _dict['project_id'] = None
 
         # set to None if description (nullable) is None
         # and __fields_set__ contains the field
@@ -133,7 +150,10 @@ class CreateCluster(BaseModel):
             "instance": CreateClusterInstance.from_dict(obj.get("instance")) if obj.get("instance") is not None else None,
             "hash_type": obj.get("hash_type"),
             "preset_id": obj.get("preset_id"),
+            "configurator_id": obj.get("configurator_id"),
+            "project_id": obj.get("project_id"),
             "config_parameters": ConfigParameters.from_dict(obj.get("config_parameters")) if obj.get("config_parameters") is not None else None,
+            "replication": DbReplication.from_dict(obj.get("replication")) if obj.get("replication") is not None else None,
             "network": Network.from_dict(obj.get("network")) if obj.get("network") is not None else None,
             "description": obj.get("description"),
             "availability_zone": obj.get("availability_zone"),

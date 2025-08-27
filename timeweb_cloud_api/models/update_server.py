@@ -32,7 +32,7 @@ class UpdateServer(BaseModel):
     software_id: Optional[Any] = Field(None, description="ID программного обеспечения сервера.")
     preset_id: Optional[Any] = Field(None, description="ID тарифа сервера. Нельзя передавать вместе с ключом `configurator`.")
     bandwidth: Optional[Any] = Field(None, description="Пропускная способность тарифа. Доступные значения от 100 до 1000 с шагом 100.")
-    name: Optional[Any] = Field(None, description="Имя облачного сервера. Максимальная длина — 255 символов, имя должно быть уникальным.")
+    name: Optional[Any] = Field(None, description="Имя облачного сервера. Максимальная длина — 255 символов.")
     avatar_id: Optional[Any] = Field(None, description="ID аватара сервера. Описание методов работы с аватарами появится позднее.")
     comment: Optional[Any] = Field(None, description="Комментарий к облачному серверу. Максимальная длина — 255 символов.")
     image_id: Optional[Any] = Field(None, description="ID образа, который будет установлен на облачный сервер. Нельзя передавать вместе с `os_id`.")

@@ -41,13 +41,15 @@ class TestDedicatedServerPresetCpu(unittest.TestCase):
             return DedicatedServerPresetCpu(
                 description = Intel Xeon Gold 6208U\r\n    (16 ядер, 2.9-3.9 ГГц, 32 потока), 
                 description_short = Intel Xeon Gold 6208U, 
-                count = 16
+                count = 16, 
+                vendor = intel
             )
         else :
             return DedicatedServerPresetCpu(
                 description = Intel Xeon Gold 6208U\r\n    (16 ядер, 2.9-3.9 ГГц, 32 потока),
                 description_short = Intel Xeon Gold 6208U,
                 count = 16,
+                vendor = intel,
         )
         """
 

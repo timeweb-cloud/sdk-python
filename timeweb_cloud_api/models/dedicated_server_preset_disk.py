@@ -28,7 +28,9 @@ class DedicatedServerPresetDisk(BaseModel):
     """
     description: Optional[Any] = Field(..., description="Описание характеристик диска выделенного сервера.")
     count: Optional[Any] = Field(..., description="Количество дисков выделенного сервера.")
-    __properties = ["description", "count"]
+    total_size: Optional[Any] = Field(..., description="Общий размер дисков выделенного сервера.")
+    type: Optional[Any] = Field(..., description="Тип дисков выделенного сервера.")
+    __properties = ["description", "count", "total_size", "type"]
 
     class Config:
         """Pydantic configuration"""
@@ -64,6 +66,16 @@ class DedicatedServerPresetDisk(BaseModel):
         if self.count is None and "count" in self.__fields_set__:
             _dict['count'] = None
 
+        # set to None if total_size (nullable) is None
+        # and __fields_set__ contains the field
+        if self.total_size is None and "total_size" in self.__fields_set__:
+            _dict['total_size'] = None
+
+        # set to None if type (nullable) is None
+        # and __fields_set__ contains the field
+        if self.type is None and "type" in self.__fields_set__:
+            _dict['type'] = None
+
         return _dict
 
     @classmethod
@@ -77,7 +89,9 @@ class DedicatedServerPresetDisk(BaseModel):
 
         _obj = DedicatedServerPresetDisk.parse_obj({
             "description": obj.get("description"),
-            "count": obj.get("count")
+            "count": obj.get("count"),
+            "total_size": obj.get("total_size"),
+            "type": obj.get("type")
         })
         return _obj
 

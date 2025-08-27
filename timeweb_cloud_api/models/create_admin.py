@@ -29,7 +29,7 @@ class CreateAdmin(BaseModel):
     login: Optional[Any] = Field(..., description="Имя пользователя базы данных")
     password: Optional[Any] = Field(..., description="Пароль пользователя базы данных")
     host: Optional[Any] = Field(None, description="Хост пользователя")
-    instance_id: Optional[Any] = Field(None, description="ID инстанса базы данных для приминения привилегий. В данных момент поле доступно только для кластеров MySQL. Если поле не передано, то привилегии будут применены ко всем инстансам")
+    instance_id: Optional[Any] = Field(None, description="ID инстанса базы данных для применения привилегий. В данных момент поле доступно только для кластеров MySQL. Если поле не передано, то привилегии будут применены ко всем инстансам")
     privileges: Optional[Any] = Field(..., description="Список привилегий пользователя базы данных")
     description: Optional[Any] = Field(None, description="Описание пользователя базы данных")
     __properties = ["login", "password", "host", "instance_id", "privileges", "description"]

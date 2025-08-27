@@ -1332,7 +1332,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **increase_count_of_nodes_in_group**
-> NodesResponse increase_count_of_nodes_in_group(cluster_id, group_id, node_count)
+> NodesResponse increase_count_of_nodes_in_group(cluster_id, group_id, increase_nodes)
 
 Увеличение количества нод в группе на указанное количество
 
@@ -1345,7 +1345,7 @@ This endpoint does not need any parameter.
 import time
 import os
 import timeweb_cloud_api
-from timeweb_cloud_api.models.node_count import NodeCount
+from timeweb_cloud_api.models.increase_nodes import IncreaseNodes
 from timeweb_cloud_api.models.nodes_response import NodesResponse
 from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
@@ -1372,11 +1372,11 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
     api_instance = timeweb_cloud_api.KubernetesApi(api_client)
     cluster_id = None # object | ID кластера
     group_id = None # object | ID группы
-    node_count = timeweb_cloud_api.NodeCount() # NodeCount | 
+    increase_nodes = timeweb_cloud_api.IncreaseNodes() # IncreaseNodes | 
 
     try:
         # Увеличение количества нод в группе на указанное количество
-        api_response = api_instance.increase_count_of_nodes_in_group(cluster_id, group_id, node_count)
+        api_response = api_instance.increase_count_of_nodes_in_group(cluster_id, group_id, increase_nodes)
         print("The response of KubernetesApi->increase_count_of_nodes_in_group:\n")
         pprint(api_response)
     except Exception as e:
@@ -1390,7 +1390,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **cluster_id** | [**object**](.md)| ID кластера | 
  **group_id** | [**object**](.md)| ID группы | 
- **node_count** | [**NodeCount**](NodeCount.md)|  | 
+ **increase_nodes** | [**IncreaseNodes**](IncreaseNodes.md)|  | 
 
 ### Return type
 
@@ -1419,7 +1419,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **reduce_count_of_nodes_in_group**
-> reduce_count_of_nodes_in_group(cluster_id, group_id, node_count)
+> reduce_count_of_nodes_in_group(cluster_id, group_id, reduce_nodes)
 
 Уменьшение количества нод в группе на указанное количество
 
@@ -1432,7 +1432,7 @@ Name | Type | Description  | Notes
 import time
 import os
 import timeweb_cloud_api
-from timeweb_cloud_api.models.node_count import NodeCount
+from timeweb_cloud_api.models.reduce_nodes import ReduceNodes
 from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
@@ -1458,11 +1458,11 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
     api_instance = timeweb_cloud_api.KubernetesApi(api_client)
     cluster_id = None # object | ID кластера
     group_id = None # object | ID группы
-    node_count = timeweb_cloud_api.NodeCount() # NodeCount | 
+    reduce_nodes = timeweb_cloud_api.ReduceNodes() # ReduceNodes | 
 
     try:
         # Уменьшение количества нод в группе на указанное количество
-        api_instance.reduce_count_of_nodes_in_group(cluster_id, group_id, node_count)
+        api_instance.reduce_count_of_nodes_in_group(cluster_id, group_id, reduce_nodes)
     except Exception as e:
         print("Exception when calling KubernetesApi->reduce_count_of_nodes_in_group: %s\n" % e)
 ```
@@ -1474,7 +1474,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **cluster_id** | [**object**](.md)| ID кластера | 
  **group_id** | [**object**](.md)| ID группы | 
- **node_count** | [**NodeCount**](NodeCount.md)|  | 
+ **reduce_nodes** | [**ReduceNodes**](ReduceNodes.md)|  | 
 
 ### Return type
 

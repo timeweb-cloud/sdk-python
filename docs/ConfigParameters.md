@@ -1,5 +1,6 @@
 # ConfigParameters
 
+Параметры базы данных
 
 ## Properties
 Name | Type | Description | Notes

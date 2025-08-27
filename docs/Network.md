@@ -1,5 +1,6 @@
 # Network
 
+Сеть
 
 ## Properties
 Name | Type | Description | Notes

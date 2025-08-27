@@ -30,7 +30,8 @@ class NodeGroupInConfiguration(BaseModel):
     disk: Optional[Any] = Field(..., description="Размер диска в МБ")
     cpu: Optional[Any] = Field(..., description="Количество ядер процессора")
     ram: Optional[Any] = Field(..., description="Размер ОЗУ сервера в МБ")
-    __properties = ["configurator_id", "disk", "cpu", "ram"]
+    gpu: Optional[Any] = Field(None, description="Количество видеокарт")
+    __properties = ["configurator_id", "disk", "cpu", "ram", "gpu"]
 
     class Config:
         """Pydantic configuration"""
@@ -76,6 +77,11 @@ class NodeGroupInConfiguration(BaseModel):
         if self.ram is None and "ram" in self.__fields_set__:
             _dict['ram'] = None
 
+        # set to None if gpu (nullable) is None
+        # and __fields_set__ contains the field
+        if self.gpu is None and "gpu" in self.__fields_set__:
+            _dict['gpu'] = None
+
         return _dict
 
     @classmethod
@@ -91,7 +97,8 @@ class NodeGroupInConfiguration(BaseModel):
             "configurator_id": obj.get("configurator_id"),
             "disk": obj.get("disk"),
             "cpu": obj.get("cpu"),
-            "ram": obj.get("ram")
+            "ram": obj.get("ram"),
+            "gpu": obj.get("gpu")
         })
         return _obj
 

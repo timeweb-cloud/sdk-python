@@ -40,12 +40,16 @@ class TestDedicatedServerPresetDisk(unittest.TestCase):
         if include_optional :
             return DedicatedServerPresetDisk(
                 description = 2 x 1 Тб NVMe, 
-                count = 16
+                count = 16, 
+                total_size = 2048, 
+                type = hdd
             )
         else :
             return DedicatedServerPresetDisk(
                 description = 2 x 1 Тб NVMe,
                 count = 16,
+                total_size = 2048,
+                type = hdd,
         )
         """
 

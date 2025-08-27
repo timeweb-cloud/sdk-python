@@ -40,6 +40,7 @@ class TestBalancer(unittest.TestCase):
         if include_optional :
             return Balancer(
                 id = 1, 
+                account_id = nv00000, 
                 algo = roundrobin, 
                 created_at = 2022-10-25T15:15:45.000Z, 
                 fall = 3, 
@@ -67,7 +68,9 @@ class TestBalancer(unittest.TestCase):
                 rules = None, 
                 ips = [], 
                 location = ru-1, 
-                availability_zone = spb-1
+                availability_zone = spb-1, 
+                project_id = 1, 
+                networks = None
             )
         else :
             return Balancer(
@@ -100,6 +103,8 @@ class TestBalancer(unittest.TestCase):
                 ips = [],
                 location = ru-1,
                 availability_zone = spb-1,
+                project_id = 1,
+                networks = None,
         )
         """
 

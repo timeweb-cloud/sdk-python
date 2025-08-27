@@ -43,20 +43,6 @@ class TestS3Api(unittest.TestCase):
         """
         pass
 
-    def test_copy_storage_file(self):
-        """Test case for copy_storage_file
-
-        Копирование файла/директории в хранилище  # noqa: E501
-        """
-        pass
-
-    def test_create_folder_in_storage(self):
-        """Test case for create_folder_in_storage
-
-        Создание директории в хранилище  # noqa: E501
-        """
-        pass
-
     def test_create_storage(self):
         """Test case for create_storage
 
@@ -71,24 +57,10 @@ class TestS3Api(unittest.TestCase):
         """
         pass
 
-    def test_delete_storage_file(self):
-        """Test case for delete_storage_file
-
-        Удаление файла/директории в хранилище  # noqa: E501
-        """
-        pass
-
     def test_delete_storage_subdomains(self):
         """Test case for delete_storage_subdomains
 
         Удаление поддоменов хранилища  # noqa: E501
-        """
-        pass
-
-    def test_get_storage_files_list(self):
-        """Test case for get_storage_files_list
-
-        Получение списка файлов в хранилище по префиксу  # noqa: E501
         """
         pass
 
@@ -127,13 +99,6 @@ class TestS3Api(unittest.TestCase):
         """
         pass
 
-    def test_rename_storage_file(self):
-        """Test case for rename_storage_file
-
-        Переименование файла/директории в хранилище  # noqa: E501
-        """
-        pass
-
     def test_transfer_storage(self):
         """Test case for transfer_storage
 
@@ -152,13 +117,6 @@ class TestS3Api(unittest.TestCase):
         """Test case for update_storage_user
 
         Изменение пароля пользователя-администратора хранилища  # noqa: E501
-        """
-        pass
-
-    def test_upload_file_to_storage(self):
-        """Test case for upload_file_to_storage
-
-        Загрузка файлов в хранилище  # noqa: E501
         """
         pass
 

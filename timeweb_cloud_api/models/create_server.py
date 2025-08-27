@@ -36,7 +36,7 @@ class CreateServer(BaseModel):
     software_id: Optional[Any] = Field(None, description="ID программного обеспечения сервера.")
     preset_id: Optional[Any] = Field(None, description="ID тарифа сервера. Нельзя передавать вместе с ключом `configurator`.")
     bandwidth: Optional[Any] = Field(None, description="Пропускная способность тарифа. Доступные значения от 100 до 1000 с шагом 100.")
-    name: Optional[Any] = Field(..., description="Имя облачного сервера. Максимальная длина — 255 символов, имя должно быть уникальным.")
+    name: Optional[Any] = Field(..., description="Имя облачного сервера. Максимальная длина — 255 символов.")
     avatar_id: Optional[Any] = Field(None, description="ID аватара сервера.")
     comment: Optional[Any] = Field(None, description="Комментарий к облачному серверу. Максимальная длина — 255 символов.")
     ssh_keys_ids: Optional[Any] = Field(None, description="Список SSH-ключей.")
@@ -44,7 +44,8 @@ class CreateServer(BaseModel):
     network: Optional[CreateServerNetwork] = None
     cloud_init: Optional[Any] = Field(None, description="Cloud-init скрипт")
     availability_zone: Optional[AvailabilityZone] = None
-    __properties = ["configuration", "is_ddos_guard", "os_id", "image_id", "software_id", "preset_id", "bandwidth", "name", "avatar_id", "comment", "ssh_keys_ids", "is_local_network", "network", "cloud_init", "availability_zone"]
+    project_id: Optional[Any] = Field(None, description="ID проекта.")
+    __properties = ["configuration", "is_ddos_guard", "os_id", "image_id", "software_id", "preset_id", "bandwidth", "name", "avatar_id", "comment", "ssh_keys_ids", "is_local_network", "network", "cloud_init", "availability_zone", "project_id"]
 
     class Config:
         """Pydantic configuration"""
@@ -136,6 +137,11 @@ class CreateServer(BaseModel):
         if self.cloud_init is None and "cloud_init" in self.__fields_set__:
             _dict['cloud_init'] = None
 
+        # set to None if project_id (nullable) is None
+        # and __fields_set__ contains the field
+        if self.project_id is None and "project_id" in self.__fields_set__:
+            _dict['project_id'] = None
+
         return _dict
 
     @classmethod
@@ -162,7 +168,8 @@ class CreateServer(BaseModel):
             "is_local_network": obj.get("is_local_network"),
             "network": CreateServerNetwork.from_dict(obj.get("network")) if obj.get("network") is not None else None,
             "cloud_init": obj.get("cloud_init"),
-            "availability_zone": obj.get("availability_zone")
+            "availability_zone": obj.get("availability_zone"),
+            "project_id": obj.get("project_id")
         })
         return _obj
 

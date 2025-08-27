@@ -26,7 +26,7 @@ class UpdateBalancer(BaseModel):
     """
     UpdateBalancer
     """
-    name: Optional[Any] = Field(None, description="Удобочитаемое имя, установленное для балансировщика.")
+    name: Optional[Any] = Field(None, description="Удобочитаемое имя, установленное для балансировщика. Должно быть уникальным в рамках аккаунта")
     algo: Optional[Any] = Field(None, description="Алгоритм переключений балансировщика.")
     is_sticky: Optional[Any] = Field(None, description="Это логическое значение, которое показывает, сохраняется ли сессия.")
     is_use_proxy: Optional[Any] = Field(None, description="Это логическое значение, которое показывает, выступает ли балансировщик в качестве прокси.")

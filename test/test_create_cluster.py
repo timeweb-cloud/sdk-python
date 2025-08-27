@@ -52,6 +52,8 @@ class TestCreateCluster(unittest.TestCase):
                     description = null, ), 
                 hash_type = caching_sha2, 
                 preset_id = 5, 
+                configurator_id = 5, 
+                project_id = 5, 
                 config_parameters = timeweb_cloud_api.models.config_parameters.config-parameters(
                     auto_increment_increment = 1, 
                     auto_increment_offset = 1, 
@@ -81,6 +83,8 @@ class TestCreateCluster(unittest.TestCase):
                     sql_mode = STRICT_TRANS_TABLES, 
                     query_cache_type = 0, 
                     query_cache_size = 0, ), 
+                replication = timeweb_cloud_api.models.db_replication.db-replication(
+                    count = 1, ), 
                 network = timeweb_cloud_api.models.network.network(
                     id = network-1234567890, 
                     floating_ip = 192.168.0.0, 
@@ -98,7 +102,6 @@ class TestCreateCluster(unittest.TestCase):
             return CreateCluster(
                 name = default_db,
                 type = mysql,
-                preset_id = 5,
         )
         """
 

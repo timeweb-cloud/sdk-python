@@ -57,13 +57,14 @@ class TestCreateBalancer(unittest.TestCase):
                 client_timeout = 50000, 
                 server_timeout = 50000, 
                 httprequest_timeout = 10000, 
-                preset_id = 5, 
+                preset_id = 391, 
                 network = timeweb_cloud_api.models.network.network(
                     id = network-1234567890, 
                     floating_ip = 192.168.0.0, 
                     local_ip = 192.168.0.0, 
                     ip = 192.168.0.0, ), 
-                availability_zone = spb-1
+                availability_zone = spb-1, 
+                project_id = 1
             )
         else :
             return CreateBalancer(
@@ -80,7 +81,7 @@ class TestCreateBalancer(unittest.TestCase):
                 timeout = 5,
                 fall = 3,
                 rise = 2,
-                preset_id = 5,
+                preset_id = 391,
         )
         """
 

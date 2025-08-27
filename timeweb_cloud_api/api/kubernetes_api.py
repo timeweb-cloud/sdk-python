@@ -29,14 +29,15 @@ from timeweb_cloud_api.models.cluster_in import ClusterIn
 from timeweb_cloud_api.models.cluster_response import ClusterResponse
 from timeweb_cloud_api.models.clusters_response import ClustersResponse
 from timeweb_cloud_api.models.delete_cluster200_response import DeleteCluster200Response
+from timeweb_cloud_api.models.increase_nodes import IncreaseNodes
 from timeweb_cloud_api.models.k8_s_versions_response import K8SVersionsResponse
 from timeweb_cloud_api.models.network_drivers_response import NetworkDriversResponse
-from timeweb_cloud_api.models.node_count import NodeCount
 from timeweb_cloud_api.models.node_group_in import NodeGroupIn
 from timeweb_cloud_api.models.node_group_response import NodeGroupResponse
 from timeweb_cloud_api.models.node_groups_response import NodeGroupsResponse
 from timeweb_cloud_api.models.nodes_response import NodesResponse
 from timeweb_cloud_api.models.presets_response import PresetsResponse
+from timeweb_cloud_api.models.reduce_nodes import ReduceNodes
 from timeweb_cloud_api.models.resources_response import ResourcesResponse
 
 from timeweb_cloud_api.api_client import ApiClient
@@ -2419,22 +2420,22 @@ class KubernetesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def increase_count_of_nodes_in_group(self, cluster_id : Annotated[Any, Field(..., description="ID кластера")], group_id : Annotated[Any, Field(..., description="ID группы")], node_count : NodeCount, **kwargs) -> NodesResponse:  # noqa: E501
+    def increase_count_of_nodes_in_group(self, cluster_id : Annotated[Any, Field(..., description="ID кластера")], group_id : Annotated[Any, Field(..., description="ID группы")], increase_nodes : IncreaseNodes, **kwargs) -> NodesResponse:  # noqa: E501
         """Увеличение количества нод в группе на указанное количество  # noqa: E501
 
         Чтобы увеличить количество нод в группе на указанное значение, отправьте POST-запрос на `/api/v1/k8s/clusters/{cluster_id}/groups/{group_id}/nodes`  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.increase_count_of_nodes_in_group(cluster_id, group_id, node_count, async_req=True)
+        >>> thread = api.increase_count_of_nodes_in_group(cluster_id, group_id, increase_nodes, async_req=True)
         >>> result = thread.get()
 
         :param cluster_id: ID кластера (required)
         :type cluster_id: object
         :param group_id: ID группы (required)
         :type group_id: object
-        :param node_count: (required)
-        :type node_count: NodeCount
+        :param increase_nodes: (required)
+        :type increase_nodes: IncreaseNodes
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request. If one
@@ -2449,25 +2450,25 @@ class KubernetesApi(object):
         kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             raise ValueError("Error! Please call the increase_count_of_nodes_in_group_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
-        return self.increase_count_of_nodes_in_group_with_http_info(cluster_id, group_id, node_count, **kwargs)  # noqa: E501
+        return self.increase_count_of_nodes_in_group_with_http_info(cluster_id, group_id, increase_nodes, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def increase_count_of_nodes_in_group_with_http_info(self, cluster_id : Annotated[Any, Field(..., description="ID кластера")], group_id : Annotated[Any, Field(..., description="ID группы")], node_count : NodeCount, **kwargs) -> ApiResponse:  # noqa: E501
+    def increase_count_of_nodes_in_group_with_http_info(self, cluster_id : Annotated[Any, Field(..., description="ID кластера")], group_id : Annotated[Any, Field(..., description="ID группы")], increase_nodes : IncreaseNodes, **kwargs) -> ApiResponse:  # noqa: E501
         """Увеличение количества нод в группе на указанное количество  # noqa: E501
 
         Чтобы увеличить количество нод в группе на указанное значение, отправьте POST-запрос на `/api/v1/k8s/clusters/{cluster_id}/groups/{group_id}/nodes`  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.increase_count_of_nodes_in_group_with_http_info(cluster_id, group_id, node_count, async_req=True)
+        >>> thread = api.increase_count_of_nodes_in_group_with_http_info(cluster_id, group_id, increase_nodes, async_req=True)
         >>> result = thread.get()
 
         :param cluster_id: ID кластера (required)
         :type cluster_id: object
         :param group_id: ID группы (required)
         :type group_id: object
-        :param node_count: (required)
-        :type node_count: NodeCount
+        :param increase_nodes: (required)
+        :type increase_nodes: IncreaseNodes
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
@@ -2498,7 +2499,7 @@ class KubernetesApi(object):
         _all_params = [
             'cluster_id',
             'group_id',
-            'node_count'
+            'increase_nodes'
         ]
         _all_params.extend(
             [
@@ -2542,8 +2543,8 @@ class KubernetesApi(object):
         _files = {}
         # process the body parameter
         _body_params = None
-        if _params['node_count'] is not None:
-            _body_params = _params['node_count']
+        if _params['increase_nodes'] is not None:
+            _body_params = _params['increase_nodes']
 
         # set the HTTP header `Accept`
         _header_params['Accept'] = self.api_client.select_header_accept(
@@ -2587,22 +2588,22 @@ class KubernetesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def reduce_count_of_nodes_in_group(self, cluster_id : Annotated[Any, Field(..., description="ID кластера")], group_id : Annotated[Any, Field(..., description="ID группы")], node_count : NodeCount, **kwargs) -> None:  # noqa: E501
+    def reduce_count_of_nodes_in_group(self, cluster_id : Annotated[Any, Field(..., description="ID кластера")], group_id : Annotated[Any, Field(..., description="ID группы")], reduce_nodes : ReduceNodes, **kwargs) -> None:  # noqa: E501
         """Уменьшение количества нод в группе на указанное количество  # noqa: E501
 
         Чтобы уменьшить количество нод в группе на указанное значение, отправьте DELETE-запрос в `/api/v1/k8s/clusters/{cluster_id}/groups/{group_id}/nodes`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.reduce_count_of_nodes_in_group(cluster_id, group_id, node_count, async_req=True)
+        >>> thread = api.reduce_count_of_nodes_in_group(cluster_id, group_id, reduce_nodes, async_req=True)
         >>> result = thread.get()
 
         :param cluster_id: ID кластера (required)
         :type cluster_id: object
         :param group_id: ID группы (required)
         :type group_id: object
-        :param node_count: (required)
-        :type node_count: NodeCount
+        :param reduce_nodes: (required)
+        :type reduce_nodes: ReduceNodes
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request. If one
@@ -2617,25 +2618,25 @@ class KubernetesApi(object):
         kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             raise ValueError("Error! Please call the reduce_count_of_nodes_in_group_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
-        return self.reduce_count_of_nodes_in_group_with_http_info(cluster_id, group_id, node_count, **kwargs)  # noqa: E501
+        return self.reduce_count_of_nodes_in_group_with_http_info(cluster_id, group_id, reduce_nodes, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def reduce_count_of_nodes_in_group_with_http_info(self, cluster_id : Annotated[Any, Field(..., description="ID кластера")], group_id : Annotated[Any, Field(..., description="ID группы")], node_count : NodeCount, **kwargs) -> ApiResponse:  # noqa: E501
+    def reduce_count_of_nodes_in_group_with_http_info(self, cluster_id : Annotated[Any, Field(..., description="ID кластера")], group_id : Annotated[Any, Field(..., description="ID группы")], reduce_nodes : ReduceNodes, **kwargs) -> ApiResponse:  # noqa: E501
         """Уменьшение количества нод в группе на указанное количество  # noqa: E501
 
         Чтобы уменьшить количество нод в группе на указанное значение, отправьте DELETE-запрос в `/api/v1/k8s/clusters/{cluster_id}/groups/{group_id}/nodes`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.reduce_count_of_nodes_in_group_with_http_info(cluster_id, group_id, node_count, async_req=True)
+        >>> thread = api.reduce_count_of_nodes_in_group_with_http_info(cluster_id, group_id, reduce_nodes, async_req=True)
         >>> result = thread.get()
 
         :param cluster_id: ID кластера (required)
         :type cluster_id: object
         :param group_id: ID группы (required)
         :type group_id: object
-        :param node_count: (required)
-        :type node_count: NodeCount
+        :param reduce_nodes: (required)
+        :type reduce_nodes: ReduceNodes
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
@@ -2666,7 +2667,7 @@ class KubernetesApi(object):
         _all_params = [
             'cluster_id',
             'group_id',
-            'node_count'
+            'reduce_nodes'
         ]
         _all_params.extend(
             [
@@ -2710,8 +2711,8 @@ class KubernetesApi(object):
         _files = {}
         # process the body parameter
         _body_params = None
-        if _params['node_count'] is not None:
-            _body_params = _params['node_count']
+        if _params['reduce_nodes'] is not None:
+            _body_params = _params['reduce_nodes']
 
         # set the HTTP header `Content-Type`
         _content_types_list = _params.get('_content_type',

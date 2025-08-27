@@ -45,12 +45,14 @@ class TestNodeGroupIn(unittest.TestCase):
                     configurator_id = null, 
                     disk = null, 
                     cpu = null, 
-                    ram = null, ), 
+                    ram = null, 
+                    gpu = null, ), 
                 node_count = None, 
                 labels = None, 
                 is_autoscaling = None, 
                 min_size = None, 
-                max_size = None
+                max_size = None, 
+                is_autohealing = None
             )
         else :
             return NodeGroupIn(

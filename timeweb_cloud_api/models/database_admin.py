@@ -30,7 +30,7 @@ class DatabaseAdmin(BaseModel):
     created_at: Optional[Any] = Field(..., description="Значение времени, указанное в комбинированном формате даты и времени ISO8601, которое представляет, когда была создана база данных.")
     login: Optional[Any] = Field(..., description="Имя пользователя базы данных")
     password: Optional[Any] = Field(..., description="Пароль пользователя базы данных")
-    description: Optional[Any] = Field(..., description="Описанеие пользователя базы данных")
+    description: Optional[Any] = Field(..., description="Описание пользователя базы данных")
     host: Optional[Any] = Field(..., description="Хост пользователя")
     instances: Optional[Any] = Field(...)
     __properties = ["id", "created_at", "login", "password", "description", "host", "instances"]

@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **object** | Название инстанса базы данных | [optional] 
-**description** | **object** | Описанеие инстанса базы данных | [optional] 
+**description** | **object** | Описание инстанса базы данных | [optional] 
 
 ## Example
 

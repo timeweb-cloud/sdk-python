@@ -52,7 +52,6 @@ class TestCreateDedicatedServer(unittest.TestCase):
             )
         else :
             return CreateDedicatedServer(
-                plan_id = 2377,
                 preset_id = 81,
                 payment_period = P1M,
                 name = name,

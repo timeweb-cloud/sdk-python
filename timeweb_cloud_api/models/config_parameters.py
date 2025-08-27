@@ -24,7 +24,7 @@ from pydantic import BaseModel, Field
 
 class ConfigParameters(BaseModel):
     """
-    ConfigParameters
+    Параметры базы данных
     """
     auto_increment_increment: Optional[Any] = Field(None, description="Интервал между значениями столбцов с атрибутом `AUTO_INCREMENT` (`mysql5` | `mysql`).")
     auto_increment_offset: Optional[Any] = Field(None, description="Начальное значение для столбцов с атрибутом `AUTO_INCREMENT` (`mysql5` | `mysql`).")

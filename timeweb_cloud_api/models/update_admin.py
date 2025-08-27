@@ -29,7 +29,7 @@ class UpdateAdmin(BaseModel):
     password: Optional[Any] = Field(None, description="Пароль пользователя базы данных")
     privileges: Optional[Any] = Field(None, description="Список привилегий пользователя базы данных")
     description: Optional[Any] = Field(None, description="Описание пользователя базы данных")
-    instance_id: Optional[Any] = Field(None, description="ID инстанса базы данных для приминения привилегий. В данных момент поле доступно только для кластеров MySQL. Если поле не передано, то привилегии будут применены ко всем инстансам")
+    instance_id: Optional[Any] = Field(None, description="ID инстанса базы данных для применения привилегий. В данных момент поле доступно только для кластеров MySQL. Если поле не передано, то привилегии будут применены ко всем инстансам")
     __properties = ["password", "privileges", "description", "instance_id"]
 
     class Config:

@@ -27,7 +27,7 @@ class UpdateInstance(BaseModel):
     UpdateInstance
     """
     name: Optional[Any] = Field(None, description="Название инстанса базы данных")
-    description: Optional[Any] = Field(None, description="Описанеие инстанса базы данных")
+    description: Optional[Any] = Field(None, description="Описание инстанса базы данных")
     __properties = ["name", "description"]
 
     class Config:

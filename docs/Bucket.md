@@ -21,6 +21,9 @@ Name | Type | Description | Notes
 **secret_key** | **object** | Секретный ключ доступа от хранилища. | 
 **moved_in_quarantine_at** | **object** | Дата перемещения в карантин. | 
 **storage_class** | **object** | Класс хранилища. | 
+**project_id** | **object** | ID проекта. | 
+**rate_id** | **object** | ID тарифа. | 
+**website_config** | [**BucketWebsiteConfig**](BucketWebsiteConfig.md) |  | 
 
 ## Example
 

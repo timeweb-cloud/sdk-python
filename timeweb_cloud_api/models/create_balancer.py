@@ -28,7 +28,7 @@ class CreateBalancer(BaseModel):
     """
     CreateBalancer
     """
-    name: Optional[Any] = Field(..., description="Удобочитаемое имя, установленное для балансировщика.")
+    name: Optional[Any] = Field(..., description="Удобочитаемое имя, установленное для балансировщика. Должно быть уникальным в рамках аккаунта")
     algo: Optional[Any] = Field(..., description="Алгоритм переключений балансировщика.")
     is_sticky: Optional[Any] = Field(..., description="Это логическое значение, которое показывает, сохраняется ли сессия.")
     is_use_proxy: Optional[Any] = Field(..., description="Это логическое значение, которое показывает, выступает ли балансировщик в качестве прокси.")
@@ -49,7 +49,8 @@ class CreateBalancer(BaseModel):
     preset_id: Optional[Any] = Field(..., description="ID тарифа.")
     network: Optional[Network] = None
     availability_zone: Optional[AvailabilityZone] = None
-    __properties = ["name", "algo", "is_sticky", "is_use_proxy", "is_ssl", "is_keepalive", "proto", "port", "path", "inter", "timeout", "fall", "rise", "maxconn", "connect_timeout", "client_timeout", "server_timeout", "httprequest_timeout", "preset_id", "network", "availability_zone"]
+    project_id: Optional[Any] = Field(None, description="ID проекта")
+    __properties = ["name", "algo", "is_sticky", "is_use_proxy", "is_ssl", "is_keepalive", "proto", "port", "path", "inter", "timeout", "fall", "rise", "maxconn", "connect_timeout", "client_timeout", "server_timeout", "httprequest_timeout", "preset_id", "network", "availability_zone", "project_id"]
 
     @validator('algo')
     def algo_validate_enum(cls, value):
@@ -193,6 +194,11 @@ class CreateBalancer(BaseModel):
         if self.preset_id is None and "preset_id" in self.__fields_set__:
             _dict['preset_id'] = None
 
+        # set to None if project_id (nullable) is None
+        # and __fields_set__ contains the field
+        if self.project_id is None and "project_id" in self.__fields_set__:
+            _dict['project_id'] = None
+
         return _dict
 
     @classmethod
@@ -225,7 +231,8 @@ class CreateBalancer(BaseModel):
             "httprequest_timeout": obj.get("httprequest_timeout"),
             "preset_id": obj.get("preset_id"),
             "network": Network.from_dict(obj.get("network")) if obj.get("network") is not None else None,
-            "availability_zone": obj.get("availability_zone")
+            "availability_zone": obj.get("availability_zone"),
+            "project_id": obj.get("project_id")
         })
         return _obj
 

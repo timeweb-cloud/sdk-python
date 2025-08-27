@@ -29,7 +29,8 @@ class DedicatedServerPresetCpu(BaseModel):
     description: Optional[Any] = Field(..., description="Описание характеристик процессора выделенного сервера.")
     description_short: Optional[Any] = Field(..., description="Краткое описание характеристик процессора выделенного сервера.")
     count: Optional[Any] = Field(..., description="Количество ядер процессора выделенного сервера.")
-    __properties = ["description", "description_short", "count"]
+    vendor: Optional[Any] = Field(..., description="Производитель процессора выделенного сервера.")
+    __properties = ["description", "description_short", "count", "vendor"]
 
     class Config:
         """Pydantic configuration"""
@@ -70,6 +71,11 @@ class DedicatedServerPresetCpu(BaseModel):
         if self.count is None and "count" in self.__fields_set__:
             _dict['count'] = None
 
+        # set to None if vendor (nullable) is None
+        # and __fields_set__ contains the field
+        if self.vendor is None and "vendor" in self.__fields_set__:
+            _dict['vendor'] = None
+
         return _dict
 
     @classmethod
@@ -84,7 +90,8 @@ class DedicatedServerPresetCpu(BaseModel):
         _obj = DedicatedServerPresetCpu.parse_obj({
             "description": obj.get("description"),
             "description_short": obj.get("description_short"),
-            "count": obj.get("count")
+            "count": obj.get("count"),
+            "vendor": obj.get("vendor")
         })
         return _obj
 

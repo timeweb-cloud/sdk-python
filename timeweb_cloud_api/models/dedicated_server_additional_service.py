@@ -31,7 +31,7 @@ class DedicatedServerAdditionalService(BaseModel):
     period: Optional[Any] = Field(..., description="Период оплаты.")
     description: Optional[Any] = Field(..., description="Описание дополнительной услуги выделенного сервера.")
     short_description: Optional[Any] = Field(..., description="Краткое описание дополнительной услуги выделенного сервера.")
-    name: Optional[Any] = Field(..., description="Уникально имя дополнительной услуги выделенного сервера.")
+    name: Optional[Any] = Field(..., description="Уникальное имя дополнительной услуги выделенного сервера.")
     __properties = ["id", "price", "period", "description", "short_description", "name"]
 
     @validator('period')

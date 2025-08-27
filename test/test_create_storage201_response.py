@@ -57,7 +57,13 @@ class TestCreateStorage201Response(unittest.TestCase):
                     access_key = access_key, 
                     secret_key = secret_key, 
                     moved_in_quarantine_at = 2025-01-01T12:00:00Z, 
-                    storage_class = cold, )
+                    storage_class = cold, 
+                    project_id = 1, 
+                    rate_id = 1, 
+                    website_config = timeweb_cloud_api.models.bucket_website_config.bucket_website_config(
+                        enabled = true, 
+                        index_page = index.html, 
+                        error_pages = null, ), )
             )
         else :
             return CreateStorage201Response(
@@ -79,7 +85,13 @@ class TestCreateStorage201Response(unittest.TestCase):
                     access_key = access_key, 
                     secret_key = secret_key, 
                     moved_in_quarantine_at = 2025-01-01T12:00:00Z, 
-                    storage_class = cold, ),
+                    storage_class = cold, 
+                    project_id = 1, 
+                    rate_id = 1, 
+                    website_config = timeweb_cloud_api.models.bucket_website_config.bucket_website_config(
+                        enabled = true, 
+                        index_page = index.html, 
+                        error_pages = null, ), ),
         )
         """
 

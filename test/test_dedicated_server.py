@@ -63,7 +63,11 @@ class TestDedicatedServer(unittest.TestCase):
                 price = 5490, 
                 location = ru-1, 
                 autoinstall_ready = 2, 
-                password = password
+                password = password, 
+                avatar_link = https://urltoimage.com/avatars/image.png, 
+                is_pre_installed = true, 
+                preset_id = None, 
+                project_id = None
             )
         else :
             return DedicatedServer(
@@ -92,6 +96,10 @@ class TestDedicatedServer(unittest.TestCase):
                 location = ru-1,
                 autoinstall_ready = 2,
                 password = password,
+                avatar_link = https://urltoimage.com/avatars/image.png,
+                is_pre_installed = true,
+                preset_id = None,
+                project_id = None,
         )
         """
 

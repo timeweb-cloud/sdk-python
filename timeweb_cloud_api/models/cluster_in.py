@@ -21,6 +21,10 @@ import json
 
 from typing import Any, Optional
 from pydantic import BaseModel, Field, validator
+from timeweb_cloud_api.models.cluster_in_cluster_network_cidr import ClusterInClusterNetworkCidr
+from timeweb_cloud_api.models.cluster_in_configuration import ClusterInConfiguration
+from timeweb_cloud_api.models.cluster_in_maintenance_slot import ClusterInMaintenanceSlot
+from timeweb_cloud_api.models.cluster_in_oidc_provider import ClusterInOidcProvider
 
 class ClusterIn(BaseModel):
     """
@@ -33,11 +37,16 @@ class ClusterIn(BaseModel):
     network_driver: Optional[Any] = Field(..., description="Тип используемого сетевого драйвера в кластере")
     is_ingress: Optional[Any] = Field(None, description="Логическое значение, которое показывает, использовать ли Ingress в кластере")
     is_k8s_dashboard: Optional[Any] = Field(None, description="Логическое значение, которое показывает, использовать ли Kubernetes Dashboard в кластере")
-    preset_id: Optional[Any] = Field(..., description="ID тарифа мастер-ноды")
+    preset_id: Optional[Any] = Field(None, description="ID тарифа мастер-ноды. Нельзя передавать вместе с `configuration`")
+    configuration: Optional[ClusterInConfiguration] = None
+    master_nodes_count: Optional[Any] = Field(None, description="Количество мастер нод")
     worker_groups: Optional[Any] = Field(None, description="Группы воркеров в кластере")
     network_id: Optional[Any] = Field(None, description="ID приватной сети")
     project_id: Optional[Any] = Field(None, description="ID проекта")
-    __properties = ["name", "description", "k8s_version", "availability_zone", "network_driver", "is_ingress", "is_k8s_dashboard", "preset_id", "worker_groups", "network_id", "project_id"]
+    maintenance_slot: Optional[ClusterInMaintenanceSlot] = None
+    oidc_provider: Optional[ClusterInOidcProvider] = None
+    cluster_network_cidr: Optional[ClusterInClusterNetworkCidr] = None
+    __properties = ["name", "description", "k8s_version", "availability_zone", "network_driver", "is_ingress", "is_k8s_dashboard", "preset_id", "configuration", "master_nodes_count", "worker_groups", "network_id", "project_id", "maintenance_slot", "oidc_provider", "cluster_network_cidr"]
 
     @validator('availability_zone')
     def availability_zone_validate_enum(cls, value):
@@ -45,8 +54,8 @@ class ClusterIn(BaseModel):
         if value is None:
             return value
 
-        if value not in ('spb-3', 'msk-1', 'ams-1'):
-            raise ValueError("must be one of enum values ('spb-3', 'msk-1', 'ams-1')")
+        if value not in ('spb-3', 'msk-1', 'ams-1', 'fra-1'):
+            raise ValueError("must be one of enum values ('spb-3', 'msk-1', 'ams-1', 'fra-1')")
         return value
 
     @validator('network_driver')
@@ -83,6 +92,18 @@ class ClusterIn(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
+        # override the default output from pydantic by calling `to_dict()` of configuration
+        if self.configuration:
+            _dict['configuration'] = self.configuration.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of maintenance_slot
+        if self.maintenance_slot:
+            _dict['maintenance_slot'] = self.maintenance_slot.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of oidc_provider
+        if self.oidc_provider:
+            _dict['oidc_provider'] = self.oidc_provider.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of cluster_network_cidr
+        if self.cluster_network_cidr:
+            _dict['cluster_network_cidr'] = self.cluster_network_cidr.to_dict()
         # set to None if name (nullable) is None
         # and __fields_set__ contains the field
         if self.name is None and "name" in self.__fields_set__:
@@ -123,6 +144,11 @@ class ClusterIn(BaseModel):
         if self.preset_id is None and "preset_id" in self.__fields_set__:
             _dict['preset_id'] = None
 
+        # set to None if master_nodes_count (nullable) is None
+        # and __fields_set__ contains the field
+        if self.master_nodes_count is None and "master_nodes_count" in self.__fields_set__:
+            _dict['master_nodes_count'] = None
+
         # set to None if worker_groups (nullable) is None
         # and __fields_set__ contains the field
         if self.worker_groups is None and "worker_groups" in self.__fields_set__:
@@ -158,9 +184,14 @@ class ClusterIn(BaseModel):
             "is_ingress": obj.get("is_ingress"),
             "is_k8s_dashboard": obj.get("is_k8s_dashboard"),
             "preset_id": obj.get("preset_id"),
+            "configuration": ClusterInConfiguration.from_dict(obj.get("configuration")) if obj.get("configuration") is not None else None,
+            "master_nodes_count": obj.get("master_nodes_count"),
             "worker_groups": obj.get("worker_groups"),
             "network_id": obj.get("network_id"),
-            "project_id": obj.get("project_id")
+            "project_id": obj.get("project_id"),
+            "maintenance_slot": ClusterInMaintenanceSlot.from_dict(obj.get("maintenance_slot")) if obj.get("maintenance_slot") is not None else None,
+            "oidc_provider": ClusterInOidcProvider.from_dict(obj.get("oidc_provider")) if obj.get("oidc_provider") is not None else None,
+            "cluster_network_cidr": ClusterInClusterNetworkCidr.from_dict(obj.get("cluster_network_cidr")) if obj.get("cluster_network_cidr") is not None else None
         })
         return _obj
 

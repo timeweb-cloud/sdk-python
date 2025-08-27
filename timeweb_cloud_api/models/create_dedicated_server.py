@@ -26,7 +26,7 @@ class CreateDedicatedServer(BaseModel):
     """
     CreateDedicatedServer
     """
-    plan_id: Optional[Any] = Field(..., description="ID списка дополнительных услуг выделенного сервера.")
+    plan_id: Optional[Any] = Field(None, description="ID списка дополнительных услуг выделенного сервера.")
     preset_id: Optional[Any] = Field(..., description="ID тарифа выделенного сервера.")
     os_id: Optional[Any] = Field(None, description="ID операционной системы, которая будет установлена на выделенный сервер.")
     cp_id: Optional[Any] = Field(None, description="ID панели управления, которая будет установлена на выделенный сервер.")

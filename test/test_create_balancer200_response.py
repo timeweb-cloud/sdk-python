@@ -41,6 +41,7 @@ class TestCreateBalancer200Response(unittest.TestCase):
             return CreateBalancer200Response(
                 balancer = timeweb_cloud_api.models.balancer.balancer(
                     id = 1, 
+                    account_id = nv00000, 
                     algo = roundrobin, 
                     created_at = 2022-10-25T15:15:45.000Z, 
                     fall = 3, 
@@ -68,12 +69,15 @@ class TestCreateBalancer200Response(unittest.TestCase):
                     rules = null, 
                     ips = [], 
                     location = ru-1, 
-                    availability_zone = spb-1, )
+                    availability_zone = spb-1, 
+                    project_id = 1, 
+                    networks = null, )
             )
         else :
             return CreateBalancer200Response(
                 balancer = timeweb_cloud_api.models.balancer.balancer(
                     id = 1, 
+                    account_id = nv00000, 
                     algo = roundrobin, 
                     created_at = 2022-10-25T15:15:45.000Z, 
                     fall = 3, 
@@ -101,7 +105,9 @@ class TestCreateBalancer200Response(unittest.TestCase):
                     rules = null, 
                     ips = [], 
                     location = ru-1, 
-                    availability_zone = spb-1, ),
+                    availability_zone = spb-1, 
+                    project_id = 1, 
+                    networks = null, ),
         )
         """
 

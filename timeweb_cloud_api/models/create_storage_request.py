@@ -21,6 +21,7 @@ import json
 
 from typing import Any, Optional
 from pydantic import BaseModel, Field, validator
+from timeweb_cloud_api.models.create_storage_request_configurator import CreateStorageRequestConfigurator
 
 class CreateStorageRequest(BaseModel):
     """
@@ -29,8 +30,10 @@ class CreateStorageRequest(BaseModel):
     name: Optional[Any] = Field(..., description="Название хранилища.")
     description: Optional[Any] = Field(None, description="Комментарий к хранилищу.")
     type: Optional[Any] = Field(..., description="Тип хранилища.")
-    preset_id: Optional[Any] = Field(..., description="ID тарифа.")
-    __properties = ["name", "description", "type", "preset_id"]
+    preset_id: Optional[Any] = Field(None, description="ID тарифа. Нельзя передавать вместе с `configurator`.")
+    configurator: Optional[CreateStorageRequestConfigurator] = None
+    project_id: Optional[Any] = Field(None, description="ID проекта.")
+    __properties = ["name", "description", "type", "preset_id", "configurator", "project_id"]
 
     @validator('type')
     def type_validate_enum(cls, value):
@@ -66,6 +69,9 @@ class CreateStorageRequest(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
+        # override the default output from pydantic by calling `to_dict()` of configurator
+        if self.configurator:
+            _dict['configurator'] = self.configurator.to_dict()
         # set to None if name (nullable) is None
         # and __fields_set__ contains the field
         if self.name is None and "name" in self.__fields_set__:
@@ -86,6 +92,11 @@ class CreateStorageRequest(BaseModel):
         if self.preset_id is None and "preset_id" in self.__fields_set__:
             _dict['preset_id'] = None
 
+        # set to None if project_id (nullable) is None
+        # and __fields_set__ contains the field
+        if self.project_id is None and "project_id" in self.__fields_set__:
+            _dict['project_id'] = None
+
         return _dict
 
     @classmethod
@@ -101,7 +112,9 @@ class CreateStorageRequest(BaseModel):
             "name": obj.get("name"),
             "description": obj.get("description"),
             "type": obj.get("type"),
-            "preset_id": obj.get("preset_id")
+            "preset_id": obj.get("preset_id"),
+            "configurator": CreateStorageRequestConfigurator.from_dict(obj.get("configurator")) if obj.get("configurator") is not None else None,
+            "project_id": obj.get("project_id")
         })
         return _obj
 

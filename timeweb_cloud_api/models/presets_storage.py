@@ -32,7 +32,9 @@ class PresetsStorage(BaseModel):
     disk: Optional[Any] = Field(..., description="Описание диска хранилища.")
     price: Optional[Any] = Field(..., description="Стоимость тарифа хранилища.")
     location: Optional[Any] = Field(..., description="Географическое расположение тарифа.")
-    __properties = ["id", "description", "description_short", "disk", "price", "location"]
+    tags: Optional[Any] = Field(..., description="Теги тарифа.")
+    storage_class: Optional[Any] = Field(..., description="Класс хранилища.")
+    __properties = ["id", "description", "description_short", "disk", "price", "location", "tags", "storage_class"]
 
     @validator('location')
     def location_validate_enum(cls, value):
@@ -40,8 +42,18 @@ class PresetsStorage(BaseModel):
         if value is None:
             return value
 
-        if value not in ('ru-1', 'pl-1', 'kz-1'):
-            raise ValueError("must be one of enum values ('ru-1', 'pl-1', 'kz-1')")
+        if value not in ('ru-1'):
+            raise ValueError("must be one of enum values ('ru-1')")
+        return value
+
+    @validator('storage_class')
+    def storage_class_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in ('cold', 'hot'):
+            raise ValueError("must be one of enum values ('cold', 'hot')")
         return value
 
     class Config:
@@ -98,6 +110,16 @@ class PresetsStorage(BaseModel):
         if self.location is None and "location" in self.__fields_set__:
             _dict['location'] = None
 
+        # set to None if tags (nullable) is None
+        # and __fields_set__ contains the field
+        if self.tags is None and "tags" in self.__fields_set__:
+            _dict['tags'] = None
+
+        # set to None if storage_class (nullable) is None
+        # and __fields_set__ contains the field
+        if self.storage_class is None and "storage_class" in self.__fields_set__:
+            _dict['storage_class'] = None
+
         return _dict
 
     @classmethod
@@ -115,7 +137,9 @@ class PresetsStorage(BaseModel):
             "description_short": obj.get("description_short"),
             "disk": obj.get("disk"),
             "price": obj.get("price"),
-            "location": obj.get("location")
+            "location": obj.get("location"),
+            "tags": obj.get("tags"),
+            "storage_class": obj.get("storage_class")
         })
         return _obj
 

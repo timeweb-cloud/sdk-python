@@ -35,7 +35,7 @@ class DedicatedServerPreset(BaseModel):
     is_pre_installed: Optional[Any] = Field(..., description="Это логическое значение, которое показывает, готов ли выделенный сервер к моментальной выдаче.")
     cpu: DedicatedServerPresetCpu = Field(...)
     disk: DedicatedServerPresetDisk = Field(...)
-    price: Optional[Any] = Field(None, description="Стоимость тарифа выделенного сервера")
+    price: Optional[Any] = Field(..., description="Стоимость тарифа выделенного сервера")
     memory: DedicatedServerPresetMemory = Field(...)
     location: Optional[Any] = Field(..., description="Локация.")
     __properties = ["id", "description", "is_ipmi_enabled", "is_pre_installed", "cpu", "disk", "price", "memory", "location"]

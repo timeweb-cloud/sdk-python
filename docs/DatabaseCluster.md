@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 **port** | **object** | Порт | 
 **status** | **object** | Текущий статус кластера базы данных. | 
 **preset_id** | **object** | ID тарифа. | 
-**disk_stats** | [**DatabaseClusterDiskStats**](DatabaseClusterDiskStats.md) |  | 
+**disk** | [**DatabaseClusterDisk**](DatabaseClusterDisk.md) |  | [optional] 
 **config_parameters** | [**ConfigParameters**](ConfigParameters.md) |  | 
 **is_enabled_public_network** | **object** | Доступность публичного IP-адреса | 
 

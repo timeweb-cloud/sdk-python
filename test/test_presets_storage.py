@@ -44,7 +44,9 @@ class TestPresetsStorage(unittest.TestCase):
                 description_short = Start, 
                 disk = 30, 
                 price = 100, 
-                location = ru-1
+                location = ru-1, 
+                tags = None, 
+                storage_class = hot
             )
         else :
             return PresetsStorage(
@@ -54,6 +56,8 @@ class TestPresetsStorage(unittest.TestCase):
                 disk = 30,
                 price = 100,
                 location = ru-1,
+                tags = None,
+                storage_class = hot,
         )
         """
 

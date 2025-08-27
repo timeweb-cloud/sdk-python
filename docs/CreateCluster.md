@@ -9,8 +9,11 @@ Name | Type | Description | Notes
 **admin** | [**CreateClusterAdmin**](CreateClusterAdmin.md) |  | [optional] 
 **instance** | [**CreateClusterInstance**](CreateClusterInstance.md) |  | [optional] 
 **hash_type** | **object** | Тип хеширования базы данных (mysql | postgres). | [optional] 
-**preset_id** | **object** | ID тарифа. | 
+**preset_id** | **object** | ID тарифа. Нельзя передавать вместе с &#x60;configurator_id&#x60; | [optional] 
+**configurator_id** | **object** | ID конфигуратора. Нельзя передавать вместе с &#x60;preset_id&#x60; | [optional] 
+**project_id** | **object** | ID проекта. | [optional] 
 **config_parameters** | [**ConfigParameters**](ConfigParameters.md) |  | [optional] 
+**replication** | [**DbReplication**](DbReplication.md) |  | [optional] 
 **network** | [**Network**](Network.md) |  | [optional] 
 **description** | **object** | Описание кластера базы данных | [optional] 
 **availability_zone** | [**AvailabilityZone**](AvailabilityZone.md) |  | [optional] 

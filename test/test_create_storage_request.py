@@ -42,13 +42,16 @@ class TestCreateStorageRequest(unittest.TestCase):
                 name = test, 
                 description = Bucket of awesome cats, 
                 type = private, 
-                preset_id = 1
+                preset_id = 1, 
+                configurator = timeweb_cloud_api.models.create_storage_request_configurator.createStorage_request_configurator(
+                    disk = 1024, 
+                    id = 73, ), 
+                project_id = 1
             )
         else :
             return CreateStorageRequest(
                 name = test,
                 type = private,
-                preset_id = 1,
         )
         """
 

@@ -28,6 +28,7 @@ class Balancer(BaseModel):
     Балансировщик
     """
     id: Optional[Any] = Field(..., description="ID для каждого экземпляра балансировщика. Автоматически генерируется при создании.")
+    account_id: Optional[Any] = Field(None, description="ID пользователя.")
     algo: Optional[Any] = Field(..., description="Алгоритм переключений балансировщика.")
     created_at: Optional[Any] = Field(..., description="Значение времени, указанное в комбинированном формате даты и времени ISO8601, которое представляет, когда был создан балансировщик.")
     fall: Optional[Any] = Field(..., description="Порог количества ошибок.")
@@ -56,7 +57,9 @@ class Balancer(BaseModel):
     ips: Optional[Any] = Field(..., description="Список IP-адресов, привязанных к балансировщику")
     location: Optional[Any] = Field(..., description="Географическое расположение балансировщика")
     availability_zone: AvailabilityZone = Field(...)
-    __properties = ["id", "algo", "created_at", "fall", "inter", "ip", "local_ip", "is_keepalive", "name", "path", "port", "proto", "rise", "maxconn", "connect_timeout", "client_timeout", "server_timeout", "httprequest_timeout", "preset_id", "is_ssl", "status", "is_sticky", "timeout", "avatar_link", "is_use_proxy", "rules", "ips", "location", "availability_zone"]
+    project_id: Optional[Any] = Field(..., description="ID проекта")
+    networks: Optional[Any] = Field(..., description="Список сетей сервера.")
+    __properties = ["id", "account_id", "algo", "created_at", "fall", "inter", "ip", "local_ip", "is_keepalive", "name", "path", "port", "proto", "rise", "maxconn", "connect_timeout", "client_timeout", "server_timeout", "httprequest_timeout", "preset_id", "is_ssl", "status", "is_sticky", "timeout", "avatar_link", "is_use_proxy", "rules", "ips", "location", "availability_zone", "project_id", "networks"]
 
     @validator('algo')
     def algo_validate_enum(cls, value):
@@ -126,6 +129,11 @@ class Balancer(BaseModel):
         # and __fields_set__ contains the field
         if self.id is None and "id" in self.__fields_set__:
             _dict['id'] = None
+
+        # set to None if account_id (nullable) is None
+        # and __fields_set__ contains the field
+        if self.account_id is None and "account_id" in self.__fields_set__:
+            _dict['account_id'] = None
 
         # set to None if algo (nullable) is None
         # and __fields_set__ contains the field
@@ -262,6 +270,16 @@ class Balancer(BaseModel):
         if self.location is None and "location" in self.__fields_set__:
             _dict['location'] = None
 
+        # set to None if project_id (nullable) is None
+        # and __fields_set__ contains the field
+        if self.project_id is None and "project_id" in self.__fields_set__:
+            _dict['project_id'] = None
+
+        # set to None if networks (nullable) is None
+        # and __fields_set__ contains the field
+        if self.networks is None and "networks" in self.__fields_set__:
+            _dict['networks'] = None
+
         return _dict
 
     @classmethod
@@ -275,6 +293,7 @@ class Balancer(BaseModel):
 
         _obj = Balancer.parse_obj({
             "id": obj.get("id"),
+            "account_id": obj.get("account_id"),
             "algo": obj.get("algo"),
             "created_at": obj.get("created_at"),
             "fall": obj.get("fall"),
@@ -302,7 +321,9 @@ class Balancer(BaseModel):
             "rules": obj.get("rules"),
             "ips": obj.get("ips"),
             "location": obj.get("location"),
-            "availability_zone": obj.get("availability_zone")
+            "availability_zone": obj.get("availability_zone"),
+            "project_id": obj.get("project_id"),
+            "networks": obj.get("networks")
         })
         return _obj
 

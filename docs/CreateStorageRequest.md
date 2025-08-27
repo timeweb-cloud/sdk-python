@@ -7,7 +7,9 @@ Name | Type | Description | Notes
 **name** | **object** | Название хранилища. | 
 **description** | **object** | Комментарий к хранилищу. | [optional] 
 **type** | **object** | Тип хранилища. | 
-**preset_id** | **object** | ID тарифа. | 
+**preset_id** | **object** | ID тарифа. Нельзя передавать вместе с &#x60;configurator&#x60;. | [optional] 
+**configurator** | [**CreateStorageRequestConfigurator**](CreateStorageRequestConfigurator.md) |  | [optional] 
+**project_id** | **object** | ID проекта. | [optional] 
 
 ## Example
 

@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**name** | **object** | Удобочитаемое имя, установленное для балансировщика. | 
+**name** | **object** | Удобочитаемое имя, установленное для балансировщика. Должно быть уникальным в рамках аккаунта | 
 **algo** | **object** | Алгоритм переключений балансировщика. | 
 **is_sticky** | **object** | Это логическое значение, которое показывает, сохраняется ли сессия. | 
 **is_use_proxy** | **object** | Это логическое значение, которое показывает, выступает ли балансировщик в качестве прокси. | 
@@ -25,6 +25,7 @@ Name | Type | Description | Notes
 **preset_id** | **object** | ID тарифа. | 
 **network** | [**Network**](Network.md) |  | [optional] 
 **availability_zone** | [**AvailabilityZone**](AvailabilityZone.md) |  | [optional] 
+**project_id** | **object** | ID проекта | [optional] 
 
 ## Example
 

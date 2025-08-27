@@ -35,7 +35,8 @@ class NodeGroupIn(BaseModel):
     is_autoscaling: Optional[Any] = Field(None, description="Автомасштабирование. Автоматическое увеличение и уменьшение количества нод в группе в зависимости от текущей нагрузки")
     min_size: Optional[Any] = Field(None, alias="min-size", description="Минимальное количество нод. Передавать в связке с параметрами `is_autoscaling` и `max_size`")
     max_size: Optional[Any] = Field(None, alias="max-size", description="Максимальное количество нод. Передавать в связке с параметрами `is_autoscaling` и `min_size`. Максимальное количество нод ограничено тарифом кластера")
-    __properties = ["name", "preset_id", "configuration", "node_count", "labels", "is_autoscaling", "min-size", "max-size"]
+    is_autohealing: Optional[Any] = Field(None, description="Автоматическое восстановление работоспособности вышедших из строя узлов")
+    __properties = ["name", "preset_id", "configuration", "node_count", "labels", "is_autoscaling", "min-size", "max-size", "is_autohealing"]
 
     class Config:
         """Pydantic configuration"""
@@ -99,6 +100,11 @@ class NodeGroupIn(BaseModel):
         if self.max_size is None and "max_size" in self.__fields_set__:
             _dict['max-size'] = None
 
+        # set to None if is_autohealing (nullable) is None
+        # and __fields_set__ contains the field
+        if self.is_autohealing is None and "is_autohealing" in self.__fields_set__:
+            _dict['is_autohealing'] = None
+
         return _dict
 
     @classmethod
@@ -118,7 +124,8 @@ class NodeGroupIn(BaseModel):
             "labels": obj.get("labels"),
             "is_autoscaling": obj.get("is_autoscaling"),
             "min_size": obj.get("min-size"),
-            "max_size": obj.get("max-size")
+            "max_size": obj.get("max-size"),
+            "is_autohealing": obj.get("is_autohealing")
         })
         return _obj
 

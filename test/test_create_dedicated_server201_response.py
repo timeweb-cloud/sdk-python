@@ -64,7 +64,11 @@ class TestCreateDedicatedServer201Response(unittest.TestCase):
                     price = 5490, 
                     location = ru-1, 
                     autoinstall_ready = 2, 
-                    password = password, )
+                    password = password, 
+                    avatar_link = https://urltoimage.com/avatars/image.png, 
+                    is_pre_installed = true, 
+                    preset_id = null, 
+                    project_id = null, )
             )
         else :
             return CreateDedicatedServer201Response(
@@ -93,7 +97,11 @@ class TestCreateDedicatedServer201Response(unittest.TestCase):
                     price = 5490, 
                     location = ru-1, 
                     autoinstall_ready = 2, 
-                    password = password, ),
+                    password = password, 
+                    avatar_link = https://urltoimage.com/avatars/image.png, 
+                    is_pre_installed = true, 
+                    preset_id = null, 
+                    project_id = null, ),
         )
         """
 

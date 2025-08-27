@@ -11,10 +11,15 @@ Name | Type | Description | Notes
 **network_driver** | **object** | Тип используемого сетевого драйвера в кластере | 
 **is_ingress** | **object** | Логическое значение, которое показывает, использовать ли Ingress в кластере | [optional] 
 **is_k8s_dashboard** | **object** | Логическое значение, которое показывает, использовать ли Kubernetes Dashboard в кластере | [optional] 
-**preset_id** | **object** | ID тарифа мастер-ноды | 
+**preset_id** | **object** | ID тарифа мастер-ноды. Нельзя передавать вместе с &#x60;configuration&#x60; | [optional] 
+**configuration** | [**ClusterInConfiguration**](ClusterInConfiguration.md) |  | [optional] 
+**master_nodes_count** | **object** | Количество мастер нод | [optional] 
 **worker_groups** | **object** | Группы воркеров в кластере | [optional] 
 **network_id** | **object** | ID приватной сети | [optional] 
 **project_id** | **object** | ID проекта | [optional] 
+**maintenance_slot** | [**ClusterInMaintenanceSlot**](ClusterInMaintenanceSlot.md) |  | [optional] 
+**oidc_provider** | [**ClusterInOidcProvider**](ClusterInOidcProvider.md) |  | [optional] 
+**cluster_network_cidr** | [**ClusterInClusterNetworkCidr**](ClusterInClusterNetworkCidr.md) |  | [optional] 
 
 ## Example
 

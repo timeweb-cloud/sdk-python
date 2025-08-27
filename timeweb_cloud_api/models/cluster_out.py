@@ -59,8 +59,8 @@ class ClusterOut(BaseModel):
         if value is None:
             return value
 
-        if value not in ('spb-3', 'msk-1', 'ams-1'):
-            raise ValueError("must be one of enum values ('spb-3', 'msk-1', 'ams-1')")
+        if value not in ('spb-3', 'msk-1', 'ams-1', 'fra-1'):
+            raise ValueError("must be one of enum values ('spb-3', 'msk-1', 'ams-1', 'fra-1')")
         return value
 
     class Config:

@@ -47,16 +47,34 @@ class TestClusterIn(unittest.TestCase):
                 is_ingress = None, 
                 is_k8s_dashboard = None, 
                 preset_id = None, 
+                configuration = timeweb_cloud_api.models.cluster_in_configuration.ClusterIn_configuration(
+                    configurator_id = null, 
+                    disk = null, 
+                    cpu = null, 
+                    ram = null, ), 
+                master_nodes_count = None, 
                 worker_groups = None, 
                 network_id = None, 
-                project_id = None
+                project_id = None, 
+                maintenance_slot = timeweb_cloud_api.models.cluster_in_maintenance_slot.ClusterIn_maintenance_slot(
+                    type = any_time, 
+                    from = null, 
+                    to = null, ), 
+                oidc_provider = timeweb_cloud_api.models.cluster_in_oidc_provider.ClusterIn_oidc_provider(
+                    name = null, 
+                    issuer_url = null, 
+                    client_id = null, 
+                    username_claim = null, 
+                    groups_claim = null, ), 
+                cluster_network_cidr = timeweb_cloud_api.models.cluster_in_cluster_network_cidr.ClusterIn_cluster_network_cidr(
+                    pods_network = null, 
+                    services_network = null, )
             )
         else :
             return ClusterIn(
                 name = None,
                 k8s_version = None,
                 network_driver = kuberouter,
-                preset_id = None,
         )
         """
 

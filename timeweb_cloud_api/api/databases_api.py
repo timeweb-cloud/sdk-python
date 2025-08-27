@@ -1006,7 +1006,7 @@ class DatabasesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def delete_database_backup(self, db_id : Annotated[Any, Field(..., description="ID базы данных")], backup_id : Annotated[Any, Field(..., description="ID резевной копии")], **kwargs) -> None:  # noqa: E501
+    def delete_database_backup(self, db_id : Annotated[Any, Field(..., description="ID базы данных")], backup_id : Annotated[Any, Field(..., description="ID резервной копии")], **kwargs) -> None:  # noqa: E501
         """Удаление бэкапа базы данных  # noqa: E501
 
         Чтобы удалить бэкап базы данных, отправьте запрос DELETE в `api/v1/dbs/{db_id}/backups/{backup_id}`.   # noqa: E501
@@ -1018,7 +1018,7 @@ class DatabasesApi(object):
 
         :param db_id: ID базы данных (required)
         :type db_id: object
-        :param backup_id: ID резевной копии (required)
+        :param backup_id: ID резервной копии (required)
         :type backup_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -1037,7 +1037,7 @@ class DatabasesApi(object):
         return self.delete_database_backup_with_http_info(db_id, backup_id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def delete_database_backup_with_http_info(self, db_id : Annotated[Any, Field(..., description="ID базы данных")], backup_id : Annotated[Any, Field(..., description="ID резевной копии")], **kwargs) -> ApiResponse:  # noqa: E501
+    def delete_database_backup_with_http_info(self, db_id : Annotated[Any, Field(..., description="ID базы данных")], backup_id : Annotated[Any, Field(..., description="ID резервной копии")], **kwargs) -> ApiResponse:  # noqa: E501
         """Удаление бэкапа базы данных  # noqa: E501
 
         Чтобы удалить бэкап базы данных, отправьте запрос DELETE в `api/v1/dbs/{db_id}/backups/{backup_id}`.   # noqa: E501
@@ -1049,7 +1049,7 @@ class DatabasesApi(object):
 
         :param db_id: ID базы данных (required)
         :type db_id: object
-        :param backup_id: ID резевной копии (required)
+        :param backup_id: ID резервной копии (required)
         :type backup_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -1883,7 +1883,7 @@ class DatabasesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def get_database_backup(self, db_id : Annotated[Any, Field(..., description="ID базы данных")], backup_id : Annotated[Any, Field(..., description="ID резевной копии")], **kwargs) -> CreateDatabaseBackup201Response:  # noqa: E501
+    def get_database_backup(self, db_id : Annotated[Any, Field(..., description="ID базы данных")], backup_id : Annotated[Any, Field(..., description="ID резервной копии")], **kwargs) -> CreateDatabaseBackup201Response:  # noqa: E501
         """Получение бэкапа базы данных  # noqa: E501
 
         Чтобы получить бэкап базы данных, отправьте запрос GET в `api/v1/dbs/{db_id}/backups/{backup_id}`.   # noqa: E501
@@ -1895,7 +1895,7 @@ class DatabasesApi(object):
 
         :param db_id: ID базы данных (required)
         :type db_id: object
-        :param backup_id: ID резевной копии (required)
+        :param backup_id: ID резервной копии (required)
         :type backup_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -1914,7 +1914,7 @@ class DatabasesApi(object):
         return self.get_database_backup_with_http_info(db_id, backup_id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def get_database_backup_with_http_info(self, db_id : Annotated[Any, Field(..., description="ID базы данных")], backup_id : Annotated[Any, Field(..., description="ID резевной копии")], **kwargs) -> ApiResponse:  # noqa: E501
+    def get_database_backup_with_http_info(self, db_id : Annotated[Any, Field(..., description="ID базы данных")], backup_id : Annotated[Any, Field(..., description="ID резервной копии")], **kwargs) -> ApiResponse:  # noqa: E501
         """Получение бэкапа базы данных  # noqa: E501
 
         Чтобы получить бэкап базы данных, отправьте запрос GET в `api/v1/dbs/{db_id}/backups/{backup_id}`.   # noqa: E501
@@ -1926,7 +1926,7 @@ class DatabasesApi(object):
 
         :param db_id: ID базы данных (required)
         :type db_id: object
-        :param backup_id: ID резевной копии (required)
+        :param backup_id: ID резервной копии (required)
         :type backup_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -3657,7 +3657,7 @@ class DatabasesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def restore_database_from_backup(self, db_id : Annotated[Any, Field(..., description="ID базы данных")], backup_id : Annotated[Any, Field(..., description="ID резевной копии")], **kwargs) -> None:  # noqa: E501
+    def restore_database_from_backup(self, db_id : Annotated[Any, Field(..., description="ID базы данных")], backup_id : Annotated[Any, Field(..., description="ID резервной копии")], **kwargs) -> None:  # noqa: E501
         """Восстановление базы данных из бэкапа  # noqa: E501
 
         Чтобы восстановить базу данных из бэкапа, отправьте запрос PUT в `api/v1/dbs/{db_id}/backups/{backup_id}`.   # noqa: E501
@@ -3669,7 +3669,7 @@ class DatabasesApi(object):
 
         :param db_id: ID базы данных (required)
         :type db_id: object
-        :param backup_id: ID резевной копии (required)
+        :param backup_id: ID резервной копии (required)
         :type backup_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -3688,7 +3688,7 @@ class DatabasesApi(object):
         return self.restore_database_from_backup_with_http_info(db_id, backup_id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def restore_database_from_backup_with_http_info(self, db_id : Annotated[Any, Field(..., description="ID базы данных")], backup_id : Annotated[Any, Field(..., description="ID резевной копии")], **kwargs) -> ApiResponse:  # noqa: E501
+    def restore_database_from_backup_with_http_info(self, db_id : Annotated[Any, Field(..., description="ID базы данных")], backup_id : Annotated[Any, Field(..., description="ID резервной копии")], **kwargs) -> ApiResponse:  # noqa: E501
         """Восстановление базы данных из бэкапа  # noqa: E501
 
         Чтобы восстановить базу данных из бэкапа, отправьте запрос PUT в `api/v1/dbs/{db_id}/backups/{backup_id}`.   # noqa: E501
@@ -3700,7 +3700,7 @@ class DatabasesApi(object):
 
         :param db_id: ID базы данных (required)
         :type db_id: object
-        :param backup_id: ID резевной копии (required)
+        :param backup_id: ID резервной копии (required)
         :type backup_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional

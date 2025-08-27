@@ -40,7 +40,9 @@ class TestUpdateStorageRequest(unittest.TestCase):
         if include_optional :
             return UpdateStorageRequest(
                 preset_id = 1, 
-                configurator_id = 55, 
+                configurator = timeweb_cloud_api.models.update_storage_request_configurator.updateStorage_request_configurator(
+                    disk = 1024, 
+                    id = 73, ), 
                 bucket_type = public, 
                 description = Bucket of awesome cats
             )

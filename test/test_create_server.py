@@ -63,7 +63,8 @@ class TestCreateServer(unittest.TestCase):
                     ip = 192.168.0.4, 
                     network_drive_ids = [8d014355-ffb8-41e0-8283-0f58e606c4ff], ), 
                 cloud_init = #cloud-config, 
-                availability_zone = spb-1
+                availability_zone = spb-1, 
+                project_id = 1
             )
         else :
             return CreateServer(

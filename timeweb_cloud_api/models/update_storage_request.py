@@ -21,16 +21,17 @@ import json
 
 from typing import Any, Optional
 from pydantic import BaseModel, Field, validator
+from timeweb_cloud_api.models.update_storage_request_configurator import UpdateStorageRequestConfigurator
 
 class UpdateStorageRequest(BaseModel):
     """
     UpdateStorageRequest
     """
     preset_id: Optional[Any] = Field(None, description="ID тарифа.")
-    configurator_id: Optional[Any] = Field(None, description="ID конфигуратора хранилища.")
+    configurator: Optional[UpdateStorageRequestConfigurator] = None
     bucket_type: Optional[Any] = Field(None, description="Тип хранилища.")
     description: Optional[Any] = Field(None, description="Комментарий к хранилищу.")
-    __properties = ["preset_id", "configurator_id", "bucket_type", "description"]
+    __properties = ["preset_id", "configurator", "bucket_type", "description"]
 
     @validator('bucket_type')
     def bucket_type_validate_enum(cls, value):
@@ -66,15 +67,13 @@ class UpdateStorageRequest(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
+        # override the default output from pydantic by calling `to_dict()` of configurator
+        if self.configurator:
+            _dict['configurator'] = self.configurator.to_dict()
         # set to None if preset_id (nullable) is None
         # and __fields_set__ contains the field
         if self.preset_id is None and "preset_id" in self.__fields_set__:
             _dict['preset_id'] = None
-
-        # set to None if configurator_id (nullable) is None
-        # and __fields_set__ contains the field
-        if self.configurator_id is None and "configurator_id" in self.__fields_set__:
-            _dict['configurator_id'] = None
 
         # set to None if bucket_type (nullable) is None
         # and __fields_set__ contains the field
@@ -99,7 +98,7 @@ class UpdateStorageRequest(BaseModel):
 
         _obj = UpdateStorageRequest.parse_obj({
             "preset_id": obj.get("preset_id"),
-            "configurator_id": obj.get("configurator_id"),
+            "configurator": UpdateStorageRequestConfigurator.from_dict(obj.get("configurator")) if obj.get("configurator") is not None else None,
             "bucket_type": obj.get("bucket_type"),
             "description": obj.get("description")
         })

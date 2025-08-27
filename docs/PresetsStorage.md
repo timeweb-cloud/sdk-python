@@ -11,6 +11,8 @@ Name | Type | Description | Notes
 **disk** | **object** | Описание диска хранилища. | 
 **price** | **object** | Стоимость тарифа хранилища. | 
 **location** | **object** | Географическое расположение тарифа. | 
+**tags** | **object** | Теги тарифа. | 
+**storage_class** | **object** | Класс хранилища. | 
 
 ## Example
 

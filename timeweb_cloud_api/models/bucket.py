@@ -22,6 +22,7 @@ import json
 from typing import Any, Optional
 from pydantic import BaseModel, Field, validator
 from timeweb_cloud_api.models.bucket_disk_stats import BucketDiskStats
+from timeweb_cloud_api.models.bucket_website_config import BucketWebsiteConfig
 
 class Bucket(BaseModel):
     """
@@ -43,7 +44,10 @@ class Bucket(BaseModel):
     secret_key: Optional[Any] = Field(..., description="Секретный ключ доступа от хранилища.")
     moved_in_quarantine_at: Optional[Any] = Field(..., description="Дата перемещения в карантин.")
     storage_class: Optional[Any] = Field(..., description="Класс хранилища.")
-    __properties = ["id", "name", "description", "disk_stats", "type", "preset_id", "configurator_id", "avatar_link", "status", "object_amount", "location", "hostname", "access_key", "secret_key", "moved_in_quarantine_at", "storage_class"]
+    project_id: Optional[Any] = Field(..., description="ID проекта.")
+    rate_id: Optional[Any] = Field(..., description="ID тарифа.")
+    website_config: BucketWebsiteConfig = Field(...)
+    __properties = ["id", "name", "description", "disk_stats", "type", "preset_id", "configurator_id", "avatar_link", "status", "object_amount", "location", "hostname", "access_key", "secret_key", "moved_in_quarantine_at", "storage_class", "project_id", "rate_id", "website_config"]
 
     @validator('type')
     def type_validate_enum(cls, value):
@@ -102,6 +106,9 @@ class Bucket(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of disk_stats
         if self.disk_stats:
             _dict['disk_stats'] = self.disk_stats.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of website_config
+        if self.website_config:
+            _dict['website_config'] = self.website_config.to_dict()
         # set to None if id (nullable) is None
         # and __fields_set__ contains the field
         if self.id is None and "id" in self.__fields_set__:
@@ -177,6 +184,16 @@ class Bucket(BaseModel):
         if self.storage_class is None and "storage_class" in self.__fields_set__:
             _dict['storage_class'] = None
 
+        # set to None if project_id (nullable) is None
+        # and __fields_set__ contains the field
+        if self.project_id is None and "project_id" in self.__fields_set__:
+            _dict['project_id'] = None
+
+        # set to None if rate_id (nullable) is None
+        # and __fields_set__ contains the field
+        if self.rate_id is None and "rate_id" in self.__fields_set__:
+            _dict['rate_id'] = None
+
         return _dict
 
     @classmethod
@@ -204,7 +221,10 @@ class Bucket(BaseModel):
             "access_key": obj.get("access_key"),
             "secret_key": obj.get("secret_key"),
             "moved_in_quarantine_at": obj.get("moved_in_quarantine_at"),
-            "storage_class": obj.get("storage_class")
+            "storage_class": obj.get("storage_class"),
+            "project_id": obj.get("project_id"),
+            "rate_id": obj.get("rate_id"),
+            "website_config": BucketWebsiteConfig.from_dict(obj.get("website_config")) if obj.get("website_config") is not None else None
         })
         return _obj
 

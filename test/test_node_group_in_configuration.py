@@ -42,7 +42,8 @@ class TestNodeGroupInConfiguration(unittest.TestCase):
                 configurator_id = None, 
                 disk = None, 
                 cpu = None, 
-                ram = None
+                ram = None, 
+                gpu = None
             )
         else :
             return NodeGroupInConfiguration(

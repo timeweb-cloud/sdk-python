@@ -580,7 +580,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.DatabasesApi(api_client)
     db_id = None # object | ID базы данных
-    backup_id = None # object | ID резевной копии
+    backup_id = None # object | ID резервной копии
 
     try:
         # Удаление бэкапа базы данных
@@ -595,7 +595,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **db_id** | [**object**](.md)| ID базы данных | 
- **backup_id** | [**object**](.md)| ID резевной копии | 
+ **backup_id** | [**object**](.md)| ID резервной копии | 
 
 ### Return type
 
@@ -1075,7 +1075,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.DatabasesApi(api_client)
     db_id = None # object | ID базы данных
-    backup_id = None # object | ID резевной копии
+    backup_id = None # object | ID резервной копии
 
     try:
         # Получение бэкапа базы данных
@@ -1092,7 +1092,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **db_id** | [**object**](.md)| ID базы данных | 
- **backup_id** | [**object**](.md)| ID резевной копии | 
+ **backup_id** | [**object**](.md)| ID резервной копии | 
 
 ### Return type
 
@@ -2059,7 +2059,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.DatabasesApi(api_client)
     db_id = None # object | ID базы данных
-    backup_id = None # object | ID резевной копии
+    backup_id = None # object | ID резервной копии
 
     try:
         # Восстановление базы данных из бэкапа
@@ -2074,7 +2074,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **db_id** | [**object**](.md)| ID базы данных | 
- **backup_id** | [**object**](.md)| ID резевной копии | 
+ **backup_id** | [**object**](.md)| ID резервной копии | 
 
 ### Return type
 

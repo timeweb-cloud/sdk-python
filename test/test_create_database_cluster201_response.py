@@ -51,7 +51,7 @@ class TestCreateDatabaseCluster201Response(unittest.TestCase):
                     port = 3000, 
                     status = started, 
                     preset_id = 5, 
-                    disk_stats = timeweb_cloud_api.models.database_cluster_disk_stats.database_cluster_disk_stats(
+                    disk = timeweb_cloud_api.models.database_cluster_disk.database_cluster_disk(
                         size = 10485760, 
                         used = 486.11328125, ), 
                     config_parameters = timeweb_cloud_api.models.config_parameters.config-parameters(
@@ -99,7 +99,7 @@ class TestCreateDatabaseCluster201Response(unittest.TestCase):
                     port = 3000, 
                     status = started, 
                     preset_id = 5, 
-                    disk_stats = timeweb_cloud_api.models.database_cluster_disk_stats.database_cluster_disk_stats(
+                    disk = timeweb_cloud_api.models.database_cluster_disk.database_cluster_disk(
                         size = 10485760, 
                         used = 486.11328125, ), 
                     config_parameters = timeweb_cloud_api.models.config_parameters.config-parameters(

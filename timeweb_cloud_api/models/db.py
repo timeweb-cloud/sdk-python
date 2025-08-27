@@ -77,8 +77,8 @@ class Db(BaseModel):
         if value is None:
             return value
 
-        if value not in ('started', 'starting', 'stoped', 'no_paid'):
-            raise ValueError("must be one of enum values ('started', 'starting', 'stoped', 'no_paid')")
+        if value not in ('started', 'starting', 'stopped', 'no_paid'):
+            raise ValueError("must be one of enum values ('started', 'starting', 'stopped', 'no_paid')")
         return value
 
     class Config:

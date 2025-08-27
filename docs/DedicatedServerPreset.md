@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **is_pre_installed** | **object** | Это логическое значение, которое показывает, готов ли выделенный сервер к моментальной выдаче. | 
 **cpu** | [**DedicatedServerPresetCpu**](DedicatedServerPresetCpu.md) |  | 
 **disk** | [**DedicatedServerPresetDisk**](DedicatedServerPresetDisk.md) |  | 
-**price** | **object** | Стоимость тарифа выделенного сервера | [optional] 
+**price** | **object** | Стоимость тарифа выделенного сервера | 
 **memory** | [**DedicatedServerPresetMemory**](DedicatedServerPresetMemory.md) |  | 
 **location** | **object** | Локация. | 
 

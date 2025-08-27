@@ -24,7 +24,7 @@ from pydantic import BaseModel, Field
 
 class Network(BaseModel):
     """
-    Network
+    Сеть
     """
     id: Optional[Any] = Field(..., description="ID сети.")
     floating_ip: Optional[Any] = Field(None, description="Плавающий IP-адрес")

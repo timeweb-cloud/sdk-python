@@ -51,7 +51,11 @@ class DedicatedServer(BaseModel):
     location: Optional[Any] = Field(..., description="Локация сервера.")
     autoinstall_ready: Optional[Any] = Field(..., description="Количество готовых к автоматической выдаче серверов. Если значение равно 0, сервер будет установлен через инженеров.")
     password: Optional[Any] = Field(..., description="Пароль root сервера или пароль Администратора для серверов Windows.")
-    __properties = ["id", "cpu_description", "hdd_description", "ram_description", "created_at", "ip", "ipmi_ip", "ipmi_login", "ipmi_password", "ipv6", "node_id", "name", "comment", "vnc_pass", "status", "os_id", "cp_id", "bandwidth_id", "network_drive_id", "additional_ip_addr_id", "plan_id", "price", "location", "autoinstall_ready", "password"]
+    avatar_link: Optional[Any] = Field(..., description="Ссылка на аватар сервера.")
+    is_pre_installed: Optional[Any] = Field(..., description="Это логическое значение, которое показывает, готов ли выделенный сервер к моментальной выдаче.")
+    preset_id: Optional[Any] = Field(..., description="ID тарифа сервера.")
+    project_id: Optional[Any] = Field(..., description="ID проекта")
+    __properties = ["id", "cpu_description", "hdd_description", "ram_description", "created_at", "ip", "ipmi_ip", "ipmi_login", "ipmi_password", "ipv6", "node_id", "name", "comment", "vnc_pass", "status", "os_id", "cp_id", "bandwidth_id", "network_drive_id", "additional_ip_addr_id", "plan_id", "price", "location", "autoinstall_ready", "password", "avatar_link", "is_pre_installed", "preset_id", "project_id"]
 
     @validator('status')
     def status_validate_enum(cls, value):
@@ -222,6 +226,26 @@ class DedicatedServer(BaseModel):
         if self.password is None and "password" in self.__fields_set__:
             _dict['password'] = None
 
+        # set to None if avatar_link (nullable) is None
+        # and __fields_set__ contains the field
+        if self.avatar_link is None and "avatar_link" in self.__fields_set__:
+            _dict['avatar_link'] = None
+
+        # set to None if is_pre_installed (nullable) is None
+        # and __fields_set__ contains the field
+        if self.is_pre_installed is None and "is_pre_installed" in self.__fields_set__:
+            _dict['is_pre_installed'] = None
+
+        # set to None if preset_id (nullable) is None
+        # and __fields_set__ contains the field
+        if self.preset_id is None and "preset_id" in self.__fields_set__:
+            _dict['preset_id'] = None
+
+        # set to None if project_id (nullable) is None
+        # and __fields_set__ contains the field
+        if self.project_id is None and "project_id" in self.__fields_set__:
+            _dict['project_id'] = None
+
         return _dict
 
     @classmethod
@@ -258,7 +282,11 @@ class DedicatedServer(BaseModel):
             "price": obj.get("price"),
             "location": obj.get("location"),
             "autoinstall_ready": obj.get("autoinstall_ready"),
-            "password": obj.get("password")
+            "password": obj.get("password"),
+            "avatar_link": obj.get("avatar_link"),
+            "is_pre_installed": obj.get("is_pre_installed"),
+            "preset_id": obj.get("preset_id"),
+            "project_id": obj.get("project_id")
         })
         return _obj
 
