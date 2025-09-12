@@ -23,6 +23,7 @@ Method | HTTP request | Description
 [**increase_count_of_nodes_in_group**](KubernetesApi.md#increase_count_of_nodes_in_group) | **POST** /api/v1/k8s/clusters/{cluster_id}/groups/{group_id}/nodes | Увеличение количества нод в группе на указанное количество
 [**reduce_count_of_nodes_in_group**](KubernetesApi.md#reduce_count_of_nodes_in_group) | **DELETE** /api/v1/k8s/clusters/{cluster_id}/groups/{group_id}/nodes | Уменьшение количества нод в группе на указанное количество
 [**update_cluster**](KubernetesApi.md#update_cluster) | **PATCH** /api/v1/k8s/clusters/{cluster_id} | Обновление информации о кластере
+[**update_cluster_version**](KubernetesApi.md#update_cluster_version) | **PATCH** /api/v1/k8s/clusters/{cluster_id}/versions/update | Обновление версии кластера
 
 
 # **create_cluster**
@@ -1578,6 +1579,88 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Информация о кластере |  -  |
+**400** |  |  -  |
+**401** |  |  -  |
+**403** |  |  -  |
+**404** |  |  -  |
+**429** |  |  -  |
+**500** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **update_cluster_version**
+> update_cluster_version(cluster_id, cluster_version_edit)
+
+Обновление версии кластера
+
+Чтобы обновить версию кластера, отправьте PATCH-запрос в `/api/v1/k8s/clusters/{cluster_id}/versions/update`
+
+### Example
+
+* Bearer (JWT) Authentication (Bearer):
+```python
+import time
+import os
+import timeweb_cloud_api
+from timeweb_cloud_api.models.cluster_version_edit import ClusterVersionEdit
+from timeweb_cloud_api.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.timeweb.cloud
+# See configuration.py for a list of all supported configuration parameters.
+configuration = timeweb_cloud_api.Configuration(
+    host = "https://api.timeweb.cloud"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): Bearer
+configuration = timeweb_cloud_api.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = timeweb_cloud_api.KubernetesApi(api_client)
+    cluster_id = None # object | ID кластера
+    cluster_version_edit = timeweb_cloud_api.ClusterVersionEdit() # ClusterVersionEdit | 
+
+    try:
+        # Обновление версии кластера
+        api_instance.update_cluster_version(cluster_id, cluster_version_edit)
+    except Exception as e:
+        print("Exception when calling KubernetesApi->update_cluster_version: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **cluster_id** | [**object**](.md)| ID кластера | 
+ **cluster_version_edit** | [**ClusterVersionEdit**](ClusterVersionEdit.md)|  | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Версия обновлена |  -  |
 **400** |  |  -  |
 **401** |  |  -  |
 **403** |  |  -  |

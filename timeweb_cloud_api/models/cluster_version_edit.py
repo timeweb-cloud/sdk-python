@@ -13,162 +13,64 @@
 """
 
 
-import unittest
-
-import timeweb_cloud_api
-from timeweb_cloud_api.api.kubernetes_api import KubernetesApi  # noqa: E501
-from timeweb_cloud_api.rest import ApiException
-
-
-class TestKubernetesApi(unittest.TestCase):
-    """KubernetesApi unit test stubs"""
-
-    def setUp(self):
-        self.api = timeweb_cloud_api.api.kubernetes_api.KubernetesApi()  # noqa: E501
-
-    def tearDown(self):
-        pass
-
-    def test_create_cluster(self):
-        """Test case for create_cluster
-
-        Создание кластера  # noqa: E501
-        """
-        pass
-
-    def test_create_cluster_node_group(self):
-        """Test case for create_cluster_node_group
-
-        Создание группы нод  # noqa: E501
-        """
-        pass
-
-    def test_delete_cluster(self):
-        """Test case for delete_cluster
-
-        Удаление кластера  # noqa: E501
-        """
-        pass
-
-    def test_delete_cluster_node(self):
-        """Test case for delete_cluster_node
-
-        Удаление ноды  # noqa: E501
-        """
-        pass
-
-    def test_delete_cluster_node_group(self):
-        """Test case for delete_cluster_node_group
-
-        Удаление группы нод  # noqa: E501
-        """
-        pass
-
-    def test_get_cluster(self):
-        """Test case for get_cluster
-
-        Получение информации о кластере  # noqa: E501
-        """
-        pass
-
-    def test_get_cluster_kubeconfig(self):
-        """Test case for get_cluster_kubeconfig
-
-        Получение файла kubeconfig  # noqa: E501
-        """
-        pass
-
-    def test_get_cluster_node_group(self):
-        """Test case for get_cluster_node_group
-
-        Получение информации о группе нод  # noqa: E501
-        """
-        pass
-
-    def test_get_cluster_node_groups(self):
-        """Test case for get_cluster_node_groups
-
-        Получение групп нод кластера  # noqa: E501
-        """
-        pass
-
-    def test_get_cluster_nodes(self):
-        """Test case for get_cluster_nodes
-
-        Получение списка нод  # noqa: E501
-        """
-        pass
-
-    def test_get_cluster_nodes_from_group(self):
-        """Test case for get_cluster_nodes_from_group
-
-        Получение списка нод, принадлежащих группе  # noqa: E501
-        """
-        pass
-
-    def test_get_cluster_resources(self):
-        """Test case for get_cluster_resources
-
-        Получение ресурсов кластера  # noqa: E501
-        """
-        pass
-
-    def test_get_clusters(self):
-        """Test case for get_clusters
-
-        Получение списка кластеров  # noqa: E501
-        """
-        pass
-
-    def test_get_k8_s_network_drivers(self):
-        """Test case for get_k8_s_network_drivers
-
-        Получение списка сетевых драйверов k8s  # noqa: E501
-        """
-        pass
-
-    def test_get_k8_s_versions(self):
-        """Test case for get_k8_s_versions
-
-        Получение списка версий k8s  # noqa: E501
-        """
-        pass
-
-    def test_get_kubernetes_presets(self):
-        """Test case for get_kubernetes_presets
-
-        Получение списка тарифов  # noqa: E501
-        """
-        pass
-
-    def test_increase_count_of_nodes_in_group(self):
-        """Test case for increase_count_of_nodes_in_group
-
-        Увеличение количества нод в группе на указанное количество  # noqa: E501
-        """
-        pass
-
-    def test_reduce_count_of_nodes_in_group(self):
-        """Test case for reduce_count_of_nodes_in_group
-
-        Уменьшение количества нод в группе на указанное количество  # noqa: E501
-        """
-        pass
-
-    def test_update_cluster(self):
-        """Test case for update_cluster
-
-        Обновление информации о кластере  # noqa: E501
-        """
-        pass
-
-    def test_update_cluster_version(self):
-        """Test case for update_cluster_version
-
-        Обновление версии кластера  # noqa: E501
-        """
-        pass
+from __future__ import annotations
+import pprint
+import re  # noqa: F401
+import json
 
 
-if __name__ == '__main__':
-    unittest.main()
+from typing import Any, Optional
+from pydantic import BaseModel, Field
+
+class ClusterVersionEdit(BaseModel):
+    """
+    ClusterVersionEdit
+    """
+    k8s_version: Optional[Any] = Field(None, description="Новая версия кластера")
+    __properties = ["k8s_version"]
+
+    class Config:
+        """Pydantic configuration"""
+        allow_population_by_field_name = True
+        validate_assignment = True
+
+    def to_str(self) -> str:
+        """Returns the string representation of the model using alias"""
+        return pprint.pformat(self.dict(by_alias=True))
+
+    def to_json(self) -> str:
+        """Returns the JSON representation of the model using alias"""
+        return json.dumps(self.to_dict())
+
+    @classmethod
+    def from_json(cls, json_str: str) -> ClusterVersionEdit:
+        """Create an instance of ClusterVersionEdit from a JSON string"""
+        return cls.from_dict(json.loads(json_str))
+
+    def to_dict(self):
+        """Returns the dictionary representation of the model using alias"""
+        _dict = self.dict(by_alias=True,
+                          exclude={
+                          },
+                          exclude_none=True)
+        # set to None if k8s_version (nullable) is None
+        # and __fields_set__ contains the field
+        if self.k8s_version is None and "k8s_version" in self.__fields_set__:
+            _dict['k8s_version'] = None
+
+        return _dict
+
+    @classmethod
+    def from_dict(cls, obj: dict) -> ClusterVersionEdit:
+        """Create an instance of ClusterVersionEdit from a dict"""
+        if obj is None:
+            return None
+
+        if not isinstance(obj, dict):
+            return ClusterVersionEdit.parse_obj(obj)
+
+        _obj = ClusterVersionEdit.parse_obj({
+            "k8s_version": obj.get("k8s_version")
+        })
+        return _obj
+

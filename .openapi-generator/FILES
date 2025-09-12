@@ -65,6 +65,7 @@ docs/ClusterInMaintenanceSlot.md
 docs/ClusterInOidcProvider.md
 docs/ClusterOut.md
 docs/ClusterResponse.md
+docs/ClusterVersionEdit.md
 docs/Clusterk8s.md
 docs/ClustersResponse.md
 docs/Commit.md
@@ -494,6 +495,7 @@ test/test_cluster_in_maintenance_slot.py
 test/test_cluster_in_oidc_provider.py
 test/test_cluster_out.py
 test/test_cluster_response.py
+test/test_cluster_version_edit.py
 test/test_clusterk8s.py
 test/test_clusters_response.py
 test/test_commit.py
@@ -939,6 +941,7 @@ timeweb_cloud_api/models/cluster_in_maintenance_slot.py
 timeweb_cloud_api/models/cluster_in_oidc_provider.py
 timeweb_cloud_api/models/cluster_out.py
 timeweb_cloud_api/models/cluster_response.py
+timeweb_cloud_api/models/cluster_version_edit.py
 timeweb_cloud_api/models/clusterk8s.py
 timeweb_cloud_api/models/clusters_response.py
 timeweb_cloud_api/models/commit.py

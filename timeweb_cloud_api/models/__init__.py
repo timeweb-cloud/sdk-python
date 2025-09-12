@@ -72,6 +72,7 @@ from timeweb_cloud_api.models.cluster_in_maintenance_slot import ClusterInMainte
 from timeweb_cloud_api.models.cluster_in_oidc_provider import ClusterInOidcProvider
 from timeweb_cloud_api.models.cluster_out import ClusterOut
 from timeweb_cloud_api.models.cluster_response import ClusterResponse
+from timeweb_cloud_api.models.cluster_version_edit import ClusterVersionEdit
 from timeweb_cloud_api.models.clusterk8s import Clusterk8s
 from timeweb_cloud_api.models.clusters_response import ClustersResponse
 from timeweb_cloud_api.models.commit import Commit

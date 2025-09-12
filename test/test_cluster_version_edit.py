@@ -14,161 +14,42 @@
 
 
 import unittest
+import datetime
 
 import timeweb_cloud_api
-from timeweb_cloud_api.api.kubernetes_api import KubernetesApi  # noqa: E501
+from timeweb_cloud_api.models.cluster_version_edit import ClusterVersionEdit  # noqa: E501
 from timeweb_cloud_api.rest import ApiException
 
-
-class TestKubernetesApi(unittest.TestCase):
-    """KubernetesApi unit test stubs"""
+class TestClusterVersionEdit(unittest.TestCase):
+    """ClusterVersionEdit unit test stubs"""
 
     def setUp(self):
-        self.api = timeweb_cloud_api.api.kubernetes_api.KubernetesApi()  # noqa: E501
+        pass
 
     def tearDown(self):
         pass
 
-    def test_create_cluster(self):
-        """Test case for create_cluster
-
-        Создание кластера  # noqa: E501
+    def make_instance(self, include_optional):
+        """Test ClusterVersionEdit
+            include_option is a boolean, when False only required
+            params are included, when True both required and
+            optional params are included """
+        # uncomment below to create an instance of `ClusterVersionEdit`
         """
-        pass
-
-    def test_create_cluster_node_group(self):
-        """Test case for create_cluster_node_group
-
-        Создание группы нод  # noqa: E501
+        model = timeweb_cloud_api.models.cluster_version_edit.ClusterVersionEdit()  # noqa: E501
+        if include_optional :
+            return ClusterVersionEdit(
+                k8s_version = v1.33.4+k0s.0
+            )
+        else :
+            return ClusterVersionEdit(
+        )
         """
-        pass
 
-    def test_delete_cluster(self):
-        """Test case for delete_cluster
-
-        Удаление кластера  # noqa: E501
-        """
-        pass
-
-    def test_delete_cluster_node(self):
-        """Test case for delete_cluster_node
-
-        Удаление ноды  # noqa: E501
-        """
-        pass
-
-    def test_delete_cluster_node_group(self):
-        """Test case for delete_cluster_node_group
-
-        Удаление группы нод  # noqa: E501
-        """
-        pass
-
-    def test_get_cluster(self):
-        """Test case for get_cluster
-
-        Получение информации о кластере  # noqa: E501
-        """
-        pass
-
-    def test_get_cluster_kubeconfig(self):
-        """Test case for get_cluster_kubeconfig
-
-        Получение файла kubeconfig  # noqa: E501
-        """
-        pass
-
-    def test_get_cluster_node_group(self):
-        """Test case for get_cluster_node_group
-
-        Получение информации о группе нод  # noqa: E501
-        """
-        pass
-
-    def test_get_cluster_node_groups(self):
-        """Test case for get_cluster_node_groups
-
-        Получение групп нод кластера  # noqa: E501
-        """
-        pass
-
-    def test_get_cluster_nodes(self):
-        """Test case for get_cluster_nodes
-
-        Получение списка нод  # noqa: E501
-        """
-        pass
-
-    def test_get_cluster_nodes_from_group(self):
-        """Test case for get_cluster_nodes_from_group
-
-        Получение списка нод, принадлежащих группе  # noqa: E501
-        """
-        pass
-
-    def test_get_cluster_resources(self):
-        """Test case for get_cluster_resources
-
-        Получение ресурсов кластера  # noqa: E501
-        """
-        pass
-
-    def test_get_clusters(self):
-        """Test case for get_clusters
-
-        Получение списка кластеров  # noqa: E501
-        """
-        pass
-
-    def test_get_k8_s_network_drivers(self):
-        """Test case for get_k8_s_network_drivers
-
-        Получение списка сетевых драйверов k8s  # noqa: E501
-        """
-        pass
-
-    def test_get_k8_s_versions(self):
-        """Test case for get_k8_s_versions
-
-        Получение списка версий k8s  # noqa: E501
-        """
-        pass
-
-    def test_get_kubernetes_presets(self):
-        """Test case for get_kubernetes_presets
-
-        Получение списка тарифов  # noqa: E501
-        """
-        pass
-
-    def test_increase_count_of_nodes_in_group(self):
-        """Test case for increase_count_of_nodes_in_group
-
-        Увеличение количества нод в группе на указанное количество  # noqa: E501
-        """
-        pass
-
-    def test_reduce_count_of_nodes_in_group(self):
-        """Test case for reduce_count_of_nodes_in_group
-
-        Уменьшение количества нод в группе на указанное количество  # noqa: E501
-        """
-        pass
-
-    def test_update_cluster(self):
-        """Test case for update_cluster
-
-        Обновление информации о кластере  # noqa: E501
-        """
-        pass
-
-    def test_update_cluster_version(self):
-        """Test case for update_cluster_version
-
-        Обновление версии кластера  # noqa: E501
-        """
-        pass
-
+    def testClusterVersionEdit(self):
+        """Test ClusterVersionEdit"""
+        # inst_req_only = self.make_instance(include_optional=False)
+        # inst_req_and_optional = self.make_instance(include_optional=True)
 
 if __name__ == '__main__':
     unittest.main()
