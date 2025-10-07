@@ -39,7 +39,9 @@ class TestClusterEdit(unittest.TestCase):
         model = timeweb_cloud_api.models.cluster_edit.ClusterEdit()  # noqa: E501
         if include_optional :
             return ClusterEdit(
-                description = new description
+                name = new name, 
+                description = new description, 
+                oidc_provider = {name=oidc_provider, issuer_url=https://oidc-provider.com, client_id=client-id, username_claim=sub, groups_claim=groups}
             )
         else :
             return ClusterEdit(

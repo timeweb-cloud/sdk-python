@@ -58,6 +58,7 @@ docs/BucketUser.md
 docs/BucketWebsiteConfig.md
 docs/CheckDomain200Response.md
 docs/ClusterEdit.md
+docs/ClusterEditOidcProvider.md
 docs/ClusterIn.md
 docs/ClusterInClusterNetworkCidr.md
 docs/ClusterInConfiguration.md
@@ -488,6 +489,7 @@ test/test_bucket_user.py
 test/test_bucket_website_config.py
 test/test_check_domain200_response.py
 test/test_cluster_edit.py
+test/test_cluster_edit_oidc_provider.py
 test/test_cluster_in.py
 test/test_cluster_in_cluster_network_cidr.py
 test/test_cluster_in_configuration.py
@@ -934,6 +936,7 @@ timeweb_cloud_api/models/bucket_user.py
 timeweb_cloud_api/models/bucket_website_config.py
 timeweb_cloud_api/models/check_domain200_response.py
 timeweb_cloud_api/models/cluster_edit.py
+timeweb_cloud_api/models/cluster_edit_oidc_provider.py
 timeweb_cloud_api/models/cluster_in.py
 timeweb_cloud_api/models/cluster_in_cluster_network_cidr.py
 timeweb_cloud_api/models/cluster_in_configuration.py

@@ -21,16 +21,17 @@ import json
 
 from typing import Any, Optional
 from pydantic import BaseModel, Field
-from timeweb_cloud_api.models.cluster_edit_oidc_provider import ClusterEditOidcProvider
 
-class ClusterEdit(BaseModel):
+class ClusterEditOidcProvider(BaseModel):
     """
-    ClusterEdit
+    OIDC-провайдер
     """
-    name: Optional[Any] = Field(None, description="Новое название кластера")
-    description: Optional[Any] = Field(None, description="Новое описание кластера")
-    oidc_provider: Optional[ClusterEditOidcProvider] = None
-    __properties = ["name", "description", "oidc_provider"]
+    name: Optional[Any] = Field(..., description="Название создаваемого подключения. Используется только для идентификации и не влияет на остальные параметры")
+    issuer_url: Optional[Any] = Field(..., description="Адрес OIDC-провайдера, используемый для аутентификации пользователей, запрашивающих доступ к кластеру")
+    client_id: Optional[Any] = Field(..., description="Идентификатор сервиса, выданный OIDC-провайдером, от имени которого осуществляется запрос к ресурсам")
+    username_claim: Optional[Any] = Field(None, description="Поле в JSON Web Token (JWT), используемое для идентификации пользователя")
+    groups_claim: Optional[Any] = Field(None, description="Поле в JSON Web Token (JWT), содержащее названии группы, к которой принадлежит пользователь")
+    __properties = ["name", "issuer_url", "client_id", "username_claim", "groups_claim"]
 
     class Config:
         """Pydantic configuration"""
@@ -46,8 +47,8 @@ class ClusterEdit(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> ClusterEdit:
-        """Create an instance of ClusterEdit from a JSON string"""
+    def from_json(cls, json_str: str) -> ClusterEditOidcProvider:
+        """Create an instance of ClusterEditOidcProvider from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self):
@@ -56,34 +57,48 @@ class ClusterEdit(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of oidc_provider
-        if self.oidc_provider:
-            _dict['oidc_provider'] = self.oidc_provider.to_dict()
         # set to None if name (nullable) is None
         # and __fields_set__ contains the field
         if self.name is None and "name" in self.__fields_set__:
             _dict['name'] = None
 
-        # set to None if description (nullable) is None
+        # set to None if issuer_url (nullable) is None
         # and __fields_set__ contains the field
-        if self.description is None and "description" in self.__fields_set__:
-            _dict['description'] = None
+        if self.issuer_url is None and "issuer_url" in self.__fields_set__:
+            _dict['issuer_url'] = None
+
+        # set to None if client_id (nullable) is None
+        # and __fields_set__ contains the field
+        if self.client_id is None and "client_id" in self.__fields_set__:
+            _dict['client_id'] = None
+
+        # set to None if username_claim (nullable) is None
+        # and __fields_set__ contains the field
+        if self.username_claim is None and "username_claim" in self.__fields_set__:
+            _dict['username_claim'] = None
+
+        # set to None if groups_claim (nullable) is None
+        # and __fields_set__ contains the field
+        if self.groups_claim is None and "groups_claim" in self.__fields_set__:
+            _dict['groups_claim'] = None
 
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> ClusterEdit:
-        """Create an instance of ClusterEdit from a dict"""
+    def from_dict(cls, obj: dict) -> ClusterEditOidcProvider:
+        """Create an instance of ClusterEditOidcProvider from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return ClusterEdit.parse_obj(obj)
+            return ClusterEditOidcProvider.parse_obj(obj)
 
-        _obj = ClusterEdit.parse_obj({
+        _obj = ClusterEditOidcProvider.parse_obj({
             "name": obj.get("name"),
-            "description": obj.get("description"),
-            "oidc_provider": ClusterEditOidcProvider.from_dict(obj.get("oidc_provider")) if obj.get("oidc_provider") is not None else None
+            "issuer_url": obj.get("issuer_url"),
+            "client_id": obj.get("client_id"),
+            "username_claim": obj.get("username_claim"),
+            "groups_claim": obj.get("groups_claim")
         })
         return _obj
 

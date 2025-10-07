@@ -573,6 +573,7 @@ Class | Method | HTTP request | Description
  - [BucketWebsiteConfig](docs/BucketWebsiteConfig.md)
  - [CheckDomain200Response](docs/CheckDomain200Response.md)
  - [ClusterEdit](docs/ClusterEdit.md)
+ - [ClusterEditOidcProvider](docs/ClusterEditOidcProvider.md)
  - [ClusterIn](docs/ClusterIn.md)
  - [ClusterInClusterNetworkCidr](docs/ClusterInClusterNetworkCidr.md)
  - [ClusterInConfiguration](docs/ClusterInConfiguration.md)

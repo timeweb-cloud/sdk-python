@@ -101,6 +101,7 @@ from timeweb_cloud_api.models.bucket_user import BucketUser
 from timeweb_cloud_api.models.bucket_website_config import BucketWebsiteConfig
 from timeweb_cloud_api.models.check_domain200_response import CheckDomain200Response
 from timeweb_cloud_api.models.cluster_edit import ClusterEdit
+from timeweb_cloud_api.models.cluster_edit_oidc_provider import ClusterEditOidcProvider
 from timeweb_cloud_api.models.cluster_in import ClusterIn
 from timeweb_cloud_api.models.cluster_in_cluster_network_cidr import ClusterInClusterNetworkCidr
 from timeweb_cloud_api.models.cluster_in_configuration import ClusterInConfiguration

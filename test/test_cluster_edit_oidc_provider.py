@@ -13,77 +13,50 @@
 """
 
 
-from __future__ import annotations
-import pprint
-import re  # noqa: F401
-import json
+import unittest
+import datetime
 
+import timeweb_cloud_api
+from timeweb_cloud_api.models.cluster_edit_oidc_provider import ClusterEditOidcProvider  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
-from typing import Any, Optional
-from pydantic import BaseModel, Field
-from timeweb_cloud_api.models.cluster_edit_oidc_provider import ClusterEditOidcProvider
+class TestClusterEditOidcProvider(unittest.TestCase):
+    """ClusterEditOidcProvider unit test stubs"""
 
-class ClusterEdit(BaseModel):
-    """
-    ClusterEdit
-    """
-    name: Optional[Any] = Field(None, description="Новое название кластера")
-    description: Optional[Any] = Field(None, description="Новое описание кластера")
-    oidc_provider: Optional[ClusterEditOidcProvider] = None
-    __properties = ["name", "description", "oidc_provider"]
+    def setUp(self):
+        pass
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
+    def tearDown(self):
+        pass
 
-    def to_str(self) -> str:
-        """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+    def make_instance(self, include_optional):
+        """Test ClusterEditOidcProvider
+            include_option is a boolean, when False only required
+            params are included, when True both required and
+            optional params are included """
+        # uncomment below to create an instance of `ClusterEditOidcProvider`
+        """
+        model = timeweb_cloud_api.models.cluster_edit_oidc_provider.ClusterEditOidcProvider()  # noqa: E501
+        if include_optional :
+            return ClusterEditOidcProvider(
+                name = None, 
+                issuer_url = None, 
+                client_id = None, 
+                username_claim = None, 
+                groups_claim = None
+            )
+        else :
+            return ClusterEditOidcProvider(
+                name = None,
+                issuer_url = None,
+                client_id = None,
+        )
+        """
 
-    def to_json(self) -> str:
-        """Returns the JSON representation of the model using alias"""
-        return json.dumps(self.to_dict())
+    def testClusterEditOidcProvider(self):
+        """Test ClusterEditOidcProvider"""
+        # inst_req_only = self.make_instance(include_optional=False)
+        # inst_req_and_optional = self.make_instance(include_optional=True)
 
-    @classmethod
-    def from_json(cls, json_str: str) -> ClusterEdit:
-        """Create an instance of ClusterEdit from a JSON string"""
-        return cls.from_dict(json.loads(json_str))
-
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of oidc_provider
-        if self.oidc_provider:
-            _dict['oidc_provider'] = self.oidc_provider.to_dict()
-        # set to None if name (nullable) is None
-        # and __fields_set__ contains the field
-        if self.name is None and "name" in self.__fields_set__:
-            _dict['name'] = None
-
-        # set to None if description (nullable) is None
-        # and __fields_set__ contains the field
-        if self.description is None and "description" in self.__fields_set__:
-            _dict['description'] = None
-
-        return _dict
-
-    @classmethod
-    def from_dict(cls, obj: dict) -> ClusterEdit:
-        """Create an instance of ClusterEdit from a dict"""
-        if obj is None:
-            return None
-
-        if not isinstance(obj, dict):
-            return ClusterEdit.parse_obj(obj)
-
-        _obj = ClusterEdit.parse_obj({
-            "name": obj.get("name"),
-            "description": obj.get("description"),
-            "oidc_provider": ClusterEditOidcProvider.from_dict(obj.get("oidc_provider")) if obj.get("oidc_provider") is not None else None
-        })
-        return _obj
-
+if __name__ == '__main__':
+    unittest.main()

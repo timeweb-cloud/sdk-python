@@ -4,7 +4,9 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**name** | **object** | Новое название кластера | [optional] 
 **description** | **object** | Новое описание кластера | [optional] 
+**oidc_provider** | [**ClusterEditOidcProvider**](ClusterEditOidcProvider.md) |  | [optional] 
 
 ## Example
 
