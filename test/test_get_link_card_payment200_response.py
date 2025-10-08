@@ -14,98 +14,45 @@
 
 
 import unittest
+import datetime
 
 import timeweb_cloud_api
-from timeweb_cloud_api.api.account_api import AccountApi  # noqa: E501
+from timeweb_cloud_api.models.get_link_card_payment200_response import GetLinkCardPayment200Response  # noqa: E501
 from timeweb_cloud_api.rest import ApiException
 
-
-class TestAccountApi(unittest.TestCase):
-    """AccountApi unit test stubs"""
+class TestGetLinkCardPayment200Response(unittest.TestCase):
+    """GetLinkCardPayment200Response unit test stubs"""
 
     def setUp(self):
-        self.api = timeweb_cloud_api.api.account_api.AccountApi()  # noqa: E501
+        pass
 
     def tearDown(self):
         pass
 
-    def test_add_countries_to_allowed_list(self):
-        """Test case for add_countries_to_allowed_list
-
-        Добавление стран в список разрешенных  # noqa: E501
+    def make_instance(self, include_optional):
+        """Test GetLinkCardPayment200Response
+            include_option is a boolean, when False only required
+            params are included, when True both required and
+            optional params are included """
+        # uncomment below to create an instance of `GetLinkCardPayment200Response`
         """
-        pass
-
-    def test_add_ips_to_allowed_list(self):
-        """Test case for add_ips_to_allowed_list
-
-        Добавление IP-адресов в список разрешенных  # noqa: E501
+        model = timeweb_cloud_api.models.get_link_card_payment200_response.GetLinkCardPayment200Response()  # noqa: E501
+        if include_optional :
+            return GetLinkCardPayment200Response(
+                confirmation_url = https://payment.timeweb.cloud/confirm/abc123def456, 
+                response_id = 94608d15-8672-4eed-8ab6-28bd6fa3cdf7
+            )
+        else :
+            return GetLinkCardPayment200Response(
+                confirmation_url = https://payment.timeweb.cloud/confirm/abc123def456,
+                response_id = 94608d15-8672-4eed-8ab6-28bd6fa3cdf7,
+        )
         """
-        pass
 
-    def test_delete_countries_from_allowed_list(self):
-        """Test case for delete_countries_from_allowed_list
-
-        Удаление стран из списка разрешенных  # noqa: E501
-        """
-        pass
-
-    def test_delete_ips_from_allowed_list(self):
-        """Test case for delete_ips_from_allowed_list
-
-        Удаление IP-адресов из списка разрешенных  # noqa: E501
-        """
-        pass
-
-    def test_get_account_status(self):
-        """Test case for get_account_status
-
-        Получение статуса аккаунта  # noqa: E501
-        """
-        pass
-
-    def test_get_auth_access_settings(self):
-        """Test case for get_auth_access_settings
-
-        Получить информацию о ограничениях авторизации пользователя  # noqa: E501
-        """
-        pass
-
-    def test_get_countries(self):
-        """Test case for get_countries
-
-        Получение списка стран  # noqa: E501
-        """
-        pass
-
-    def test_get_notification_settings(self):
-        """Test case for get_notification_settings
-
-        Получение настроек уведомлений аккаунта  # noqa: E501
-        """
-        pass
-
-    def test_update_auth_restrictions_by_countries(self):
-        """Test case for update_auth_restrictions_by_countries
-
-        Включение/отключение ограничений по стране  # noqa: E501
-        """
-        pass
-
-    def test_update_auth_restrictions_by_ip(self):
-        """Test case for update_auth_restrictions_by_ip
-
-        Включение/отключение ограничений по IP-адресу  # noqa: E501
-        """
-        pass
-
-    def test_update_notification_settings(self):
-        """Test case for update_notification_settings
-
-        Изменение настроек уведомлений аккаунта  # noqa: E501
-        """
-        pass
-
+    def testGetLinkCardPayment200Response(self):
+        """Test GetLinkCardPayment200Response"""
+        # inst_req_only = self.make_instance(include_optional=False)
+        # inst_req_and_optional = self.make_instance(include_optional=True)
 
 if __name__ == '__main__':
     unittest.main()

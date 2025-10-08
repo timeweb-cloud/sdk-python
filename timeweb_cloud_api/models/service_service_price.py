@@ -13,99 +13,88 @@
 """
 
 
-import unittest
-
-import timeweb_cloud_api
-from timeweb_cloud_api.api.account_api import AccountApi  # noqa: E501
-from timeweb_cloud_api.rest import ApiException
-
-
-class TestAccountApi(unittest.TestCase):
-    """AccountApi unit test stubs"""
-
-    def setUp(self):
-        self.api = timeweb_cloud_api.api.account_api.AccountApi()  # noqa: E501
-
-    def tearDown(self):
-        pass
-
-    def test_add_countries_to_allowed_list(self):
-        """Test case for add_countries_to_allowed_list
-
-        Добавление стран в список разрешенных  # noqa: E501
-        """
-        pass
-
-    def test_add_ips_to_allowed_list(self):
-        """Test case for add_ips_to_allowed_list
-
-        Добавление IP-адресов в список разрешенных  # noqa: E501
-        """
-        pass
-
-    def test_delete_countries_from_allowed_list(self):
-        """Test case for delete_countries_from_allowed_list
-
-        Удаление стран из списка разрешенных  # noqa: E501
-        """
-        pass
-
-    def test_delete_ips_from_allowed_list(self):
-        """Test case for delete_ips_from_allowed_list
-
-        Удаление IP-адресов из списка разрешенных  # noqa: E501
-        """
-        pass
-
-    def test_get_account_status(self):
-        """Test case for get_account_status
-
-        Получение статуса аккаунта  # noqa: E501
-        """
-        pass
-
-    def test_get_auth_access_settings(self):
-        """Test case for get_auth_access_settings
-
-        Получить информацию о ограничениях авторизации пользователя  # noqa: E501
-        """
-        pass
-
-    def test_get_countries(self):
-        """Test case for get_countries
-
-        Получение списка стран  # noqa: E501
-        """
-        pass
-
-    def test_get_notification_settings(self):
-        """Test case for get_notification_settings
-
-        Получение настроек уведомлений аккаунта  # noqa: E501
-        """
-        pass
-
-    def test_update_auth_restrictions_by_countries(self):
-        """Test case for update_auth_restrictions_by_countries
-
-        Включение/отключение ограничений по стране  # noqa: E501
-        """
-        pass
-
-    def test_update_auth_restrictions_by_ip(self):
-        """Test case for update_auth_restrictions_by_ip
-
-        Включение/отключение ограничений по IP-адресу  # noqa: E501
-        """
-        pass
-
-    def test_update_notification_settings(self):
-        """Test case for update_notification_settings
-
-        Изменение настроек уведомлений аккаунта  # noqa: E501
-        """
-        pass
+from __future__ import annotations
+import pprint
+import re  # noqa: F401
+import json
 
 
-if __name__ == '__main__':
-    unittest.main()
+from typing import Any, Optional
+from pydantic import BaseModel, Field
+from timeweb_cloud_api.models.service_cost_type import ServiceCostType
+
+class ServiceServicePrice(BaseModel):
+    """
+    Информация о стоимости вложенного сервиса
+    """
+    id: Optional[Any] = Field(None, description="Идентификатор сервиса")
+    cost: Optional[Any] = Field(None, description="Стоимость сервиса")
+    description: Optional[Any] = Field(None, description="Описание сервиса")
+    type: Optional[ServiceCostType] = None
+    node_groups: Optional[Any] = Field(None, description="Группы узлов для Kubernetes кластера")
+    __properties = ["id", "cost", "description", "type", "node_groups"]
+
+    class Config:
+        """Pydantic configuration"""
+        allow_population_by_field_name = True
+        validate_assignment = True
+
+    def to_str(self) -> str:
+        """Returns the string representation of the model using alias"""
+        return pprint.pformat(self.dict(by_alias=True))
+
+    def to_json(self) -> str:
+        """Returns the JSON representation of the model using alias"""
+        return json.dumps(self.to_dict())
+
+    @classmethod
+    def from_json(cls, json_str: str) -> ServiceServicePrice:
+        """Create an instance of ServiceServicePrice from a JSON string"""
+        return cls.from_dict(json.loads(json_str))
+
+    def to_dict(self):
+        """Returns the dictionary representation of the model using alias"""
+        _dict = self.dict(by_alias=True,
+                          exclude={
+                          },
+                          exclude_none=True)
+        # set to None if id (nullable) is None
+        # and __fields_set__ contains the field
+        if self.id is None and "id" in self.__fields_set__:
+            _dict['id'] = None
+
+        # set to None if cost (nullable) is None
+        # and __fields_set__ contains the field
+        if self.cost is None and "cost" in self.__fields_set__:
+            _dict['cost'] = None
+
+        # set to None if description (nullable) is None
+        # and __fields_set__ contains the field
+        if self.description is None and "description" in self.__fields_set__:
+            _dict['description'] = None
+
+        # set to None if node_groups (nullable) is None
+        # and __fields_set__ contains the field
+        if self.node_groups is None and "node_groups" in self.__fields_set__:
+            _dict['node_groups'] = None
+
+        return _dict
+
+    @classmethod
+    def from_dict(cls, obj: dict) -> ServiceServicePrice:
+        """Create an instance of ServiceServicePrice from a dict"""
+        if obj is None:
+            return None
+
+        if not isinstance(obj, dict):
+            return ServiceServicePrice.parse_obj(obj)
+
+        _obj = ServiceServicePrice.parse_obj({
+            "id": obj.get("id"),
+            "cost": obj.get("cost"),
+            "description": obj.get("description"),
+            "type": obj.get("type"),
+            "node_groups": obj.get("node_groups")
+        })
+        return _obj
+

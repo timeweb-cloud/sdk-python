@@ -108,6 +108,7 @@ docs/CreateMultipleDomainMailboxes201Response.md
 docs/CreateMultipleDomainMailboxesRequest.md
 docs/CreateNetworkDrive.md
 docs/CreateNetworkDrive201Response.md
+docs/CreatePayment.md
 docs/CreateProject.md
 docs/CreateProject201Response.md
 docs/CreateRule.md
@@ -232,6 +233,7 @@ docs/GetFinances200Response.md
 docs/GetFloatingIps200Response.md
 docs/GetKey200Response.md
 docs/GetKeys200Response.md
+docs/GetLinkCardPayment200Response.md
 docs/GetLocations200Response.md
 docs/GetMailQuota200Response.md
 docs/GetMailboxes200Response.md
@@ -256,6 +258,8 @@ docs/GetServerStatistics200Response.md
 docs/GetServerStatisticsNew200Response.md
 docs/GetServers200Response.md
 docs/GetServersPresets200Response.md
+docs/GetServicePrices200Response.md
+docs/GetServicePrices200ResponseMeta.md
 docs/GetSoftware200Response.md
 docs/GetStorageSubdomains200Response.md
 docs/GetStorageTransferStatus200Response.md
@@ -280,6 +284,7 @@ docs/ImageUrlIn.md
 docs/ImagesApi.md
 docs/ImagesOutResponse.md
 docs/IncreaseNodes.md
+docs/InfoServicePrice.md
 docs/Invoice.md
 docs/K8SVersionsResponse.md
 docs/KubernetesApi.md
@@ -316,6 +321,8 @@ docs/NotificationSettingChannel.md
 docs/NotificationSettingChannels.md
 docs/NotificationSettingType.md
 docs/OS.md
+docs/PaymentType.md
+docs/PaymentsApi.md
 docs/PerformActionOnBackupRequest.md
 docs/PerformActionOnServerRequest.md
 docs/Policy.md
@@ -368,6 +375,11 @@ docs/ServersSoftware.md
 docs/ServersSoftwareRequirements.md
 docs/ServersStatistics.md
 docs/ServersStatisticsMeta.md
+docs/ServiceCostType.md
+docs/ServicePrice.md
+docs/ServicePriceConfiguration.md
+docs/ServicePriceType.md
+docs/ServiceServicePrice.md
 docs/SetLabels.md
 docs/SettingCondition.md
 docs/SpamFilterIsDisabled.md
@@ -539,6 +551,7 @@ test/test_create_multiple_domain_mailboxes201_response.py
 test/test_create_multiple_domain_mailboxes_request.py
 test/test_create_network_drive.py
 test/test_create_network_drive201_response.py
+test/test_create_payment.py
 test/test_create_project.py
 test/test_create_project201_response.py
 test/test_create_rule.py
@@ -663,6 +676,7 @@ test/test_get_finances200_response.py
 test/test_get_floating_ips200_response.py
 test/test_get_key200_response.py
 test/test_get_keys200_response.py
+test/test_get_link_card_payment200_response.py
 test/test_get_locations200_response.py
 test/test_get_mail_quota200_response.py
 test/test_get_mailboxes200_response.py
@@ -687,6 +701,8 @@ test/test_get_server_statistics200_response.py
 test/test_get_server_statistics_new200_response.py
 test/test_get_servers200_response.py
 test/test_get_servers_presets200_response.py
+test/test_get_service_prices200_response.py
+test/test_get_service_prices200_response_meta.py
 test/test_get_software200_response.py
 test/test_get_storage_subdomains200_response.py
 test/test_get_storage_transfer_status200_response.py
@@ -711,6 +727,7 @@ test/test_image_url_in.py
 test/test_images_api.py
 test/test_images_out_response.py
 test/test_increase_nodes.py
+test/test_info_service_price.py
 test/test_invoice.py
 test/test_k8_s_versions_response.py
 test/test_kubernetes_api.py
@@ -747,6 +764,8 @@ test/test_notification_setting_channel.py
 test/test_notification_setting_channels.py
 test/test_notification_setting_type.py
 test/test_os.py
+test/test_payment_type.py
+test/test_payments_api.py
 test/test_perform_action_on_backup_request.py
 test/test_perform_action_on_server_request.py
 test/test_policy.py
@@ -798,6 +817,11 @@ test/test_servers_software.py
 test/test_servers_software_requirements.py
 test/test_servers_statistics.py
 test/test_servers_statistics_meta.py
+test/test_service_cost_type.py
+test/test_service_price.py
+test/test_service_price_configuration.py
+test/test_service_price_type.py
+test/test_service_service_price.py
 test/test_set_labels.py
 test/test_setting_condition.py
 test/test_spam_filter_is_disabled.py
@@ -876,6 +900,7 @@ timeweb_cloud_api/api/kubernetes_api.py
 timeweb_cloud_api/api/locations_api.py
 timeweb_cloud_api/api/mail_api.py
 timeweb_cloud_api/api/network_drives_api.py
+timeweb_cloud_api/api/payments_api.py
 timeweb_cloud_api/api/projects_api.py
 timeweb_cloud_api/api/s3_api.py
 timeweb_cloud_api/api/servers_api.py
@@ -985,6 +1010,7 @@ timeweb_cloud_api/models/create_multiple_domain_mailboxes201_response.py
 timeweb_cloud_api/models/create_multiple_domain_mailboxes_request.py
 timeweb_cloud_api/models/create_network_drive.py
 timeweb_cloud_api/models/create_network_drive201_response.py
+timeweb_cloud_api/models/create_payment.py
 timeweb_cloud_api/models/create_project.py
 timeweb_cloud_api/models/create_project201_response.py
 timeweb_cloud_api/models/create_rule.py
@@ -1104,6 +1130,7 @@ timeweb_cloud_api/models/get_finances200_response.py
 timeweb_cloud_api/models/get_floating_ips200_response.py
 timeweb_cloud_api/models/get_key200_response.py
 timeweb_cloud_api/models/get_keys200_response.py
+timeweb_cloud_api/models/get_link_card_payment200_response.py
 timeweb_cloud_api/models/get_locations200_response.py
 timeweb_cloud_api/models/get_mail_quota200_response.py
 timeweb_cloud_api/models/get_mailboxes200_response.py
@@ -1128,6 +1155,8 @@ timeweb_cloud_api/models/get_server_statistics200_response.py
 timeweb_cloud_api/models/get_server_statistics_new200_response.py
 timeweb_cloud_api/models/get_servers200_response.py
 timeweb_cloud_api/models/get_servers_presets200_response.py
+timeweb_cloud_api/models/get_service_prices200_response.py
+timeweb_cloud_api/models/get_service_prices200_response_meta.py
 timeweb_cloud_api/models/get_software200_response.py
 timeweb_cloud_api/models/get_storage_subdomains200_response.py
 timeweb_cloud_api/models/get_storage_transfer_status200_response.py
@@ -1151,6 +1180,7 @@ timeweb_cloud_api/models/image_url_auth.py
 timeweb_cloud_api/models/image_url_in.py
 timeweb_cloud_api/models/images_out_response.py
 timeweb_cloud_api/models/increase_nodes.py
+timeweb_cloud_api/models/info_service_price.py
 timeweb_cloud_api/models/invoice.py
 timeweb_cloud_api/models/k8_s_versions_response.py
 timeweb_cloud_api/models/location.py
@@ -1183,6 +1213,7 @@ timeweb_cloud_api/models/notification_setting_channel.py
 timeweb_cloud_api/models/notification_setting_channels.py
 timeweb_cloud_api/models/notification_setting_type.py
 timeweb_cloud_api/models/os.py
+timeweb_cloud_api/models/payment_type.py
 timeweb_cloud_api/models/perform_action_on_backup_request.py
 timeweb_cloud_api/models/perform_action_on_server_request.py
 timeweb_cloud_api/models/policy.py
@@ -1231,6 +1262,11 @@ timeweb_cloud_api/models/servers_software.py
 timeweb_cloud_api/models/servers_software_requirements.py
 timeweb_cloud_api/models/servers_statistics.py
 timeweb_cloud_api/models/servers_statistics_meta.py
+timeweb_cloud_api/models/service_cost_type.py
+timeweb_cloud_api/models/service_price.py
+timeweb_cloud_api/models/service_price_configuration.py
+timeweb_cloud_api/models/service_price_type.py
+timeweb_cloud_api/models/service_service_price.py
 timeweb_cloud_api/models/set_labels.py
 timeweb_cloud_api/models/setting_condition.py
 timeweb_cloud_api/models/spam_filter_is_disabled.py

@@ -13,99 +13,107 @@
 """
 
 
-import unittest
-
-import timeweb_cloud_api
-from timeweb_cloud_api.api.account_api import AccountApi  # noqa: E501
-from timeweb_cloud_api.rest import ApiException
-
-
-class TestAccountApi(unittest.TestCase):
-    """AccountApi unit test stubs"""
-
-    def setUp(self):
-        self.api = timeweb_cloud_api.api.account_api.AccountApi()  # noqa: E501
-
-    def tearDown(self):
-        pass
-
-    def test_add_countries_to_allowed_list(self):
-        """Test case for add_countries_to_allowed_list
-
-        Добавление стран в список разрешенных  # noqa: E501
-        """
-        pass
-
-    def test_add_ips_to_allowed_list(self):
-        """Test case for add_ips_to_allowed_list
-
-        Добавление IP-адресов в список разрешенных  # noqa: E501
-        """
-        pass
-
-    def test_delete_countries_from_allowed_list(self):
-        """Test case for delete_countries_from_allowed_list
-
-        Удаление стран из списка разрешенных  # noqa: E501
-        """
-        pass
-
-    def test_delete_ips_from_allowed_list(self):
-        """Test case for delete_ips_from_allowed_list
-
-        Удаление IP-адресов из списка разрешенных  # noqa: E501
-        """
-        pass
-
-    def test_get_account_status(self):
-        """Test case for get_account_status
-
-        Получение статуса аккаунта  # noqa: E501
-        """
-        pass
-
-    def test_get_auth_access_settings(self):
-        """Test case for get_auth_access_settings
-
-        Получить информацию о ограничениях авторизации пользователя  # noqa: E501
-        """
-        pass
-
-    def test_get_countries(self):
-        """Test case for get_countries
-
-        Получение списка стран  # noqa: E501
-        """
-        pass
-
-    def test_get_notification_settings(self):
-        """Test case for get_notification_settings
-
-        Получение настроек уведомлений аккаунта  # noqa: E501
-        """
-        pass
-
-    def test_update_auth_restrictions_by_countries(self):
-        """Test case for update_auth_restrictions_by_countries
-
-        Включение/отключение ограничений по стране  # noqa: E501
-        """
-        pass
-
-    def test_update_auth_restrictions_by_ip(self):
-        """Test case for update_auth_restrictions_by_ip
-
-        Включение/отключение ограничений по IP-адресу  # noqa: E501
-        """
-        pass
-
-    def test_update_notification_settings(self):
-        """Test case for update_notification_settings
-
-        Изменение настроек уведомлений аккаунта  # noqa: E501
-        """
-        pass
+from __future__ import annotations
+import pprint
+import re  # noqa: F401
+import json
 
 
-if __name__ == '__main__':
-    unittest.main()
+from typing import Any, Optional
+from pydantic import BaseModel, Field
+from timeweb_cloud_api.models.info_service_price import InfoServicePrice
+from timeweb_cloud_api.models.service_price_configuration import ServicePriceConfiguration
+from timeweb_cloud_api.models.service_price_type import ServicePriceType
+
+class ServicePrice(BaseModel):
+    """
+    Информация о стоимости сервиса
+    """
+    cost: Optional[Any] = Field(..., description="Стоимость сервиса")
+    total_cost: Optional[Any] = Field(..., description="Общая стоимость сервиса с учетом всех дополнительных услуг")
+    type: ServicePriceType = Field(...)
+    service_id: Optional[Any] = Field(None, description="Идентификатор сервиса")
+    project_id: Optional[Any] = Field(None, description="Идентификатор проекта")
+    services: Optional[Any] = Field(None, description="Список вложенных сервисов")
+    info: Optional[InfoServicePrice] = None
+    configuration: Optional[ServicePriceConfiguration] = None
+    __properties = ["cost", "total_cost", "type", "service_id", "project_id", "services", "info", "configuration"]
+
+    class Config:
+        """Pydantic configuration"""
+        allow_population_by_field_name = True
+        validate_assignment = True
+
+    def to_str(self) -> str:
+        """Returns the string representation of the model using alias"""
+        return pprint.pformat(self.dict(by_alias=True))
+
+    def to_json(self) -> str:
+        """Returns the JSON representation of the model using alias"""
+        return json.dumps(self.to_dict())
+
+    @classmethod
+    def from_json(cls, json_str: str) -> ServicePrice:
+        """Create an instance of ServicePrice from a JSON string"""
+        return cls.from_dict(json.loads(json_str))
+
+    def to_dict(self):
+        """Returns the dictionary representation of the model using alias"""
+        _dict = self.dict(by_alias=True,
+                          exclude={
+                          },
+                          exclude_none=True)
+        # override the default output from pydantic by calling `to_dict()` of info
+        if self.info:
+            _dict['info'] = self.info.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of configuration
+        if self.configuration:
+            _dict['configuration'] = self.configuration.to_dict()
+        # set to None if cost (nullable) is None
+        # and __fields_set__ contains the field
+        if self.cost is None and "cost" in self.__fields_set__:
+            _dict['cost'] = None
+
+        # set to None if total_cost (nullable) is None
+        # and __fields_set__ contains the field
+        if self.total_cost is None and "total_cost" in self.__fields_set__:
+            _dict['total_cost'] = None
+
+        # set to None if service_id (nullable) is None
+        # and __fields_set__ contains the field
+        if self.service_id is None and "service_id" in self.__fields_set__:
+            _dict['service_id'] = None
+
+        # set to None if project_id (nullable) is None
+        # and __fields_set__ contains the field
+        if self.project_id is None and "project_id" in self.__fields_set__:
+            _dict['project_id'] = None
+
+        # set to None if services (nullable) is None
+        # and __fields_set__ contains the field
+        if self.services is None and "services" in self.__fields_set__:
+            _dict['services'] = None
+
+        return _dict
+
+    @classmethod
+    def from_dict(cls, obj: dict) -> ServicePrice:
+        """Create an instance of ServicePrice from a dict"""
+        if obj is None:
+            return None
+
+        if not isinstance(obj, dict):
+            return ServicePrice.parse_obj(obj)
+
+        _obj = ServicePrice.parse_obj({
+            "cost": obj.get("cost"),
+            "total_cost": obj.get("total_cost"),
+            "type": obj.get("type"),
+            "service_id": obj.get("service_id"),
+            "project_id": obj.get("project_id"),
+            "services": obj.get("services"),
+            "info": InfoServicePrice.from_dict(obj.get("info")) if obj.get("info") is not None else None,
+            "configuration": ServicePriceConfiguration.from_dict(obj.get("configuration")) if obj.get("configuration") is not None else None
+        })
+        return _obj
+
