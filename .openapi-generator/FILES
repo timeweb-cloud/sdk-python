@@ -108,7 +108,6 @@ docs/CreateMultipleDomainMailboxes201Response.md
 docs/CreateMultipleDomainMailboxesRequest.md
 docs/CreateNetworkDrive.md
 docs/CreateNetworkDrive201Response.md
-docs/CreatePayment.md
 docs/CreateProject.md
 docs/CreateProject201Response.md
 docs/CreateRule.md
@@ -233,7 +232,6 @@ docs/GetFinances200Response.md
 docs/GetFloatingIps200Response.md
 docs/GetKey200Response.md
 docs/GetKeys200Response.md
-docs/GetLinkCardPayment200Response.md
 docs/GetLocations200Response.md
 docs/GetMailQuota200Response.md
 docs/GetMailboxes200Response.md
@@ -321,7 +319,6 @@ docs/NotificationSettingChannel.md
 docs/NotificationSettingChannels.md
 docs/NotificationSettingType.md
 docs/OS.md
-docs/PaymentType.md
 docs/PaymentsApi.md
 docs/PerformActionOnBackupRequest.md
 docs/PerformActionOnServerRequest.md
@@ -551,7 +548,6 @@ test/test_create_multiple_domain_mailboxes201_response.py
 test/test_create_multiple_domain_mailboxes_request.py
 test/test_create_network_drive.py
 test/test_create_network_drive201_response.py
-test/test_create_payment.py
 test/test_create_project.py
 test/test_create_project201_response.py
 test/test_create_rule.py
@@ -676,7 +672,6 @@ test/test_get_finances200_response.py
 test/test_get_floating_ips200_response.py
 test/test_get_key200_response.py
 test/test_get_keys200_response.py
-test/test_get_link_card_payment200_response.py
 test/test_get_locations200_response.py
 test/test_get_mail_quota200_response.py
 test/test_get_mailboxes200_response.py
@@ -764,7 +759,6 @@ test/test_notification_setting_channel.py
 test/test_notification_setting_channels.py
 test/test_notification_setting_type.py
 test/test_os.py
-test/test_payment_type.py
 test/test_payments_api.py
 test/test_perform_action_on_backup_request.py
 test/test_perform_action_on_server_request.py
@@ -1010,7 +1004,6 @@ timeweb_cloud_api/models/create_multiple_domain_mailboxes201_response.py
 timeweb_cloud_api/models/create_multiple_domain_mailboxes_request.py
 timeweb_cloud_api/models/create_network_drive.py
 timeweb_cloud_api/models/create_network_drive201_response.py
-timeweb_cloud_api/models/create_payment.py
 timeweb_cloud_api/models/create_project.py
 timeweb_cloud_api/models/create_project201_response.py
 timeweb_cloud_api/models/create_rule.py
@@ -1130,7 +1123,6 @@ timeweb_cloud_api/models/get_finances200_response.py
 timeweb_cloud_api/models/get_floating_ips200_response.py
 timeweb_cloud_api/models/get_key200_response.py
 timeweb_cloud_api/models/get_keys200_response.py
-timeweb_cloud_api/models/get_link_card_payment200_response.py
 timeweb_cloud_api/models/get_locations200_response.py
 timeweb_cloud_api/models/get_mail_quota200_response.py
 timeweb_cloud_api/models/get_mailboxes200_response.py
@@ -1213,7 +1205,6 @@ timeweb_cloud_api/models/notification_setting_channel.py
 timeweb_cloud_api/models/notification_setting_channels.py
 timeweb_cloud_api/models/notification_setting_type.py
 timeweb_cloud_api/models/os.py
-timeweb_cloud_api/models/payment_type.py
 timeweb_cloud_api/models/perform_action_on_backup_request.py
 timeweb_cloud_api/models/perform_action_on_server_request.py
 timeweb_cloud_api/models/policy.py
