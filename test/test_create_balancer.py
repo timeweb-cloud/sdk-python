@@ -64,7 +64,16 @@ class TestCreateBalancer(unittest.TestCase):
                     local_ip = 192.168.0.0, 
                     ip = 192.168.0.0, ), 
                 availability_zone = spb-1, 
-                project_id = 1
+                project_id = 1, 
+                certificates = timeweb_cloud_api.models.create_balancer_certificates.create_balancer_certificates(
+                    type = custom, 
+                    fqdn = somedomain.ru, 
+                    cert_data = -----BEGIN CERTIFICATE-----
+MIIDxjCCArMC
+-----END CERTIFICATE-----, 
+                    key_data = -----BEGIN PRIVATE KEY-----
+MIIDxjCCArMC
+-----END PRIVATE KEY-----, )
             )
         else :
             return CreateBalancer(

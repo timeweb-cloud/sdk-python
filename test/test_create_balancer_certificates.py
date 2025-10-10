@@ -13,216 +13,50 @@
 """
 
 
-from __future__ import annotations
-import pprint
-import re  # noqa: F401
-import json
+import unittest
+import datetime
 
+import timeweb_cloud_api
+from timeweb_cloud_api.models.create_balancer_certificates import CreateBalancerCertificates  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
-from typing import Any, Optional
-from pydantic import BaseModel, Field, validator
-from timeweb_cloud_api.models.create_balancer_certificates import CreateBalancerCertificates
+class TestCreateBalancerCertificates(unittest.TestCase):
+    """CreateBalancerCertificates unit test stubs"""
 
-class UpdateBalancer(BaseModel):
-    """
-    UpdateBalancer
-    """
-    name: Optional[Any] = Field(None, description="Удобочитаемое имя, установленное для балансировщика. Должно быть уникальным в рамках аккаунта")
-    algo: Optional[Any] = Field(None, description="Алгоритм переключений балансировщика.")
-    is_sticky: Optional[Any] = Field(None, description="Это логическое значение, которое показывает, сохраняется ли сессия.")
-    is_use_proxy: Optional[Any] = Field(None, description="Это логическое значение, которое показывает, выступает ли балансировщик в качестве прокси.")
-    is_ssl: Optional[Any] = Field(None, description="Это логическое значение, которое показывает, требуется ли перенаправление на SSL.")
-    is_keepalive: Optional[Any] = Field(None, description="Это логическое значение, которое показывает, выдает ли балансировщик сигнал о проверке жизнеспособности.")
-    proto: Optional[Any] = Field(None, description="Протокол.")
-    port: Optional[Any] = Field(None, description="Порт балансировщика.")
-    path: Optional[Any] = Field(None, description="Адрес балансировщика.")
-    inter: Optional[Any] = Field(None, description="Интервал проверки.")
-    timeout: Optional[Any] = Field(None, description="Таймаут ответа балансировщика.")
-    fall: Optional[Any] = Field(None, description="Порог количества ошибок.")
-    rise: Optional[Any] = Field(None, description="Порог количества успешных ответов.")
-    maxconn: Optional[Any] = Field(None, description="Максимальное количество соединений.")
-    connect_timeout: Optional[Any] = Field(None, description="Таймаут подключения.")
-    client_timeout: Optional[Any] = Field(None, description="Таймаут клиента.")
-    server_timeout: Optional[Any] = Field(None, description="Таймаут сервера.")
-    httprequest_timeout: Optional[Any] = Field(None, description="Таймаут HTTP запроса.")
-    comment: Optional[Any] = Field(None, description="Комментарий к балансировщику.")
-    certificates: Optional[CreateBalancerCertificates] = None
-    __properties = ["name", "algo", "is_sticky", "is_use_proxy", "is_ssl", "is_keepalive", "proto", "port", "path", "inter", "timeout", "fall", "rise", "maxconn", "connect_timeout", "client_timeout", "server_timeout", "httprequest_timeout", "comment", "certificates"]
+    def setUp(self):
+        pass
 
-    @validator('algo')
-    def algo_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
+    def tearDown(self):
+        pass
 
-        if value not in ('roundrobin', 'leastconn'):
-            raise ValueError("must be one of enum values ('roundrobin', 'leastconn')")
-        return value
+    def make_instance(self, include_optional):
+        """Test CreateBalancerCertificates
+            include_option is a boolean, when False only required
+            params are included, when True both required and
+            optional params are included """
+        # uncomment below to create an instance of `CreateBalancerCertificates`
+        """
+        model = timeweb_cloud_api.models.create_balancer_certificates.CreateBalancerCertificates()  # noqa: E501
+        if include_optional :
+            return CreateBalancerCertificates(
+                type = custom, 
+                fqdn = somedomain.ru, 
+                cert_data = -----BEGIN CERTIFICATE-----
+MIIDxjCCArMC
+-----END CERTIFICATE-----, 
+                key_data = -----BEGIN PRIVATE KEY-----
+MIIDxjCCArMC
+-----END PRIVATE KEY-----
+            )
+        else :
+            return CreateBalancerCertificates(
+        )
+        """
 
-    @validator('proto')
-    def proto_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
+    def testCreateBalancerCertificates(self):
+        """Test CreateBalancerCertificates"""
+        # inst_req_only = self.make_instance(include_optional=False)
+        # inst_req_and_optional = self.make_instance(include_optional=True)
 
-        if value not in ('http', 'http2', 'https', 'tcp'):
-            raise ValueError("must be one of enum values ('http', 'http2', 'https', 'tcp')")
-        return value
-
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
-    def to_str(self) -> str:
-        """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
-
-    def to_json(self) -> str:
-        """Returns the JSON representation of the model using alias"""
-        return json.dumps(self.to_dict())
-
-    @classmethod
-    def from_json(cls, json_str: str) -> UpdateBalancer:
-        """Create an instance of UpdateBalancer from a JSON string"""
-        return cls.from_dict(json.loads(json_str))
-
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of certificates
-        if self.certificates:
-            _dict['certificates'] = self.certificates.to_dict()
-        # set to None if name (nullable) is None
-        # and __fields_set__ contains the field
-        if self.name is None and "name" in self.__fields_set__:
-            _dict['name'] = None
-
-        # set to None if algo (nullable) is None
-        # and __fields_set__ contains the field
-        if self.algo is None and "algo" in self.__fields_set__:
-            _dict['algo'] = None
-
-        # set to None if is_sticky (nullable) is None
-        # and __fields_set__ contains the field
-        if self.is_sticky is None and "is_sticky" in self.__fields_set__:
-            _dict['is_sticky'] = None
-
-        # set to None if is_use_proxy (nullable) is None
-        # and __fields_set__ contains the field
-        if self.is_use_proxy is None and "is_use_proxy" in self.__fields_set__:
-            _dict['is_use_proxy'] = None
-
-        # set to None if is_ssl (nullable) is None
-        # and __fields_set__ contains the field
-        if self.is_ssl is None and "is_ssl" in self.__fields_set__:
-            _dict['is_ssl'] = None
-
-        # set to None if is_keepalive (nullable) is None
-        # and __fields_set__ contains the field
-        if self.is_keepalive is None and "is_keepalive" in self.__fields_set__:
-            _dict['is_keepalive'] = None
-
-        # set to None if proto (nullable) is None
-        # and __fields_set__ contains the field
-        if self.proto is None and "proto" in self.__fields_set__:
-            _dict['proto'] = None
-
-        # set to None if port (nullable) is None
-        # and __fields_set__ contains the field
-        if self.port is None and "port" in self.__fields_set__:
-            _dict['port'] = None
-
-        # set to None if path (nullable) is None
-        # and __fields_set__ contains the field
-        if self.path is None and "path" in self.__fields_set__:
-            _dict['path'] = None
-
-        # set to None if inter (nullable) is None
-        # and __fields_set__ contains the field
-        if self.inter is None and "inter" in self.__fields_set__:
-            _dict['inter'] = None
-
-        # set to None if timeout (nullable) is None
-        # and __fields_set__ contains the field
-        if self.timeout is None and "timeout" in self.__fields_set__:
-            _dict['timeout'] = None
-
-        # set to None if fall (nullable) is None
-        # and __fields_set__ contains the field
-        if self.fall is None and "fall" in self.__fields_set__:
-            _dict['fall'] = None
-
-        # set to None if rise (nullable) is None
-        # and __fields_set__ contains the field
-        if self.rise is None and "rise" in self.__fields_set__:
-            _dict['rise'] = None
-
-        # set to None if maxconn (nullable) is None
-        # and __fields_set__ contains the field
-        if self.maxconn is None and "maxconn" in self.__fields_set__:
-            _dict['maxconn'] = None
-
-        # set to None if connect_timeout (nullable) is None
-        # and __fields_set__ contains the field
-        if self.connect_timeout is None and "connect_timeout" in self.__fields_set__:
-            _dict['connect_timeout'] = None
-
-        # set to None if client_timeout (nullable) is None
-        # and __fields_set__ contains the field
-        if self.client_timeout is None and "client_timeout" in self.__fields_set__:
-            _dict['client_timeout'] = None
-
-        # set to None if server_timeout (nullable) is None
-        # and __fields_set__ contains the field
-        if self.server_timeout is None and "server_timeout" in self.__fields_set__:
-            _dict['server_timeout'] = None
-
-        # set to None if httprequest_timeout (nullable) is None
-        # and __fields_set__ contains the field
-        if self.httprequest_timeout is None and "httprequest_timeout" in self.__fields_set__:
-            _dict['httprequest_timeout'] = None
-
-        # set to None if comment (nullable) is None
-        # and __fields_set__ contains the field
-        if self.comment is None and "comment" in self.__fields_set__:
-            _dict['comment'] = None
-
-        return _dict
-
-    @classmethod
-    def from_dict(cls, obj: dict) -> UpdateBalancer:
-        """Create an instance of UpdateBalancer from a dict"""
-        if obj is None:
-            return None
-
-        if not isinstance(obj, dict):
-            return UpdateBalancer.parse_obj(obj)
-
-        _obj = UpdateBalancer.parse_obj({
-            "name": obj.get("name"),
-            "algo": obj.get("algo"),
-            "is_sticky": obj.get("is_sticky"),
-            "is_use_proxy": obj.get("is_use_proxy"),
-            "is_ssl": obj.get("is_ssl"),
-            "is_keepalive": obj.get("is_keepalive"),
-            "proto": obj.get("proto"),
-            "port": obj.get("port"),
-            "path": obj.get("path"),
-            "inter": obj.get("inter"),
-            "timeout": obj.get("timeout"),
-            "fall": obj.get("fall"),
-            "rise": obj.get("rise"),
-            "maxconn": obj.get("maxconn"),
-            "connect_timeout": obj.get("connect_timeout"),
-            "client_timeout": obj.get("client_timeout"),
-            "server_timeout": obj.get("server_timeout"),
-            "httprequest_timeout": obj.get("httprequest_timeout"),
-            "comment": obj.get("comment"),
-            "certificates": CreateBalancerCertificates.from_dict(obj.get("certificates")) if obj.get("certificates") is not None else None
-        })
-        return _obj
-
+if __name__ == '__main__':
+    unittest.main()

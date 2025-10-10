@@ -120,7 +120,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_database_backup**
-> CreateDatabaseBackup201Response create_database_backup(db_id)
+> CreateDatabaseBackup201Response create_database_backup(db_id, comment=comment)
 
 Создание бэкапа базы данных
 
@@ -158,10 +158,11 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.DatabasesApi(api_client)
     db_id = None # object | ID базы данных
+    comment = None # object | Описание бэкапа (optional)
 
     try:
         # Создание бэкапа базы данных
-        api_response = api_instance.create_database_backup(db_id)
+        api_response = api_instance.create_database_backup(db_id, comment=comment)
         print("The response of DatabasesApi->create_database_backup:\n")
         pprint(api_response)
     except Exception as e:
@@ -174,6 +175,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **db_id** | [**object**](.md)| ID базы данных | 
+ **comment** | [**object**](.md)| Описание бэкапа | [optional] 
 
 ### Return type
 

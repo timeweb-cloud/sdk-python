@@ -224,18 +224,20 @@ class DatabasesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def create_database_backup(self, db_id : Annotated[Any, Field(..., description="ID базы данных")], **kwargs) -> CreateDatabaseBackup201Response:  # noqa: E501
+    def create_database_backup(self, db_id : Annotated[Any, Field(..., description="ID базы данных")], comment : Annotated[Optional[Any], Field(description="Описание бэкапа")] = None, **kwargs) -> CreateDatabaseBackup201Response:  # noqa: E501
         """Создание бэкапа базы данных  # noqa: E501
 
         Чтобы создать бэкап базы данных, отправьте запрос POST в `api/v1/dbs/{db_id}/backups`.   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.create_database_backup(db_id, async_req=True)
+        >>> thread = api.create_database_backup(db_id, comment, async_req=True)
         >>> result = thread.get()
 
         :param db_id: ID базы данных (required)
         :type db_id: object
+        :param comment: Описание бэкапа
+        :type comment: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request. If one
@@ -250,21 +252,23 @@ class DatabasesApi(object):
         kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             raise ValueError("Error! Please call the create_database_backup_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
-        return self.create_database_backup_with_http_info(db_id, **kwargs)  # noqa: E501
+        return self.create_database_backup_with_http_info(db_id, comment, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def create_database_backup_with_http_info(self, db_id : Annotated[Any, Field(..., description="ID базы данных")], **kwargs) -> ApiResponse:  # noqa: E501
+    def create_database_backup_with_http_info(self, db_id : Annotated[Any, Field(..., description="ID базы данных")], comment : Annotated[Optional[Any], Field(description="Описание бэкапа")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Создание бэкапа базы данных  # noqa: E501
 
         Чтобы создать бэкап базы данных, отправьте запрос POST в `api/v1/dbs/{db_id}/backups`.   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.create_database_backup_with_http_info(db_id, async_req=True)
+        >>> thread = api.create_database_backup_with_http_info(db_id, comment, async_req=True)
         >>> result = thread.get()
 
         :param db_id: ID базы данных (required)
         :type db_id: object
+        :param comment: Описание бэкапа
+        :type comment: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
@@ -293,7 +297,8 @@ class DatabasesApi(object):
         _params = locals()
 
         _all_params = [
-            'db_id'
+            'db_id',
+            'comment'
         ]
         _all_params.extend(
             [
@@ -327,6 +332,9 @@ class DatabasesApi(object):
 
         # process the query parameters
         _query_params = []
+        if _params.get('comment') is not None:  # noqa: E501
+            _query_params.append(('comment', _params['comment']))
+
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
         # process the form parameters

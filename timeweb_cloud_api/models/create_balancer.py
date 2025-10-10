@@ -22,6 +22,7 @@ import json
 from typing import Any, Optional
 from pydantic import BaseModel, Field, validator
 from timeweb_cloud_api.models.availability_zone import AvailabilityZone
+from timeweb_cloud_api.models.create_balancer_certificates import CreateBalancerCertificates
 from timeweb_cloud_api.models.network import Network
 
 class CreateBalancer(BaseModel):
@@ -50,7 +51,8 @@ class CreateBalancer(BaseModel):
     network: Optional[Network] = None
     availability_zone: Optional[AvailabilityZone] = None
     project_id: Optional[Any] = Field(None, description="ID проекта")
-    __properties = ["name", "algo", "is_sticky", "is_use_proxy", "is_ssl", "is_keepalive", "proto", "port", "path", "inter", "timeout", "fall", "rise", "maxconn", "connect_timeout", "client_timeout", "server_timeout", "httprequest_timeout", "preset_id", "network", "availability_zone", "project_id"]
+    certificates: Optional[CreateBalancerCertificates] = None
+    __properties = ["name", "algo", "is_sticky", "is_use_proxy", "is_ssl", "is_keepalive", "proto", "port", "path", "inter", "timeout", "fall", "rise", "maxconn", "connect_timeout", "client_timeout", "server_timeout", "httprequest_timeout", "preset_id", "network", "availability_zone", "project_id", "certificates"]
 
     @validator('algo')
     def algo_validate_enum(cls, value):
@@ -99,6 +101,9 @@ class CreateBalancer(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of network
         if self.network:
             _dict['network'] = self.network.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of certificates
+        if self.certificates:
+            _dict['certificates'] = self.certificates.to_dict()
         # set to None if name (nullable) is None
         # and __fields_set__ contains the field
         if self.name is None and "name" in self.__fields_set__:
@@ -232,7 +237,8 @@ class CreateBalancer(BaseModel):
             "preset_id": obj.get("preset_id"),
             "network": Network.from_dict(obj.get("network")) if obj.get("network") is not None else None,
             "availability_zone": obj.get("availability_zone"),
-            "project_id": obj.get("project_id")
+            "project_id": obj.get("project_id"),
+            "certificates": CreateBalancerCertificates.from_dict(obj.get("certificates")) if obj.get("certificates") is not None else None
         })
         return _obj
 

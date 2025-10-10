@@ -85,6 +85,7 @@ from timeweb_cloud_api.models.create_app import CreateApp
 from timeweb_cloud_api.models.create_app201_response import CreateApp201Response
 from timeweb_cloud_api.models.create_balancer import CreateBalancer
 from timeweb_cloud_api.models.create_balancer200_response import CreateBalancer200Response
+from timeweb_cloud_api.models.create_balancer_certificates import CreateBalancerCertificates
 from timeweb_cloud_api.models.create_balancer_rule200_response import CreateBalancerRule200Response
 from timeweb_cloud_api.models.create_cluster import CreateCluster
 from timeweb_cloud_api.models.create_cluster_admin import CreateClusterAdmin

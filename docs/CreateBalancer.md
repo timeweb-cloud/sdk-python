@@ -26,6 +26,7 @@ Name | Type | Description | Notes
 **network** | [**Network**](Network.md) |  | [optional] 
 **availability_zone** | [**AvailabilityZone**](AvailabilityZone.md) |  | [optional] 
 **project_id** | **object** | ID проекта | [optional] 
+**certificates** | [**CreateBalancerCertificates**](CreateBalancerCertificates.md) |  | [optional] 
 
 ## Example
 

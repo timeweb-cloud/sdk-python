@@ -79,6 +79,7 @@ docs/CreateApp.md
 docs/CreateApp201Response.md
 docs/CreateBalancer.md
 docs/CreateBalancer200Response.md
+docs/CreateBalancerCertificates.md
 docs/CreateBalancerRule200Response.md
 docs/CreateCluster.md
 docs/CreateClusterAdmin.md
@@ -519,6 +520,7 @@ test/test_create_app.py
 test/test_create_app201_response.py
 test/test_create_balancer.py
 test/test_create_balancer200_response.py
+test/test_create_balancer_certificates.py
 test/test_create_balancer_rule200_response.py
 test/test_create_cluster.py
 test/test_create_cluster_admin.py
@@ -975,6 +977,7 @@ timeweb_cloud_api/models/create_app.py
 timeweb_cloud_api/models/create_app201_response.py
 timeweb_cloud_api/models/create_balancer.py
 timeweb_cloud_api/models/create_balancer200_response.py
+timeweb_cloud_api/models/create_balancer_certificates.py
 timeweb_cloud_api/models/create_balancer_rule200_response.py
 timeweb_cloud_api/models/create_cluster.py
 timeweb_cloud_api/models/create_cluster_admin.py

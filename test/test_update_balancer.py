@@ -56,7 +56,17 @@ class TestUpdateBalancer(unittest.TestCase):
                 connect_timeout = 5000, 
                 client_timeout = 50000, 
                 server_timeout = 50000, 
-                httprequest_timeout = 10000
+                httprequest_timeout = 10000, 
+                comment = comment, 
+                certificates = timeweb_cloud_api.models.create_balancer_certificates.create_balancer_certificates(
+                    type = custom, 
+                    fqdn = somedomain.ru, 
+                    cert_data = -----BEGIN CERTIFICATE-----
+MIIDxjCCArMC
+-----END CERTIFICATE-----, 
+                    key_data = -----BEGIN PRIVATE KEY-----
+MIIDxjCCArMC
+-----END PRIVATE KEY-----, )
             )
         else :
             return UpdateBalancer(
