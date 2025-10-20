@@ -29,7 +29,7 @@ class Knowledgebase(BaseModel):
     id: Optional[Any] = Field(..., description="Уникальный идентификатор базы знаний")
     name: Optional[Any] = Field(..., description="Название базы знаний")
     description: Optional[Any] = Field(None, description="Описание базы знаний")
-    dbaas_id: Optional[Any] = Field(..., description="ID базы данных (opensearch или qdrant)")
+    dbaas_id: Optional[Any] = Field(..., description="ID базы данных opensearch")
     status: Optional[Any] = Field(..., description="Статус базы знаний")
     last_sync: Optional[Any] = Field(None, description="Дата последней синхронизации")
     total_tokens: Optional[Any] = Field(..., description="Всего токенов выделено")
