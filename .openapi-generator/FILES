@@ -4,6 +4,7 @@
 .openapi-generator-ignore
 .travis.yml
 README.md
+docs/AIAgentsApi.md
 docs/APIKeysApi.md
 docs/AccountApi.md
 docs/AddBalancerToProject200Response.md
@@ -32,7 +33,12 @@ docs/AddStorageSubdomains200Response.md
 docs/AddStorageSubdomainsRequest.md
 docs/AddStorageToProjectRequest.md
 docs/AddSubdomain201Response.md
+docs/AddTokenPackage.md
 docs/AddedSubdomain.md
+docs/Agent.md
+docs/AgentModelSettings.md
+docs/AgentSettings.md
+docs/AgentSettingsWidget.md
 docs/ApiKey.md
 docs/App.md
 docs/AppConfiguration.md
@@ -74,6 +80,8 @@ docs/ComponentsSchemasBaseError.md
 docs/ConfigParameters.md
 docs/ContainerRegistryApi.md
 docs/CreateAdmin.md
+docs/CreateAgent.md
+docs/CreateAgent201Response.md
 docs/CreateApiKey.md
 docs/CreateApp.md
 docs/CreateApp201Response.md
@@ -105,6 +113,8 @@ docs/CreateFloatingIp201Response.md
 docs/CreateInstance.md
 docs/CreateKey201Response.md
 docs/CreateKeyRequest.md
+docs/CreateKnowledgebase.md
+docs/CreateKnowledgebase201Response.md
 docs/CreateMultipleDomainMailboxes201Response.md
 docs/CreateMultipleDomainMailboxesRequest.md
 docs/CreateNetworkDrive.md
@@ -161,6 +171,9 @@ docs/Deploy.md
 docs/DeployStatus.md
 docs/DnsRecord.md
 docs/DnsRecordData.md
+docs/Document.md
+docs/DocumentStatusInfo.md
+docs/DocumentStatusInfoDetails.md
 docs/Domain.md
 docs/DomainInfo.md
 docs/DomainNameServer.md
@@ -196,6 +209,10 @@ docs/ForwardingOutgoingIsEnabled.md
 docs/Frameworks.md
 docs/Free.md
 docs/GetAccountStatus200Response.md
+docs/GetAgentStatistics200Response.md
+docs/GetAgentStatistics200ResponseMeta.md
+docs/GetAgents200Response.md
+docs/GetAgents200ResponseMeta.md
 docs/GetAllProjectResources200Response.md
 docs/GetAppDeploys200Response.md
 docs/GetAppLogs200Response.md
@@ -233,6 +250,9 @@ docs/GetFinances200Response.md
 docs/GetFloatingIps200Response.md
 docs/GetKey200Response.md
 docs/GetKeys200Response.md
+docs/GetKnowledgebaseStatistics200Response.md
+docs/GetKnowledgebases200Response.md
+docs/GetKnowledgebases200ResponseMeta.md
 docs/GetLocations200Response.md
 docs/GetMailQuota200Response.md
 docs/GetMailboxes200Response.md
@@ -286,6 +306,8 @@ docs/IncreaseNodes.md
 docs/InfoServicePrice.md
 docs/Invoice.md
 docs/K8SVersionsResponse.md
+docs/KnowledgeBasesApi.md
+docs/Knowledgebase.md
 docs/KubernetesApi.md
 docs/Location.md
 docs/LocationDto.md
@@ -386,11 +408,14 @@ docs/SshKey.md
 docs/Status.md
 docs/StatusCompanyInfo.md
 docs/Subdomain.md
+docs/TokenStatistic.md
 docs/TopLevelDomain.md
 docs/TransferStatus.md
 docs/TransferStorageRequest.md
 docs/URLType.md
 docs/UpdateAdmin.md
+docs/UpdateAgent.md
+docs/UpdateAgentSettings.md
 docs/UpdateAppSettings200Response.md
 docs/UpdateAuthRestrictionsByCountriesRequest.md
 docs/UpdateBalancer.md
@@ -404,6 +429,7 @@ docs/UpdateDomainNameServers.md
 docs/UpdateFloatingIp.md
 docs/UpdateInstance.md
 docs/UpdateKeyRequest.md
+docs/UpdateKnowledgebase.md
 docs/UpdateMailQuotaRequest.md
 docs/UpdateMailbox.md
 docs/UpdateNetworkDrive.md
@@ -424,6 +450,7 @@ docs/UpdateStorageUser200Response.md
 docs/UpdateStorageUserRequest.md
 docs/UpdateToken200Response.md
 docs/UpdateVpc.md
+docs/UploadFilesToKnowledgebase200Response.md
 docs/UploadSuccessful.md
 docs/UploadSuccessfulResponse.md
 docs/UrlStatus.md
@@ -472,7 +499,13 @@ test/test_add_storage_subdomains200_response.py
 test/test_add_storage_subdomains_request.py
 test/test_add_storage_to_project_request.py
 test/test_add_subdomain201_response.py
+test/test_add_token_package.py
 test/test_added_subdomain.py
+test/test_agent.py
+test/test_agent_model_settings.py
+test/test_agent_settings.py
+test/test_agent_settings_widget.py
+test/test_ai_agents_api.py
 test/test_api_key.py
 test/test_api_keys_api.py
 test/test_app.py
@@ -515,6 +548,8 @@ test/test_components_schemas_base_error.py
 test/test_config_parameters.py
 test/test_container_registry_api.py
 test/test_create_admin.py
+test/test_create_agent.py
+test/test_create_agent201_response.py
 test/test_create_api_key.py
 test/test_create_app.py
 test/test_create_app201_response.py
@@ -546,6 +581,8 @@ test/test_create_floating_ip201_response.py
 test/test_create_instance.py
 test/test_create_key201_response.py
 test/test_create_key_request.py
+test/test_create_knowledgebase.py
+test/test_create_knowledgebase201_response.py
 test/test_create_multiple_domain_mailboxes201_response.py
 test/test_create_multiple_domain_mailboxes_request.py
 test/test_create_network_drive.py
@@ -602,6 +639,9 @@ test/test_deploy.py
 test/test_deploy_status.py
 test/test_dns_record.py
 test/test_dns_record_data.py
+test/test_document.py
+test/test_document_status_info.py
+test/test_document_status_info_details.py
 test/test_domain.py
 test/test_domain_info.py
 test/test_domain_name_server.py
@@ -637,6 +677,10 @@ test/test_forwarding_outgoing_is_enabled.py
 test/test_frameworks.py
 test/test_free.py
 test/test_get_account_status200_response.py
+test/test_get_agent_statistics200_response.py
+test/test_get_agent_statistics200_response_meta.py
+test/test_get_agents200_response.py
+test/test_get_agents200_response_meta.py
 test/test_get_all_project_resources200_response.py
 test/test_get_app_deploys200_response.py
 test/test_get_app_logs200_response.py
@@ -674,6 +718,9 @@ test/test_get_finances200_response.py
 test/test_get_floating_ips200_response.py
 test/test_get_key200_response.py
 test/test_get_keys200_response.py
+test/test_get_knowledgebase_statistics200_response.py
+test/test_get_knowledgebases200_response.py
+test/test_get_knowledgebases200_response_meta.py
 test/test_get_locations200_response.py
 test/test_get_mail_quota200_response.py
 test/test_get_mailboxes200_response.py
@@ -727,6 +774,8 @@ test/test_increase_nodes.py
 test/test_info_service_price.py
 test/test_invoice.py
 test/test_k8_s_versions_response.py
+test/test_knowledge_bases_api.py
+test/test_knowledgebase.py
 test/test_kubernetes_api.py
 test/test_location.py
 test/test_location_dto.py
@@ -827,10 +876,13 @@ test/test_ssh_key.py
 test/test_status.py
 test/test_status_company_info.py
 test/test_subdomain.py
+test/test_token_statistic.py
 test/test_top_level_domain.py
 test/test_transfer_status.py
 test/test_transfer_storage_request.py
 test/test_update_admin.py
+test/test_update_agent.py
+test/test_update_agent_settings.py
 test/test_update_app_settings200_response.py
 test/test_update_auth_restrictions_by_countries_request.py
 test/test_update_balancer.py
@@ -844,6 +896,7 @@ test/test_update_domain_name_servers.py
 test/test_update_floating_ip.py
 test/test_update_instance.py
 test/test_update_key_request.py
+test/test_update_knowledgebase.py
 test/test_update_mail_quota_request.py
 test/test_update_mailbox.py
 test/test_update_network_drive.py
@@ -864,6 +917,7 @@ test/test_update_storage_user200_response.py
 test/test_update_storage_user_request.py
 test/test_update_token200_response.py
 test/test_update_vpc.py
+test/test_upload_files_to_knowledgebase200_response.py
 test/test_upload_successful.py
 test/test_upload_successful_response.py
 test/test_url_status.py
@@ -882,6 +936,7 @@ test/test_worker_preset_out_api.py
 timeweb_cloud_api/__init__.py
 timeweb_cloud_api/api/__init__.py
 timeweb_cloud_api/api/account_api.py
+timeweb_cloud_api/api/ai_agents_api.py
 timeweb_cloud_api/api/api_keys_api.py
 timeweb_cloud_api/api/apps_api.py
 timeweb_cloud_api/api/balancers_api.py
@@ -892,6 +947,7 @@ timeweb_cloud_api/api/domains_api.py
 timeweb_cloud_api/api/firewall_api.py
 timeweb_cloud_api/api/floating_ip_api.py
 timeweb_cloud_api/api/images_api.py
+timeweb_cloud_api/api/knowledge_bases_api.py
 timeweb_cloud_api/api/kubernetes_api.py
 timeweb_cloud_api/api/locations_api.py
 timeweb_cloud_api/api/mail_api.py
@@ -933,7 +989,12 @@ timeweb_cloud_api/models/add_storage_subdomains200_response.py
 timeweb_cloud_api/models/add_storage_subdomains_request.py
 timeweb_cloud_api/models/add_storage_to_project_request.py
 timeweb_cloud_api/models/add_subdomain201_response.py
+timeweb_cloud_api/models/add_token_package.py
 timeweb_cloud_api/models/added_subdomain.py
+timeweb_cloud_api/models/agent.py
+timeweb_cloud_api/models/agent_model_settings.py
+timeweb_cloud_api/models/agent_settings.py
+timeweb_cloud_api/models/agent_settings_widget.py
 timeweb_cloud_api/models/api_key.py
 timeweb_cloud_api/models/app.py
 timeweb_cloud_api/models/app_configuration.py
@@ -972,6 +1033,8 @@ timeweb_cloud_api/models/commit.py
 timeweb_cloud_api/models/components_schemas_base_error.py
 timeweb_cloud_api/models/config_parameters.py
 timeweb_cloud_api/models/create_admin.py
+timeweb_cloud_api/models/create_agent.py
+timeweb_cloud_api/models/create_agent201_response.py
 timeweb_cloud_api/models/create_api_key.py
 timeweb_cloud_api/models/create_app.py
 timeweb_cloud_api/models/create_app201_response.py
@@ -1003,6 +1066,8 @@ timeweb_cloud_api/models/create_floating_ip201_response.py
 timeweb_cloud_api/models/create_instance.py
 timeweb_cloud_api/models/create_key201_response.py
 timeweb_cloud_api/models/create_key_request.py
+timeweb_cloud_api/models/create_knowledgebase.py
+timeweb_cloud_api/models/create_knowledgebase201_response.py
 timeweb_cloud_api/models/create_multiple_domain_mailboxes201_response.py
 timeweb_cloud_api/models/create_multiple_domain_mailboxes_request.py
 timeweb_cloud_api/models/create_network_drive.py
@@ -1057,6 +1122,9 @@ timeweb_cloud_api/models/deploy.py
 timeweb_cloud_api/models/deploy_status.py
 timeweb_cloud_api/models/dns_record.py
 timeweb_cloud_api/models/dns_record_data.py
+timeweb_cloud_api/models/document.py
+timeweb_cloud_api/models/document_status_info.py
+timeweb_cloud_api/models/document_status_info_details.py
 timeweb_cloud_api/models/domain.py
 timeweb_cloud_api/models/domain_info.py
 timeweb_cloud_api/models/domain_name_server.py
@@ -1089,6 +1157,10 @@ timeweb_cloud_api/models/forwarding_outgoing_is_enabled.py
 timeweb_cloud_api/models/frameworks.py
 timeweb_cloud_api/models/free.py
 timeweb_cloud_api/models/get_account_status200_response.py
+timeweb_cloud_api/models/get_agent_statistics200_response.py
+timeweb_cloud_api/models/get_agent_statistics200_response_meta.py
+timeweb_cloud_api/models/get_agents200_response.py
+timeweb_cloud_api/models/get_agents200_response_meta.py
 timeweb_cloud_api/models/get_all_project_resources200_response.py
 timeweb_cloud_api/models/get_app_deploys200_response.py
 timeweb_cloud_api/models/get_app_logs200_response.py
@@ -1126,6 +1198,9 @@ timeweb_cloud_api/models/get_finances200_response.py
 timeweb_cloud_api/models/get_floating_ips200_response.py
 timeweb_cloud_api/models/get_key200_response.py
 timeweb_cloud_api/models/get_keys200_response.py
+timeweb_cloud_api/models/get_knowledgebase_statistics200_response.py
+timeweb_cloud_api/models/get_knowledgebases200_response.py
+timeweb_cloud_api/models/get_knowledgebases200_response_meta.py
 timeweb_cloud_api/models/get_locations200_response.py
 timeweb_cloud_api/models/get_mail_quota200_response.py
 timeweb_cloud_api/models/get_mailboxes200_response.py
@@ -1178,6 +1253,7 @@ timeweb_cloud_api/models/increase_nodes.py
 timeweb_cloud_api/models/info_service_price.py
 timeweb_cloud_api/models/invoice.py
 timeweb_cloud_api/models/k8_s_versions_response.py
+timeweb_cloud_api/models/knowledgebase.py
 timeweb_cloud_api/models/location.py
 timeweb_cloud_api/models/location_dto.py
 timeweb_cloud_api/models/mailbox.py
@@ -1269,10 +1345,13 @@ timeweb_cloud_api/models/ssh_key.py
 timeweb_cloud_api/models/status.py
 timeweb_cloud_api/models/status_company_info.py
 timeweb_cloud_api/models/subdomain.py
+timeweb_cloud_api/models/token_statistic.py
 timeweb_cloud_api/models/top_level_domain.py
 timeweb_cloud_api/models/transfer_status.py
 timeweb_cloud_api/models/transfer_storage_request.py
 timeweb_cloud_api/models/update_admin.py
+timeweb_cloud_api/models/update_agent.py
+timeweb_cloud_api/models/update_agent_settings.py
 timeweb_cloud_api/models/update_app_settings200_response.py
 timeweb_cloud_api/models/update_auth_restrictions_by_countries_request.py
 timeweb_cloud_api/models/update_balancer.py
@@ -1286,6 +1365,7 @@ timeweb_cloud_api/models/update_domain_name_servers.py
 timeweb_cloud_api/models/update_floating_ip.py
 timeweb_cloud_api/models/update_instance.py
 timeweb_cloud_api/models/update_key_request.py
+timeweb_cloud_api/models/update_knowledgebase.py
 timeweb_cloud_api/models/update_mail_quota_request.py
 timeweb_cloud_api/models/update_mailbox.py
 timeweb_cloud_api/models/update_network_drive.py
@@ -1306,6 +1386,7 @@ timeweb_cloud_api/models/update_storage_user200_response.py
 timeweb_cloud_api/models/update_storage_user_request.py
 timeweb_cloud_api/models/update_token200_response.py
 timeweb_cloud_api/models/update_vpc.py
+timeweb_cloud_api/models/upload_files_to_knowledgebase200_response.py
 timeweb_cloud_api/models/upload_successful.py
 timeweb_cloud_api/models/upload_successful_response.py
 timeweb_cloud_api/models/url_status.py

@@ -1,6 +1,7 @@
 # flake8: noqa
 
 # import apis into api package
+from timeweb_cloud_api.api.ai_agents_api import AIAgentsApi
 from timeweb_cloud_api.api.api_keys_api import APIKeysApi
 from timeweb_cloud_api.api.account_api import AccountApi
 from timeweb_cloud_api.api.apps_api import AppsApi
@@ -12,6 +13,7 @@ from timeweb_cloud_api.api.domains_api import DomainsApi
 from timeweb_cloud_api.api.firewall_api import FirewallApi
 from timeweb_cloud_api.api.floating_ip_api import FloatingIPApi
 from timeweb_cloud_api.api.images_api import ImagesApi
+from timeweb_cloud_api.api.knowledge_bases_api import KnowledgeBasesApi
 from timeweb_cloud_api.api.kubernetes_api import KubernetesApi
 from timeweb_cloud_api.api.locations_api import LocationsApi
 from timeweb_cloud_api.api.mail_api import MailApi

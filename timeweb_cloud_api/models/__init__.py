@@ -41,7 +41,12 @@ from timeweb_cloud_api.models.add_storage_subdomains200_response import AddStora
 from timeweb_cloud_api.models.add_storage_subdomains_request import AddStorageSubdomainsRequest
 from timeweb_cloud_api.models.add_storage_to_project_request import AddStorageToProjectRequest
 from timeweb_cloud_api.models.add_subdomain201_response import AddSubdomain201Response
+from timeweb_cloud_api.models.add_token_package import AddTokenPackage
 from timeweb_cloud_api.models.added_subdomain import AddedSubdomain
+from timeweb_cloud_api.models.agent import Agent
+from timeweb_cloud_api.models.agent_model_settings import AgentModelSettings
+from timeweb_cloud_api.models.agent_settings import AgentSettings
+from timeweb_cloud_api.models.agent_settings_widget import AgentSettingsWidget
 from timeweb_cloud_api.models.api_key import ApiKey
 from timeweb_cloud_api.models.app import App
 from timeweb_cloud_api.models.app_configuration import AppConfiguration
@@ -80,6 +85,8 @@ from timeweb_cloud_api.models.commit import Commit
 from timeweb_cloud_api.models.components_schemas_base_error import ComponentsSchemasBaseError
 from timeweb_cloud_api.models.config_parameters import ConfigParameters
 from timeweb_cloud_api.models.create_admin import CreateAdmin
+from timeweb_cloud_api.models.create_agent import CreateAgent
+from timeweb_cloud_api.models.create_agent201_response import CreateAgent201Response
 from timeweb_cloud_api.models.create_api_key import CreateApiKey
 from timeweb_cloud_api.models.create_app import CreateApp
 from timeweb_cloud_api.models.create_app201_response import CreateApp201Response
@@ -111,6 +118,8 @@ from timeweb_cloud_api.models.create_floating_ip201_response import CreateFloati
 from timeweb_cloud_api.models.create_instance import CreateInstance
 from timeweb_cloud_api.models.create_key201_response import CreateKey201Response
 from timeweb_cloud_api.models.create_key_request import CreateKeyRequest
+from timeweb_cloud_api.models.create_knowledgebase import CreateKnowledgebase
+from timeweb_cloud_api.models.create_knowledgebase201_response import CreateKnowledgebase201Response
 from timeweb_cloud_api.models.create_multiple_domain_mailboxes201_response import CreateMultipleDomainMailboxes201Response
 from timeweb_cloud_api.models.create_multiple_domain_mailboxes_request import CreateMultipleDomainMailboxesRequest
 from timeweb_cloud_api.models.create_network_drive import CreateNetworkDrive
@@ -165,6 +174,9 @@ from timeweb_cloud_api.models.deploy import Deploy
 from timeweb_cloud_api.models.deploy_status import DeployStatus
 from timeweb_cloud_api.models.dns_record import DnsRecord
 from timeweb_cloud_api.models.dns_record_data import DnsRecordData
+from timeweb_cloud_api.models.document import Document
+from timeweb_cloud_api.models.document_status_info import DocumentStatusInfo
+from timeweb_cloud_api.models.document_status_info_details import DocumentStatusInfoDetails
 from timeweb_cloud_api.models.domain import Domain
 from timeweb_cloud_api.models.domain_info import DomainInfo
 from timeweb_cloud_api.models.domain_name_server import DomainNameServer
@@ -197,6 +209,10 @@ from timeweb_cloud_api.models.forwarding_outgoing_is_enabled import ForwardingOu
 from timeweb_cloud_api.models.frameworks import Frameworks
 from timeweb_cloud_api.models.free import Free
 from timeweb_cloud_api.models.get_account_status200_response import GetAccountStatus200Response
+from timeweb_cloud_api.models.get_agent_statistics200_response import GetAgentStatistics200Response
+from timeweb_cloud_api.models.get_agent_statistics200_response_meta import GetAgentStatistics200ResponseMeta
+from timeweb_cloud_api.models.get_agents200_response import GetAgents200Response
+from timeweb_cloud_api.models.get_agents200_response_meta import GetAgents200ResponseMeta
 from timeweb_cloud_api.models.get_all_project_resources200_response import GetAllProjectResources200Response
 from timeweb_cloud_api.models.get_app_deploys200_response import GetAppDeploys200Response
 from timeweb_cloud_api.models.get_app_logs200_response import GetAppLogs200Response
@@ -234,6 +250,9 @@ from timeweb_cloud_api.models.get_finances200_response import GetFinances200Resp
 from timeweb_cloud_api.models.get_floating_ips200_response import GetFloatingIps200Response
 from timeweb_cloud_api.models.get_key200_response import GetKey200Response
 from timeweb_cloud_api.models.get_keys200_response import GetKeys200Response
+from timeweb_cloud_api.models.get_knowledgebase_statistics200_response import GetKnowledgebaseStatistics200Response
+from timeweb_cloud_api.models.get_knowledgebases200_response import GetKnowledgebases200Response
+from timeweb_cloud_api.models.get_knowledgebases200_response_meta import GetKnowledgebases200ResponseMeta
 from timeweb_cloud_api.models.get_locations200_response import GetLocations200Response
 from timeweb_cloud_api.models.get_mail_quota200_response import GetMailQuota200Response
 from timeweb_cloud_api.models.get_mailboxes200_response import GetMailboxes200Response
@@ -286,6 +305,7 @@ from timeweb_cloud_api.models.increase_nodes import IncreaseNodes
 from timeweb_cloud_api.models.info_service_price import InfoServicePrice
 from timeweb_cloud_api.models.invoice import Invoice
 from timeweb_cloud_api.models.k8_s_versions_response import K8SVersionsResponse
+from timeweb_cloud_api.models.knowledgebase import Knowledgebase
 from timeweb_cloud_api.models.location import Location
 from timeweb_cloud_api.models.location_dto import LocationDto
 from timeweb_cloud_api.models.mailbox import Mailbox
@@ -377,11 +397,14 @@ from timeweb_cloud_api.models.ssh_key import SshKey
 from timeweb_cloud_api.models.status import Status
 from timeweb_cloud_api.models.status_company_info import StatusCompanyInfo
 from timeweb_cloud_api.models.subdomain import Subdomain
+from timeweb_cloud_api.models.token_statistic import TokenStatistic
 from timeweb_cloud_api.models.top_level_domain import TopLevelDomain
 from timeweb_cloud_api.models.transfer_status import TransferStatus
 from timeweb_cloud_api.models.transfer_storage_request import TransferStorageRequest
 from timeweb_cloud_api.models.url_type import URLType
 from timeweb_cloud_api.models.update_admin import UpdateAdmin
+from timeweb_cloud_api.models.update_agent import UpdateAgent
+from timeweb_cloud_api.models.update_agent_settings import UpdateAgentSettings
 from timeweb_cloud_api.models.update_app_settings200_response import UpdateAppSettings200Response
 from timeweb_cloud_api.models.update_auth_restrictions_by_countries_request import UpdateAuthRestrictionsByCountriesRequest
 from timeweb_cloud_api.models.update_balancer import UpdateBalancer
@@ -395,6 +418,7 @@ from timeweb_cloud_api.models.update_domain_name_servers import UpdateDomainName
 from timeweb_cloud_api.models.update_floating_ip import UpdateFloatingIp
 from timeweb_cloud_api.models.update_instance import UpdateInstance
 from timeweb_cloud_api.models.update_key_request import UpdateKeyRequest
+from timeweb_cloud_api.models.update_knowledgebase import UpdateKnowledgebase
 from timeweb_cloud_api.models.update_mail_quota_request import UpdateMailQuotaRequest
 from timeweb_cloud_api.models.update_mailbox import UpdateMailbox
 from timeweb_cloud_api.models.update_network_drive import UpdateNetworkDrive
@@ -415,6 +439,7 @@ from timeweb_cloud_api.models.update_storage_user200_response import UpdateStora
 from timeweb_cloud_api.models.update_storage_user_request import UpdateStorageUserRequest
 from timeweb_cloud_api.models.update_token200_response import UpdateToken200Response
 from timeweb_cloud_api.models.update_vpc import UpdateVpc
+from timeweb_cloud_api.models.upload_files_to_knowledgebase200_response import UploadFilesToKnowledgebase200Response
 from timeweb_cloud_api.models.upload_successful import UploadSuccessful
 from timeweb_cloud_api.models.upload_successful_response import UploadSuccessfulResponse
 from timeweb_cloud_api.models.url_status import UrlStatus
