@@ -250,9 +250,12 @@ docs/GetFinances200Response.md
 docs/GetFloatingIps200Response.md
 docs/GetKey200Response.md
 docs/GetKeys200Response.md
+docs/GetKnowledgebaseDocumentsV2200Response.md
+docs/GetKnowledgebaseDocumentsV2200ResponseMeta.md
 docs/GetKnowledgebaseStatistics200Response.md
 docs/GetKnowledgebases200Response.md
-docs/GetKnowledgebases200ResponseMeta.md
+docs/GetKnowledgebasesV2200Response.md
+docs/GetKnowledgebasesV2200ResponseMeta.md
 docs/GetLocations200Response.md
 docs/GetMailQuota200Response.md
 docs/GetMailboxes200Response.md
@@ -308,6 +311,7 @@ docs/Invoice.md
 docs/K8SVersionsResponse.md
 docs/KnowledgeBasesApi.md
 docs/Knowledgebase.md
+docs/KnowledgebaseV2.md
 docs/KubernetesApi.md
 docs/Location.md
 docs/LocationDto.md
@@ -718,9 +722,12 @@ test/test_get_finances200_response.py
 test/test_get_floating_ips200_response.py
 test/test_get_key200_response.py
 test/test_get_keys200_response.py
+test/test_get_knowledgebase_documents_v2200_response.py
+test/test_get_knowledgebase_documents_v2200_response_meta.py
 test/test_get_knowledgebase_statistics200_response.py
 test/test_get_knowledgebases200_response.py
-test/test_get_knowledgebases200_response_meta.py
+test/test_get_knowledgebases_v2200_response.py
+test/test_get_knowledgebases_v2200_response_meta.py
 test/test_get_locations200_response.py
 test/test_get_mail_quota200_response.py
 test/test_get_mailboxes200_response.py
@@ -776,6 +783,7 @@ test/test_invoice.py
 test/test_k8_s_versions_response.py
 test/test_knowledge_bases_api.py
 test/test_knowledgebase.py
+test/test_knowledgebase_v2.py
 test/test_kubernetes_api.py
 test/test_location.py
 test/test_location_dto.py
@@ -1198,9 +1206,12 @@ timeweb_cloud_api/models/get_finances200_response.py
 timeweb_cloud_api/models/get_floating_ips200_response.py
 timeweb_cloud_api/models/get_key200_response.py
 timeweb_cloud_api/models/get_keys200_response.py
+timeweb_cloud_api/models/get_knowledgebase_documents_v2200_response.py
+timeweb_cloud_api/models/get_knowledgebase_documents_v2200_response_meta.py
 timeweb_cloud_api/models/get_knowledgebase_statistics200_response.py
 timeweb_cloud_api/models/get_knowledgebases200_response.py
-timeweb_cloud_api/models/get_knowledgebases200_response_meta.py
+timeweb_cloud_api/models/get_knowledgebases_v2200_response.py
+timeweb_cloud_api/models/get_knowledgebases_v2200_response_meta.py
 timeweb_cloud_api/models/get_locations200_response.py
 timeweb_cloud_api/models/get_mail_quota200_response.py
 timeweb_cloud_api/models/get_mailboxes200_response.py
@@ -1254,6 +1265,7 @@ timeweb_cloud_api/models/info_service_price.py
 timeweb_cloud_api/models/invoice.py
 timeweb_cloud_api/models/k8_s_versions_response.py
 timeweb_cloud_api/models/knowledgebase.py
+timeweb_cloud_api/models/knowledgebase_v2.py
 timeweb_cloud_api/models/location.py
 timeweb_cloud_api/models/location_dto.py
 timeweb_cloud_api/models/mailbox.py

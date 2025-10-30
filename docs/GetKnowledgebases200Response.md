@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **knowledgebases** | **object** |  | 
-**meta** | [**GetKnowledgebases200ResponseMeta**](GetKnowledgebases200ResponseMeta.md) |  | 
+**meta** | [**GetKnowledgebasesV2200ResponseMeta**](GetKnowledgebasesV2200ResponseMeta.md) |  | 
 
 ## Example
 

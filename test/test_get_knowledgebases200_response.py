@@ -40,13 +40,13 @@ class TestGetKnowledgebases200Response(unittest.TestCase):
         if include_optional :
             return GetKnowledgebases200Response(
                 knowledgebases = None, 
-                meta = timeweb_cloud_api.models.get_knowledgebases_200_response_meta.getKnowledgebases_200_response_meta(
+                meta = timeweb_cloud_api.models.get_knowledgebases_v2_200_response_meta.getKnowledgebasesV2_200_response_meta(
                     total = 3, )
             )
         else :
             return GetKnowledgebases200Response(
                 knowledgebases = None,
-                meta = timeweb_cloud_api.models.get_knowledgebases_200_response_meta.getKnowledgebases_200_response_meta(
+                meta = timeweb_cloud_api.models.get_knowledgebases_v2_200_response_meta.getKnowledgebasesV2_200_response_meta(
                     total = 3, ),
         )
         """

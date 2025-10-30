@@ -10,8 +10,10 @@ Method | HTTP request | Description
 [**delete_knowledgebase**](KnowledgeBasesApi.md#delete_knowledgebase) | **DELETE** /api/v1/cloud-ai/knowledge-bases/{id} | Удаление базы знаний
 [**download_document**](KnowledgeBasesApi.md#download_document) | **GET** /api/v1/cloud-ai/knowledge-bases/{id}/documents/{document_id}/download | Скачивание документа из базы знаний
 [**get_knowledgebase**](KnowledgeBasesApi.md#get_knowledgebase) | **GET** /api/v1/cloud-ai/knowledge-bases/{id} | Получение базы знаний
+[**get_knowledgebase_documents_v2**](KnowledgeBasesApi.md#get_knowledgebase_documents_v2) | **GET** /api/v2/cloud-ai/knowledge-bases/{id}/documents | Получение списка документов базы знаний
 [**get_knowledgebase_statistics**](KnowledgeBasesApi.md#get_knowledgebase_statistics) | **GET** /api/v1/cloud-ai/knowledge-bases/{id}/statistic | Получение статистики использования токенов базы знаний
 [**get_knowledgebases**](KnowledgeBasesApi.md#get_knowledgebases) | **GET** /api/v1/cloud-ai/knowledge-bases | Получение списка баз знаний
+[**get_knowledgebases_v2**](KnowledgeBasesApi.md#get_knowledgebases_v2) | **GET** /api/v2/cloud-ai/knowledge-bases | Получение списка баз знаний (v2)
 [**link_knowledgebase_to_agent**](KnowledgeBasesApi.md#link_knowledgebase_to_agent) | **POST** /api/v1/cloud-ai/knowledge-bases/{id}/link/{agent_id} | Привязка базы знаний к агенту
 [**reindex_document**](KnowledgeBasesApi.md#reindex_document) | **POST** /api/v1/cloud-ai/knowledge-bases/{id}/documents/{document_id}/reindex | Переиндексация документа
 [**unlink_knowledgebase_from_agent**](KnowledgeBasesApi.md#unlink_knowledgebase_from_agent) | **DELETE** /api/v1/cloud-ai/knowledge-bases/{id}/link/{agent_id} | Отвязка базы знаний от агента
@@ -507,6 +509,96 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **get_knowledgebase_documents_v2**
+> GetKnowledgebaseDocumentsV2200Response get_knowledgebase_documents_v2(id, limit=limit, offset=offset, sort_by=sort_by, sort_order=sort_order)
+
+Получение списка документов базы знаний
+
+Чтобы получить список документов базы знаний, отправьте GET-запрос на `/api/v2/cloud-ai/knowledge-bases/{id}/documents`.  Тело ответа будет представлять собой объект JSON с ключами `knowledgebase_documents` и `meta`.
+
+### Example
+
+* Bearer (JWT) Authentication (Bearer):
+```python
+import time
+import os
+import timeweb_cloud_api
+from timeweb_cloud_api.models.get_knowledgebase_documents_v2200_response import GetKnowledgebaseDocumentsV2200Response
+from timeweb_cloud_api.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.timeweb.cloud
+# See configuration.py for a list of all supported configuration parameters.
+configuration = timeweb_cloud_api.Configuration(
+    host = "https://api.timeweb.cloud"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): Bearer
+configuration = timeweb_cloud_api.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = timeweb_cloud_api.KnowledgeBasesApi(api_client)
+    id = 1 # object | ID базы знаний
+    limit = 20 # object | Количество документов на странице (по умолчанию: 10, максимум: 100) (optional)
+    offset = 0 # object | Количество документов для пропуска (по умолчанию: 0) (optional)
+    sort_by = indexing_timestamp # object | Поле для сортировки (по умолчанию: indexing_timestamp - время последней индексации документа) (optional)
+    sort_order = DESC # object | Порядок сортировки (по умолчанию: DESC) (optional)
+
+    try:
+        # Получение списка документов базы знаний
+        api_response = api_instance.get_knowledgebase_documents_v2(id, limit=limit, offset=offset, sort_by=sort_by, sort_order=sort_order)
+        print("The response of KnowledgeBasesApi->get_knowledgebase_documents_v2:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling KnowledgeBasesApi->get_knowledgebase_documents_v2: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | [**object**](.md)| ID базы знаний | 
+ **limit** | [**object**](.md)| Количество документов на странице (по умолчанию: 10, максимум: 100) | [optional] 
+ **offset** | [**object**](.md)| Количество документов для пропуска (по умолчанию: 0) | [optional] 
+ **sort_by** | [**object**](.md)| Поле для сортировки (по умолчанию: indexing_timestamp - время последней индексации документа) | [optional] 
+ **sort_order** | [**object**](.md)| Порядок сортировки (по умолчанию: DESC) | [optional] 
+
+### Return type
+
+[**GetKnowledgebaseDocumentsV2200Response**](GetKnowledgebaseDocumentsV2200Response.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Объект JSON c ключами &#x60;knowledgebase_documents&#x60; и &#x60;meta&#x60; |  -  |
+**400** |  |  -  |
+**401** |  |  -  |
+**403** |  |  -  |
+**404** |  |  -  |
+**429** |  |  -  |
+**500** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **get_knowledgebase_statistics**
 > GetKnowledgebaseStatistics200Response get_knowledgebase_statistics(id, start_time=start_time, end_time=end_time, interval=interval)
 
@@ -650,6 +742,84 @@ This endpoint does not need any parameter.
 ### Return type
 
 [**GetKnowledgebases200Response**](GetKnowledgebases200Response.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Объект JSON c ключами &#x60;knowledgebases&#x60; и &#x60;meta&#x60; |  -  |
+**400** |  |  -  |
+**401** |  |  -  |
+**403** |  |  -  |
+**404** |  |  -  |
+**429** |  |  -  |
+**500** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_knowledgebases_v2**
+> GetKnowledgebasesV2200Response get_knowledgebases_v2()
+
+Получение списка баз знаний (v2)
+
+Чтобы получить список баз знаний, отправьте GET-запрос на `/api/v2/cloud-ai/knowledge-bases`.  Версия API v2 возвращает оптимизированный ответ с количеством документов вместо полного списка документов.  Тело ответа будет представлять собой объект JSON с ключом `knowledgebases`.
+
+### Example
+
+* Bearer (JWT) Authentication (Bearer):
+```python
+import time
+import os
+import timeweb_cloud_api
+from timeweb_cloud_api.models.get_knowledgebases_v2200_response import GetKnowledgebasesV2200Response
+from timeweb_cloud_api.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.timeweb.cloud
+# See configuration.py for a list of all supported configuration parameters.
+configuration = timeweb_cloud_api.Configuration(
+    host = "https://api.timeweb.cloud"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): Bearer
+configuration = timeweb_cloud_api.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = timeweb_cloud_api.KnowledgeBasesApi(api_client)
+
+    try:
+        # Получение списка баз знаний (v2)
+        api_response = api_instance.get_knowledgebases_v2()
+        print("The response of KnowledgeBasesApi->get_knowledgebases_v2:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling KnowledgeBasesApi->get_knowledgebases_v2: %s\n" % e)
+```
+
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**GetKnowledgebasesV2200Response**](GetKnowledgebasesV2200Response.md)
 
 ### Authorization
 

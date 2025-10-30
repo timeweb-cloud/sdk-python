@@ -13,127 +13,165 @@
 """
 
 
-import unittest
-
-import timeweb_cloud_api
-from timeweb_cloud_api.api.knowledge_bases_api import KnowledgeBasesApi  # noqa: E501
-from timeweb_cloud_api.rest import ApiException
-
-
-class TestKnowledgeBasesApi(unittest.TestCase):
-    """KnowledgeBasesApi unit test stubs"""
-
-    def setUp(self):
-        self.api = timeweb_cloud_api.api.knowledge_bases_api.KnowledgeBasesApi()  # noqa: E501
-
-    def tearDown(self):
-        pass
-
-    def test_add_additional_token_package_to_knowledgebase(self):
-        """Test case for add_additional_token_package_to_knowledgebase
-
-        Добавление дополнительного пакета токенов  # noqa: E501
-        """
-        pass
-
-    def test_create_knowledgebase(self):
-        """Test case for create_knowledgebase
-
-        Создание базы знаний  # noqa: E501
-        """
-        pass
-
-    def test_delete_document(self):
-        """Test case for delete_document
-
-        Удаление документа из базы знаний  # noqa: E501
-        """
-        pass
-
-    def test_delete_knowledgebase(self):
-        """Test case for delete_knowledgebase
-
-        Удаление базы знаний  # noqa: E501
-        """
-        pass
-
-    def test_download_document(self):
-        """Test case for download_document
-
-        Скачивание документа из базы знаний  # noqa: E501
-        """
-        pass
-
-    def test_get_knowledgebase(self):
-        """Test case for get_knowledgebase
-
-        Получение базы знаний  # noqa: E501
-        """
-        pass
-
-    def test_get_knowledgebase_documents_v2(self):
-        """Test case for get_knowledgebase_documents_v2
-
-        Получение списка документов базы знаний  # noqa: E501
-        """
-        pass
-
-    def test_get_knowledgebase_statistics(self):
-        """Test case for get_knowledgebase_statistics
-
-        Получение статистики использования токенов базы знаний  # noqa: E501
-        """
-        pass
-
-    def test_get_knowledgebases(self):
-        """Test case for get_knowledgebases
-
-        Получение списка баз знаний  # noqa: E501
-        """
-        pass
-
-    def test_get_knowledgebases_v2(self):
-        """Test case for get_knowledgebases_v2
-
-        Получение списка баз знаний (v2)  # noqa: E501
-        """
-        pass
-
-    def test_link_knowledgebase_to_agent(self):
-        """Test case for link_knowledgebase_to_agent
-
-        Привязка базы знаний к агенту  # noqa: E501
-        """
-        pass
-
-    def test_reindex_document(self):
-        """Test case for reindex_document
-
-        Переиндексация документа  # noqa: E501
-        """
-        pass
-
-    def test_unlink_knowledgebase_from_agent(self):
-        """Test case for unlink_knowledgebase_from_agent
-
-        Отвязка базы знаний от агента  # noqa: E501
-        """
-        pass
-
-    def test_update_knowledgebase(self):
-        """Test case for update_knowledgebase
-
-        Обновление базы знаний  # noqa: E501
-        """
-        pass
-
-    def test_upload_files_to_knowledgebase(self):
-        """Test case for upload_files_to_knowledgebase
-
-        Загрузка файлов в базу знаний  # noqa: E501
-        """
-        pass
+from __future__ import annotations
+import pprint
+import re  # noqa: F401
+import json
 
 
-if __name__ == '__main__':
-    unittest.main()
+from typing import Any, Optional
+from pydantic import BaseModel, Field, validator
+
+class KnowledgebaseV2(BaseModel):
+    """
+    База знаний (версия API v2)
+    """
+    id: Optional[Any] = Field(..., description="Уникальный идентификатор базы знаний")
+    name: Optional[Any] = Field(..., description="Название базы знаний")
+    description: Optional[Any] = Field(None, description="Описание базы знаний")
+    dbaas_id: Optional[Any] = Field(..., description="ID базы данных opensearch")
+    status: Optional[Any] = Field(..., description="Статус базы знаний")
+    last_sync: Optional[Any] = Field(None, description="Дата последней синхронизации")
+    total_tokens: Optional[Any] = Field(..., description="Всего токенов выделено")
+    used_tokens: Optional[Any] = Field(..., description="Использовано токенов")
+    remaining_tokens: Optional[Any] = Field(..., description="Осталось токенов")
+    token_package_id: Optional[Any] = Field(..., description="ID пакета токенов")
+    subscription_renewal_date: Optional[Any] = Field(..., description="Дата обновления подписки")
+    documents_count: Optional[Any] = Field(..., description="Общее количество документов в базе знаний")
+    agents_ids: Optional[Any] = Field(..., description="ID агентов, связанных с базой знаний")
+    created_at: Optional[Any] = Field(..., description="Дата создания базы знаний")
+    __properties = ["id", "name", "description", "dbaas_id", "status", "last_sync", "total_tokens", "used_tokens", "remaining_tokens", "token_package_id", "subscription_renewal_date", "documents_count", "agents_ids", "created_at"]
+
+    @validator('status')
+    def status_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in ('active', 'blocked', 'creating', 'deleted'):
+            raise ValueError("must be one of enum values ('active', 'blocked', 'creating', 'deleted')")
+        return value
+
+    class Config:
+        """Pydantic configuration"""
+        allow_population_by_field_name = True
+        validate_assignment = True
+
+    def to_str(self) -> str:
+        """Returns the string representation of the model using alias"""
+        return pprint.pformat(self.dict(by_alias=True))
+
+    def to_json(self) -> str:
+        """Returns the JSON representation of the model using alias"""
+        return json.dumps(self.to_dict())
+
+    @classmethod
+    def from_json(cls, json_str: str) -> KnowledgebaseV2:
+        """Create an instance of KnowledgebaseV2 from a JSON string"""
+        return cls.from_dict(json.loads(json_str))
+
+    def to_dict(self):
+        """Returns the dictionary representation of the model using alias"""
+        _dict = self.dict(by_alias=True,
+                          exclude={
+                          },
+                          exclude_none=True)
+        # set to None if id (nullable) is None
+        # and __fields_set__ contains the field
+        if self.id is None and "id" in self.__fields_set__:
+            _dict['id'] = None
+
+        # set to None if name (nullable) is None
+        # and __fields_set__ contains the field
+        if self.name is None and "name" in self.__fields_set__:
+            _dict['name'] = None
+
+        # set to None if description (nullable) is None
+        # and __fields_set__ contains the field
+        if self.description is None and "description" in self.__fields_set__:
+            _dict['description'] = None
+
+        # set to None if dbaas_id (nullable) is None
+        # and __fields_set__ contains the field
+        if self.dbaas_id is None and "dbaas_id" in self.__fields_set__:
+            _dict['dbaas_id'] = None
+
+        # set to None if status (nullable) is None
+        # and __fields_set__ contains the field
+        if self.status is None and "status" in self.__fields_set__:
+            _dict['status'] = None
+
+        # set to None if last_sync (nullable) is None
+        # and __fields_set__ contains the field
+        if self.last_sync is None and "last_sync" in self.__fields_set__:
+            _dict['last_sync'] = None
+
+        # set to None if total_tokens (nullable) is None
+        # and __fields_set__ contains the field
+        if self.total_tokens is None and "total_tokens" in self.__fields_set__:
+            _dict['total_tokens'] = None
+
+        # set to None if used_tokens (nullable) is None
+        # and __fields_set__ contains the field
+        if self.used_tokens is None and "used_tokens" in self.__fields_set__:
+            _dict['used_tokens'] = None
+
+        # set to None if remaining_tokens (nullable) is None
+        # and __fields_set__ contains the field
+        if self.remaining_tokens is None and "remaining_tokens" in self.__fields_set__:
+            _dict['remaining_tokens'] = None
+
+        # set to None if token_package_id (nullable) is None
+        # and __fields_set__ contains the field
+        if self.token_package_id is None and "token_package_id" in self.__fields_set__:
+            _dict['token_package_id'] = None
+
+        # set to None if subscription_renewal_date (nullable) is None
+        # and __fields_set__ contains the field
+        if self.subscription_renewal_date is None and "subscription_renewal_date" in self.__fields_set__:
+            _dict['subscription_renewal_date'] = None
+
+        # set to None if documents_count (nullable) is None
+        # and __fields_set__ contains the field
+        if self.documents_count is None and "documents_count" in self.__fields_set__:
+            _dict['documents_count'] = None
+
+        # set to None if agents_ids (nullable) is None
+        # and __fields_set__ contains the field
+        if self.agents_ids is None and "agents_ids" in self.__fields_set__:
+            _dict['agents_ids'] = None
+
+        # set to None if created_at (nullable) is None
+        # and __fields_set__ contains the field
+        if self.created_at is None and "created_at" in self.__fields_set__:
+            _dict['created_at'] = None
+
+        return _dict
+
+    @classmethod
+    def from_dict(cls, obj: dict) -> KnowledgebaseV2:
+        """Create an instance of KnowledgebaseV2 from a dict"""
+        if obj is None:
+            return None
+
+        if not isinstance(obj, dict):
+            return KnowledgebaseV2.parse_obj(obj)
+
+        _obj = KnowledgebaseV2.parse_obj({
+            "id": obj.get("id"),
+            "name": obj.get("name"),
+            "description": obj.get("description"),
+            "dbaas_id": obj.get("dbaas_id"),
+            "status": obj.get("status"),
+            "last_sync": obj.get("last_sync"),
+            "total_tokens": obj.get("total_tokens"),
+            "used_tokens": obj.get("used_tokens"),
+            "remaining_tokens": obj.get("remaining_tokens"),
+            "token_package_id": obj.get("token_package_id"),
+            "subscription_renewal_date": obj.get("subscription_renewal_date"),
+            "documents_count": obj.get("documents_count"),
+            "agents_ids": obj.get("agents_ids"),
+            "created_at": obj.get("created_at")
+        })
+        return _obj
+

@@ -13,127 +13,70 @@
 """
 
 
-import unittest
-
-import timeweb_cloud_api
-from timeweb_cloud_api.api.knowledge_bases_api import KnowledgeBasesApi  # noqa: E501
-from timeweb_cloud_api.rest import ApiException
-
-
-class TestKnowledgeBasesApi(unittest.TestCase):
-    """KnowledgeBasesApi unit test stubs"""
-
-    def setUp(self):
-        self.api = timeweb_cloud_api.api.knowledge_bases_api.KnowledgeBasesApi()  # noqa: E501
-
-    def tearDown(self):
-        pass
-
-    def test_add_additional_token_package_to_knowledgebase(self):
-        """Test case for add_additional_token_package_to_knowledgebase
-
-        Добавление дополнительного пакета токенов  # noqa: E501
-        """
-        pass
-
-    def test_create_knowledgebase(self):
-        """Test case for create_knowledgebase
-
-        Создание базы знаний  # noqa: E501
-        """
-        pass
-
-    def test_delete_document(self):
-        """Test case for delete_document
-
-        Удаление документа из базы знаний  # noqa: E501
-        """
-        pass
-
-    def test_delete_knowledgebase(self):
-        """Test case for delete_knowledgebase
-
-        Удаление базы знаний  # noqa: E501
-        """
-        pass
-
-    def test_download_document(self):
-        """Test case for download_document
-
-        Скачивание документа из базы знаний  # noqa: E501
-        """
-        pass
-
-    def test_get_knowledgebase(self):
-        """Test case for get_knowledgebase
-
-        Получение базы знаний  # noqa: E501
-        """
-        pass
-
-    def test_get_knowledgebase_documents_v2(self):
-        """Test case for get_knowledgebase_documents_v2
-
-        Получение списка документов базы знаний  # noqa: E501
-        """
-        pass
-
-    def test_get_knowledgebase_statistics(self):
-        """Test case for get_knowledgebase_statistics
-
-        Получение статистики использования токенов базы знаний  # noqa: E501
-        """
-        pass
-
-    def test_get_knowledgebases(self):
-        """Test case for get_knowledgebases
-
-        Получение списка баз знаний  # noqa: E501
-        """
-        pass
-
-    def test_get_knowledgebases_v2(self):
-        """Test case for get_knowledgebases_v2
-
-        Получение списка баз знаний (v2)  # noqa: E501
-        """
-        pass
-
-    def test_link_knowledgebase_to_agent(self):
-        """Test case for link_knowledgebase_to_agent
-
-        Привязка базы знаний к агенту  # noqa: E501
-        """
-        pass
-
-    def test_reindex_document(self):
-        """Test case for reindex_document
-
-        Переиндексация документа  # noqa: E501
-        """
-        pass
-
-    def test_unlink_knowledgebase_from_agent(self):
-        """Test case for unlink_knowledgebase_from_agent
-
-        Отвязка базы знаний от агента  # noqa: E501
-        """
-        pass
-
-    def test_update_knowledgebase(self):
-        """Test case for update_knowledgebase
-
-        Обновление базы знаний  # noqa: E501
-        """
-        pass
-
-    def test_upload_files_to_knowledgebase(self):
-        """Test case for upload_files_to_knowledgebase
-
-        Загрузка файлов в базу знаний  # noqa: E501
-        """
-        pass
+from __future__ import annotations
+import pprint
+import re  # noqa: F401
+import json
 
 
-if __name__ == '__main__':
-    unittest.main()
+from typing import Any, Optional
+from pydantic import BaseModel, Field
+from timeweb_cloud_api.models.get_knowledgebases_v2200_response_meta import GetKnowledgebasesV2200ResponseMeta
+
+class GetKnowledgebasesV2200Response(BaseModel):
+    """
+    GetKnowledgebasesV2200Response
+    """
+    knowledgebases: Optional[Any] = Field(...)
+    meta: GetKnowledgebasesV2200ResponseMeta = Field(...)
+    __properties = ["knowledgebases", "meta"]
+
+    class Config:
+        """Pydantic configuration"""
+        allow_population_by_field_name = True
+        validate_assignment = True
+
+    def to_str(self) -> str:
+        """Returns the string representation of the model using alias"""
+        return pprint.pformat(self.dict(by_alias=True))
+
+    def to_json(self) -> str:
+        """Returns the JSON representation of the model using alias"""
+        return json.dumps(self.to_dict())
+
+    @classmethod
+    def from_json(cls, json_str: str) -> GetKnowledgebasesV2200Response:
+        """Create an instance of GetKnowledgebasesV2200Response from a JSON string"""
+        return cls.from_dict(json.loads(json_str))
+
+    def to_dict(self):
+        """Returns the dictionary representation of the model using alias"""
+        _dict = self.dict(by_alias=True,
+                          exclude={
+                          },
+                          exclude_none=True)
+        # override the default output from pydantic by calling `to_dict()` of meta
+        if self.meta:
+            _dict['meta'] = self.meta.to_dict()
+        # set to None if knowledgebases (nullable) is None
+        # and __fields_set__ contains the field
+        if self.knowledgebases is None and "knowledgebases" in self.__fields_set__:
+            _dict['knowledgebases'] = None
+
+        return _dict
+
+    @classmethod
+    def from_dict(cls, obj: dict) -> GetKnowledgebasesV2200Response:
+        """Create an instance of GetKnowledgebasesV2200Response from a dict"""
+        if obj is None:
+            return None
+
+        if not isinstance(obj, dict):
+            return GetKnowledgebasesV2200Response.parse_obj(obj)
+
+        _obj = GetKnowledgebasesV2200Response.parse_obj({
+            "knowledgebases": obj.get("knowledgebases"),
+            "meta": GetKnowledgebasesV2200ResponseMeta.from_dict(obj.get("meta")) if obj.get("meta") is not None else None
+        })
+        return _obj
+

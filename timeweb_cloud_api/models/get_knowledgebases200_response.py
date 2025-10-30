@@ -21,14 +21,14 @@ import json
 
 from typing import Any, Optional
 from pydantic import BaseModel, Field
-from timeweb_cloud_api.models.get_knowledgebases200_response_meta import GetKnowledgebases200ResponseMeta
+from timeweb_cloud_api.models.get_knowledgebases_v2200_response_meta import GetKnowledgebasesV2200ResponseMeta
 
 class GetKnowledgebases200Response(BaseModel):
     """
     GetKnowledgebases200Response
     """
     knowledgebases: Optional[Any] = Field(...)
-    meta: GetKnowledgebases200ResponseMeta = Field(...)
+    meta: GetKnowledgebasesV2200ResponseMeta = Field(...)
     __properties = ["knowledgebases", "meta"]
 
     class Config:
@@ -76,7 +76,7 @@ class GetKnowledgebases200Response(BaseModel):
 
         _obj = GetKnowledgebases200Response.parse_obj({
             "knowledgebases": obj.get("knowledgebases"),
-            "meta": GetKnowledgebases200ResponseMeta.from_dict(obj.get("meta")) if obj.get("meta") is not None else None
+            "meta": GetKnowledgebasesV2200ResponseMeta.from_dict(obj.get("meta")) if obj.get("meta") is not None else None
         })
         return _obj
 

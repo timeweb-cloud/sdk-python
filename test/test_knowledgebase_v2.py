@@ -14,126 +14,67 @@
 
 
 import unittest
+import datetime
 
 import timeweb_cloud_api
-from timeweb_cloud_api.api.knowledge_bases_api import KnowledgeBasesApi  # noqa: E501
+from timeweb_cloud_api.models.knowledgebase_v2 import KnowledgebaseV2  # noqa: E501
 from timeweb_cloud_api.rest import ApiException
 
-
-class TestKnowledgeBasesApi(unittest.TestCase):
-    """KnowledgeBasesApi unit test stubs"""
+class TestKnowledgebaseV2(unittest.TestCase):
+    """KnowledgebaseV2 unit test stubs"""
 
     def setUp(self):
-        self.api = timeweb_cloud_api.api.knowledge_bases_api.KnowledgeBasesApi()  # noqa: E501
+        pass
 
     def tearDown(self):
         pass
 
-    def test_add_additional_token_package_to_knowledgebase(self):
-        """Test case for add_additional_token_package_to_knowledgebase
-
-        Добавление дополнительного пакета токенов  # noqa: E501
+    def make_instance(self, include_optional):
+        """Test KnowledgebaseV2
+            include_option is a boolean, when False only required
+            params are included, when True both required and
+            optional params are included """
+        # uncomment below to create an instance of `KnowledgebaseV2`
         """
-        pass
-
-    def test_create_knowledgebase(self):
-        """Test case for create_knowledgebase
-
-        Создание базы знаний  # noqa: E501
+        model = timeweb_cloud_api.models.knowledgebase_v2.KnowledgebaseV2()  # noqa: E501
+        if include_optional :
+            return KnowledgebaseV2(
+                id = 1, 
+                name = Моя база знаний, 
+                description = База знаний с документацией, 
+                dbaas_id = 123, 
+                status = active, 
+                last_sync = 2024-10-16T10:00:00.000Z, 
+                total_tokens = 100000, 
+                used_tokens = 5000, 
+                remaining_tokens = 95000, 
+                token_package_id = 1, 
+                subscription_renewal_date = 2025-01-01T00:00:00.000Z, 
+                documents_count = 15, 
+                agents_ids = [1, 2, 3], 
+                created_at = 2024-10-16T10:00:00.000Z
+            )
+        else :
+            return KnowledgebaseV2(
+                id = 1,
+                name = Моя база знаний,
+                dbaas_id = 123,
+                status = active,
+                total_tokens = 100000,
+                used_tokens = 5000,
+                remaining_tokens = 95000,
+                token_package_id = 1,
+                subscription_renewal_date = 2025-01-01T00:00:00.000Z,
+                documents_count = 15,
+                agents_ids = [1, 2, 3],
+                created_at = 2024-10-16T10:00:00.000Z,
+        )
         """
-        pass
 
-    def test_delete_document(self):
-        """Test case for delete_document
-
-        Удаление документа из базы знаний  # noqa: E501
-        """
-        pass
-
-    def test_delete_knowledgebase(self):
-        """Test case for delete_knowledgebase
-
-        Удаление базы знаний  # noqa: E501
-        """
-        pass
-
-    def test_download_document(self):
-        """Test case for download_document
-
-        Скачивание документа из базы знаний  # noqa: E501
-        """
-        pass
-
-    def test_get_knowledgebase(self):
-        """Test case for get_knowledgebase
-
-        Получение базы знаний  # noqa: E501
-        """
-        pass
-
-    def test_get_knowledgebase_documents_v2(self):
-        """Test case for get_knowledgebase_documents_v2
-
-        Получение списка документов базы знаний  # noqa: E501
-        """
-        pass
-
-    def test_get_knowledgebase_statistics(self):
-        """Test case for get_knowledgebase_statistics
-
-        Получение статистики использования токенов базы знаний  # noqa: E501
-        """
-        pass
-
-    def test_get_knowledgebases(self):
-        """Test case for get_knowledgebases
-
-        Получение списка баз знаний  # noqa: E501
-        """
-        pass
-
-    def test_get_knowledgebases_v2(self):
-        """Test case for get_knowledgebases_v2
-
-        Получение списка баз знаний (v2)  # noqa: E501
-        """
-        pass
-
-    def test_link_knowledgebase_to_agent(self):
-        """Test case for link_knowledgebase_to_agent
-
-        Привязка базы знаний к агенту  # noqa: E501
-        """
-        pass
-
-    def test_reindex_document(self):
-        """Test case for reindex_document
-
-        Переиндексация документа  # noqa: E501
-        """
-        pass
-
-    def test_unlink_knowledgebase_from_agent(self):
-        """Test case for unlink_knowledgebase_from_agent
-
-        Отвязка базы знаний от агента  # noqa: E501
-        """
-        pass
-
-    def test_update_knowledgebase(self):
-        """Test case for update_knowledgebase
-
-        Обновление базы знаний  # noqa: E501
-        """
-        pass
-
-    def test_upload_files_to_knowledgebase(self):
-        """Test case for upload_files_to_knowledgebase
-
-        Загрузка файлов в базу знаний  # noqa: E501
-        """
-        pass
-
+    def testKnowledgebaseV2(self):
+        """Test KnowledgebaseV2"""
+        # inst_req_only = self.make_instance(include_optional=False)
+        # inst_req_and_optional = self.make_instance(include_optional=True)
 
 if __name__ == '__main__':
     unittest.main()
