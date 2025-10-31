@@ -14,91 +14,43 @@
 
 
 import unittest
+import datetime
 
 import timeweb_cloud_api
-from timeweb_cloud_api.api.mail_api import MailApi  # noqa: E501
+from timeweb_cloud_api.models.forward_is_disabled import ForwardIsDisabled  # noqa: E501
 from timeweb_cloud_api.rest import ApiException
 
-
-class TestMailApi(unittest.TestCase):
-    """MailApi unit test stubs"""
+class TestForwardIsDisabled(unittest.TestCase):
+    """ForwardIsDisabled unit test stubs"""
 
     def setUp(self):
-        self.api = timeweb_cloud_api.api.mail_api.MailApi()  # noqa: E501
+        pass
 
     def tearDown(self):
         pass
 
-    def test_create_domain_mailbox(self):
-        """Test case for create_domain_mailbox
-
-        Создание почтового ящика  # noqa: E501
+    def make_instance(self, include_optional):
+        """Test ForwardIsDisabled
+            include_option is a boolean, when False only required
+            params are included, when True both required and
+            optional params are included """
+        # uncomment below to create an instance of `ForwardIsDisabled`
         """
-        pass
-
-    def test_create_multiple_domain_mailboxes(self):
-        """Test case for create_multiple_domain_mailboxes
-
-        Множественное создание почтовых ящиков  # noqa: E501
+        model = timeweb_cloud_api.models.forward_is_disabled.ForwardIsDisabled()  # noqa: E501
+        if include_optional :
+            return ForwardIsDisabled(
+                is_enabled = false
+            )
+        else :
+            return ForwardIsDisabled(
+                is_enabled = false,
+        )
         """
-        pass
 
-    def test_delete_mailbox(self):
-        """Test case for delete_mailbox
-
-        Удаление почтового ящика  # noqa: E501
-        """
-        pass
-
-    def test_get_domain_mail_info(self):
-        """Test case for get_domain_mail_info
-
-        Получение почтовой информации о домене  # noqa: E501
-        """
-        pass
-
-    def test_get_domain_mailboxes(self):
-        """Test case for get_domain_mailboxes
-
-        Получение списка почтовых ящиков домена  # noqa: E501
-        """
-        pass
-
-    def test_get_mailbox(self):
-        """Test case for get_mailbox
-
-        Получение почтового ящика  # noqa: E501
-        """
-        pass
-
-    def test_get_mailboxes(self):
-        """Test case for get_mailboxes
-
-        Получение списка почтовых ящиков аккаунта  # noqa: E501
-        """
-        pass
-
-    def test_update_domain_mail_info(self):
-        """Test case for update_domain_mail_info
-
-        Изменение почтовой информации о домене  # noqa: E501
-        """
-        pass
-
-    def test_update_mailbox(self):
-        """Test case for update_mailbox
-
-        Изменение почтового ящика  # noqa: E501
-        """
-        pass
-
-    def test_update_mailbox_v2(self):
-        """Test case for update_mailbox_v2
-
-        Изменение почтового ящика  # noqa: E501
-        """
-        pass
-
+    def testForwardIsDisabled(self):
+        """Test ForwardIsDisabled"""
+        # inst_req_only = self.make_instance(include_optional=False)
+        # inst_req_and_optional = self.make_instance(include_optional=True)
 
 if __name__ == '__main__':
     unittest.main()

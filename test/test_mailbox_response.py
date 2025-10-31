@@ -14,91 +14,60 @@
 
 
 import unittest
+import datetime
 
 import timeweb_cloud_api
-from timeweb_cloud_api.api.mail_api import MailApi  # noqa: E501
+from timeweb_cloud_api.models.mailbox_response import MailboxResponse  # noqa: E501
 from timeweb_cloud_api.rest import ApiException
 
-
-class TestMailApi(unittest.TestCase):
-    """MailApi unit test stubs"""
+class TestMailboxResponse(unittest.TestCase):
+    """MailboxResponse unit test stubs"""
 
     def setUp(self):
-        self.api = timeweb_cloud_api.api.mail_api.MailApi()  # noqa: E501
+        pass
 
     def tearDown(self):
         pass
 
-    def test_create_domain_mailbox(self):
-        """Test case for create_domain_mailbox
-
-        Создание почтового ящика  # noqa: E501
+    def make_instance(self, include_optional):
+        """Test MailboxResponse
+            include_option is a boolean, when False only required
+            params are included, when True both required and
+            optional params are included """
+        # uncomment below to create an instance of `MailboxResponse`
         """
-        pass
-
-    def test_create_multiple_domain_mailboxes(self):
-        """Test case for create_multiple_domain_mailboxes
-
-        Множественное создание почтовых ящиков  # noqa: E501
+        model = timeweb_cloud_api.models.mailbox_response.MailboxResponse()  # noqa: E501
+        if include_optional :
+            return MailboxResponse(
+                idn_name = example.ru, 
+                autoreply_message = <div style='margin: 0'><p>Спасибо за письмо</p></div>, 
+                autoreply_status = true, 
+                autoreply_subject = Автоматический ответ, 
+                comment = Рабочая почта, 
+                filter_action = directory, 
+                filter_status = true, 
+                forward_list = [forward@example.com], 
+                forward_status = true, 
+                outgoing_control = true, 
+                outgoing_email = outgoing@example.com, 
+                password = , 
+                white_list = [trusted@example.com], 
+                webmail = true, 
+                dovecot = true, 
+                fqdn = example.ru, 
+                leave_messages = false, 
+                mailbox = user, 
+                owner_full_name = Иванов Иван Иванович
+            )
+        else :
+            return MailboxResponse(
+        )
         """
-        pass
 
-    def test_delete_mailbox(self):
-        """Test case for delete_mailbox
-
-        Удаление почтового ящика  # noqa: E501
-        """
-        pass
-
-    def test_get_domain_mail_info(self):
-        """Test case for get_domain_mail_info
-
-        Получение почтовой информации о домене  # noqa: E501
-        """
-        pass
-
-    def test_get_domain_mailboxes(self):
-        """Test case for get_domain_mailboxes
-
-        Получение списка почтовых ящиков домена  # noqa: E501
-        """
-        pass
-
-    def test_get_mailbox(self):
-        """Test case for get_mailbox
-
-        Получение почтового ящика  # noqa: E501
-        """
-        pass
-
-    def test_get_mailboxes(self):
-        """Test case for get_mailboxes
-
-        Получение списка почтовых ящиков аккаунта  # noqa: E501
-        """
-        pass
-
-    def test_update_domain_mail_info(self):
-        """Test case for update_domain_mail_info
-
-        Изменение почтовой информации о домене  # noqa: E501
-        """
-        pass
-
-    def test_update_mailbox(self):
-        """Test case for update_mailbox
-
-        Изменение почтового ящика  # noqa: E501
-        """
-        pass
-
-    def test_update_mailbox_v2(self):
-        """Test case for update_mailbox_v2
-
-        Изменение почтового ящика  # noqa: E501
-        """
-        pass
-
+    def testMailboxResponse(self):
+        """Test MailboxResponse"""
+        # inst_req_only = self.make_instance(include_optional=False)
+        # inst_req_and_optional = self.make_instance(include_optional=True)
 
 if __name__ == '__main__':
     unittest.main()

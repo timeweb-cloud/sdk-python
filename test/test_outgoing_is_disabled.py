@@ -13,64 +13,44 @@
 """
 
 
-from __future__ import annotations
-import pprint
-import re  # noqa: F401
-import json
+import unittest
+import datetime
 
+import timeweb_cloud_api
+from timeweb_cloud_api.models.outgoing_is_disabled import OutgoingIsDisabled  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
-from typing import Any, Optional
-from pydantic import BaseModel, Field
+class TestOutgoingIsDisabled(unittest.TestCase):
+    """OutgoingIsDisabled unit test stubs"""
 
-class UpdateMailQuotaRequest(BaseModel):
-    """
-    UpdateMailQuotaRequest
-    """
-    total: Optional[Any] = Field(..., description="Общее количество места на почте (в Мб).")
-    __properties = ["total"]
+    def setUp(self):
+        pass
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
+    def tearDown(self):
+        pass
 
-    def to_str(self) -> str:
-        """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+    def make_instance(self, include_optional):
+        """Test OutgoingIsDisabled
+            include_option is a boolean, when False only required
+            params are included, when True both required and
+            optional params are included """
+        # uncomment below to create an instance of `OutgoingIsDisabled`
+        """
+        model = timeweb_cloud_api.models.outgoing_is_disabled.OutgoingIsDisabled()  # noqa: E501
+        if include_optional :
+            return OutgoingIsDisabled(
+                is_enabled = false
+            )
+        else :
+            return OutgoingIsDisabled(
+                is_enabled = false,
+        )
+        """
 
-    def to_json(self) -> str:
-        """Returns the JSON representation of the model using alias"""
-        return json.dumps(self.to_dict())
+    def testOutgoingIsDisabled(self):
+        """Test OutgoingIsDisabled"""
+        # inst_req_only = self.make_instance(include_optional=False)
+        # inst_req_and_optional = self.make_instance(include_optional=True)
 
-    @classmethod
-    def from_json(cls, json_str: str) -> UpdateMailQuotaRequest:
-        """Create an instance of UpdateMailQuotaRequest from a JSON string"""
-        return cls.from_dict(json.loads(json_str))
-
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
-        # set to None if total (nullable) is None
-        # and __fields_set__ contains the field
-        if self.total is None and "total" in self.__fields_set__:
-            _dict['total'] = None
-
-        return _dict
-
-    @classmethod
-    def from_dict(cls, obj: dict) -> UpdateMailQuotaRequest:
-        """Create an instance of UpdateMailQuotaRequest from a dict"""
-        if obj is None:
-            return None
-
-        if not isinstance(obj, dict):
-            return UpdateMailQuotaRequest.parse_obj(obj)
-
-        _obj = UpdateMailQuotaRequest.parse_obj({
-            "total": obj.get("total")
-        })
-        return _obj
-
+if __name__ == '__main__':
+    unittest.main()

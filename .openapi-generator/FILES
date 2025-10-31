@@ -49,6 +49,8 @@ docs/AppsPresets.md
 docs/AutoBackup.md
 docs/AutoReplyIsDisabled.md
 docs/AutoReplyIsEnabled.md
+docs/AutoreplyIsDisabled.md
+docs/AutoreplyIsEnabled.md
 docs/AvailabilityZone.md
 docs/AvailableFrameworks.md
 docs/Backup.md
@@ -202,6 +204,8 @@ docs/FirewallRuleProtocol.md
 docs/FirewallRulesOutResponse.md
 docs/FloatingIPApi.md
 docs/FloatingIp.md
+docs/ForwardIsDisabled.md
+docs/ForwardIsEnabled.md
 docs/ForwardingIncomingIsDisabled.md
 docs/ForwardingIncomingIsEnabled.md
 docs/ForwardingOutgoingIsDisabled.md
@@ -257,7 +261,6 @@ docs/GetKnowledgebases200Response.md
 docs/GetKnowledgebasesV2200Response.md
 docs/GetKnowledgebasesV2200ResponseMeta.md
 docs/GetLocations200Response.md
-docs/GetMailQuota200Response.md
 docs/GetMailboxes200Response.md
 docs/GetNetworkDrives200Response.md
 docs/GetNetworkDrivesAvailableResources200Response.md
@@ -321,6 +324,7 @@ docs/Mailbox.md
 docs/MailboxAutoReply.md
 docs/MailboxForwardingIncoming.md
 docs/MailboxForwardingOutgoing.md
+docs/MailboxResponse.md
 docs/MailboxSpamFilter.md
 docs/MasterPresetOutApi.md
 docs/Meta.md
@@ -346,6 +350,8 @@ docs/NotificationSettingChannel.md
 docs/NotificationSettingChannels.md
 docs/NotificationSettingType.md
 docs/OS.md
+docs/OutgoingIsDisabled.md
+docs/OutgoingIsEnabled.md
 docs/PaymentsApi.md
 docs/PerformActionOnBackupRequest.md
 docs/PerformActionOnServerRequest.md
@@ -359,7 +365,6 @@ docs/ProjectResource.md
 docs/ProjectsApi.md
 docs/Provider.md
 docs/Providers.md
-docs/Quota.md
 docs/ReduceNodes.md
 docs/RefreshApiKey.md
 docs/RegistriesResponse.md
@@ -408,6 +413,8 @@ docs/SetLabels.md
 docs/SettingCondition.md
 docs/SpamFilterIsDisabled.md
 docs/SpamFilterIsEnabled.md
+docs/SpamProtectionIsDisabled.md
+docs/SpamProtectionIsEnabled.md
 docs/SshKey.md
 docs/Status.md
 docs/StatusCompanyInfo.md
@@ -434,8 +441,9 @@ docs/UpdateFloatingIp.md
 docs/UpdateInstance.md
 docs/UpdateKeyRequest.md
 docs/UpdateKnowledgebase.md
-docs/UpdateMailQuotaRequest.md
 docs/UpdateMailbox.md
+docs/UpdateMailboxV2.md
+docs/UpdateMailboxV2200Response.md
 docs/UpdateNetworkDrive.md
 docs/UpdateNotificationSettingsRequest.md
 docs/UpdateProject.md
@@ -521,6 +529,8 @@ test/test_apps_presets.py
 test/test_auto_backup.py
 test/test_auto_reply_is_disabled.py
 test/test_auto_reply_is_enabled.py
+test/test_autoreply_is_disabled.py
+test/test_autoreply_is_enabled.py
 test/test_availability_zone.py
 test/test_available_frameworks.py
 test/test_backup.py
@@ -674,6 +684,8 @@ test/test_firewall_rule_protocol.py
 test/test_firewall_rules_out_response.py
 test/test_floating_ip.py
 test/test_floating_ip_api.py
+test/test_forward_is_disabled.py
+test/test_forward_is_enabled.py
 test/test_forwarding_incoming_is_disabled.py
 test/test_forwarding_incoming_is_enabled.py
 test/test_forwarding_outgoing_is_disabled.py
@@ -729,7 +741,6 @@ test/test_get_knowledgebases200_response.py
 test/test_get_knowledgebases_v2200_response.py
 test/test_get_knowledgebases_v2200_response_meta.py
 test/test_get_locations200_response.py
-test/test_get_mail_quota200_response.py
 test/test_get_mailboxes200_response.py
 test/test_get_network_drives200_response.py
 test/test_get_network_drives_available_resources200_response.py
@@ -793,6 +804,7 @@ test/test_mailbox.py
 test/test_mailbox_auto_reply.py
 test/test_mailbox_forwarding_incoming.py
 test/test_mailbox_forwarding_outgoing.py
+test/test_mailbox_response.py
 test/test_mailbox_spam_filter.py
 test/test_master_preset_out_api.py
 test/test_meta.py
@@ -818,6 +830,8 @@ test/test_notification_setting_channel.py
 test/test_notification_setting_channels.py
 test/test_notification_setting_type.py
 test/test_os.py
+test/test_outgoing_is_disabled.py
+test/test_outgoing_is_enabled.py
 test/test_payments_api.py
 test/test_perform_action_on_backup_request.py
 test/test_perform_action_on_server_request.py
@@ -831,7 +845,6 @@ test/test_project_resource.py
 test/test_projects_api.py
 test/test_provider.py
 test/test_providers.py
-test/test_quota.py
 test/test_reduce_nodes.py
 test/test_refresh_api_key.py
 test/test_registries_response.py
@@ -879,6 +892,8 @@ test/test_set_labels.py
 test/test_setting_condition.py
 test/test_spam_filter_is_disabled.py
 test/test_spam_filter_is_enabled.py
+test/test_spam_protection_is_disabled.py
+test/test_spam_protection_is_enabled.py
 test/test_ssh_api.py
 test/test_ssh_key.py
 test/test_status.py
@@ -905,8 +920,9 @@ test/test_update_floating_ip.py
 test/test_update_instance.py
 test/test_update_key_request.py
 test/test_update_knowledgebase.py
-test/test_update_mail_quota_request.py
 test/test_update_mailbox.py
+test/test_update_mailbox_v2.py
+test/test_update_mailbox_v2200_response.py
 test/test_update_network_drive.py
 test/test_update_notification_settings_request.py
 test/test_update_project.py
@@ -1012,6 +1028,8 @@ timeweb_cloud_api/models/apps_presets.py
 timeweb_cloud_api/models/auto_backup.py
 timeweb_cloud_api/models/auto_reply_is_disabled.py
 timeweb_cloud_api/models/auto_reply_is_enabled.py
+timeweb_cloud_api/models/autoreply_is_disabled.py
+timeweb_cloud_api/models/autoreply_is_enabled.py
 timeweb_cloud_api/models/availability_zone.py
 timeweb_cloud_api/models/available_frameworks.py
 timeweb_cloud_api/models/backup.py
@@ -1158,6 +1176,8 @@ timeweb_cloud_api/models/firewall_rule_out_response.py
 timeweb_cloud_api/models/firewall_rule_protocol.py
 timeweb_cloud_api/models/firewall_rules_out_response.py
 timeweb_cloud_api/models/floating_ip.py
+timeweb_cloud_api/models/forward_is_disabled.py
+timeweb_cloud_api/models/forward_is_enabled.py
 timeweb_cloud_api/models/forwarding_incoming_is_disabled.py
 timeweb_cloud_api/models/forwarding_incoming_is_enabled.py
 timeweb_cloud_api/models/forwarding_outgoing_is_disabled.py
@@ -1213,7 +1233,6 @@ timeweb_cloud_api/models/get_knowledgebases200_response.py
 timeweb_cloud_api/models/get_knowledgebases_v2200_response.py
 timeweb_cloud_api/models/get_knowledgebases_v2200_response_meta.py
 timeweb_cloud_api/models/get_locations200_response.py
-timeweb_cloud_api/models/get_mail_quota200_response.py
 timeweb_cloud_api/models/get_mailboxes200_response.py
 timeweb_cloud_api/models/get_network_drives200_response.py
 timeweb_cloud_api/models/get_network_drives_available_resources200_response.py
@@ -1272,6 +1291,7 @@ timeweb_cloud_api/models/mailbox.py
 timeweb_cloud_api/models/mailbox_auto_reply.py
 timeweb_cloud_api/models/mailbox_forwarding_incoming.py
 timeweb_cloud_api/models/mailbox_forwarding_outgoing.py
+timeweb_cloud_api/models/mailbox_response.py
 timeweb_cloud_api/models/mailbox_spam_filter.py
 timeweb_cloud_api/models/master_preset_out_api.py
 timeweb_cloud_api/models/meta.py
@@ -1296,6 +1316,8 @@ timeweb_cloud_api/models/notification_setting_channel.py
 timeweb_cloud_api/models/notification_setting_channels.py
 timeweb_cloud_api/models/notification_setting_type.py
 timeweb_cloud_api/models/os.py
+timeweb_cloud_api/models/outgoing_is_disabled.py
+timeweb_cloud_api/models/outgoing_is_enabled.py
 timeweb_cloud_api/models/perform_action_on_backup_request.py
 timeweb_cloud_api/models/perform_action_on_server_request.py
 timeweb_cloud_api/models/policy.py
@@ -1307,7 +1329,6 @@ timeweb_cloud_api/models/project.py
 timeweb_cloud_api/models/project_resource.py
 timeweb_cloud_api/models/provider.py
 timeweb_cloud_api/models/providers.py
-timeweb_cloud_api/models/quota.py
 timeweb_cloud_api/models/reduce_nodes.py
 timeweb_cloud_api/models/refresh_api_key.py
 timeweb_cloud_api/models/registries_response.py
@@ -1353,6 +1374,8 @@ timeweb_cloud_api/models/set_labels.py
 timeweb_cloud_api/models/setting_condition.py
 timeweb_cloud_api/models/spam_filter_is_disabled.py
 timeweb_cloud_api/models/spam_filter_is_enabled.py
+timeweb_cloud_api/models/spam_protection_is_disabled.py
+timeweb_cloud_api/models/spam_protection_is_enabled.py
 timeweb_cloud_api/models/ssh_key.py
 timeweb_cloud_api/models/status.py
 timeweb_cloud_api/models/status_company_info.py
@@ -1378,8 +1401,9 @@ timeweb_cloud_api/models/update_floating_ip.py
 timeweb_cloud_api/models/update_instance.py
 timeweb_cloud_api/models/update_key_request.py
 timeweb_cloud_api/models/update_knowledgebase.py
-timeweb_cloud_api/models/update_mail_quota_request.py
 timeweb_cloud_api/models/update_mailbox.py
+timeweb_cloud_api/models/update_mailbox_v2.py
+timeweb_cloud_api/models/update_mailbox_v2200_response.py
 timeweb_cloud_api/models/update_network_drive.py
 timeweb_cloud_api/models/update_notification_settings_request.py
 timeweb_cloud_api/models/update_project.py

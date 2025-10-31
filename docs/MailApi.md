@@ -9,12 +9,11 @@ Method | HTTP request | Description
 [**delete_mailbox**](MailApi.md#delete_mailbox) | **DELETE** /api/v1/mail/domains/{domain}/mailboxes/{mailbox} | Удаление почтового ящика
 [**get_domain_mail_info**](MailApi.md#get_domain_mail_info) | **GET** /api/v1/mail/domains/{domain}/info | Получение почтовой информации о домене
 [**get_domain_mailboxes**](MailApi.md#get_domain_mailboxes) | **GET** /api/v1/mail/domains/{domain} | Получение списка почтовых ящиков домена
-[**get_mail_quota**](MailApi.md#get_mail_quota) | **GET** /api/v1/mail/quota | Получение квоты почты аккаунта
 [**get_mailbox**](MailApi.md#get_mailbox) | **GET** /api/v1/mail/domains/{domain}/mailboxes/{mailbox} | Получение почтового ящика
 [**get_mailboxes**](MailApi.md#get_mailboxes) | **GET** /api/v1/mail | Получение списка почтовых ящиков аккаунта
 [**update_domain_mail_info**](MailApi.md#update_domain_mail_info) | **PATCH** /api/v1/mail/domains/{domain}/info | Изменение почтовой информации о домене
-[**update_mail_quota**](MailApi.md#update_mail_quota) | **PATCH** /api/v1/mail/quota | Изменение квоты почты аккаунта
 [**update_mailbox**](MailApi.md#update_mailbox) | **PATCH** /api/v1/mail/domains/{domain}/mailboxes/{mailbox} | Изменение почтового ящика
+[**update_mailbox_v2**](MailApi.md#update_mailbox_v2) | **PATCH** /api/v2/mail/domains/{domain}/mailboxes/{mailbox} | Изменение почтового ящика
 
 
 # **create_domain_mailbox**
@@ -438,83 +437,6 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_mail_quota**
-> GetMailQuota200Response get_mail_quota()
-
-Получение квоты почты аккаунта
-
-Чтобы получить квоту почты аккаунта, отправьте GET-запрос на `/api/v1/mail/quota`.
-
-### Example
-
-* Bearer (JWT) Authentication (Bearer):
-```python
-import time
-import os
-import timeweb_cloud_api
-from timeweb_cloud_api.models.get_mail_quota200_response import GetMailQuota200Response
-from timeweb_cloud_api.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to https://api.timeweb.cloud
-# See configuration.py for a list of all supported configuration parameters.
-configuration = timeweb_cloud_api.Configuration(
-    host = "https://api.timeweb.cloud"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure Bearer authorization (JWT): Bearer
-configuration = timeweb_cloud_api.Configuration(
-    access_token = os.environ["BEARER_TOKEN"]
-)
-
-# Enter a context with an instance of the API client
-with timeweb_cloud_api.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = timeweb_cloud_api.MailApi(api_client)
-
-    try:
-        # Получение квоты почты аккаунта
-        api_response = api_instance.get_mail_quota()
-        print("The response of MailApi->get_mail_quota:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling MailApi->get_mail_quota: %s\n" % e)
-```
-
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-[**GetMailQuota200Response**](GetMailQuota200Response.md)
-
-### Authorization
-
-[Bearer](../README.md#Bearer)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Ответ будет представлять собой объект JSON c ключом &#x60;quota&#x60;. |  -  |
-**400** |  |  -  |
-**401** |  |  -  |
-**403** |  |  -  |
-**429** |  |  -  |
-**500** |  |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **get_mailbox**
 > CreateDomainMailbox201Response get_mailbox(domain, mailbox)
 
@@ -769,88 +691,6 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **update_mail_quota**
-> GetMailQuota200Response update_mail_quota(update_mail_quota_request)
-
-Изменение квоты почты аккаунта
-
-Чтобы получить инфомацию по квоте почты аккаунта, отправьте GET-запрос на `/api/v1/mail/quota`.
-
-### Example
-
-* Bearer (JWT) Authentication (Bearer):
-```python
-import time
-import os
-import timeweb_cloud_api
-from timeweb_cloud_api.models.get_mail_quota200_response import GetMailQuota200Response
-from timeweb_cloud_api.models.update_mail_quota_request import UpdateMailQuotaRequest
-from timeweb_cloud_api.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to https://api.timeweb.cloud
-# See configuration.py for a list of all supported configuration parameters.
-configuration = timeweb_cloud_api.Configuration(
-    host = "https://api.timeweb.cloud"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure Bearer authorization (JWT): Bearer
-configuration = timeweb_cloud_api.Configuration(
-    access_token = os.environ["BEARER_TOKEN"]
-)
-
-# Enter a context with an instance of the API client
-with timeweb_cloud_api.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = timeweb_cloud_api.MailApi(api_client)
-    update_mail_quota_request = timeweb_cloud_api.UpdateMailQuotaRequest() # UpdateMailQuotaRequest | 
-
-    try:
-        # Изменение квоты почты аккаунта
-        api_response = api_instance.update_mail_quota(update_mail_quota_request)
-        print("The response of MailApi->update_mail_quota:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling MailApi->update_mail_quota: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **update_mail_quota_request** | [**UpdateMailQuotaRequest**](UpdateMailQuotaRequest.md)|  | 
-
-### Return type
-
-[**GetMailQuota200Response**](GetMailQuota200Response.md)
-
-### Authorization
-
-[Bearer](../README.md#Bearer)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Ответ будет представлять собой объект JSON c ключом &#x60;quota&#x60;. |  -  |
-**400** |  |  -  |
-**401** |  |  -  |
-**403** |  |  -  |
-**429** |  |  -  |
-**500** |  |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **update_mailbox**
 > CreateDomainMailbox201Response update_mailbox(domain, mailbox, update_mailbox)
 
@@ -933,6 +773,93 @@ Name | Type | Description  | Notes
 **401** |  |  -  |
 **403** |  |  -  |
 **404** |  |  -  |
+**429** |  |  -  |
+**500** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **update_mailbox_v2**
+> UpdateMailboxV2200Response update_mailbox_v2(domain, mailbox, update_mailbox_v2)
+
+Изменение почтового ящика
+
+Чтобы изменить почтовый ящик, отправьте PATCH-запрос на `/api/v2/mail/domains/{domain}/mailboxes/{mailbox}`.
+
+### Example
+
+* Bearer (JWT) Authentication (Bearer):
+```python
+import time
+import os
+import timeweb_cloud_api
+from timeweb_cloud_api.models.update_mailbox_v2 import UpdateMailboxV2
+from timeweb_cloud_api.models.update_mailbox_v2200_response import UpdateMailboxV2200Response
+from timeweb_cloud_api.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.timeweb.cloud
+# See configuration.py for a list of all supported configuration parameters.
+configuration = timeweb_cloud_api.Configuration(
+    host = "https://api.timeweb.cloud"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): Bearer
+configuration = timeweb_cloud_api.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = timeweb_cloud_api.MailApi(api_client)
+    domain = somedomain.ru # object | Полное имя домена
+    mailbox = mailbox # object | Название почтового ящика
+    update_mailbox_v2 = timeweb_cloud_api.UpdateMailboxV2() # UpdateMailboxV2 | 
+
+    try:
+        # Изменение почтового ящика
+        api_response = api_instance.update_mailbox_v2(domain, mailbox, update_mailbox_v2)
+        print("The response of MailApi->update_mailbox_v2:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling MailApi->update_mailbox_v2: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **domain** | [**object**](.md)| Полное имя домена | 
+ **mailbox** | [**object**](.md)| Название почтового ящика | 
+ **update_mailbox_v2** | [**UpdateMailboxV2**](UpdateMailboxV2.md)|  | 
+
+### Return type
+
+[**UpdateMailboxV2200Response**](UpdateMailboxV2200Response.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Ответ будет представлять собой объект JSON c ключом &#x60;mailbox&#x60;. |  -  |
+**400** |  |  -  |
+**401** |  |  -  |
+**404** |  |  -  |
+**409** |  |  -  |
 **429** |  |  -  |
 **500** |  |  -  |
 

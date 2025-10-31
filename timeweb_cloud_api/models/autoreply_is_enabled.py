@@ -13,92 +13,78 @@
 """
 
 
-import unittest
-
-import timeweb_cloud_api
-from timeweb_cloud_api.api.mail_api import MailApi  # noqa: E501
-from timeweb_cloud_api.rest import ApiException
-
-
-class TestMailApi(unittest.TestCase):
-    """MailApi unit test stubs"""
-
-    def setUp(self):
-        self.api = timeweb_cloud_api.api.mail_api.MailApi()  # noqa: E501
-
-    def tearDown(self):
-        pass
-
-    def test_create_domain_mailbox(self):
-        """Test case for create_domain_mailbox
-
-        Создание почтового ящика  # noqa: E501
-        """
-        pass
-
-    def test_create_multiple_domain_mailboxes(self):
-        """Test case for create_multiple_domain_mailboxes
-
-        Множественное создание почтовых ящиков  # noqa: E501
-        """
-        pass
-
-    def test_delete_mailbox(self):
-        """Test case for delete_mailbox
-
-        Удаление почтового ящика  # noqa: E501
-        """
-        pass
-
-    def test_get_domain_mail_info(self):
-        """Test case for get_domain_mail_info
-
-        Получение почтовой информации о домене  # noqa: E501
-        """
-        pass
-
-    def test_get_domain_mailboxes(self):
-        """Test case for get_domain_mailboxes
-
-        Получение списка почтовых ящиков домена  # noqa: E501
-        """
-        pass
-
-    def test_get_mailbox(self):
-        """Test case for get_mailbox
-
-        Получение почтового ящика  # noqa: E501
-        """
-        pass
-
-    def test_get_mailboxes(self):
-        """Test case for get_mailboxes
-
-        Получение списка почтовых ящиков аккаунта  # noqa: E501
-        """
-        pass
-
-    def test_update_domain_mail_info(self):
-        """Test case for update_domain_mail_info
-
-        Изменение почтовой информации о домене  # noqa: E501
-        """
-        pass
-
-    def test_update_mailbox(self):
-        """Test case for update_mailbox
-
-        Изменение почтового ящика  # noqa: E501
-        """
-        pass
-
-    def test_update_mailbox_v2(self):
-        """Test case for update_mailbox_v2
-
-        Изменение почтового ящика  # noqa: E501
-        """
-        pass
+from __future__ import annotations
+import pprint
+import re  # noqa: F401
+import json
 
 
-if __name__ == '__main__':
-    unittest.main()
+from typing import Any, Optional
+from pydantic import BaseModel, Field
+
+class AutoreplyIsEnabled(BaseModel):
+    """
+    AutoreplyIsEnabled
+    """
+    is_enabled: Optional[Any] = Field(..., description="Включен ли автоответчик на входящие письма")
+    autoreply_message: Optional[Any] = Field(None, description="Сообщение автоответчика на входящие письма. \\  Если передан параметр `is_enabled`: `false`, то значение передавать нельзя")
+    autoreply_subject: Optional[Any] = Field(None, description="Тема сообщения автоответчика на входящие письма. \\  Если передан параметр `is_enabled`: `false`, то значение передавать нельзя")
+    __properties = ["is_enabled", "autoreply_message", "autoreply_subject"]
+
+    class Config:
+        """Pydantic configuration"""
+        allow_population_by_field_name = True
+        validate_assignment = True
+
+    def to_str(self) -> str:
+        """Returns the string representation of the model using alias"""
+        return pprint.pformat(self.dict(by_alias=True))
+
+    def to_json(self) -> str:
+        """Returns the JSON representation of the model using alias"""
+        return json.dumps(self.to_dict())
+
+    @classmethod
+    def from_json(cls, json_str: str) -> AutoreplyIsEnabled:
+        """Create an instance of AutoreplyIsEnabled from a JSON string"""
+        return cls.from_dict(json.loads(json_str))
+
+    def to_dict(self):
+        """Returns the dictionary representation of the model using alias"""
+        _dict = self.dict(by_alias=True,
+                          exclude={
+                          },
+                          exclude_none=True)
+        # set to None if is_enabled (nullable) is None
+        # and __fields_set__ contains the field
+        if self.is_enabled is None and "is_enabled" in self.__fields_set__:
+            _dict['is_enabled'] = None
+
+        # set to None if autoreply_message (nullable) is None
+        # and __fields_set__ contains the field
+        if self.autoreply_message is None and "autoreply_message" in self.__fields_set__:
+            _dict['autoreply_message'] = None
+
+        # set to None if autoreply_subject (nullable) is None
+        # and __fields_set__ contains the field
+        if self.autoreply_subject is None and "autoreply_subject" in self.__fields_set__:
+            _dict['autoreply_subject'] = None
+
+        return _dict
+
+    @classmethod
+    def from_dict(cls, obj: dict) -> AutoreplyIsEnabled:
+        """Create an instance of AutoreplyIsEnabled from a dict"""
+        if obj is None:
+            return None
+
+        if not isinstance(obj, dict):
+            return AutoreplyIsEnabled.parse_obj(obj)
+
+        _obj = AutoreplyIsEnabled.parse_obj({
+            "is_enabled": obj.get("is_enabled"),
+            "autoreply_message": obj.get("autoreply_message"),
+            "autoreply_subject": obj.get("autoreply_subject")
+        })
+        return _obj
+

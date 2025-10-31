@@ -29,11 +29,11 @@ from timeweb_cloud_api.models.create_domain_mailbox_request import CreateDomainM
 from timeweb_cloud_api.models.create_multiple_domain_mailboxes201_response import CreateMultipleDomainMailboxes201Response
 from timeweb_cloud_api.models.create_multiple_domain_mailboxes_request import CreateMultipleDomainMailboxesRequest
 from timeweb_cloud_api.models.get_domain_mail_info200_response import GetDomainMailInfo200Response
-from timeweb_cloud_api.models.get_mail_quota200_response import GetMailQuota200Response
 from timeweb_cloud_api.models.get_mailboxes200_response import GetMailboxes200Response
 from timeweb_cloud_api.models.update_domain_mail_info_request import UpdateDomainMailInfoRequest
-from timeweb_cloud_api.models.update_mail_quota_request import UpdateMailQuotaRequest
 from timeweb_cloud_api.models.update_mailbox import UpdateMailbox
+from timeweb_cloud_api.models.update_mailbox_v2 import UpdateMailboxV2
+from timeweb_cloud_api.models.update_mailbox_v2200_response import UpdateMailboxV2200Response
 
 from timeweb_cloud_api.api_client import ApiClient
 from timeweb_cloud_api.api_response import ApiResponse
@@ -831,142 +831,6 @@ class MailApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def get_mail_quota(self, **kwargs) -> GetMailQuota200Response:  # noqa: E501
-        """Получение квоты почты аккаунта  # noqa: E501
-
-        Чтобы получить квоту почты аккаунта, отправьте GET-запрос на `/api/v1/mail/quota`.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_mail_quota(async_req=True)
-        >>> result = thread.get()
-
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: GetMailQuota200Response
-        """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
-            raise ValueError("Error! Please call the get_mail_quota_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
-        return self.get_mail_quota_with_http_info(**kwargs)  # noqa: E501
-
-    @validate_arguments
-    def get_mail_quota_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
-        """Получение квоты почты аккаунта  # noqa: E501
-
-        Чтобы получить квоту почты аккаунта, отправьте GET-запрос на `/api/v1/mail/quota`.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_mail_quota_with_http_info(async_req=True)
-        >>> result = thread.get()
-
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the 
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
-        :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: tuple(GetMailQuota200Response, status_code(int), headers(HTTPHeaderDict))
-        """
-
-        _params = locals()
-
-        _all_params = [
-        ]
-        _all_params.extend(
-            [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
-            ]
-        )
-
-        # validate the arguments
-        for _key, _val in _params['kwargs'].items():
-            if _key not in _all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method get_mail_quota" % _key
-                )
-            _params[_key] = _val
-        del _params['kwargs']
-
-        _collection_formats = {}
-
-        # process the path parameters
-        _path_params = {}
-
-        # process the query parameters
-        _query_params = []
-        # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
-        # process the form parameters
-        _form_params = []
-        _files = {}
-        # process the body parameter
-        _body_params = None
-        # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
-
-        # authentication setting
-        _auth_settings = ['Bearer']  # noqa: E501
-
-        _response_types_map = {
-            '200': "GetMailQuota200Response",
-            '400': None,
-            '401': None,
-            '403': None,
-            '429': None,
-            '500': None,
-        }
-
-        return self.api_client.call_api(
-            '/api/v1/mail/quota', 'GET',
-            _path_params,
-            _query_params,
-            _header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
-            response_types_map=_response_types_map,
-            auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
-            collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
-
-    @validate_arguments
     def get_mailbox(self, domain : Annotated[Any, Field(..., description="Полное имя домена")], mailbox : Annotated[Any, Field(..., description="Название почтового ящика")], **kwargs) -> CreateDomainMailbox201Response:  # noqa: E501
         """Получение почтового ящика  # noqa: E501
 
@@ -1440,159 +1304,8 @@ class MailApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def update_mail_quota(self, update_mail_quota_request : UpdateMailQuotaRequest, **kwargs) -> GetMailQuota200Response:  # noqa: E501
-        """Изменение квоты почты аккаунта  # noqa: E501
-
-        Чтобы получить инфомацию по квоте почты аккаунта, отправьте GET-запрос на `/api/v1/mail/quota`.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.update_mail_quota(update_mail_quota_request, async_req=True)
-        >>> result = thread.get()
-
-        :param update_mail_quota_request: (required)
-        :type update_mail_quota_request: UpdateMailQuotaRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: GetMailQuota200Response
-        """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
-            raise ValueError("Error! Please call the update_mail_quota_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
-        return self.update_mail_quota_with_http_info(update_mail_quota_request, **kwargs)  # noqa: E501
-
-    @validate_arguments
-    def update_mail_quota_with_http_info(self, update_mail_quota_request : UpdateMailQuotaRequest, **kwargs) -> ApiResponse:  # noqa: E501
-        """Изменение квоты почты аккаунта  # noqa: E501
-
-        Чтобы получить инфомацию по квоте почты аккаунта, отправьте GET-запрос на `/api/v1/mail/quota`.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.update_mail_quota_with_http_info(update_mail_quota_request, async_req=True)
-        >>> result = thread.get()
-
-        :param update_mail_quota_request: (required)
-        :type update_mail_quota_request: UpdateMailQuotaRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the 
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
-        :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: tuple(GetMailQuota200Response, status_code(int), headers(HTTPHeaderDict))
-        """
-
-        _params = locals()
-
-        _all_params = [
-            'update_mail_quota_request'
-        ]
-        _all_params.extend(
-            [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
-            ]
-        )
-
-        # validate the arguments
-        for _key, _val in _params['kwargs'].items():
-            if _key not in _all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method update_mail_quota" % _key
-                )
-            _params[_key] = _val
-        del _params['kwargs']
-
-        _collection_formats = {}
-
-        # process the path parameters
-        _path_params = {}
-
-        # process the query parameters
-        _query_params = []
-        # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
-        # process the form parameters
-        _form_params = []
-        _files = {}
-        # process the body parameter
-        _body_params = None
-        if _params['update_mail_quota_request'] is not None:
-            _body_params = _params['update_mail_quota_request']
-
-        # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
-
-        # set the HTTP header `Content-Type`
-        _content_types_list = _params.get('_content_type',
-            self.api_client.select_header_content_type(
-                ['application/json']))
-        if _content_types_list:
-                _header_params['Content-Type'] = _content_types_list
-
-        # authentication setting
-        _auth_settings = ['Bearer']  # noqa: E501
-
-        _response_types_map = {
-            '200': "GetMailQuota200Response",
-            '400': None,
-            '401': None,
-            '403': None,
-            '429': None,
-            '500': None,
-        }
-
-        return self.api_client.call_api(
-            '/api/v1/mail/quota', 'PATCH',
-            _path_params,
-            _query_params,
-            _header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
-            response_types_map=_response_types_map,
-            auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
-            collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
-
-    @validate_arguments
     def update_mailbox(self, domain : Annotated[Any, Field(..., description="Полное имя домена")], mailbox : Annotated[Any, Field(..., description="Название почтового ящика")], update_mailbox : UpdateMailbox, **kwargs) -> CreateDomainMailbox201Response:  # noqa: E501
-        """Изменение почтового ящика  # noqa: E501
+        """(Deprecated) Изменение почтового ящика  # noqa: E501
 
         Чтобы изменить почтовый ящик, отправьте PATCH-запрос на `/api/v1/mail/domains/{domain}/mailboxes/{mailbox}`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -1625,7 +1338,7 @@ class MailApi(object):
 
     @validate_arguments
     def update_mailbox_with_http_info(self, domain : Annotated[Any, Field(..., description="Полное имя домена")], mailbox : Annotated[Any, Field(..., description="Название почтового ящика")], update_mailbox : UpdateMailbox, **kwargs) -> ApiResponse:  # noqa: E501
-        """Изменение почтового ящика  # noqa: E501
+        """(Deprecated) Изменение почтового ящика  # noqa: E501
 
         Чтобы изменить почтовый ящик, отправьте PATCH-запрос на `/api/v1/mail/domains/{domain}/mailboxes/{mailbox}`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -1664,6 +1377,8 @@ class MailApi(object):
                  returns the request thread.
         :rtype: tuple(CreateDomainMailbox201Response, status_code(int), headers(HTTPHeaderDict))
         """
+
+        warnings.warn("PATCH /api/v1/mail/domains/{domain}/mailboxes/{mailbox} is deprecated.", DeprecationWarning)
 
         _params = locals()
 
@@ -1743,6 +1458,174 @@ class MailApi(object):
 
         return self.api_client.call_api(
             '/api/v1/mail/domains/{domain}/mailboxes/{mailbox}', 'PATCH',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @validate_arguments
+    def update_mailbox_v2(self, domain : Annotated[Any, Field(..., description="Полное имя домена")], mailbox : Annotated[Any, Field(..., description="Название почтового ящика")], update_mailbox_v2 : UpdateMailboxV2, **kwargs) -> UpdateMailboxV2200Response:  # noqa: E501
+        """Изменение почтового ящика  # noqa: E501
+
+        Чтобы изменить почтовый ящик, отправьте PATCH-запрос на `/api/v2/mail/domains/{domain}/mailboxes/{mailbox}`.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.update_mailbox_v2(domain, mailbox, update_mailbox_v2, async_req=True)
+        >>> result = thread.get()
+
+        :param domain: Полное имя домена (required)
+        :type domain: object
+        :param mailbox: Название почтового ящика (required)
+        :type mailbox: object
+        :param update_mailbox_v2: (required)
+        :type update_mailbox_v2: UpdateMailboxV2
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: UpdateMailboxV2200Response
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            raise ValueError("Error! Please call the update_mailbox_v2_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
+        return self.update_mailbox_v2_with_http_info(domain, mailbox, update_mailbox_v2, **kwargs)  # noqa: E501
+
+    @validate_arguments
+    def update_mailbox_v2_with_http_info(self, domain : Annotated[Any, Field(..., description="Полное имя домена")], mailbox : Annotated[Any, Field(..., description="Название почтового ящика")], update_mailbox_v2 : UpdateMailboxV2, **kwargs) -> ApiResponse:  # noqa: E501
+        """Изменение почтового ящика  # noqa: E501
+
+        Чтобы изменить почтовый ящик, отправьте PATCH-запрос на `/api/v2/mail/domains/{domain}/mailboxes/{mailbox}`.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.update_mailbox_v2_with_http_info(domain, mailbox, update_mailbox_v2, async_req=True)
+        >>> result = thread.get()
+
+        :param domain: Полное имя домена (required)
+        :type domain: object
+        :param mailbox: Название почтового ящика (required)
+        :type mailbox: object
+        :param update_mailbox_v2: (required)
+        :type update_mailbox_v2: UpdateMailboxV2
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the 
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(UpdateMailboxV2200Response, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'domain',
+            'mailbox',
+            'update_mailbox_v2'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method update_mailbox_v2" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['domain']:
+            _path_params['domain'] = _params['domain']
+
+        if _params['mailbox']:
+            _path_params['mailbox'] = _params['mailbox']
+
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        if _params['update_mailbox_v2'] is not None:
+            _body_params = _params['update_mailbox_v2']
+
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # set the HTTP header `Content-Type`
+        _content_types_list = _params.get('_content_type',
+            self.api_client.select_header_content_type(
+                ['application/json']))
+        if _content_types_list:
+                _header_params['Content-Type'] = _content_types_list
+
+        # authentication setting
+        _auth_settings = ['Bearer']  # noqa: E501
+
+        _response_types_map = {
+            '200': "UpdateMailboxV2200Response",
+            '400': None,
+            '401': None,
+            '404': None,
+            '409': None,
+            '429': None,
+            '500': None,
+        }
+
+        return self.api_client.call_api(
+            '/api/v2/mail/domains/{domain}/mailboxes/{mailbox}', 'PATCH',
             _path_params,
             _query_params,
             _header_params,

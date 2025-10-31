@@ -14,91 +14,59 @@
 
 
 import unittest
+import datetime
 
 import timeweb_cloud_api
-from timeweb_cloud_api.api.mail_api import MailApi  # noqa: E501
+from timeweb_cloud_api.models.update_mailbox_v2 import UpdateMailboxV2  # noqa: E501
 from timeweb_cloud_api.rest import ApiException
 
-
-class TestMailApi(unittest.TestCase):
-    """MailApi unit test stubs"""
+class TestUpdateMailboxV2(unittest.TestCase):
+    """UpdateMailboxV2 unit test stubs"""
 
     def setUp(self):
-        self.api = timeweb_cloud_api.api.mail_api.MailApi()  # noqa: E501
+        pass
 
     def tearDown(self):
         pass
 
-    def test_create_domain_mailbox(self):
-        """Test case for create_domain_mailbox
-
-        Создание почтового ящика  # noqa: E501
+    def make_instance(self, include_optional):
+        """Test UpdateMailboxV2
+            include_option is a boolean, when False only required
+            params are included, when True both required and
+            optional params are included """
+        # uncomment below to create an instance of `UpdateMailboxV2`
         """
-        pass
-
-    def test_create_multiple_domain_mailboxes(self):
-        """Test case for create_multiple_domain_mailboxes
-
-        Множественное создание почтовых ящиков  # noqa: E501
+        model = timeweb_cloud_api.models.update_mailbox_v2.UpdateMailboxV2()  # noqa: E501
+        if include_optional :
+            return UpdateMailboxV2(
+                password = SecurePass123!, 
+                comment = Рабочая почта, 
+                owner_full_name = Иванов Иван Иванович, 
+                spam_protection_settings = timeweb_cloud_api.models.если_защита_от_спама_включена.Если защита от спама включена(
+                    is_enabled = true, 
+                    filter_action = directory, 
+                    white_list = [trusted@example.com], ), 
+                forward_settings = timeweb_cloud_api.models.если_пересылка_включена.Если пересылка включена(
+                    is_enabled = true, 
+                    forward_list = [forward@example.com], 
+                    is_leave_messages = false, ), 
+                autoreply_settings = timeweb_cloud_api.models.если_автоответчик_включен.Если автоответчик включен(
+                    is_enabled = true, 
+                    autoreply_message = <div style='margin: 0'><p>Спасибо за ваше письмо. Я отсутствую и отвечу позже.</p></div>, 
+                    autoreply_subject = Автоматический ответ, ), 
+                outgoing_settings = timeweb_cloud_api.models.если_контроль_исходящей_почты_включен.Если контроль исходящей почты включен(
+                    is_enabled = true, 
+                    outgoing_email = outgoing@example.com, )
+            )
+        else :
+            return UpdateMailboxV2(
+        )
         """
-        pass
 
-    def test_delete_mailbox(self):
-        """Test case for delete_mailbox
-
-        Удаление почтового ящика  # noqa: E501
-        """
-        pass
-
-    def test_get_domain_mail_info(self):
-        """Test case for get_domain_mail_info
-
-        Получение почтовой информации о домене  # noqa: E501
-        """
-        pass
-
-    def test_get_domain_mailboxes(self):
-        """Test case for get_domain_mailboxes
-
-        Получение списка почтовых ящиков домена  # noqa: E501
-        """
-        pass
-
-    def test_get_mailbox(self):
-        """Test case for get_mailbox
-
-        Получение почтового ящика  # noqa: E501
-        """
-        pass
-
-    def test_get_mailboxes(self):
-        """Test case for get_mailboxes
-
-        Получение списка почтовых ящиков аккаунта  # noqa: E501
-        """
-        pass
-
-    def test_update_domain_mail_info(self):
-        """Test case for update_domain_mail_info
-
-        Изменение почтовой информации о домене  # noqa: E501
-        """
-        pass
-
-    def test_update_mailbox(self):
-        """Test case for update_mailbox
-
-        Изменение почтового ящика  # noqa: E501
-        """
-        pass
-
-    def test_update_mailbox_v2(self):
-        """Test case for update_mailbox_v2
-
-        Изменение почтового ящика  # noqa: E501
-        """
-        pass
-
+    def testUpdateMailboxV2(self):
+        """Test UpdateMailboxV2"""
+        # inst_req_only = self.make_instance(include_optional=False)
+        # inst_req_and_optional = self.make_instance(include_optional=True)
 
 if __name__ == '__main__':
     unittest.main()

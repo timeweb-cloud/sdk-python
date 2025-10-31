@@ -13,71 +13,46 @@
 """
 
 
-from __future__ import annotations
-import pprint
-import re  # noqa: F401
-import json
+import unittest
+import datetime
 
+import timeweb_cloud_api
+from timeweb_cloud_api.models.spam_protection_is_enabled import SpamProtectionIsEnabled  # noqa: E501
+from timeweb_cloud_api.rest import ApiException
 
-from typing import Any, Optional
-from pydantic import BaseModel, Field
+class TestSpamProtectionIsEnabled(unittest.TestCase):
+    """SpamProtectionIsEnabled unit test stubs"""
 
-class Quota(BaseModel):
-    """
-    Почтовая квота
-    """
-    total: Optional[Any] = Field(..., description="Общее количество места на почте (в Мб).")
-    used: Optional[Any] = Field(..., description="Занятое место на почте (в Мб).")
-    __properties = ["total", "used"]
+    def setUp(self):
+        pass
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
+    def tearDown(self):
+        pass
 
-    def to_str(self) -> str:
-        """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+    def make_instance(self, include_optional):
+        """Test SpamProtectionIsEnabled
+            include_option is a boolean, when False only required
+            params are included, when True both required and
+            optional params are included """
+        # uncomment below to create an instance of `SpamProtectionIsEnabled`
+        """
+        model = timeweb_cloud_api.models.spam_protection_is_enabled.SpamProtectionIsEnabled()  # noqa: E501
+        if include_optional :
+            return SpamProtectionIsEnabled(
+                is_enabled = true, 
+                filter_action = directory, 
+                white_list = [trusted@example.com]
+            )
+        else :
+            return SpamProtectionIsEnabled(
+                is_enabled = true,
+        )
+        """
 
-    def to_json(self) -> str:
-        """Returns the JSON representation of the model using alias"""
-        return json.dumps(self.to_dict())
+    def testSpamProtectionIsEnabled(self):
+        """Test SpamProtectionIsEnabled"""
+        # inst_req_only = self.make_instance(include_optional=False)
+        # inst_req_and_optional = self.make_instance(include_optional=True)
 
-    @classmethod
-    def from_json(cls, json_str: str) -> Quota:
-        """Create an instance of Quota from a JSON string"""
-        return cls.from_dict(json.loads(json_str))
-
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
-        # set to None if total (nullable) is None
-        # and __fields_set__ contains the field
-        if self.total is None and "total" in self.__fields_set__:
-            _dict['total'] = None
-
-        # set to None if used (nullable) is None
-        # and __fields_set__ contains the field
-        if self.used is None and "used" in self.__fields_set__:
-            _dict['used'] = None
-
-        return _dict
-
-    @classmethod
-    def from_dict(cls, obj: dict) -> Quota:
-        """Create an instance of Quota from a dict"""
-        if obj is None:
-            return None
-
-        if not isinstance(obj, dict):
-            return Quota.parse_obj(obj)
-
-        _obj = Quota.parse_obj({
-            "total": obj.get("total"),
-            "used": obj.get("used")
-        })
-        return _obj
-
+if __name__ == '__main__':
+    unittest.main()

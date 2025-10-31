@@ -19,16 +19,15 @@ import re  # noqa: F401
 import json
 
 
-
+from typing import Any, Optional
 from pydantic import BaseModel, Field
-from timeweb_cloud_api.models.quota import Quota
 
-class GetMailQuota200Response(BaseModel):
+class ForwardIsDisabled(BaseModel):
     """
-    GetMailQuota200Response
+    ForwardIsDisabled
     """
-    quota: Quota = Field(...)
-    __properties = ["quota"]
+    is_enabled: Optional[Any] = Field(..., description="Включена ли пересылка входящих писем")
+    __properties = ["is_enabled"]
 
     class Config:
         """Pydantic configuration"""
@@ -44,8 +43,8 @@ class GetMailQuota200Response(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> GetMailQuota200Response:
-        """Create an instance of GetMailQuota200Response from a JSON string"""
+    def from_json(cls, json_str: str) -> ForwardIsDisabled:
+        """Create an instance of ForwardIsDisabled from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self):
@@ -54,22 +53,24 @@ class GetMailQuota200Response(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of quota
-        if self.quota:
-            _dict['quota'] = self.quota.to_dict()
+        # set to None if is_enabled (nullable) is None
+        # and __fields_set__ contains the field
+        if self.is_enabled is None and "is_enabled" in self.__fields_set__:
+            _dict['is_enabled'] = None
+
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> GetMailQuota200Response:
-        """Create an instance of GetMailQuota200Response from a dict"""
+    def from_dict(cls, obj: dict) -> ForwardIsDisabled:
+        """Create an instance of ForwardIsDisabled from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return GetMailQuota200Response.parse_obj(obj)
+            return ForwardIsDisabled.parse_obj(obj)
 
-        _obj = GetMailQuota200Response.parse_obj({
-            "quota": Quota.from_dict(obj.get("quota")) if obj.get("quota") is not None else None
+        _obj = ForwardIsDisabled.parse_obj({
+            "is_enabled": obj.get("is_enabled")
         })
         return _obj
 

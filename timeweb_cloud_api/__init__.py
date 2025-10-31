@@ -95,6 +95,8 @@ from timeweb_cloud_api.models.apps_presets import AppsPresets
 from timeweb_cloud_api.models.auto_backup import AutoBackup
 from timeweb_cloud_api.models.auto_reply_is_disabled import AutoReplyIsDisabled
 from timeweb_cloud_api.models.auto_reply_is_enabled import AutoReplyIsEnabled
+from timeweb_cloud_api.models.autoreply_is_disabled import AutoreplyIsDisabled
+from timeweb_cloud_api.models.autoreply_is_enabled import AutoreplyIsEnabled
 from timeweb_cloud_api.models.availability_zone import AvailabilityZone
 from timeweb_cloud_api.models.available_frameworks import AvailableFrameworks
 from timeweb_cloud_api.models.backup import Backup
@@ -241,6 +243,8 @@ from timeweb_cloud_api.models.firewall_rule_out_response import FirewallRuleOutR
 from timeweb_cloud_api.models.firewall_rule_protocol import FirewallRuleProtocol
 from timeweb_cloud_api.models.firewall_rules_out_response import FirewallRulesOutResponse
 from timeweb_cloud_api.models.floating_ip import FloatingIp
+from timeweb_cloud_api.models.forward_is_disabled import ForwardIsDisabled
+from timeweb_cloud_api.models.forward_is_enabled import ForwardIsEnabled
 from timeweb_cloud_api.models.forwarding_incoming_is_disabled import ForwardingIncomingIsDisabled
 from timeweb_cloud_api.models.forwarding_incoming_is_enabled import ForwardingIncomingIsEnabled
 from timeweb_cloud_api.models.forwarding_outgoing_is_disabled import ForwardingOutgoingIsDisabled
@@ -296,7 +300,6 @@ from timeweb_cloud_api.models.get_knowledgebases200_response import GetKnowledge
 from timeweb_cloud_api.models.get_knowledgebases_v2200_response import GetKnowledgebasesV2200Response
 from timeweb_cloud_api.models.get_knowledgebases_v2200_response_meta import GetKnowledgebasesV2200ResponseMeta
 from timeweb_cloud_api.models.get_locations200_response import GetLocations200Response
-from timeweb_cloud_api.models.get_mail_quota200_response import GetMailQuota200Response
 from timeweb_cloud_api.models.get_mailboxes200_response import GetMailboxes200Response
 from timeweb_cloud_api.models.get_network_drives200_response import GetNetworkDrives200Response
 from timeweb_cloud_api.models.get_network_drives_available_resources200_response import GetNetworkDrivesAvailableResources200Response
@@ -355,6 +358,7 @@ from timeweb_cloud_api.models.mailbox import Mailbox
 from timeweb_cloud_api.models.mailbox_auto_reply import MailboxAutoReply
 from timeweb_cloud_api.models.mailbox_forwarding_incoming import MailboxForwardingIncoming
 from timeweb_cloud_api.models.mailbox_forwarding_outgoing import MailboxForwardingOutgoing
+from timeweb_cloud_api.models.mailbox_response import MailboxResponse
 from timeweb_cloud_api.models.mailbox_spam_filter import MailboxSpamFilter
 from timeweb_cloud_api.models.master_preset_out_api import MasterPresetOutApi
 from timeweb_cloud_api.models.meta import Meta
@@ -379,6 +383,8 @@ from timeweb_cloud_api.models.notification_setting_channel import NotificationSe
 from timeweb_cloud_api.models.notification_setting_channels import NotificationSettingChannels
 from timeweb_cloud_api.models.notification_setting_type import NotificationSettingType
 from timeweb_cloud_api.models.os import OS
+from timeweb_cloud_api.models.outgoing_is_disabled import OutgoingIsDisabled
+from timeweb_cloud_api.models.outgoing_is_enabled import OutgoingIsEnabled
 from timeweb_cloud_api.models.perform_action_on_backup_request import PerformActionOnBackupRequest
 from timeweb_cloud_api.models.perform_action_on_server_request import PerformActionOnServerRequest
 from timeweb_cloud_api.models.policy import Policy
@@ -390,7 +396,6 @@ from timeweb_cloud_api.models.project import Project
 from timeweb_cloud_api.models.project_resource import ProjectResource
 from timeweb_cloud_api.models.provider import Provider
 from timeweb_cloud_api.models.providers import Providers
-from timeweb_cloud_api.models.quota import Quota
 from timeweb_cloud_api.models.reduce_nodes import ReduceNodes
 from timeweb_cloud_api.models.refresh_api_key import RefreshApiKey
 from timeweb_cloud_api.models.registries_response import RegistriesResponse
@@ -436,6 +441,8 @@ from timeweb_cloud_api.models.set_labels import SetLabels
 from timeweb_cloud_api.models.setting_condition import SettingCondition
 from timeweb_cloud_api.models.spam_filter_is_disabled import SpamFilterIsDisabled
 from timeweb_cloud_api.models.spam_filter_is_enabled import SpamFilterIsEnabled
+from timeweb_cloud_api.models.spam_protection_is_disabled import SpamProtectionIsDisabled
+from timeweb_cloud_api.models.spam_protection_is_enabled import SpamProtectionIsEnabled
 from timeweb_cloud_api.models.ssh_key import SshKey
 from timeweb_cloud_api.models.status import Status
 from timeweb_cloud_api.models.status_company_info import StatusCompanyInfo
@@ -462,8 +469,9 @@ from timeweb_cloud_api.models.update_floating_ip import UpdateFloatingIp
 from timeweb_cloud_api.models.update_instance import UpdateInstance
 from timeweb_cloud_api.models.update_key_request import UpdateKeyRequest
 from timeweb_cloud_api.models.update_knowledgebase import UpdateKnowledgebase
-from timeweb_cloud_api.models.update_mail_quota_request import UpdateMailQuotaRequest
 from timeweb_cloud_api.models.update_mailbox import UpdateMailbox
+from timeweb_cloud_api.models.update_mailbox_v2 import UpdateMailboxV2
+from timeweb_cloud_api.models.update_mailbox_v2200_response import UpdateMailboxV2200Response
 from timeweb_cloud_api.models.update_network_drive import UpdateNetworkDrive
 from timeweb_cloud_api.models.update_notification_settings_request import UpdateNotificationSettingsRequest
 from timeweb_cloud_api.models.update_project import UpdateProject

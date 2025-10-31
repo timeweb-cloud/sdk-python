@@ -17,11 +17,11 @@ import unittest
 import datetime
 
 import timeweb_cloud_api
-from timeweb_cloud_api.models.update_mail_quota_request import UpdateMailQuotaRequest  # noqa: E501
+from timeweb_cloud_api.models.autoreply_is_enabled import AutoreplyIsEnabled  # noqa: E501
 from timeweb_cloud_api.rest import ApiException
 
-class TestUpdateMailQuotaRequest(unittest.TestCase):
-    """UpdateMailQuotaRequest unit test stubs"""
+class TestAutoreplyIsEnabled(unittest.TestCase):
+    """AutoreplyIsEnabled unit test stubs"""
 
     def setUp(self):
         pass
@@ -30,25 +30,27 @@ class TestUpdateMailQuotaRequest(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test UpdateMailQuotaRequest
+        """Test AutoreplyIsEnabled
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # uncomment below to create an instance of `UpdateMailQuotaRequest`
+        # uncomment below to create an instance of `AutoreplyIsEnabled`
         """
-        model = timeweb_cloud_api.models.update_mail_quota_request.UpdateMailQuotaRequest()  # noqa: E501
+        model = timeweb_cloud_api.models.autoreply_is_enabled.AutoreplyIsEnabled()  # noqa: E501
         if include_optional :
-            return UpdateMailQuotaRequest(
-                total = 6144
+            return AutoreplyIsEnabled(
+                is_enabled = true, 
+                autoreply_message = <div style='margin: 0'><p>Спасибо за ваше письмо. Я отсутствую и отвечу позже.</p></div>, 
+                autoreply_subject = Автоматический ответ
             )
         else :
-            return UpdateMailQuotaRequest(
-                total = 6144,
+            return AutoreplyIsEnabled(
+                is_enabled = true,
         )
         """
 
-    def testUpdateMailQuotaRequest(self):
-        """Test UpdateMailQuotaRequest"""
+    def testAutoreplyIsEnabled(self):
+        """Test AutoreplyIsEnabled"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

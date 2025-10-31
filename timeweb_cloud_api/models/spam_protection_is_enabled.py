@@ -13,92 +13,88 @@
 """
 
 
-import unittest
-
-import timeweb_cloud_api
-from timeweb_cloud_api.api.mail_api import MailApi  # noqa: E501
-from timeweb_cloud_api.rest import ApiException
-
-
-class TestMailApi(unittest.TestCase):
-    """MailApi unit test stubs"""
-
-    def setUp(self):
-        self.api = timeweb_cloud_api.api.mail_api.MailApi()  # noqa: E501
-
-    def tearDown(self):
-        pass
-
-    def test_create_domain_mailbox(self):
-        """Test case for create_domain_mailbox
-
-        Создание почтового ящика  # noqa: E501
-        """
-        pass
-
-    def test_create_multiple_domain_mailboxes(self):
-        """Test case for create_multiple_domain_mailboxes
-
-        Множественное создание почтовых ящиков  # noqa: E501
-        """
-        pass
-
-    def test_delete_mailbox(self):
-        """Test case for delete_mailbox
-
-        Удаление почтового ящика  # noqa: E501
-        """
-        pass
-
-    def test_get_domain_mail_info(self):
-        """Test case for get_domain_mail_info
-
-        Получение почтовой информации о домене  # noqa: E501
-        """
-        pass
-
-    def test_get_domain_mailboxes(self):
-        """Test case for get_domain_mailboxes
-
-        Получение списка почтовых ящиков домена  # noqa: E501
-        """
-        pass
-
-    def test_get_mailbox(self):
-        """Test case for get_mailbox
-
-        Получение почтового ящика  # noqa: E501
-        """
-        pass
-
-    def test_get_mailboxes(self):
-        """Test case for get_mailboxes
-
-        Получение списка почтовых ящиков аккаунта  # noqa: E501
-        """
-        pass
-
-    def test_update_domain_mail_info(self):
-        """Test case for update_domain_mail_info
-
-        Изменение почтовой информации о домене  # noqa: E501
-        """
-        pass
-
-    def test_update_mailbox(self):
-        """Test case for update_mailbox
-
-        Изменение почтового ящика  # noqa: E501
-        """
-        pass
-
-    def test_update_mailbox_v2(self):
-        """Test case for update_mailbox_v2
-
-        Изменение почтового ящика  # noqa: E501
-        """
-        pass
+from __future__ import annotations
+import pprint
+import re  # noqa: F401
+import json
 
 
-if __name__ == '__main__':
-    unittest.main()
+from typing import Any, Optional
+from pydantic import BaseModel, Field, validator
+
+class SpamProtectionIsEnabled(BaseModel):
+    """
+    SpamProtectionIsEnabled
+    """
+    is_enabled: Optional[Any] = Field(..., description="Включен ли спам-фильтр")
+    filter_action: Optional[Any] = Field(None, description="Что делать с письмами, которые попадают в спам. \\  Параметры: \\  `directory` - переместить в папку спам; \\  `label` - пометить письмо; \\  Если передан параметр `is_enabled`: `false`, то значение передавать нельзя")
+    white_list: Optional[Any] = Field(None, description="Белый список адресов от которых письма не будут попадать в спам. \\  Если передан параметр `is_enabled`: `false`, то значение передавать нельзя")
+    __properties = ["is_enabled", "filter_action", "white_list"]
+
+    @validator('filter_action')
+    def filter_action_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in ('directory', 'label'):
+            raise ValueError("must be one of enum values ('directory', 'label')")
+        return value
+
+    class Config:
+        """Pydantic configuration"""
+        allow_population_by_field_name = True
+        validate_assignment = True
+
+    def to_str(self) -> str:
+        """Returns the string representation of the model using alias"""
+        return pprint.pformat(self.dict(by_alias=True))
+
+    def to_json(self) -> str:
+        """Returns the JSON representation of the model using alias"""
+        return json.dumps(self.to_dict())
+
+    @classmethod
+    def from_json(cls, json_str: str) -> SpamProtectionIsEnabled:
+        """Create an instance of SpamProtectionIsEnabled from a JSON string"""
+        return cls.from_dict(json.loads(json_str))
+
+    def to_dict(self):
+        """Returns the dictionary representation of the model using alias"""
+        _dict = self.dict(by_alias=True,
+                          exclude={
+                          },
+                          exclude_none=True)
+        # set to None if is_enabled (nullable) is None
+        # and __fields_set__ contains the field
+        if self.is_enabled is None and "is_enabled" in self.__fields_set__:
+            _dict['is_enabled'] = None
+
+        # set to None if filter_action (nullable) is None
+        # and __fields_set__ contains the field
+        if self.filter_action is None and "filter_action" in self.__fields_set__:
+            _dict['filter_action'] = None
+
+        # set to None if white_list (nullable) is None
+        # and __fields_set__ contains the field
+        if self.white_list is None and "white_list" in self.__fields_set__:
+            _dict['white_list'] = None
+
+        return _dict
+
+    @classmethod
+    def from_dict(cls, obj: dict) -> SpamProtectionIsEnabled:
+        """Create an instance of SpamProtectionIsEnabled from a dict"""
+        if obj is None:
+            return None
+
+        if not isinstance(obj, dict):
+            return SpamProtectionIsEnabled.parse_obj(obj)
+
+        _obj = SpamProtectionIsEnabled.parse_obj({
+            "is_enabled": obj.get("is_enabled"),
+            "filter_action": obj.get("filter_action"),
+            "white_list": obj.get("white_list")
+        })
+        return _obj
+

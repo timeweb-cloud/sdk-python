@@ -13,92 +13,102 @@
 """
 
 
-import unittest
-
-import timeweb_cloud_api
-from timeweb_cloud_api.api.mail_api import MailApi  # noqa: E501
-from timeweb_cloud_api.rest import ApiException
-
-
-class TestMailApi(unittest.TestCase):
-    """MailApi unit test stubs"""
-
-    def setUp(self):
-        self.api = timeweb_cloud_api.api.mail_api.MailApi()  # noqa: E501
-
-    def tearDown(self):
-        pass
-
-    def test_create_domain_mailbox(self):
-        """Test case for create_domain_mailbox
-
-        Создание почтового ящика  # noqa: E501
-        """
-        pass
-
-    def test_create_multiple_domain_mailboxes(self):
-        """Test case for create_multiple_domain_mailboxes
-
-        Множественное создание почтовых ящиков  # noqa: E501
-        """
-        pass
-
-    def test_delete_mailbox(self):
-        """Test case for delete_mailbox
-
-        Удаление почтового ящика  # noqa: E501
-        """
-        pass
-
-    def test_get_domain_mail_info(self):
-        """Test case for get_domain_mail_info
-
-        Получение почтовой информации о домене  # noqa: E501
-        """
-        pass
-
-    def test_get_domain_mailboxes(self):
-        """Test case for get_domain_mailboxes
-
-        Получение списка почтовых ящиков домена  # noqa: E501
-        """
-        pass
-
-    def test_get_mailbox(self):
-        """Test case for get_mailbox
-
-        Получение почтового ящика  # noqa: E501
-        """
-        pass
-
-    def test_get_mailboxes(self):
-        """Test case for get_mailboxes
-
-        Получение списка почтовых ящиков аккаунта  # noqa: E501
-        """
-        pass
-
-    def test_update_domain_mail_info(self):
-        """Test case for update_domain_mail_info
-
-        Изменение почтовой информации о домене  # noqa: E501
-        """
-        pass
-
-    def test_update_mailbox(self):
-        """Test case for update_mailbox
-
-        Изменение почтового ящика  # noqa: E501
-        """
-        pass
-
-    def test_update_mailbox_v2(self):
-        """Test case for update_mailbox_v2
-
-        Изменение почтового ящика  # noqa: E501
-        """
-        pass
+from __future__ import annotations
+import pprint
+import re  # noqa: F401
+import json
 
 
-if __name__ == '__main__':
-    unittest.main()
+from typing import Any, Optional
+from pydantic import BaseModel, Field
+from timeweb_cloud_api.models.autoreply_is_enabled import AutoreplyIsEnabled
+from timeweb_cloud_api.models.forward_is_enabled import ForwardIsEnabled
+from timeweb_cloud_api.models.outgoing_is_enabled import OutgoingIsEnabled
+from timeweb_cloud_api.models.spam_protection_is_enabled import SpamProtectionIsEnabled
+
+class UpdateMailboxV2(BaseModel):
+    """
+    Обновление почтового ящика
+    """
+    password: Optional[Any] = Field(None, description="Пароль почтового ящика")
+    comment: Optional[Any] = Field(None, description="Комментарий к почтовому ящику")
+    owner_full_name: Optional[Any] = Field(None, description="ФИО владельца почтового ящика")
+    spam_protection_settings: Optional[SpamProtectionIsEnabled] = None
+    forward_settings: Optional[ForwardIsEnabled] = None
+    autoreply_settings: Optional[AutoreplyIsEnabled] = None
+    outgoing_settings: Optional[OutgoingIsEnabled] = None
+    __properties = ["password", "comment", "owner_full_name", "spam_protection_settings", "forward_settings", "autoreply_settings", "outgoing_settings"]
+
+    class Config:
+        """Pydantic configuration"""
+        allow_population_by_field_name = True
+        validate_assignment = True
+
+    def to_str(self) -> str:
+        """Returns the string representation of the model using alias"""
+        return pprint.pformat(self.dict(by_alias=True))
+
+    def to_json(self) -> str:
+        """Returns the JSON representation of the model using alias"""
+        return json.dumps(self.to_dict())
+
+    @classmethod
+    def from_json(cls, json_str: str) -> UpdateMailboxV2:
+        """Create an instance of UpdateMailboxV2 from a JSON string"""
+        return cls.from_dict(json.loads(json_str))
+
+    def to_dict(self):
+        """Returns the dictionary representation of the model using alias"""
+        _dict = self.dict(by_alias=True,
+                          exclude={
+                          },
+                          exclude_none=True)
+        # override the default output from pydantic by calling `to_dict()` of spam_protection_settings
+        if self.spam_protection_settings:
+            _dict['spam_protection_settings'] = self.spam_protection_settings.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of forward_settings
+        if self.forward_settings:
+            _dict['forward_settings'] = self.forward_settings.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of autoreply_settings
+        if self.autoreply_settings:
+            _dict['autoreply_settings'] = self.autoreply_settings.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of outgoing_settings
+        if self.outgoing_settings:
+            _dict['outgoing_settings'] = self.outgoing_settings.to_dict()
+        # set to None if password (nullable) is None
+        # and __fields_set__ contains the field
+        if self.password is None and "password" in self.__fields_set__:
+            _dict['password'] = None
+
+        # set to None if comment (nullable) is None
+        # and __fields_set__ contains the field
+        if self.comment is None and "comment" in self.__fields_set__:
+            _dict['comment'] = None
+
+        # set to None if owner_full_name (nullable) is None
+        # and __fields_set__ contains the field
+        if self.owner_full_name is None and "owner_full_name" in self.__fields_set__:
+            _dict['owner_full_name'] = None
+
+        return _dict
+
+    @classmethod
+    def from_dict(cls, obj: dict) -> UpdateMailboxV2:
+        """Create an instance of UpdateMailboxV2 from a dict"""
+        if obj is None:
+            return None
+
+        if not isinstance(obj, dict):
+            return UpdateMailboxV2.parse_obj(obj)
+
+        _obj = UpdateMailboxV2.parse_obj({
+            "password": obj.get("password"),
+            "comment": obj.get("comment"),
+            "owner_full_name": obj.get("owner_full_name"),
+            "spam_protection_settings": SpamProtectionIsEnabled.from_dict(obj.get("spam_protection_settings")) if obj.get("spam_protection_settings") is not None else None,
+            "forward_settings": ForwardIsEnabled.from_dict(obj.get("forward_settings")) if obj.get("forward_settings") is not None else None,
+            "autoreply_settings": AutoreplyIsEnabled.from_dict(obj.get("autoreply_settings")) if obj.get("autoreply_settings") is not None else None,
+            "outgoing_settings": OutgoingIsEnabled.from_dict(obj.get("outgoing_settings")) if obj.get("outgoing_settings") is not None else None
+        })
+        return _obj
+

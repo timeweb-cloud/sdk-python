@@ -13,48 +13,78 @@
 """
 
 
-import unittest
-import datetime
+from __future__ import annotations
+import pprint
+import re  # noqa: F401
+import json
 
-import timeweb_cloud_api
-from timeweb_cloud_api.models.get_mail_quota200_response import GetMailQuota200Response  # noqa: E501
-from timeweb_cloud_api.rest import ApiException
 
-class TestGetMailQuota200Response(unittest.TestCase):
-    """GetMailQuota200Response unit test stubs"""
+from typing import Any, Optional
+from pydantic import BaseModel, Field
 
-    def setUp(self):
-        pass
+class ForwardIsEnabled(BaseModel):
+    """
+    ForwardIsEnabled
+    """
+    is_enabled: Optional[Any] = Field(..., description="Включена ли пересылка входящих писем")
+    forward_list: Optional[Any] = Field(..., description="Список адресов для пересылки. \\  Если передан параметр `is_enabled`: `false`, то значение передавать нельзя")
+    is_leave_messages: Optional[Any] = Field(None, description="Оставлять ли копии входящих писем в почтовом ящике (не удалять). \\  Если передан параметр `is_enabled`: `false`, то значение передавать нельзя")
+    __properties = ["is_enabled", "forward_list", "is_leave_messages"]
 
-    def tearDown(self):
-        pass
+    class Config:
+        """Pydantic configuration"""
+        allow_population_by_field_name = True
+        validate_assignment = True
 
-    def make_instance(self, include_optional):
-        """Test GetMailQuota200Response
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
-        # uncomment below to create an instance of `GetMailQuota200Response`
-        """
-        model = timeweb_cloud_api.models.get_mail_quota200_response.GetMailQuota200Response()  # noqa: E501
-        if include_optional :
-            return GetMailQuota200Response(
-                quota = timeweb_cloud_api.models.quota.quota(
-                    total = 1024, 
-                    used = 512, )
-            )
-        else :
-            return GetMailQuota200Response(
-                quota = timeweb_cloud_api.models.quota.quota(
-                    total = 1024, 
-                    used = 512, ),
-        )
-        """
+    def to_str(self) -> str:
+        """Returns the string representation of the model using alias"""
+        return pprint.pformat(self.dict(by_alias=True))
 
-    def testGetMailQuota200Response(self):
-        """Test GetMailQuota200Response"""
-        # inst_req_only = self.make_instance(include_optional=False)
-        # inst_req_and_optional = self.make_instance(include_optional=True)
+    def to_json(self) -> str:
+        """Returns the JSON representation of the model using alias"""
+        return json.dumps(self.to_dict())
 
-if __name__ == '__main__':
-    unittest.main()
+    @classmethod
+    def from_json(cls, json_str: str) -> ForwardIsEnabled:
+        """Create an instance of ForwardIsEnabled from a JSON string"""
+        return cls.from_dict(json.loads(json_str))
+
+    def to_dict(self):
+        """Returns the dictionary representation of the model using alias"""
+        _dict = self.dict(by_alias=True,
+                          exclude={
+                          },
+                          exclude_none=True)
+        # set to None if is_enabled (nullable) is None
+        # and __fields_set__ contains the field
+        if self.is_enabled is None and "is_enabled" in self.__fields_set__:
+            _dict['is_enabled'] = None
+
+        # set to None if forward_list (nullable) is None
+        # and __fields_set__ contains the field
+        if self.forward_list is None and "forward_list" in self.__fields_set__:
+            _dict['forward_list'] = None
+
+        # set to None if is_leave_messages (nullable) is None
+        # and __fields_set__ contains the field
+        if self.is_leave_messages is None and "is_leave_messages" in self.__fields_set__:
+            _dict['is_leave_messages'] = None
+
+        return _dict
+
+    @classmethod
+    def from_dict(cls, obj: dict) -> ForwardIsEnabled:
+        """Create an instance of ForwardIsEnabled from a dict"""
+        if obj is None:
+            return None
+
+        if not isinstance(obj, dict):
+            return ForwardIsEnabled.parse_obj(obj)
+
+        _obj = ForwardIsEnabled.parse_obj({
+            "is_enabled": obj.get("is_enabled"),
+            "forward_list": obj.get("forward_list"),
+            "is_leave_messages": obj.get("is_leave_messages")
+        })
+        return _obj
+

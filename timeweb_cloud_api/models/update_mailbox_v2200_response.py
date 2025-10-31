@@ -13,92 +13,63 @@
 """
 
 
-import unittest
-
-import timeweb_cloud_api
-from timeweb_cloud_api.api.mail_api import MailApi  # noqa: E501
-from timeweb_cloud_api.rest import ApiException
-
-
-class TestMailApi(unittest.TestCase):
-    """MailApi unit test stubs"""
-
-    def setUp(self):
-        self.api = timeweb_cloud_api.api.mail_api.MailApi()  # noqa: E501
-
-    def tearDown(self):
-        pass
-
-    def test_create_domain_mailbox(self):
-        """Test case for create_domain_mailbox
-
-        Создание почтового ящика  # noqa: E501
-        """
-        pass
-
-    def test_create_multiple_domain_mailboxes(self):
-        """Test case for create_multiple_domain_mailboxes
-
-        Множественное создание почтовых ящиков  # noqa: E501
-        """
-        pass
-
-    def test_delete_mailbox(self):
-        """Test case for delete_mailbox
-
-        Удаление почтового ящика  # noqa: E501
-        """
-        pass
-
-    def test_get_domain_mail_info(self):
-        """Test case for get_domain_mail_info
-
-        Получение почтовой информации о домене  # noqa: E501
-        """
-        pass
-
-    def test_get_domain_mailboxes(self):
-        """Test case for get_domain_mailboxes
-
-        Получение списка почтовых ящиков домена  # noqa: E501
-        """
-        pass
-
-    def test_get_mailbox(self):
-        """Test case for get_mailbox
-
-        Получение почтового ящика  # noqa: E501
-        """
-        pass
-
-    def test_get_mailboxes(self):
-        """Test case for get_mailboxes
-
-        Получение списка почтовых ящиков аккаунта  # noqa: E501
-        """
-        pass
-
-    def test_update_domain_mail_info(self):
-        """Test case for update_domain_mail_info
-
-        Изменение почтовой информации о домене  # noqa: E501
-        """
-        pass
-
-    def test_update_mailbox(self):
-        """Test case for update_mailbox
-
-        Изменение почтового ящика  # noqa: E501
-        """
-        pass
-
-    def test_update_mailbox_v2(self):
-        """Test case for update_mailbox_v2
-
-        Изменение почтового ящика  # noqa: E501
-        """
-        pass
+from __future__ import annotations
+import pprint
+import re  # noqa: F401
+import json
 
 
-if __name__ == '__main__':
-    unittest.main()
+
+from pydantic import BaseModel, Field
+from timeweb_cloud_api.models.mailbox_response import MailboxResponse
+
+class UpdateMailboxV2200Response(BaseModel):
+    """
+    UpdateMailboxV2200Response
+    """
+    mailbox: MailboxResponse = Field(...)
+    __properties = ["mailbox"]
+
+    class Config:
+        """Pydantic configuration"""
+        allow_population_by_field_name = True
+        validate_assignment = True
+
+    def to_str(self) -> str:
+        """Returns the string representation of the model using alias"""
+        return pprint.pformat(self.dict(by_alias=True))
+
+    def to_json(self) -> str:
+        """Returns the JSON representation of the model using alias"""
+        return json.dumps(self.to_dict())
+
+    @classmethod
+    def from_json(cls, json_str: str) -> UpdateMailboxV2200Response:
+        """Create an instance of UpdateMailboxV2200Response from a JSON string"""
+        return cls.from_dict(json.loads(json_str))
+
+    def to_dict(self):
+        """Returns the dictionary representation of the model using alias"""
+        _dict = self.dict(by_alias=True,
+                          exclude={
+                          },
+                          exclude_none=True)
+        # override the default output from pydantic by calling `to_dict()` of mailbox
+        if self.mailbox:
+            _dict['mailbox'] = self.mailbox.to_dict()
+        return _dict
+
+    @classmethod
+    def from_dict(cls, obj: dict) -> UpdateMailboxV2200Response:
+        """Create an instance of UpdateMailboxV2200Response from a dict"""
+        if obj is None:
+            return None
+
+        if not isinstance(obj, dict):
+            return UpdateMailboxV2200Response.parse_obj(obj)
+
+        _obj = UpdateMailboxV2200Response.parse_obj({
+            "mailbox": MailboxResponse.from_dict(obj.get("mailbox")) if obj.get("mailbox") is not None else None
+        })
+        return _obj
+
