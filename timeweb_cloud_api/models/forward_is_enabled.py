@@ -28,7 +28,7 @@ class ForwardIsEnabled(BaseModel):
     """
     is_enabled: Optional[Any] = Field(..., description="Включена ли пересылка входящих писем")
     forward_list: Optional[Any] = Field(..., description="Список адресов для пересылки. \\  Если передан параметр `is_enabled`: `false`, то значение передавать нельзя")
-    is_leave_messages: Optional[Any] = Field(None, description="Оставлять ли копии входящих писем в почтовом ящике (не удалять). \\  Если передан параметр `is_enabled`: `false`, то значение передавать нельзя")
+    is_leave_messages: Optional[Any] = Field(None, description="Оставлять ли копии входящих писем в почтовом ящике (не удалять). \\  При `is_leave_messages`: `true`— копии входящих писем не сохраняются и будут удаляться. \\  При `is_leave_messages`: `false` — копии входящих писем сохраняются. \\ \\  Если передан параметр `is_enabled`: `false`, то значение передавать нельзя")
     __properties = ["is_enabled", "forward_list", "is_leave_messages"]
 
     class Config:
