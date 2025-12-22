@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **upload_url** | **object** | Ссылка для загрузки образа. | [optional] 
 **location** | [**Location**](Location.md) |  | 
 **os** | [**OS**](OS.md) |  | 
+**hostname** | **object** | Сетевое имя сервера | [optional] 
 
 ## Example
 

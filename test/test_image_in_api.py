@@ -44,7 +44,8 @@ class TestImageInAPI(unittest.TestCase):
                 disk_id = None, 
                 upload_url = None, 
                 location = ru-1, 
-                os = centos
+                os = centos, 
+                hostname = None
             )
         else :
             return ImageInAPI(

@@ -34,7 +34,8 @@ class ImageInAPI(BaseModel):
     upload_url: Optional[Any] = Field(None, description="Ссылка для загрузки образа.")
     location: Location = Field(...)
     os: OS = Field(...)
-    __properties = ["name", "description", "disk_id", "upload_url", "location", "os"]
+    hostname: Optional[Any] = Field(None, description="Сетевое имя сервера")
+    __properties = ["name", "description", "disk_id", "upload_url", "location", "os", "hostname"]
 
     class Config:
         """Pydantic configuration"""
@@ -80,6 +81,11 @@ class ImageInAPI(BaseModel):
         if self.upload_url is None and "upload_url" in self.__fields_set__:
             _dict['upload_url'] = None
 
+        # set to None if hostname (nullable) is None
+        # and __fields_set__ contains the field
+        if self.hostname is None and "hostname" in self.__fields_set__:
+            _dict['hostname'] = None
+
         return _dict
 
     @classmethod
@@ -97,7 +103,8 @@ class ImageInAPI(BaseModel):
             "disk_id": obj.get("disk_id"),
             "upload_url": obj.get("upload_url"),
             "location": obj.get("location"),
-            "os": obj.get("os")
+            "os": obj.get("os"),
+            "hostname": obj.get("hostname")
         })
         return _obj
 
