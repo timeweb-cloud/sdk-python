@@ -45,7 +45,8 @@ class CreateServer(BaseModel):
     cloud_init: Optional[Any] = Field(None, description="Cloud-init скрипт")
     availability_zone: Optional[AvailabilityZone] = None
     project_id: Optional[Any] = Field(None, description="ID проекта.")
-    __properties = ["configuration", "is_ddos_guard", "os_id", "image_id", "software_id", "preset_id", "bandwidth", "name", "avatar_id", "comment", "ssh_keys_ids", "is_local_network", "network", "cloud_init", "availability_zone", "project_id"]
+    hostname: Optional[Any] = Field(None, description="Сетевое имя сервера")
+    __properties = ["configuration", "is_ddos_guard", "os_id", "image_id", "software_id", "preset_id", "bandwidth", "name", "avatar_id", "comment", "ssh_keys_ids", "is_local_network", "network", "cloud_init", "availability_zone", "project_id", "hostname"]
 
     class Config:
         """Pydantic configuration"""
@@ -142,6 +143,11 @@ class CreateServer(BaseModel):
         if self.project_id is None and "project_id" in self.__fields_set__:
             _dict['project_id'] = None
 
+        # set to None if hostname (nullable) is None
+        # and __fields_set__ contains the field
+        if self.hostname is None and "hostname" in self.__fields_set__:
+            _dict['hostname'] = None
+
         return _dict
 
     @classmethod
@@ -169,7 +175,8 @@ class CreateServer(BaseModel):
             "network": CreateServerNetwork.from_dict(obj.get("network")) if obj.get("network") is not None else None,
             "cloud_init": obj.get("cloud_init"),
             "availability_zone": obj.get("availability_zone"),
-            "project_id": obj.get("project_id")
+            "project_id": obj.get("project_id"),
+            "hostname": obj.get("hostname")
         })
         return _obj
 

@@ -20,6 +20,7 @@ Name | Type | Description | Notes
 **cloud_init** | **object** | Cloud-init скрипт | [optional] 
 **availability_zone** | [**AvailabilityZone**](AvailabilityZone.md) |  | [optional] 
 **project_id** | **object** | ID проекта. | [optional] 
+**hostname** | **object** | Сетевое имя сервера | [optional] 
 
 ## Example
 
