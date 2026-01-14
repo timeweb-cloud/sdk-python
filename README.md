@@ -246,6 +246,9 @@ Class | Method | HTTP request | Description
 *AIAgentsApi* | [**get_agent_statistics**](docs/AIAgentsApi.md#get_agent_statistics) | **GET** /api/v1/cloud-ai/agents/{id}/statistic | Получение статистики использования токенов агента
 *AIAgentsApi* | [**get_agents**](docs/AIAgentsApi.md#get_agents) | **GET** /api/v1/cloud-ai/agents | Получение списка AI агентов
 *AIAgentsApi* | [**update_agent**](docs/AIAgentsApi.md#update_agent) | **PATCH** /api/v1/cloud-ai/agents/{id} | Обновление AI агента
+*AIModelsApi* | [**get_agents_token_packages**](docs/AIModelsApi.md#get_agents_token_packages) | **GET** /api/v1/cloud-ai/token-packages/agents | Получение списка пакетов токенов для агентов
+*AIModelsApi* | [**get_knowledgebases_token_packages**](docs/AIModelsApi.md#get_knowledgebases_token_packages) | **GET** /api/v1/cloud-ai/token-packages/knowledge-bases | Получение списка пакетов токенов для баз знаний
+*AIModelsApi* | [**get_models**](docs/AIModelsApi.md#get_models) | **GET** /api/v1/cloud-ai/models | Получение списка моделей
 *APIKeysApi* | [**create_token**](docs/APIKeysApi.md#create_token) | **POST** /api/v1/auth/api-keys | Создание токена
 *APIKeysApi* | [**delete_token**](docs/APIKeysApi.md#delete_token) | **DELETE** /api/v1/auth/api-keys/{token_id} | Удалить токен
 *APIKeysApi* | [**get_tokens**](docs/APIKeysApi.md#get_tokens) | **GET** /api/v1/auth/api-keys | Получение списка выпущенных токенов
@@ -746,6 +749,8 @@ Class | Method | HTTP request | Description
  - [GetAgentStatistics200ResponseMeta](docs/GetAgentStatistics200ResponseMeta.md)
  - [GetAgents200Response](docs/GetAgents200Response.md)
  - [GetAgents200ResponseMeta](docs/GetAgents200ResponseMeta.md)
+ - [GetAgentsTokenPackages200Response](docs/GetAgentsTokenPackages200Response.md)
+ - [GetAgentsTokenPackages200ResponseMeta](docs/GetAgentsTokenPackages200ResponseMeta.md)
  - [GetAllProjectResources200Response](docs/GetAllProjectResources200Response.md)
  - [GetAppDeploys200Response](docs/GetAppDeploys200Response.md)
  - [GetAppLogs200Response](docs/GetAppLogs200Response.md)
@@ -791,6 +796,8 @@ Class | Method | HTTP request | Description
  - [GetKnowledgebasesV2200ResponseMeta](docs/GetKnowledgebasesV2200ResponseMeta.md)
  - [GetLocations200Response](docs/GetLocations200Response.md)
  - [GetMailboxes200Response](docs/GetMailboxes200Response.md)
+ - [GetModels200Response](docs/GetModels200Response.md)
+ - [GetModels200ResponseMeta](docs/GetModels200ResponseMeta.md)
  - [GetNetworkDrives200Response](docs/GetNetworkDrives200Response.md)
  - [GetNetworkDrivesAvailableResources200Response](docs/GetNetworkDrivesAvailableResources200Response.md)
  - [GetNetworkDrivesPresets200Response](docs/GetNetworkDrivesPresets200Response.md)
@@ -853,6 +860,11 @@ Class | Method | HTTP request | Description
  - [MasterPresetOutApi](docs/MasterPresetOutApi.md)
  - [Meta](docs/Meta.md)
  - [Meta1](docs/Meta1.md)
+ - [Model](docs/Model.md)
+ - [ModelParamsInfo](docs/ModelParamsInfo.md)
+ - [ModelParamsInfoMaxTokens](docs/ModelParamsInfoMaxTokens.md)
+ - [ModelParamsInfoReasoningEffort](docs/ModelParamsInfoReasoningEffort.md)
+ - [ModelParamsInfoTemperature](docs/ModelParamsInfoTemperature.md)
  - [MountNetworkDrive](docs/MountNetworkDrive.md)
  - [Network](docs/Network.md)
  - [NetworkDrive](docs/NetworkDrive.md)
@@ -937,6 +949,7 @@ Class | Method | HTTP request | Description
  - [Status](docs/Status.md)
  - [StatusCompanyInfo](docs/StatusCompanyInfo.md)
  - [Subdomain](docs/Subdomain.md)
+ - [TokenPackage](docs/TokenPackage.md)
  - [TokenStatistic](docs/TokenStatistic.md)
  - [TopLevelDomain](docs/TopLevelDomain.md)
  - [TransferStatus](docs/TransferStatus.md)
