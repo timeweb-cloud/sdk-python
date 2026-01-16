@@ -435,11 +435,15 @@ Class | Method | HTTP request | Description
 *KubernetesApi* | [**update_cluster_version**](docs/KubernetesApi.md#update_cluster_version) | **PATCH** /api/v1/k8s/clusters/{cluster_id}/versions/update | Обновление версии кластера
 *LocationsApi* | [**get_locations**](docs/LocationsApi.md#get_locations) | **GET** /api/v2/locations | Получение списка локаций
 *MailApi* | [**create_domain_mailbox**](docs/MailApi.md#create_domain_mailbox) | **POST** /api/v1/mail/domains/{domain} | Создание почтового ящика
+*MailApi* | [**create_domain_mailbox_v2**](docs/MailApi.md#create_domain_mailbox_v2) | **POST** /api/v2/mail/domains/{domain} | Создание почтового ящика
 *MailApi* | [**create_multiple_domain_mailboxes**](docs/MailApi.md#create_multiple_domain_mailboxes) | **POST** /api/v1/mail/domains/{domain}/batch | Множественное создание почтовых ящиков
+*MailApi* | [**create_multiple_domain_mailboxes_v2**](docs/MailApi.md#create_multiple_domain_mailboxes_v2) | **POST** /api/v2/mail/domains/{domain}/batch | Множественное создание почтовых ящиков
 *MailApi* | [**delete_mailbox**](docs/MailApi.md#delete_mailbox) | **DELETE** /api/v1/mail/domains/{domain}/mailboxes/{mailbox} | Удаление почтового ящика
+*MailApi* | [**get_all_mailboxes_v2**](docs/MailApi.md#get_all_mailboxes_v2) | **GET** /api/v2/mail | Получение списка всех почтовых ящиков аккаунта
 *MailApi* | [**get_domain_mail_info**](docs/MailApi.md#get_domain_mail_info) | **GET** /api/v1/mail/domains/{domain}/info | Получение почтовой информации о домене
 *MailApi* | [**get_domain_mailboxes**](docs/MailApi.md#get_domain_mailboxes) | **GET** /api/v1/mail/domains/{domain} | Получение списка почтовых ящиков домена
 *MailApi* | [**get_mailbox**](docs/MailApi.md#get_mailbox) | **GET** /api/v1/mail/domains/{domain}/mailboxes/{mailbox} | Получение почтового ящика
+*MailApi* | [**get_mailbox_v2**](docs/MailApi.md#get_mailbox_v2) | **GET** /api/v2/mail/domains/{domain}/mailboxes/{mailbox} | Получение почтового ящика
 *MailApi* | [**get_mailboxes**](docs/MailApi.md#get_mailboxes) | **GET** /api/v1/mail | Получение списка почтовых ящиков аккаунта
 *MailApi* | [**update_domain_mail_info**](docs/MailApi.md#update_domain_mail_info) | **PATCH** /api/v1/mail/domains/{domain}/info | Изменение почтовой информации о домене
 *MailApi* | [**update_mailbox**](docs/MailApi.md#update_mailbox) | **PATCH** /api/v1/mail/domains/{domain}/mailboxes/{mailbox} | Изменение почтового ящика
@@ -651,6 +655,8 @@ Class | Method | HTTP request | Description
  - [CreateDomainDNSRecordV2201Response](docs/CreateDomainDNSRecordV2201Response.md)
  - [CreateDomainMailbox201Response](docs/CreateDomainMailbox201Response.md)
  - [CreateDomainMailboxRequest](docs/CreateDomainMailboxRequest.md)
+ - [CreateDomainMailboxV2201Response](docs/CreateDomainMailboxV2201Response.md)
+ - [CreateDomainMailboxV2Request](docs/CreateDomainMailboxV2Request.md)
  - [CreateDomainRequest201Response](docs/CreateDomainRequest201Response.md)
  - [CreateFloatingIp](docs/CreateFloatingIp.md)
  - [CreateFloatingIp201Response](docs/CreateFloatingIp201Response.md)
@@ -661,6 +667,7 @@ Class | Method | HTTP request | Description
  - [CreateKnowledgebase201Response](docs/CreateKnowledgebase201Response.md)
  - [CreateMultipleDomainMailboxes201Response](docs/CreateMultipleDomainMailboxes201Response.md)
  - [CreateMultipleDomainMailboxesRequest](docs/CreateMultipleDomainMailboxesRequest.md)
+ - [CreateMultipleDomainMailboxesV2201Response](docs/CreateMultipleDomainMailboxesV2201Response.md)
  - [CreateNetworkDrive](docs/CreateNetworkDrive.md)
  - [CreateNetworkDrive201Response](docs/CreateNetworkDrive201Response.md)
  - [CreateProject](docs/CreateProject.md)
@@ -758,6 +765,7 @@ Class | Method | HTTP request | Description
  - [GetAgents200ResponseMeta](docs/GetAgents200ResponseMeta.md)
  - [GetAgentsTokenPackages200Response](docs/GetAgentsTokenPackages200Response.md)
  - [GetAgentsTokenPackages200ResponseMeta](docs/GetAgentsTokenPackages200ResponseMeta.md)
+ - [GetAllMailboxesV2200Response](docs/GetAllMailboxesV2200Response.md)
  - [GetAllProjectResources200Response](docs/GetAllProjectResources200Response.md)
  - [GetAppDeploys200Response](docs/GetAppDeploys200Response.md)
  - [GetAppLogs200Response](docs/GetAppLogs200Response.md)
@@ -864,6 +872,8 @@ Class | Method | HTTP request | Description
  - [MailboxForwardingOutgoing](docs/MailboxForwardingOutgoing.md)
  - [MailboxResponse](docs/MailboxResponse.md)
  - [MailboxSpamFilter](docs/MailboxSpamFilter.md)
+ - [MailboxV2](docs/MailboxV2.md)
+ - [MailboxesBatchV2](docs/MailboxesBatchV2.md)
  - [MasterPresetOutApi](docs/MasterPresetOutApi.md)
  - [Meta](docs/Meta.md)
  - [Meta1](docs/Meta1.md)

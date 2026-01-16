@@ -26,8 +26,12 @@ from typing import Any, Optional
 
 from timeweb_cloud_api.models.create_domain_mailbox201_response import CreateDomainMailbox201Response
 from timeweb_cloud_api.models.create_domain_mailbox_request import CreateDomainMailboxRequest
+from timeweb_cloud_api.models.create_domain_mailbox_v2201_response import CreateDomainMailboxV2201Response
+from timeweb_cloud_api.models.create_domain_mailbox_v2_request import CreateDomainMailboxV2Request
 from timeweb_cloud_api.models.create_multiple_domain_mailboxes201_response import CreateMultipleDomainMailboxes201Response
 from timeweb_cloud_api.models.create_multiple_domain_mailboxes_request import CreateMultipleDomainMailboxesRequest
+from timeweb_cloud_api.models.create_multiple_domain_mailboxes_v2201_response import CreateMultipleDomainMailboxesV2201Response
+from timeweb_cloud_api.models.get_all_mailboxes_v2200_response import GetAllMailboxesV2200Response
 from timeweb_cloud_api.models.get_domain_mail_info200_response import GetDomainMailInfo200Response
 from timeweb_cloud_api.models.get_mailboxes200_response import GetMailboxes200Response
 from timeweb_cloud_api.models.update_domain_mail_info_request import UpdateDomainMailInfoRequest
@@ -57,7 +61,7 @@ class MailApi(object):
 
     @validate_arguments
     def create_domain_mailbox(self, domain : Annotated[Any, Field(..., description="Полное имя домена")], create_domain_mailbox_request : CreateDomainMailboxRequest, **kwargs) -> CreateDomainMailbox201Response:  # noqa: E501
-        """Создание почтового ящика  # noqa: E501
+        """(Deprecated) Создание почтового ящика  # noqa: E501
 
         Чтобы создать почтовый ящик, отправьте POST-запрос на `/api/v1/mail/domains/{domain}`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -88,7 +92,7 @@ class MailApi(object):
 
     @validate_arguments
     def create_domain_mailbox_with_http_info(self, domain : Annotated[Any, Field(..., description="Полное имя домена")], create_domain_mailbox_request : CreateDomainMailboxRequest, **kwargs) -> ApiResponse:  # noqa: E501
-        """Создание почтового ящика  # noqa: E501
+        """(Deprecated) Создание почтового ящика  # noqa: E501
 
         Чтобы создать почтовый ящик, отправьте POST-запрос на `/api/v1/mail/domains/{domain}`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -125,6 +129,8 @@ class MailApi(object):
                  returns the request thread.
         :rtype: tuple(CreateDomainMailbox201Response, status_code(int), headers(HTTPHeaderDict))
         """
+
+        warnings.warn("POST /api/v1/mail/domains/{domain} is deprecated.", DeprecationWarning)
 
         _params = locals()
 
@@ -216,8 +222,169 @@ class MailApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
+    def create_domain_mailbox_v2(self, domain : Annotated[Any, Field(..., description="Полное имя домена")], create_domain_mailbox_v2_request : CreateDomainMailboxV2Request, **kwargs) -> CreateDomainMailboxV2201Response:  # noqa: E501
+        """Создание почтового ящика  # noqa: E501
+
+        Чтобы создать почтовый ящик, отправьте POST-запрос на `/api/v2/mail/domains/{domain}`.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.create_domain_mailbox_v2(domain, create_domain_mailbox_v2_request, async_req=True)
+        >>> result = thread.get()
+
+        :param domain: Полное имя домена (required)
+        :type domain: object
+        :param create_domain_mailbox_v2_request: (required)
+        :type create_domain_mailbox_v2_request: CreateDomainMailboxV2Request
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: CreateDomainMailboxV2201Response
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            raise ValueError("Error! Please call the create_domain_mailbox_v2_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
+        return self.create_domain_mailbox_v2_with_http_info(domain, create_domain_mailbox_v2_request, **kwargs)  # noqa: E501
+
+    @validate_arguments
+    def create_domain_mailbox_v2_with_http_info(self, domain : Annotated[Any, Field(..., description="Полное имя домена")], create_domain_mailbox_v2_request : CreateDomainMailboxV2Request, **kwargs) -> ApiResponse:  # noqa: E501
+        """Создание почтового ящика  # noqa: E501
+
+        Чтобы создать почтовый ящик, отправьте POST-запрос на `/api/v2/mail/domains/{domain}`.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.create_domain_mailbox_v2_with_http_info(domain, create_domain_mailbox_v2_request, async_req=True)
+        >>> result = thread.get()
+
+        :param domain: Полное имя домена (required)
+        :type domain: object
+        :param create_domain_mailbox_v2_request: (required)
+        :type create_domain_mailbox_v2_request: CreateDomainMailboxV2Request
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the 
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(CreateDomainMailboxV2201Response, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'domain',
+            'create_domain_mailbox_v2_request'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method create_domain_mailbox_v2" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['domain']:
+            _path_params['domain'] = _params['domain']
+
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        if _params['create_domain_mailbox_v2_request'] is not None:
+            _body_params = _params['create_domain_mailbox_v2_request']
+
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # set the HTTP header `Content-Type`
+        _content_types_list = _params.get('_content_type',
+            self.api_client.select_header_content_type(
+                ['application/json']))
+        if _content_types_list:
+                _header_params['Content-Type'] = _content_types_list
+
+        # authentication setting
+        _auth_settings = ['Bearer']  # noqa: E501
+
+        _response_types_map = {
+            '201': "CreateDomainMailboxV2201Response",
+            '400': None,
+            '401': None,
+            '403': None,
+            '404': None,
+            '409': None,
+            '429': None,
+            '500': None,
+        }
+
+        return self.api_client.call_api(
+            '/api/v2/mail/domains/{domain}', 'POST',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @validate_arguments
     def create_multiple_domain_mailboxes(self, domain : Annotated[Any, Field(..., description="Полное имя домена")], create_multiple_domain_mailboxes_request : CreateMultipleDomainMailboxesRequest, **kwargs) -> CreateMultipleDomainMailboxes201Response:  # noqa: E501
-        """Множественное создание почтовых ящиков  # noqa: E501
+        """(Deprecated) Множественное создание почтовых ящиков  # noqa: E501
 
         Чтобы создать почтовый ящики, отправьте POST-запрос на `/api/v1/mail/domains/{domain}/batch`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -248,7 +415,7 @@ class MailApi(object):
 
     @validate_arguments
     def create_multiple_domain_mailboxes_with_http_info(self, domain : Annotated[Any, Field(..., description="Полное имя домена")], create_multiple_domain_mailboxes_request : CreateMultipleDomainMailboxesRequest, **kwargs) -> ApiResponse:  # noqa: E501
-        """Множественное создание почтовых ящиков  # noqa: E501
+        """(Deprecated) Множественное создание почтовых ящиков  # noqa: E501
 
         Чтобы создать почтовый ящики, отправьте POST-запрос на `/api/v1/mail/domains/{domain}/batch`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -285,6 +452,8 @@ class MailApi(object):
                  returns the request thread.
         :rtype: tuple(CreateMultipleDomainMailboxes201Response, status_code(int), headers(HTTPHeaderDict))
         """
+
+        warnings.warn("POST /api/v1/mail/domains/{domain}/batch is deprecated.", DeprecationWarning)
 
         _params = locals()
 
@@ -360,6 +529,166 @@ class MailApi(object):
 
         return self.api_client.call_api(
             '/api/v1/mail/domains/{domain}/batch', 'POST',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @validate_arguments
+    def create_multiple_domain_mailboxes_v2(self, domain : Annotated[Any, Field(..., description="Полное имя домена")], body : Optional[Any], **kwargs) -> CreateMultipleDomainMailboxesV2201Response:  # noqa: E501
+        """Множественное создание почтовых ящиков  # noqa: E501
+
+        Чтобы создать несколько почтовых ящиков одновременно, отправьте POST-запрос на `/api/v2/mail/domains/{domain}/batch`.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.create_multiple_domain_mailboxes_v2(domain, body, async_req=True)
+        >>> result = thread.get()
+
+        :param domain: Полное имя домена (required)
+        :type domain: object
+        :param body: (required)
+        :type body: object
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: CreateMultipleDomainMailboxesV2201Response
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            raise ValueError("Error! Please call the create_multiple_domain_mailboxes_v2_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
+        return self.create_multiple_domain_mailboxes_v2_with_http_info(domain, body, **kwargs)  # noqa: E501
+
+    @validate_arguments
+    def create_multiple_domain_mailboxes_v2_with_http_info(self, domain : Annotated[Any, Field(..., description="Полное имя домена")], body : Optional[Any], **kwargs) -> ApiResponse:  # noqa: E501
+        """Множественное создание почтовых ящиков  # noqa: E501
+
+        Чтобы создать несколько почтовых ящиков одновременно, отправьте POST-запрос на `/api/v2/mail/domains/{domain}/batch`.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.create_multiple_domain_mailboxes_v2_with_http_info(domain, body, async_req=True)
+        >>> result = thread.get()
+
+        :param domain: Полное имя домена (required)
+        :type domain: object
+        :param body: (required)
+        :type body: object
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the 
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(CreateMultipleDomainMailboxesV2201Response, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'domain',
+            'body'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method create_multiple_domain_mailboxes_v2" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['domain']:
+            _path_params['domain'] = _params['domain']
+
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        if _params['body'] is not None:
+            _body_params = _params['body']
+
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # set the HTTP header `Content-Type`
+        _content_types_list = _params.get('_content_type',
+            self.api_client.select_header_content_type(
+                ['application/json']))
+        if _content_types_list:
+                _header_params['Content-Type'] = _content_types_list
+
+        # authentication setting
+        _auth_settings = ['Bearer']  # noqa: E501
+
+        _response_types_map = {
+            '201': "CreateMultipleDomainMailboxesV2201Response",
+            '400': None,
+            '401': None,
+            '403': None,
+            '404': None,
+            '429': None,
+            '500': None,
+        }
+
+        return self.api_client.call_api(
+            '/api/v2/mail/domains/{domain}/batch', 'POST',
             _path_params,
             _query_params,
             _header_params,
@@ -517,8 +846,168 @@ class MailApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
+    def get_all_mailboxes_v2(self, limit : Annotated[Optional[Any], Field(description="Обозначает количество записей, которое необходимо вернуть.")] = None, offset : Annotated[Optional[Any], Field(description="Указывает на смещение относительно начала списка.")] = None, search : Annotated[Optional[Any], Field(description="Поиск почтового ящика по названию")] = None, **kwargs) -> GetAllMailboxesV2200Response:  # noqa: E501
+        """Получение списка всех почтовых ящиков аккаунта  # noqa: E501
+
+        Чтобы получить список всех почтовых ящиков, отправьте GET-запрос на `/api/v2/mail`.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_all_mailboxes_v2(limit, offset, search, async_req=True)
+        >>> result = thread.get()
+
+        :param limit: Обозначает количество записей, которое необходимо вернуть.
+        :type limit: object
+        :param offset: Указывает на смещение относительно начала списка.
+        :type offset: object
+        :param search: Поиск почтового ящика по названию
+        :type search: object
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: GetAllMailboxesV2200Response
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            raise ValueError("Error! Please call the get_all_mailboxes_v2_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
+        return self.get_all_mailboxes_v2_with_http_info(limit, offset, search, **kwargs)  # noqa: E501
+
+    @validate_arguments
+    def get_all_mailboxes_v2_with_http_info(self, limit : Annotated[Optional[Any], Field(description="Обозначает количество записей, которое необходимо вернуть.")] = None, offset : Annotated[Optional[Any], Field(description="Указывает на смещение относительно начала списка.")] = None, search : Annotated[Optional[Any], Field(description="Поиск почтового ящика по названию")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+        """Получение списка всех почтовых ящиков аккаунта  # noqa: E501
+
+        Чтобы получить список всех почтовых ящиков, отправьте GET-запрос на `/api/v2/mail`.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_all_mailboxes_v2_with_http_info(limit, offset, search, async_req=True)
+        >>> result = thread.get()
+
+        :param limit: Обозначает количество записей, которое необходимо вернуть.
+        :type limit: object
+        :param offset: Указывает на смещение относительно начала списка.
+        :type offset: object
+        :param search: Поиск почтового ящика по названию
+        :type search: object
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the 
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(GetAllMailboxesV2200Response, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'limit',
+            'offset',
+            'search'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_all_mailboxes_v2" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+
+        # process the query parameters
+        _query_params = []
+        if _params.get('limit') is not None:  # noqa: E501
+            _query_params.append(('limit', _params['limit']))
+
+        if _params.get('offset') is not None:  # noqa: E501
+            _query_params.append(('offset', _params['offset']))
+
+        if _params.get('search') is not None:  # noqa: E501
+            _query_params.append(('search', _params['search']))
+
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = ['Bearer']  # noqa: E501
+
+        _response_types_map = {
+            '200': "GetAllMailboxesV2200Response",
+            '400': None,
+            '401': None,
+            '403': None,
+            '429': None,
+            '500': None,
+        }
+
+        return self.api_client.call_api(
+            '/api/v2/mail', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @validate_arguments
     def get_domain_mail_info(self, domain : Annotated[Any, Field(..., description="Полное имя домена")], **kwargs) -> GetDomainMailInfo200Response:  # noqa: E501
-        """Получение почтовой информации о домене  # noqa: E501
+        """(Deprecated) Получение почтовой информации о домене  # noqa: E501
 
         Чтобы получить почтовую информацию о домене, отправьте GET-запрос на `/api/v1/mail/domains/{domain}/info`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -547,7 +1036,7 @@ class MailApi(object):
 
     @validate_arguments
     def get_domain_mail_info_with_http_info(self, domain : Annotated[Any, Field(..., description="Полное имя домена")], **kwargs) -> ApiResponse:  # noqa: E501
-        """Получение почтовой информации о домене  # noqa: E501
+        """(Deprecated) Получение почтовой информации о домене  # noqa: E501
 
         Чтобы получить почтовую информацию о домене, отправьте GET-запрос на `/api/v1/mail/domains/{domain}/info`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -582,6 +1071,8 @@ class MailApi(object):
                  returns the request thread.
         :rtype: tuple(GetDomainMailInfo200Response, status_code(int), headers(HTTPHeaderDict))
         """
+
+        warnings.warn("GET /api/v1/mail/domains/{domain}/info is deprecated.", DeprecationWarning)
 
         _params = locals()
 
@@ -832,7 +1323,7 @@ class MailApi(object):
 
     @validate_arguments
     def get_mailbox(self, domain : Annotated[Any, Field(..., description="Полное имя домена")], mailbox : Annotated[Any, Field(..., description="Название почтового ящика")], **kwargs) -> CreateDomainMailbox201Response:  # noqa: E501
-        """Получение почтового ящика  # noqa: E501
+        """(Deprecated) Получение почтового ящика  # noqa: E501
 
         Чтобы получить почтовый ящик, отправьте GET-запрос на `/api/v1/mail/domains/{domain}/mailboxes/{mailbox}`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -863,7 +1354,7 @@ class MailApi(object):
 
     @validate_arguments
     def get_mailbox_with_http_info(self, domain : Annotated[Any, Field(..., description="Полное имя домена")], mailbox : Annotated[Any, Field(..., description="Название почтового ящика")], **kwargs) -> ApiResponse:  # noqa: E501
-        """Получение почтового ящика  # noqa: E501
+        """(Deprecated) Получение почтового ящика  # noqa: E501
 
         Чтобы получить почтовый ящик, отправьте GET-запрос на `/api/v1/mail/domains/{domain}/mailboxes/{mailbox}`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -900,6 +1391,8 @@ class MailApi(object):
                  returns the request thread.
         :rtype: tuple(CreateDomainMailbox201Response, status_code(int), headers(HTTPHeaderDict))
         """
+
+        warnings.warn("GET /api/v1/mail/domains/{domain}/mailboxes/{mailbox} is deprecated.", DeprecationWarning)
 
         _params = locals()
 
@@ -984,8 +1477,161 @@ class MailApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
+    def get_mailbox_v2(self, domain : Annotated[Any, Field(..., description="Полное имя домена")], mailbox : Annotated[Any, Field(..., description="Название почтового ящика")], **kwargs) -> CreateDomainMailboxV2201Response:  # noqa: E501
+        """Получение почтового ящика  # noqa: E501
+
+        Чтобы получить почтовый ящик, отправьте GET-запрос на `/api/v2/mail/domains/{domain}/mailboxes/{mailbox}`.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_mailbox_v2(domain, mailbox, async_req=True)
+        >>> result = thread.get()
+
+        :param domain: Полное имя домена (required)
+        :type domain: object
+        :param mailbox: Название почтового ящика (required)
+        :type mailbox: object
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: CreateDomainMailboxV2201Response
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            raise ValueError("Error! Please call the get_mailbox_v2_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
+        return self.get_mailbox_v2_with_http_info(domain, mailbox, **kwargs)  # noqa: E501
+
+    @validate_arguments
+    def get_mailbox_v2_with_http_info(self, domain : Annotated[Any, Field(..., description="Полное имя домена")], mailbox : Annotated[Any, Field(..., description="Название почтового ящика")], **kwargs) -> ApiResponse:  # noqa: E501
+        """Получение почтового ящика  # noqa: E501
+
+        Чтобы получить почтовый ящик, отправьте GET-запрос на `/api/v2/mail/domains/{domain}/mailboxes/{mailbox}`.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_mailbox_v2_with_http_info(domain, mailbox, async_req=True)
+        >>> result = thread.get()
+
+        :param domain: Полное имя домена (required)
+        :type domain: object
+        :param mailbox: Название почтового ящика (required)
+        :type mailbox: object
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the 
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(CreateDomainMailboxV2201Response, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'domain',
+            'mailbox'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_mailbox_v2" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['domain']:
+            _path_params['domain'] = _params['domain']
+
+        if _params['mailbox']:
+            _path_params['mailbox'] = _params['mailbox']
+
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = ['Bearer']  # noqa: E501
+
+        _response_types_map = {
+            '200': "CreateDomainMailboxV2201Response",
+            '400': None,
+            '401': None,
+            '403': None,
+            '404': None,
+            '429': None,
+            '500': None,
+        }
+
+        return self.api_client.call_api(
+            '/api/v2/mail/domains/{domain}/mailboxes/{mailbox}', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @validate_arguments
     def get_mailboxes(self, limit : Annotated[Optional[Any], Field(description="Обозначает количество записей, которое необходимо вернуть.")] = None, offset : Annotated[Optional[Any], Field(description="Указывает на смещение относительно начала списка.")] = None, search : Annotated[Optional[Any], Field(description="Поиск почтового ящика по названию")] = None, **kwargs) -> GetMailboxes200Response:  # noqa: E501
-        """Получение списка почтовых ящиков аккаунта  # noqa: E501
+        """(Deprecated) Получение списка почтовых ящиков аккаунта  # noqa: E501
 
         Чтобы получить список почтовых ящиков аккаунта, отправьте GET-запрос на `/api/v1/mail`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -1018,7 +1664,7 @@ class MailApi(object):
 
     @validate_arguments
     def get_mailboxes_with_http_info(self, limit : Annotated[Optional[Any], Field(description="Обозначает количество записей, которое необходимо вернуть.")] = None, offset : Annotated[Optional[Any], Field(description="Указывает на смещение относительно начала списка.")] = None, search : Annotated[Optional[Any], Field(description="Поиск почтового ящика по названию")] = None, **kwargs) -> ApiResponse:  # noqa: E501
-        """Получение списка почтовых ящиков аккаунта  # noqa: E501
+        """(Deprecated) Получение списка почтовых ящиков аккаунта  # noqa: E501
 
         Чтобы получить список почтовых ящиков аккаунта, отправьте GET-запрос на `/api/v1/mail`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -1057,6 +1703,8 @@ class MailApi(object):
                  returns the request thread.
         :rtype: tuple(GetMailboxes200Response, status_code(int), headers(HTTPHeaderDict))
         """
+
+        warnings.warn("GET /api/v1/mail is deprecated.", DeprecationWarning)
 
         _params = locals()
 
@@ -1145,7 +1793,7 @@ class MailApi(object):
 
     @validate_arguments
     def update_domain_mail_info(self, domain : Annotated[Any, Field(..., description="Полное имя домена")], update_domain_mail_info_request : UpdateDomainMailInfoRequest, **kwargs) -> GetDomainMailInfo200Response:  # noqa: E501
-        """Изменение почтовой информации о домене  # noqa: E501
+        """(Deprecated) Изменение почтовой информации о домене  # noqa: E501
 
         Чтобы изменить почтовую информацию о домене, отправьте PATCH-запрос на `/api/v1/mail/domains/{domain}/info`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -1176,7 +1824,7 @@ class MailApi(object):
 
     @validate_arguments
     def update_domain_mail_info_with_http_info(self, domain : Annotated[Any, Field(..., description="Полное имя домена")], update_domain_mail_info_request : UpdateDomainMailInfoRequest, **kwargs) -> ApiResponse:  # noqa: E501
-        """Изменение почтовой информации о домене  # noqa: E501
+        """(Deprecated) Изменение почтовой информации о домене  # noqa: E501
 
         Чтобы изменить почтовую информацию о домене, отправьте PATCH-запрос на `/api/v1/mail/domains/{domain}/info`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -1213,6 +1861,8 @@ class MailApi(object):
                  returns the request thread.
         :rtype: tuple(GetDomainMailInfo200Response, status_code(int), headers(HTTPHeaderDict))
         """
+
+        warnings.warn("PATCH /api/v1/mail/domains/{domain}/info is deprecated.", DeprecationWarning)
 
         _params = locals()
 

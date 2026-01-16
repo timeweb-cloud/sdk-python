@@ -5,11 +5,15 @@ All URIs are relative to *https://api.timeweb.cloud*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**create_domain_mailbox**](MailApi.md#create_domain_mailbox) | **POST** /api/v1/mail/domains/{domain} | Создание почтового ящика
+[**create_domain_mailbox_v2**](MailApi.md#create_domain_mailbox_v2) | **POST** /api/v2/mail/domains/{domain} | Создание почтового ящика
 [**create_multiple_domain_mailboxes**](MailApi.md#create_multiple_domain_mailboxes) | **POST** /api/v1/mail/domains/{domain}/batch | Множественное создание почтовых ящиков
+[**create_multiple_domain_mailboxes_v2**](MailApi.md#create_multiple_domain_mailboxes_v2) | **POST** /api/v2/mail/domains/{domain}/batch | Множественное создание почтовых ящиков
 [**delete_mailbox**](MailApi.md#delete_mailbox) | **DELETE** /api/v1/mail/domains/{domain}/mailboxes/{mailbox} | Удаление почтового ящика
+[**get_all_mailboxes_v2**](MailApi.md#get_all_mailboxes_v2) | **GET** /api/v2/mail | Получение списка всех почтовых ящиков аккаунта
 [**get_domain_mail_info**](MailApi.md#get_domain_mail_info) | **GET** /api/v1/mail/domains/{domain}/info | Получение почтовой информации о домене
 [**get_domain_mailboxes**](MailApi.md#get_domain_mailboxes) | **GET** /api/v1/mail/domains/{domain} | Получение списка почтовых ящиков домена
 [**get_mailbox**](MailApi.md#get_mailbox) | **GET** /api/v1/mail/domains/{domain}/mailboxes/{mailbox} | Получение почтового ящика
+[**get_mailbox_v2**](MailApi.md#get_mailbox_v2) | **GET** /api/v2/mail/domains/{domain}/mailboxes/{mailbox} | Получение почтового ящика
 [**get_mailboxes**](MailApi.md#get_mailboxes) | **GET** /api/v1/mail | Получение списка почтовых ящиков аккаунта
 [**update_domain_mail_info**](MailApi.md#update_domain_mail_info) | **PATCH** /api/v1/mail/domains/{domain}/info | Изменение почтовой информации о домене
 [**update_mailbox**](MailApi.md#update_mailbox) | **PATCH** /api/v1/mail/domains/{domain}/mailboxes/{mailbox} | Изменение почтового ящика
@@ -101,6 +105,92 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **create_domain_mailbox_v2**
+> CreateDomainMailboxV2201Response create_domain_mailbox_v2(domain, create_domain_mailbox_v2_request)
+
+Создание почтового ящика
+
+Чтобы создать почтовый ящик, отправьте POST-запрос на `/api/v2/mail/domains/{domain}`.
+
+### Example
+
+* Bearer (JWT) Authentication (Bearer):
+```python
+import time
+import os
+import timeweb_cloud_api
+from timeweb_cloud_api.models.create_domain_mailbox_v2201_response import CreateDomainMailboxV2201Response
+from timeweb_cloud_api.models.create_domain_mailbox_v2_request import CreateDomainMailboxV2Request
+from timeweb_cloud_api.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.timeweb.cloud
+# See configuration.py for a list of all supported configuration parameters.
+configuration = timeweb_cloud_api.Configuration(
+    host = "https://api.timeweb.cloud"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): Bearer
+configuration = timeweb_cloud_api.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = timeweb_cloud_api.MailApi(api_client)
+    domain = somedomain.ru # object | Полное имя домена
+    create_domain_mailbox_v2_request = timeweb_cloud_api.CreateDomainMailboxV2Request() # CreateDomainMailboxV2Request | 
+
+    try:
+        # Создание почтового ящика
+        api_response = api_instance.create_domain_mailbox_v2(domain, create_domain_mailbox_v2_request)
+        print("The response of MailApi->create_domain_mailbox_v2:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling MailApi->create_domain_mailbox_v2: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **domain** | [**object**](.md)| Полное имя домена | 
+ **create_domain_mailbox_v2_request** | [**CreateDomainMailboxV2Request**](CreateDomainMailboxV2Request.md)|  | 
+
+### Return type
+
+[**CreateDomainMailboxV2201Response**](CreateDomainMailboxV2201Response.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | Ответ будет представлять собой объект JSON c ключом &#x60;mailbox&#x60;. |  -  |
+**400** |  |  -  |
+**401** |  |  -  |
+**403** |  |  -  |
+**404** |  |  -  |
+**409** |  |  -  |
+**429** |  |  -  |
+**500** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **create_multiple_domain_mailboxes**
 > CreateMultipleDomainMailboxes201Response create_multiple_domain_mailboxes(domain, create_multiple_domain_mailboxes_request)
 
@@ -186,6 +276,90 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **create_multiple_domain_mailboxes_v2**
+> CreateMultipleDomainMailboxesV2201Response create_multiple_domain_mailboxes_v2(domain, body)
+
+Множественное создание почтовых ящиков
+
+Чтобы создать несколько почтовых ящиков одновременно, отправьте POST-запрос на `/api/v2/mail/domains/{domain}/batch`.
+
+### Example
+
+* Bearer (JWT) Authentication (Bearer):
+```python
+import time
+import os
+import timeweb_cloud_api
+from timeweb_cloud_api.models.create_multiple_domain_mailboxes_v2201_response import CreateMultipleDomainMailboxesV2201Response
+from timeweb_cloud_api.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.timeweb.cloud
+# See configuration.py for a list of all supported configuration parameters.
+configuration = timeweb_cloud_api.Configuration(
+    host = "https://api.timeweb.cloud"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): Bearer
+configuration = timeweb_cloud_api.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = timeweb_cloud_api.MailApi(api_client)
+    domain = somedomain.ru # object | Полное имя домена
+    body = None # object | 
+
+    try:
+        # Множественное создание почтовых ящиков
+        api_response = api_instance.create_multiple_domain_mailboxes_v2(domain, body)
+        print("The response of MailApi->create_multiple_domain_mailboxes_v2:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling MailApi->create_multiple_domain_mailboxes_v2: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **domain** | [**object**](.md)| Полное имя домена | 
+ **body** | **object**|  | 
+
+### Return type
+
+[**CreateMultipleDomainMailboxesV2201Response**](CreateMultipleDomainMailboxesV2201Response.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | Ответ будет представлять собой объект JSON c ключом &#x60;mailboxes_batch&#x60;. |  -  |
+**400** |  |  -  |
+**401** |  |  -  |
+**403** |  |  -  |
+**404** |  |  -  |
+**429** |  |  -  |
+**500** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **delete_mailbox**
 > delete_mailbox(domain, mailbox)
 
@@ -262,6 +436,91 @@ void (empty response body)
 **401** |  |  -  |
 **403** |  |  -  |
 **404** |  |  -  |
+**429** |  |  -  |
+**500** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_all_mailboxes_v2**
+> GetAllMailboxesV2200Response get_all_mailboxes_v2(limit=limit, offset=offset, search=search)
+
+Получение списка всех почтовых ящиков аккаунта
+
+Чтобы получить список всех почтовых ящиков, отправьте GET-запрос на `/api/v2/mail`.
+
+### Example
+
+* Bearer (JWT) Authentication (Bearer):
+```python
+import time
+import os
+import timeweb_cloud_api
+from timeweb_cloud_api.models.get_all_mailboxes_v2200_response import GetAllMailboxesV2200Response
+from timeweb_cloud_api.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.timeweb.cloud
+# See configuration.py for a list of all supported configuration parameters.
+configuration = timeweb_cloud_api.Configuration(
+    host = "https://api.timeweb.cloud"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): Bearer
+configuration = timeweb_cloud_api.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = timeweb_cloud_api.MailApi(api_client)
+    limit = None # object | Обозначает количество записей, которое необходимо вернуть. (optional)
+    offset = None # object | Указывает на смещение относительно начала списка. (optional)
+    search = None # object | Поиск почтового ящика по названию (optional)
+
+    try:
+        # Получение списка всех почтовых ящиков аккаунта
+        api_response = api_instance.get_all_mailboxes_v2(limit=limit, offset=offset, search=search)
+        print("The response of MailApi->get_all_mailboxes_v2:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling MailApi->get_all_mailboxes_v2: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **limit** | [**object**](.md)| Обозначает количество записей, которое необходимо вернуть. | [optional] 
+ **offset** | [**object**](.md)| Указывает на смещение относительно начала списка. | [optional] 
+ **search** | [**object**](.md)| Поиск почтового ящика по названию | [optional] 
+
+### Return type
+
+[**GetAllMailboxesV2200Response**](GetAllMailboxesV2200Response.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Ответ будет представлять собой объект JSON c ключом &#x60;mailboxes&#x60;. |  -  |
+**400** |  |  -  |
+**401** |  |  -  |
+**403** |  |  -  |
 **429** |  |  -  |
 **500** |  |  -  |
 
@@ -498,6 +757,90 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**CreateDomainMailbox201Response**](CreateDomainMailbox201Response.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Ответ будет представлять собой объект JSON c ключом &#x60;mailbox&#x60;. |  -  |
+**400** |  |  -  |
+**401** |  |  -  |
+**403** |  |  -  |
+**404** |  |  -  |
+**429** |  |  -  |
+**500** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_mailbox_v2**
+> CreateDomainMailboxV2201Response get_mailbox_v2(domain, mailbox)
+
+Получение почтового ящика
+
+Чтобы получить почтовый ящик, отправьте GET-запрос на `/api/v2/mail/domains/{domain}/mailboxes/{mailbox}`.
+
+### Example
+
+* Bearer (JWT) Authentication (Bearer):
+```python
+import time
+import os
+import timeweb_cloud_api
+from timeweb_cloud_api.models.create_domain_mailbox_v2201_response import CreateDomainMailboxV2201Response
+from timeweb_cloud_api.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.timeweb.cloud
+# See configuration.py for a list of all supported configuration parameters.
+configuration = timeweb_cloud_api.Configuration(
+    host = "https://api.timeweb.cloud"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): Bearer
+configuration = timeweb_cloud_api.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = timeweb_cloud_api.MailApi(api_client)
+    domain = somedomain.ru # object | Полное имя домена
+    mailbox = mailbox # object | Название почтового ящика
+
+    try:
+        # Получение почтового ящика
+        api_response = api_instance.get_mailbox_v2(domain, mailbox)
+        print("The response of MailApi->get_mailbox_v2:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling MailApi->get_mailbox_v2: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **domain** | [**object**](.md)| Полное имя домена | 
+ **mailbox** | [**object**](.md)| Название почтового ящика | 
+
+### Return type
+
+[**CreateDomainMailboxV2201Response**](CreateDomainMailboxV2201Response.md)
 
 ### Authorization
 

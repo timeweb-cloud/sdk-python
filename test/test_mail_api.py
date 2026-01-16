@@ -36,8 +36,22 @@ class TestMailApi(unittest.TestCase):
         """
         pass
 
+    def test_create_domain_mailbox_v2(self):
+        """Test case for create_domain_mailbox_v2
+
+        Создание почтового ящика  # noqa: E501
+        """
+        pass
+
     def test_create_multiple_domain_mailboxes(self):
         """Test case for create_multiple_domain_mailboxes
+
+        Множественное создание почтовых ящиков  # noqa: E501
+        """
+        pass
+
+    def test_create_multiple_domain_mailboxes_v2(self):
+        """Test case for create_multiple_domain_mailboxes_v2
 
         Множественное создание почтовых ящиков  # noqa: E501
         """
@@ -47,6 +61,13 @@ class TestMailApi(unittest.TestCase):
         """Test case for delete_mailbox
 
         Удаление почтового ящика  # noqa: E501
+        """
+        pass
+
+    def test_get_all_mailboxes_v2(self):
+        """Test case for get_all_mailboxes_v2
+
+        Получение списка всех почтовых ящиков аккаунта  # noqa: E501
         """
         pass
 
@@ -66,6 +87,13 @@ class TestMailApi(unittest.TestCase):
 
     def test_get_mailbox(self):
         """Test case for get_mailbox
+
+        Получение почтового ящика  # noqa: E501
+        """
+        pass
+
+    def test_get_mailbox_v2(self):
+        """Test case for get_mailbox_v2
 
         Получение почтового ящика  # noqa: E501
         """

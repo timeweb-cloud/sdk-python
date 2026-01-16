@@ -22,30 +22,31 @@ import json
 from typing import Any, Optional
 from pydantic import BaseModel, Field, validator
 
-class MailboxResponse(BaseModel):
+class MailboxV2(BaseModel):
     """
-    MailboxResponse
+    Почтовый ящик (API v2)
     """
-    idn_name: Optional[Any] = Field(None, description="IDN имя домена")
-    autoreply_message: Optional[Any] = Field(None, description="Сообщение автоответчика")
-    autoreply_status: Optional[Any] = Field(None, description="Статус автоответчика")
-    autoreply_subject: Optional[Any] = Field(None, description="Тема автоответчика")
-    comment: Optional[Any] = Field(None, description="Комментарий")
-    filter_action: Optional[Any] = Field(None, description="Действие фильтра спама")
-    filter_status: Optional[Any] = Field(None, description="Статус фильтра спама")
-    forward_list: Optional[Any] = Field(None, description="Список адресов для пересылки")
-    forward_status: Optional[Any] = Field(None, description="Статус пересылки")
-    outgoing_control: Optional[Any] = Field(None, description="Контроль исходящей почты")
-    outgoing_email: Optional[Any] = Field(None, description="Email для исходящих писем")
-    password: Optional[Any] = Field(None, description="Пароль (пустая строка в ответе)")
-    white_list: Optional[Any] = Field(None, description="Белый список адресов")
-    webmail: Optional[Any] = Field(None, description="Доступ к веб-почте")
-    dovecot: Optional[Any] = Field(None, description="Использование Dovecot")
-    fqdn: Optional[Any] = Field(None, description="Полное доменное имя")
-    leave_messages: Optional[Any] = Field(None, description="Оставлять копии писем при пересылке")
-    mailbox: Optional[Any] = Field(None, description="Имя почтового ящика")
-    owner_full_name: Optional[Any] = Field(None, description="ФИО владельца")
-    __properties = ["idn_name", "autoreply_message", "autoreply_status", "autoreply_subject", "comment", "filter_action", "filter_status", "forward_list", "forward_status", "outgoing_control", "outgoing_email", "password", "white_list", "webmail", "dovecot", "fqdn", "leave_messages", "mailbox", "owner_full_name"]
+    idn_name: Optional[Any] = Field(..., description="IDN домен почтового ящика")
+    autoreply_message: Optional[Any] = Field(..., description="Сообщение автоответчика на входящие письма")
+    autoreply_status: Optional[Any] = Field(..., description="Включен ли автоответчик на входящие письма")
+    autoreply_subject: Optional[Any] = Field(..., description="Тема сообщения автоответчика на входящие письма")
+    comment: Optional[Any] = Field(..., description="Комментарий к почтовому ящику")
+    filter_action: Optional[Any] = Field(..., description="Что делать с письмами, которые попадают в спам")
+    filter_status: Optional[Any] = Field(..., description="Включен ли спам-фильтр")
+    forward_list: Optional[Any] = Field(..., description="Список адресов для пересылки входящих писем")
+    forward_status: Optional[Any] = Field(..., description="Включена ли пересылка входящих писем")
+    outgoing_control: Optional[Any] = Field(..., description="Включена ли пересылка исходящих писем")
+    outgoing_email: Optional[Any] = Field(..., description="Адрес для пересылки исходящих писем")
+    password: Optional[Any] = Field(..., description="Пароль почтового ящика (всегда возвращается пустой строкой)")
+    spambox: Optional[Any] = Field(..., description="Адрес для пересылки спама при выбранном действии forward")
+    white_list: Optional[Any] = Field(..., description="Белый список адресов от которых письма не будут попадать в спам")
+    webmail: Optional[Any] = Field(..., description="Доступен ли Webmail")
+    dovecot: Optional[Any] = Field(..., description="Есть ли доступ через dovecot")
+    fqdn: Optional[Any] = Field(..., description="Домен почты")
+    leave_messages: Optional[Any] = Field(..., description="Оставлять ли сообщения на сервере при пересылке")
+    mailbox: Optional[Any] = Field(..., description="Название почтового ящика")
+    owner_full_name: Optional[Any] = Field(..., description="ФИО владельца почтового ящика")
+    __properties = ["idn_name", "autoreply_message", "autoreply_status", "autoreply_subject", "comment", "filter_action", "filter_status", "forward_list", "forward_status", "outgoing_control", "outgoing_email", "password", "spambox", "white_list", "webmail", "dovecot", "fqdn", "leave_messages", "mailbox", "owner_full_name"]
 
     @validator('filter_action')
     def filter_action_validate_enum(cls, value):
@@ -53,8 +54,8 @@ class MailboxResponse(BaseModel):
         if value is None:
             return value
 
-        if value not in ('directory', 'label'):
-            raise ValueError("must be one of enum values ('directory', 'label')")
+        if value not in ('directory', 'forward', 'delete', 'tag'):
+            raise ValueError("must be one of enum values ('directory', 'forward', 'delete', 'tag')")
         return value
 
     class Config:
@@ -71,8 +72,8 @@ class MailboxResponse(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> MailboxResponse:
-        """Create an instance of MailboxResponse from a JSON string"""
+    def from_json(cls, json_str: str) -> MailboxV2:
+        """Create an instance of MailboxV2 from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self):
@@ -141,6 +142,11 @@ class MailboxResponse(BaseModel):
         if self.password is None and "password" in self.__fields_set__:
             _dict['password'] = None
 
+        # set to None if spambox (nullable) is None
+        # and __fields_set__ contains the field
+        if self.spambox is None and "spambox" in self.__fields_set__:
+            _dict['spambox'] = None
+
         # set to None if white_list (nullable) is None
         # and __fields_set__ contains the field
         if self.white_list is None and "white_list" in self.__fields_set__:
@@ -179,15 +185,15 @@ class MailboxResponse(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> MailboxResponse:
-        """Create an instance of MailboxResponse from a dict"""
+    def from_dict(cls, obj: dict) -> MailboxV2:
+        """Create an instance of MailboxV2 from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return MailboxResponse.parse_obj(obj)
+            return MailboxV2.parse_obj(obj)
 
-        _obj = MailboxResponse.parse_obj({
+        _obj = MailboxV2.parse_obj({
             "idn_name": obj.get("idn_name"),
             "autoreply_message": obj.get("autoreply_message"),
             "autoreply_status": obj.get("autoreply_status"),
@@ -200,6 +206,7 @@ class MailboxResponse(BaseModel):
             "outgoing_control": obj.get("outgoing_control"),
             "outgoing_email": obj.get("outgoing_email"),
             "password": obj.get("password"),
+            "spambox": obj.get("spambox"),
             "white_list": obj.get("white_list"),
             "webmail": obj.get("webmail"),
             "dovecot": obj.get("dovecot"),

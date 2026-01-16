@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 **forward_status** | **object** | Статус пересылки | [optional] 
 **outgoing_control** | **object** | Контроль исходящей почты | [optional] 
 **outgoing_email** | **object** | Email для исходящих писем | [optional] 
-**password** | **object** | Пароль (обычно пустая строка в ответе) | [optional] 
+**password** | **object** | Пароль (пустая строка в ответе) | [optional] 
 **white_list** | **object** | Белый список адресов | [optional] 
 **webmail** | **object** | Доступ к веб-почте | [optional] 
 **dovecot** | **object** | Использование Dovecot | [optional] 

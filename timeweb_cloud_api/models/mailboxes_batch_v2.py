@@ -20,42 +20,15 @@ import json
 
 
 from typing import Any, Optional
-from pydantic import BaseModel, Field, validator
+from pydantic import BaseModel, Field
 
-class MailboxResponse(BaseModel):
+class MailboxesBatchV2(BaseModel):
     """
-    MailboxResponse
+    Результат массового создания почтовых ящиков (API v2)
     """
-    idn_name: Optional[Any] = Field(None, description="IDN имя домена")
-    autoreply_message: Optional[Any] = Field(None, description="Сообщение автоответчика")
-    autoreply_status: Optional[Any] = Field(None, description="Статус автоответчика")
-    autoreply_subject: Optional[Any] = Field(None, description="Тема автоответчика")
-    comment: Optional[Any] = Field(None, description="Комментарий")
-    filter_action: Optional[Any] = Field(None, description="Действие фильтра спама")
-    filter_status: Optional[Any] = Field(None, description="Статус фильтра спама")
-    forward_list: Optional[Any] = Field(None, description="Список адресов для пересылки")
-    forward_status: Optional[Any] = Field(None, description="Статус пересылки")
-    outgoing_control: Optional[Any] = Field(None, description="Контроль исходящей почты")
-    outgoing_email: Optional[Any] = Field(None, description="Email для исходящих писем")
-    password: Optional[Any] = Field(None, description="Пароль (пустая строка в ответе)")
-    white_list: Optional[Any] = Field(None, description="Белый список адресов")
-    webmail: Optional[Any] = Field(None, description="Доступ к веб-почте")
-    dovecot: Optional[Any] = Field(None, description="Использование Dovecot")
-    fqdn: Optional[Any] = Field(None, description="Полное доменное имя")
-    leave_messages: Optional[Any] = Field(None, description="Оставлять копии писем при пересылке")
-    mailbox: Optional[Any] = Field(None, description="Имя почтового ящика")
-    owner_full_name: Optional[Any] = Field(None, description="ФИО владельца")
-    __properties = ["idn_name", "autoreply_message", "autoreply_status", "autoreply_subject", "comment", "filter_action", "filter_status", "forward_list", "forward_status", "outgoing_control", "outgoing_email", "password", "white_list", "webmail", "dovecot", "fqdn", "leave_messages", "mailbox", "owner_full_name"]
-
-    @validator('filter_action')
-    def filter_action_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in ('directory', 'label'):
-            raise ValueError("must be one of enum values ('directory', 'label')")
-        return value
+    mailboxes: Optional[Any] = Field(..., description="Массив успешно созданных почтовых ящиков")
+    errors: Optional[Any] = Field(..., description="Массив ошибок при создании почтовых ящиков")
+    __properties = ["mailboxes", "errors"]
 
     class Config:
         """Pydantic configuration"""
@@ -71,8 +44,8 @@ class MailboxResponse(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> MailboxResponse:
-        """Create an instance of MailboxResponse from a JSON string"""
+    def from_json(cls, json_str: str) -> MailboxesBatchV2:
+        """Create an instance of MailboxesBatchV2 from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self):
@@ -81,132 +54,30 @@ class MailboxResponse(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # set to None if idn_name (nullable) is None
+        # set to None if mailboxes (nullable) is None
         # and __fields_set__ contains the field
-        if self.idn_name is None and "idn_name" in self.__fields_set__:
-            _dict['idn_name'] = None
+        if self.mailboxes is None and "mailboxes" in self.__fields_set__:
+            _dict['mailboxes'] = None
 
-        # set to None if autoreply_message (nullable) is None
+        # set to None if errors (nullable) is None
         # and __fields_set__ contains the field
-        if self.autoreply_message is None and "autoreply_message" in self.__fields_set__:
-            _dict['autoreply_message'] = None
-
-        # set to None if autoreply_status (nullable) is None
-        # and __fields_set__ contains the field
-        if self.autoreply_status is None and "autoreply_status" in self.__fields_set__:
-            _dict['autoreply_status'] = None
-
-        # set to None if autoreply_subject (nullable) is None
-        # and __fields_set__ contains the field
-        if self.autoreply_subject is None and "autoreply_subject" in self.__fields_set__:
-            _dict['autoreply_subject'] = None
-
-        # set to None if comment (nullable) is None
-        # and __fields_set__ contains the field
-        if self.comment is None and "comment" in self.__fields_set__:
-            _dict['comment'] = None
-
-        # set to None if filter_action (nullable) is None
-        # and __fields_set__ contains the field
-        if self.filter_action is None and "filter_action" in self.__fields_set__:
-            _dict['filter_action'] = None
-
-        # set to None if filter_status (nullable) is None
-        # and __fields_set__ contains the field
-        if self.filter_status is None and "filter_status" in self.__fields_set__:
-            _dict['filter_status'] = None
-
-        # set to None if forward_list (nullable) is None
-        # and __fields_set__ contains the field
-        if self.forward_list is None and "forward_list" in self.__fields_set__:
-            _dict['forward_list'] = None
-
-        # set to None if forward_status (nullable) is None
-        # and __fields_set__ contains the field
-        if self.forward_status is None and "forward_status" in self.__fields_set__:
-            _dict['forward_status'] = None
-
-        # set to None if outgoing_control (nullable) is None
-        # and __fields_set__ contains the field
-        if self.outgoing_control is None and "outgoing_control" in self.__fields_set__:
-            _dict['outgoing_control'] = None
-
-        # set to None if outgoing_email (nullable) is None
-        # and __fields_set__ contains the field
-        if self.outgoing_email is None and "outgoing_email" in self.__fields_set__:
-            _dict['outgoing_email'] = None
-
-        # set to None if password (nullable) is None
-        # and __fields_set__ contains the field
-        if self.password is None and "password" in self.__fields_set__:
-            _dict['password'] = None
-
-        # set to None if white_list (nullable) is None
-        # and __fields_set__ contains the field
-        if self.white_list is None and "white_list" in self.__fields_set__:
-            _dict['white_list'] = None
-
-        # set to None if webmail (nullable) is None
-        # and __fields_set__ contains the field
-        if self.webmail is None and "webmail" in self.__fields_set__:
-            _dict['webmail'] = None
-
-        # set to None if dovecot (nullable) is None
-        # and __fields_set__ contains the field
-        if self.dovecot is None and "dovecot" in self.__fields_set__:
-            _dict['dovecot'] = None
-
-        # set to None if fqdn (nullable) is None
-        # and __fields_set__ contains the field
-        if self.fqdn is None and "fqdn" in self.__fields_set__:
-            _dict['fqdn'] = None
-
-        # set to None if leave_messages (nullable) is None
-        # and __fields_set__ contains the field
-        if self.leave_messages is None and "leave_messages" in self.__fields_set__:
-            _dict['leave_messages'] = None
-
-        # set to None if mailbox (nullable) is None
-        # and __fields_set__ contains the field
-        if self.mailbox is None and "mailbox" in self.__fields_set__:
-            _dict['mailbox'] = None
-
-        # set to None if owner_full_name (nullable) is None
-        # and __fields_set__ contains the field
-        if self.owner_full_name is None and "owner_full_name" in self.__fields_set__:
-            _dict['owner_full_name'] = None
+        if self.errors is None and "errors" in self.__fields_set__:
+            _dict['errors'] = None
 
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> MailboxResponse:
-        """Create an instance of MailboxResponse from a dict"""
+    def from_dict(cls, obj: dict) -> MailboxesBatchV2:
+        """Create an instance of MailboxesBatchV2 from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return MailboxResponse.parse_obj(obj)
+            return MailboxesBatchV2.parse_obj(obj)
 
-        _obj = MailboxResponse.parse_obj({
-            "idn_name": obj.get("idn_name"),
-            "autoreply_message": obj.get("autoreply_message"),
-            "autoreply_status": obj.get("autoreply_status"),
-            "autoreply_subject": obj.get("autoreply_subject"),
-            "comment": obj.get("comment"),
-            "filter_action": obj.get("filter_action"),
-            "filter_status": obj.get("filter_status"),
-            "forward_list": obj.get("forward_list"),
-            "forward_status": obj.get("forward_status"),
-            "outgoing_control": obj.get("outgoing_control"),
-            "outgoing_email": obj.get("outgoing_email"),
-            "password": obj.get("password"),
-            "white_list": obj.get("white_list"),
-            "webmail": obj.get("webmail"),
-            "dovecot": obj.get("dovecot"),
-            "fqdn": obj.get("fqdn"),
-            "leave_messages": obj.get("leave_messages"),
-            "mailbox": obj.get("mailbox"),
-            "owner_full_name": obj.get("owner_full_name")
+        _obj = MailboxesBatchV2.parse_obj({
+            "mailboxes": obj.get("mailboxes"),
+            "errors": obj.get("errors")
         })
         return _obj
 
