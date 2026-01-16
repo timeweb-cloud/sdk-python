@@ -107,7 +107,9 @@ docs/CreateDedicatedServer201Response.md
 docs/CreateDeploy201Response.md
 docs/CreateDeployRequest.md
 docs/CreateDns.md
+docs/CreateDnsV2.md
 docs/CreateDomainDNSRecord201Response.md
+docs/CreateDomainDNSRecordV2201Response.md
 docs/CreateDomainMailbox201Response.md
 docs/CreateDomainMailboxRequest.md
 docs/CreateDomainRequest201Response.md
@@ -174,6 +176,8 @@ docs/Deploy.md
 docs/DeployStatus.md
 docs/DnsRecord.md
 docs/DnsRecordData.md
+docs/DnsRecordV2.md
+docs/DnsRecordV2Data.md
 docs/Document.md
 docs/DocumentStatusInfo.md
 docs/DocumentStatusInfoDetails.md
@@ -598,7 +602,9 @@ test/test_create_dedicated_server201_response.py
 test/test_create_deploy201_response.py
 test/test_create_deploy_request.py
 test/test_create_dns.py
+test/test_create_dns_v2.py
 test/test_create_domain_dns_record201_response.py
+test/test_create_domain_dns_record_v2201_response.py
 test/test_create_domain_mailbox201_response.py
 test/test_create_domain_mailbox_request.py
 test/test_create_domain_request201_response.py
@@ -665,6 +671,8 @@ test/test_deploy.py
 test/test_deploy_status.py
 test/test_dns_record.py
 test/test_dns_record_data.py
+test/test_dns_record_v2.py
+test/test_dns_record_v2_data.py
 test/test_document.py
 test/test_document_status_info.py
 test/test_document_status_info_details.py
@@ -1106,7 +1114,9 @@ timeweb_cloud_api/models/create_dedicated_server201_response.py
 timeweb_cloud_api/models/create_deploy201_response.py
 timeweb_cloud_api/models/create_deploy_request.py
 timeweb_cloud_api/models/create_dns.py
+timeweb_cloud_api/models/create_dns_v2.py
 timeweb_cloud_api/models/create_domain_dns_record201_response.py
+timeweb_cloud_api/models/create_domain_dns_record_v2201_response.py
 timeweb_cloud_api/models/create_domain_mailbox201_response.py
 timeweb_cloud_api/models/create_domain_mailbox_request.py
 timeweb_cloud_api/models/create_domain_request201_response.py
@@ -1171,6 +1181,8 @@ timeweb_cloud_api/models/deploy.py
 timeweb_cloud_api/models/deploy_status.py
 timeweb_cloud_api/models/dns_record.py
 timeweb_cloud_api/models/dns_record_data.py
+timeweb_cloud_api/models/dns_record_v2.py
+timeweb_cloud_api/models/dns_record_v2_data.py
 timeweb_cloud_api/models/document.py
 timeweb_cloud_api/models/document_status_info.py
 timeweb_cloud_api/models/document_status_info_details.py

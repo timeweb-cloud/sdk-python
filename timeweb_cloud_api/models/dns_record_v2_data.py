@@ -13,190 +13,106 @@
 """
 
 
-import unittest
-
-import timeweb_cloud_api
-from timeweb_cloud_api.api.domains_api import DomainsApi  # noqa: E501
-from timeweb_cloud_api.rest import ApiException
-
-
-class TestDomainsApi(unittest.TestCase):
-    """DomainsApi unit test stubs"""
-
-    def setUp(self):
-        self.api = timeweb_cloud_api.api.domains_api.DomainsApi()  # noqa: E501
-
-    def tearDown(self):
-        pass
-
-    def test_add_domain(self):
-        """Test case for add_domain
-
-        Добавление домена на аккаунт  # noqa: E501
-        """
-        pass
-
-    def test_add_subdomain(self):
-        """Test case for add_subdomain
-
-        Добавление поддомена  # noqa: E501
-        """
-        pass
-
-    def test_check_domain(self):
-        """Test case for check_domain
-
-        Проверить, доступен ли домен для регистрации  # noqa: E501
-        """
-        pass
-
-    def test_create_domain_dns_record(self):
-        """Test case for create_domain_dns_record
-
-        Добавить информацию о DNS-записи для домена или поддомена  # noqa: E501
-        """
-        pass
-
-    def test_create_domain_dns_record_v2(self):
-        """Test case for create_domain_dns_record_v2
-
-        Добавить информацию о DNS-записи для домена или поддомена  # noqa: E501
-        """
-        pass
-
-    def test_create_domain_request(self):
-        """Test case for create_domain_request
-
-        Создание заявки на регистрацию/продление/трансфер домена  # noqa: E501
-        """
-        pass
-
-    def test_delete_domain(self):
-        """Test case for delete_domain
-
-        Удаление домена  # noqa: E501
-        """
-        pass
-
-    def test_delete_domain_dns_record(self):
-        """Test case for delete_domain_dns_record
-
-        Удалить информацию о DNS-записи для домена или поддомена  # noqa: E501
-        """
-        pass
-
-    def test_delete_domain_dns_record_v2(self):
-        """Test case for delete_domain_dns_record_v2
-
-        Удалить информацию о DNS-записи для домена или поддомена  # noqa: E501
-        """
-        pass
-
-    def test_delete_subdomain(self):
-        """Test case for delete_subdomain
-
-        Удаление поддомена  # noqa: E501
-        """
-        pass
-
-    def test_get_domain(self):
-        """Test case for get_domain
-
-        Получение информации о домене  # noqa: E501
-        """
-        pass
-
-    def test_get_domain_default_dns_records(self):
-        """Test case for get_domain_default_dns_records
-
-        Получить информацию обо всех DNS-записях по умолчанию домена или поддомена  # noqa: E501
-        """
-        pass
-
-    def test_get_domain_dns_records(self):
-        """Test case for get_domain_dns_records
-
-        Получить информацию обо всех пользовательских DNS-записях домена или поддомена  # noqa: E501
-        """
-        pass
-
-    def test_get_domain_name_servers(self):
-        """Test case for get_domain_name_servers
-
-        Получение списка name-серверов домена  # noqa: E501
-        """
-        pass
-
-    def test_get_domain_request(self):
-        """Test case for get_domain_request
-
-        Получение заявки на регистрацию/продление/трансфер домена  # noqa: E501
-        """
-        pass
-
-    def test_get_domain_requests(self):
-        """Test case for get_domain_requests
-
-        Получение списка заявок на регистрацию/продление/трансфер домена  # noqa: E501
-        """
-        pass
-
-    def test_get_domains(self):
-        """Test case for get_domains
-
-        Получение списка всех доменов  # noqa: E501
-        """
-        pass
-
-    def test_get_tld(self):
-        """Test case for get_tld
-
-        Получить информацию о доменной зоне по ID  # noqa: E501
-        """
-        pass
-
-    def test_get_tlds(self):
-        """Test case for get_tlds
-
-        Получить информацию о доменных зонах  # noqa: E501
-        """
-        pass
-
-    def test_update_domain_auto_prolongation(self):
-        """Test case for update_domain_auto_prolongation
-
-        Включение/выключение автопродления домена  # noqa: E501
-        """
-        pass
-
-    def test_update_domain_dns_record(self):
-        """Test case for update_domain_dns_record
-
-        Обновить информацию о DNS-записи домена или поддомена  # noqa: E501
-        """
-        pass
-
-    def test_update_domain_dns_record_v2(self):
-        """Test case for update_domain_dns_record_v2
-
-        Обновить информацию о DNS-записи домена или поддомена  # noqa: E501
-        """
-        pass
-
-    def test_update_domain_name_servers(self):
-        """Test case for update_domain_name_servers
-
-        Изменение name-серверов домена  # noqa: E501
-        """
-        pass
-
-    def test_update_domain_request(self):
-        """Test case for update_domain_request
-
-        Оплата/обновление заявки на регистрацию/продление/трансфер домена  # noqa: E501
-        """
-        pass
+from __future__ import annotations
+import pprint
+import re  # noqa: F401
+import json
 
 
-if __name__ == '__main__':
-    unittest.main()
+from typing import Any, Optional
+from pydantic import BaseModel, Field
+
+class DnsRecordV2Data(BaseModel):
+    """
+    Данные DNS-записи. Состав полей зависит от типа записи.
+    """
+    priority: Optional[Any] = Field(None, description="Приоритет DNS-записи (для MX и SRV записей).")
+    subdomain: Optional[Any] = Field(None, description="Имя поддомена (только поддомен без основного домена, например `sub` для `sub.example.com`). Для записей на основном домене это поле отсутствует в ответе.")
+    value: Optional[Any] = Field(None, description="Значение DNS-записи (для A, AAAA, TXT, CNAME, MX записей).")
+    host: Optional[Any] = Field(None, description="Каноническое имя хоста, предоставляющего сервис (для SRV записей).")
+    port: Optional[Any] = Field(None, description="TCP или UDP порт, на котором работает сервис (для SRV записей).")
+    service: Optional[Any] = Field(None, description="Имя сервиса (для SRV записей).")
+    protocol: Optional[Any] = Field(None, description="Протокол (для SRV записей).")
+    __properties = ["priority", "subdomain", "value", "host", "port", "service", "protocol"]
+
+    class Config:
+        """Pydantic configuration"""
+        allow_population_by_field_name = True
+        validate_assignment = True
+
+    def to_str(self) -> str:
+        """Returns the string representation of the model using alias"""
+        return pprint.pformat(self.dict(by_alias=True))
+
+    def to_json(self) -> str:
+        """Returns the JSON representation of the model using alias"""
+        return json.dumps(self.to_dict())
+
+    @classmethod
+    def from_json(cls, json_str: str) -> DnsRecordV2Data:
+        """Create an instance of DnsRecordV2Data from a JSON string"""
+        return cls.from_dict(json.loads(json_str))
+
+    def to_dict(self):
+        """Returns the dictionary representation of the model using alias"""
+        _dict = self.dict(by_alias=True,
+                          exclude={
+                          },
+                          exclude_none=True)
+        # set to None if priority (nullable) is None
+        # and __fields_set__ contains the field
+        if self.priority is None and "priority" in self.__fields_set__:
+            _dict['priority'] = None
+
+        # set to None if subdomain (nullable) is None
+        # and __fields_set__ contains the field
+        if self.subdomain is None and "subdomain" in self.__fields_set__:
+            _dict['subdomain'] = None
+
+        # set to None if value (nullable) is None
+        # and __fields_set__ contains the field
+        if self.value is None and "value" in self.__fields_set__:
+            _dict['value'] = None
+
+        # set to None if host (nullable) is None
+        # and __fields_set__ contains the field
+        if self.host is None and "host" in self.__fields_set__:
+            _dict['host'] = None
+
+        # set to None if port (nullable) is None
+        # and __fields_set__ contains the field
+        if self.port is None and "port" in self.__fields_set__:
+            _dict['port'] = None
+
+        # set to None if service (nullable) is None
+        # and __fields_set__ contains the field
+        if self.service is None and "service" in self.__fields_set__:
+            _dict['service'] = None
+
+        # set to None if protocol (nullable) is None
+        # and __fields_set__ contains the field
+        if self.protocol is None and "protocol" in self.__fields_set__:
+            _dict['protocol'] = None
+
+        return _dict
+
+    @classmethod
+    def from_dict(cls, obj: dict) -> DnsRecordV2Data:
+        """Create an instance of DnsRecordV2Data from a dict"""
+        if obj is None:
+            return None
+
+        if not isinstance(obj, dict):
+            return DnsRecordV2Data.parse_obj(obj)
+
+        _obj = DnsRecordV2Data.parse_obj({
+            "priority": obj.get("priority"),
+            "subdomain": obj.get("subdomain"),
+            "value": obj.get("value"),
+            "host": obj.get("host"),
+            "port": obj.get("port"),
+            "service": obj.get("service"),
+            "protocol": obj.get("protocol")
+        })
+        return _obj
+

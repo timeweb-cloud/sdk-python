@@ -347,9 +347,11 @@ Class | Method | HTTP request | Description
 *DomainsApi* | [**add_subdomain**](docs/DomainsApi.md#add_subdomain) | **POST** /api/v1/domains/{fqdn}/subdomains/{subdomain_fqdn} | Добавление поддомена
 *DomainsApi* | [**check_domain**](docs/DomainsApi.md#check_domain) | **GET** /api/v1/check-domain/{fqdn} | Проверить, доступен ли домен для регистрации
 *DomainsApi* | [**create_domain_dns_record**](docs/DomainsApi.md#create_domain_dns_record) | **POST** /api/v1/domains/{fqdn}/dns-records | Добавить информацию о DNS-записи для домена или поддомена
+*DomainsApi* | [**create_domain_dns_record_v2**](docs/DomainsApi.md#create_domain_dns_record_v2) | **POST** /api/v2/domains/{fqdn}/dns-records | Добавить информацию о DNS-записи для домена или поддомена
 *DomainsApi* | [**create_domain_request**](docs/DomainsApi.md#create_domain_request) | **POST** /api/v1/domains-requests | Создание заявки на регистрацию/продление/трансфер домена
 *DomainsApi* | [**delete_domain**](docs/DomainsApi.md#delete_domain) | **DELETE** /api/v1/domains/{fqdn} | Удаление домена
 *DomainsApi* | [**delete_domain_dns_record**](docs/DomainsApi.md#delete_domain_dns_record) | **DELETE** /api/v1/domains/{fqdn}/dns-records/{record_id} | Удалить информацию о DNS-записи для домена или поддомена
+*DomainsApi* | [**delete_domain_dns_record_v2**](docs/DomainsApi.md#delete_domain_dns_record_v2) | **DELETE** /api/v2/domains/{fqdn}/dns-records/{record_id} | Удалить информацию о DNS-записи для домена или поддомена
 *DomainsApi* | [**delete_subdomain**](docs/DomainsApi.md#delete_subdomain) | **DELETE** /api/v1/domains/{fqdn}/subdomains/{subdomain_fqdn} | Удаление поддомена
 *DomainsApi* | [**get_domain**](docs/DomainsApi.md#get_domain) | **GET** /api/v1/domains/{fqdn} | Получение информации о домене
 *DomainsApi* | [**get_domain_default_dns_records**](docs/DomainsApi.md#get_domain_default_dns_records) | **GET** /api/v1/domains/{fqdn}/default-dns-records | Получить информацию обо всех DNS-записях по умолчанию домена или поддомена
@@ -362,6 +364,7 @@ Class | Method | HTTP request | Description
 *DomainsApi* | [**get_tlds**](docs/DomainsApi.md#get_tlds) | **GET** /api/v1/tlds | Получить информацию о доменных зонах
 *DomainsApi* | [**update_domain_auto_prolongation**](docs/DomainsApi.md#update_domain_auto_prolongation) | **PATCH** /api/v1/domains/{fqdn} | Включение/выключение автопродления домена
 *DomainsApi* | [**update_domain_dns_record**](docs/DomainsApi.md#update_domain_dns_record) | **PATCH** /api/v1/domains/{fqdn}/dns-records/{record_id} | Обновить информацию о DNS-записи домена или поддомена
+*DomainsApi* | [**update_domain_dns_record_v2**](docs/DomainsApi.md#update_domain_dns_record_v2) | **PATCH** /api/v2/domains/{fqdn}/dns-records/{record_id} | Обновить информацию о DNS-записи домена или поддомена
 *DomainsApi* | [**update_domain_name_servers**](docs/DomainsApi.md#update_domain_name_servers) | **PUT** /api/v1/domains/{fqdn}/name-servers | Изменение name-серверов домена
 *DomainsApi* | [**update_domain_request**](docs/DomainsApi.md#update_domain_request) | **PATCH** /api/v1/domains-requests/{request_id} | Оплата/обновление заявки на регистрацию/продление/трансфер домена
 *FirewallApi* | [**add_resource_to_group**](docs/FirewallApi.md#add_resource_to_group) | **POST** /api/v1/firewall/groups/{group_id}/resources/{resource_id} | Линковка ресурса в firewall group
@@ -643,7 +646,9 @@ Class | Method | HTTP request | Description
  - [CreateDeploy201Response](docs/CreateDeploy201Response.md)
  - [CreateDeployRequest](docs/CreateDeployRequest.md)
  - [CreateDns](docs/CreateDns.md)
+ - [CreateDnsV2](docs/CreateDnsV2.md)
  - [CreateDomainDNSRecord201Response](docs/CreateDomainDNSRecord201Response.md)
+ - [CreateDomainDNSRecordV2201Response](docs/CreateDomainDNSRecordV2201Response.md)
  - [CreateDomainMailbox201Response](docs/CreateDomainMailbox201Response.md)
  - [CreateDomainMailboxRequest](docs/CreateDomainMailboxRequest.md)
  - [CreateDomainRequest201Response](docs/CreateDomainRequest201Response.md)
@@ -708,6 +713,8 @@ Class | Method | HTTP request | Description
  - [DeployStatus](docs/DeployStatus.md)
  - [DnsRecord](docs/DnsRecord.md)
  - [DnsRecordData](docs/DnsRecordData.md)
+ - [DnsRecordV2](docs/DnsRecordV2.md)
+ - [DnsRecordV2Data](docs/DnsRecordV2Data.md)
  - [Document](docs/Document.md)
  - [DocumentStatusInfo](docs/DocumentStatusInfo.md)
  - [DocumentStatusInfoDetails](docs/DocumentStatusInfoDetails.md)

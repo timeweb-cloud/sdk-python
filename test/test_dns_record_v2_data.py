@@ -14,189 +14,48 @@
 
 
 import unittest
+import datetime
 
 import timeweb_cloud_api
-from timeweb_cloud_api.api.domains_api import DomainsApi  # noqa: E501
+from timeweb_cloud_api.models.dns_record_v2_data import DnsRecordV2Data  # noqa: E501
 from timeweb_cloud_api.rest import ApiException
 
-
-class TestDomainsApi(unittest.TestCase):
-    """DomainsApi unit test stubs"""
+class TestDnsRecordV2Data(unittest.TestCase):
+    """DnsRecordV2Data unit test stubs"""
 
     def setUp(self):
-        self.api = timeweb_cloud_api.api.domains_api.DomainsApi()  # noqa: E501
+        pass
 
     def tearDown(self):
         pass
 
-    def test_add_domain(self):
-        """Test case for add_domain
-
-        Добавление домена на аккаунт  # noqa: E501
+    def make_instance(self, include_optional):
+        """Test DnsRecordV2Data
+            include_option is a boolean, when False only required
+            params are included, when True both required and
+            optional params are included """
+        # uncomment below to create an instance of `DnsRecordV2Data`
         """
-        pass
-
-    def test_add_subdomain(self):
-        """Test case for add_subdomain
-
-        Добавление поддомена  # noqa: E501
+        model = timeweb_cloud_api.models.dns_record_v2_data.DnsRecordV2Data()  # noqa: E501
+        if include_optional :
+            return DnsRecordV2Data(
+                priority = 10, 
+                subdomain = sub, 
+                value = 192.168.1.0, 
+                host = somedomain.ru, 
+                port = 993, 
+                service = _sip, 
+                protocol = _TCP
+            )
+        else :
+            return DnsRecordV2Data(
+        )
         """
-        pass
 
-    def test_check_domain(self):
-        """Test case for check_domain
-
-        Проверить, доступен ли домен для регистрации  # noqa: E501
-        """
-        pass
-
-    def test_create_domain_dns_record(self):
-        """Test case for create_domain_dns_record
-
-        Добавить информацию о DNS-записи для домена или поддомена  # noqa: E501
-        """
-        pass
-
-    def test_create_domain_dns_record_v2(self):
-        """Test case for create_domain_dns_record_v2
-
-        Добавить информацию о DNS-записи для домена или поддомена  # noqa: E501
-        """
-        pass
-
-    def test_create_domain_request(self):
-        """Test case for create_domain_request
-
-        Создание заявки на регистрацию/продление/трансфер домена  # noqa: E501
-        """
-        pass
-
-    def test_delete_domain(self):
-        """Test case for delete_domain
-
-        Удаление домена  # noqa: E501
-        """
-        pass
-
-    def test_delete_domain_dns_record(self):
-        """Test case for delete_domain_dns_record
-
-        Удалить информацию о DNS-записи для домена или поддомена  # noqa: E501
-        """
-        pass
-
-    def test_delete_domain_dns_record_v2(self):
-        """Test case for delete_domain_dns_record_v2
-
-        Удалить информацию о DNS-записи для домена или поддомена  # noqa: E501
-        """
-        pass
-
-    def test_delete_subdomain(self):
-        """Test case for delete_subdomain
-
-        Удаление поддомена  # noqa: E501
-        """
-        pass
-
-    def test_get_domain(self):
-        """Test case for get_domain
-
-        Получение информации о домене  # noqa: E501
-        """
-        pass
-
-    def test_get_domain_default_dns_records(self):
-        """Test case for get_domain_default_dns_records
-
-        Получить информацию обо всех DNS-записях по умолчанию домена или поддомена  # noqa: E501
-        """
-        pass
-
-    def test_get_domain_dns_records(self):
-        """Test case for get_domain_dns_records
-
-        Получить информацию обо всех пользовательских DNS-записях домена или поддомена  # noqa: E501
-        """
-        pass
-
-    def test_get_domain_name_servers(self):
-        """Test case for get_domain_name_servers
-
-        Получение списка name-серверов домена  # noqa: E501
-        """
-        pass
-
-    def test_get_domain_request(self):
-        """Test case for get_domain_request
-
-        Получение заявки на регистрацию/продление/трансфер домена  # noqa: E501
-        """
-        pass
-
-    def test_get_domain_requests(self):
-        """Test case for get_domain_requests
-
-        Получение списка заявок на регистрацию/продление/трансфер домена  # noqa: E501
-        """
-        pass
-
-    def test_get_domains(self):
-        """Test case for get_domains
-
-        Получение списка всех доменов  # noqa: E501
-        """
-        pass
-
-    def test_get_tld(self):
-        """Test case for get_tld
-
-        Получить информацию о доменной зоне по ID  # noqa: E501
-        """
-        pass
-
-    def test_get_tlds(self):
-        """Test case for get_tlds
-
-        Получить информацию о доменных зонах  # noqa: E501
-        """
-        pass
-
-    def test_update_domain_auto_prolongation(self):
-        """Test case for update_domain_auto_prolongation
-
-        Включение/выключение автопродления домена  # noqa: E501
-        """
-        pass
-
-    def test_update_domain_dns_record(self):
-        """Test case for update_domain_dns_record
-
-        Обновить информацию о DNS-записи домена или поддомена  # noqa: E501
-        """
-        pass
-
-    def test_update_domain_dns_record_v2(self):
-        """Test case for update_domain_dns_record_v2
-
-        Обновить информацию о DNS-записи домена или поддомена  # noqa: E501
-        """
-        pass
-
-    def test_update_domain_name_servers(self):
-        """Test case for update_domain_name_servers
-
-        Изменение name-серверов домена  # noqa: E501
-        """
-        pass
-
-    def test_update_domain_request(self):
-        """Test case for update_domain_request
-
-        Оплата/обновление заявки на регистрацию/продление/трансфер домена  # noqa: E501
-        """
-        pass
-
+    def testDnsRecordV2Data(self):
+        """Test DnsRecordV2Data"""
+        # inst_req_only = self.make_instance(include_optional=False)
+        # inst_req_and_optional = self.make_instance(include_optional=True)
 
 if __name__ == '__main__':
     unittest.main()

@@ -13,190 +13,63 @@
 """
 
 
-import unittest
-
-import timeweb_cloud_api
-from timeweb_cloud_api.api.domains_api import DomainsApi  # noqa: E501
-from timeweb_cloud_api.rest import ApiException
-
-
-class TestDomainsApi(unittest.TestCase):
-    """DomainsApi unit test stubs"""
-
-    def setUp(self):
-        self.api = timeweb_cloud_api.api.domains_api.DomainsApi()  # noqa: E501
-
-    def tearDown(self):
-        pass
-
-    def test_add_domain(self):
-        """Test case for add_domain
-
-        Добавление домена на аккаунт  # noqa: E501
-        """
-        pass
-
-    def test_add_subdomain(self):
-        """Test case for add_subdomain
-
-        Добавление поддомена  # noqa: E501
-        """
-        pass
-
-    def test_check_domain(self):
-        """Test case for check_domain
-
-        Проверить, доступен ли домен для регистрации  # noqa: E501
-        """
-        pass
-
-    def test_create_domain_dns_record(self):
-        """Test case for create_domain_dns_record
-
-        Добавить информацию о DNS-записи для домена или поддомена  # noqa: E501
-        """
-        pass
-
-    def test_create_domain_dns_record_v2(self):
-        """Test case for create_domain_dns_record_v2
-
-        Добавить информацию о DNS-записи для домена или поддомена  # noqa: E501
-        """
-        pass
-
-    def test_create_domain_request(self):
-        """Test case for create_domain_request
-
-        Создание заявки на регистрацию/продление/трансфер домена  # noqa: E501
-        """
-        pass
-
-    def test_delete_domain(self):
-        """Test case for delete_domain
-
-        Удаление домена  # noqa: E501
-        """
-        pass
-
-    def test_delete_domain_dns_record(self):
-        """Test case for delete_domain_dns_record
-
-        Удалить информацию о DNS-записи для домена или поддомена  # noqa: E501
-        """
-        pass
-
-    def test_delete_domain_dns_record_v2(self):
-        """Test case for delete_domain_dns_record_v2
-
-        Удалить информацию о DNS-записи для домена или поддомена  # noqa: E501
-        """
-        pass
-
-    def test_delete_subdomain(self):
-        """Test case for delete_subdomain
-
-        Удаление поддомена  # noqa: E501
-        """
-        pass
-
-    def test_get_domain(self):
-        """Test case for get_domain
-
-        Получение информации о домене  # noqa: E501
-        """
-        pass
-
-    def test_get_domain_default_dns_records(self):
-        """Test case for get_domain_default_dns_records
-
-        Получить информацию обо всех DNS-записях по умолчанию домена или поддомена  # noqa: E501
-        """
-        pass
-
-    def test_get_domain_dns_records(self):
-        """Test case for get_domain_dns_records
-
-        Получить информацию обо всех пользовательских DNS-записях домена или поддомена  # noqa: E501
-        """
-        pass
-
-    def test_get_domain_name_servers(self):
-        """Test case for get_domain_name_servers
-
-        Получение списка name-серверов домена  # noqa: E501
-        """
-        pass
-
-    def test_get_domain_request(self):
-        """Test case for get_domain_request
-
-        Получение заявки на регистрацию/продление/трансфер домена  # noqa: E501
-        """
-        pass
-
-    def test_get_domain_requests(self):
-        """Test case for get_domain_requests
-
-        Получение списка заявок на регистрацию/продление/трансфер домена  # noqa: E501
-        """
-        pass
-
-    def test_get_domains(self):
-        """Test case for get_domains
-
-        Получение списка всех доменов  # noqa: E501
-        """
-        pass
-
-    def test_get_tld(self):
-        """Test case for get_tld
-
-        Получить информацию о доменной зоне по ID  # noqa: E501
-        """
-        pass
-
-    def test_get_tlds(self):
-        """Test case for get_tlds
-
-        Получить информацию о доменных зонах  # noqa: E501
-        """
-        pass
-
-    def test_update_domain_auto_prolongation(self):
-        """Test case for update_domain_auto_prolongation
-
-        Включение/выключение автопродления домена  # noqa: E501
-        """
-        pass
-
-    def test_update_domain_dns_record(self):
-        """Test case for update_domain_dns_record
-
-        Обновить информацию о DNS-записи домена или поддомена  # noqa: E501
-        """
-        pass
-
-    def test_update_domain_dns_record_v2(self):
-        """Test case for update_domain_dns_record_v2
-
-        Обновить информацию о DNS-записи домена или поддомена  # noqa: E501
-        """
-        pass
-
-    def test_update_domain_name_servers(self):
-        """Test case for update_domain_name_servers
-
-        Изменение name-серверов домена  # noqa: E501
-        """
-        pass
-
-    def test_update_domain_request(self):
-        """Test case for update_domain_request
-
-        Оплата/обновление заявки на регистрацию/продление/трансфер домена  # noqa: E501
-        """
-        pass
+from __future__ import annotations
+import pprint
+import re  # noqa: F401
+import json
 
 
-if __name__ == '__main__':
-    unittest.main()
+
+from pydantic import BaseModel, Field
+from timeweb_cloud_api.models.dns_record_v2 import DnsRecordV2
+
+class CreateDomainDNSRecordV2201Response(BaseModel):
+    """
+    CreateDomainDNSRecordV2201Response
+    """
+    dns_record: DnsRecordV2 = Field(...)
+    __properties = ["dns_record"]
+
+    class Config:
+        """Pydantic configuration"""
+        allow_population_by_field_name = True
+        validate_assignment = True
+
+    def to_str(self) -> str:
+        """Returns the string representation of the model using alias"""
+        return pprint.pformat(self.dict(by_alias=True))
+
+    def to_json(self) -> str:
+        """Returns the JSON representation of the model using alias"""
+        return json.dumps(self.to_dict())
+
+    @classmethod
+    def from_json(cls, json_str: str) -> CreateDomainDNSRecordV2201Response:
+        """Create an instance of CreateDomainDNSRecordV2201Response from a JSON string"""
+        return cls.from_dict(json.loads(json_str))
+
+    def to_dict(self):
+        """Returns the dictionary representation of the model using alias"""
+        _dict = self.dict(by_alias=True,
+                          exclude={
+                          },
+                          exclude_none=True)
+        # override the default output from pydantic by calling `to_dict()` of dns_record
+        if self.dns_record:
+            _dict['dns_record'] = self.dns_record.to_dict()
+        return _dict
+
+    @classmethod
+    def from_dict(cls, obj: dict) -> CreateDomainDNSRecordV2201Response:
+        """Create an instance of CreateDomainDNSRecordV2201Response from a dict"""
+        if obj is None:
+            return None
+
+        if not isinstance(obj, dict):
+            return CreateDomainDNSRecordV2201Response.parse_obj(obj)
+
+        _obj = CreateDomainDNSRecordV2201Response.parse_obj({
+            "dns_record": DnsRecordV2.from_dict(obj.get("dns_record")) if obj.get("dns_record") is not None else None
+        })
+        return _obj
+

@@ -151,7 +151,9 @@ from timeweb_cloud_api.models.create_dedicated_server201_response import CreateD
 from timeweb_cloud_api.models.create_deploy201_response import CreateDeploy201Response
 from timeweb_cloud_api.models.create_deploy_request import CreateDeployRequest
 from timeweb_cloud_api.models.create_dns import CreateDns
+from timeweb_cloud_api.models.create_dns_v2 import CreateDnsV2
 from timeweb_cloud_api.models.create_domain_dns_record201_response import CreateDomainDNSRecord201Response
+from timeweb_cloud_api.models.create_domain_dns_record_v2201_response import CreateDomainDNSRecordV2201Response
 from timeweb_cloud_api.models.create_domain_mailbox201_response import CreateDomainMailbox201Response
 from timeweb_cloud_api.models.create_domain_mailbox_request import CreateDomainMailboxRequest
 from timeweb_cloud_api.models.create_domain_request201_response import CreateDomainRequest201Response
@@ -216,6 +218,8 @@ from timeweb_cloud_api.models.deploy import Deploy
 from timeweb_cloud_api.models.deploy_status import DeployStatus
 from timeweb_cloud_api.models.dns_record import DnsRecord
 from timeweb_cloud_api.models.dns_record_data import DnsRecordData
+from timeweb_cloud_api.models.dns_record_v2 import DnsRecordV2
+from timeweb_cloud_api.models.dns_record_v2_data import DnsRecordV2Data
 from timeweb_cloud_api.models.document import Document
 from timeweb_cloud_api.models.document_status_info import DocumentStatusInfo
 from timeweb_cloud_api.models.document_status_info_details import DocumentStatusInfoDetails

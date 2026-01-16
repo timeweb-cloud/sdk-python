@@ -27,7 +27,9 @@ from typing import Any, Optional
 from timeweb_cloud_api.models.add_subdomain201_response import AddSubdomain201Response
 from timeweb_cloud_api.models.check_domain200_response import CheckDomain200Response
 from timeweb_cloud_api.models.create_dns import CreateDns
+from timeweb_cloud_api.models.create_dns_v2 import CreateDnsV2
 from timeweb_cloud_api.models.create_domain_dns_record201_response import CreateDomainDNSRecord201Response
+from timeweb_cloud_api.models.create_domain_dns_record_v2201_response import CreateDomainDNSRecordV2201Response
 from timeweb_cloud_api.models.create_domain_request201_response import CreateDomainRequest201Response
 from timeweb_cloud_api.models.domain_register import DomainRegister
 from timeweb_cloud_api.models.get_domain200_response import GetDomain200Response
@@ -496,7 +498,7 @@ class DomainsApi(object):
 
     @validate_arguments
     def create_domain_dns_record(self, fqdn : Annotated[Any, Field(..., description="Полное имя домена или поддомена.")], create_dns : CreateDns, **kwargs) -> CreateDomainDNSRecord201Response:  # noqa: E501
-        """Добавить информацию о DNS-записи для домена или поддомена  # noqa: E501
+        """(Deprecated) Добавить информацию о DNS-записи для домена или поддомена  # noqa: E501
 
         Чтобы добавить информацию о DNS-записи для домена или поддомена, отправьте запрос POST на `/api/v1/domains/{fqdn}/dns-records`, задав необходимые атрибуты.  DNS-запись будет добавлена с использованием предоставленной информации. Тело ответа будет содержать объект JSON с информацией о добавленной DNS-записи.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -527,7 +529,7 @@ class DomainsApi(object):
 
     @validate_arguments
     def create_domain_dns_record_with_http_info(self, fqdn : Annotated[Any, Field(..., description="Полное имя домена или поддомена.")], create_dns : CreateDns, **kwargs) -> ApiResponse:  # noqa: E501
-        """Добавить информацию о DNS-записи для домена или поддомена  # noqa: E501
+        """(Deprecated) Добавить информацию о DNS-записи для домена или поддомена  # noqa: E501
 
         Чтобы добавить информацию о DNS-записи для домена или поддомена, отправьте запрос POST на `/api/v1/domains/{fqdn}/dns-records`, задав необходимые атрибуты.  DNS-запись будет добавлена с использованием предоставленной информации. Тело ответа будет содержать объект JSON с информацией о добавленной DNS-записи.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -564,6 +566,8 @@ class DomainsApi(object):
                  returns the request thread.
         :rtype: tuple(CreateDomainDNSRecord201Response, status_code(int), headers(HTTPHeaderDict))
         """
+
+        warnings.warn("POST /api/v1/domains/{fqdn}/dns-records is deprecated.", DeprecationWarning)
 
         _params = locals()
 
@@ -638,6 +642,166 @@ class DomainsApi(object):
 
         return self.api_client.call_api(
             '/api/v1/domains/{fqdn}/dns-records', 'POST',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @validate_arguments
+    def create_domain_dns_record_v2(self, fqdn : Annotated[Any, Field(..., description="Полное имя домена или поддомена. Для создания записи на основном домене передайте имя домена (например, `somedomain.ru`). Для создания записи на поддомене передайте полное доменное имя включая поддомен (например, `sub.somedomain.ru`).")], create_dns_v2 : CreateDnsV2, **kwargs) -> CreateDomainDNSRecordV2201Response:  # noqa: E501
+        """Добавить информацию о DNS-записи для домена или поддомена  # noqa: E501
+
+        Чтобы добавить информацию о DNS-записи для домена или поддомена, отправьте запрос POST на `/api/v2/domains/{fqdn}/dns-records`, задав необходимые атрибуты.  DNS-запись будет добавлена с использованием предоставленной информации. Тело ответа будет содержать объект JSON с информацией о добавленной DNS-записи.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.create_domain_dns_record_v2(fqdn, create_dns_v2, async_req=True)
+        >>> result = thread.get()
+
+        :param fqdn: Полное имя домена или поддомена. Для создания записи на основном домене передайте имя домена (например, `somedomain.ru`). Для создания записи на поддомене передайте полное доменное имя включая поддомен (например, `sub.somedomain.ru`). (required)
+        :type fqdn: object
+        :param create_dns_v2: (required)
+        :type create_dns_v2: CreateDnsV2
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: CreateDomainDNSRecordV2201Response
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            raise ValueError("Error! Please call the create_domain_dns_record_v2_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
+        return self.create_domain_dns_record_v2_with_http_info(fqdn, create_dns_v2, **kwargs)  # noqa: E501
+
+    @validate_arguments
+    def create_domain_dns_record_v2_with_http_info(self, fqdn : Annotated[Any, Field(..., description="Полное имя домена или поддомена. Для создания записи на основном домене передайте имя домена (например, `somedomain.ru`). Для создания записи на поддомене передайте полное доменное имя включая поддомен (например, `sub.somedomain.ru`).")], create_dns_v2 : CreateDnsV2, **kwargs) -> ApiResponse:  # noqa: E501
+        """Добавить информацию о DNS-записи для домена или поддомена  # noqa: E501
+
+        Чтобы добавить информацию о DNS-записи для домена или поддомена, отправьте запрос POST на `/api/v2/domains/{fqdn}/dns-records`, задав необходимые атрибуты.  DNS-запись будет добавлена с использованием предоставленной информации. Тело ответа будет содержать объект JSON с информацией о добавленной DNS-записи.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.create_domain_dns_record_v2_with_http_info(fqdn, create_dns_v2, async_req=True)
+        >>> result = thread.get()
+
+        :param fqdn: Полное имя домена или поддомена. Для создания записи на основном домене передайте имя домена (например, `somedomain.ru`). Для создания записи на поддомене передайте полное доменное имя включая поддомен (например, `sub.somedomain.ru`). (required)
+        :type fqdn: object
+        :param create_dns_v2: (required)
+        :type create_dns_v2: CreateDnsV2
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the 
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(CreateDomainDNSRecordV2201Response, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'fqdn',
+            'create_dns_v2'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method create_domain_dns_record_v2" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['fqdn']:
+            _path_params['fqdn'] = _params['fqdn']
+
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        if _params['create_dns_v2'] is not None:
+            _body_params = _params['create_dns_v2']
+
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # set the HTTP header `Content-Type`
+        _content_types_list = _params.get('_content_type',
+            self.api_client.select_header_content_type(
+                ['application/json']))
+        if _content_types_list:
+                _header_params['Content-Type'] = _content_types_list
+
+        # authentication setting
+        _auth_settings = ['Bearer']  # noqa: E501
+
+        _response_types_map = {
+            '201': "CreateDomainDNSRecordV2201Response",
+            '400': None,
+            '401': None,
+            '404': None,
+            '409': None,
+            '429': None,
+            '500': None,
+        }
+
+        return self.api_client.call_api(
+            '/api/v2/domains/{fqdn}/dns-records', 'POST',
             _path_params,
             _query_params,
             _header_params,
@@ -943,7 +1107,7 @@ class DomainsApi(object):
 
     @validate_arguments
     def delete_domain_dns_record(self, fqdn : Annotated[Any, Field(..., description="Полное имя домена или поддомена.")], record_id : Annotated[Any, Field(..., description="ID DNS-записи домена или поддомена.")], **kwargs) -> None:  # noqa: E501
-        """Удалить информацию о DNS-записи для домена или поддомена  # noqa: E501
+        """(Deprecated) Удалить информацию о DNS-записи для домена или поддомена  # noqa: E501
 
         Чтобы удалить информацию о DNS-записи для домена или поддомена, отправьте запрос DELETE на `/api/v1/domains/{fqdn}/dns-records/{record_id}`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -974,7 +1138,7 @@ class DomainsApi(object):
 
     @validate_arguments
     def delete_domain_dns_record_with_http_info(self, fqdn : Annotated[Any, Field(..., description="Полное имя домена или поддомена.")], record_id : Annotated[Any, Field(..., description="ID DNS-записи домена или поддомена.")], **kwargs) -> ApiResponse:  # noqa: E501
-        """Удалить информацию о DNS-записи для домена или поддомена  # noqa: E501
+        """(Deprecated) Удалить информацию о DNS-записи для домена или поддомена  # noqa: E501
 
         Чтобы удалить информацию о DNS-записи для домена или поддомена, отправьте запрос DELETE на `/api/v1/domains/{fqdn}/dns-records/{record_id}`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -1011,6 +1175,8 @@ class DomainsApi(object):
                  returns the request thread.
         :rtype: None
         """
+
+        warnings.warn("DELETE /api/v1/domains/{fqdn}/dns-records/{record_id} is deprecated.", DeprecationWarning)
 
         _params = locals()
 
@@ -1067,6 +1233,147 @@ class DomainsApi(object):
 
         return self.api_client.call_api(
             '/api/v1/domains/{fqdn}/dns-records/{record_id}', 'DELETE',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @validate_arguments
+    def delete_domain_dns_record_v2(self, fqdn : Annotated[Any, Field(..., description="Полное имя домена или поддомена. Для создания записи на основном домене передайте имя домена (например, `somedomain.ru`). Для создания записи на поддомене передайте полное доменное имя включая поддомен (например, `sub.somedomain.ru`).")], record_id : Annotated[Any, Field(..., description="ID DNS-записи домена или поддомена.")], **kwargs) -> None:  # noqa: E501
+        """Удалить информацию о DNS-записи для домена или поддомена  # noqa: E501
+
+        Чтобы удалить информацию о DNS-записи для домена или поддомена, отправьте запрос DELETE на `/api/v2/domains/{fqdn}/dns-records/{record_id}`.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.delete_domain_dns_record_v2(fqdn, record_id, async_req=True)
+        >>> result = thread.get()
+
+        :param fqdn: Полное имя домена или поддомена. Для создания записи на основном домене передайте имя домена (например, `somedomain.ru`). Для создания записи на поддомене передайте полное доменное имя включая поддомен (например, `sub.somedomain.ru`). (required)
+        :type fqdn: object
+        :param record_id: ID DNS-записи домена или поддомена. (required)
+        :type record_id: object
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: None
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            raise ValueError("Error! Please call the delete_domain_dns_record_v2_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
+        return self.delete_domain_dns_record_v2_with_http_info(fqdn, record_id, **kwargs)  # noqa: E501
+
+    @validate_arguments
+    def delete_domain_dns_record_v2_with_http_info(self, fqdn : Annotated[Any, Field(..., description="Полное имя домена или поддомена. Для создания записи на основном домене передайте имя домена (например, `somedomain.ru`). Для создания записи на поддомене передайте полное доменное имя включая поддомен (например, `sub.somedomain.ru`).")], record_id : Annotated[Any, Field(..., description="ID DNS-записи домена или поддомена.")], **kwargs) -> ApiResponse:  # noqa: E501
+        """Удалить информацию о DNS-записи для домена или поддомена  # noqa: E501
+
+        Чтобы удалить информацию о DNS-записи для домена или поддомена, отправьте запрос DELETE на `/api/v2/domains/{fqdn}/dns-records/{record_id}`.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.delete_domain_dns_record_v2_with_http_info(fqdn, record_id, async_req=True)
+        >>> result = thread.get()
+
+        :param fqdn: Полное имя домена или поддомена. Для создания записи на основном домене передайте имя домена (например, `somedomain.ru`). Для создания записи на поддомене передайте полное доменное имя включая поддомен (например, `sub.somedomain.ru`). (required)
+        :type fqdn: object
+        :param record_id: ID DNS-записи домена или поддомена. (required)
+        :type record_id: object
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the 
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: None
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'fqdn',
+            'record_id'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method delete_domain_dns_record_v2" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['fqdn']:
+            _path_params['fqdn'] = _params['fqdn']
+
+        if _params['record_id']:
+            _path_params['record_id'] = _params['record_id']
+
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # authentication setting
+        _auth_settings = ['Bearer']  # noqa: E501
+
+        _response_types_map = {}
+
+        return self.api_client.call_api(
+            '/api/v2/domains/{fqdn}/dns-records/{record_id}', 'DELETE',
             _path_params,
             _query_params,
             _header_params,
@@ -2762,7 +3069,7 @@ class DomainsApi(object):
 
     @validate_arguments
     def update_domain_dns_record(self, fqdn : Annotated[Any, Field(..., description="Полное имя домена или поддомена.")], record_id : Annotated[Any, Field(..., description="ID DNS-записи домена или поддомена.")], create_dns : CreateDns, **kwargs) -> CreateDomainDNSRecord201Response:  # noqa: E501
-        """Обновить информацию о DNS-записи домена или поддомена  # noqa: E501
+        """(Deprecated) Обновить информацию о DNS-записи домена или поддомена  # noqa: E501
 
         Чтобы обновить информацию о DNS-записи для домена или поддомена, отправьте запрос PATCH на `/api/v1/domains/{fqdn}/dns-records/{record_id}`, задав необходимые атрибуты.  DNS-запись будет обновлена с использованием предоставленной информации. Тело ответа будет содержать объект JSON с информацией об добавленной DNS-записи.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -2795,7 +3102,7 @@ class DomainsApi(object):
 
     @validate_arguments
     def update_domain_dns_record_with_http_info(self, fqdn : Annotated[Any, Field(..., description="Полное имя домена или поддомена.")], record_id : Annotated[Any, Field(..., description="ID DNS-записи домена или поддомена.")], create_dns : CreateDns, **kwargs) -> ApiResponse:  # noqa: E501
-        """Обновить информацию о DNS-записи домена или поддомена  # noqa: E501
+        """(Deprecated) Обновить информацию о DNS-записи домена или поддомена  # noqa: E501
 
         Чтобы обновить информацию о DNS-записи для домена или поддомена, отправьте запрос PATCH на `/api/v1/domains/{fqdn}/dns-records/{record_id}`, задав необходимые атрибуты.  DNS-запись будет обновлена с использованием предоставленной информации. Тело ответа будет содержать объект JSON с информацией об добавленной DNS-записи.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -2834,6 +3141,8 @@ class DomainsApi(object):
                  returns the request thread.
         :rtype: tuple(CreateDomainDNSRecord201Response, status_code(int), headers(HTTPHeaderDict))
         """
+
+        warnings.warn("PATCH /api/v1/domains/{fqdn}/dns-records/{record_id} is deprecated.", DeprecationWarning)
 
         _params = locals()
 
@@ -2912,6 +3221,174 @@ class DomainsApi(object):
 
         return self.api_client.call_api(
             '/api/v1/domains/{fqdn}/dns-records/{record_id}', 'PATCH',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @validate_arguments
+    def update_domain_dns_record_v2(self, fqdn : Annotated[Any, Field(..., description="Полное имя домена или поддомена. Для создания записи на основном домене передайте имя домена (например, `somedomain.ru`). Для создания записи на поддомене передайте полное доменное имя включая поддомен (например, `sub.somedomain.ru`).")], record_id : Annotated[Any, Field(..., description="ID DNS-записи домена или поддомена.")], create_dns_v2 : CreateDnsV2, **kwargs) -> CreateDomainDNSRecordV2201Response:  # noqa: E501
+        """Обновить информацию о DNS-записи домена или поддомена  # noqa: E501
+
+        Чтобы обновить информацию о DNS-записи для домена или поддомена, отправьте запрос PATCH на `/api/v2/domains/{fqdn}/dns-records/{record_id}`, задав необходимые атрибуты.  DNS-запись будет обновлена с использованием предоставленной информации. Тело ответа будет содержать объект JSON с информацией об обновленной DNS-записи.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.update_domain_dns_record_v2(fqdn, record_id, create_dns_v2, async_req=True)
+        >>> result = thread.get()
+
+        :param fqdn: Полное имя домена или поддомена. Для создания записи на основном домене передайте имя домена (например, `somedomain.ru`). Для создания записи на поддомене передайте полное доменное имя включая поддомен (например, `sub.somedomain.ru`). (required)
+        :type fqdn: object
+        :param record_id: ID DNS-записи домена или поддомена. (required)
+        :type record_id: object
+        :param create_dns_v2: (required)
+        :type create_dns_v2: CreateDnsV2
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: CreateDomainDNSRecordV2201Response
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            raise ValueError("Error! Please call the update_domain_dns_record_v2_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
+        return self.update_domain_dns_record_v2_with_http_info(fqdn, record_id, create_dns_v2, **kwargs)  # noqa: E501
+
+    @validate_arguments
+    def update_domain_dns_record_v2_with_http_info(self, fqdn : Annotated[Any, Field(..., description="Полное имя домена или поддомена. Для создания записи на основном домене передайте имя домена (например, `somedomain.ru`). Для создания записи на поддомене передайте полное доменное имя включая поддомен (например, `sub.somedomain.ru`).")], record_id : Annotated[Any, Field(..., description="ID DNS-записи домена или поддомена.")], create_dns_v2 : CreateDnsV2, **kwargs) -> ApiResponse:  # noqa: E501
+        """Обновить информацию о DNS-записи домена или поддомена  # noqa: E501
+
+        Чтобы обновить информацию о DNS-записи для домена или поддомена, отправьте запрос PATCH на `/api/v2/domains/{fqdn}/dns-records/{record_id}`, задав необходимые атрибуты.  DNS-запись будет обновлена с использованием предоставленной информации. Тело ответа будет содержать объект JSON с информацией об обновленной DNS-записи.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.update_domain_dns_record_v2_with_http_info(fqdn, record_id, create_dns_v2, async_req=True)
+        >>> result = thread.get()
+
+        :param fqdn: Полное имя домена или поддомена. Для создания записи на основном домене передайте имя домена (например, `somedomain.ru`). Для создания записи на поддомене передайте полное доменное имя включая поддомен (например, `sub.somedomain.ru`). (required)
+        :type fqdn: object
+        :param record_id: ID DNS-записи домена или поддомена. (required)
+        :type record_id: object
+        :param create_dns_v2: (required)
+        :type create_dns_v2: CreateDnsV2
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the 
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(CreateDomainDNSRecordV2201Response, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'fqdn',
+            'record_id',
+            'create_dns_v2'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method update_domain_dns_record_v2" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['fqdn']:
+            _path_params['fqdn'] = _params['fqdn']
+
+        if _params['record_id']:
+            _path_params['record_id'] = _params['record_id']
+
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        if _params['create_dns_v2'] is not None:
+            _body_params = _params['create_dns_v2']
+
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # set the HTTP header `Content-Type`
+        _content_types_list = _params.get('_content_type',
+            self.api_client.select_header_content_type(
+                ['application/json']))
+        if _content_types_list:
+                _header_params['Content-Type'] = _content_types_list
+
+        # authentication setting
+        _auth_settings = ['Bearer']  # noqa: E501
+
+        _response_types_map = {
+            '200': "CreateDomainDNSRecordV2201Response",
+            '400': None,
+            '401': None,
+            '404': None,
+            '409': None,
+            '429': None,
+            '500': None,
+        }
+
+        return self.api_client.call_api(
+            '/api/v2/domains/{fqdn}/dns-records/{record_id}', 'PATCH',
             _path_params,
             _query_params,
             _header_params,

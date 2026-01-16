@@ -8,9 +8,11 @@ Method | HTTP request | Description
 [**add_subdomain**](DomainsApi.md#add_subdomain) | **POST** /api/v1/domains/{fqdn}/subdomains/{subdomain_fqdn} | Добавление поддомена
 [**check_domain**](DomainsApi.md#check_domain) | **GET** /api/v1/check-domain/{fqdn} | Проверить, доступен ли домен для регистрации
 [**create_domain_dns_record**](DomainsApi.md#create_domain_dns_record) | **POST** /api/v1/domains/{fqdn}/dns-records | Добавить информацию о DNS-записи для домена или поддомена
+[**create_domain_dns_record_v2**](DomainsApi.md#create_domain_dns_record_v2) | **POST** /api/v2/domains/{fqdn}/dns-records | Добавить информацию о DNS-записи для домена или поддомена
 [**create_domain_request**](DomainsApi.md#create_domain_request) | **POST** /api/v1/domains-requests | Создание заявки на регистрацию/продление/трансфер домена
 [**delete_domain**](DomainsApi.md#delete_domain) | **DELETE** /api/v1/domains/{fqdn} | Удаление домена
 [**delete_domain_dns_record**](DomainsApi.md#delete_domain_dns_record) | **DELETE** /api/v1/domains/{fqdn}/dns-records/{record_id} | Удалить информацию о DNS-записи для домена или поддомена
+[**delete_domain_dns_record_v2**](DomainsApi.md#delete_domain_dns_record_v2) | **DELETE** /api/v2/domains/{fqdn}/dns-records/{record_id} | Удалить информацию о DNS-записи для домена или поддомена
 [**delete_subdomain**](DomainsApi.md#delete_subdomain) | **DELETE** /api/v1/domains/{fqdn}/subdomains/{subdomain_fqdn} | Удаление поддомена
 [**get_domain**](DomainsApi.md#get_domain) | **GET** /api/v1/domains/{fqdn} | Получение информации о домене
 [**get_domain_default_dns_records**](DomainsApi.md#get_domain_default_dns_records) | **GET** /api/v1/domains/{fqdn}/default-dns-records | Получить информацию обо всех DNS-записях по умолчанию домена или поддомена
@@ -23,6 +25,7 @@ Method | HTTP request | Description
 [**get_tlds**](DomainsApi.md#get_tlds) | **GET** /api/v1/tlds | Получить информацию о доменных зонах
 [**update_domain_auto_prolongation**](DomainsApi.md#update_domain_auto_prolongation) | **PATCH** /api/v1/domains/{fqdn} | Включение/выключение автопродления домена
 [**update_domain_dns_record**](DomainsApi.md#update_domain_dns_record) | **PATCH** /api/v1/domains/{fqdn}/dns-records/{record_id} | Обновить информацию о DNS-записи домена или поддомена
+[**update_domain_dns_record_v2**](DomainsApi.md#update_domain_dns_record_v2) | **PATCH** /api/v2/domains/{fqdn}/dns-records/{record_id} | Обновить информацию о DNS-записи домена или поддомена
 [**update_domain_name_servers**](DomainsApi.md#update_domain_name_servers) | **PUT** /api/v1/domains/{fqdn}/name-servers | Изменение name-серверов домена
 [**update_domain_request**](DomainsApi.md#update_domain_request) | **PATCH** /api/v1/domains-requests/{request_id} | Оплата/обновление заявки на регистрацию/продление/трансфер домена
 
@@ -352,6 +355,91 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **create_domain_dns_record_v2**
+> CreateDomainDNSRecordV2201Response create_domain_dns_record_v2(fqdn, create_dns_v2)
+
+Добавить информацию о DNS-записи для домена или поддомена
+
+Чтобы добавить информацию о DNS-записи для домена или поддомена, отправьте запрос POST на `/api/v2/domains/{fqdn}/dns-records`, задав необходимые атрибуты.  DNS-запись будет добавлена с использованием предоставленной информации. Тело ответа будет содержать объект JSON с информацией о добавленной DNS-записи.
+
+### Example
+
+* Bearer (JWT) Authentication (Bearer):
+```python
+import time
+import os
+import timeweb_cloud_api
+from timeweb_cloud_api.models.create_dns_v2 import CreateDnsV2
+from timeweb_cloud_api.models.create_domain_dns_record_v2201_response import CreateDomainDNSRecordV2201Response
+from timeweb_cloud_api.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.timeweb.cloud
+# See configuration.py for a list of all supported configuration parameters.
+configuration = timeweb_cloud_api.Configuration(
+    host = "https://api.timeweb.cloud"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): Bearer
+configuration = timeweb_cloud_api.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = timeweb_cloud_api.DomainsApi(api_client)
+    fqdn = somedomain.ru # object | Полное имя домена или поддомена. Для создания записи на основном домене передайте имя домена (например, `somedomain.ru`). Для создания записи на поддомене передайте полное доменное имя включая поддомен (например, `sub.somedomain.ru`).
+    create_dns_v2 = timeweb_cloud_api.CreateDnsV2() # CreateDnsV2 | 
+
+    try:
+        # Добавить информацию о DNS-записи для домена или поддомена
+        api_response = api_instance.create_domain_dns_record_v2(fqdn, create_dns_v2)
+        print("The response of DomainsApi->create_domain_dns_record_v2:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DomainsApi->create_domain_dns_record_v2: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **fqdn** | [**object**](.md)| Полное имя домена или поддомена. Для создания записи на основном домене передайте имя домена (например, &#x60;somedomain.ru&#x60;). Для создания записи на поддомене передайте полное доменное имя включая поддомен (например, &#x60;sub.somedomain.ru&#x60;). | 
+ **create_dns_v2** | [**CreateDnsV2**](CreateDnsV2.md)|  | 
+
+### Return type
+
+[**CreateDomainDNSRecordV2201Response**](CreateDomainDNSRecordV2201Response.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | Ответ будет представлять собой объект JSON c ключом &#x60;dns_record&#x60;. |  -  |
+**400** |  |  -  |
+**401** |  |  -  |
+**404** |  |  -  |
+**409** |  |  -  |
+**429** |  |  -  |
+**500** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **create_domain_request**
 > CreateDomainRequest201Response create_domain_request(domain_register)
 
@@ -566,6 +654,86 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **fqdn** | [**object**](.md)| Полное имя домена или поддомена. | 
+ **record_id** | [**object**](.md)| ID DNS-записи домена или поддомена. | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | Информация о DNS-записи успешно удалена. |  -  |
+**400** |  |  -  |
+**401** |  |  -  |
+**404** |  |  -  |
+**429** |  |  -  |
+**500** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **delete_domain_dns_record_v2**
+> delete_domain_dns_record_v2(fqdn, record_id)
+
+Удалить информацию о DNS-записи для домена или поддомена
+
+Чтобы удалить информацию о DNS-записи для домена или поддомена, отправьте запрос DELETE на `/api/v2/domains/{fqdn}/dns-records/{record_id}`.
+
+### Example
+
+* Bearer (JWT) Authentication (Bearer):
+```python
+import time
+import os
+import timeweb_cloud_api
+from timeweb_cloud_api.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.timeweb.cloud
+# See configuration.py for a list of all supported configuration parameters.
+configuration = timeweb_cloud_api.Configuration(
+    host = "https://api.timeweb.cloud"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): Bearer
+configuration = timeweb_cloud_api.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = timeweb_cloud_api.DomainsApi(api_client)
+    fqdn = somedomain.ru # object | Полное имя домена или поддомена. Для создания записи на основном домене передайте имя домена (например, `somedomain.ru`). Для создания записи на поддомене передайте полное доменное имя включая поддомен (например, `sub.somedomain.ru`).
+    record_id = 123 # object | ID DNS-записи домена или поддомена.
+
+    try:
+        # Удалить информацию о DNS-записи для домена или поддомена
+        api_instance.delete_domain_dns_record_v2(fqdn, record_id)
+    except Exception as e:
+        print("Exception when calling DomainsApi->delete_domain_dns_record_v2: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **fqdn** | [**object**](.md)| Полное имя домена или поддомена. Для создания записи на основном домене передайте имя домена (например, &#x60;somedomain.ru&#x60;). Для создания записи на поддомене передайте полное доменное имя включая поддомен (например, &#x60;sub.somedomain.ru&#x60;). | 
  **record_id** | [**object**](.md)| ID DNS-записи домена или поддомена. | 
 
 ### Return type
@@ -1586,6 +1754,93 @@ Name | Type | Description  | Notes
 **400** |  |  -  |
 **401** |  |  -  |
 **404** |  |  -  |
+**429** |  |  -  |
+**500** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **update_domain_dns_record_v2**
+> CreateDomainDNSRecordV2201Response update_domain_dns_record_v2(fqdn, record_id, create_dns_v2)
+
+Обновить информацию о DNS-записи домена или поддомена
+
+Чтобы обновить информацию о DNS-записи для домена или поддомена, отправьте запрос PATCH на `/api/v2/domains/{fqdn}/dns-records/{record_id}`, задав необходимые атрибуты.  DNS-запись будет обновлена с использованием предоставленной информации. Тело ответа будет содержать объект JSON с информацией об обновленной DNS-записи.
+
+### Example
+
+* Bearer (JWT) Authentication (Bearer):
+```python
+import time
+import os
+import timeweb_cloud_api
+from timeweb_cloud_api.models.create_dns_v2 import CreateDnsV2
+from timeweb_cloud_api.models.create_domain_dns_record_v2201_response import CreateDomainDNSRecordV2201Response
+from timeweb_cloud_api.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.timeweb.cloud
+# See configuration.py for a list of all supported configuration parameters.
+configuration = timeweb_cloud_api.Configuration(
+    host = "https://api.timeweb.cloud"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): Bearer
+configuration = timeweb_cloud_api.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = timeweb_cloud_api.DomainsApi(api_client)
+    fqdn = somedomain.ru # object | Полное имя домена или поддомена. Для создания записи на основном домене передайте имя домена (например, `somedomain.ru`). Для создания записи на поддомене передайте полное доменное имя включая поддомен (например, `sub.somedomain.ru`).
+    record_id = 123 # object | ID DNS-записи домена или поддомена.
+    create_dns_v2 = timeweb_cloud_api.CreateDnsV2() # CreateDnsV2 | 
+
+    try:
+        # Обновить информацию о DNS-записи домена или поддомена
+        api_response = api_instance.update_domain_dns_record_v2(fqdn, record_id, create_dns_v2)
+        print("The response of DomainsApi->update_domain_dns_record_v2:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DomainsApi->update_domain_dns_record_v2: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **fqdn** | [**object**](.md)| Полное имя домена или поддомена. Для создания записи на основном домене передайте имя домена (например, &#x60;somedomain.ru&#x60;). Для создания записи на поддомене передайте полное доменное имя включая поддомен (например, &#x60;sub.somedomain.ru&#x60;). | 
+ **record_id** | [**object**](.md)| ID DNS-записи домена или поддомена. | 
+ **create_dns_v2** | [**CreateDnsV2**](CreateDnsV2.md)|  | 
+
+### Return type
+
+[**CreateDomainDNSRecordV2201Response**](CreateDomainDNSRecordV2201Response.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Ответ будет представлять собой объект JSON c ключом &#x60;dns_record&#x60;. |  -  |
+**400** |  |  -  |
+**401** |  |  -  |
+**404** |  |  -  |
+**409** |  |  -  |
 **429** |  |  -  |
 **500** |  |  -  |
 
