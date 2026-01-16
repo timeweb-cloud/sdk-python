@@ -71,6 +71,27 @@ class TestAIAgentsApi(unittest.TestCase):
         """
         pass
 
+    def test_get_agents_token_packages(self):
+        """Test case for get_agents_token_packages
+
+        Получение списка пакетов токенов для агентов  # noqa: E501
+        """
+        pass
+
+    def test_get_knowledgebases_token_packages(self):
+        """Test case for get_knowledgebases_token_packages
+
+        Получение списка пакетов токенов для баз знаний  # noqa: E501
+        """
+        pass
+
+    def test_get_models(self):
+        """Test case for get_models
+
+        Получение списка моделей  # noqa: E501
+        """
+        pass
+
     def test_update_agent(self):
         """Test case for update_agent
 

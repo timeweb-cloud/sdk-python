@@ -5,7 +5,6 @@
 .travis.yml
 README.md
 docs/AIAgentsApi.md
-docs/AIModelsApi.md
 docs/APIKeysApi.md
 docs/AccountApi.md
 docs/AddBalancerToProject200Response.md
@@ -533,7 +532,6 @@ test/test_agent_model_settings.py
 test/test_agent_settings.py
 test/test_agent_settings_widget.py
 test/test_ai_agents_api.py
-test/test_ai_models_api.py
 test/test_api_key.py
 test/test_api_keys_api.py
 test/test_app.py
@@ -991,7 +989,6 @@ timeweb_cloud_api/__init__.py
 timeweb_cloud_api/api/__init__.py
 timeweb_cloud_api/api/account_api.py
 timeweb_cloud_api/api/ai_agents_api.py
-timeweb_cloud_api/api/ai_models_api.py
 timeweb_cloud_api/api/api_keys_api.py
 timeweb_cloud_api/api/apps_api.py
 timeweb_cloud_api/api/balancers_api.py

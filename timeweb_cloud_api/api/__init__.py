@@ -2,7 +2,6 @@
 
 # import apis into api package
 from timeweb_cloud_api.api.ai_agents_api import AIAgentsApi
-from timeweb_cloud_api.api.ai_models_api import AIModelsApi
 from timeweb_cloud_api.api.api_keys_api import APIKeysApi
 from timeweb_cloud_api.api.account_api import AccountApi
 from timeweb_cloud_api.api.apps_api import AppsApi
