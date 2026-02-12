@@ -29,7 +29,8 @@ class CreateDnsV2(BaseModel):
     type: Optional[Any] = Field(..., description="Тип DNS-записи.")
     value: Optional[Any] = Field(..., description="IPv4 адрес.")
     ttl: Optional[Any] = Field(None, description="Время жизни DNS-записи в секундах.")
-    __properties = ["type", "value", "ttl"]
+    app_id: Optional[Any] = Field(None, description="Идентификатор приложения в App Platform, к которому будет привязан домен или поддомен.")
+    __properties = ["type", "value", "ttl", "app_id"]
 
     @validator('type')
     def type_validate_enum(cls, value):
@@ -80,6 +81,11 @@ class CreateDnsV2(BaseModel):
         if self.ttl is None and "ttl" in self.__fields_set__:
             _dict['ttl'] = None
 
+        # set to None if app_id (nullable) is None
+        # and __fields_set__ contains the field
+        if self.app_id is None and "app_id" in self.__fields_set__:
+            _dict['app_id'] = None
+
         return _dict
 
     @classmethod
@@ -94,7 +100,8 @@ class CreateDnsV2(BaseModel):
         _obj = CreateDnsV2.parse_obj({
             "type": obj.get("type"),
             "value": obj.get("value"),
-            "ttl": obj.get("ttl")
+            "ttl": obj.get("ttl"),
+            "app_id": obj.get("app_id")
         })
         return _obj
 

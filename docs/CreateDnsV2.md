@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **type** | **object** | Тип DNS-записи. | 
 **value** | **object** | IPv4 адрес. | 
 **ttl** | **object** | Время жизни DNS-записи в секундах. | [optional] 
+**app_id** | **object** | Идентификатор приложения в App Platform, к которому будет привязан домен или поддомен. | [optional] 
 
 ## Example
 

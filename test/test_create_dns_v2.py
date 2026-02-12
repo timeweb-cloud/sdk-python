@@ -41,7 +41,8 @@ class TestCreateDnsV2(unittest.TestCase):
             return CreateDnsV2(
                 type = A, 
                 value = 192.168.1.0, 
-                ttl = 600
+                ttl = 600, 
+                app_id = 1
             )
         else :
             return CreateDnsV2(
