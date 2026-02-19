@@ -26,9 +26,10 @@ class BucketDiskStats(BaseModel):
     """
     Статистика использования диска хранилища.
     """
-    size: Optional[Any] = Field(..., description="Размер (в Кб) диска хранилища.")
+    size: Optional[Any] = Field(..., description="Размер (в Кб) диска хранилища включенного в тариф.")
     used: Optional[Any] = Field(..., description="Размер (в Кб) использованного пространства диска хранилища.")
-    __properties = ["size", "used"]
+    is_unlimited: Optional[Any] = Field(..., description="Признак безлимитного размера хранилища.")
+    __properties = ["size", "used", "is_unlimited"]
 
     class Config:
         """Pydantic configuration"""
@@ -64,6 +65,11 @@ class BucketDiskStats(BaseModel):
         if self.used is None and "used" in self.__fields_set__:
             _dict['used'] = None
 
+        # set to None if is_unlimited (nullable) is None
+        # and __fields_set__ contains the field
+        if self.is_unlimited is None and "is_unlimited" in self.__fields_set__:
+            _dict['is_unlimited'] = None
+
         return _dict
 
     @classmethod
@@ -77,7 +83,8 @@ class BucketDiskStats(BaseModel):
 
         _obj = BucketDiskStats.parse_obj({
             "size": obj.get("size"),
-            "used": obj.get("used")
+            "used": obj.get("used"),
+            "is_unlimited": obj.get("is_unlimited")
         })
         return _obj
 

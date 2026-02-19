@@ -64,6 +64,13 @@ class TestS3Api(unittest.TestCase):
         """
         pass
 
+    def test_get_storage(self):
+        """Test case for get_storage
+
+        Получение хранилища по ID  # noqa: E501
+        """
+        pass
+
     def test_get_storage_subdomains(self):
         """Test case for get_storage_subdomains
 

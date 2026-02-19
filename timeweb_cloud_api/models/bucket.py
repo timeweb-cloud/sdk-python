@@ -30,7 +30,7 @@ class Bucket(BaseModel):
     """
     id: Optional[Any] = Field(..., description="ID для каждого экземпляра хранилища. Автоматически генерируется при создании.")
     name: Optional[Any] = Field(..., description="Удобочитаемое имя, установленное для хранилища.")
-    description: Optional[Any] = Field(None, description="Комментарий к хранилищу.")
+    description: Optional[Any] = Field(..., description="Комментарий к хранилищу.")
     disk_stats: BucketDiskStats = Field(...)
     type: Optional[Any] = Field(..., description="Тип хранилища.")
     preset_id: Optional[Any] = Field(..., description="ID тарифа хранилища.")
@@ -47,7 +47,8 @@ class Bucket(BaseModel):
     project_id: Optional[Any] = Field(..., description="ID проекта.")
     rate_id: Optional[Any] = Field(..., description="ID тарифа.")
     website_config: BucketWebsiteConfig = Field(...)
-    __properties = ["id", "name", "description", "disk_stats", "type", "preset_id", "configurator_id", "avatar_link", "status", "object_amount", "location", "hostname", "access_key", "secret_key", "moved_in_quarantine_at", "storage_class", "project_id", "rate_id", "website_config"]
+    is_allow_auto_upgrade: Optional[Any] = Field(..., description="Разрешено ли автоматическое повышение тарифа.")
+    __properties = ["id", "name", "description", "disk_stats", "type", "preset_id", "configurator_id", "avatar_link", "status", "object_amount", "location", "hostname", "access_key", "secret_key", "moved_in_quarantine_at", "storage_class", "project_id", "rate_id", "website_config", "is_allow_auto_upgrade"]
 
     @validator('type')
     def type_validate_enum(cls, value):
@@ -194,6 +195,11 @@ class Bucket(BaseModel):
         if self.rate_id is None and "rate_id" in self.__fields_set__:
             _dict['rate_id'] = None
 
+        # set to None if is_allow_auto_upgrade (nullable) is None
+        # and __fields_set__ contains the field
+        if self.is_allow_auto_upgrade is None and "is_allow_auto_upgrade" in self.__fields_set__:
+            _dict['is_allow_auto_upgrade'] = None
+
         return _dict
 
     @classmethod
@@ -224,7 +230,8 @@ class Bucket(BaseModel):
             "storage_class": obj.get("storage_class"),
             "project_id": obj.get("project_id"),
             "rate_id": obj.get("rate_id"),
-            "website_config": BucketWebsiteConfig.from_dict(obj.get("website_config")) if obj.get("website_config") is not None else None
+            "website_config": BucketWebsiteConfig.from_dict(obj.get("website_config")) if obj.get("website_config") is not None else None,
+            "is_allow_auto_upgrade": obj.get("is_allow_auto_upgrade")
         })
         return _obj
 

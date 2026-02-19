@@ -40,11 +40,12 @@ class TestBucket(unittest.TestCase):
         if include_optional :
             return Bucket(
                 id = 1, 
-                name = Cute Quail, 
+                name = c372805f-72c7-416c-918d-ac78c2dde306, 
                 description = Bucket of awesome cats, 
                 disk_stats = timeweb_cloud_api.models.bucket_disk_stats.bucket_disk_stats(
                     size = 10485760, 
-                    used = 486.11328125, ), 
+                    used = 486.11328125, 
+                    is_unlimited = false, ), 
                 type = public, 
                 preset_id = 389, 
                 configurator_id = 55, 
@@ -62,15 +63,18 @@ class TestBucket(unittest.TestCase):
                 website_config = timeweb_cloud_api.models.bucket_website_config.bucket_website_config(
                     enabled = true, 
                     index_page = index.html, 
-                    error_pages = null, )
+                    error_pages = null, ), 
+                is_allow_auto_upgrade = false
             )
         else :
             return Bucket(
                 id = 1,
-                name = Cute Quail,
+                name = c372805f-72c7-416c-918d-ac78c2dde306,
+                description = Bucket of awesome cats,
                 disk_stats = timeweb_cloud_api.models.bucket_disk_stats.bucket_disk_stats(
                     size = 10485760, 
-                    used = 486.11328125, ),
+                    used = 486.11328125, 
+                    is_unlimited = false, ),
                 type = public,
                 preset_id = 389,
                 configurator_id = 55,
@@ -89,6 +93,7 @@ class TestBucket(unittest.TestCase):
                     enabled = true, 
                     index_page = index.html, 
                     error_pages = null, ),
+                is_allow_auto_upgrade = false,
         )
         """
 

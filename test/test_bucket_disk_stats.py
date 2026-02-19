@@ -40,12 +40,14 @@ class TestBucketDiskStats(unittest.TestCase):
         if include_optional :
             return BucketDiskStats(
                 size = 10485760, 
-                used = 486.11328125
+                used = 486.11328125, 
+                is_unlimited = false
             )
         else :
             return BucketDiskStats(
                 size = 10485760,
                 used = 486.11328125,
+                is_unlimited = false,
         )
         """
 

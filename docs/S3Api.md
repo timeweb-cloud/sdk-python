@@ -9,6 +9,7 @@ Method | HTTP request | Description
 [**create_storage**](S3Api.md#create_storage) | **POST** /api/v1/storages/buckets | Создание хранилища
 [**delete_storage**](S3Api.md#delete_storage) | **DELETE** /api/v1/storages/buckets/{bucket_id} | Удаление хранилища на аккаунте
 [**delete_storage_subdomains**](S3Api.md#delete_storage_subdomains) | **DELETE** /api/v1/storages/buckets/{bucket_id}/subdomains | Удаление поддоменов хранилища
+[**get_storage**](S3Api.md#get_storage) | **GET** /api/v1/storages/buckets/{bucket_id} | Получение хранилища по ID
 [**get_storage_subdomains**](S3Api.md#get_storage_subdomains) | **GET** /api/v1/storages/buckets/{bucket_id}/subdomains | Получение списка поддоменов хранилища
 [**get_storage_transfer_status**](S3Api.md#get_storage_transfer_status) | **GET** /api/v1/storages/buckets/{bucket_id}/transfer-status | Получение статуса переноса хранилища от стороннего S3 в Timeweb Cloud
 [**get_storage_users**](S3Api.md#get_storage_users) | **GET** /api/v1/storages/users | Получение списка пользователей хранилищ аккаунта
@@ -429,6 +430,88 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Объект JSON c ключом &#x60;subdomains&#x60; |  -  |
+**400** |  |  -  |
+**401** |  |  -  |
+**403** |  |  -  |
+**404** |  |  -  |
+**429** |  |  -  |
+**500** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_storage**
+> CreateStorage201Response get_storage(bucket_id)
+
+Получение хранилища по ID
+
+Чтобы получить хранилище по ID, отправьте GET-запрос на `/api/v1/storages/buckets/{bucket_id}`.
+
+### Example
+
+* Bearer (JWT) Authentication (Bearer):
+```python
+import time
+import os
+import timeweb_cloud_api
+from timeweb_cloud_api.models.create_storage201_response import CreateStorage201Response
+from timeweb_cloud_api.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.timeweb.cloud
+# See configuration.py for a list of all supported configuration parameters.
+configuration = timeweb_cloud_api.Configuration(
+    host = "https://api.timeweb.cloud"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): Bearer
+configuration = timeweb_cloud_api.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = timeweb_cloud_api.S3Api(api_client)
+    bucket_id = 1051 # object | ID хранилища.
+
+    try:
+        # Получение хранилища по ID
+        api_response = api_instance.get_storage(bucket_id)
+        print("The response of S3Api->get_storage:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling S3Api->get_storage: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **bucket_id** | [**object**](.md)| ID хранилища. | 
+
+### Return type
+
+[**CreateStorage201Response**](CreateStorage201Response.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Объект JSON c ключом &#x60;bucket&#x60; |  -  |
 **400** |  |  -  |
 **401** |  |  -  |
 **403** |  |  -  |
