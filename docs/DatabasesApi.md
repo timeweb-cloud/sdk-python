@@ -1946,7 +1946,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_databases_presets**
-> GetDatabasesPresets200Response get_databases_presets()
+> GetDatabasesPresets200Response get_databases_presets(db_id=db_id)
 
 Получение списка тарифов для баз данных
 
@@ -1983,10 +1983,11 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.DatabasesApi(api_client)
+    db_id = None # object | ID базы данных (optional)
 
     try:
         # Получение списка тарифов для баз данных
-        api_response = api_instance.get_databases_presets()
+        api_response = api_instance.get_databases_presets(db_id=db_id)
         print("The response of DatabasesApi->get_databases_presets:\n")
         pprint(api_response)
     except Exception as e:
@@ -1995,7 +1996,10 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **db_id** | [**object**](.md)| ID базы данных | [optional] 
 
 ### Return type
 

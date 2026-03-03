@@ -3528,16 +3528,18 @@ class DatabasesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def get_databases_presets(self, **kwargs) -> GetDatabasesPresets200Response:  # noqa: E501
+    def get_databases_presets(self, db_id : Annotated[Optional[Any], Field(description="ID базы данных")] = None, **kwargs) -> GetDatabasesPresets200Response:  # noqa: E501
         """Получение списка тарифов для баз данных  # noqa: E501
 
         Чтобы получить список тарифов для баз данных, отправьте GET-запрос на `/api/v2/presets/dbs`.   Тело ответа будет представлять собой объект JSON с ключом `databases_presets`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.get_databases_presets(async_req=True)
+        >>> thread = api.get_databases_presets(db_id, async_req=True)
         >>> result = thread.get()
 
+        :param db_id: ID базы данных
+        :type db_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request. If one
@@ -3552,19 +3554,21 @@ class DatabasesApi(object):
         kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             raise ValueError("Error! Please call the get_databases_presets_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
-        return self.get_databases_presets_with_http_info(**kwargs)  # noqa: E501
+        return self.get_databases_presets_with_http_info(db_id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def get_databases_presets_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
+    def get_databases_presets_with_http_info(self, db_id : Annotated[Optional[Any], Field(description="ID базы данных")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Получение списка тарифов для баз данных  # noqa: E501
 
         Чтобы получить список тарифов для баз данных, отправьте GET-запрос на `/api/v2/presets/dbs`.   Тело ответа будет представлять собой объект JSON с ключом `databases_presets`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.get_databases_presets_with_http_info(async_req=True)
+        >>> thread = api.get_databases_presets_with_http_info(db_id, async_req=True)
         >>> result = thread.get()
 
+        :param db_id: ID базы данных
+        :type db_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
@@ -3593,6 +3597,7 @@ class DatabasesApi(object):
         _params = locals()
 
         _all_params = [
+            'db_id'
         ]
         _all_params.extend(
             [
@@ -3623,6 +3628,9 @@ class DatabasesApi(object):
 
         # process the query parameters
         _query_params = []
+        if _params.get('db_id') is not None:  # noqa: E501
+            _query_params.append(('db_id', _params['db_id']))
+
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
         # process the form parameters
