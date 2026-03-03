@@ -3531,7 +3531,7 @@ class DatabasesApi(object):
     def get_databases_presets(self, **kwargs) -> GetDatabasesPresets200Response:  # noqa: E501
         """Получение списка тарифов для баз данных  # noqa: E501
 
-        Чтобы получить список тарифов для баз данных, отправьте GET-запрос на `/api/v1/presets/dbs`.   Тело ответа будет представлять собой объект JSON с ключом `databases_presets`.  # noqa: E501
+        Чтобы получить список тарифов для баз данных, отправьте GET-запрос на `/api/v2/presets/dbs`.   Тело ответа будет представлять собой объект JSON с ключом `databases_presets`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -3558,7 +3558,7 @@ class DatabasesApi(object):
     def get_databases_presets_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
         """Получение списка тарифов для баз данных  # noqa: E501
 
-        Чтобы получить список тарифов для баз данных, отправьте GET-запрос на `/api/v1/presets/dbs`.   Тело ответа будет представлять собой объект JSON с ключом `databases_presets`.  # noqa: E501
+        Чтобы получить список тарифов для баз данных, отправьте GET-запрос на `/api/v2/presets/dbs`.   Тело ответа будет представлять собой объект JSON с ключом `databases_presets`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -3648,7 +3648,7 @@ class DatabasesApi(object):
         }
 
         return self.api_client.call_api(
-            '/api/v1/presets/dbs', 'GET',
+            '/api/v2/presets/dbs', 'GET',
             _path_params,
             _query_params,
             _header_params,

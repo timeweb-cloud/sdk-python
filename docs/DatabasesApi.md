@@ -27,7 +27,7 @@ Method | HTTP request | Description
 [**get_database_user**](DatabasesApi.md#get_database_user) | **GET** /api/v1/databases/{db_cluster_id}/admins/{admin_id} | Получение пользователя базы данных
 [**get_database_users**](DatabasesApi.md#get_database_users) | **GET** /api/v1/databases/{db_cluster_id}/admins | Получение списка пользователей базы данных
 [**get_databases**](DatabasesApi.md#get_databases) | **GET** /api/v1/dbs | Получение списка всех баз данных
-[**get_databases_presets**](DatabasesApi.md#get_databases_presets) | **GET** /api/v1/presets/dbs | Получение списка тарифов для баз данных
+[**get_databases_presets**](DatabasesApi.md#get_databases_presets) | **GET** /api/v2/presets/dbs | Получение списка тарифов для баз данных
 [**restore_database_from_backup**](DatabasesApi.md#restore_database_from_backup) | **PUT** /api/v1/dbs/{db_id}/backups/{backup_id} | Восстановление базы данных из бэкапа
 [**update_database**](DatabasesApi.md#update_database) | **PATCH** /api/v1/dbs/{db_id} | Обновление базы данных
 [**update_database_auto_backups_settings**](DatabasesApi.md#update_database_auto_backups_settings) | **PATCH** /api/v1/dbs/{db_id}/auto-backups | Изменение настроек автобэкапов базы данных
@@ -1950,7 +1950,7 @@ Name | Type | Description  | Notes
 
 Получение списка тарифов для баз данных
 
-Чтобы получить список тарифов для баз данных, отправьте GET-запрос на `/api/v1/presets/dbs`.   Тело ответа будет представлять собой объект JSON с ключом `databases_presets`.
+Чтобы получить список тарифов для баз данных, отправьте GET-запрос на `/api/v2/presets/dbs`.   Тело ответа будет представлять собой объект JSON с ключом `databases_presets`.
 
 ### Example
 
