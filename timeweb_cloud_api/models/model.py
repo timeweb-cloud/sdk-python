@@ -30,10 +30,13 @@ class Model(BaseModel):
     id: Optional[Any] = Field(..., description="Уникальный идентификатор модели")
     provider_id: Optional[Any] = Field(..., description="ID провайдера, который предоставляет модель")
     name: Optional[Any] = Field(..., description="Название модели")
+    public_name: Optional[Any] = Field(..., description="Публичное имя модели")
     type: Optional[Any] = Field(..., description="Тип модели (llm - языковая модель, embedding - модель для эмбеддингов)")
+    is_deprecated: Optional[Any] = Field(..., description="Признак, что модель устарела")
+    is_reasoning: Optional[Any] = Field(..., description="Признак поддержки режима рассуждения")
     version: Optional[Any] = Field(..., description="Версия модели")
     params_info: Optional[ModelParamsInfo] = None
-    __properties = ["id", "provider_id", "name", "type", "version", "params_info"]
+    __properties = ["id", "provider_id", "name", "public_name", "type", "is_deprecated", "is_reasoning", "version", "params_info"]
 
     @validator('type')
     def type_validate_enum(cls, value):
@@ -87,10 +90,25 @@ class Model(BaseModel):
         if self.name is None and "name" in self.__fields_set__:
             _dict['name'] = None
 
+        # set to None if public_name (nullable) is None
+        # and __fields_set__ contains the field
+        if self.public_name is None and "public_name" in self.__fields_set__:
+            _dict['public_name'] = None
+
         # set to None if type (nullable) is None
         # and __fields_set__ contains the field
         if self.type is None and "type" in self.__fields_set__:
             _dict['type'] = None
+
+        # set to None if is_deprecated (nullable) is None
+        # and __fields_set__ contains the field
+        if self.is_deprecated is None and "is_deprecated" in self.__fields_set__:
+            _dict['is_deprecated'] = None
+
+        # set to None if is_reasoning (nullable) is None
+        # and __fields_set__ contains the field
+        if self.is_reasoning is None and "is_reasoning" in self.__fields_set__:
+            _dict['is_reasoning'] = None
 
         # set to None if version (nullable) is None
         # and __fields_set__ contains the field
@@ -112,7 +130,10 @@ class Model(BaseModel):
             "id": obj.get("id"),
             "provider_id": obj.get("provider_id"),
             "name": obj.get("name"),
+            "public_name": obj.get("public_name"),
             "type": obj.get("type"),
+            "is_deprecated": obj.get("is_deprecated"),
+            "is_reasoning": obj.get("is_reasoning"),
             "version": obj.get("version"),
             "params_info": ModelParamsInfo.from_dict(obj.get("params_info")) if obj.get("params_info") is not None else None
         })

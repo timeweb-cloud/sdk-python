@@ -8,7 +8,10 @@ Name | Type | Description | Notes
 **id** | **object** | Уникальный идентификатор модели | 
 **provider_id** | **object** | ID провайдера, который предоставляет модель | 
 **name** | **object** | Название модели | 
+**public_name** | **object** | Публичное имя модели | 
 **type** | **object** | Тип модели (llm - языковая модель, embedding - модель для эмбеддингов) | 
+**is_deprecated** | **object** | Признак, что модель устарела | 
+**is_reasoning** | **object** | Признак поддержки режима рассуждения | 
 **version** | **object** | Версия модели | 
 **params_info** | [**ModelParamsInfo**](ModelParamsInfo.md) |  | [optional] 
 

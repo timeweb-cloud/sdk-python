@@ -42,7 +42,10 @@ class TestModel(unittest.TestCase):
                 id = 1, 
                 provider_id = 1, 
                 name = gpt-4o, 
+                public_name = GPT 4o, 
                 type = llm, 
+                is_deprecated = false, 
+                is_reasoning = false, 
                 version = 2024-08-06, 
                 params_info = {temperature={type=number, min=0, max=2, default=1, description=Контролирует случайность вывода модели}, max_tokens={type=number, min=1, max=128000, default=4096, description=Максимальное количество токенов в выводе}}
             )
@@ -51,7 +54,10 @@ class TestModel(unittest.TestCase):
                 id = 1,
                 provider_id = 1,
                 name = gpt-4o,
+                public_name = GPT 4o,
                 type = llm,
+                is_deprecated = false,
+                is_reasoning = false,
                 version = 2024-08-06,
         )
         """
