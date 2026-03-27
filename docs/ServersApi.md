@@ -33,6 +33,7 @@ Method | HTTP request | Description
 [**perform_action_on_backup**](ServersApi.md#perform_action_on_backup) | **POST** /api/v1/servers/{server_id}/disks/{disk_id}/backups/{backup_id}/action | Выполнение действия над бэкапом диска сервера
 [**perform_action_on_server**](ServersApi.md#perform_action_on_server) | **POST** /api/v1/servers/{server_id}/action | Выполнение действия над сервером
 [**reboot_server**](ServersApi.md#reboot_server) | **POST** /api/v1/servers/{server_id}/reboot | Перезагрузка сервера
+[**reboot_server_hard**](ServersApi.md#reboot_server_hard) | **POST** /api/v1/servers/{server_id}/hard-reboot | Принудительная перезагрузка сервера
 [**reset_server_password**](ServersApi.md#reset_server_password) | **POST** /api/v1/servers/{server_id}/reset-password | Сброс пароля сервера
 [**shutdown_server**](ServersApi.md#shutdown_server) | **POST** /api/v1/servers/{server_id}/shutdown | Выключение сервера
 [**start_server**](ServersApi.md#start_server) | **POST** /api/v1/servers/{server_id}/start | Запуск сервера
@@ -2424,6 +2425,85 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
         api_instance.reboot_server(server_id)
     except Exception as e:
         print("Exception when calling ServersApi->reboot_server: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **server_id** | [**object**](.md)| ID облачного сервера. | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | Успешное выполнение действия |  -  |
+**400** |  |  -  |
+**401** |  |  -  |
+**403** |  |  -  |
+**409** |  |  -  |
+**429** |  |  -  |
+**500** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **reboot_server_hard**
+> reboot_server_hard(server_id)
+
+Принудительная перезагрузка сервера
+
+Чтобы принудительно перезагрузить сервер, отправьте POST-запрос на `/api/v1/servers/{server_id}/hard-reboot`.
+
+### Example
+
+* Bearer (JWT) Authentication (Bearer):
+```python
+import time
+import os
+import timeweb_cloud_api
+from timeweb_cloud_api.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.timeweb.cloud
+# See configuration.py for a list of all supported configuration parameters.
+configuration = timeweb_cloud_api.Configuration(
+    host = "https://api.timeweb.cloud"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): Bearer
+configuration = timeweb_cloud_api.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = timeweb_cloud_api.ServersApi(api_client)
+    server_id = 1051 # object | ID облачного сервера.
+
+    try:
+        # Принудительная перезагрузка сервера
+        api_instance.reboot_server_hard(server_id)
+    except Exception as e:
+        print("Exception when calling ServersApi->reboot_server_hard: %s\n" % e)
 ```
 
 

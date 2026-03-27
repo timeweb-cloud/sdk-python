@@ -232,6 +232,13 @@ class TestServersApi(unittest.TestCase):
         """
         pass
 
+    def test_reboot_server_hard(self):
+        """Test case for reboot_server_hard
+
+        Принудительная перезагрузка сервера  # noqa: E501
+        """
+        pass
+
     def test_reset_server_password(self):
         """Test case for reset_server_password
 
