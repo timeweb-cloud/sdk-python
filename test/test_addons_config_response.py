@@ -17,11 +17,11 @@ import unittest
 import datetime
 
 import timeweb_cloud_api
-from timeweb_cloud_api.models.create_dedicated_server import CreateDedicatedServer  # noqa: E501
+from timeweb_cloud_api.models.addons_config_response import AddonsConfigResponse  # noqa: E501
 from timeweb_cloud_api.rest import ApiException
 
-class TestCreateDedicatedServer(unittest.TestCase):
-    """CreateDedicatedServer unit test stubs"""
+class TestAddonsConfigResponse(unittest.TestCase):
+    """AddonsConfigResponse unit test stubs"""
 
     def setUp(self):
         pass
@@ -30,37 +30,30 @@ class TestCreateDedicatedServer(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test CreateDedicatedServer
+        """Test AddonsConfigResponse
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # uncomment below to create an instance of `CreateDedicatedServer`
+        # uncomment below to create an instance of `AddonsConfigResponse`
         """
-        model = timeweb_cloud_api.models.create_dedicated_server.CreateDedicatedServer()  # noqa: E501
+        model = timeweb_cloud_api.models.addons_config_response.AddonsConfigResponse()  # noqa: E501
         if include_optional :
-            return CreateDedicatedServer(
-                plan_id = 2377, 
-                preset_id = 81, 
-                os_id = 188, 
-                cp_id = 199, 
-                bandwidth_id = 483, 
-                network_drive_id = 483, 
-                additional_ip_addr_id = 1, 
-                payment_period = P1M, 
-                name = name, 
-                comment = comment, 
-                project_id = 1
+            return AddonsConfigResponse(
+                response_id = None, 
+                meta = timeweb_cloud_api.models.meta.Meta(
+                    total = null, ), 
+                k8s_addons = None
             )
         else :
-            return CreateDedicatedServer(
-                preset_id = 81,
-                payment_period = P1M,
-                name = name,
+            return AddonsConfigResponse(
+                meta = timeweb_cloud_api.models.meta.Meta(
+                    total = null, ),
+                k8s_addons = None,
         )
         """
 
-    def testCreateDedicatedServer(self):
-        """Test CreateDedicatedServer"""
+    def testAddonsConfigResponse(self):
+        """Test AddonsConfigResponse"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

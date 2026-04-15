@@ -64,6 +64,13 @@ class TestKubernetesApi(unittest.TestCase):
         """
         pass
 
+    def test_delete_kubernetes_addons(self):
+        """Test case for delete_kubernetes_addons
+
+        Удаление дополнения  # noqa: E501
+        """
+        pass
+
     def test_get_cluster(self):
         """Test case for get_cluster
 
@@ -134,6 +141,20 @@ class TestKubernetesApi(unittest.TestCase):
         """
         pass
 
+    def test_get_kubernetes_addons(self):
+        """Test case for get_kubernetes_addons
+
+        Получение списка установленных дополнений  # noqa: E501
+        """
+        pass
+
+    def test_get_kubernetes_addons_config(self):
+        """Test case for get_kubernetes_addons_config
+
+        Получение списка конфигураций дополнений  # noqa: E501
+        """
+        pass
+
     def test_get_kubernetes_presets(self):
         """Test case for get_kubernetes_presets
 
@@ -145,6 +166,20 @@ class TestKubernetesApi(unittest.TestCase):
         """Test case for increase_count_of_nodes_in_group
 
         Увеличение количества нод в группе на указанное количество  # noqa: E501
+        """
+        pass
+
+    def test_post_kubernetes_addons(self):
+        """Test case for post_kubernetes_addons
+
+        Установка дополнения  # noqa: E501
+        """
+        pass
+
+    def test_post_kubernetes_addons_update(self):
+        """Test case for post_kubernetes_addons_update
+
+        Изменение конфигурации дополнения  # noqa: E501
         """
         pass
 

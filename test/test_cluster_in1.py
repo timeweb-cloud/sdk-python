@@ -17,11 +17,11 @@ import unittest
 import datetime
 
 import timeweb_cloud_api
-from timeweb_cloud_api.models.create_dedicated_server import CreateDedicatedServer  # noqa: E501
+from timeweb_cloud_api.models.cluster_in1 import ClusterIn1  # noqa: E501
 from timeweb_cloud_api.rest import ApiException
 
-class TestCreateDedicatedServer(unittest.TestCase):
-    """CreateDedicatedServer unit test stubs"""
+class TestClusterIn1(unittest.TestCase):
+    """ClusterIn1 unit test stubs"""
 
     def setUp(self):
         pass
@@ -30,37 +30,61 @@ class TestCreateDedicatedServer(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test CreateDedicatedServer
+        """Test ClusterIn1
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # uncomment below to create an instance of `CreateDedicatedServer`
+        # uncomment below to create an instance of `ClusterIn1`
         """
-        model = timeweb_cloud_api.models.create_dedicated_server.CreateDedicatedServer()  # noqa: E501
+        model = timeweb_cloud_api.models.cluster_in1.ClusterIn1()  # noqa: E501
         if include_optional :
-            return CreateDedicatedServer(
-                plan_id = 2377, 
-                preset_id = 81, 
-                os_id = 188, 
-                cp_id = 199, 
-                bandwidth_id = 483, 
-                network_drive_id = 483, 
-                additional_ip_addr_id = 1, 
-                payment_period = P1M, 
-                name = name, 
-                comment = comment, 
-                project_id = 1
+            return ClusterIn1(
+                type = ingress, 
+                config_type = basic, 
+                yaml_config = controller:
+  kind: DaemonSet
+  replicaCount: 1
+  service:
+    enabled: false
+  hostNetwork: true
+  hostPort:
+    enabled: true
+    ports:
+      http: 80
+      https: 443
+  ingressClassResource:
+    name: nginx
+    default: true
+  admissionWebhooks:
+    enabled: false, 
+                version = 4.12.1
             )
         else :
-            return CreateDedicatedServer(
-                preset_id = 81,
-                payment_period = P1M,
-                name = name,
+            return ClusterIn1(
+                type = ingress,
+                config_type = basic,
+                yaml_config = controller:
+  kind: DaemonSet
+  replicaCount: 1
+  service:
+    enabled: false
+  hostNetwork: true
+  hostPort:
+    enabled: true
+    ports:
+      http: 80
+      https: 443
+  ingressClassResource:
+    name: nginx
+    default: true
+  admissionWebhooks:
+    enabled: false,
+                version = 4.12.1,
         )
         """
 
-    def testCreateDedicatedServer(self):
-        """Test CreateDedicatedServer"""
+    def testClusterIn1(self):
+        """Test ClusterIn1"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

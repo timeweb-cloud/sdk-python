@@ -9,6 +9,7 @@ Method | HTTP request | Description
 [**delete_cluster**](KubernetesApi.md#delete_cluster) | **DELETE** /api/v1/k8s/clusters/{cluster_id} | Удаление кластера
 [**delete_cluster_node**](KubernetesApi.md#delete_cluster_node) | **DELETE** /api/v1/k8s/clusters/{cluster_id}/nodes/{node_id} | Удаление ноды
 [**delete_cluster_node_group**](KubernetesApi.md#delete_cluster_node_group) | **DELETE** /api/v1/k8s/clusters/{cluster_id}/groups/{group_id} | Удаление группы нод
+[**delete_kubernetes_addons**](KubernetesApi.md#delete_kubernetes_addons) | **DELETE** /api/v1/k8s/clusters/{cluster_id}/addons/{addon_id} | Удаление дополнения
 [**get_cluster**](KubernetesApi.md#get_cluster) | **GET** /api/v1/k8s/clusters/{cluster_id} | Получение информации о кластере
 [**get_cluster_kubeconfig**](KubernetesApi.md#get_cluster_kubeconfig) | **GET** /api/v1/k8s/clusters/{cluster_id}/kubeconfig | Получение файла kubeconfig
 [**get_cluster_node_group**](KubernetesApi.md#get_cluster_node_group) | **GET** /api/v1/k8s/clusters/{cluster_id}/groups/{group_id} | Получение информации о группе нод
@@ -19,8 +20,12 @@ Method | HTTP request | Description
 [**get_clusters**](KubernetesApi.md#get_clusters) | **GET** /api/v1/k8s/clusters | Получение списка кластеров
 [**get_k8_s_network_drivers**](KubernetesApi.md#get_k8_s_network_drivers) | **GET** /api/v1/k8s/network-drivers | Получение списка сетевых драйверов k8s
 [**get_k8_s_versions**](KubernetesApi.md#get_k8_s_versions) | **GET** /api/v1/k8s/k8s-versions | Получение списка версий k8s
+[**get_kubernetes_addons**](KubernetesApi.md#get_kubernetes_addons) | **GET** /api/v1/k8s/clusters/{cluster_id}/addons | Получение списка установленных дополнений
+[**get_kubernetes_addons_config**](KubernetesApi.md#get_kubernetes_addons_config) | **GET** /api/v1/k8s/clusters/{cluster_id}/addons-configs | Получение списка конфигураций дополнений
 [**get_kubernetes_presets**](KubernetesApi.md#get_kubernetes_presets) | **GET** /api/v1/presets/k8s | Получение списка тарифов
 [**increase_count_of_nodes_in_group**](KubernetesApi.md#increase_count_of_nodes_in_group) | **POST** /api/v1/k8s/clusters/{cluster_id}/groups/{group_id}/nodes | Увеличение количества нод в группе на указанное количество
+[**post_kubernetes_addons**](KubernetesApi.md#post_kubernetes_addons) | **POST** /api/v1/k8s/clusters/{cluster_id}/addons | Установка дополнения
+[**post_kubernetes_addons_update**](KubernetesApi.md#post_kubernetes_addons_update) | **POST** /api/v1/k8s/clusters/{cluster_id}/addons/{addon_id} | Изменение конфигурации дополнения
 [**reduce_count_of_nodes_in_group**](KubernetesApi.md#reduce_count_of_nodes_in_group) | **DELETE** /api/v1/k8s/clusters/{cluster_id}/groups/{group_id}/nodes | Уменьшение количества нод в группе на указанное количество
 [**update_cluster**](KubernetesApi.md#update_cluster) | **PATCH** /api/v1/k8s/clusters/{cluster_id} | Обновление информации о кластере
 [**update_cluster_version**](KubernetesApi.md#update_cluster_version) | **PATCH** /api/v1/k8s/clusters/{cluster_id}/versions/update | Обновление версии кластера
@@ -436,6 +441,85 @@ void (empty response body)
 **401** |  |  -  |
 **403** |  |  -  |
 **404** |  |  -  |
+**429** |  |  -  |
+**500** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **delete_kubernetes_addons**
+> delete_kubernetes_addons(cluster_id, addon_id)
+
+Удаление дополнения
+
+Чтобы удалить дополнение, отправьте DELETE-запрос в `/api/v1/k8s/clusters/{cluster_id}/addons/{addon_id}`.
+
+### Example
+
+* Bearer (JWT) Authentication (Bearer):
+```python
+import time
+import os
+import timeweb_cloud_api
+from timeweb_cloud_api.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.timeweb.cloud
+# See configuration.py for a list of all supported configuration parameters.
+configuration = timeweb_cloud_api.Configuration(
+    host = "https://api.timeweb.cloud"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): Bearer
+configuration = timeweb_cloud_api.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = timeweb_cloud_api.KubernetesApi(api_client)
+    cluster_id = None # object | ID кластера
+    addon_id = None # object | ID аддона
+
+    try:
+        # Удаление дополнения
+        api_instance.delete_kubernetes_addons(cluster_id, addon_id)
+    except Exception as e:
+        print("Exception when calling KubernetesApi->delete_kubernetes_addons: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **cluster_id** | [**object**](.md)| ID кластера | 
+ **addon_id** | [**object**](.md)| ID аддона | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | Дополнение удалено |  -  |
+**400** |  |  -  |
+**401** |  |  -  |
 **429** |  |  -  |
 **500** |  |  -  |
 
@@ -1256,6 +1340,166 @@ This endpoint does not need any parameter.
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **get_kubernetes_addons**
+> AddonsResponse get_kubernetes_addons(cluster_id)
+
+Получение списка установленных дополнений
+
+Чтобы получить список установленных дополнений, отправьте GET-запрос в `/api/v1/k8s/clusters/{cluster_id}/addons`.
+
+### Example
+
+* Bearer (JWT) Authentication (Bearer):
+```python
+import time
+import os
+import timeweb_cloud_api
+from timeweb_cloud_api.models.addons_response import AddonsResponse
+from timeweb_cloud_api.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.timeweb.cloud
+# See configuration.py for a list of all supported configuration parameters.
+configuration = timeweb_cloud_api.Configuration(
+    host = "https://api.timeweb.cloud"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): Bearer
+configuration = timeweb_cloud_api.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = timeweb_cloud_api.KubernetesApi(api_client)
+    cluster_id = None # object | ID кластера
+
+    try:
+        # Получение списка установленных дополнений
+        api_response = api_instance.get_kubernetes_addons(cluster_id)
+        print("The response of KubernetesApi->get_kubernetes_addons:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling KubernetesApi->get_kubernetes_addons: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **cluster_id** | [**object**](.md)| ID кластера | 
+
+### Return type
+
+[**AddonsResponse**](AddonsResponse.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Список установленных дополнений |  -  |
+**400** |  |  -  |
+**401** |  |  -  |
+**429** |  |  -  |
+**500** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_kubernetes_addons_config**
+> AddonsConfigResponse get_kubernetes_addons_config(cluster_id)
+
+Получение списка конфигураций дополнений
+
+Чтобы получить список конфигураций дополнений, отправьте GET-запрос в `/api/v1/k8s/clusters/{cluster_id}/addons-configs`.
+
+### Example
+
+* Bearer (JWT) Authentication (Bearer):
+```python
+import time
+import os
+import timeweb_cloud_api
+from timeweb_cloud_api.models.addons_config_response import AddonsConfigResponse
+from timeweb_cloud_api.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.timeweb.cloud
+# See configuration.py for a list of all supported configuration parameters.
+configuration = timeweb_cloud_api.Configuration(
+    host = "https://api.timeweb.cloud"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): Bearer
+configuration = timeweb_cloud_api.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = timeweb_cloud_api.KubernetesApi(api_client)
+    cluster_id = None # object | ID кластера
+
+    try:
+        # Получение списка конфигураций дополнений
+        api_response = api_instance.get_kubernetes_addons_config(cluster_id)
+        print("The response of KubernetesApi->get_kubernetes_addons_config:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling KubernetesApi->get_kubernetes_addons_config: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **cluster_id** | [**object**](.md)| ID кластера | 
+
+### Return type
+
+[**AddonsConfigResponse**](AddonsConfigResponse.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Список конфигураций дополнений |  -  |
+**400** |  |  -  |
+**401** |  |  -  |
+**429** |  |  -  |
+**500** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **get_kubernetes_presets**
 > PresetsResponse get_kubernetes_presets()
 
@@ -1414,6 +1658,168 @@ Name | Type | Description  | Notes
 **401** |  |  -  |
 **403** |  |  -  |
 **404** |  |  -  |
+**429** |  |  -  |
+**500** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **post_kubernetes_addons**
+> post_kubernetes_addons(cluster_id, cluster_in1)
+
+Установка дополнения
+
+Чтобы установить дополнение, отправьте POST-запрос в `/api/v1/k8s/clusters/{cluster_id}/addons`.
+
+### Example
+
+* Bearer (JWT) Authentication (Bearer):
+```python
+import time
+import os
+import timeweb_cloud_api
+from timeweb_cloud_api.models.cluster_in1 import ClusterIn1
+from timeweb_cloud_api.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.timeweb.cloud
+# See configuration.py for a list of all supported configuration parameters.
+configuration = timeweb_cloud_api.Configuration(
+    host = "https://api.timeweb.cloud"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): Bearer
+configuration = timeweb_cloud_api.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = timeweb_cloud_api.KubernetesApi(api_client)
+    cluster_id = None # object | ID кластера
+    cluster_in1 = timeweb_cloud_api.ClusterIn1() # ClusterIn1 | 
+
+    try:
+        # Установка дополнения
+        api_instance.post_kubernetes_addons(cluster_id, cluster_in1)
+    except Exception as e:
+        print("Exception when calling KubernetesApi->post_kubernetes_addons: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **cluster_id** | [**object**](.md)| ID кластера | 
+ **cluster_in1** | [**ClusterIn1**](ClusterIn1.md)|  | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | Дополнение установлено |  -  |
+**400** |  |  -  |
+**401** |  |  -  |
+**429** |  |  -  |
+**500** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **post_kubernetes_addons_update**
+> post_kubernetes_addons_update(cluster_id, addon_id, cluster_in1)
+
+Изменение конфигурации дополнения
+
+Чтобы обновить конфигурацию дополнения, отправьте POST-запрос в `/api/v1/k8s/clusters/{cluster_id}/addons/{addon_id}`.
+
+### Example
+
+* Bearer (JWT) Authentication (Bearer):
+```python
+import time
+import os
+import timeweb_cloud_api
+from timeweb_cloud_api.models.cluster_in1 import ClusterIn1
+from timeweb_cloud_api.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.timeweb.cloud
+# See configuration.py for a list of all supported configuration parameters.
+configuration = timeweb_cloud_api.Configuration(
+    host = "https://api.timeweb.cloud"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): Bearer
+configuration = timeweb_cloud_api.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = timeweb_cloud_api.KubernetesApi(api_client)
+    cluster_id = None # object | ID кластера
+    addon_id = None # object | ID аддона
+    cluster_in1 = timeweb_cloud_api.ClusterIn1() # ClusterIn1 | 
+
+    try:
+        # Изменение конфигурации дополнения
+        api_instance.post_kubernetes_addons_update(cluster_id, addon_id, cluster_in1)
+    except Exception as e:
+        print("Exception when calling KubernetesApi->post_kubernetes_addons_update: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **cluster_id** | [**object**](.md)| ID кластера | 
+ **addon_id** | [**object**](.md)| ID аддона | 
+ **cluster_in1** | [**ClusterIn1**](ClusterIn1.md)|  | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | Дополнение Обновлено |  -  |
+**400** |  |  -  |
+**401** |  |  -  |
 **429** |  |  -  |
 **500** |  |  -  |
 

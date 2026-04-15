@@ -24,8 +24,11 @@ from pydantic import Field
 
 from typing import Any, Optional
 
+from timeweb_cloud_api.models.addons_config_response import AddonsConfigResponse
+from timeweb_cloud_api.models.addons_response import AddonsResponse
 from timeweb_cloud_api.models.cluster_edit import ClusterEdit
 from timeweb_cloud_api.models.cluster_in import ClusterIn
+from timeweb_cloud_api.models.cluster_in1 import ClusterIn1
 from timeweb_cloud_api.models.cluster_response import ClusterResponse
 from timeweb_cloud_api.models.cluster_version_edit import ClusterVersionEdit
 from timeweb_cloud_api.models.clusters_response import ClustersResponse
@@ -800,6 +803,147 @@ class KubernetesApi(object):
 
         return self.api_client.call_api(
             '/api/v1/k8s/clusters/{cluster_id}/groups/{group_id}', 'DELETE',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @validate_arguments
+    def delete_kubernetes_addons(self, cluster_id : Annotated[Any, Field(..., description="ID кластера")], addon_id : Annotated[Any, Field(..., description="ID аддона")], **kwargs) -> None:  # noqa: E501
+        """Удаление дополнения  # noqa: E501
+
+        Чтобы удалить дополнение, отправьте DELETE-запрос в `/api/v1/k8s/clusters/{cluster_id}/addons/{addon_id}`.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.delete_kubernetes_addons(cluster_id, addon_id, async_req=True)
+        >>> result = thread.get()
+
+        :param cluster_id: ID кластера (required)
+        :type cluster_id: object
+        :param addon_id: ID аддона (required)
+        :type addon_id: object
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: None
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            raise ValueError("Error! Please call the delete_kubernetes_addons_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
+        return self.delete_kubernetes_addons_with_http_info(cluster_id, addon_id, **kwargs)  # noqa: E501
+
+    @validate_arguments
+    def delete_kubernetes_addons_with_http_info(self, cluster_id : Annotated[Any, Field(..., description="ID кластера")], addon_id : Annotated[Any, Field(..., description="ID аддона")], **kwargs) -> ApiResponse:  # noqa: E501
+        """Удаление дополнения  # noqa: E501
+
+        Чтобы удалить дополнение, отправьте DELETE-запрос в `/api/v1/k8s/clusters/{cluster_id}/addons/{addon_id}`.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.delete_kubernetes_addons_with_http_info(cluster_id, addon_id, async_req=True)
+        >>> result = thread.get()
+
+        :param cluster_id: ID кластера (required)
+        :type cluster_id: object
+        :param addon_id: ID аддона (required)
+        :type addon_id: object
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the 
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: None
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'cluster_id',
+            'addon_id'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method delete_kubernetes_addons" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['cluster_id']:
+            _path_params['cluster_id'] = _params['cluster_id']
+
+        if _params['addon_id']:
+            _path_params['addon_id'] = _params['addon_id']
+
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # authentication setting
+        _auth_settings = ['Bearer']  # noqa: E501
+
+        _response_types_map = {}
+
+        return self.api_client.call_api(
+            '/api/v1/k8s/clusters/{cluster_id}/addons/{addon_id}', 'DELETE',
             _path_params,
             _query_params,
             _header_params,
@@ -2286,6 +2430,292 @@ class KubernetesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
+    def get_kubernetes_addons(self, cluster_id : Annotated[Any, Field(..., description="ID кластера")], **kwargs) -> AddonsResponse:  # noqa: E501
+        """Получение списка установленных дополнений  # noqa: E501
+
+        Чтобы получить список установленных дополнений, отправьте GET-запрос в `/api/v1/k8s/clusters/{cluster_id}/addons`.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_kubernetes_addons(cluster_id, async_req=True)
+        >>> result = thread.get()
+
+        :param cluster_id: ID кластера (required)
+        :type cluster_id: object
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: AddonsResponse
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            raise ValueError("Error! Please call the get_kubernetes_addons_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
+        return self.get_kubernetes_addons_with_http_info(cluster_id, **kwargs)  # noqa: E501
+
+    @validate_arguments
+    def get_kubernetes_addons_with_http_info(self, cluster_id : Annotated[Any, Field(..., description="ID кластера")], **kwargs) -> ApiResponse:  # noqa: E501
+        """Получение списка установленных дополнений  # noqa: E501
+
+        Чтобы получить список установленных дополнений, отправьте GET-запрос в `/api/v1/k8s/clusters/{cluster_id}/addons`.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_kubernetes_addons_with_http_info(cluster_id, async_req=True)
+        >>> result = thread.get()
+
+        :param cluster_id: ID кластера (required)
+        :type cluster_id: object
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the 
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(AddonsResponse, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'cluster_id'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_kubernetes_addons" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['cluster_id']:
+            _path_params['cluster_id'] = _params['cluster_id']
+
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = ['Bearer']  # noqa: E501
+
+        _response_types_map = {
+            '200': "AddonsResponse",
+            '400': None,
+            '401': None,
+            '429': None,
+            '500': None,
+        }
+
+        return self.api_client.call_api(
+            '/api/v1/k8s/clusters/{cluster_id}/addons', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @validate_arguments
+    def get_kubernetes_addons_config(self, cluster_id : Annotated[Any, Field(..., description="ID кластера")], **kwargs) -> AddonsConfigResponse:  # noqa: E501
+        """Получение списка конфигураций дополнений  # noqa: E501
+
+        Чтобы получить список конфигураций дополнений, отправьте GET-запрос в `/api/v1/k8s/clusters/{cluster_id}/addons-configs`.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_kubernetes_addons_config(cluster_id, async_req=True)
+        >>> result = thread.get()
+
+        :param cluster_id: ID кластера (required)
+        :type cluster_id: object
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: AddonsConfigResponse
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            raise ValueError("Error! Please call the get_kubernetes_addons_config_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
+        return self.get_kubernetes_addons_config_with_http_info(cluster_id, **kwargs)  # noqa: E501
+
+    @validate_arguments
+    def get_kubernetes_addons_config_with_http_info(self, cluster_id : Annotated[Any, Field(..., description="ID кластера")], **kwargs) -> ApiResponse:  # noqa: E501
+        """Получение списка конфигураций дополнений  # noqa: E501
+
+        Чтобы получить список конфигураций дополнений, отправьте GET-запрос в `/api/v1/k8s/clusters/{cluster_id}/addons-configs`.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_kubernetes_addons_config_with_http_info(cluster_id, async_req=True)
+        >>> result = thread.get()
+
+        :param cluster_id: ID кластера (required)
+        :type cluster_id: object
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the 
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(AddonsConfigResponse, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'cluster_id'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_kubernetes_addons_config" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['cluster_id']:
+            _path_params['cluster_id'] = _params['cluster_id']
+
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = ['Bearer']  # noqa: E501
+
+        _response_types_map = {
+            '200': "AddonsConfigResponse",
+            '400': None,
+            '401': None,
+            '429': None,
+            '500': None,
+        }
+
+        return self.api_client.call_api(
+            '/api/v1/k8s/clusters/{cluster_id}/addons-configs', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @validate_arguments
     def get_kubernetes_presets(self, **kwargs) -> PresetsResponse:  # noqa: E501
         """Получение списка тарифов  # noqa: E501
 
@@ -2573,6 +3003,310 @@ class KubernetesApi(object):
 
         return self.api_client.call_api(
             '/api/v1/k8s/clusters/{cluster_id}/groups/{group_id}/nodes', 'POST',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @validate_arguments
+    def post_kubernetes_addons(self, cluster_id : Annotated[Any, Field(..., description="ID кластера")], cluster_in1 : ClusterIn1, **kwargs) -> None:  # noqa: E501
+        """Установка дополнения  # noqa: E501
+
+        Чтобы установить дополнение, отправьте POST-запрос в `/api/v1/k8s/clusters/{cluster_id}/addons`.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.post_kubernetes_addons(cluster_id, cluster_in1, async_req=True)
+        >>> result = thread.get()
+
+        :param cluster_id: ID кластера (required)
+        :type cluster_id: object
+        :param cluster_in1: (required)
+        :type cluster_in1: ClusterIn1
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: None
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            raise ValueError("Error! Please call the post_kubernetes_addons_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
+        return self.post_kubernetes_addons_with_http_info(cluster_id, cluster_in1, **kwargs)  # noqa: E501
+
+    @validate_arguments
+    def post_kubernetes_addons_with_http_info(self, cluster_id : Annotated[Any, Field(..., description="ID кластера")], cluster_in1 : ClusterIn1, **kwargs) -> ApiResponse:  # noqa: E501
+        """Установка дополнения  # noqa: E501
+
+        Чтобы установить дополнение, отправьте POST-запрос в `/api/v1/k8s/clusters/{cluster_id}/addons`.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.post_kubernetes_addons_with_http_info(cluster_id, cluster_in1, async_req=True)
+        >>> result = thread.get()
+
+        :param cluster_id: ID кластера (required)
+        :type cluster_id: object
+        :param cluster_in1: (required)
+        :type cluster_in1: ClusterIn1
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the 
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: None
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'cluster_id',
+            'cluster_in1'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method post_kubernetes_addons" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['cluster_id']:
+            _path_params['cluster_id'] = _params['cluster_id']
+
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        if _params['cluster_in1'] is not None:
+            _body_params = _params['cluster_in1']
+
+        # set the HTTP header `Content-Type`
+        _content_types_list = _params.get('_content_type',
+            self.api_client.select_header_content_type(
+                ['application/json']))
+        if _content_types_list:
+                _header_params['Content-Type'] = _content_types_list
+
+        # authentication setting
+        _auth_settings = ['Bearer']  # noqa: E501
+
+        _response_types_map = {}
+
+        return self.api_client.call_api(
+            '/api/v1/k8s/clusters/{cluster_id}/addons', 'POST',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @validate_arguments
+    def post_kubernetes_addons_update(self, cluster_id : Annotated[Any, Field(..., description="ID кластера")], addon_id : Annotated[Any, Field(..., description="ID аддона")], cluster_in1 : ClusterIn1, **kwargs) -> None:  # noqa: E501
+        """Изменение конфигурации дополнения  # noqa: E501
+
+        Чтобы обновить конфигурацию дополнения, отправьте POST-запрос в `/api/v1/k8s/clusters/{cluster_id}/addons/{addon_id}`.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.post_kubernetes_addons_update(cluster_id, addon_id, cluster_in1, async_req=True)
+        >>> result = thread.get()
+
+        :param cluster_id: ID кластера (required)
+        :type cluster_id: object
+        :param addon_id: ID аддона (required)
+        :type addon_id: object
+        :param cluster_in1: (required)
+        :type cluster_in1: ClusterIn1
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: None
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            raise ValueError("Error! Please call the post_kubernetes_addons_update_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
+        return self.post_kubernetes_addons_update_with_http_info(cluster_id, addon_id, cluster_in1, **kwargs)  # noqa: E501
+
+    @validate_arguments
+    def post_kubernetes_addons_update_with_http_info(self, cluster_id : Annotated[Any, Field(..., description="ID кластера")], addon_id : Annotated[Any, Field(..., description="ID аддона")], cluster_in1 : ClusterIn1, **kwargs) -> ApiResponse:  # noqa: E501
+        """Изменение конфигурации дополнения  # noqa: E501
+
+        Чтобы обновить конфигурацию дополнения, отправьте POST-запрос в `/api/v1/k8s/clusters/{cluster_id}/addons/{addon_id}`.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.post_kubernetes_addons_update_with_http_info(cluster_id, addon_id, cluster_in1, async_req=True)
+        >>> result = thread.get()
+
+        :param cluster_id: ID кластера (required)
+        :type cluster_id: object
+        :param addon_id: ID аддона (required)
+        :type addon_id: object
+        :param cluster_in1: (required)
+        :type cluster_in1: ClusterIn1
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the 
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: None
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'cluster_id',
+            'addon_id',
+            'cluster_in1'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method post_kubernetes_addons_update" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['cluster_id']:
+            _path_params['cluster_id'] = _params['cluster_id']
+
+        if _params['addon_id']:
+            _path_params['addon_id'] = _params['addon_id']
+
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        if _params['cluster_in1'] is not None:
+            _body_params = _params['cluster_in1']
+
+        # set the HTTP header `Content-Type`
+        _content_types_list = _params.get('_content_type',
+            self.api_client.select_header_content_type(
+                ['application/json']))
+        if _content_types_list:
+                _header_params['Content-Type'] = _content_types_list
+
+        # authentication setting
+        _auth_settings = ['Bearer']  # noqa: E501
+
+        _response_types_map = {}
+
+        return self.api_client.call_api(
+            '/api/v1/k8s/clusters/{cluster_id}/addons/{addon_id}', 'POST',
             _path_params,
             _query_params,
             _header_params,

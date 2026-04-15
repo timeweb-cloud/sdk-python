@@ -36,7 +36,8 @@ class CreateDedicatedServer(BaseModel):
     payment_period: Optional[Any] = Field(..., description="Период оплаты.")
     name: Optional[Any] = Field(..., description="Удобочитаемое имя выделенного сервера. Максимальная длина — 255 символов, имя должно быть уникальным.")
     comment: Optional[Any] = Field(None, description="Комментарий к выделенному серверу. Максимальная длина — 255 символов.")
-    __properties = ["plan_id", "preset_id", "os_id", "cp_id", "bandwidth_id", "network_drive_id", "additional_ip_addr_id", "payment_period", "name", "comment"]
+    project_id: Optional[Any] = Field(None, description="ID проекта, в который будет добавлен выделенный сервер.")
+    __properties = ["plan_id", "preset_id", "os_id", "cp_id", "bandwidth_id", "network_drive_id", "additional_ip_addr_id", "payment_period", "name", "comment", "project_id"]
 
     @validator('payment_period')
     def payment_period_validate_enum(cls, value):
@@ -122,6 +123,11 @@ class CreateDedicatedServer(BaseModel):
         if self.comment is None and "comment" in self.__fields_set__:
             _dict['comment'] = None
 
+        # set to None if project_id (nullable) is None
+        # and __fields_set__ contains the field
+        if self.project_id is None and "project_id" in self.__fields_set__:
+            _dict['project_id'] = None
+
         return _dict
 
     @classmethod
@@ -143,7 +149,8 @@ class CreateDedicatedServer(BaseModel):
             "additional_ip_addr_id": obj.get("additional_ip_addr_id"),
             "payment_period": obj.get("payment_period"),
             "name": obj.get("name"),
-            "comment": obj.get("comment")
+            "comment": obj.get("comment"),
+            "project_id": obj.get("project_id")
         })
         return _obj
 

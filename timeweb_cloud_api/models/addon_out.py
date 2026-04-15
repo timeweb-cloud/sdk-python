@@ -13,56 +13,113 @@
 """
 
 
-import unittest
-import datetime
+from __future__ import annotations
+import pprint
+import re  # noqa: F401
+import json
 
-import timeweb_cloud_api
-from timeweb_cloud_api.models.create_dedicated_server import CreateDedicatedServer  # noqa: E501
-from timeweb_cloud_api.rest import ApiException
 
-class TestCreateDedicatedServer(unittest.TestCase):
-    """CreateDedicatedServer unit test stubs"""
+from typing import Any, Optional
+from pydantic import BaseModel, Field
 
-    def setUp(self):
-        pass
+class AddonOut(BaseModel):
+    """
+    AddonOut
+    """
+    id: Optional[Any] = Field(..., description="ID дополнения")
+    type: Optional[Any] = Field(..., description="Тип дополнения")
+    status: Optional[Any] = Field(..., description="Статус дополнения")
+    created_at: Optional[Any] = Field(..., description="Дата и время создания дополнения в формате ISO8601")
+    version: Optional[Any] = Field(..., description="Версия дополнения")
+    config: Optional[Any] = Field(None, description="Дополнительная конфигурация дополнения")
+    yaml_config: Optional[Any] = Field(..., description="Yaml конфигурация дополнения")
+    config_type: Optional[Any] = Field(..., description="Тип конфигурации дополнения")
+    __properties = ["id", "type", "status", "created_at", "version", "config", "yaml_config", "config_type"]
 
-    def tearDown(self):
-        pass
+    class Config:
+        """Pydantic configuration"""
+        allow_population_by_field_name = True
+        validate_assignment = True
 
-    def make_instance(self, include_optional):
-        """Test CreateDedicatedServer
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
-        # uncomment below to create an instance of `CreateDedicatedServer`
-        """
-        model = timeweb_cloud_api.models.create_dedicated_server.CreateDedicatedServer()  # noqa: E501
-        if include_optional :
-            return CreateDedicatedServer(
-                plan_id = 2377, 
-                preset_id = 81, 
-                os_id = 188, 
-                cp_id = 199, 
-                bandwidth_id = 483, 
-                network_drive_id = 483, 
-                additional_ip_addr_id = 1, 
-                payment_period = P1M, 
-                name = name, 
-                comment = comment, 
-                project_id = 1
-            )
-        else :
-            return CreateDedicatedServer(
-                preset_id = 81,
-                payment_period = P1M,
-                name = name,
-        )
-        """
+    def to_str(self) -> str:
+        """Returns the string representation of the model using alias"""
+        return pprint.pformat(self.dict(by_alias=True))
 
-    def testCreateDedicatedServer(self):
-        """Test CreateDedicatedServer"""
-        # inst_req_only = self.make_instance(include_optional=False)
-        # inst_req_and_optional = self.make_instance(include_optional=True)
+    def to_json(self) -> str:
+        """Returns the JSON representation of the model using alias"""
+        return json.dumps(self.to_dict())
 
-if __name__ == '__main__':
-    unittest.main()
+    @classmethod
+    def from_json(cls, json_str: str) -> AddonOut:
+        """Create an instance of AddonOut from a JSON string"""
+        return cls.from_dict(json.loads(json_str))
+
+    def to_dict(self):
+        """Returns the dictionary representation of the model using alias"""
+        _dict = self.dict(by_alias=True,
+                          exclude={
+                          },
+                          exclude_none=True)
+        # set to None if id (nullable) is None
+        # and __fields_set__ contains the field
+        if self.id is None and "id" in self.__fields_set__:
+            _dict['id'] = None
+
+        # set to None if type (nullable) is None
+        # and __fields_set__ contains the field
+        if self.type is None and "type" in self.__fields_set__:
+            _dict['type'] = None
+
+        # set to None if status (nullable) is None
+        # and __fields_set__ contains the field
+        if self.status is None and "status" in self.__fields_set__:
+            _dict['status'] = None
+
+        # set to None if created_at (nullable) is None
+        # and __fields_set__ contains the field
+        if self.created_at is None and "created_at" in self.__fields_set__:
+            _dict['created_at'] = None
+
+        # set to None if version (nullable) is None
+        # and __fields_set__ contains the field
+        if self.version is None and "version" in self.__fields_set__:
+            _dict['version'] = None
+
+        # set to None if config (nullable) is None
+        # and __fields_set__ contains the field
+        if self.config is None and "config" in self.__fields_set__:
+            _dict['config'] = None
+
+        # set to None if yaml_config (nullable) is None
+        # and __fields_set__ contains the field
+        if self.yaml_config is None and "yaml_config" in self.__fields_set__:
+            _dict['yaml_config'] = None
+
+        # set to None if config_type (nullable) is None
+        # and __fields_set__ contains the field
+        if self.config_type is None and "config_type" in self.__fields_set__:
+            _dict['config_type'] = None
+
+        return _dict
+
+    @classmethod
+    def from_dict(cls, obj: dict) -> AddonOut:
+        """Create an instance of AddonOut from a dict"""
+        if obj is None:
+            return None
+
+        if not isinstance(obj, dict):
+            return AddonOut.parse_obj(obj)
+
+        _obj = AddonOut.parse_obj({
+            "id": obj.get("id"),
+            "type": obj.get("type"),
+            "status": obj.get("status"),
+            "created_at": obj.get("created_at"),
+            "version": obj.get("version"),
+            "config": obj.get("config"),
+            "yaml_config": obj.get("yaml_config"),
+            "config_type": obj.get("config_type")
+        })
+        return _obj
+

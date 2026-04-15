@@ -13,56 +13,95 @@
 """
 
 
-import unittest
-import datetime
+from __future__ import annotations
+import pprint
+import re  # noqa: F401
+import json
 
-import timeweb_cloud_api
-from timeweb_cloud_api.models.create_dedicated_server import CreateDedicatedServer  # noqa: E501
-from timeweb_cloud_api.rest import ApiException
 
-class TestCreateDedicatedServer(unittest.TestCase):
-    """CreateDedicatedServer unit test stubs"""
+from typing import Any, Optional
+from pydantic import BaseModel, Field, validator
 
-    def setUp(self):
-        pass
+class ClusterIn1(BaseModel):
+    """
+    ClusterIn1
+    """
+    type: Optional[Any] = Field(..., description="Тип дополнения")
+    config_type: Optional[Any] = Field(..., description="Тип конфигурации дополнения")
+    yaml_config: Optional[Any] = Field(..., description="YAML-конфигурация дополнения")
+    version: Optional[Any] = Field(..., description="Версия дополнения")
+    __properties = ["type", "config_type", "yaml_config", "version"]
 
-    def tearDown(self):
-        pass
+    @validator('config_type')
+    def config_type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
 
-    def make_instance(self, include_optional):
-        """Test CreateDedicatedServer
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
-        # uncomment below to create an instance of `CreateDedicatedServer`
-        """
-        model = timeweb_cloud_api.models.create_dedicated_server.CreateDedicatedServer()  # noqa: E501
-        if include_optional :
-            return CreateDedicatedServer(
-                plan_id = 2377, 
-                preset_id = 81, 
-                os_id = 188, 
-                cp_id = 199, 
-                bandwidth_id = 483, 
-                network_drive_id = 483, 
-                additional_ip_addr_id = 1, 
-                payment_period = P1M, 
-                name = name, 
-                comment = comment, 
-                project_id = 1
-            )
-        else :
-            return CreateDedicatedServer(
-                preset_id = 81,
-                payment_period = P1M,
-                name = name,
-        )
-        """
+        if value not in ('basic', 'custom'):
+            raise ValueError("must be one of enum values ('basic', 'custom')")
+        return value
 
-    def testCreateDedicatedServer(self):
-        """Test CreateDedicatedServer"""
-        # inst_req_only = self.make_instance(include_optional=False)
-        # inst_req_and_optional = self.make_instance(include_optional=True)
+    class Config:
+        """Pydantic configuration"""
+        allow_population_by_field_name = True
+        validate_assignment = True
 
-if __name__ == '__main__':
-    unittest.main()
+    def to_str(self) -> str:
+        """Returns the string representation of the model using alias"""
+        return pprint.pformat(self.dict(by_alias=True))
+
+    def to_json(self) -> str:
+        """Returns the JSON representation of the model using alias"""
+        return json.dumps(self.to_dict())
+
+    @classmethod
+    def from_json(cls, json_str: str) -> ClusterIn1:
+        """Create an instance of ClusterIn1 from a JSON string"""
+        return cls.from_dict(json.loads(json_str))
+
+    def to_dict(self):
+        """Returns the dictionary representation of the model using alias"""
+        _dict = self.dict(by_alias=True,
+                          exclude={
+                          },
+                          exclude_none=True)
+        # set to None if type (nullable) is None
+        # and __fields_set__ contains the field
+        if self.type is None and "type" in self.__fields_set__:
+            _dict['type'] = None
+
+        # set to None if config_type (nullable) is None
+        # and __fields_set__ contains the field
+        if self.config_type is None and "config_type" in self.__fields_set__:
+            _dict['config_type'] = None
+
+        # set to None if yaml_config (nullable) is None
+        # and __fields_set__ contains the field
+        if self.yaml_config is None and "yaml_config" in self.__fields_set__:
+            _dict['yaml_config'] = None
+
+        # set to None if version (nullable) is None
+        # and __fields_set__ contains the field
+        if self.version is None and "version" in self.__fields_set__:
+            _dict['version'] = None
+
+        return _dict
+
+    @classmethod
+    def from_dict(cls, obj: dict) -> ClusterIn1:
+        """Create an instance of ClusterIn1 from a dict"""
+        if obj is None:
+            return None
+
+        if not isinstance(obj, dict):
+            return ClusterIn1.parse_obj(obj)
+
+        _obj = ClusterIn1.parse_obj({
+            "type": obj.get("type"),
+            "config_type": obj.get("config_type"),
+            "yaml_config": obj.get("yaml_config"),
+            "version": obj.get("version")
+        })
+        return _obj
+

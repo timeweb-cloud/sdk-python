@@ -35,6 +35,10 @@ docs/AddStorageToProjectRequest.md
 docs/AddSubdomain201Response.md
 docs/AddTokenPackage.md
 docs/AddedSubdomain.md
+docs/AddonConfigOut.md
+docs/AddonOut.md
+docs/AddonsConfigResponse.md
+docs/AddonsResponse.md
 docs/Agent.md
 docs/AgentModelSettings.md
 docs/AgentSettings.md
@@ -68,6 +72,7 @@ docs/CheckDomain200Response.md
 docs/ClusterEdit.md
 docs/ClusterEditOidcProvider.md
 docs/ClusterIn.md
+docs/ClusterIn1.md
 docs/ClusterInClusterNetworkCidr.md
 docs/ClusterInConfiguration.md
 docs/ClusterInMaintenanceSlot.md
@@ -533,6 +538,10 @@ test/test_add_storage_to_project_request.py
 test/test_add_subdomain201_response.py
 test/test_add_token_package.py
 test/test_added_subdomain.py
+test/test_addon_config_out.py
+test/test_addon_out.py
+test/test_addons_config_response.py
+test/test_addons_response.py
 test/test_agent.py
 test/test_agent_model_settings.py
 test/test_agent_settings.py
@@ -568,6 +577,7 @@ test/test_check_domain200_response.py
 test/test_cluster_edit.py
 test/test_cluster_edit_oidc_provider.py
 test/test_cluster_in.py
+test/test_cluster_in1.py
 test/test_cluster_in_cluster_network_cidr.py
 test/test_cluster_in_configuration.py
 test/test_cluster_in_maintenance_slot.py
@@ -1055,6 +1065,10 @@ timeweb_cloud_api/models/add_storage_to_project_request.py
 timeweb_cloud_api/models/add_subdomain201_response.py
 timeweb_cloud_api/models/add_token_package.py
 timeweb_cloud_api/models/added_subdomain.py
+timeweb_cloud_api/models/addon_config_out.py
+timeweb_cloud_api/models/addon_out.py
+timeweb_cloud_api/models/addons_config_response.py
+timeweb_cloud_api/models/addons_response.py
 timeweb_cloud_api/models/agent.py
 timeweb_cloud_api/models/agent_model_settings.py
 timeweb_cloud_api/models/agent_settings.py
@@ -1086,6 +1100,7 @@ timeweb_cloud_api/models/check_domain200_response.py
 timeweb_cloud_api/models/cluster_edit.py
 timeweb_cloud_api/models/cluster_edit_oidc_provider.py
 timeweb_cloud_api/models/cluster_in.py
+timeweb_cloud_api/models/cluster_in1.py
 timeweb_cloud_api/models/cluster_in_cluster_network_cidr.py
 timeweb_cloud_api/models/cluster_in_configuration.py
 timeweb_cloud_api/models/cluster_in_maintenance_slot.py

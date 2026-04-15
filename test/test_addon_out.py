@@ -17,11 +17,11 @@ import unittest
 import datetime
 
 import timeweb_cloud_api
-from timeweb_cloud_api.models.create_dedicated_server import CreateDedicatedServer  # noqa: E501
+from timeweb_cloud_api.models.addon_out import AddonOut  # noqa: E501
 from timeweb_cloud_api.rest import ApiException
 
-class TestCreateDedicatedServer(unittest.TestCase):
-    """CreateDedicatedServer unit test stubs"""
+class TestAddonOut(unittest.TestCase):
+    """AddonOut unit test stubs"""
 
     def setUp(self):
         pass
@@ -30,37 +30,38 @@ class TestCreateDedicatedServer(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test CreateDedicatedServer
+        """Test AddonOut
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # uncomment below to create an instance of `CreateDedicatedServer`
+        # uncomment below to create an instance of `AddonOut`
         """
-        model = timeweb_cloud_api.models.create_dedicated_server.CreateDedicatedServer()  # noqa: E501
+        model = timeweb_cloud_api.models.addon_out.AddonOut()  # noqa: E501
         if include_optional :
-            return CreateDedicatedServer(
-                plan_id = 2377, 
-                preset_id = 81, 
-                os_id = 188, 
-                cp_id = 199, 
-                bandwidth_id = 483, 
-                network_drive_id = 483, 
-                additional_ip_addr_id = 1, 
-                payment_period = P1M, 
-                name = name, 
-                comment = comment, 
-                project_id = 1
+            return AddonOut(
+                id = 1, 
+                type = dbaas-operator, 
+                status = active, 
+                created_at = None, 
+                version = 1.0.0, 
+                config = None, 
+                yaml_config = None, 
+                config_type = None
             )
         else :
-            return CreateDedicatedServer(
-                preset_id = 81,
-                payment_period = P1M,
-                name = name,
+            return AddonOut(
+                id = 1,
+                type = dbaas-operator,
+                status = active,
+                created_at = None,
+                version = 1.0.0,
+                yaml_config = None,
+                config_type = None,
         )
         """
 
-    def testCreateDedicatedServer(self):
-        """Test CreateDedicatedServer"""
+    def testAddonOut(self):
+        """Test AddonOut"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

@@ -43,6 +43,10 @@ from timeweb_cloud_api.models.add_storage_to_project_request import AddStorageTo
 from timeweb_cloud_api.models.add_subdomain201_response import AddSubdomain201Response
 from timeweb_cloud_api.models.add_token_package import AddTokenPackage
 from timeweb_cloud_api.models.added_subdomain import AddedSubdomain
+from timeweb_cloud_api.models.addon_config_out import AddonConfigOut
+from timeweb_cloud_api.models.addon_out import AddonOut
+from timeweb_cloud_api.models.addons_config_response import AddonsConfigResponse
+from timeweb_cloud_api.models.addons_response import AddonsResponse
 from timeweb_cloud_api.models.agent import Agent
 from timeweb_cloud_api.models.agent_model_settings import AgentModelSettings
 from timeweb_cloud_api.models.agent_settings import AgentSettings
@@ -74,6 +78,7 @@ from timeweb_cloud_api.models.check_domain200_response import CheckDomain200Resp
 from timeweb_cloud_api.models.cluster_edit import ClusterEdit
 from timeweb_cloud_api.models.cluster_edit_oidc_provider import ClusterEditOidcProvider
 from timeweb_cloud_api.models.cluster_in import ClusterIn
+from timeweb_cloud_api.models.cluster_in1 import ClusterIn1
 from timeweb_cloud_api.models.cluster_in_cluster_network_cidr import ClusterInClusterNetworkCidr
 from timeweb_cloud_api.models.cluster_in_configuration import ClusterInConfiguration
 from timeweb_cloud_api.models.cluster_in_maintenance_slot import ClusterInMaintenanceSlot
