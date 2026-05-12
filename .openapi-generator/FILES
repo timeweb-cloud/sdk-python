@@ -5,7 +5,6 @@
 .travis.yml
 README.md
 docs/AIAgentsApi.md
-docs/APIKeysApi.md
 docs/AccountApi.md
 docs/AddBalancerToProject200Response.md
 docs/AddBalancerToProjectRequest.md
@@ -43,7 +42,6 @@ docs/Agent.md
 docs/AgentModelSettings.md
 docs/AgentSettings.md
 docs/AgentSettingsWidget.md
-docs/ApiKey.md
 docs/App.md
 docs/AppConfiguration.md
 docs/AppDiskStatus.md
@@ -89,7 +87,6 @@ docs/ContainerRegistryApi.md
 docs/CreateAdmin.md
 docs/CreateAgent.md
 docs/CreateAgent201Response.md
-docs/CreateApiKey.md
 docs/CreateApp.md
 docs/CreateApp201Response.md
 docs/CreateBalancer.md
@@ -145,10 +142,8 @@ docs/CreateServerNetwork.md
 docs/CreateStorage201Response.md
 docs/CreateStorageRequest.md
 docs/CreateStorageRequestConfigurator.md
-docs/CreateToken201Response.md
 docs/CreateVPC201Response.md
 docs/CreateVpc.md
-docs/CreatedApiKey.md
 docs/DatabaseAdmin.md
 docs/DatabaseCluster.md
 docs/DatabaseClusterDisk.md
@@ -198,7 +193,6 @@ docs/DomainRegister.md
 docs/DomainRequest.md
 docs/DomainTransfer.md
 docs/DomainsApi.md
-docs/EditApiKey.md
 docs/Finances.md
 docs/FirewallApi.md
 docs/FirewallGroup.md
@@ -309,7 +303,6 @@ docs/GetStorageUsers200Response.md
 docs/GetStoragesPresets200Response.md
 docs/GetTLD200Response.md
 docs/GetTLDs200Response.md
-docs/GetTokens200Response.md
 docs/GetVPCPorts200Response.md
 docs/GetVPCServices200Response.md
 docs/GetVPCs200Response.md
@@ -390,7 +383,6 @@ docs/ProjectsApi.md
 docs/Provider.md
 docs/Providers.md
 docs/ReduceNodes.md
-docs/RefreshApiKey.md
 docs/RegistriesResponse.md
 docs/RegistryEdit.md
 docs/RegistryIn.md
@@ -485,7 +477,6 @@ docs/UpdateStorageRequest.md
 docs/UpdateStorageRequestConfigurator.md
 docs/UpdateStorageUser200Response.md
 docs/UpdateStorageUserRequest.md
-docs/UpdateToken200Response.md
 docs/UpdateVpc.md
 docs/UploadFilesToKnowledgebase200Response.md
 docs/UploadSuccessful.md
@@ -547,8 +538,6 @@ test/test_agent_model_settings.py
 test/test_agent_settings.py
 test/test_agent_settings_widget.py
 test/test_ai_agents_api.py
-test/test_api_key.py
-test/test_api_keys_api.py
 test/test_app.py
 test/test_app_configuration.py
 test/test_app_disk_status.py
@@ -594,7 +583,6 @@ test/test_container_registry_api.py
 test/test_create_admin.py
 test/test_create_agent.py
 test/test_create_agent201_response.py
-test/test_create_api_key.py
 test/test_create_app.py
 test/test_create_app201_response.py
 test/test_create_balancer.py
@@ -650,10 +638,8 @@ test/test_create_server_network.py
 test/test_create_storage201_response.py
 test/test_create_storage_request.py
 test/test_create_storage_request_configurator.py
-test/test_create_token201_response.py
 test/test_create_vpc.py
 test/test_create_vpc201_response.py
-test/test_created_api_key.py
 test/test_database_admin.py
 test/test_database_cluster.py
 test/test_database_cluster_disk.py
@@ -703,7 +689,6 @@ test/test_domain_register.py
 test/test_domain_request.py
 test/test_domain_transfer.py
 test/test_domains_api.py
-test/test_edit_api_key.py
 test/test_finances.py
 test/test_firewall_api.py
 test/test_firewall_group.py
@@ -814,7 +799,6 @@ test/test_get_storage_users200_response.py
 test/test_get_storages_presets200_response.py
 test/test_get_tld200_response.py
 test/test_get_tlds200_response.py
-test/test_get_tokens200_response.py
 test/test_get_vpc_ports200_response.py
 test/test_get_vpc_services200_response.py
 test/test_get_vpcs200_response.py
@@ -895,7 +879,6 @@ test/test_projects_api.py
 test/test_provider.py
 test/test_providers.py
 test/test_reduce_nodes.py
-test/test_refresh_api_key.py
 test/test_registries_response.py
 test/test_registry_edit.py
 test/test_registry_in.py
@@ -989,7 +972,6 @@ test/test_update_storage_request.py
 test/test_update_storage_request_configurator.py
 test/test_update_storage_user200_response.py
 test/test_update_storage_user_request.py
-test/test_update_token200_response.py
 test/test_update_vpc.py
 test/test_upload_files_to_knowledgebase200_response.py
 test/test_upload_successful.py
@@ -1011,7 +993,6 @@ timeweb_cloud_api/__init__.py
 timeweb_cloud_api/api/__init__.py
 timeweb_cloud_api/api/account_api.py
 timeweb_cloud_api/api/ai_agents_api.py
-timeweb_cloud_api/api/api_keys_api.py
 timeweb_cloud_api/api/apps_api.py
 timeweb_cloud_api/api/balancers_api.py
 timeweb_cloud_api/api/container_registry_api.py
@@ -1073,7 +1054,6 @@ timeweb_cloud_api/models/agent.py
 timeweb_cloud_api/models/agent_model_settings.py
 timeweb_cloud_api/models/agent_settings.py
 timeweb_cloud_api/models/agent_settings_widget.py
-timeweb_cloud_api/models/api_key.py
 timeweb_cloud_api/models/app.py
 timeweb_cloud_api/models/app_configuration.py
 timeweb_cloud_api/models/app_disk_status.py
@@ -1116,7 +1096,6 @@ timeweb_cloud_api/models/config_parameters.py
 timeweb_cloud_api/models/create_admin.py
 timeweb_cloud_api/models/create_agent.py
 timeweb_cloud_api/models/create_agent201_response.py
-timeweb_cloud_api/models/create_api_key.py
 timeweb_cloud_api/models/create_app.py
 timeweb_cloud_api/models/create_app201_response.py
 timeweb_cloud_api/models/create_balancer.py
@@ -1172,10 +1151,8 @@ timeweb_cloud_api/models/create_server_network.py
 timeweb_cloud_api/models/create_storage201_response.py
 timeweb_cloud_api/models/create_storage_request.py
 timeweb_cloud_api/models/create_storage_request_configurator.py
-timeweb_cloud_api/models/create_token201_response.py
 timeweb_cloud_api/models/create_vpc.py
 timeweb_cloud_api/models/create_vpc201_response.py
-timeweb_cloud_api/models/created_api_key.py
 timeweb_cloud_api/models/database_admin.py
 timeweb_cloud_api/models/database_cluster.py
 timeweb_cloud_api/models/database_cluster_disk.py
@@ -1222,7 +1199,6 @@ timeweb_cloud_api/models/domain_prolong.py
 timeweb_cloud_api/models/domain_register.py
 timeweb_cloud_api/models/domain_request.py
 timeweb_cloud_api/models/domain_transfer.py
-timeweb_cloud_api/models/edit_api_key.py
 timeweb_cloud_api/models/finances.py
 timeweb_cloud_api/models/firewall_group.py
 timeweb_cloud_api/models/firewall_group_in_api.py
@@ -1331,7 +1307,6 @@ timeweb_cloud_api/models/get_storage_users200_response.py
 timeweb_cloud_api/models/get_storages_presets200_response.py
 timeweb_cloud_api/models/get_tld200_response.py
 timeweb_cloud_api/models/get_tlds200_response.py
-timeweb_cloud_api/models/get_tokens200_response.py
 timeweb_cloud_api/models/get_vpc_ports200_response.py
 timeweb_cloud_api/models/get_vpc_services200_response.py
 timeweb_cloud_api/models/get_vpcs200_response.py
@@ -1404,7 +1379,6 @@ timeweb_cloud_api/models/project_resource.py
 timeweb_cloud_api/models/provider.py
 timeweb_cloud_api/models/providers.py
 timeweb_cloud_api/models/reduce_nodes.py
-timeweb_cloud_api/models/refresh_api_key.py
 timeweb_cloud_api/models/registries_response.py
 timeweb_cloud_api/models/registry_edit.py
 timeweb_cloud_api/models/registry_in.py
@@ -1495,7 +1469,6 @@ timeweb_cloud_api/models/update_storage_request.py
 timeweb_cloud_api/models/update_storage_request_configurator.py
 timeweb_cloud_api/models/update_storage_user200_response.py
 timeweb_cloud_api/models/update_storage_user_request.py
-timeweb_cloud_api/models/update_token200_response.py
 timeweb_cloud_api/models/update_vpc.py
 timeweb_cloud_api/models/upload_files_to_knowledgebase200_response.py
 timeweb_cloud_api/models/upload_successful.py
