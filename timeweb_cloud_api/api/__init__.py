@@ -19,6 +19,7 @@ from timeweb_cloud_api.api.mail_api import MailApi
 from timeweb_cloud_api.api.network_drives_api import NetworkDrivesApi
 from timeweb_cloud_api.api.payments_api import PaymentsApi
 from timeweb_cloud_api.api.projects_api import ProjectsApi
+from timeweb_cloud_api.api.routers_api import RoutersApi
 from timeweb_cloud_api.api.s3_api import S3Api
 from timeweb_cloud_api.api.ssh_api import SSHApi
 from timeweb_cloud_api.api.servers_api import ServersApi
