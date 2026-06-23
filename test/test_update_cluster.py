@@ -42,7 +42,8 @@ class TestUpdateCluster(unittest.TestCase):
                 name = default_db, 
                 preset_id = 5, 
                 description = description, 
-                is_enabled_public_network = false
+                is_enabled_public_network = false, 
+                is_public_ipv6 = true
             )
         else :
             return UpdateCluster(

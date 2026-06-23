@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **location** | **object** | Локация сервера. | 
 **name** | **object** | Название кластера базы данных. | 
 **networks** | **object** | Список сетей кластера базы данных. | 
+**is_public_ipv6** | **object** | Использование IPv6 адреса. | [optional] 
 **type** | [**DbType**](DbType.md) |  | 
 **hash_type** | **object** | Тип хеширования кластера базы данных (mysql5 | mysql | postgres). | 
 **avatar_link** | **object** | Ссылка на аватар для базы данных. | 

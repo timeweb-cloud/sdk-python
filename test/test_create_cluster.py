@@ -90,6 +90,7 @@ class TestCreateCluster(unittest.TestCase):
                     floating_ip = 192.168.0.0, 
                     local_ip = 192.168.0.0, 
                     ip = 192.168.0.0, ), 
+                is_public_ipv6 = true, 
                 description = description, 
                 availability_zone = spb-1, 
                 auto_backups = timeweb_cloud_api.models.create_db_auto_backups.create-db-auto-backups(

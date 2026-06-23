@@ -44,6 +44,7 @@ class TestDatabaseCluster(unittest.TestCase):
                 location = ru-1, 
                 name = default_db, 
                 networks = None, 
+                is_public_ipv6 = true, 
                 type = mysql, 
                 hash_type = caching_sha2, 
                 avatar_link = https://urltoimage.com/avatars/image.png, 

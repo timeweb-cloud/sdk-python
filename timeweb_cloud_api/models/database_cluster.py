@@ -34,6 +34,7 @@ class DatabaseCluster(BaseModel):
     location: Optional[Any] = Field(..., description="Локация сервера.")
     name: Optional[Any] = Field(..., description="Название кластера базы данных.")
     networks: Optional[Any] = Field(..., description="Список сетей кластера базы данных.")
+    is_public_ipv6: Optional[Any] = Field(None, description="Использование IPv6 адреса.")
     type: DbType = Field(...)
     hash_type: Optional[Any] = Field(..., description="Тип хеширования кластера базы данных (mysql5 | mysql | postgres).")
     avatar_link: Optional[Any] = Field(..., description="Ссылка на аватар для базы данных.")
@@ -43,7 +44,7 @@ class DatabaseCluster(BaseModel):
     disk: Optional[DatabaseClusterDisk] = None
     config_parameters: ConfigParameters = Field(...)
     is_enabled_public_network: Optional[Any] = Field(..., description="Доступность публичного IP-адреса")
-    __properties = ["id", "created_at", "location", "name", "networks", "type", "hash_type", "avatar_link", "port", "status", "preset_id", "disk", "config_parameters", "is_enabled_public_network"]
+    __properties = ["id", "created_at", "location", "name", "networks", "is_public_ipv6", "type", "hash_type", "avatar_link", "port", "status", "preset_id", "disk", "config_parameters", "is_enabled_public_network"]
 
     @validator('location')
     def location_validate_enum(cls, value):
@@ -130,6 +131,11 @@ class DatabaseCluster(BaseModel):
         if self.networks is None and "networks" in self.__fields_set__:
             _dict['networks'] = None
 
+        # set to None if is_public_ipv6 (nullable) is None
+        # and __fields_set__ contains the field
+        if self.is_public_ipv6 is None and "is_public_ipv6" in self.__fields_set__:
+            _dict['is_public_ipv6'] = None
+
         # set to None if hash_type (nullable) is None
         # and __fields_set__ contains the field
         if self.hash_type is None and "hash_type" in self.__fields_set__:
@@ -177,6 +183,7 @@ class DatabaseCluster(BaseModel):
             "location": obj.get("location"),
             "name": obj.get("name"),
             "networks": obj.get("networks"),
+            "is_public_ipv6": obj.get("is_public_ipv6"),
             "type": obj.get("type"),
             "hash_type": obj.get("hash_type"),
             "avatar_link": obj.get("avatar_link"),

@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **preset_id** | **object** | ID тарифа. | [optional] 
 **description** | **object** | Описание кластера базы данных | [optional] 
 **is_enabled_public_network** | **object** | Доступность публичного IP-адреса | [optional] 
+**is_public_ipv6** | **object** | Использование IPv6 адреса. | [optional] 
 
 ## Example
 

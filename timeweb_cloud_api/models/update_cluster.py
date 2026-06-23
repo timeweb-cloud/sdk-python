@@ -30,7 +30,8 @@ class UpdateCluster(BaseModel):
     preset_id: Optional[Any] = Field(None, description="ID тарифа.")
     description: Optional[Any] = Field(None, description="Описание кластера базы данных")
     is_enabled_public_network: Optional[Any] = Field(None, description="Доступность публичного IP-адреса")
-    __properties = ["name", "preset_id", "description", "is_enabled_public_network"]
+    is_public_ipv6: Optional[Any] = Field(None, description="Использование IPv6 адреса.")
+    __properties = ["name", "preset_id", "description", "is_enabled_public_network", "is_public_ipv6"]
 
     class Config:
         """Pydantic configuration"""
@@ -76,6 +77,11 @@ class UpdateCluster(BaseModel):
         if self.is_enabled_public_network is None and "is_enabled_public_network" in self.__fields_set__:
             _dict['is_enabled_public_network'] = None
 
+        # set to None if is_public_ipv6 (nullable) is None
+        # and __fields_set__ contains the field
+        if self.is_public_ipv6 is None and "is_public_ipv6" in self.__fields_set__:
+            _dict['is_public_ipv6'] = None
+
         return _dict
 
     @classmethod
@@ -91,7 +97,8 @@ class UpdateCluster(BaseModel):
             "name": obj.get("name"),
             "preset_id": obj.get("preset_id"),
             "description": obj.get("description"),
-            "is_enabled_public_network": obj.get("is_enabled_public_network")
+            "is_enabled_public_network": obj.get("is_enabled_public_network"),
+            "is_public_ipv6": obj.get("is_public_ipv6")
         })
         return _obj
 

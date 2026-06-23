@@ -45,10 +45,11 @@ class CreateCluster(BaseModel):
     config_parameters: Optional[ConfigParameters] = None
     replication: Optional[DbReplication] = None
     network: Optional[Network] = None
+    is_public_ipv6: Optional[Any] = Field(None, description="Использование IPv6 адреса.")
     description: Optional[Any] = Field(None, description="Описание кластера базы данных")
     availability_zone: Optional[AvailabilityZone] = None
     auto_backups: Optional[CreateDbAutoBackups] = None
-    __properties = ["name", "type", "admin", "instance", "hash_type", "preset_id", "configurator_id", "project_id", "config_parameters", "replication", "network", "description", "availability_zone", "auto_backups"]
+    __properties = ["name", "type", "admin", "instance", "hash_type", "preset_id", "configurator_id", "project_id", "config_parameters", "replication", "network", "is_public_ipv6", "description", "availability_zone", "auto_backups"]
 
     @validator('hash_type')
     def hash_type_validate_enum(cls, value):
@@ -127,6 +128,11 @@ class CreateCluster(BaseModel):
         if self.project_id is None and "project_id" in self.__fields_set__:
             _dict['project_id'] = None
 
+        # set to None if is_public_ipv6 (nullable) is None
+        # and __fields_set__ contains the field
+        if self.is_public_ipv6 is None and "is_public_ipv6" in self.__fields_set__:
+            _dict['is_public_ipv6'] = None
+
         # set to None if description (nullable) is None
         # and __fields_set__ contains the field
         if self.description is None and "description" in self.__fields_set__:
@@ -155,6 +161,7 @@ class CreateCluster(BaseModel):
             "config_parameters": ConfigParameters.from_dict(obj.get("config_parameters")) if obj.get("config_parameters") is not None else None,
             "replication": DbReplication.from_dict(obj.get("replication")) if obj.get("replication") is not None else None,
             "network": Network.from_dict(obj.get("network")) if obj.get("network") is not None else None,
+            "is_public_ipv6": obj.get("is_public_ipv6"),
             "description": obj.get("description"),
             "availability_zone": obj.get("availability_zone"),
             "auto_backups": CreateDbAutoBackups.from_dict(obj.get("auto_backups")) if obj.get("auto_backups") is not None else None
