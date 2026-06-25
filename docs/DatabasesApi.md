@@ -4,17 +4,14 @@ All URIs are relative to *https://api.timeweb.cloud*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**create_database**](DatabasesApi.md#create_database) | **POST** /api/v1/dbs | Создание базы данных
 [**create_database_backup**](DatabasesApi.md#create_database_backup) | **POST** /api/v1/dbs/{db_id}/backups | Создание бэкапа базы данных
 [**create_database_cluster**](DatabasesApi.md#create_database_cluster) | **POST** /api/v1/databases | Создание кластера базы данных
 [**create_database_instance**](DatabasesApi.md#create_database_instance) | **POST** /api/v1/databases/{db_cluster_id}/instances | Создание инстанса базы данных
 [**create_database_user**](DatabasesApi.md#create_database_user) | **POST** /api/v1/databases/{db_cluster_id}/admins | Создание пользователя базы данных
-[**delete_database**](DatabasesApi.md#delete_database) | **DELETE** /api/v1/dbs/{db_id} | Удаление базы данных
 [**delete_database_backup**](DatabasesApi.md#delete_database_backup) | **DELETE** /api/v1/dbs/{db_id}/backups/{backup_id} | Удаление бэкапа базы данных
 [**delete_database_cluster**](DatabasesApi.md#delete_database_cluster) | **DELETE** /api/v1/databases/{db_cluster_id} | Удаление кластера базы данных
 [**delete_database_instance**](DatabasesApi.md#delete_database_instance) | **DELETE** /api/v1/databases/{db_cluster_id}/instances/{instance_id} | Удаление инстанса базы данных
 [**delete_database_user**](DatabasesApi.md#delete_database_user) | **DELETE** /api/v1/databases/{db_cluster_id}/admins/{admin_id} | Удаление пользователя базы данных
-[**get_database**](DatabasesApi.md#get_database) | **GET** /api/v1/dbs/{db_id} | Получение базы данных
 [**get_database_auto_backups_settings**](DatabasesApi.md#get_database_auto_backups_settings) | **GET** /api/v1/dbs/{db_id}/auto-backups | Получение настроек автобэкапов базы данных
 [**get_database_backup**](DatabasesApi.md#get_database_backup) | **GET** /api/v1/dbs/{db_id}/backups/{backup_id} | Получение бэкапа базы данных
 [**get_database_backups**](DatabasesApi.md#get_database_backups) | **GET** /api/v1/dbs/{db_id}/backups | Список бэкапов базы данных
@@ -26,98 +23,13 @@ Method | HTTP request | Description
 [**get_database_parameters**](DatabasesApi.md#get_database_parameters) | **GET** /api/v1/dbs/parameters | Получение списка параметров баз данных
 [**get_database_user**](DatabasesApi.md#get_database_user) | **GET** /api/v1/databases/{db_cluster_id}/admins/{admin_id} | Получение пользователя базы данных
 [**get_database_users**](DatabasesApi.md#get_database_users) | **GET** /api/v1/databases/{db_cluster_id}/admins | Получение списка пользователей базы данных
-[**get_databases**](DatabasesApi.md#get_databases) | **GET** /api/v1/dbs | Получение списка всех баз данных
 [**get_databases_presets**](DatabasesApi.md#get_databases_presets) | **GET** /api/v2/presets/dbs | Получение списка тарифов для баз данных
 [**restore_database_from_backup**](DatabasesApi.md#restore_database_from_backup) | **PUT** /api/v1/dbs/{db_id}/backups/{backup_id} | Восстановление базы данных из бэкапа
-[**update_database**](DatabasesApi.md#update_database) | **PATCH** /api/v1/dbs/{db_id} | Обновление базы данных
 [**update_database_auto_backups_settings**](DatabasesApi.md#update_database_auto_backups_settings) | **PATCH** /api/v1/dbs/{db_id}/auto-backups | Изменение настроек автобэкапов базы данных
 [**update_database_cluster**](DatabasesApi.md#update_database_cluster) | **PATCH** /api/v1/databases/{db_cluster_id} | Изменение кластера базы данных
 [**update_database_instance**](DatabasesApi.md#update_database_instance) | **PATCH** /api/v1/databases/{db_cluster_id}/instances/{instance_id} | Изменение инстанса базы данных
 [**update_database_user**](DatabasesApi.md#update_database_user) | **PATCH** /api/v1/databases/{db_cluster_id}/admins/{admin_id} | Изменение пользователя базы данных
 
-
-# **create_database**
-> CreateDatabase201Response create_database(create_db)
-
-Создание базы данных
-
-Чтобы создать базу данных на вашем аккаунте, отправьте POST-запрос на `/api/v1/dbs`, задав необходимые атрибуты.  База данных будет создана с использованием предоставленной информации. Тело ответа будет содержать объект JSON с информацией о созданной базе данных.
-
-### Example
-
-* Bearer (JWT) Authentication (Bearer):
-```python
-import time
-import os
-import timeweb_cloud_api
-from timeweb_cloud_api.models.create_database201_response import CreateDatabase201Response
-from timeweb_cloud_api.models.create_db import CreateDb
-from timeweb_cloud_api.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to https://api.timeweb.cloud
-# See configuration.py for a list of all supported configuration parameters.
-configuration = timeweb_cloud_api.Configuration(
-    host = "https://api.timeweb.cloud"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure Bearer authorization (JWT): Bearer
-configuration = timeweb_cloud_api.Configuration(
-    access_token = os.environ["BEARER_TOKEN"]
-)
-
-# Enter a context with an instance of the API client
-with timeweb_cloud_api.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = timeweb_cloud_api.DatabasesApi(api_client)
-    create_db = timeweb_cloud_api.CreateDb() # CreateDb | 
-
-    try:
-        # Создание базы данных
-        api_response = api_instance.create_database(create_db)
-        print("The response of DatabasesApi->create_database:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling DatabasesApi->create_database: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **create_db** | [**CreateDb**](CreateDb.md)|  | 
-
-### Return type
-
-[**CreateDatabase201Response**](CreateDatabase201Response.md)
-
-### Authorization
-
-[Bearer](../README.md#Bearer)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**201** | Ответ будет представлять собой объект JSON c ключом &#x60;db&#x60;. |  -  |
-**400** |  |  -  |
-**401** |  |  -  |
-**403** |  |  -  |
-**404** |  |  -  |
-**429** |  |  -  |
-**500** |  |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_database_backup**
 > CreateDatabaseBackup201Response create_database_backup(db_id, comment=comment)
@@ -457,93 +369,6 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **delete_database**
-> DeleteDatabase200Response delete_database(db_id, hash=hash, code=code)
-
-Удаление базы данных
-
-Чтобы удалить базу данных, отправьте запрос DELETE в `api/v1/dbs/{db_id}`. 
-
-### Example
-
-* Bearer (JWT) Authentication (Bearer):
-```python
-import time
-import os
-import timeweb_cloud_api
-from timeweb_cloud_api.models.delete_database200_response import DeleteDatabase200Response
-from timeweb_cloud_api.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to https://api.timeweb.cloud
-# See configuration.py for a list of all supported configuration parameters.
-configuration = timeweb_cloud_api.Configuration(
-    host = "https://api.timeweb.cloud"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure Bearer authorization (JWT): Bearer
-configuration = timeweb_cloud_api.Configuration(
-    access_token = os.environ["BEARER_TOKEN"]
-)
-
-# Enter a context with an instance of the API client
-with timeweb_cloud_api.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = timeweb_cloud_api.DatabasesApi(api_client)
-    db_id = None # object | ID базы данных
-    hash = 15095f25-aac3-4d60-a788-96cb5136f186 # object | Хеш, который совместно с кодом авторизации надо отправить для удаления, если включено подтверждение удаления сервисов через Телеграм. (optional)
-    code = 0000 # object | Код подтверждения, который придет к вам в Телеграм, после запроса удаления, если включено подтверждение удаления сервисов.  При помощи API токена сервисы можно удалять без подтверждения, если параметр токена `is_able_to_delete` установлен в значение `true` (optional)
-
-    try:
-        # Удаление базы данных
-        api_response = api_instance.delete_database(db_id, hash=hash, code=code)
-        print("The response of DatabasesApi->delete_database:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling DatabasesApi->delete_database: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **db_id** | [**object**](.md)| ID базы данных | 
- **hash** | [**object**](.md)| Хеш, который совместно с кодом авторизации надо отправить для удаления, если включено подтверждение удаления сервисов через Телеграм. | [optional] 
- **code** | [**object**](.md)| Код подтверждения, который придет к вам в Телеграм, после запроса удаления, если включено подтверждение удаления сервисов.  При помощи API токена сервисы можно удалять без подтверждения, если параметр токена &#x60;is_able_to_delete&#x60; установлен в значение &#x60;true&#x60; | [optional] 
-
-### Return type
-
-[**DeleteDatabase200Response**](DeleteDatabase200Response.md)
-
-### Authorization
-
-[Bearer](../README.md#Bearer)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Объект JSON c ключом &#x60;database_delete&#x60; |  -  |
-**204** | База данных успешно удалена. |  -  |
-**400** |  |  -  |
-**401** |  |  -  |
-**403** |  |  -  |
-**404** |  |  -  |
-**429** |  |  -  |
-**500** |  |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **delete_database_backup**
 > delete_database_backup(db_id, backup_id)
 
@@ -865,88 +690,6 @@ void (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | Пользователь базы данных удален. |  -  |
-**400** |  |  -  |
-**401** |  |  -  |
-**403** |  |  -  |
-**404** |  |  -  |
-**429** |  |  -  |
-**500** |  |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **get_database**
-> CreateDatabase201Response get_database(db_id)
-
-Получение базы данных
-
-Чтобы отобразить информацию об отдельной базе данных, отправьте запрос GET на `api/v1/dbs/{db_id}`. 
-
-### Example
-
-* Bearer (JWT) Authentication (Bearer):
-```python
-import time
-import os
-import timeweb_cloud_api
-from timeweb_cloud_api.models.create_database201_response import CreateDatabase201Response
-from timeweb_cloud_api.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to https://api.timeweb.cloud
-# See configuration.py for a list of all supported configuration parameters.
-configuration = timeweb_cloud_api.Configuration(
-    host = "https://api.timeweb.cloud"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure Bearer authorization (JWT): Bearer
-configuration = timeweb_cloud_api.Configuration(
-    access_token = os.environ["BEARER_TOKEN"]
-)
-
-# Enter a context with an instance of the API client
-with timeweb_cloud_api.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = timeweb_cloud_api.DatabasesApi(api_client)
-    db_id = None # object | ID базы данных
-
-    try:
-        # Получение базы данных
-        api_response = api_instance.get_database(db_id)
-        print("The response of DatabasesApi->get_database:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling DatabasesApi->get_database: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **db_id** | [**object**](.md)| ID базы данных | 
-
-### Return type
-
-[**CreateDatabase201Response**](CreateDatabase201Response.md)
-
-### Authorization
-
-[Bearer](../README.md#Bearer)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Ответ будет представлять собой объект JSON с ключом &#x60;db&#x60;. |  -  |
 **400** |  |  -  |
 **401** |  |  -  |
 **403** |  |  -  |
@@ -1861,90 +1604,6 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_databases**
-> GetDatabases200Response get_databases(limit=limit, offset=offset)
-
-Получение списка всех баз данных
-
-Чтобы получить список всех баз данных на вашем аккаунте, отправьте GET-запрос на `/api/v1/dbs`.   Тело ответа будет представлять собой объект JSON с ключом `dbs`.
-
-### Example
-
-* Bearer (JWT) Authentication (Bearer):
-```python
-import time
-import os
-import timeweb_cloud_api
-from timeweb_cloud_api.models.get_databases200_response import GetDatabases200Response
-from timeweb_cloud_api.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to https://api.timeweb.cloud
-# See configuration.py for a list of all supported configuration parameters.
-configuration = timeweb_cloud_api.Configuration(
-    host = "https://api.timeweb.cloud"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure Bearer authorization (JWT): Bearer
-configuration = timeweb_cloud_api.Configuration(
-    access_token = os.environ["BEARER_TOKEN"]
-)
-
-# Enter a context with an instance of the API client
-with timeweb_cloud_api.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = timeweb_cloud_api.DatabasesApi(api_client)
-    limit = None # object | Обозначает количество записей, которое необходимо вернуть. (optional)
-    offset = None # object | Указывает на смещение относительно начала списка. (optional)
-
-    try:
-        # Получение списка всех баз данных
-        api_response = api_instance.get_databases(limit=limit, offset=offset)
-        print("The response of DatabasesApi->get_databases:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling DatabasesApi->get_databases: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **limit** | [**object**](.md)| Обозначает количество записей, которое необходимо вернуть. | [optional] 
- **offset** | [**object**](.md)| Указывает на смещение относительно начала списка. | [optional] 
-
-### Return type
-
-[**GetDatabases200Response**](GetDatabases200Response.md)
-
-### Authorization
-
-[Bearer](../README.md#Bearer)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Ответ будет представлять собой объект JSON c ключом &#x60;dbs&#x60;. |  -  |
-**400** |  |  -  |
-**401** |  |  -  |
-**403** |  |  -  |
-**404** |  |  -  |
-**429** |  |  -  |
-**500** |  |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **get_databases_presets**
 > GetDatabasesPresets200Response get_databases_presets(db_id=db_id)
 
@@ -2104,91 +1763,6 @@ void (empty response body)
 **403** |  |  -  |
 **404** |  |  -  |
 **409** |  |  -  |
-**429** |  |  -  |
-**500** |  |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **update_database**
-> CreateDatabase201Response update_database(db_id, update_db)
-
-Обновление базы данных
-
-Чтобы обновить только определенные атрибуты базы данных, отправьте запрос PATCH в `api/v1/dbs/{db_id}`. 
-
-### Example
-
-* Bearer (JWT) Authentication (Bearer):
-```python
-import time
-import os
-import timeweb_cloud_api
-from timeweb_cloud_api.models.create_database201_response import CreateDatabase201Response
-from timeweb_cloud_api.models.update_db import UpdateDb
-from timeweb_cloud_api.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to https://api.timeweb.cloud
-# See configuration.py for a list of all supported configuration parameters.
-configuration = timeweb_cloud_api.Configuration(
-    host = "https://api.timeweb.cloud"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure Bearer authorization (JWT): Bearer
-configuration = timeweb_cloud_api.Configuration(
-    access_token = os.environ["BEARER_TOKEN"]
-)
-
-# Enter a context with an instance of the API client
-with timeweb_cloud_api.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = timeweb_cloud_api.DatabasesApi(api_client)
-    db_id = None # object | ID базы данных
-    update_db = timeweb_cloud_api.UpdateDb() # UpdateDb | 
-
-    try:
-        # Обновление базы данных
-        api_response = api_instance.update_database(db_id, update_db)
-        print("The response of DatabasesApi->update_database:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling DatabasesApi->update_database: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **db_id** | [**object**](.md)| ID базы данных | 
- **update_db** | [**UpdateDb**](UpdateDb.md)|  | 
-
-### Return type
-
-[**CreateDatabase201Response**](CreateDatabase201Response.md)
-
-### Authorization
-
-[Bearer](../README.md#Bearer)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Ответ будет представлять собой объект JSON с ключом &#x60;db&#x60;. |  -  |
-**400** |  |  -  |
-**401** |  |  -  |
-**403** |  |  -  |
-**404** |  |  -  |
 **429** |  |  -  |
 **500** |  |  -  |
 

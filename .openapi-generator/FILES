@@ -101,12 +101,10 @@ docs/CreateBalancerRule200Response.md
 docs/CreateCluster.md
 docs/CreateClusterAdmin.md
 docs/CreateClusterInstance.md
-docs/CreateDatabase201Response.md
 docs/CreateDatabaseBackup201Response.md
 docs/CreateDatabaseCluster201Response.md
 docs/CreateDatabaseInstance201Response.md
 docs/CreateDatabaseUser201Response.md
-docs/CreateDb.md
 docs/CreateDbAutoBackups.md
 docs/CreateDedicatedServer.md
 docs/CreateDedicatedServer201Response.md
@@ -171,7 +169,6 @@ docs/DeleteBalancer200Response.md
 docs/DeleteCluster200Response.md
 docs/DeleteCountriesFromAllowedList200Response.md
 docs/DeleteCountriesFromAllowedListRequest.md
-docs/DeleteDatabase200Response.md
 docs/DeleteDatabaseCluster200Response.md
 docs/DeleteIPsFromAllowedList200Response.md
 docs/DeleteIPsFromAllowedListRequest.md
@@ -257,7 +254,6 @@ docs/GetDatabaseClusterTypes200Response.md
 docs/GetDatabaseClusters200Response.md
 docs/GetDatabaseInstances200Response.md
 docs/GetDatabaseUsers200Response.md
-docs/GetDatabases200Response.md
 docs/GetDatabasesPresets200Response.md
 docs/GetDedicatedServerPresetAdditionalServices200Response.md
 docs/GetDedicatedServers200Response.md
@@ -483,7 +479,6 @@ docs/UpdateAppSettings200Response.md
 docs/UpdateAuthRestrictionsByCountriesRequest.md
 docs/UpdateBalancer.md
 docs/UpdateCluster.md
-docs/UpdateDb.md
 docs/UpdateDedicatedServerRequest.md
 docs/UpdateDomain.md
 docs/UpdateDomainAutoProlongation200Response.md
@@ -632,12 +627,10 @@ test/test_create_balancer_rule200_response.py
 test/test_create_cluster.py
 test/test_create_cluster_admin.py
 test/test_create_cluster_instance.py
-test/test_create_database201_response.py
 test/test_create_database_backup201_response.py
 test/test_create_database_cluster201_response.py
 test/test_create_database_instance201_response.py
 test/test_create_database_user201_response.py
-test/test_create_db.py
 test/test_create_db_auto_backups.py
 test/test_create_dedicated_server.py
 test/test_create_dedicated_server201_response.py
@@ -702,7 +695,6 @@ test/test_delete_balancer200_response.py
 test/test_delete_cluster200_response.py
 test/test_delete_countries_from_allowed_list200_response.py
 test/test_delete_countries_from_allowed_list_request.py
-test/test_delete_database200_response.py
 test/test_delete_database_cluster200_response.py
 test/test_delete_ips_from_allowed_list200_response.py
 test/test_delete_ips_from_allowed_list_request.py
@@ -788,7 +780,6 @@ test/test_get_database_cluster_types200_response.py
 test/test_get_database_clusters200_response.py
 test/test_get_database_instances200_response.py
 test/test_get_database_users200_response.py
-test/test_get_databases200_response.py
 test/test_get_databases_presets200_response.py
 test/test_get_dedicated_server_preset_additional_services200_response.py
 test/test_get_dedicated_servers200_response.py
@@ -1013,7 +1004,6 @@ test/test_update_app_settings200_response.py
 test/test_update_auth_restrictions_by_countries_request.py
 test/test_update_balancer.py
 test/test_update_cluster.py
-test/test_update_db.py
 test/test_update_dedicated_server_request.py
 test/test_update_domain.py
 test/test_update_domain_auto_prolongation200_response.py
@@ -1181,12 +1171,10 @@ timeweb_cloud_api/models/create_balancer_rule200_response.py
 timeweb_cloud_api/models/create_cluster.py
 timeweb_cloud_api/models/create_cluster_admin.py
 timeweb_cloud_api/models/create_cluster_instance.py
-timeweb_cloud_api/models/create_database201_response.py
 timeweb_cloud_api/models/create_database_backup201_response.py
 timeweb_cloud_api/models/create_database_cluster201_response.py
 timeweb_cloud_api/models/create_database_instance201_response.py
 timeweb_cloud_api/models/create_database_user201_response.py
-timeweb_cloud_api/models/create_db.py
 timeweb_cloud_api/models/create_db_auto_backups.py
 timeweb_cloud_api/models/create_dedicated_server.py
 timeweb_cloud_api/models/create_dedicated_server201_response.py
@@ -1249,7 +1237,6 @@ timeweb_cloud_api/models/delete_balancer200_response.py
 timeweb_cloud_api/models/delete_cluster200_response.py
 timeweb_cloud_api/models/delete_countries_from_allowed_list200_response.py
 timeweb_cloud_api/models/delete_countries_from_allowed_list_request.py
-timeweb_cloud_api/models/delete_database200_response.py
 timeweb_cloud_api/models/delete_database_cluster200_response.py
 timeweb_cloud_api/models/delete_ips_from_allowed_list200_response.py
 timeweb_cloud_api/models/delete_ips_from_allowed_list_request.py
@@ -1332,7 +1319,6 @@ timeweb_cloud_api/models/get_database_cluster_types200_response.py
 timeweb_cloud_api/models/get_database_clusters200_response.py
 timeweb_cloud_api/models/get_database_instances200_response.py
 timeweb_cloud_api/models/get_database_users200_response.py
-timeweb_cloud_api/models/get_databases200_response.py
 timeweb_cloud_api/models/get_databases_presets200_response.py
 timeweb_cloud_api/models/get_dedicated_server_preset_additional_services200_response.py
 timeweb_cloud_api/models/get_dedicated_servers200_response.py
@@ -1545,7 +1531,6 @@ timeweb_cloud_api/models/update_app_settings200_response.py
 timeweb_cloud_api/models/update_auth_restrictions_by_countries_request.py
 timeweb_cloud_api/models/update_balancer.py
 timeweb_cloud_api/models/update_cluster.py
-timeweb_cloud_api/models/update_db.py
 timeweb_cloud_api/models/update_dedicated_server_request.py
 timeweb_cloud_api/models/update_domain.py
 timeweb_cloud_api/models/update_domain_auto_prolongation200_response.py

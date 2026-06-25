@@ -29,13 +29,6 @@ class TestDatabasesApi(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def test_create_database(self):
-        """Test case for create_database
-
-        Создание базы данных  # noqa: E501
-        """
-        pass
-
     def test_create_database_backup(self):
         """Test case for create_database_backup
 
@@ -64,13 +57,6 @@ class TestDatabasesApi(unittest.TestCase):
         """
         pass
 
-    def test_delete_database(self):
-        """Test case for delete_database
-
-        Удаление базы данных  # noqa: E501
-        """
-        pass
-
     def test_delete_database_backup(self):
         """Test case for delete_database_backup
 
@@ -96,13 +82,6 @@ class TestDatabasesApi(unittest.TestCase):
         """Test case for delete_database_user
 
         Удаление пользователя базы данных  # noqa: E501
-        """
-        pass
-
-    def test_get_database(self):
-        """Test case for get_database
-
-        Получение базы данных  # noqa: E501
         """
         pass
 
@@ -183,13 +162,6 @@ class TestDatabasesApi(unittest.TestCase):
         """
         pass
 
-    def test_get_databases(self):
-        """Test case for get_databases
-
-        Получение списка всех баз данных  # noqa: E501
-        """
-        pass
-
     def test_get_databases_presets(self):
         """Test case for get_databases_presets
 
@@ -201,13 +173,6 @@ class TestDatabasesApi(unittest.TestCase):
         """Test case for restore_database_from_backup
 
         Восстановление базы данных из бэкапа  # noqa: E501
-        """
-        pass
-
-    def test_update_database(self):
-        """Test case for update_database
-
-        Обновление базы данных  # noqa: E501
         """
         pass
 
