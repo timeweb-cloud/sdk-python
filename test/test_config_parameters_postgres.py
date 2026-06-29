@@ -17,11 +17,11 @@ import unittest
 import datetime
 
 import timeweb_cloud_api
-from timeweb_cloud_api.models.create_cluster import CreateCluster  # noqa: E501
+from timeweb_cloud_api.models.config_parameters_postgres import ConfigParametersPostgres  # noqa: E501
 from timeweb_cloud_api.rest import ApiException
 
-class TestCreateCluster(unittest.TestCase):
-    """CreateCluster unit test stubs"""
+class TestConfigParametersPostgres(unittest.TestCase):
+    """ConfigParametersPostgres unit test stubs"""
 
     def setUp(self):
         pass
@@ -30,105 +30,100 @@ class TestCreateCluster(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test CreateCluster
+        """Test ConfigParametersPostgres
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # uncomment below to create an instance of `CreateCluster`
+        # uncomment below to create an instance of `ConfigParametersPostgres`
         """
-        model = timeweb_cloud_api.models.create_cluster.CreateCluster()  # noqa: E501
+        model = timeweb_cloud_api.models.config_parameters_postgres.ConfigParametersPostgres()  # noqa: E501
         if include_optional :
-            return CreateCluster(
-                name = default_db, 
-                type = mysql, 
-                admin = timeweb_cloud_api.models.create_cluster_admin.create_cluster_admin(
-                    login = default_login, 
-                    password = bs.:L2f$Tm:SC~, 
-                    host = %, 
-                    privileges = null, 
-                    description = description, ), 
-                instance = timeweb_cloud_api.models.create_cluster_instance.create_cluster_instance(
-                    name = default_db, 
-                    description = null, ), 
-                hash_type = caching_sha2, 
-                preset_id = 5, 
-                configurator_id = 5, 
-                project_id = 5, 
-                config_parameters = timeweb_cloud_api.models.mysql.mysql(
-                    join_buffer_size = 4194304, 
-                    max_connections = 200, 
-                    sort_buffer_size = 2097152, 
-                    thread_cache_size = 8, 
-                    innodb_buffer_pool_size = 864026624, 
-                    auto_increment_increment = 3, 
-                    auto_increment_offset = 3, 
-                    innodb_io_capacity = 1500, 
-                    innodb_purge_threads = 4, 
-                    innodb_read_io_threads = 4, 
-                    innodb_thread_concurrency = 0, 
-                    innodb_write_io_threads = 4, 
-                    innodb_log_file_size = 432013312, 
-                    max_allowed_packet = 16777216, 
-                    max_heap_table_size = 16777216, 
-                    sql_mode = , 
-                    query_cache_type = 2, 
-                    query_cache_size = 1, 
-                    innodb_flush_log_at_trx_commit = 1, 
-                    transaction_isolation = read-uncommitted, 
-                    long_query_time = 10, 
-                    tmp_table_size = 16777216, 
-                    table_open_cache = 4970, 
-                    table_open_cache_instances = 16, 
-                    innodb_flush_method = O_DSYNC, 
-                    innodb_strict_mode = ON, 
-                    slow_query_log = ON, 
-                    binlog_cache_size = 32768, 
-                    binlog_group_commit_sync_delay = 1, 
-                    binlog_row_image = full, 
-                    binlog_rows_query_log_events = OFF, 
-                    character_set_server = utf8, 
-                    explicit_defaults_for_timestamp = ON, 
-                    group_concat_max_len = 1024, 
-                    innodb_adaptive_hash_index = ON, 
-                    innodb_lock_wait_timeout = 50, 
-                    innodb_numa_interleave = OFF, 
-                    net_read_timeout = 30, 
-                    net_write_timeout = 1, 
-                    regexp_time_limit = 32, 
-                    sync_binlog = 1, 
-                    table_definition_cache = 2000, 
-                    log_bin_trust_function_creators = ON, 
-                    skip_name_resolve = OFF, 
-                    innodb_redo_log_capacity = 104857600, 
-                    wait_timeout = 28800, 
-                    interactive_timeout = 28800, 
-                    default_time_zone = +00:00, 
-                    pxc_strict_mode = ENFORCING, ), 
-                replication = timeweb_cloud_api.models.db_replication.db-replication(
-                    count = 1, ), 
-                network = timeweb_cloud_api.models.network.network(
-                    id = network-1234567890, 
-                    floating_ip = 192.168.0.0, 
-                    local_ip = 192.168.0.0, 
-                    ip = 192.168.0.0, ), 
-                is_public_ipv6 = true, 
-                description = description, 
-                availability_zone = spb-1, 
-                auto_backups = timeweb_cloud_api.models.create_db_auto_backups.create-db-auto-backups(
-                    copy_count = 2, 
-                    creation_start_at = 2023-02-02T00:00:00.000Z, 
-                    interval = week, 
-                    day_of_week = 1, )
+            return ConfigParametersPostgres(
+                max_connections = 200, 
+                autovacuum_analyze_scale_factor = 0.1, 
+                autovacuum_max_workers = 3, 
+                autovacuum_naptime = 120, 
+                autovacuum_vacuum_insert_scale_factor = 0.2, 
+                autovacuum_vacuum_scale_factor = 0.2, 
+                autovacuum_work_mem = -1, 
+                bgwriter_delay = 200, 
+                bgwriter_lru_maxpages = 100, 
+                deadlock_timeout = 1000, 
+                gin_pending_list_limit = 4096, 
+                idle_in_transaction_session_timeout = 0, 
+                join_collapse_limit = 8, 
+                lock_timeout = 0, 
+                max_prepared_transactions = 0, 
+                shared_buffers = 65536, 
+                log_min_duration_statement = -1, 
+                wal_buffers = 2048, 
+                temp_buffers = 1024, 
+                work_mem = 4096, 
+                default_transaction_isolation = read committed, 
+                effective_cache_size = 131072, 
+                max_wal_size = 1024, 
+                min_wal_size = 80, 
+                wal_level = replica, 
+                max_replication_slots = 10, 
+                max_wal_senders = 10, 
+                max_worker_processes = 8, 
+                max_logical_replication_workers = 4, 
+                max_parallel_maintenance_workers = 2, 
+                max_parallel_workers = 8, 
+                max_parallel_workers_per_gather = 2, 
+                array_nulls = ON, 
+                backend_flush_after = 0, 
+                backslash_quote = safe_encoding, 
+                bgwriter_flush_after = 64, 
+                bgwriter_lru_multiplier = 2, 
+                default_transaction_read_only = OFF, 
+                enable_hashagg = ON, 
+                enable_hashjoin = ON, 
+                enable_incremental_sort = ON, 
+                enable_indexscan = ON, 
+                enable_indexonlyscan = ON, 
+                enable_material = ON, 
+                enable_memoize = ON, 
+                enable_mergejoin = ON, 
+                enable_parallel_append = ON, 
+                enable_parallel_hash = ON, 
+                enable_partition_pruning = ON, 
+                enable_partitionwise_join = OFF, 
+                enable_partitionwise_aggregate = OFF, 
+                enable_seqscan = ON, 
+                enable_sort = ON, 
+                enable_tidscan = ON, 
+                exit_on_error = OFF, 
+                from_collapse_limit = 8, 
+                jit = ON, 
+                plan_cache_mode = auto, 
+                quote_all_identifiers = OFF, 
+                standard_conforming_strings = ON, 
+                statement_timeout = 0, 
+                timezone = +00:00, 
+                transform_null_equals = OFF, 
+                max_locks_per_transaction = 64, 
+                autovacuum_vacuum_cost_limit = 200, 
+                checkpoint_timeout = 300, 
+                checkpoint_completion_target = 0.5, 
+                wal_compression = off, 
+                random_page_cost = 4, 
+                effective_io_concurrency = 1, 
+                log_lock_waits = OFF, 
+                log_temp_files = -1, 
+                track_io_timing = OFF, 
+                maintenance_work_mem = 262144, 
+                idle_session_timeout = 900000, 
+                io_method = worker, 
+                io_workers = 3
             )
         else :
-            return CreateCluster(
-                name = default_db,
-                type = mysql,
+            return ConfigParametersPostgres(
         )
         """
 
-    def testCreateCluster(self):
-        """Test CreateCluster"""
+    def testConfigParametersPostgres(self):
+        """Test ConfigParametersPostgres"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

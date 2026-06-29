@@ -88,6 +88,8 @@ docs/Commit.md
 docs/ComponentsSchemasBaseError.md
 docs/ComponentsSchemasMeta.md
 docs/ConfigParameters.md
+docs/ConfigParametersMysql.md
+docs/ConfigParametersPostgres.md
 docs/ContainerRegistryApi.md
 docs/CreateAdmin.md
 docs/CreateAgent.md
@@ -354,6 +356,7 @@ docs/ModelParamsInfoMaxTokens.md
 docs/ModelParamsInfoReasoningEffort.md
 docs/ModelParamsInfoTemperature.md
 docs/MountNetworkDrive.md
+docs/Mysql.md
 docs/NatIn.md
 docs/Network.md
 docs/NetworkDrive.md
@@ -386,6 +389,7 @@ docs/PaymentsApi.md
 docs/PerformActionOnBackupRequest.md
 docs/PerformActionOnServerRequest.md
 docs/Policy.md
+docs/Postgres.md
 docs/PresetsBalancer.md
 docs/PresetsDbs.md
 docs/PresetsResponse.md
@@ -614,6 +618,8 @@ test/test_commit.py
 test/test_components_schemas_base_error.py
 test/test_components_schemas_meta.py
 test/test_config_parameters.py
+test/test_config_parameters_mysql.py
+test/test_config_parameters_postgres.py
 test/test_container_registry_api.py
 test/test_create_admin.py
 test/test_create_agent.py
@@ -880,6 +886,7 @@ test/test_model_params_info_max_tokens.py
 test/test_model_params_info_reasoning_effort.py
 test/test_model_params_info_temperature.py
 test/test_mount_network_drive.py
+test/test_mysql.py
 test/test_nat_in.py
 test/test_network.py
 test/test_network_drive.py
@@ -912,6 +919,7 @@ test/test_payments_api.py
 test/test_perform_action_on_backup_request.py
 test/test_perform_action_on_server_request.py
 test/test_policy.py
+test/test_postgres.py
 test/test_presets_balancer.py
 test/test_presets_dbs.py
 test/test_presets_response.py
@@ -1159,6 +1167,8 @@ timeweb_cloud_api/models/commit.py
 timeweb_cloud_api/models/components_schemas_base_error.py
 timeweb_cloud_api/models/components_schemas_meta.py
 timeweb_cloud_api/models/config_parameters.py
+timeweb_cloud_api/models/config_parameters_mysql.py
+timeweb_cloud_api/models/config_parameters_postgres.py
 timeweb_cloud_api/models/create_admin.py
 timeweb_cloud_api/models/create_agent.py
 timeweb_cloud_api/models/create_agent201_response.py
@@ -1414,6 +1424,7 @@ timeweb_cloud_api/models/model_params_info_max_tokens.py
 timeweb_cloud_api/models/model_params_info_reasoning_effort.py
 timeweb_cloud_api/models/model_params_info_temperature.py
 timeweb_cloud_api/models/mount_network_drive.py
+timeweb_cloud_api/models/mysql.py
 timeweb_cloud_api/models/nat_in.py
 timeweb_cloud_api/models/network.py
 timeweb_cloud_api/models/network_drive.py
@@ -1444,6 +1455,7 @@ timeweb_cloud_api/models/outgoing_is_enabled.py
 timeweb_cloud_api/models/perform_action_on_backup_request.py
 timeweb_cloud_api/models/perform_action_on_server_request.py
 timeweb_cloud_api/models/policy.py
+timeweb_cloud_api/models/postgres.py
 timeweb_cloud_api/models/presets_balancer.py
 timeweb_cloud_api/models/presets_dbs.py
 timeweb_cloud_api/models/presets_response.py

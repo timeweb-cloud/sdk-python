@@ -21,9 +21,9 @@ import json
 
 from typing import Any, Optional
 from pydantic import BaseModel, Field, validator
-from timeweb_cloud_api.models.config_parameters import ConfigParameters
 from timeweb_cloud_api.models.database_cluster_disk import DatabaseClusterDisk
 from timeweb_cloud_api.models.db_type import DbType
+from timeweb_cloud_api.models.mysql import Mysql
 
 class DatabaseCluster(BaseModel):
     """
@@ -42,7 +42,7 @@ class DatabaseCluster(BaseModel):
     status: Optional[Any] = Field(..., description="Текущий статус кластера базы данных.")
     preset_id: Optional[Any] = Field(..., description="ID тарифа.")
     disk: Optional[DatabaseClusterDisk] = None
-    config_parameters: ConfigParameters = Field(...)
+    config_parameters: Mysql = Field(...)
     is_enabled_public_network: Optional[Any] = Field(..., description="Доступность публичного IP-адреса")
     __properties = ["id", "created_at", "location", "name", "networks", "is_public_ipv6", "type", "hash_type", "avatar_link", "port", "status", "preset_id", "disk", "config_parameters", "is_enabled_public_network"]
 
@@ -191,7 +191,7 @@ class DatabaseCluster(BaseModel):
             "status": obj.get("status"),
             "preset_id": obj.get("preset_id"),
             "disk": DatabaseClusterDisk.from_dict(obj.get("disk")) if obj.get("disk") is not None else None,
-            "config_parameters": ConfigParameters.from_dict(obj.get("config_parameters")) if obj.get("config_parameters") is not None else None,
+            "config_parameters": Mysql.from_dict(obj.get("config_parameters")) if obj.get("config_parameters") is not None else None,
             "is_enabled_public_network": obj.get("is_enabled_public_network")
         })
         return _obj

@@ -22,12 +22,12 @@ import json
 from typing import Any, Optional
 from pydantic import BaseModel, Field, validator
 from timeweb_cloud_api.models.availability_zone import AvailabilityZone
-from timeweb_cloud_api.models.config_parameters import ConfigParameters
 from timeweb_cloud_api.models.create_cluster_admin import CreateClusterAdmin
 from timeweb_cloud_api.models.create_cluster_instance import CreateClusterInstance
 from timeweb_cloud_api.models.create_db_auto_backups import CreateDbAutoBackups
 from timeweb_cloud_api.models.db_replication import DbReplication
 from timeweb_cloud_api.models.db_type import DbType
+from timeweb_cloud_api.models.mysql import Mysql
 from timeweb_cloud_api.models.network import Network
 
 class CreateCluster(BaseModel):
@@ -42,7 +42,7 @@ class CreateCluster(BaseModel):
     preset_id: Optional[Any] = Field(None, description="ID тарифа. Нельзя передавать вместе с `configurator_id`")
     configurator_id: Optional[Any] = Field(None, description="ID конфигуратора. Нельзя передавать вместе с `preset_id`")
     project_id: Optional[Any] = Field(None, description="ID проекта.")
-    config_parameters: Optional[ConfigParameters] = None
+    config_parameters: Optional[Mysql] = None
     replication: Optional[DbReplication] = None
     network: Optional[Network] = None
     is_public_ipv6: Optional[Any] = Field(None, description="Использование IPv6 адреса.")
@@ -158,7 +158,7 @@ class CreateCluster(BaseModel):
             "preset_id": obj.get("preset_id"),
             "configurator_id": obj.get("configurator_id"),
             "project_id": obj.get("project_id"),
-            "config_parameters": ConfigParameters.from_dict(obj.get("config_parameters")) if obj.get("config_parameters") is not None else None,
+            "config_parameters": Mysql.from_dict(obj.get("config_parameters")) if obj.get("config_parameters") is not None else None,
             "replication": DbReplication.from_dict(obj.get("replication")) if obj.get("replication") is not None else None,
             "network": Network.from_dict(obj.get("network")) if obj.get("network") is not None else None,
             "is_public_ipv6": obj.get("is_public_ipv6"),

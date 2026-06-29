@@ -17,11 +17,11 @@ import unittest
 import datetime
 
 import timeweb_cloud_api
-from timeweb_cloud_api.models.create_cluster import CreateCluster  # noqa: E501
+from timeweb_cloud_api.models.mysql import Mysql  # noqa: E501
 from timeweb_cloud_api.rest import ApiException
 
-class TestCreateCluster(unittest.TestCase):
-    """CreateCluster unit test stubs"""
+class TestMysql(unittest.TestCase):
+    """Mysql unit test stubs"""
 
     def setUp(self):
         pass
@@ -30,105 +30,72 @@ class TestCreateCluster(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test CreateCluster
+        """Test Mysql
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # uncomment below to create an instance of `CreateCluster`
+        # uncomment below to create an instance of `Mysql`
         """
-        model = timeweb_cloud_api.models.create_cluster.CreateCluster()  # noqa: E501
+        model = timeweb_cloud_api.models.mysql.Mysql()  # noqa: E501
         if include_optional :
-            return CreateCluster(
-                name = default_db, 
-                type = mysql, 
-                admin = timeweb_cloud_api.models.create_cluster_admin.create_cluster_admin(
-                    login = default_login, 
-                    password = bs.:L2f$Tm:SC~, 
-                    host = %, 
-                    privileges = null, 
-                    description = description, ), 
-                instance = timeweb_cloud_api.models.create_cluster_instance.create_cluster_instance(
-                    name = default_db, 
-                    description = null, ), 
-                hash_type = caching_sha2, 
-                preset_id = 5, 
-                configurator_id = 5, 
-                project_id = 5, 
-                config_parameters = timeweb_cloud_api.models.mysql.mysql(
-                    join_buffer_size = 4194304, 
-                    max_connections = 200, 
-                    sort_buffer_size = 2097152, 
-                    thread_cache_size = 8, 
-                    innodb_buffer_pool_size = 864026624, 
-                    auto_increment_increment = 3, 
-                    auto_increment_offset = 3, 
-                    innodb_io_capacity = 1500, 
-                    innodb_purge_threads = 4, 
-                    innodb_read_io_threads = 4, 
-                    innodb_thread_concurrency = 0, 
-                    innodb_write_io_threads = 4, 
-                    innodb_log_file_size = 432013312, 
-                    max_allowed_packet = 16777216, 
-                    max_heap_table_size = 16777216, 
-                    sql_mode = , 
-                    query_cache_type = 2, 
-                    query_cache_size = 1, 
-                    innodb_flush_log_at_trx_commit = 1, 
-                    transaction_isolation = read-uncommitted, 
-                    long_query_time = 10, 
-                    tmp_table_size = 16777216, 
-                    table_open_cache = 4970, 
-                    table_open_cache_instances = 16, 
-                    innodb_flush_method = O_DSYNC, 
-                    innodb_strict_mode = ON, 
-                    slow_query_log = ON, 
-                    binlog_cache_size = 32768, 
-                    binlog_group_commit_sync_delay = 1, 
-                    binlog_row_image = full, 
-                    binlog_rows_query_log_events = OFF, 
-                    character_set_server = utf8, 
-                    explicit_defaults_for_timestamp = ON, 
-                    group_concat_max_len = 1024, 
-                    innodb_adaptive_hash_index = ON, 
-                    innodb_lock_wait_timeout = 50, 
-                    innodb_numa_interleave = OFF, 
-                    net_read_timeout = 30, 
-                    net_write_timeout = 1, 
-                    regexp_time_limit = 32, 
-                    sync_binlog = 1, 
-                    table_definition_cache = 2000, 
-                    log_bin_trust_function_creators = ON, 
-                    skip_name_resolve = OFF, 
-                    innodb_redo_log_capacity = 104857600, 
-                    wait_timeout = 28800, 
-                    interactive_timeout = 28800, 
-                    default_time_zone = +00:00, 
-                    pxc_strict_mode = ENFORCING, ), 
-                replication = timeweb_cloud_api.models.db_replication.db-replication(
-                    count = 1, ), 
-                network = timeweb_cloud_api.models.network.network(
-                    id = network-1234567890, 
-                    floating_ip = 192.168.0.0, 
-                    local_ip = 192.168.0.0, 
-                    ip = 192.168.0.0, ), 
-                is_public_ipv6 = true, 
-                description = description, 
-                availability_zone = spb-1, 
-                auto_backups = timeweb_cloud_api.models.create_db_auto_backups.create-db-auto-backups(
-                    copy_count = 2, 
-                    creation_start_at = 2023-02-02T00:00:00.000Z, 
-                    interval = week, 
-                    day_of_week = 1, )
+            return Mysql(
+                join_buffer_size = 4194304, 
+                max_connections = 200, 
+                sort_buffer_size = 2097152, 
+                thread_cache_size = 8, 
+                innodb_buffer_pool_size = 864026624, 
+                auto_increment_increment = 3, 
+                auto_increment_offset = 3, 
+                innodb_io_capacity = 1500, 
+                innodb_purge_threads = 4, 
+                innodb_read_io_threads = 4, 
+                innodb_thread_concurrency = 0, 
+                innodb_write_io_threads = 4, 
+                innodb_log_file_size = 432013312, 
+                max_allowed_packet = 16777216, 
+                max_heap_table_size = 16777216, 
+                sql_mode = , 
+                query_cache_type = 2, 
+                query_cache_size = 1, 
+                innodb_flush_log_at_trx_commit = 1, 
+                transaction_isolation = read-uncommitted, 
+                long_query_time = 10, 
+                tmp_table_size = 16777216, 
+                table_open_cache = 4970, 
+                table_open_cache_instances = 16, 
+                innodb_flush_method = O_DSYNC, 
+                innodb_strict_mode = ON, 
+                slow_query_log = ON, 
+                binlog_cache_size = 32768, 
+                binlog_group_commit_sync_delay = 1, 
+                binlog_row_image = full, 
+                binlog_rows_query_log_events = OFF, 
+                character_set_server = utf8, 
+                explicit_defaults_for_timestamp = ON, 
+                group_concat_max_len = 1024, 
+                innodb_adaptive_hash_index = ON, 
+                innodb_lock_wait_timeout = 50, 
+                innodb_numa_interleave = OFF, 
+                net_read_timeout = 30, 
+                net_write_timeout = 1, 
+                regexp_time_limit = 32, 
+                sync_binlog = 1, 
+                table_definition_cache = 2000, 
+                log_bin_trust_function_creators = ON, 
+                skip_name_resolve = OFF, 
+                innodb_redo_log_capacity = 104857600, 
+                wait_timeout = 28800, 
+                interactive_timeout = 28800, 
+                default_time_zone = +00:00, 
+                pxc_strict_mode = ENFORCING
             )
         else :
-            return CreateCluster(
-                name = default_db,
-                type = mysql,
+            return Mysql(
         )
         """
 
-    def testCreateCluster(self):
-        """Test CreateCluster"""
+    def testMysql(self):
+        """Test Mysql"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

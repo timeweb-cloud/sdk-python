@@ -134,6 +134,8 @@ from timeweb_cloud_api.models.commit import Commit
 from timeweb_cloud_api.models.components_schemas_base_error import ComponentsSchemasBaseError
 from timeweb_cloud_api.models.components_schemas_meta import ComponentsSchemasMeta
 from timeweb_cloud_api.models.config_parameters import ConfigParameters
+from timeweb_cloud_api.models.config_parameters_mysql import ConfigParametersMysql
+from timeweb_cloud_api.models.config_parameters_postgres import ConfigParametersPostgres
 from timeweb_cloud_api.models.create_admin import CreateAdmin
 from timeweb_cloud_api.models.create_agent import CreateAgent
 from timeweb_cloud_api.models.create_agent201_response import CreateAgent201Response
@@ -389,6 +391,7 @@ from timeweb_cloud_api.models.model_params_info_max_tokens import ModelParamsInf
 from timeweb_cloud_api.models.model_params_info_reasoning_effort import ModelParamsInfoReasoningEffort
 from timeweb_cloud_api.models.model_params_info_temperature import ModelParamsInfoTemperature
 from timeweb_cloud_api.models.mount_network_drive import MountNetworkDrive
+from timeweb_cloud_api.models.mysql import Mysql
 from timeweb_cloud_api.models.nat_in import NatIn
 from timeweb_cloud_api.models.network import Network
 from timeweb_cloud_api.models.network_drive import NetworkDrive
@@ -419,6 +422,7 @@ from timeweb_cloud_api.models.outgoing_is_enabled import OutgoingIsEnabled
 from timeweb_cloud_api.models.perform_action_on_backup_request import PerformActionOnBackupRequest
 from timeweb_cloud_api.models.perform_action_on_server_request import PerformActionOnServerRequest
 from timeweb_cloud_api.models.policy import Policy
+from timeweb_cloud_api.models.postgres import Postgres
 from timeweb_cloud_api.models.presets_balancer import PresetsBalancer
 from timeweb_cloud_api.models.presets_dbs import PresetsDbs
 from timeweb_cloud_api.models.presets_response import PresetsResponse

@@ -22,9 +22,9 @@ import json
 from typing import Any, Optional
 from pydantic import BaseModel, Field, validator
 from timeweb_cloud_api.models.availability_zone import AvailabilityZone
-from timeweb_cloud_api.models.config_parameters import ConfigParameters
 from timeweb_cloud_api.models.db_disk_stats import DbDiskStats
 from timeweb_cloud_api.models.db_type import DbType
+from timeweb_cloud_api.models.mysql import Mysql
 
 class Db(BaseModel):
     """
@@ -46,7 +46,7 @@ class Db(BaseModel):
     status: Optional[Any] = Field(..., description="Текущий статус базы данных.")
     preset_id: Optional[Any] = Field(..., description="ID тарифа.")
     disk_stats: DbDiskStats = Field(...)
-    config_parameters: ConfigParameters = Field(...)
+    config_parameters: Mysql = Field(...)
     is_only_local_ip_access: Optional[Any] = Field(..., description="Это логическое значение, которое показывает, доступна ли база данных только по локальному IP адресу.")
     availability_zone: AvailabilityZone = Field(...)
     __properties = ["id", "created_at", "account_id", "login", "location", "password", "name", "host", "type", "hash_type", "port", "ip", "local_ip", "status", "preset_id", "disk_stats", "config_parameters", "is_only_local_ip_access", "availability_zone"]
@@ -214,7 +214,7 @@ class Db(BaseModel):
             "status": obj.get("status"),
             "preset_id": obj.get("preset_id"),
             "disk_stats": DbDiskStats.from_dict(obj.get("disk_stats")) if obj.get("disk_stats") is not None else None,
-            "config_parameters": ConfigParameters.from_dict(obj.get("config_parameters")) if obj.get("config_parameters") is not None else None,
+            "config_parameters": Mysql.from_dict(obj.get("config_parameters")) if obj.get("config_parameters") is not None else None,
             "is_only_local_ip_access": obj.get("is_only_local_ip_access"),
             "availability_zone": obj.get("availability_zone")
         })

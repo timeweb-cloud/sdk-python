@@ -21,6 +21,7 @@ import json
 
 from typing import Any, Optional
 from pydantic import BaseModel, Field
+from timeweb_cloud_api.models.mysql import Mysql
 
 class UpdateCluster(BaseModel):
     """
@@ -28,10 +29,11 @@ class UpdateCluster(BaseModel):
     """
     name: Optional[Any] = Field(None, description="Название кластера базы данных.")
     preset_id: Optional[Any] = Field(None, description="ID тарифа.")
+    config_parameters: Optional[Mysql] = None
     description: Optional[Any] = Field(None, description="Описание кластера базы данных")
     is_enabled_public_network: Optional[Any] = Field(None, description="Доступность публичного IP-адреса")
     is_public_ipv6: Optional[Any] = Field(None, description="Использование IPv6 адреса.")
-    __properties = ["name", "preset_id", "description", "is_enabled_public_network", "is_public_ipv6"]
+    __properties = ["name", "preset_id", "config_parameters", "description", "is_enabled_public_network", "is_public_ipv6"]
 
     class Config:
         """Pydantic configuration"""
@@ -57,6 +59,9 @@ class UpdateCluster(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
+        # override the default output from pydantic by calling `to_dict()` of config_parameters
+        if self.config_parameters:
+            _dict['config_parameters'] = self.config_parameters.to_dict()
         # set to None if name (nullable) is None
         # and __fields_set__ contains the field
         if self.name is None and "name" in self.__fields_set__:
@@ -96,6 +101,7 @@ class UpdateCluster(BaseModel):
         _obj = UpdateCluster.parse_obj({
             "name": obj.get("name"),
             "preset_id": obj.get("preset_id"),
+            "config_parameters": Mysql.from_dict(obj.get("config_parameters")) if obj.get("config_parameters") is not None else None,
             "description": obj.get("description"),
             "is_enabled_public_network": obj.get("is_enabled_public_network"),
             "is_public_ipv6": obj.get("is_public_ipv6")

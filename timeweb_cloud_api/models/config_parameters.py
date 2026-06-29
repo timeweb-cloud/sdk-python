@@ -19,42 +19,18 @@ import re  # noqa: F401
 import json
 
 
-from typing import Any, Optional
-from pydantic import BaseModel, Field
+from typing import Optional
+from pydantic import BaseModel
+from timeweb_cloud_api.models.config_parameters_mysql import ConfigParametersMysql
+from timeweb_cloud_api.models.config_parameters_postgres import ConfigParametersPostgres
 
 class ConfigParameters(BaseModel):
     """
     Параметры базы данных
     """
-    auto_increment_increment: Optional[Any] = Field(None, description="Интервал между значениями столбцов с атрибутом `AUTO_INCREMENT` (`mysql5` | `mysql`).")
-    auto_increment_offset: Optional[Any] = Field(None, description="Начальное значение для столбцов с атрибутом `AUTO_INCREMENT` (`mysql5` | `mysql`).")
-    innodb_io_capacity: Optional[Any] = Field(None, description="Количество операций ввода-вывода в секунду `IOPS` (`mysql5` | `mysql`).")
-    innodb_purge_threads: Optional[Any] = Field(None, description="Количество потоков ввода-вывода, используемых для операций очистки (`mysql5` | `mysql`).")
-    innodb_read_io_threads: Optional[Any] = Field(None, description="Количество потоков ввода-вывода, используемых для операций чтения (`mysql5` | `mysql`).")
-    innodb_thread_concurrency: Optional[Any] = Field(None, description="Максимальное число потоков, которые могут исполняться (`mysql5` | `mysql`).")
-    innodb_write_io_threads: Optional[Any] = Field(None, description="Количество потоков ввода-вывода, используемых для операций записи (`mysql5` | `mysql`).")
-    join_buffer_size: Optional[Any] = Field(None, description="Минимальный размер буфера (`mysql5` | `mysql`).")
-    max_allowed_packet: Optional[Any] = Field(None, description="Максимальный размер одного пакета, строки или параметра, отправляемого функцией `mysql_stmt_send_long_data()` (`mysql5` | `mysql`).")
-    max_heap_table_size: Optional[Any] = Field(None, description="Максимальный размер пользовательских MEMORY-таблиц (`mysql5` | `mysql`).")
-    autovacuum_analyze_scale_factor: Optional[Any] = Field(None, description="Доля измененных или удаленных записей в таблице, при которой процесс автоочистки выполнит команду `ANALYZE` (`postgres` | `postgres14`| `postgres15`).")
-    bgwriter_delay: Optional[Any] = Field(None, description="Задержка между запусками процесса фоновой записи (`postgres` | `postgres14`| `postgres15`).")
-    bgwriter_lru_maxpages: Optional[Any] = Field(None, description="Максимальное число элементов буферного кеша (`postgres` | `postgres14`| `postgres15`).")
-    deadlock_timeout: Optional[Any] = Field(None, description="Время ожидания, по истечении которого будет выполняться проверка состояния перекрестной блокировки (`postgres` | `postgres14`| `postgres15`).")
-    gin_pending_list_limit: Optional[Any] = Field(None, description="Максимальный размер очереди записей индекса `GIN` (`postgres` | `postgres14`| `postgres15`).")
-    idle_in_transaction_session_timeout: Optional[Any] = Field(None, description="Время простоя открытой транзакции, при превышении которого будет завершена сессия с этой транзакцией (`postgres` | `postgres14`| `postgres15`).")
-    idle_session_timeout: Optional[Any] = Field(None, description="Время простоя не открытой транзакции, при превышении которого будет завершена сессия с этой транзакцией (`postgres` | `postgres14`| `postgres15`).")
-    join_collapse_limit: Optional[Any] = Field(None, description="Значение количества элементов в списке `FROM` при превышении которого, планировщик будет переносить в список явные инструкции `JOIN` (`postgres` | `postgres14`| `postgres15`).")
-    lock_timeout: Optional[Any] = Field(None, description="Время ожидания освобождения блокировки (`postgres` | `postgres14`| `postgres15`).")
-    max_prepared_transactions: Optional[Any] = Field(None, description="Максимальное число транзакций, которые могут одновременно находиться в подготовленном состоянии (`postgres` | `postgres14`| `postgres15`).")
-    max_connections: Optional[Any] = Field(None, description="Допустимое количество соединений (`postgres` | `postgres14`| `postgres15` | `mysql`).")
-    shared_buffers: Optional[Any] = Field(None, description="Устанавливает количество буферов общей памяти, используемых сервером (`postgres` | `postgres14`| `postgres15`).")
-    wal_buffers: Optional[Any] = Field(None, description="Устанавливает количество буферов дисковых страниц в общей памяти для WAL (`postgres` | `postgres14`| `postgres15`).")
-    temp_buffers: Optional[Any] = Field(None, description="Устанавливает максимальное количество временных буферов, используемых каждой сессией (`postgres` | `postgres14`| `postgres15`).")
-    work_mem: Optional[Any] = Field(None, description="Устанавливает максимальное количество памяти, используемое для рабочих пространств запросов (`postgres` | `postgres14`| `postgres15`).")
-    sql_mode: Optional[Any] = Field(None, description="Устанавливает режим SQL. Можно задать несколько режимов, разделяя их запятой. (`mysql`).")
-    query_cache_type: Optional[Any] = Field(None, description="Параметр включает или отключает работу MySQL Query Cache (`mysql`).")
-    query_cache_size: Optional[Any] = Field(None, description="Размер в байтах, доступный для кэша запросов (`mysql`).")
-    __properties = ["auto_increment_increment", "auto_increment_offset", "innodb_io_capacity", "innodb_purge_threads", "innodb_read_io_threads", "innodb_thread_concurrency", "innodb_write_io_threads", "join_buffer_size", "max_allowed_packet", "max_heap_table_size", "autovacuum_analyze_scale_factor", "bgwriter_delay", "bgwriter_lru_maxpages", "deadlock_timeout", "gin_pending_list_limit", "idle_in_transaction_session_timeout", "idle_session_timeout", "join_collapse_limit", "lock_timeout", "max_prepared_transactions", "max_connections", "shared_buffers", "wal_buffers", "temp_buffers", "work_mem", "sql_mode", "query_cache_type", "query_cache_size"]
+    mysql: Optional[ConfigParametersMysql] = None
+    postgres: Optional[ConfigParametersPostgres] = None
+    __properties = ["mysql", "postgres"]
 
     class Config:
         """Pydantic configuration"""
@@ -80,146 +56,12 @@ class ConfigParameters(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # set to None if auto_increment_increment (nullable) is None
-        # and __fields_set__ contains the field
-        if self.auto_increment_increment is None and "auto_increment_increment" in self.__fields_set__:
-            _dict['auto_increment_increment'] = None
-
-        # set to None if auto_increment_offset (nullable) is None
-        # and __fields_set__ contains the field
-        if self.auto_increment_offset is None and "auto_increment_offset" in self.__fields_set__:
-            _dict['auto_increment_offset'] = None
-
-        # set to None if innodb_io_capacity (nullable) is None
-        # and __fields_set__ contains the field
-        if self.innodb_io_capacity is None and "innodb_io_capacity" in self.__fields_set__:
-            _dict['innodb_io_capacity'] = None
-
-        # set to None if innodb_purge_threads (nullable) is None
-        # and __fields_set__ contains the field
-        if self.innodb_purge_threads is None and "innodb_purge_threads" in self.__fields_set__:
-            _dict['innodb_purge_threads'] = None
-
-        # set to None if innodb_read_io_threads (nullable) is None
-        # and __fields_set__ contains the field
-        if self.innodb_read_io_threads is None and "innodb_read_io_threads" in self.__fields_set__:
-            _dict['innodb_read_io_threads'] = None
-
-        # set to None if innodb_thread_concurrency (nullable) is None
-        # and __fields_set__ contains the field
-        if self.innodb_thread_concurrency is None and "innodb_thread_concurrency" in self.__fields_set__:
-            _dict['innodb_thread_concurrency'] = None
-
-        # set to None if innodb_write_io_threads (nullable) is None
-        # and __fields_set__ contains the field
-        if self.innodb_write_io_threads is None and "innodb_write_io_threads" in self.__fields_set__:
-            _dict['innodb_write_io_threads'] = None
-
-        # set to None if join_buffer_size (nullable) is None
-        # and __fields_set__ contains the field
-        if self.join_buffer_size is None and "join_buffer_size" in self.__fields_set__:
-            _dict['join_buffer_size'] = None
-
-        # set to None if max_allowed_packet (nullable) is None
-        # and __fields_set__ contains the field
-        if self.max_allowed_packet is None and "max_allowed_packet" in self.__fields_set__:
-            _dict['max_allowed_packet'] = None
-
-        # set to None if max_heap_table_size (nullable) is None
-        # and __fields_set__ contains the field
-        if self.max_heap_table_size is None and "max_heap_table_size" in self.__fields_set__:
-            _dict['max_heap_table_size'] = None
-
-        # set to None if autovacuum_analyze_scale_factor (nullable) is None
-        # and __fields_set__ contains the field
-        if self.autovacuum_analyze_scale_factor is None and "autovacuum_analyze_scale_factor" in self.__fields_set__:
-            _dict['autovacuum_analyze_scale_factor'] = None
-
-        # set to None if bgwriter_delay (nullable) is None
-        # and __fields_set__ contains the field
-        if self.bgwriter_delay is None and "bgwriter_delay" in self.__fields_set__:
-            _dict['bgwriter_delay'] = None
-
-        # set to None if bgwriter_lru_maxpages (nullable) is None
-        # and __fields_set__ contains the field
-        if self.bgwriter_lru_maxpages is None and "bgwriter_lru_maxpages" in self.__fields_set__:
-            _dict['bgwriter_lru_maxpages'] = None
-
-        # set to None if deadlock_timeout (nullable) is None
-        # and __fields_set__ contains the field
-        if self.deadlock_timeout is None and "deadlock_timeout" in self.__fields_set__:
-            _dict['deadlock_timeout'] = None
-
-        # set to None if gin_pending_list_limit (nullable) is None
-        # and __fields_set__ contains the field
-        if self.gin_pending_list_limit is None and "gin_pending_list_limit" in self.__fields_set__:
-            _dict['gin_pending_list_limit'] = None
-
-        # set to None if idle_in_transaction_session_timeout (nullable) is None
-        # and __fields_set__ contains the field
-        if self.idle_in_transaction_session_timeout is None and "idle_in_transaction_session_timeout" in self.__fields_set__:
-            _dict['idle_in_transaction_session_timeout'] = None
-
-        # set to None if idle_session_timeout (nullable) is None
-        # and __fields_set__ contains the field
-        if self.idle_session_timeout is None and "idle_session_timeout" in self.__fields_set__:
-            _dict['idle_session_timeout'] = None
-
-        # set to None if join_collapse_limit (nullable) is None
-        # and __fields_set__ contains the field
-        if self.join_collapse_limit is None and "join_collapse_limit" in self.__fields_set__:
-            _dict['join_collapse_limit'] = None
-
-        # set to None if lock_timeout (nullable) is None
-        # and __fields_set__ contains the field
-        if self.lock_timeout is None and "lock_timeout" in self.__fields_set__:
-            _dict['lock_timeout'] = None
-
-        # set to None if max_prepared_transactions (nullable) is None
-        # and __fields_set__ contains the field
-        if self.max_prepared_transactions is None and "max_prepared_transactions" in self.__fields_set__:
-            _dict['max_prepared_transactions'] = None
-
-        # set to None if max_connections (nullable) is None
-        # and __fields_set__ contains the field
-        if self.max_connections is None and "max_connections" in self.__fields_set__:
-            _dict['max_connections'] = None
-
-        # set to None if shared_buffers (nullable) is None
-        # and __fields_set__ contains the field
-        if self.shared_buffers is None and "shared_buffers" in self.__fields_set__:
-            _dict['shared_buffers'] = None
-
-        # set to None if wal_buffers (nullable) is None
-        # and __fields_set__ contains the field
-        if self.wal_buffers is None and "wal_buffers" in self.__fields_set__:
-            _dict['wal_buffers'] = None
-
-        # set to None if temp_buffers (nullable) is None
-        # and __fields_set__ contains the field
-        if self.temp_buffers is None and "temp_buffers" in self.__fields_set__:
-            _dict['temp_buffers'] = None
-
-        # set to None if work_mem (nullable) is None
-        # and __fields_set__ contains the field
-        if self.work_mem is None and "work_mem" in self.__fields_set__:
-            _dict['work_mem'] = None
-
-        # set to None if sql_mode (nullable) is None
-        # and __fields_set__ contains the field
-        if self.sql_mode is None and "sql_mode" in self.__fields_set__:
-            _dict['sql_mode'] = None
-
-        # set to None if query_cache_type (nullable) is None
-        # and __fields_set__ contains the field
-        if self.query_cache_type is None and "query_cache_type" in self.__fields_set__:
-            _dict['query_cache_type'] = None
-
-        # set to None if query_cache_size (nullable) is None
-        # and __fields_set__ contains the field
-        if self.query_cache_size is None and "query_cache_size" in self.__fields_set__:
-            _dict['query_cache_size'] = None
-
+        # override the default output from pydantic by calling `to_dict()` of mysql
+        if self.mysql:
+            _dict['mysql'] = self.mysql.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of postgres
+        if self.postgres:
+            _dict['postgres'] = self.postgres.to_dict()
         return _dict
 
     @classmethod
@@ -232,34 +74,8 @@ class ConfigParameters(BaseModel):
             return ConfigParameters.parse_obj(obj)
 
         _obj = ConfigParameters.parse_obj({
-            "auto_increment_increment": obj.get("auto_increment_increment"),
-            "auto_increment_offset": obj.get("auto_increment_offset"),
-            "innodb_io_capacity": obj.get("innodb_io_capacity"),
-            "innodb_purge_threads": obj.get("innodb_purge_threads"),
-            "innodb_read_io_threads": obj.get("innodb_read_io_threads"),
-            "innodb_thread_concurrency": obj.get("innodb_thread_concurrency"),
-            "innodb_write_io_threads": obj.get("innodb_write_io_threads"),
-            "join_buffer_size": obj.get("join_buffer_size"),
-            "max_allowed_packet": obj.get("max_allowed_packet"),
-            "max_heap_table_size": obj.get("max_heap_table_size"),
-            "autovacuum_analyze_scale_factor": obj.get("autovacuum_analyze_scale_factor"),
-            "bgwriter_delay": obj.get("bgwriter_delay"),
-            "bgwriter_lru_maxpages": obj.get("bgwriter_lru_maxpages"),
-            "deadlock_timeout": obj.get("deadlock_timeout"),
-            "gin_pending_list_limit": obj.get("gin_pending_list_limit"),
-            "idle_in_transaction_session_timeout": obj.get("idle_in_transaction_session_timeout"),
-            "idle_session_timeout": obj.get("idle_session_timeout"),
-            "join_collapse_limit": obj.get("join_collapse_limit"),
-            "lock_timeout": obj.get("lock_timeout"),
-            "max_prepared_transactions": obj.get("max_prepared_transactions"),
-            "max_connections": obj.get("max_connections"),
-            "shared_buffers": obj.get("shared_buffers"),
-            "wal_buffers": obj.get("wal_buffers"),
-            "temp_buffers": obj.get("temp_buffers"),
-            "work_mem": obj.get("work_mem"),
-            "sql_mode": obj.get("sql_mode"),
-            "query_cache_type": obj.get("query_cache_type"),
-            "query_cache_size": obj.get("query_cache_size")
+            "mysql": ConfigParametersMysql.from_dict(obj.get("mysql")) if obj.get("mysql") is not None else None,
+            "postgres": ConfigParametersPostgres.from_dict(obj.get("postgres")) if obj.get("postgres") is not None else None
         })
         return _obj
 

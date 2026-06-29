@@ -1362,7 +1362,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_database_parameters**
-> Dict[str, object] get_database_parameters()
+> ConfigParameters get_database_parameters()
 
 Получение списка параметров баз данных
 
@@ -1375,6 +1375,7 @@ Name | Type | Description  | Notes
 import time
 import os
 import timeweb_cloud_api
+from timeweb_cloud_api.models.config_parameters import ConfigParameters
 from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
@@ -1414,7 +1415,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-**Dict[str, object]**
+[**ConfigParameters**](ConfigParameters.md)
 
 ### Authorization
 

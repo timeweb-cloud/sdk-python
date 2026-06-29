@@ -25,6 +25,7 @@ from pydantic import Field
 from typing import Any, Optional
 
 from timeweb_cloud_api.models.auto_backup import AutoBackup
+from timeweb_cloud_api.models.config_parameters import ConfigParameters
 from timeweb_cloud_api.models.create_admin import CreateAdmin
 from timeweb_cloud_api.models.create_cluster import CreateCluster
 from timeweb_cloud_api.models.create_database_backup201_response import CreateDatabaseBackup201Response
@@ -2468,7 +2469,7 @@ class DatabasesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def get_database_parameters(self, **kwargs) -> Dict[str, object]:  # noqa: E501
+    def get_database_parameters(self, **kwargs) -> ConfigParameters:  # noqa: E501
         """Получение списка параметров баз данных  # noqa: E501
 
         Чтобы получить список параметров баз данных, отправьте GET-запрос на `/api/v1/dbs/parameters`.  # noqa: E501
@@ -2487,7 +2488,7 @@ class DatabasesApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: Dict[str, object]
+        :rtype: ConfigParameters
         """
         kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
@@ -2527,7 +2528,7 @@ class DatabasesApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: tuple(Dict[str, object], status_code(int), headers(HTTPHeaderDict))
+        :rtype: tuple(ConfigParameters, status_code(int), headers(HTTPHeaderDict))
         """
 
         _params = locals()
@@ -2578,7 +2579,7 @@ class DatabasesApi(object):
         _auth_settings = ['Bearer']  # noqa: E501
 
         _response_types_map = {
-            '200': "Dict[str, object]",
+            '200': "ConfigParameters",
             '400': None,
             '401': None,
             '403': None,

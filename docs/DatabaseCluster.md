@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 **status** | **object** | Текущий статус кластера базы данных. | 
 **preset_id** | **object** | ID тарифа. | 
 **disk** | [**DatabaseClusterDisk**](DatabaseClusterDisk.md) |  | [optional] 
-**config_parameters** | [**ConfigParameters**](ConfigParameters.md) |  | 
+**config_parameters** | [**Mysql**](Mysql.md) |  | 
 **is_enabled_public_network** | **object** | Доступность публичного IP-адреса | 
 
 ## Example

@@ -21,7 +21,7 @@ Name | Type | Description | Notes
 **status** | **object** | Текущий статус базы данных. | 
 **preset_id** | **object** | ID тарифа. | 
 **disk_stats** | [**DbDiskStats**](DbDiskStats.md) |  | 
-**config_parameters** | [**ConfigParameters**](ConfigParameters.md) |  | 
+**config_parameters** | [**Mysql**](Mysql.md) |  | 
 **is_only_local_ip_access** | **object** | Это логическое значение, которое показывает, доступна ли база данных только по локальному IP адресу. | 
 **availability_zone** | [**AvailabilityZone**](AvailabilityZone.md) |  | 
 
