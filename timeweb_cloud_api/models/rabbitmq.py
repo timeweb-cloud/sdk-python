@@ -13,182 +13,57 @@
 """
 
 
-import unittest
-import datetime
+from __future__ import annotations
+import pprint
+import re  # noqa: F401
+import json
 
-import timeweb_cloud_api
-from timeweb_cloud_api.models.config_parameters import ConfigParameters  # noqa: E501
-from timeweb_cloud_api.rest import ApiException
 
-class TestConfigParameters(unittest.TestCase):
-    """ConfigParameters unit test stubs"""
 
-    def setUp(self):
-        pass
+from pydantic import BaseModel
 
-    def tearDown(self):
-        pass
+class Rabbitmq(BaseModel):
+    """
+    Rabbitmq
+    """
+    __properties = []
 
-    def make_instance(self, include_optional):
-        """Test ConfigParameters
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
-        # uncomment below to create an instance of `ConfigParameters`
-        """
-        model = timeweb_cloud_api.models.config_parameters.ConfigParameters()  # noqa: E501
-        if include_optional :
-            return ConfigParameters(
-                mysql = timeweb_cloud_api.models.config_parameters_mysql.config_parameters_mysql(
-                    join_buffer_size = 4194304, 
-                    max_connections = 200, 
-                    sort_buffer_size = 2097152, 
-                    thread_cache_size = 8, 
-                    innodb_buffer_pool_size = 864026624, 
-                    auto_increment_increment = 3, 
-                    auto_increment_offset = 3, 
-                    innodb_io_capacity = 1500, 
-                    innodb_purge_threads = 4, 
-                    innodb_read_io_threads = 4, 
-                    innodb_thread_concurrency = 0, 
-                    innodb_write_io_threads = 4, 
-                    innodb_log_file_size = 432013312, 
-                    max_allowed_packet = 16777216, 
-                    max_heap_table_size = 16777216, 
-                    sql_mode = , 
-                    query_cache_type = 2, 
-                    query_cache_size = 1, 
-                    innodb_flush_log_at_trx_commit = 1, 
-                    transaction_isolation = read-uncommitted, 
-                    long_query_time = 10, 
-                    tmp_table_size = 16777216, 
-                    table_open_cache = 4970, 
-                    table_open_cache_instances = 16, 
-                    innodb_flush_method = O_DSYNC, 
-                    innodb_strict_mode = ON, 
-                    slow_query_log = ON, 
-                    binlog_cache_size = 32768, 
-                    binlog_group_commit_sync_delay = 1, 
-                    binlog_row_image = full, 
-                    binlog_rows_query_log_events = OFF, 
-                    character_set_server = utf8, 
-                    explicit_defaults_for_timestamp = ON, 
-                    group_concat_max_len = 1024, 
-                    innodb_adaptive_hash_index = ON, 
-                    innodb_lock_wait_timeout = 50, 
-                    innodb_numa_interleave = OFF, 
-                    net_read_timeout = 30, 
-                    net_write_timeout = 1, 
-                    regexp_time_limit = 32, 
-                    sync_binlog = 1, 
-                    table_definition_cache = 2000, 
-                    log_bin_trust_function_creators = ON, 
-                    skip_name_resolve = OFF, 
-                    innodb_redo_log_capacity = 104857600, 
-                    wait_timeout = 28800, 
-                    interactive_timeout = 28800, 
-                    default_time_zone = +00:00, 
-                    pxc_strict_mode = ENFORCING, ), 
-                postgres = timeweb_cloud_api.models.config_parameters_postgres.config_parameters_postgres(
-                    max_connections = 200, 
-                    autovacuum_analyze_scale_factor = 0.1, 
-                    autovacuum_max_workers = 3, 
-                    autovacuum_naptime = 120, 
-                    autovacuum_vacuum_insert_scale_factor = 0.2, 
-                    autovacuum_vacuum_scale_factor = 0.2, 
-                    autovacuum_work_mem = -1, 
-                    bgwriter_delay = 200, 
-                    bgwriter_lru_maxpages = 100, 
-                    deadlock_timeout = 1000, 
-                    gin_pending_list_limit = 4096, 
-                    idle_in_transaction_session_timeout = 0, 
-                    join_collapse_limit = 8, 
-                    lock_timeout = 0, 
-                    max_prepared_transactions = 0, 
-                    shared_buffers = 65536, 
-                    log_min_duration_statement = -1, 
-                    wal_buffers = 2048, 
-                    temp_buffers = 1024, 
-                    work_mem = 4096, 
-                    default_transaction_isolation = read committed, 
-                    effective_cache_size = 131072, 
-                    max_wal_size = 1024, 
-                    min_wal_size = 80, 
-                    wal_level = replica, 
-                    max_replication_slots = 10, 
-                    max_wal_senders = 10, 
-                    max_worker_processes = 8, 
-                    max_logical_replication_workers = 4, 
-                    max_parallel_maintenance_workers = 2, 
-                    max_parallel_workers = 8, 
-                    max_parallel_workers_per_gather = 2, 
-                    array_nulls = ON, 
-                    backend_flush_after = 0, 
-                    backslash_quote = safe_encoding, 
-                    bgwriter_flush_after = 64, 
-                    bgwriter_lru_multiplier = 2, 
-                    default_transaction_read_only = OFF, 
-                    enable_hashagg = ON, 
-                    enable_hashjoin = ON, 
-                    enable_incremental_sort = ON, 
-                    enable_indexscan = ON, 
-                    enable_indexonlyscan = ON, 
-                    enable_material = ON, 
-                    enable_memoize = ON, 
-                    enable_mergejoin = ON, 
-                    enable_parallel_append = ON, 
-                    enable_parallel_hash = ON, 
-                    enable_partition_pruning = ON, 
-                    enable_partitionwise_join = OFF, 
-                    enable_partitionwise_aggregate = OFF, 
-                    enable_seqscan = ON, 
-                    enable_sort = ON, 
-                    enable_tidscan = ON, 
-                    exit_on_error = OFF, 
-                    from_collapse_limit = 8, 
-                    jit = ON, 
-                    plan_cache_mode = auto, 
-                    quote_all_identifiers = OFF, 
-                    standard_conforming_strings = ON, 
-                    statement_timeout = 0, 
-                    timezone = +00:00, 
-                    transform_null_equals = OFF, 
-                    max_locks_per_transaction = 64, 
-                    autovacuum_vacuum_cost_limit = 200, 
-                    checkpoint_timeout = 300, 
-                    checkpoint_completion_target = 0.5, 
-                    wal_compression = off, 
-                    random_page_cost = 4, 
-                    effective_io_concurrency = 1, 
-                    log_lock_waits = OFF, 
-                    log_temp_files = -1, 
-                    track_io_timing = OFF, 
-                    maintenance_work_mem = 262144, 
-                    idle_session_timeout = 900000, 
-                    io_method = worker, 
-                    io_workers = 3, ), 
-                valkey = timeweb_cloud_api.models.config_parameters_valkey.config_parameters_valkey(
-                    client_output_buffer_limit_normal = 0 0 0, 
-                    client_output_buffer_limit_pubsub = 33554432 8388608 60, 
-                    databases = 16, 
-                    timeout = 0, 
-                    maxmemory_policy = allkeys-lru, 
-                    slowlog_log_slower_than = 10000, 
-                    slowlog_max_len = 128, 
-                    save = 900 1, 
-                    appendonly = yes, 
-                    appendfsync = everysec, 
-                    tcp_keepalive = 300, )
-            )
-        else :
-            return ConfigParameters(
-        )
-        """
+    class Config:
+        """Pydantic configuration"""
+        allow_population_by_field_name = True
+        validate_assignment = True
 
-    def testConfigParameters(self):
-        """Test ConfigParameters"""
-        # inst_req_only = self.make_instance(include_optional=False)
-        # inst_req_and_optional = self.make_instance(include_optional=True)
+    def to_str(self) -> str:
+        """Returns the string representation of the model using alias"""
+        return pprint.pformat(self.dict(by_alias=True))
 
-if __name__ == '__main__':
-    unittest.main()
+    def to_json(self) -> str:
+        """Returns the JSON representation of the model using alias"""
+        return json.dumps(self.to_dict())
+
+    @classmethod
+    def from_json(cls, json_str: str) -> Rabbitmq:
+        """Create an instance of Rabbitmq from a JSON string"""
+        return cls.from_dict(json.loads(json_str))
+
+    def to_dict(self):
+        """Returns the dictionary representation of the model using alias"""
+        _dict = self.dict(by_alias=True,
+                          exclude={
+                          },
+                          exclude_none=True)
+        return _dict
+
+    @classmethod
+    def from_dict(cls, obj: dict) -> Rabbitmq:
+        """Create an instance of Rabbitmq from a dict"""
+        if obj is None:
+            return None
+
+        if not isinstance(obj, dict):
+            return Rabbitmq.parse_obj(obj)
+
+        _obj = Rabbitmq.parse_obj({
+        })
+        return _obj
+

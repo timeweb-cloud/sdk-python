@@ -23,6 +23,7 @@ from typing import Optional
 from pydantic import BaseModel
 from timeweb_cloud_api.models.config_parameters_mysql import ConfigParametersMysql
 from timeweb_cloud_api.models.config_parameters_postgres import ConfigParametersPostgres
+from timeweb_cloud_api.models.config_parameters_valkey import ConfigParametersValkey
 
 class ConfigParameters(BaseModel):
     """
@@ -30,7 +31,8 @@ class ConfigParameters(BaseModel):
     """
     mysql: Optional[ConfigParametersMysql] = None
     postgres: Optional[ConfigParametersPostgres] = None
-    __properties = ["mysql", "postgres"]
+    valkey: Optional[ConfigParametersValkey] = None
+    __properties = ["mysql", "postgres", "valkey"]
 
     class Config:
         """Pydantic configuration"""
@@ -62,6 +64,9 @@ class ConfigParameters(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of postgres
         if self.postgres:
             _dict['postgres'] = self.postgres.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of valkey
+        if self.valkey:
+            _dict['valkey'] = self.valkey.to_dict()
         return _dict
 
     @classmethod
@@ -75,7 +80,8 @@ class ConfigParameters(BaseModel):
 
         _obj = ConfigParameters.parse_obj({
             "mysql": ConfigParametersMysql.from_dict(obj.get("mysql")) if obj.get("mysql") is not None else None,
-            "postgres": ConfigParametersPostgres.from_dict(obj.get("postgres")) if obj.get("postgres") is not None else None
+            "postgres": ConfigParametersPostgres.from_dict(obj.get("postgres")) if obj.get("postgres") is not None else None,
+            "valkey": ConfigParametersValkey.from_dict(obj.get("valkey")) if obj.get("valkey") is not None else None
         })
         return _obj
 

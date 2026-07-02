@@ -71,6 +71,7 @@ docs/BucketDiskStats.md
 docs/BucketUser.md
 docs/BucketWebsiteConfig.md
 docs/CheckDomain200Response.md
+docs/Clickhouse.md
 docs/ClusterEdit.md
 docs/ClusterEditOidcProvider.md
 docs/ClusterIn.md
@@ -90,6 +91,7 @@ docs/ComponentsSchemasMeta.md
 docs/ConfigParameters.md
 docs/ConfigParametersMysql.md
 docs/ConfigParametersPostgres.md
+docs/ConfigParametersValkey.md
 docs/ContainerRegistryApi.md
 docs/CreateAdmin.md
 docs/CreateAgent.md
@@ -331,6 +333,7 @@ docs/IncreaseNodes.md
 docs/InfoServicePrice.md
 docs/Invoice.md
 docs/K8SVersionsResponse.md
+docs/Kafka.md
 docs/KnowledgeBasesApi.md
 docs/Knowledgebase.md
 docs/KnowledgebaseV2.md
@@ -355,6 +358,7 @@ docs/ModelParamsInfo.md
 docs/ModelParamsInfoMaxTokens.md
 docs/ModelParamsInfoReasoningEffort.md
 docs/ModelParamsInfoTemperature.md
+docs/Mongodb.md
 docs/MountNetworkDrive.md
 docs/Mysql.md
 docs/NatIn.md
@@ -383,6 +387,7 @@ docs/NotificationSettingChannel.md
 docs/NotificationSettingChannels.md
 docs/NotificationSettingType.md
 docs/OS.md
+docs/Opensearch.md
 docs/OutgoingIsDisabled.md
 docs/OutgoingIsEnabled.md
 docs/PaymentsApi.md
@@ -390,6 +395,7 @@ docs/PerformActionOnBackupRequest.md
 docs/PerformActionOnServerRequest.md
 docs/Policy.md
 docs/Postgres.md
+docs/Postgresql.md
 docs/PresetsBalancer.md
 docs/PresetsDbs.md
 docs/PresetsResponse.md
@@ -397,8 +403,11 @@ docs/PresetsStorage.md
 docs/Project.md
 docs/ProjectResource.md
 docs/ProjectsApi.md
+docs/PropertiesMysql.md
+docs/PropertiesValkey.md
 docs/Provider.md
 docs/Providers.md
+docs/Rabbitmq.md
 docs/ReduceNodes.md
 docs/RegistriesResponse.md
 docs/RegistryEdit.md
@@ -518,6 +527,7 @@ docs/UploadSuccessfulResponse.md
 docs/UrlStatus.md
 docs/Use.md
 docs/VPCApi.md
+docs/Valkey.md
 docs/Vds.md
 docs/VdsImage.md
 docs/VdsOs.md
@@ -601,6 +611,7 @@ test/test_bucket_disk_stats.py
 test/test_bucket_user.py
 test/test_bucket_website_config.py
 test/test_check_domain200_response.py
+test/test_clickhouse.py
 test/test_cluster_edit.py
 test/test_cluster_edit_oidc_provider.py
 test/test_cluster_in.py
@@ -620,6 +631,7 @@ test/test_components_schemas_meta.py
 test/test_config_parameters.py
 test/test_config_parameters_mysql.py
 test/test_config_parameters_postgres.py
+test/test_config_parameters_valkey.py
 test/test_container_registry_api.py
 test/test_create_admin.py
 test/test_create_agent.py
@@ -861,6 +873,7 @@ test/test_increase_nodes.py
 test/test_info_service_price.py
 test/test_invoice.py
 test/test_k8_s_versions_response.py
+test/test_kafka.py
 test/test_knowledge_bases_api.py
 test/test_knowledgebase.py
 test/test_knowledgebase_v2.py
@@ -885,6 +898,7 @@ test/test_model_params_info.py
 test/test_model_params_info_max_tokens.py
 test/test_model_params_info_reasoning_effort.py
 test/test_model_params_info_temperature.py
+test/test_mongodb.py
 test/test_mount_network_drive.py
 test/test_mysql.py
 test/test_nat_in.py
@@ -912,6 +926,7 @@ test/test_notification_setting.py
 test/test_notification_setting_channel.py
 test/test_notification_setting_channels.py
 test/test_notification_setting_type.py
+test/test_opensearch.py
 test/test_os.py
 test/test_outgoing_is_disabled.py
 test/test_outgoing_is_enabled.py
@@ -920,6 +935,7 @@ test/test_perform_action_on_backup_request.py
 test/test_perform_action_on_server_request.py
 test/test_policy.py
 test/test_postgres.py
+test/test_postgresql.py
 test/test_presets_balancer.py
 test/test_presets_dbs.py
 test/test_presets_response.py
@@ -927,8 +943,11 @@ test/test_presets_storage.py
 test/test_project.py
 test/test_project_resource.py
 test/test_projects_api.py
+test/test_properties_mysql.py
+test/test_properties_valkey.py
 test/test_provider.py
 test/test_providers.py
+test/test_rabbitmq.py
 test/test_reduce_nodes.py
 test/test_registries_response.py
 test/test_registry_edit.py
@@ -1047,6 +1066,7 @@ test/test_upload_successful_response.py
 test/test_url_status.py
 test/test_url_type.py
 test/test_use.py
+test/test_valkey.py
 test/test_vds.py
 test/test_vds_image.py
 test/test_vds_os.py
@@ -1150,6 +1170,7 @@ timeweb_cloud_api/models/bucket_disk_stats.py
 timeweb_cloud_api/models/bucket_user.py
 timeweb_cloud_api/models/bucket_website_config.py
 timeweb_cloud_api/models/check_domain200_response.py
+timeweb_cloud_api/models/clickhouse.py
 timeweb_cloud_api/models/cluster_edit.py
 timeweb_cloud_api/models/cluster_edit_oidc_provider.py
 timeweb_cloud_api/models/cluster_in.py
@@ -1169,6 +1190,7 @@ timeweb_cloud_api/models/components_schemas_meta.py
 timeweb_cloud_api/models/config_parameters.py
 timeweb_cloud_api/models/config_parameters_mysql.py
 timeweb_cloud_api/models/config_parameters_postgres.py
+timeweb_cloud_api/models/config_parameters_valkey.py
 timeweb_cloud_api/models/create_admin.py
 timeweb_cloud_api/models/create_agent.py
 timeweb_cloud_api/models/create_agent201_response.py
@@ -1403,6 +1425,7 @@ timeweb_cloud_api/models/increase_nodes.py
 timeweb_cloud_api/models/info_service_price.py
 timeweb_cloud_api/models/invoice.py
 timeweb_cloud_api/models/k8_s_versions_response.py
+timeweb_cloud_api/models/kafka.py
 timeweb_cloud_api/models/knowledgebase.py
 timeweb_cloud_api/models/knowledgebase_v2.py
 timeweb_cloud_api/models/location.py
@@ -1423,6 +1446,7 @@ timeweb_cloud_api/models/model_params_info.py
 timeweb_cloud_api/models/model_params_info_max_tokens.py
 timeweb_cloud_api/models/model_params_info_reasoning_effort.py
 timeweb_cloud_api/models/model_params_info_temperature.py
+timeweb_cloud_api/models/mongodb.py
 timeweb_cloud_api/models/mount_network_drive.py
 timeweb_cloud_api/models/mysql.py
 timeweb_cloud_api/models/nat_in.py
@@ -1449,6 +1473,7 @@ timeweb_cloud_api/models/notification_setting.py
 timeweb_cloud_api/models/notification_setting_channel.py
 timeweb_cloud_api/models/notification_setting_channels.py
 timeweb_cloud_api/models/notification_setting_type.py
+timeweb_cloud_api/models/opensearch.py
 timeweb_cloud_api/models/os.py
 timeweb_cloud_api/models/outgoing_is_disabled.py
 timeweb_cloud_api/models/outgoing_is_enabled.py
@@ -1456,14 +1481,18 @@ timeweb_cloud_api/models/perform_action_on_backup_request.py
 timeweb_cloud_api/models/perform_action_on_server_request.py
 timeweb_cloud_api/models/policy.py
 timeweb_cloud_api/models/postgres.py
+timeweb_cloud_api/models/postgresql.py
 timeweb_cloud_api/models/presets_balancer.py
 timeweb_cloud_api/models/presets_dbs.py
 timeweb_cloud_api/models/presets_response.py
 timeweb_cloud_api/models/presets_storage.py
 timeweb_cloud_api/models/project.py
 timeweb_cloud_api/models/project_resource.py
+timeweb_cloud_api/models/properties_mysql.py
+timeweb_cloud_api/models/properties_valkey.py
 timeweb_cloud_api/models/provider.py
 timeweb_cloud_api/models/providers.py
+timeweb_cloud_api/models/rabbitmq.py
 timeweb_cloud_api/models/reduce_nodes.py
 timeweb_cloud_api/models/registries_response.py
 timeweb_cloud_api/models/registry_edit.py
@@ -1578,6 +1607,7 @@ timeweb_cloud_api/models/upload_successful_response.py
 timeweb_cloud_api/models/url_status.py
 timeweb_cloud_api/models/url_type.py
 timeweb_cloud_api/models/use.py
+timeweb_cloud_api/models/valkey.py
 timeweb_cloud_api/models/vds.py
 timeweb_cloud_api/models/vds_image.py
 timeweb_cloud_api/models/vds_os.py
