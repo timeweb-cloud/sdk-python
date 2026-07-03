@@ -24,7 +24,7 @@ from pydantic import BaseModel
 
 class Kafka(BaseModel):
     """
-    Привилегии Kafka (`kafka`)
+    Kafka
     """
     __properties = []
 

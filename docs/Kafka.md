@@ -1,6 +1,5 @@
 # Kafka
 
-Привилегии Kafka (`kafka`)
 
 ## Properties
 Name | Type | Description | Notes
