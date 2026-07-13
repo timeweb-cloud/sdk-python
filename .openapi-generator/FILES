@@ -295,6 +295,8 @@ docs/GetProjectStorages200Response.md
 docs/GetProjects200Response.md
 docs/GetProviders200Response.md
 docs/GetRepositories200Response.md
+docs/GetRestorePoint200Response.md
+docs/GetRestorePoints200Response.md
 docs/GetServerDiskAutoBackupSettings200Response.md
 docs/GetServerDiskBackup200Response.md
 docs/GetServerDiskBackups200Response.md
@@ -425,6 +427,7 @@ docs/ResourceTransfer.md
 docs/ResourceType.md
 docs/Resources.md
 docs/ResourcesResponse.md
+docs/RestorePoint.md
 docs/RouterEdit.md
 docs/RouterIn.md
 docs/RouterInParentService.md
@@ -467,6 +470,7 @@ docs/ServicePriceType.md
 docs/ServiceServicePrice.md
 docs/SetLabels.md
 docs/SettingCondition.md
+docs/SnapshotsApi.md
 docs/SpamFilterIsDisabled.md
 docs/SpamFilterIsEnabled.md
 docs/SpamProtectionIsDisabled.md
@@ -835,6 +839,8 @@ test/test_get_project_storages200_response.py
 test/test_get_projects200_response.py
 test/test_get_providers200_response.py
 test/test_get_repositories200_response.py
+test/test_get_restore_point200_response.py
+test/test_get_restore_points200_response.py
 test/test_get_server_disk_auto_backup_settings200_response.py
 test/test_get_server_disk_backup200_response.py
 test/test_get_server_disk_backups200_response.py
@@ -965,6 +971,7 @@ test/test_resource_transfer.py
 test/test_resource_type.py
 test/test_resources.py
 test/test_resources_response.py
+test/test_restore_point.py
 test/test_router_edit.py
 test/test_router_in.py
 test/test_router_in_parent_service.py
@@ -1006,6 +1013,7 @@ test/test_service_price_type.py
 test/test_service_service_price.py
 test/test_set_labels.py
 test/test_setting_condition.py
+test/test_snapshots_api.py
 test/test_spam_filter_is_disabled.py
 test/test_spam_filter_is_enabled.py
 test/test_spam_protection_is_disabled.py
@@ -1100,6 +1108,7 @@ timeweb_cloud_api/api/projects_api.py
 timeweb_cloud_api/api/routers_api.py
 timeweb_cloud_api/api/s3_api.py
 timeweb_cloud_api/api/servers_api.py
+timeweb_cloud_api/api/snapshots_api.py
 timeweb_cloud_api/api/ssh_api.py
 timeweb_cloud_api/api/vpc_api.py
 timeweb_cloud_api/api_client.py
@@ -1388,6 +1397,8 @@ timeweb_cloud_api/models/get_project_storages200_response.py
 timeweb_cloud_api/models/get_projects200_response.py
 timeweb_cloud_api/models/get_providers200_response.py
 timeweb_cloud_api/models/get_repositories200_response.py
+timeweb_cloud_api/models/get_restore_point200_response.py
+timeweb_cloud_api/models/get_restore_points200_response.py
 timeweb_cloud_api/models/get_server_disk_auto_backup_settings200_response.py
 timeweb_cloud_api/models/get_server_disk_backup200_response.py
 timeweb_cloud_api/models/get_server_disk_backups200_response.py
@@ -1510,6 +1521,7 @@ timeweb_cloud_api/models/resource_transfer.py
 timeweb_cloud_api/models/resource_type.py
 timeweb_cloud_api/models/resources.py
 timeweb_cloud_api/models/resources_response.py
+timeweb_cloud_api/models/restore_point.py
 timeweb_cloud_api/models/router_edit.py
 timeweb_cloud_api/models/router_in.py
 timeweb_cloud_api/models/router_in_parent_service.py

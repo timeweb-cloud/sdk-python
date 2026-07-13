@@ -40,6 +40,7 @@ from timeweb_cloud_api.api.routers_api import RoutersApi
 from timeweb_cloud_api.api.s3_api import S3Api
 from timeweb_cloud_api.api.ssh_api import SSHApi
 from timeweb_cloud_api.api.servers_api import ServersApi
+from timeweb_cloud_api.api.snapshots_api import SnapshotsApi
 from timeweb_cloud_api.api.vpc_api import VPCApi
 
 # import ApiClient
@@ -335,6 +336,8 @@ from timeweb_cloud_api.models.get_project_storages200_response import GetProject
 from timeweb_cloud_api.models.get_projects200_response import GetProjects200Response
 from timeweb_cloud_api.models.get_providers200_response import GetProviders200Response
 from timeweb_cloud_api.models.get_repositories200_response import GetRepositories200Response
+from timeweb_cloud_api.models.get_restore_point200_response import GetRestorePoint200Response
+from timeweb_cloud_api.models.get_restore_points200_response import GetRestorePoints200Response
 from timeweb_cloud_api.models.get_server_disk_auto_backup_settings200_response import GetServerDiskAutoBackupSettings200Response
 from timeweb_cloud_api.models.get_server_disk_backup200_response import GetServerDiskBackup200Response
 from timeweb_cloud_api.models.get_server_disk_backups200_response import GetServerDiskBackups200Response
@@ -457,6 +460,7 @@ from timeweb_cloud_api.models.resource_transfer import ResourceTransfer
 from timeweb_cloud_api.models.resource_type import ResourceType
 from timeweb_cloud_api.models.resources import Resources
 from timeweb_cloud_api.models.resources_response import ResourcesResponse
+from timeweb_cloud_api.models.restore_point import RestorePoint
 from timeweb_cloud_api.models.router_edit import RouterEdit
 from timeweb_cloud_api.models.router_in import RouterIn
 from timeweb_cloud_api.models.router_in_parent_service import RouterInParentService
