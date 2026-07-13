@@ -334,7 +334,7 @@ Class | Method | HTTP request | Description
 *DedicatedServersApi* | [**get_dedicated_servers_presets**](docs/DedicatedServersApi.md#get_dedicated_servers_presets) | **GET** /api/v1/presets/dedicated-servers | Получение списка тарифов для выделенного сервера
 *DedicatedServersApi* | [**update_dedicated_server**](docs/DedicatedServersApi.md#update_dedicated_server) | **PATCH** /api/v1/dedicated-servers/{dedicated_id} | Обновление выделенного сервера
 *DomainsApi* | [**add_domain**](docs/DomainsApi.md#add_domain) | **POST** /api/v1/add-domain/{fqdn} | Добавление домена на аккаунт
-*DomainsApi* | [**add_subdomain**](docs/DomainsApi.md#add_subdomain) | **POST** /api/v1/domains/{fqdn}/subdomains/{subdomain_fqdn} | Добавление поддомена
+*DomainsApi* | [**add_subdomain**](docs/DomainsApi.md#add_subdomain) | **POST** /api/v1/domains/{fqdn}/subdomains/{subdomain} | Добавление поддомена
 *DomainsApi* | [**check_domain**](docs/DomainsApi.md#check_domain) | **GET** /api/v1/check-domain/{fqdn} | Проверить, доступен ли домен для регистрации
 *DomainsApi* | [**create_domain_dns_record**](docs/DomainsApi.md#create_domain_dns_record) | **POST** /api/v1/domains/{fqdn}/dns-records | Добавить информацию о DNS-записи для домена или поддомена
 *DomainsApi* | [**create_domain_dns_record_v2**](docs/DomainsApi.md#create_domain_dns_record_v2) | **POST** /api/v2/domains/{fqdn}/dns-records | Добавить информацию о DNS-записи для домена или поддомена
@@ -342,7 +342,7 @@ Class | Method | HTTP request | Description
 *DomainsApi* | [**delete_domain**](docs/DomainsApi.md#delete_domain) | **DELETE** /api/v1/domains/{fqdn} | Удаление домена
 *DomainsApi* | [**delete_domain_dns_record**](docs/DomainsApi.md#delete_domain_dns_record) | **DELETE** /api/v1/domains/{fqdn}/dns-records/{record_id} | Удалить информацию о DNS-записи для домена или поддомена
 *DomainsApi* | [**delete_domain_dns_record_v2**](docs/DomainsApi.md#delete_domain_dns_record_v2) | **DELETE** /api/v2/domains/{fqdn}/dns-records/{record_id} | Удалить информацию о DNS-записи для домена или поддомена
-*DomainsApi* | [**delete_subdomain**](docs/DomainsApi.md#delete_subdomain) | **DELETE** /api/v1/domains/{fqdn}/subdomains/{subdomain_fqdn} | Удаление поддомена
+*DomainsApi* | [**delete_subdomain**](docs/DomainsApi.md#delete_subdomain) | **DELETE** /api/v1/domains/{fqdn}/subdomains/{subdomain} | Удаление поддомена
 *DomainsApi* | [**get_domain**](docs/DomainsApi.md#get_domain) | **GET** /api/v1/domains/{fqdn} | Получение информации о домене
 *DomainsApi* | [**get_domain_default_dns_records**](docs/DomainsApi.md#get_domain_default_dns_records) | **GET** /api/v1/domains/{fqdn}/default-dns-records | Получить информацию обо всех DNS-записях по умолчанию домена или поддомена
 *DomainsApi* | [**get_domain_dns_records**](docs/DomainsApi.md#get_domain_dns_records) | **GET** /api/v1/domains/{fqdn}/dns-records | Получить информацию обо всех пользовательских DNS-записях домена или поддомена

@@ -202,20 +202,20 @@ class DomainsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def add_subdomain(self, fqdn : Annotated[Any, Field(..., description="Полное имя домена.")], subdomain_fqdn : Annotated[Any, Field(..., description="Полное имя поддомена.")], **kwargs) -> AddSubdomain201Response:  # noqa: E501
+    def add_subdomain(self, fqdn : Annotated[Any, Field(..., description="Полное имя домена.")], subdomain : Annotated[Any, Field(..., description="Имя поддомена без имени домена. Например, для поддомена `sub.somedomain.ru` нужно передать `sub`.")], **kwargs) -> AddSubdomain201Response:  # noqa: E501
         """Добавление поддомена  # noqa: E501
 
-        Чтобы добавить поддомен, отправьте запрос POST на `/api/v1/domains/{fqdn}/subdomains/{subdomain_fqdn}`, задав необходимые атрибуты.  Поддомен будет добавлен с использованием предоставленной информации. Тело ответа будет содержать объект JSON с информацией о добавленном поддомене.  # noqa: E501
+        Чтобы добавить поддомен, отправьте запрос POST на `/api/v1/domains/{fqdn}/subdomains/{subdomain}`, задав необходимые атрибуты.  Поддомен будет добавлен с использованием предоставленной информации. Тело ответа будет содержать объект JSON с информацией о добавленном поддомене.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.add_subdomain(fqdn, subdomain_fqdn, async_req=True)
+        >>> thread = api.add_subdomain(fqdn, subdomain, async_req=True)
         >>> result = thread.get()
 
         :param fqdn: Полное имя домена. (required)
         :type fqdn: object
-        :param subdomain_fqdn: Полное имя поддомена. (required)
-        :type subdomain_fqdn: object
+        :param subdomain: Имя поддомена без имени домена. Например, для поддомена `sub.somedomain.ru` нужно передать `sub`. (required)
+        :type subdomain: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request. If one
@@ -230,23 +230,23 @@ class DomainsApi(object):
         kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             raise ValueError("Error! Please call the add_subdomain_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
-        return self.add_subdomain_with_http_info(fqdn, subdomain_fqdn, **kwargs)  # noqa: E501
+        return self.add_subdomain_with_http_info(fqdn, subdomain, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def add_subdomain_with_http_info(self, fqdn : Annotated[Any, Field(..., description="Полное имя домена.")], subdomain_fqdn : Annotated[Any, Field(..., description="Полное имя поддомена.")], **kwargs) -> ApiResponse:  # noqa: E501
+    def add_subdomain_with_http_info(self, fqdn : Annotated[Any, Field(..., description="Полное имя домена.")], subdomain : Annotated[Any, Field(..., description="Имя поддомена без имени домена. Например, для поддомена `sub.somedomain.ru` нужно передать `sub`.")], **kwargs) -> ApiResponse:  # noqa: E501
         """Добавление поддомена  # noqa: E501
 
-        Чтобы добавить поддомен, отправьте запрос POST на `/api/v1/domains/{fqdn}/subdomains/{subdomain_fqdn}`, задав необходимые атрибуты.  Поддомен будет добавлен с использованием предоставленной информации. Тело ответа будет содержать объект JSON с информацией о добавленном поддомене.  # noqa: E501
+        Чтобы добавить поддомен, отправьте запрос POST на `/api/v1/domains/{fqdn}/subdomains/{subdomain}`, задав необходимые атрибуты.  Поддомен будет добавлен с использованием предоставленной информации. Тело ответа будет содержать объект JSON с информацией о добавленном поддомене.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.add_subdomain_with_http_info(fqdn, subdomain_fqdn, async_req=True)
+        >>> thread = api.add_subdomain_with_http_info(fqdn, subdomain, async_req=True)
         >>> result = thread.get()
 
         :param fqdn: Полное имя домена. (required)
         :type fqdn: object
-        :param subdomain_fqdn: Полное имя поддомена. (required)
-        :type subdomain_fqdn: object
+        :param subdomain: Имя поддомена без имени домена. Например, для поддомена `sub.somedomain.ru` нужно передать `sub`. (required)
+        :type subdomain: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
@@ -276,7 +276,7 @@ class DomainsApi(object):
 
         _all_params = [
             'fqdn',
-            'subdomain_fqdn'
+            'subdomain'
         ]
         _all_params.extend(
             [
@@ -307,8 +307,8 @@ class DomainsApi(object):
         if _params['fqdn']:
             _path_params['fqdn'] = _params['fqdn']
 
-        if _params['subdomain_fqdn']:
-            _path_params['subdomain_fqdn'] = _params['subdomain_fqdn']
+        if _params['subdomain']:
+            _path_params['subdomain'] = _params['subdomain']
 
 
         # process the query parameters
@@ -337,7 +337,7 @@ class DomainsApi(object):
         }
 
         return self.api_client.call_api(
-            '/api/v1/domains/{fqdn}/subdomains/{subdomain_fqdn}', 'POST',
+            '/api/v1/domains/{fqdn}/subdomains/{subdomain}', 'POST',
             _path_params,
             _query_params,
             _header_params,
@@ -658,7 +658,7 @@ class DomainsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def create_domain_dns_record_v2(self, fqdn : Annotated[Any, Field(..., description="Полное имя домена или поддомена. Для создания записи на основном домене передайте имя домена (например, `somedomain.ru`). Для создания записи на поддомене передайте полное доменное имя включая поддомен (например, `sub.somedomain.ru`).")], create_dns_v2 : CreateDnsV2, **kwargs) -> CreateDomainDNSRecordV2201Response:  # noqa: E501
+    def create_domain_dns_record_v2(self, fqdn : Annotated[Any, Field(..., description="Полное имя домена или поддомена. Для создания записи на основном домене передайте имя домена (например, `somedomain.ru`). Для создания записи на поддомене передайте полное доменное имя включая поддомен (например, `sub.somedomain.ru`).  Поддомен должен быть создан заранее методом добавления поддомена (`POST /api/v1/domains/{fqdn}/subdomains/{subdomain}`).")], create_dns_v2 : CreateDnsV2, **kwargs) -> CreateDomainDNSRecordV2201Response:  # noqa: E501
         """Добавить информацию о DNS-записи для домена или поддомена  # noqa: E501
 
         Чтобы добавить информацию о DNS-записи для домена или поддомена, отправьте запрос POST на `/api/v2/domains/{fqdn}/dns-records`, задав необходимые атрибуты.  DNS-запись будет добавлена с использованием предоставленной информации. Тело ответа будет содержать объект JSON с информацией о добавленной DNS-записи.  # noqa: E501
@@ -668,7 +668,7 @@ class DomainsApi(object):
         >>> thread = api.create_domain_dns_record_v2(fqdn, create_dns_v2, async_req=True)
         >>> result = thread.get()
 
-        :param fqdn: Полное имя домена или поддомена. Для создания записи на основном домене передайте имя домена (например, `somedomain.ru`). Для создания записи на поддомене передайте полное доменное имя включая поддомен (например, `sub.somedomain.ru`). (required)
+        :param fqdn: Полное имя домена или поддомена. Для создания записи на основном домене передайте имя домена (например, `somedomain.ru`). Для создания записи на поддомене передайте полное доменное имя включая поддомен (например, `sub.somedomain.ru`).  Поддомен должен быть создан заранее методом добавления поддомена (`POST /api/v1/domains/{fqdn}/subdomains/{subdomain}`). (required)
         :type fqdn: object
         :param create_dns_v2: (required)
         :type create_dns_v2: CreateDnsV2
@@ -689,7 +689,7 @@ class DomainsApi(object):
         return self.create_domain_dns_record_v2_with_http_info(fqdn, create_dns_v2, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def create_domain_dns_record_v2_with_http_info(self, fqdn : Annotated[Any, Field(..., description="Полное имя домена или поддомена. Для создания записи на основном домене передайте имя домена (например, `somedomain.ru`). Для создания записи на поддомене передайте полное доменное имя включая поддомен (например, `sub.somedomain.ru`).")], create_dns_v2 : CreateDnsV2, **kwargs) -> ApiResponse:  # noqa: E501
+    def create_domain_dns_record_v2_with_http_info(self, fqdn : Annotated[Any, Field(..., description="Полное имя домена или поддомена. Для создания записи на основном домене передайте имя домена (например, `somedomain.ru`). Для создания записи на поддомене передайте полное доменное имя включая поддомен (например, `sub.somedomain.ru`).  Поддомен должен быть создан заранее методом добавления поддомена (`POST /api/v1/domains/{fqdn}/subdomains/{subdomain}`).")], create_dns_v2 : CreateDnsV2, **kwargs) -> ApiResponse:  # noqa: E501
         """Добавить информацию о DNS-записи для домена или поддомена  # noqa: E501
 
         Чтобы добавить информацию о DNS-записи для домена или поддомена, отправьте запрос POST на `/api/v2/domains/{fqdn}/dns-records`, задав необходимые атрибуты.  DNS-запись будет добавлена с использованием предоставленной информации. Тело ответа будет содержать объект JSON с информацией о добавленной DNS-записи.  # noqa: E501
@@ -699,7 +699,7 @@ class DomainsApi(object):
         >>> thread = api.create_domain_dns_record_v2_with_http_info(fqdn, create_dns_v2, async_req=True)
         >>> result = thread.get()
 
-        :param fqdn: Полное имя домена или поддомена. Для создания записи на основном домене передайте имя домена (например, `somedomain.ru`). Для создания записи на поддомене передайте полное доменное имя включая поддомен (например, `sub.somedomain.ru`). (required)
+        :param fqdn: Полное имя домена или поддомена. Для создания записи на основном домене передайте имя домена (например, `somedomain.ru`). Для создания записи на поддомене передайте полное доменное имя включая поддомен (например, `sub.somedomain.ru`).  Поддомен должен быть создан заранее методом добавления поддомена (`POST /api/v1/domains/{fqdn}/subdomains/{subdomain}`). (required)
         :type fqdn: object
         :param create_dns_v2: (required)
         :type create_dns_v2: CreateDnsV2
@@ -1249,7 +1249,7 @@ class DomainsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def delete_domain_dns_record_v2(self, fqdn : Annotated[Any, Field(..., description="Полное имя домена или поддомена. Для создания записи на основном домене передайте имя домена (например, `somedomain.ru`). Для создания записи на поддомене передайте полное доменное имя включая поддомен (например, `sub.somedomain.ru`).")], record_id : Annotated[Any, Field(..., description="ID DNS-записи домена или поддомена.")], **kwargs) -> None:  # noqa: E501
+    def delete_domain_dns_record_v2(self, fqdn : Annotated[Any, Field(..., description="Полное имя домена или поддомена. Для создания записи на основном домене передайте имя домена (например, `somedomain.ru`). Для создания записи на поддомене передайте полное доменное имя включая поддомен (например, `sub.somedomain.ru`).  Поддомен должен быть создан заранее методом добавления поддомена (`POST /api/v1/domains/{fqdn}/subdomains/{subdomain}`).")], record_id : Annotated[Any, Field(..., description="ID DNS-записи домена или поддомена.")], **kwargs) -> None:  # noqa: E501
         """Удалить информацию о DNS-записи для домена или поддомена  # noqa: E501
 
         Чтобы удалить информацию о DNS-записи для домена или поддомена, отправьте запрос DELETE на `/api/v2/domains/{fqdn}/dns-records/{record_id}`.  # noqa: E501
@@ -1259,7 +1259,7 @@ class DomainsApi(object):
         >>> thread = api.delete_domain_dns_record_v2(fqdn, record_id, async_req=True)
         >>> result = thread.get()
 
-        :param fqdn: Полное имя домена или поддомена. Для создания записи на основном домене передайте имя домена (например, `somedomain.ru`). Для создания записи на поддомене передайте полное доменное имя включая поддомен (например, `sub.somedomain.ru`). (required)
+        :param fqdn: Полное имя домена или поддомена. Для создания записи на основном домене передайте имя домена (например, `somedomain.ru`). Для создания записи на поддомене передайте полное доменное имя включая поддомен (например, `sub.somedomain.ru`).  Поддомен должен быть создан заранее методом добавления поддомена (`POST /api/v1/domains/{fqdn}/subdomains/{subdomain}`). (required)
         :type fqdn: object
         :param record_id: ID DNS-записи домена или поддомена. (required)
         :type record_id: object
@@ -1280,7 +1280,7 @@ class DomainsApi(object):
         return self.delete_domain_dns_record_v2_with_http_info(fqdn, record_id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def delete_domain_dns_record_v2_with_http_info(self, fqdn : Annotated[Any, Field(..., description="Полное имя домена или поддомена. Для создания записи на основном домене передайте имя домена (например, `somedomain.ru`). Для создания записи на поддомене передайте полное доменное имя включая поддомен (например, `sub.somedomain.ru`).")], record_id : Annotated[Any, Field(..., description="ID DNS-записи домена или поддомена.")], **kwargs) -> ApiResponse:  # noqa: E501
+    def delete_domain_dns_record_v2_with_http_info(self, fqdn : Annotated[Any, Field(..., description="Полное имя домена или поддомена. Для создания записи на основном домене передайте имя домена (например, `somedomain.ru`). Для создания записи на поддомене передайте полное доменное имя включая поддомен (например, `sub.somedomain.ru`).  Поддомен должен быть создан заранее методом добавления поддомена (`POST /api/v1/domains/{fqdn}/subdomains/{subdomain}`).")], record_id : Annotated[Any, Field(..., description="ID DNS-записи домена или поддомена.")], **kwargs) -> ApiResponse:  # noqa: E501
         """Удалить информацию о DNS-записи для домена или поддомена  # noqa: E501
 
         Чтобы удалить информацию о DNS-записи для домена или поддомена, отправьте запрос DELETE на `/api/v2/domains/{fqdn}/dns-records/{record_id}`.  # noqa: E501
@@ -1290,7 +1290,7 @@ class DomainsApi(object):
         >>> thread = api.delete_domain_dns_record_v2_with_http_info(fqdn, record_id, async_req=True)
         >>> result = thread.get()
 
-        :param fqdn: Полное имя домена или поддомена. Для создания записи на основном домене передайте имя домена (например, `somedomain.ru`). Для создания записи на поддомене передайте полное доменное имя включая поддомен (например, `sub.somedomain.ru`). (required)
+        :param fqdn: Полное имя домена или поддомена. Для создания записи на основном домене передайте имя домена (например, `somedomain.ru`). Для создания записи на поддомене передайте полное доменное имя включая поддомен (например, `sub.somedomain.ru`).  Поддомен должен быть создан заранее методом добавления поддомена (`POST /api/v1/domains/{fqdn}/subdomains/{subdomain}`). (required)
         :type fqdn: object
         :param record_id: ID DNS-записи домена или поддомена. (required)
         :type record_id: object
@@ -1390,20 +1390,20 @@ class DomainsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def delete_subdomain(self, fqdn : Annotated[Any, Field(..., description="Полное имя домена.")], subdomain_fqdn : Annotated[Any, Field(..., description="Полное имя поддомена.")], **kwargs) -> None:  # noqa: E501
+    def delete_subdomain(self, fqdn : Annotated[Any, Field(..., description="Полное имя домена.")], subdomain : Annotated[Any, Field(..., description="Имя поддомена без имени домена. Например, для поддомена `sub.somedomain.ru` нужно передать `sub`.")], **kwargs) -> None:  # noqa: E501
         """Удаление поддомена  # noqa: E501
 
-        Чтобы удалить поддомен, отправьте запрос DELETE на `/api/v1/domains/{fqdn}/subdomains/{subdomain_fqdn}`.  # noqa: E501
+        Чтобы удалить поддомен, отправьте запрос DELETE на `/api/v1/domains/{fqdn}/subdomains/{subdomain}`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.delete_subdomain(fqdn, subdomain_fqdn, async_req=True)
+        >>> thread = api.delete_subdomain(fqdn, subdomain, async_req=True)
         >>> result = thread.get()
 
         :param fqdn: Полное имя домена. (required)
         :type fqdn: object
-        :param subdomain_fqdn: Полное имя поддомена. (required)
-        :type subdomain_fqdn: object
+        :param subdomain: Имя поддомена без имени домена. Например, для поддомена `sub.somedomain.ru` нужно передать `sub`. (required)
+        :type subdomain: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request. If one
@@ -1418,23 +1418,23 @@ class DomainsApi(object):
         kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             raise ValueError("Error! Please call the delete_subdomain_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
-        return self.delete_subdomain_with_http_info(fqdn, subdomain_fqdn, **kwargs)  # noqa: E501
+        return self.delete_subdomain_with_http_info(fqdn, subdomain, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def delete_subdomain_with_http_info(self, fqdn : Annotated[Any, Field(..., description="Полное имя домена.")], subdomain_fqdn : Annotated[Any, Field(..., description="Полное имя поддомена.")], **kwargs) -> ApiResponse:  # noqa: E501
+    def delete_subdomain_with_http_info(self, fqdn : Annotated[Any, Field(..., description="Полное имя домена.")], subdomain : Annotated[Any, Field(..., description="Имя поддомена без имени домена. Например, для поддомена `sub.somedomain.ru` нужно передать `sub`.")], **kwargs) -> ApiResponse:  # noqa: E501
         """Удаление поддомена  # noqa: E501
 
-        Чтобы удалить поддомен, отправьте запрос DELETE на `/api/v1/domains/{fqdn}/subdomains/{subdomain_fqdn}`.  # noqa: E501
+        Чтобы удалить поддомен, отправьте запрос DELETE на `/api/v1/domains/{fqdn}/subdomains/{subdomain}`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.delete_subdomain_with_http_info(fqdn, subdomain_fqdn, async_req=True)
+        >>> thread = api.delete_subdomain_with_http_info(fqdn, subdomain, async_req=True)
         >>> result = thread.get()
 
         :param fqdn: Полное имя домена. (required)
         :type fqdn: object
-        :param subdomain_fqdn: Полное имя поддомена. (required)
-        :type subdomain_fqdn: object
+        :param subdomain: Имя поддомена без имени домена. Например, для поддомена `sub.somedomain.ru` нужно передать `sub`. (required)
+        :type subdomain: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
@@ -1464,7 +1464,7 @@ class DomainsApi(object):
 
         _all_params = [
             'fqdn',
-            'subdomain_fqdn'
+            'subdomain'
         ]
         _all_params.extend(
             [
@@ -1495,8 +1495,8 @@ class DomainsApi(object):
         if _params['fqdn']:
             _path_params['fqdn'] = _params['fqdn']
 
-        if _params['subdomain_fqdn']:
-            _path_params['subdomain_fqdn'] = _params['subdomain_fqdn']
+        if _params['subdomain']:
+            _path_params['subdomain'] = _params['subdomain']
 
 
         # process the query parameters
@@ -1518,7 +1518,7 @@ class DomainsApi(object):
         _response_types_map = {}
 
         return self.api_client.call_api(
-            '/api/v1/domains/{fqdn}/subdomains/{subdomain_fqdn}', 'DELETE',
+            '/api/v1/domains/{fqdn}/subdomains/{subdomain}', 'DELETE',
             _path_params,
             _query_params,
             _header_params,
@@ -3237,7 +3237,7 @@ class DomainsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def update_domain_dns_record_v2(self, fqdn : Annotated[Any, Field(..., description="Полное имя домена или поддомена. Для создания записи на основном домене передайте имя домена (например, `somedomain.ru`). Для создания записи на поддомене передайте полное доменное имя включая поддомен (например, `sub.somedomain.ru`).")], record_id : Annotated[Any, Field(..., description="ID DNS-записи домена или поддомена.")], create_dns_v2 : CreateDnsV2, **kwargs) -> CreateDomainDNSRecordV2201Response:  # noqa: E501
+    def update_domain_dns_record_v2(self, fqdn : Annotated[Any, Field(..., description="Полное имя домена или поддомена. Для создания записи на основном домене передайте имя домена (например, `somedomain.ru`). Для создания записи на поддомене передайте полное доменное имя включая поддомен (например, `sub.somedomain.ru`).  Поддомен должен быть создан заранее методом добавления поддомена (`POST /api/v1/domains/{fqdn}/subdomains/{subdomain}`).")], record_id : Annotated[Any, Field(..., description="ID DNS-записи домена или поддомена.")], create_dns_v2 : CreateDnsV2, **kwargs) -> CreateDomainDNSRecordV2201Response:  # noqa: E501
         """Обновить информацию о DNS-записи домена или поддомена  # noqa: E501
 
         Чтобы обновить информацию о DNS-записи для домена или поддомена, отправьте запрос PATCH на `/api/v2/domains/{fqdn}/dns-records/{record_id}`, задав необходимые атрибуты.  DNS-запись будет обновлена с использованием предоставленной информации. Тело ответа будет содержать объект JSON с информацией об обновленной DNS-записи.  # noqa: E501
@@ -3247,7 +3247,7 @@ class DomainsApi(object):
         >>> thread = api.update_domain_dns_record_v2(fqdn, record_id, create_dns_v2, async_req=True)
         >>> result = thread.get()
 
-        :param fqdn: Полное имя домена или поддомена. Для создания записи на основном домене передайте имя домена (например, `somedomain.ru`). Для создания записи на поддомене передайте полное доменное имя включая поддомен (например, `sub.somedomain.ru`). (required)
+        :param fqdn: Полное имя домена или поддомена. Для создания записи на основном домене передайте имя домена (например, `somedomain.ru`). Для создания записи на поддомене передайте полное доменное имя включая поддомен (например, `sub.somedomain.ru`).  Поддомен должен быть создан заранее методом добавления поддомена (`POST /api/v1/domains/{fqdn}/subdomains/{subdomain}`). (required)
         :type fqdn: object
         :param record_id: ID DNS-записи домена или поддомена. (required)
         :type record_id: object
@@ -3270,7 +3270,7 @@ class DomainsApi(object):
         return self.update_domain_dns_record_v2_with_http_info(fqdn, record_id, create_dns_v2, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def update_domain_dns_record_v2_with_http_info(self, fqdn : Annotated[Any, Field(..., description="Полное имя домена или поддомена. Для создания записи на основном домене передайте имя домена (например, `somedomain.ru`). Для создания записи на поддомене передайте полное доменное имя включая поддомен (например, `sub.somedomain.ru`).")], record_id : Annotated[Any, Field(..., description="ID DNS-записи домена или поддомена.")], create_dns_v2 : CreateDnsV2, **kwargs) -> ApiResponse:  # noqa: E501
+    def update_domain_dns_record_v2_with_http_info(self, fqdn : Annotated[Any, Field(..., description="Полное имя домена или поддомена. Для создания записи на основном домене передайте имя домена (например, `somedomain.ru`). Для создания записи на поддомене передайте полное доменное имя включая поддомен (например, `sub.somedomain.ru`).  Поддомен должен быть создан заранее методом добавления поддомена (`POST /api/v1/domains/{fqdn}/subdomains/{subdomain}`).")], record_id : Annotated[Any, Field(..., description="ID DNS-записи домена или поддомена.")], create_dns_v2 : CreateDnsV2, **kwargs) -> ApiResponse:  # noqa: E501
         """Обновить информацию о DNS-записи домена или поддомена  # noqa: E501
 
         Чтобы обновить информацию о DNS-записи для домена или поддомена, отправьте запрос PATCH на `/api/v2/domains/{fqdn}/dns-records/{record_id}`, задав необходимые атрибуты.  DNS-запись будет обновлена с использованием предоставленной информации. Тело ответа будет содержать объект JSON с информацией об обновленной DNS-записи.  # noqa: E501
@@ -3280,7 +3280,7 @@ class DomainsApi(object):
         >>> thread = api.update_domain_dns_record_v2_with_http_info(fqdn, record_id, create_dns_v2, async_req=True)
         >>> result = thread.get()
 
-        :param fqdn: Полное имя домена или поддомена. Для создания записи на основном домене передайте имя домена (например, `somedomain.ru`). Для создания записи на поддомене передайте полное доменное имя включая поддомен (например, `sub.somedomain.ru`). (required)
+        :param fqdn: Полное имя домена или поддомена. Для создания записи на основном домене передайте имя домена (например, `somedomain.ru`). Для создания записи на поддомене передайте полное доменное имя включая поддомен (например, `sub.somedomain.ru`).  Поддомен должен быть создан заранее методом добавления поддомена (`POST /api/v1/domains/{fqdn}/subdomains/{subdomain}`). (required)
         :type fqdn: object
         :param record_id: ID DNS-записи домена или поддомена. (required)
         :type record_id: object

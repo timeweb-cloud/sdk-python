@@ -5,7 +5,7 @@ All URIs are relative to *https://api.timeweb.cloud*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**add_domain**](DomainsApi.md#add_domain) | **POST** /api/v1/add-domain/{fqdn} | Добавление домена на аккаунт
-[**add_subdomain**](DomainsApi.md#add_subdomain) | **POST** /api/v1/domains/{fqdn}/subdomains/{subdomain_fqdn} | Добавление поддомена
+[**add_subdomain**](DomainsApi.md#add_subdomain) | **POST** /api/v1/domains/{fqdn}/subdomains/{subdomain} | Добавление поддомена
 [**check_domain**](DomainsApi.md#check_domain) | **GET** /api/v1/check-domain/{fqdn} | Проверить, доступен ли домен для регистрации
 [**create_domain_dns_record**](DomainsApi.md#create_domain_dns_record) | **POST** /api/v1/domains/{fqdn}/dns-records | Добавить информацию о DNS-записи для домена или поддомена
 [**create_domain_dns_record_v2**](DomainsApi.md#create_domain_dns_record_v2) | **POST** /api/v2/domains/{fqdn}/dns-records | Добавить информацию о DNS-записи для домена или поддомена
@@ -13,7 +13,7 @@ Method | HTTP request | Description
 [**delete_domain**](DomainsApi.md#delete_domain) | **DELETE** /api/v1/domains/{fqdn} | Удаление домена
 [**delete_domain_dns_record**](DomainsApi.md#delete_domain_dns_record) | **DELETE** /api/v1/domains/{fqdn}/dns-records/{record_id} | Удалить информацию о DNS-записи для домена или поддомена
 [**delete_domain_dns_record_v2**](DomainsApi.md#delete_domain_dns_record_v2) | **DELETE** /api/v2/domains/{fqdn}/dns-records/{record_id} | Удалить информацию о DNS-записи для домена или поддомена
-[**delete_subdomain**](DomainsApi.md#delete_subdomain) | **DELETE** /api/v1/domains/{fqdn}/subdomains/{subdomain_fqdn} | Удаление поддомена
+[**delete_subdomain**](DomainsApi.md#delete_subdomain) | **DELETE** /api/v1/domains/{fqdn}/subdomains/{subdomain} | Удаление поддомена
 [**get_domain**](DomainsApi.md#get_domain) | **GET** /api/v1/domains/{fqdn} | Получение информации о домене
 [**get_domain_default_dns_records**](DomainsApi.md#get_domain_default_dns_records) | **GET** /api/v1/domains/{fqdn}/default-dns-records | Получить информацию обо всех DNS-записях по умолчанию домена или поддомена
 [**get_domain_dns_records**](DomainsApi.md#get_domain_dns_records) | **GET** /api/v1/domains/{fqdn}/dns-records | Получить информацию обо всех пользовательских DNS-записях домена или поддомена
@@ -109,11 +109,11 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **add_subdomain**
-> AddSubdomain201Response add_subdomain(fqdn, subdomain_fqdn)
+> AddSubdomain201Response add_subdomain(fqdn, subdomain)
 
 Добавление поддомена
 
-Чтобы добавить поддомен, отправьте запрос POST на `/api/v1/domains/{fqdn}/subdomains/{subdomain_fqdn}`, задав необходимые атрибуты.  Поддомен будет добавлен с использованием предоставленной информации. Тело ответа будет содержать объект JSON с информацией о добавленном поддомене.
+Чтобы добавить поддомен, отправьте запрос POST на `/api/v1/domains/{fqdn}/subdomains/{subdomain}`, задав необходимые атрибуты.  Поддомен будет добавлен с использованием предоставленной информации. Тело ответа будет содержать объект JSON с информацией о добавленном поддомене.
 
 ### Example
 
@@ -147,11 +147,11 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.DomainsApi(api_client)
     fqdn = somedomain.ru # object | Полное имя домена.
-    subdomain_fqdn = sub.somedomain.ru # object | Полное имя поддомена.
+    subdomain = sub # object | Имя поддомена без имени домена. Например, для поддомена `sub.somedomain.ru` нужно передать `sub`.
 
     try:
         # Добавление поддомена
-        api_response = api_instance.add_subdomain(fqdn, subdomain_fqdn)
+        api_response = api_instance.add_subdomain(fqdn, subdomain)
         print("The response of DomainsApi->add_subdomain:\n")
         pprint(api_response)
     except Exception as e:
@@ -164,7 +164,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **fqdn** | [**object**](.md)| Полное имя домена. | 
- **subdomain_fqdn** | [**object**](.md)| Полное имя поддомена. | 
+ **subdomain** | [**object**](.md)| Имя поддомена без имени домена. Например, для поддомена &#x60;sub.somedomain.ru&#x60; нужно передать &#x60;sub&#x60;. | 
 
 ### Return type
 
@@ -394,7 +394,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.DomainsApi(api_client)
-    fqdn = somedomain.ru # object | Полное имя домена или поддомена. Для создания записи на основном домене передайте имя домена (например, `somedomain.ru`). Для создания записи на поддомене передайте полное доменное имя включая поддомен (например, `sub.somedomain.ru`).
+    fqdn = somedomain.ru # object | Полное имя домена или поддомена. Для создания записи на основном домене передайте имя домена (например, `somedomain.ru`). Для создания записи на поддомене передайте полное доменное имя включая поддомен (например, `sub.somedomain.ru`).  Поддомен должен быть создан заранее методом добавления поддомена (`POST /api/v1/domains/{fqdn}/subdomains/{subdomain}`).
     create_dns_v2 = timeweb_cloud_api.CreateDnsV2() # CreateDnsV2 | 
 
     try:
@@ -411,7 +411,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **fqdn** | [**object**](.md)| Полное имя домена или поддомена. Для создания записи на основном домене передайте имя домена (например, &#x60;somedomain.ru&#x60;). Для создания записи на поддомене передайте полное доменное имя включая поддомен (например, &#x60;sub.somedomain.ru&#x60;). | 
+ **fqdn** | [**object**](.md)| Полное имя домена или поддомена. Для создания записи на основном домене передайте имя домена (например, &#x60;somedomain.ru&#x60;). Для создания записи на поддомене передайте полное доменное имя включая поддомен (например, &#x60;sub.somedomain.ru&#x60;).  Поддомен должен быть создан заранее методом добавления поддомена (&#x60;POST /api/v1/domains/{fqdn}/subdomains/{subdomain}&#x60;). | 
  **create_dns_v2** | [**CreateDnsV2**](CreateDnsV2.md)|  | 
 
 ### Return type
@@ -718,7 +718,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.DomainsApi(api_client)
-    fqdn = somedomain.ru # object | Полное имя домена или поддомена. Для создания записи на основном домене передайте имя домена (например, `somedomain.ru`). Для создания записи на поддомене передайте полное доменное имя включая поддомен (например, `sub.somedomain.ru`).
+    fqdn = somedomain.ru # object | Полное имя домена или поддомена. Для создания записи на основном домене передайте имя домена (например, `somedomain.ru`). Для создания записи на поддомене передайте полное доменное имя включая поддомен (например, `sub.somedomain.ru`).  Поддомен должен быть создан заранее методом добавления поддомена (`POST /api/v1/domains/{fqdn}/subdomains/{subdomain}`).
     record_id = 123 # object | ID DNS-записи домена или поддомена.
 
     try:
@@ -733,7 +733,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **fqdn** | [**object**](.md)| Полное имя домена или поддомена. Для создания записи на основном домене передайте имя домена (например, &#x60;somedomain.ru&#x60;). Для создания записи на поддомене передайте полное доменное имя включая поддомен (например, &#x60;sub.somedomain.ru&#x60;). | 
+ **fqdn** | [**object**](.md)| Полное имя домена или поддомена. Для создания записи на основном домене передайте имя домена (например, &#x60;somedomain.ru&#x60;). Для создания записи на поддомене передайте полное доменное имя включая поддомен (например, &#x60;sub.somedomain.ru&#x60;).  Поддомен должен быть создан заранее методом добавления поддомена (&#x60;POST /api/v1/domains/{fqdn}/subdomains/{subdomain}&#x60;). | 
  **record_id** | [**object**](.md)| ID DNS-записи домена или поддомена. | 
 
 ### Return type
@@ -762,11 +762,11 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_subdomain**
-> delete_subdomain(fqdn, subdomain_fqdn)
+> delete_subdomain(fqdn, subdomain)
 
 Удаление поддомена
 
-Чтобы удалить поддомен, отправьте запрос DELETE на `/api/v1/domains/{fqdn}/subdomains/{subdomain_fqdn}`.
+Чтобы удалить поддомен, отправьте запрос DELETE на `/api/v1/domains/{fqdn}/subdomains/{subdomain}`.
 
 ### Example
 
@@ -799,11 +799,11 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.DomainsApi(api_client)
     fqdn = somedomain.ru # object | Полное имя домена.
-    subdomain_fqdn = sub.somedomain.ru # object | Полное имя поддомена.
+    subdomain = sub # object | Имя поддомена без имени домена. Например, для поддомена `sub.somedomain.ru` нужно передать `sub`.
 
     try:
         # Удаление поддомена
-        api_instance.delete_subdomain(fqdn, subdomain_fqdn)
+        api_instance.delete_subdomain(fqdn, subdomain)
     except Exception as e:
         print("Exception when calling DomainsApi->delete_subdomain: %s\n" % e)
 ```
@@ -814,7 +814,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **fqdn** | [**object**](.md)| Полное имя домена. | 
- **subdomain_fqdn** | [**object**](.md)| Полное имя поддомена. | 
+ **subdomain** | [**object**](.md)| Имя поддомена без имени домена. Например, для поддомена &#x60;sub.somedomain.ru&#x60; нужно передать &#x60;sub&#x60;. | 
 
 ### Return type
 
@@ -1798,7 +1798,7 @@ configuration = timeweb_cloud_api.Configuration(
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = timeweb_cloud_api.DomainsApi(api_client)
-    fqdn = somedomain.ru # object | Полное имя домена или поддомена. Для создания записи на основном домене передайте имя домена (например, `somedomain.ru`). Для создания записи на поддомене передайте полное доменное имя включая поддомен (например, `sub.somedomain.ru`).
+    fqdn = somedomain.ru # object | Полное имя домена или поддомена. Для создания записи на основном домене передайте имя домена (например, `somedomain.ru`). Для создания записи на поддомене передайте полное доменное имя включая поддомен (например, `sub.somedomain.ru`).  Поддомен должен быть создан заранее методом добавления поддомена (`POST /api/v1/domains/{fqdn}/subdomains/{subdomain}`).
     record_id = 123 # object | ID DNS-записи домена или поддомена.
     create_dns_v2 = timeweb_cloud_api.CreateDnsV2() # CreateDnsV2 | 
 
@@ -1816,7 +1816,7 @@ with timeweb_cloud_api.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **fqdn** | [**object**](.md)| Полное имя домена или поддомена. Для создания записи на основном домене передайте имя домена (например, &#x60;somedomain.ru&#x60;). Для создания записи на поддомене передайте полное доменное имя включая поддомен (например, &#x60;sub.somedomain.ru&#x60;). | 
+ **fqdn** | [**object**](.md)| Полное имя домена или поддомена. Для создания записи на основном домене передайте имя домена (например, &#x60;somedomain.ru&#x60;). Для создания записи на поддомене передайте полное доменное имя включая поддомен (например, &#x60;sub.somedomain.ru&#x60;).  Поддомен должен быть создан заранее методом добавления поддомена (&#x60;POST /api/v1/domains/{fqdn}/subdomains/{subdomain}&#x60;). | 
  **record_id** | [**object**](.md)| ID DNS-записи домена или поддомена. | 
  **create_dns_v2** | [**CreateDnsV2**](CreateDnsV2.md)|  | 
 
