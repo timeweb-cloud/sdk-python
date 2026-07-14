@@ -525,6 +525,8 @@ Class | Method | HTTP request | Description
 *SSHApi* | [**update_key**](docs/SSHApi.md#update_key) | **PATCH** /api/v1/ssh-keys/{ssh_key_id} | Изменение SSH-ключа по ID
 *ServersApi* | [**add_server_ip**](docs/ServersApi.md#add_server_ip) | **POST** /api/v1/servers/{server_id}/ips | Добавление IP-адреса сервера
 *ServersApi* | [**clone_server**](docs/ServersApi.md#clone_server) | **POST** /api/v1/servers/{server_id}/clone | Клонирование сервера
+*ServersApi* | [**commit_restore_point**](docs/ServersApi.md#commit_restore_point) | **POST** /api/v1/restore-points/{vds_id}/commit | Фиксация снапшота
+*ServersApi* | [**create_restore_point**](docs/ServersApi.md#create_restore_point) | **POST** /api/v1/restore-points/{vds_id}/create | Создание снапшота
 *ServersApi* | [**create_server**](docs/ServersApi.md#create_server) | **POST** /api/v1/servers | Создание сервера
 *ServersApi* | [**create_server_disk**](docs/ServersApi.md#create_server_disk) | **POST** /api/v1/servers/{server_id}/disks | Создание диска сервера
 *ServersApi* | [**create_server_disk_backup**](docs/ServersApi.md#create_server_disk_backup) | **POST** /api/v1/servers/{server_id}/disks/{disk_id}/backups | Создание бэкапа диска сервера
@@ -534,6 +536,8 @@ Class | Method | HTTP request | Description
 *ServersApi* | [**delete_server_ip**](docs/ServersApi.md#delete_server_ip) | **DELETE** /api/v1/servers/{server_id}/ips | Удаление IP-адреса сервера
 *ServersApi* | [**get_configurators**](docs/ServersApi.md#get_configurators) | **GET** /api/v1/configurator/servers | Получение списка конфигураторов серверов
 *ServersApi* | [**get_os_list**](docs/ServersApi.md#get_os_list) | **GET** /api/v1/os/servers | Получение списка операционных систем
+*ServersApi* | [**get_restore_point**](docs/ServersApi.md#get_restore_point) | **GET** /api/v1/restore-points/{vds_id} | Получение снапшота сервера
+*ServersApi* | [**get_restore_points**](docs/ServersApi.md#get_restore_points) | **GET** /api/v1/restore-points | Получение списка снапшотов
 *ServersApi* | [**get_server**](docs/ServersApi.md#get_server) | **GET** /api/v1/servers/{server_id} | Получение сервера
 *ServersApi* | [**get_server_disk**](docs/ServersApi.md#get_server_disk) | **GET** /api/v1/servers/{server_id}/disks/{disk_id} | Получение диска сервера
 *ServersApi* | [**get_server_disk_auto_backup_settings**](docs/ServersApi.md#get_server_disk_auto_backup_settings) | **GET** /api/v1/servers/{server_id}/disks/{disk_id}/auto-backups | Получить настройки автобэкапов диска сервера
@@ -554,6 +558,7 @@ Class | Method | HTTP request | Description
 *ServersApi* | [**reboot_server**](docs/ServersApi.md#reboot_server) | **POST** /api/v1/servers/{server_id}/reboot | Перезагрузка сервера
 *ServersApi* | [**reboot_server_hard**](docs/ServersApi.md#reboot_server_hard) | **POST** /api/v1/servers/{server_id}/hard-reboot | Принудительная перезагрузка сервера
 *ServersApi* | [**reset_server_password**](docs/ServersApi.md#reset_server_password) | **POST** /api/v1/servers/{server_id}/reset-password | Сброс пароля сервера
+*ServersApi* | [**rollback_restore_point**](docs/ServersApi.md#rollback_restore_point) | **POST** /api/v1/restore-points/{vds_id}/rollback | Откат к снапшоту
 *ServersApi* | [**shutdown_server**](docs/ServersApi.md#shutdown_server) | **POST** /api/v1/servers/{server_id}/shutdown | Выключение сервера
 *ServersApi* | [**start_server**](docs/ServersApi.md#start_server) | **POST** /api/v1/servers/{server_id}/start | Запуск сервера
 *ServersApi* | [**update_server**](docs/ServersApi.md#update_server) | **PATCH** /api/v1/servers/{server_id} | Изменение сервера
@@ -563,11 +568,6 @@ Class | Method | HTTP request | Description
 *ServersApi* | [**update_server_ip**](docs/ServersApi.md#update_server_ip) | **PATCH** /api/v1/servers/{server_id}/ips | Изменение IP-адреса сервера
 *ServersApi* | [**update_server_nat**](docs/ServersApi.md#update_server_nat) | **PATCH** /api/v1/servers/{server_id}/local-networks/nat-mode | Изменение правил маршрутизации трафика сервера (NAT)
 *ServersApi* | [**update_server_os_boot_mode**](docs/ServersApi.md#update_server_os_boot_mode) | **POST** /api/v1/servers/{server_id}/boot-mode | Выбор типа загрузки операционной системы сервера
-*SnapshotsApi* | [**commit_restore_point**](docs/SnapshotsApi.md#commit_restore_point) | **POST** /api/v1/restore-points/{vds_id}/commit | Фиксация снапшота
-*SnapshotsApi* | [**create_restore_point**](docs/SnapshotsApi.md#create_restore_point) | **POST** /api/v1/restore-points/{vds_id}/create | Создание снапшота
-*SnapshotsApi* | [**get_restore_point**](docs/SnapshotsApi.md#get_restore_point) | **GET** /api/v1/restore-points/{vds_id} | Получение снапшота сервера
-*SnapshotsApi* | [**get_restore_points**](docs/SnapshotsApi.md#get_restore_points) | **GET** /api/v1/restore-points | Получение списка снапшотов
-*SnapshotsApi* | [**rollback_restore_point**](docs/SnapshotsApi.md#rollback_restore_point) | **POST** /api/v1/restore-points/{vds_id}/rollback | Откат к снапшоту
 *VPCApi* | [**create_vpc**](docs/VPCApi.md#create_vpc) | **POST** /api/v2/vpcs | Создание VPC
 *VPCApi* | [**delete_vpc**](docs/VPCApi.md#delete_vpc) | **DELETE** /api/v1/vpcs/{vpc_id} | Удаление VPC по ID сети
 *VPCApi* | [**get_vpc**](docs/VPCApi.md#get_vpc) | **GET** /api/v2/vpcs/{vpc_id} | Получение VPC

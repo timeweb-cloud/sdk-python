@@ -40,7 +40,6 @@ from timeweb_cloud_api.api.routers_api import RoutersApi
 from timeweb_cloud_api.api.s3_api import S3Api
 from timeweb_cloud_api.api.ssh_api import SSHApi
 from timeweb_cloud_api.api.servers_api import ServersApi
-from timeweb_cloud_api.api.snapshots_api import SnapshotsApi
 from timeweb_cloud_api.api.vpc_api import VPCApi
 
 # import ApiClient

@@ -470,7 +470,6 @@ docs/ServicePriceType.md
 docs/ServiceServicePrice.md
 docs/SetLabels.md
 docs/SettingCondition.md
-docs/SnapshotsApi.md
 docs/SpamFilterIsDisabled.md
 docs/SpamFilterIsEnabled.md
 docs/SpamProtectionIsDisabled.md
@@ -1013,7 +1012,6 @@ test/test_service_price_type.py
 test/test_service_service_price.py
 test/test_set_labels.py
 test/test_setting_condition.py
-test/test_snapshots_api.py
 test/test_spam_filter_is_disabled.py
 test/test_spam_filter_is_enabled.py
 test/test_spam_protection_is_disabled.py
@@ -1108,7 +1106,6 @@ timeweb_cloud_api/api/projects_api.py
 timeweb_cloud_api/api/routers_api.py
 timeweb_cloud_api/api/s3_api.py
 timeweb_cloud_api/api/servers_api.py
-timeweb_cloud_api/api/snapshots_api.py
 timeweb_cloud_api/api/ssh_api.py
 timeweb_cloud_api/api/vpc_api.py
 timeweb_cloud_api/api_client.py

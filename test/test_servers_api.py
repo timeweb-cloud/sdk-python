@@ -43,6 +43,20 @@ class TestServersApi(unittest.TestCase):
         """
         pass
 
+    def test_commit_restore_point(self):
+        """Test case for commit_restore_point
+
+        Фиксация снапшота  # noqa: E501
+        """
+        pass
+
+    def test_create_restore_point(self):
+        """Test case for create_restore_point
+
+        Создание снапшота  # noqa: E501
+        """
+        pass
+
     def test_create_server(self):
         """Test case for create_server
 
@@ -103,6 +117,20 @@ class TestServersApi(unittest.TestCase):
         """Test case for get_os_list
 
         Получение списка операционных систем  # noqa: E501
+        """
+        pass
+
+    def test_get_restore_point(self):
+        """Test case for get_restore_point
+
+        Получение снапшота сервера  # noqa: E501
+        """
+        pass
+
+    def test_get_restore_points(self):
+        """Test case for get_restore_points
+
+        Получение списка снапшотов  # noqa: E501
         """
         pass
 
@@ -243,6 +271,13 @@ class TestServersApi(unittest.TestCase):
         """Test case for reset_server_password
 
         Сброс пароля сервера  # noqa: E501
+        """
+        pass
+
+    def test_rollback_restore_point(self):
+        """Test case for rollback_restore_point
+
+        Откат к снапшоту  # noqa: E501
         """
         pass
 
