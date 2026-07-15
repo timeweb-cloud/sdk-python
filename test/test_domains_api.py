@@ -71,6 +71,13 @@ class TestDomainsApi(unittest.TestCase):
         """
         pass
 
+    def test_create_person(self):
+        """Test case for create_person
+
+        Создание администратора доменов  # noqa: E501
+        """
+        pass
+
     def test_delete_domain(self):
         """Test case for delete_domain
 
@@ -89,6 +96,13 @@ class TestDomainsApi(unittest.TestCase):
         """Test case for delete_domain_dns_record_v2
 
         Удалить информацию о DNS-записи для домена или поддомена  # noqa: E501
+        """
+        pass
+
+    def test_delete_person(self):
+        """Test case for delete_person
+
+        Удаление администратора доменов  # noqa: E501
         """
         pass
 
@@ -148,6 +162,20 @@ class TestDomainsApi(unittest.TestCase):
         """
         pass
 
+    def test_get_person(self):
+        """Test case for get_person
+
+        Получение администратора доменов  # noqa: E501
+        """
+        pass
+
+    def test_get_persons(self):
+        """Test case for get_persons
+
+        Получение списка администраторов доменов  # noqa: E501
+        """
+        pass
+
     def test_get_tld(self):
         """Test case for get_tld
 
@@ -194,6 +222,13 @@ class TestDomainsApi(unittest.TestCase):
         """Test case for update_domain_request
 
         Оплата/обновление заявки на регистрацию/продление/трансфер домена  # noqa: E501
+        """
+        pass
+
+    def test_update_person(self):
+        """Test case for update_person
+
+        Обновление контактных данных администратора доменов  # noqa: E501
         """
         pass
 

@@ -31,17 +31,21 @@ from timeweb_cloud_api.models.create_dns_v2 import CreateDnsV2
 from timeweb_cloud_api.models.create_domain_dns_record201_response import CreateDomainDNSRecord201Response
 from timeweb_cloud_api.models.create_domain_dns_record_v2201_response import CreateDomainDNSRecordV2201Response
 from timeweb_cloud_api.models.create_domain_request201_response import CreateDomainRequest201Response
+from timeweb_cloud_api.models.create_person201_response import CreatePerson201Response
 from timeweb_cloud_api.models.domain_register import DomainRegister
 from timeweb_cloud_api.models.get_domain200_response import GetDomain200Response
 from timeweb_cloud_api.models.get_domain_dns_records200_response import GetDomainDNSRecords200Response
 from timeweb_cloud_api.models.get_domain_name_servers200_response import GetDomainNameServers200Response
 from timeweb_cloud_api.models.get_domain_requests200_response import GetDomainRequests200Response
 from timeweb_cloud_api.models.get_domains200_response import GetDomains200Response
+from timeweb_cloud_api.models.get_persons200_response import GetPersons200Response
 from timeweb_cloud_api.models.get_tld200_response import GetTLD200Response
 from timeweb_cloud_api.models.get_tlds200_response import GetTLDs200Response
+from timeweb_cloud_api.models.person2 import Person2
 from timeweb_cloud_api.models.update_domain import UpdateDomain
 from timeweb_cloud_api.models.update_domain_auto_prolongation200_response import UpdateDomainAutoProlongation200Response
 from timeweb_cloud_api.models.update_domain_name_servers import UpdateDomainNameServers
+from timeweb_cloud_api.models.update_person import UpdatePerson
 from timeweb_cloud_api.models.use import Use
 
 from timeweb_cloud_api.api_client import ApiClient
@@ -969,6 +973,156 @@ class DomainsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
+    def create_person(self, person2 : Person2, **kwargs) -> CreatePerson201Response:  # noqa: E501
+        """Создание администратора доменов  # noqa: E501
+
+        Чтобы создать администратора доменов, отправьте POST-запрос на `/api/v1/persons`, задав необходимые атрибуты. Набор полей зависит от типа администратора: физическое лицо (`person`), организация (`org`) или индивидуальный предприниматель (`ip`).   Тело ответа будет представлять собой объект JSON с ключом `person`.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.create_person(person2, async_req=True)
+        >>> result = thread.get()
+
+        :param person2: (required)
+        :type person2: Person2
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: CreatePerson201Response
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            raise ValueError("Error! Please call the create_person_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
+        return self.create_person_with_http_info(person2, **kwargs)  # noqa: E501
+
+    @validate_arguments
+    def create_person_with_http_info(self, person2 : Person2, **kwargs) -> ApiResponse:  # noqa: E501
+        """Создание администратора доменов  # noqa: E501
+
+        Чтобы создать администратора доменов, отправьте POST-запрос на `/api/v1/persons`, задав необходимые атрибуты. Набор полей зависит от типа администратора: физическое лицо (`person`), организация (`org`) или индивидуальный предприниматель (`ip`).   Тело ответа будет представлять собой объект JSON с ключом `person`.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.create_person_with_http_info(person2, async_req=True)
+        >>> result = thread.get()
+
+        :param person2: (required)
+        :type person2: Person2
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the 
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(CreatePerson201Response, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'person2'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method create_person" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        if _params['person2'] is not None:
+            _body_params = _params['person2']
+
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # set the HTTP header `Content-Type`
+        _content_types_list = _params.get('_content_type',
+            self.api_client.select_header_content_type(
+                ['application/json']))
+        if _content_types_list:
+                _header_params['Content-Type'] = _content_types_list
+
+        # authentication setting
+        _auth_settings = ['Bearer']  # noqa: E501
+
+        _response_types_map = {
+            '201': "CreatePerson201Response",
+            '400': None,
+            '401': None,
+            '429': None,
+            '500': None,
+        }
+
+        return self.api_client.call_api(
+            '/api/v1/persons', 'POST',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @validate_arguments
     def delete_domain(self, fqdn : Annotated[Any, Field(..., description="Полное имя домена.")], **kwargs) -> None:  # noqa: E501
         """Удаление домена  # noqa: E501
 
@@ -1374,6 +1528,139 @@ class DomainsApi(object):
 
         return self.api_client.call_api(
             '/api/v2/domains/{fqdn}/dns-records/{record_id}', 'DELETE',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @validate_arguments
+    def delete_person(self, person_id : Annotated[Any, Field(..., description="ID администратора домена.")], **kwargs) -> None:  # noqa: E501
+        """Удаление администратора доменов  # noqa: E501
+
+        Чтобы удалить администратора доменов, отправьте DELETE-запрос на `/api/v1/persons/{person_id}`.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.delete_person(person_id, async_req=True)
+        >>> result = thread.get()
+
+        :param person_id: ID администратора домена. (required)
+        :type person_id: object
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: None
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            raise ValueError("Error! Please call the delete_person_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
+        return self.delete_person_with_http_info(person_id, **kwargs)  # noqa: E501
+
+    @validate_arguments
+    def delete_person_with_http_info(self, person_id : Annotated[Any, Field(..., description="ID администратора домена.")], **kwargs) -> ApiResponse:  # noqa: E501
+        """Удаление администратора доменов  # noqa: E501
+
+        Чтобы удалить администратора доменов, отправьте DELETE-запрос на `/api/v1/persons/{person_id}`.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.delete_person_with_http_info(person_id, async_req=True)
+        >>> result = thread.get()
+
+        :param person_id: ID администратора домена. (required)
+        :type person_id: object
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the 
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: None
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'person_id'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method delete_person" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['person_id']:
+            _path_params['person_id'] = _params['person_id']
+
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # authentication setting
+        _auth_settings = ['Bearer']  # noqa: E501
+
+        _response_types_map = {}
+
+        return self.api_client.call_api(
+            '/api/v1/persons/{person_id}', 'DELETE',
             _path_params,
             _query_params,
             _header_params,
@@ -2613,6 +2900,309 @@ class DomainsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
+    def get_person(self, person_id : Annotated[Any, Field(..., description="ID администратора домена.")], **kwargs) -> CreatePerson201Response:  # noqa: E501
+        """Получение администратора доменов  # noqa: E501
+
+        Чтобы получить администратора доменов, отправьте GET-запрос на `/api/v1/persons/{person_id}`.   Тело ответа будет представлять собой объект JSON с ключом `person`.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_person(person_id, async_req=True)
+        >>> result = thread.get()
+
+        :param person_id: ID администратора домена. (required)
+        :type person_id: object
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: CreatePerson201Response
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            raise ValueError("Error! Please call the get_person_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
+        return self.get_person_with_http_info(person_id, **kwargs)  # noqa: E501
+
+    @validate_arguments
+    def get_person_with_http_info(self, person_id : Annotated[Any, Field(..., description="ID администратора домена.")], **kwargs) -> ApiResponse:  # noqa: E501
+        """Получение администратора доменов  # noqa: E501
+
+        Чтобы получить администратора доменов, отправьте GET-запрос на `/api/v1/persons/{person_id}`.   Тело ответа будет представлять собой объект JSON с ключом `person`.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_person_with_http_info(person_id, async_req=True)
+        >>> result = thread.get()
+
+        :param person_id: ID администратора домена. (required)
+        :type person_id: object
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the 
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(CreatePerson201Response, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'person_id'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_person" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['person_id']:
+            _path_params['person_id'] = _params['person_id']
+
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = ['Bearer']  # noqa: E501
+
+        _response_types_map = {
+            '200': "CreatePerson201Response",
+            '400': None,
+            '401': None,
+            '404': None,
+            '429': None,
+            '500': None,
+        }
+
+        return self.api_client.call_api(
+            '/api/v1/persons/{person_id}', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @validate_arguments
+    def get_persons(self, limit : Annotated[Optional[Any], Field(description="Обозначает количество записей, которое необходимо вернуть.")] = None, offset : Annotated[Optional[Any], Field(description="Указывает на смещение относительно начала списка.")] = None, is_closed : Annotated[Optional[Any], Field(description="Фильтр по закрытым администраторам: `true` — вернуть только закрытых, `false` — только активных.")] = None, **kwargs) -> GetPersons200Response:  # noqa: E501
+        """Получение списка администраторов доменов  # noqa: E501
+
+        Чтобы получить список администраторов доменов на вашем аккаунте, отправьте GET-запрос на `/api/v1/persons`.   Тело ответа будет представлять собой объект JSON с ключом `persons`.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_persons(limit, offset, is_closed, async_req=True)
+        >>> result = thread.get()
+
+        :param limit: Обозначает количество записей, которое необходимо вернуть.
+        :type limit: object
+        :param offset: Указывает на смещение относительно начала списка.
+        :type offset: object
+        :param is_closed: Фильтр по закрытым администраторам: `true` — вернуть только закрытых, `false` — только активных.
+        :type is_closed: object
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: GetPersons200Response
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            raise ValueError("Error! Please call the get_persons_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
+        return self.get_persons_with_http_info(limit, offset, is_closed, **kwargs)  # noqa: E501
+
+    @validate_arguments
+    def get_persons_with_http_info(self, limit : Annotated[Optional[Any], Field(description="Обозначает количество записей, которое необходимо вернуть.")] = None, offset : Annotated[Optional[Any], Field(description="Указывает на смещение относительно начала списка.")] = None, is_closed : Annotated[Optional[Any], Field(description="Фильтр по закрытым администраторам: `true` — вернуть только закрытых, `false` — только активных.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+        """Получение списка администраторов доменов  # noqa: E501
+
+        Чтобы получить список администраторов доменов на вашем аккаунте, отправьте GET-запрос на `/api/v1/persons`.   Тело ответа будет представлять собой объект JSON с ключом `persons`.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_persons_with_http_info(limit, offset, is_closed, async_req=True)
+        >>> result = thread.get()
+
+        :param limit: Обозначает количество записей, которое необходимо вернуть.
+        :type limit: object
+        :param offset: Указывает на смещение относительно начала списка.
+        :type offset: object
+        :param is_closed: Фильтр по закрытым администраторам: `true` — вернуть только закрытых, `false` — только активных.
+        :type is_closed: object
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the 
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(GetPersons200Response, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'limit',
+            'offset',
+            'is_closed'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_persons" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+
+        # process the query parameters
+        _query_params = []
+        if _params.get('limit') is not None:  # noqa: E501
+            _query_params.append(('limit', _params['limit']))
+
+        if _params.get('offset') is not None:  # noqa: E501
+            _query_params.append(('offset', _params['offset']))
+
+        if _params.get('is_closed') is not None:  # noqa: E501
+            _query_params.append(('is_closed', _params['is_closed']))
+
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = ['Bearer']  # noqa: E501
+
+        _response_types_map = {
+            '200': "GetPersons200Response",
+            '400': None,
+            '401': None,
+            '429': None,
+            '500': None,
+        }
+
+        return self.api_client.call_api(
+            '/api/v1/persons', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @validate_arguments
     def get_tld(self, tld_id : Annotated[Any, Field(..., description="ID доменной зоны.")], **kwargs) -> GetTLD200Response:  # noqa: E501
         """Получить информацию о доменной зоне по ID  # noqa: E501
 
@@ -3708,6 +4298,165 @@ class DomainsApi(object):
 
         return self.api_client.call_api(
             '/api/v1/domains-requests/{request_id}', 'PATCH',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @validate_arguments
+    def update_person(self, person_id : Annotated[Any, Field(..., description="ID администратора домена.")], update_person : UpdatePerson, **kwargs) -> CreatePerson201Response:  # noqa: E501
+        """Обновление контактных данных администратора доменов  # noqa: E501
+
+        Чтобы обновить контактные данные администратора доменов, отправьте PUT-запрос на `/api/v1/persons/{person_id}`.   Тело ответа будет представлять собой объект JSON с ключом `person`.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.update_person(person_id, update_person, async_req=True)
+        >>> result = thread.get()
+
+        :param person_id: ID администратора домена. (required)
+        :type person_id: object
+        :param update_person: (required)
+        :type update_person: UpdatePerson
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: CreatePerson201Response
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            raise ValueError("Error! Please call the update_person_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
+        return self.update_person_with_http_info(person_id, update_person, **kwargs)  # noqa: E501
+
+    @validate_arguments
+    def update_person_with_http_info(self, person_id : Annotated[Any, Field(..., description="ID администратора домена.")], update_person : UpdatePerson, **kwargs) -> ApiResponse:  # noqa: E501
+        """Обновление контактных данных администратора доменов  # noqa: E501
+
+        Чтобы обновить контактные данные администратора доменов, отправьте PUT-запрос на `/api/v1/persons/{person_id}`.   Тело ответа будет представлять собой объект JSON с ключом `person`.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.update_person_with_http_info(person_id, update_person, async_req=True)
+        >>> result = thread.get()
+
+        :param person_id: ID администратора домена. (required)
+        :type person_id: object
+        :param update_person: (required)
+        :type update_person: UpdatePerson
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the 
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(CreatePerson201Response, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'person_id',
+            'update_person'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method update_person" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['person_id']:
+            _path_params['person_id'] = _params['person_id']
+
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        if _params['update_person'] is not None:
+            _body_params = _params['update_person']
+
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # set the HTTP header `Content-Type`
+        _content_types_list = _params.get('_content_type',
+            self.api_client.select_header_content_type(
+                ['application/json']))
+        if _content_types_list:
+                _header_params['Content-Type'] = _content_types_list
+
+        # authentication setting
+        _auth_settings = ['Bearer']  # noqa: E501
+
+        _response_types_map = {
+            '200': "CreatePerson201Response",
+            '400': None,
+            '401': None,
+            '404': None,
+            '429': None,
+            '500': None,
+        }
+
+        return self.api_client.call_api(
+            '/api/v1/persons/{person_id}', 'PUT',
             _path_params,
             _query_params,
             _header_params,

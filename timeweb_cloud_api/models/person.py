@@ -1,0 +1,226 @@
+# coding: utf-8
+
+"""
+    Timeweb Cloud API
+
+    # Введение API Timeweb Cloud позволяет вам управлять ресурсами в облаке программным способом с использованием обычных HTTP-запросов.  Множество функций, которые доступны в панели управления Timeweb Cloud, также доступны через API, что позволяет вам автоматизировать ваши собственные сценарии.  В этой документации сперва будет описан общий дизайн и принципы работы API, а после этого конкретные конечные точки. Также будут приведены примеры запросов к ним.   ## Запросы Запросы должны выполняться по протоколу `HTTPS`, чтобы гарантировать шифрование транзакций. Поддерживаются следующие методы запроса: |Метод|Применение| |--- |--- | |GET|Извлекает данные о коллекциях и отдельных ресурсах.| |POST|Для коллекций создает новый ресурс этого типа. Также используется для выполнения действий с конкретным ресурсом.| |PUT|Обновляет существующий ресурс.| |PATCH|Некоторые ресурсы поддерживают частичное обновление, то есть обновление только части атрибутов ресурса, в этом случае вместо метода PUT будет использован PATCH.| |DELETE|Удаляет ресурс.|  Методы `POST`, `PUT` и `PATCH` могут включать объект в тело запроса с типом содержимого `application/json`.  ### Параметры в запросах Некоторые коллекции поддерживают пагинацию, поиск или сортировку в запросах. В параметрах запроса требуется передать: - `limit` — обозначает количество записей, которое необходимо вернуть  - `offset` — указывает на смещение, относительно начала списка  - `search` — позволяет указать набор символов для поиска  - `sort` — можно задать правило сортировки коллекции  ## Ответы Запросы вернут один из следующих кодов состояния ответа HTTP:  |Статус|Описание| |--- |--- | |200 OK|Действие с ресурсом было выполнено успешно.| |201 Created|Ресурс был успешно создан. При этом ресурс может быть как уже готовым к использованию, так и находиться в процессе запуска.| |204 No Content|Действие с ресурсом было выполнено успешно, и ответ не содержит дополнительной информации в теле.| |400 Bad Request|Был отправлен неверный запрос, например, в нем отсутствуют обязательные параметры и т. д. Тело ответа будет содержать дополнительную информацию об ошибке.| |401 Unauthorized|Ошибка аутентификации.| |403 Forbidden|Аутентификация прошла успешно, но недостаточно прав для выполнения действия.| |404 Not Found|Запрашиваемый ресурс не найден.| |409 Conflict|Запрос конфликтует с текущим состоянием.| |423 Locked|Ресурс из запроса заблокирован от применения к нему указанного метода.| |429 Too Many Requests|Был достигнут лимит по количеству запросов в единицу времени.| |500 Internal Server Error|При выполнении запроса произошла какая-то внутренняя ошибка. Чтобы решить эту проблему, лучше всего создать тикет в панели управления.|  ### Структура успешного ответа Все конечные точки будут возвращать данные в формате `JSON`. Ответы на `GET`-запросы будут иметь на верхнем уровне следующую структуру атрибутов:  |Название поля|Тип|Описание| |--- |--- |--- | |[entity_name]|object, object[], string[], number[], boolean|Динамическое поле, которое будет меняться в зависимости от запрашиваемого ресурса и будет содержать все атрибуты, необходимые для описания этого ресурса. Например, при запросе списка баз данных будет возвращаться поле `dbs`, а при запросе конкретного облачного сервера `server`. Для некоторых конечных точек в ответе может возвращаться сразу несколько ресурсов.| |meta|object|Опционально. Объект, который содержит вспомогательную информацию о ресурсе. Чаще всего будет встречаться при запросе коллекций и содержать поле `total`, которое будет указывать на количество элементов в коллекции.| |response_id|string|Опционально. В большинстве случаев в ответе будет содержаться ID ответа в формате UUIDv4, который однозначно указывает на ваш запрос внутри нашей системы. Если вам потребуется задать вопрос нашей поддержке, приложите к вопросу этот ID— так мы сможем найти ответ на него намного быстрее. Также вы можете использовать этот ID, чтобы убедиться, что это новый ответ на запрос и результат не был получен из кэша.|  Пример запроса на получение списка SSH-ключей: ```     HTTP/2.0 200 OK     {       \"ssh_keys\":[           {             \"body\":\"ssh-rsa AAAAB3NzaC1sdfghjkOAsBwWhs= example@device.local\",             \"created_at\":\"2021-09-15T19:52:27Z\",             \"expired_at\":null,             \"id\":5297,             \"is_default\":false,             \"name\":\"example@device.local\",             \"used_at\":null,             \"used_by\":[]           }       ],       \"meta\":{           \"total\":1       },       \"response_id\":\"94608d15-8672-4eed-8ab6-28bd6fa3cdf7\"     } ```  ### Структура ответа с ошибкой |Название поля|Тип|Описание| |--- |--- |--- | |status_code|number|Короткий числовой идентификатор ошибки.| |error_code|string|Короткий текстовый идентификатор ошибки, который уточняет числовой идентификатор и удобен для программной обработки. Самый простой пример — это код `not_found` для ошибки 404.| |message|string, string[]|Опционально. В большинстве случаев в ответе будет содержаться человекочитаемое подробное описание ошибки или ошибок, которые помогут понять, что нужно исправить.| |response_id|string|Опционально. В большинстве случае в ответе будет содержаться ID ответа в формате UUIDv4, который однозначно указывает на ваш запрос внутри нашей системы. Если вам потребуется задать вопрос нашей поддержке, приложите к вопросу этот ID — так мы сможем найти ответ на него намного быстрее.|  Пример: ```     HTTP/2.0 403 Forbidden     {       \"status_code\": 403,       \"error_code\":  \"forbidden\",       \"message\":     \"You do not have access for the attempted action\",       \"response_id\": \"94608d15-8672-4eed-8ab6-28bd6fa3cdf7\"     } ```  ## Статусы ресурсов Важно учесть, что при создании большинства ресурсов внутри платформы вам будет сразу возвращен ответ от сервера со статусом `200 OK` или `201 Created` и ID созданного ресурса в теле ответа, но при этом этот ресурс может быть ещё в *состоянии запуска*.  Для того чтобы понять, в каком состоянии сейчас находится ваш ресурс, мы добавили поле `status` в ответ на получение информации о ресурсе.  Список статусов будет отличаться в зависимости от типа ресурса. Увидеть поддерживаемый список статусов вы сможете в описании каждого конкретного ресурса.     ## Ограничение скорости запросов (Rate Limiting) Чтобы обеспечить стабильность для всех пользователей, Timeweb Cloud защищает API от всплесков входящего трафика, анализируя количество запросов c каждого аккаунта к каждой конечной точке.  Если ваше приложение отправляет более 20 запросов в секунду на одну конечную точку, то для этого запроса API может вернуть код состояния HTTP `429 Too Many Requests`.   ## Аутентификация Доступ к API осуществляется с помощью JWT-токена. Токенами можно управлять внутри панели управления Timeweb Cloud в разделе *API и Terraform*.  Токен необходимо передавать в заголовке каждого запроса в формате: ```   Authorization: Bearer $TIMEWEB_CLOUD_TOKEN ```  ## Формат примеров API Примеры в этой документации описаны с помощью `curl`, HTTP-клиента командной строки. На компьютерах `Linux` и `macOS` обычно по умолчанию установлен `curl`, и он доступен для загрузки на всех популярных платформах, включая `Windows`.  Каждый пример разделен на несколько строк символом `\\`, который совместим с `bash`. Типичный пример выглядит так: ```   curl -X PATCH      -H \"Content-Type: application/json\"      -H \"Authorization: Bearer $TIMEWEB_CLOUD_TOKEN\"      -d '{\"name\":\"Cute Corvus\",\"comment\":\"Development Server\"}'      \"https://api.timeweb.cloud/api/v1/dedicated/1051\" ``` - Параметр `-X` задает метод запроса. Для согласованности метод будет указан во всех примерах, даже если он явно не требуется для методов `GET`. - Строки `-H` задают требуемые HTTP-заголовки. - Примеры, для которых требуется объект JSON в теле запроса, передают требуемые данные через параметр `-d`.  Чтобы использовать приведенные примеры, не подставляя каждый раз в них свой токен, вы можете добавить токен один раз в переменные окружения в вашей консоли. Например, на `Linux` это можно сделать с помощью команды:  ``` TIMEWEB_CLOUD_TOKEN=\"token\" ```  После этого токен будет автоматически подставляться в ваши запросы.  Обратите внимание, что все значения в этой документации являются примерами. Не полагайтесь на IDы операционных систем, тарифов и т.д., используемые в примерах. Используйте соответствующую конечную точку для получения значений перед созданием ресурсов.   ## Версионирование API построено согласно принципам [семантического версионирования](https://semver.org/lang/ru). Это значит, что мы гарантируем обратную совместимость всех изменений в пределах одной мажорной версии.  Мажорная версия каждой конечной точки обозначается в пути запроса, например, запрос `/api/v1/servers` указывает, что этот метод имеет версию 1.  # noqa: E501
+
+    The version of the OpenAPI document: 1.0.0
+    Contact: info@timeweb.cloud
+    Generated by OpenAPI Generator (https://openapi-generator.tech)
+
+    Do not edit the class manually.
+"""
+
+
+from __future__ import annotations
+import pprint
+import re  # noqa: F401
+import json
+
+
+from typing import Any, Optional
+from pydantic import BaseModel, Field, validator
+
+class Person(BaseModel):
+    """
+    Person
+    """
+    id: Optional[Any] = Field(..., description="Уникальный идентификатор администратора домена.")
+    type: Optional[Any] = Field(..., description="Тип администратора: `person` — физическое лицо, `org` — организация, `ip` — индивидуальный предприниматель.")
+    name: Optional[Any] = Field(..., description="Имя администратора (ФИО или название организации).")
+    name_eng: Optional[Any] = Field(..., description="Имя администратора в латинской транслитерации.")
+    email: Optional[Any] = Field(..., description="Адрес электронной почты администратора.")
+    phone: Optional[Any] = Field(..., description="Контактный телефон администратора.")
+    postcode: Optional[Any] = Field(..., description="Почтовый индекс.")
+    mailing_address: Optional[Any] = Field(..., description="Почтовый адрес.")
+    country_code: Optional[Any] = Field(..., description="Код страны администратора.")
+    is_resident: Optional[Any] = Field(..., description="Это логическое значение, которое показывает, является ли администратор резидентом РФ.")
+    is_blank: Optional[Any] = Field(..., description="Это логическое значение, которое показывает, заполнены ли данные администратора не полностью.")
+    is_closed: Optional[Any] = Field(..., description="Это логическое значение, которое показывает, закрыт ли администратор.")
+    birthdate: Optional[Any] = Field(None, description="Дата рождения. Только для типов `person` и `ip`.")
+    passport_date: Optional[Any] = Field(None, description="Дата выдачи паспорта. Только для типов `person` и `ip`.")
+    passport_number: Optional[Any] = Field(None, description="Номер паспорта. Только для типов `person` и `ip`.")
+    passport_place: Optional[Any] = Field(None, description="Кем выдан паспорт. Только для типов `person` и `ip`.")
+    passport_series: Optional[Any] = Field(None, description="Серия паспорта. Только для типов `person` и `ip`.")
+    inn: Optional[Any] = Field(None, description="ИНН. Только для типов `org` и `ip`.")
+    kpp: Optional[Any] = Field(None, description="КПП организации. Только для типа `org`.")
+    legal_address: Optional[Any] = Field(None, description="Юридический адрес организации. Только для типа `org`.")
+    contact_name: Optional[Any] = Field(None, description="Контактное лицо организации. Только для типа `org`.")
+    __properties = ["id", "type", "name", "name_eng", "email", "phone", "postcode", "mailing_address", "country_code", "is_resident", "is_blank", "is_closed", "birthdate", "passport_date", "passport_number", "passport_place", "passport_series", "inn", "kpp", "legal_address", "contact_name"]
+
+    @validator('type')
+    def type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in ('person', 'org', 'ip'):
+            raise ValueError("must be one of enum values ('person', 'org', 'ip')")
+        return value
+
+    class Config:
+        """Pydantic configuration"""
+        allow_population_by_field_name = True
+        validate_assignment = True
+
+    def to_str(self) -> str:
+        """Returns the string representation of the model using alias"""
+        return pprint.pformat(self.dict(by_alias=True))
+
+    def to_json(self) -> str:
+        """Returns the JSON representation of the model using alias"""
+        return json.dumps(self.to_dict())
+
+    @classmethod
+    def from_json(cls, json_str: str) -> Person:
+        """Create an instance of Person from a JSON string"""
+        return cls.from_dict(json.loads(json_str))
+
+    def to_dict(self):
+        """Returns the dictionary representation of the model using alias"""
+        _dict = self.dict(by_alias=True,
+                          exclude={
+                          },
+                          exclude_none=True)
+        # set to None if id (nullable) is None
+        # and __fields_set__ contains the field
+        if self.id is None and "id" in self.__fields_set__:
+            _dict['id'] = None
+
+        # set to None if type (nullable) is None
+        # and __fields_set__ contains the field
+        if self.type is None and "type" in self.__fields_set__:
+            _dict['type'] = None
+
+        # set to None if name (nullable) is None
+        # and __fields_set__ contains the field
+        if self.name is None and "name" in self.__fields_set__:
+            _dict['name'] = None
+
+        # set to None if name_eng (nullable) is None
+        # and __fields_set__ contains the field
+        if self.name_eng is None and "name_eng" in self.__fields_set__:
+            _dict['name_eng'] = None
+
+        # set to None if email (nullable) is None
+        # and __fields_set__ contains the field
+        if self.email is None and "email" in self.__fields_set__:
+            _dict['email'] = None
+
+        # set to None if phone (nullable) is None
+        # and __fields_set__ contains the field
+        if self.phone is None and "phone" in self.__fields_set__:
+            _dict['phone'] = None
+
+        # set to None if postcode (nullable) is None
+        # and __fields_set__ contains the field
+        if self.postcode is None and "postcode" in self.__fields_set__:
+            _dict['postcode'] = None
+
+        # set to None if mailing_address (nullable) is None
+        # and __fields_set__ contains the field
+        if self.mailing_address is None and "mailing_address" in self.__fields_set__:
+            _dict['mailing_address'] = None
+
+        # set to None if country_code (nullable) is None
+        # and __fields_set__ contains the field
+        if self.country_code is None and "country_code" in self.__fields_set__:
+            _dict['country_code'] = None
+
+        # set to None if is_resident (nullable) is None
+        # and __fields_set__ contains the field
+        if self.is_resident is None and "is_resident" in self.__fields_set__:
+            _dict['is_resident'] = None
+
+        # set to None if is_blank (nullable) is None
+        # and __fields_set__ contains the field
+        if self.is_blank is None and "is_blank" in self.__fields_set__:
+            _dict['is_blank'] = None
+
+        # set to None if is_closed (nullable) is None
+        # and __fields_set__ contains the field
+        if self.is_closed is None and "is_closed" in self.__fields_set__:
+            _dict['is_closed'] = None
+
+        # set to None if birthdate (nullable) is None
+        # and __fields_set__ contains the field
+        if self.birthdate is None and "birthdate" in self.__fields_set__:
+            _dict['birthdate'] = None
+
+        # set to None if passport_date (nullable) is None
+        # and __fields_set__ contains the field
+        if self.passport_date is None and "passport_date" in self.__fields_set__:
+            _dict['passport_date'] = None
+
+        # set to None if passport_number (nullable) is None
+        # and __fields_set__ contains the field
+        if self.passport_number is None and "passport_number" in self.__fields_set__:
+            _dict['passport_number'] = None
+
+        # set to None if passport_place (nullable) is None
+        # and __fields_set__ contains the field
+        if self.passport_place is None and "passport_place" in self.__fields_set__:
+            _dict['passport_place'] = None
+
+        # set to None if passport_series (nullable) is None
+        # and __fields_set__ contains the field
+        if self.passport_series is None and "passport_series" in self.__fields_set__:
+            _dict['passport_series'] = None
+
+        # set to None if inn (nullable) is None
+        # and __fields_set__ contains the field
+        if self.inn is None and "inn" in self.__fields_set__:
+            _dict['inn'] = None
+
+        # set to None if kpp (nullable) is None
+        # and __fields_set__ contains the field
+        if self.kpp is None and "kpp" in self.__fields_set__:
+            _dict['kpp'] = None
+
+        # set to None if legal_address (nullable) is None
+        # and __fields_set__ contains the field
+        if self.legal_address is None and "legal_address" in self.__fields_set__:
+            _dict['legal_address'] = None
+
+        # set to None if contact_name (nullable) is None
+        # and __fields_set__ contains the field
+        if self.contact_name is None and "contact_name" in self.__fields_set__:
+            _dict['contact_name'] = None
+
+        return _dict
+
+    @classmethod
+    def from_dict(cls, obj: dict) -> Person:
+        """Create an instance of Person from a dict"""
+        if obj is None:
+            return None
+
+        if not isinstance(obj, dict):
+            return Person.parse_obj(obj)
+
+        _obj = Person.parse_obj({
+            "id": obj.get("id"),
+            "type": obj.get("type"),
+            "name": obj.get("name"),
+            "name_eng": obj.get("name_eng"),
+            "email": obj.get("email"),
+            "phone": obj.get("phone"),
+            "postcode": obj.get("postcode"),
+            "mailing_address": obj.get("mailing_address"),
+            "country_code": obj.get("country_code"),
+            "is_resident": obj.get("is_resident"),
+            "is_blank": obj.get("is_blank"),
+            "is_closed": obj.get("is_closed"),
+            "birthdate": obj.get("birthdate"),
+            "passport_date": obj.get("passport_date"),
+            "passport_number": obj.get("passport_number"),
+            "passport_place": obj.get("passport_place"),
+            "passport_series": obj.get("passport_series"),
+            "inn": obj.get("inn"),
+            "kpp": obj.get("kpp"),
+            "legal_address": obj.get("legal_address"),
+            "contact_name": obj.get("contact_name")
+        })
+        return _obj
+

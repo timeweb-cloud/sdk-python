@@ -141,6 +141,7 @@ from timeweb_cloud_api.models.create_multiple_domain_mailboxes_request import Cr
 from timeweb_cloud_api.models.create_multiple_domain_mailboxes_v2201_response import CreateMultipleDomainMailboxesV2201Response
 from timeweb_cloud_api.models.create_network_drive import CreateNetworkDrive
 from timeweb_cloud_api.models.create_network_drive201_response import CreateNetworkDrive201Response
+from timeweb_cloud_api.models.create_person201_response import CreatePerson201Response
 from timeweb_cloud_api.models.create_project import CreateProject
 from timeweb_cloud_api.models.create_project201_response import CreateProject201Response
 from timeweb_cloud_api.models.create_rule import CreateRule
@@ -290,6 +291,7 @@ from timeweb_cloud_api.models.get_network_drives_available_resources200_response
 from timeweb_cloud_api.models.get_network_drives_presets200_response import GetNetworkDrivesPresets200Response
 from timeweb_cloud_api.models.get_notification_settings200_response import GetNotificationSettings200Response
 from timeweb_cloud_api.models.get_os_list200_response import GetOsList200Response
+from timeweb_cloud_api.models.get_persons200_response import GetPersons200Response
 from timeweb_cloud_api.models.get_project_clusters200_response import GetProjectClusters200Response
 from timeweb_cloud_api.models.get_project_databases200_response import GetProjectDatabases200Response
 from timeweb_cloud_api.models.get_project_storages200_response import GetProjectStorages200Response
@@ -334,6 +336,7 @@ from timeweb_cloud_api.models.images_out_response import ImagesOutResponse
 from timeweb_cloud_api.models.increase_nodes import IncreaseNodes
 from timeweb_cloud_api.models.info_service_price import InfoServicePrice
 from timeweb_cloud_api.models.invoice import Invoice
+from timeweb_cloud_api.models.ip import Ip
 from timeweb_cloud_api.models.k8_s_versions_response import K8SVersionsResponse
 from timeweb_cloud_api.models.kafka import Kafka
 from timeweb_cloud_api.models.knowledgebase import Knowledgebase
@@ -385,10 +388,13 @@ from timeweb_cloud_api.models.notification_setting_channels import NotificationS
 from timeweb_cloud_api.models.notification_setting_type import NotificationSettingType
 from timeweb_cloud_api.models.os import OS
 from timeweb_cloud_api.models.opensearch import Opensearch
+from timeweb_cloud_api.models.org import Org
 from timeweb_cloud_api.models.outgoing_is_disabled import OutgoingIsDisabled
 from timeweb_cloud_api.models.outgoing_is_enabled import OutgoingIsEnabled
 from timeweb_cloud_api.models.perform_action_on_backup_request import PerformActionOnBackupRequest
 from timeweb_cloud_api.models.perform_action_on_server_request import PerformActionOnServerRequest
+from timeweb_cloud_api.models.person import Person
+from timeweb_cloud_api.models.person2 import Person2
 from timeweb_cloud_api.models.policy import Policy
 from timeweb_cloud_api.models.postgres import Postgres
 from timeweb_cloud_api.models.postgresql import Postgresql
@@ -498,6 +504,7 @@ from timeweb_cloud_api.models.update_mailbox_v2 import UpdateMailboxV2
 from timeweb_cloud_api.models.update_mailbox_v2200_response import UpdateMailboxV2200Response
 from timeweb_cloud_api.models.update_network_drive import UpdateNetworkDrive
 from timeweb_cloud_api.models.update_notification_settings_request import UpdateNotificationSettingsRequest
+from timeweb_cloud_api.models.update_person import UpdatePerson
 from timeweb_cloud_api.models.update_project import UpdateProject
 from timeweb_cloud_api.models.update_rule import UpdateRule
 from timeweb_cloud_api.models.update_server import UpdateServer
