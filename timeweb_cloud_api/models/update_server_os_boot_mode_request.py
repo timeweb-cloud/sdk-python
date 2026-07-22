@@ -26,7 +26,7 @@ class UpdateServerOSBootModeRequest(BaseModel):
     """
     UpdateServerOSBootModeRequest
     """
-    boot_mode: Optional[Any] = Field(..., description="Тип загрузки операционной системы. \\  Параметры: `default` – стандартный режим, `single` – однопользовательский режим, `recovery_disk` – загрузка с диска восстановления.")
+    boot_mode: Optional[Any] = Field(..., description="Тип загрузки операционной системы. \\  Параметры: `default` – стандартный режим, `single` – однопользовательский режим (**deprecated**, оставлен для обратной совместимости, выбор недоступен), `recovery_disk` – загрузка с диска восстановления.")
     __properties = ["boot_mode"]
 
     @validator('boot_mode')
