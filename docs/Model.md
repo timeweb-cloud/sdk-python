@@ -11,6 +11,8 @@ Name | Type | Description | Notes
 **public_name** | **object** | Публичное имя модели | 
 **type** | **object** | Тип модели (llm - языковая модель, embedding - модель для эмбеддингов) | 
 **is_deprecated** | **object** | Признак, что модель устарела | 
+**is_stopped** | **object** | Признак, что поддержка модели остановлена в системе | 
+**deprecation_date** | **object** | Дата депрекейта модели у провайдера | [optional] 
 **is_reasoning** | **object** | Признак поддержки режима рассуждения | 
 **version** | **object** | Версия модели | 
 **params_info** | [**ModelParamsInfo**](ModelParamsInfo.md) |  | [optional] 

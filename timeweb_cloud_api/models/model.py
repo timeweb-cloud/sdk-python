@@ -33,10 +33,12 @@ class Model(BaseModel):
     public_name: Optional[Any] = Field(..., description="Публичное имя модели")
     type: Optional[Any] = Field(..., description="Тип модели (llm - языковая модель, embedding - модель для эмбеддингов)")
     is_deprecated: Optional[Any] = Field(..., description="Признак, что модель устарела")
+    is_stopped: Optional[Any] = Field(..., description="Признак, что поддержка модели остановлена в системе")
+    deprecation_date: Optional[Any] = Field(None, description="Дата депрекейта модели у провайдера")
     is_reasoning: Optional[Any] = Field(..., description="Признак поддержки режима рассуждения")
     version: Optional[Any] = Field(..., description="Версия модели")
     params_info: Optional[ModelParamsInfo] = None
-    __properties = ["id", "provider_id", "name", "public_name", "type", "is_deprecated", "is_reasoning", "version", "params_info"]
+    __properties = ["id", "provider_id", "name", "public_name", "type", "is_deprecated", "is_stopped", "deprecation_date", "is_reasoning", "version", "params_info"]
 
     @validator('type')
     def type_validate_enum(cls, value):
@@ -105,6 +107,16 @@ class Model(BaseModel):
         if self.is_deprecated is None and "is_deprecated" in self.__fields_set__:
             _dict['is_deprecated'] = None
 
+        # set to None if is_stopped (nullable) is None
+        # and __fields_set__ contains the field
+        if self.is_stopped is None and "is_stopped" in self.__fields_set__:
+            _dict['is_stopped'] = None
+
+        # set to None if deprecation_date (nullable) is None
+        # and __fields_set__ contains the field
+        if self.deprecation_date is None and "deprecation_date" in self.__fields_set__:
+            _dict['deprecation_date'] = None
+
         # set to None if is_reasoning (nullable) is None
         # and __fields_set__ contains the field
         if self.is_reasoning is None and "is_reasoning" in self.__fields_set__:
@@ -133,6 +145,8 @@ class Model(BaseModel):
             "public_name": obj.get("public_name"),
             "type": obj.get("type"),
             "is_deprecated": obj.get("is_deprecated"),
+            "is_stopped": obj.get("is_stopped"),
+            "deprecation_date": obj.get("deprecation_date"),
             "is_reasoning": obj.get("is_reasoning"),
             "version": obj.get("version"),
             "params_info": ModelParamsInfo.from_dict(obj.get("params_info")) if obj.get("params_info") is not None else None

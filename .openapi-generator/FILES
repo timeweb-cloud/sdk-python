@@ -96,6 +96,7 @@ docs/ContainerRegistryApi.md
 docs/CreateAdmin.md
 docs/CreateAgent.md
 docs/CreateAgent201Response.md
+docs/CreateAgentV2.md
 docs/CreateApp.md
 docs/CreateApp201Response.md
 docs/CreateBalancer.md
@@ -646,6 +647,7 @@ test/test_container_registry_api.py
 test/test_create_admin.py
 test/test_create_agent.py
 test/test_create_agent201_response.py
+test/test_create_agent_v2.py
 test/test_create_app.py
 test/test_create_app201_response.py
 test/test_create_balancer.py
@@ -1214,6 +1216,7 @@ timeweb_cloud_api/models/config_parameters_valkey.py
 timeweb_cloud_api/models/create_admin.py
 timeweb_cloud_api/models/create_agent.py
 timeweb_cloud_api/models/create_agent201_response.py
+timeweb_cloud_api/models/create_agent_v2.py
 timeweb_cloud_api/models/create_app.py
 timeweb_cloud_api/models/create_app201_response.py
 timeweb_cloud_api/models/create_balancer.py

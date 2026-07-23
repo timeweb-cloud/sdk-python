@@ -43,6 +43,13 @@ class TestAIAgentsApi(unittest.TestCase):
         """
         pass
 
+    def test_create_agent_v2(self):
+        """Test case for create_agent_v2
+
+        Создание AI агента  # noqa: E501
+        """
+        pass
+
     def test_delete_agent(self):
         """Test case for delete_agent
 

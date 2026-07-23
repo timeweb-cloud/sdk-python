@@ -102,6 +102,7 @@ from timeweb_cloud_api.models.config_parameters_valkey import ConfigParametersVa
 from timeweb_cloud_api.models.create_admin import CreateAdmin
 from timeweb_cloud_api.models.create_agent import CreateAgent
 from timeweb_cloud_api.models.create_agent201_response import CreateAgent201Response
+from timeweb_cloud_api.models.create_agent_v2 import CreateAgentV2
 from timeweb_cloud_api.models.create_app import CreateApp
 from timeweb_cloud_api.models.create_app201_response import CreateApp201Response
 from timeweb_cloud_api.models.create_balancer import CreateBalancer

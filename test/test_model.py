@@ -45,6 +45,8 @@ class TestModel(unittest.TestCase):
                 public_name = GPT 4o, 
                 type = llm, 
                 is_deprecated = false, 
+                is_stopped = false, 
+                deprecation_date = 2026-12-31T00:00:00.000Z, 
                 is_reasoning = false, 
                 version = 2024-08-06, 
                 params_info = {temperature={type=number, min=0, max=2, default=1, description=Контролирует случайность вывода модели}, max_tokens={type=number, min=1, max=128000, default=4096, description=Максимальное количество токенов в выводе}}
@@ -57,6 +59,7 @@ class TestModel(unittest.TestCase):
                 public_name = GPT 4o,
                 type = llm,
                 is_deprecated = false,
+                is_stopped = false,
                 is_reasoning = false,
                 version = 2024-08-06,
         )
