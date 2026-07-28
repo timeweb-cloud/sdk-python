@@ -285,7 +285,8 @@ docs/GetKnowledgebasesV2200ResponseMeta.md
 docs/GetLocations200Response.md
 docs/GetMailboxes200Response.md
 docs/GetModels200Response.md
-docs/GetModels200ResponseMeta.md
+docs/GetModelsV3200Response.md
+docs/GetModelsV3200ResponseMeta.md
 docs/GetNetworkDrives200Response.md
 docs/GetNetworkDrivesAvailableResources200Response.md
 docs/GetNetworkDrivesPresets200Response.md
@@ -364,6 +365,7 @@ docs/ModelParamsInfo.md
 docs/ModelParamsInfoMaxTokens.md
 docs/ModelParamsInfoReasoningEffort.md
 docs/ModelParamsInfoTemperature.md
+docs/ModelV3.md
 docs/Mongodb.md
 docs/MountNetworkDrive.md
 docs/Mysql.md
@@ -836,7 +838,8 @@ test/test_get_knowledgebases_v2200_response_meta.py
 test/test_get_locations200_response.py
 test/test_get_mailboxes200_response.py
 test/test_get_models200_response.py
-test/test_get_models200_response_meta.py
+test/test_get_models_v3200_response.py
+test/test_get_models_v3200_response_meta.py
 test/test_get_network_drives200_response.py
 test/test_get_network_drives_available_resources200_response.py
 test/test_get_network_drives_presets200_response.py
@@ -915,6 +918,7 @@ test/test_model_params_info.py
 test/test_model_params_info_max_tokens.py
 test/test_model_params_info_reasoning_effort.py
 test/test_model_params_info_temperature.py
+test/test_model_v3.py
 test/test_mongodb.py
 test/test_mount_network_drive.py
 test/test_mysql.py
@@ -1400,7 +1404,8 @@ timeweb_cloud_api/models/get_knowledgebases_v2200_response_meta.py
 timeweb_cloud_api/models/get_locations200_response.py
 timeweb_cloud_api/models/get_mailboxes200_response.py
 timeweb_cloud_api/models/get_models200_response.py
-timeweb_cloud_api/models/get_models200_response_meta.py
+timeweb_cloud_api/models/get_models_v3200_response.py
+timeweb_cloud_api/models/get_models_v3200_response_meta.py
 timeweb_cloud_api/models/get_network_drives200_response.py
 timeweb_cloud_api/models/get_network_drives_available_resources200_response.py
 timeweb_cloud_api/models/get_network_drives_presets200_response.py
@@ -1474,6 +1479,7 @@ timeweb_cloud_api/models/model_params_info.py
 timeweb_cloud_api/models/model_params_info_max_tokens.py
 timeweb_cloud_api/models/model_params_info_reasoning_effort.py
 timeweb_cloud_api/models/model_params_info_temperature.py
+timeweb_cloud_api/models/model_v3.py
 timeweb_cloud_api/models/mongodb.py
 timeweb_cloud_api/models/mount_network_drive.py
 timeweb_cloud_api/models/mysql.py

@@ -249,6 +249,7 @@ Class | Method | HTTP request | Description
 *AIAgentsApi* | [**get_agents_token_packages**](docs/AIAgentsApi.md#get_agents_token_packages) | **GET** /api/v1/cloud-ai/token-packages/agents | Получение списка пакетов токенов для агентов
 *AIAgentsApi* | [**get_knowledgebases_token_packages**](docs/AIAgentsApi.md#get_knowledgebases_token_packages) | **GET** /api/v1/cloud-ai/token-packages/knowledge-bases | Получение списка пакетов токенов для баз знаний
 *AIAgentsApi* | [**get_models**](docs/AIAgentsApi.md#get_models) | **GET** /api/v1/cloud-ai/models | Получение списка моделей
+*AIAgentsApi* | [**get_models_v3**](docs/AIAgentsApi.md#get_models_v3) | **GET** /api/v3/cloud-ai/models | Получение списка моделей
 *AIAgentsApi* | [**update_agent**](docs/AIAgentsApi.md#update_agent) | **PATCH** /api/v1/cloud-ai/agents/{id} | Обновление AI агента
 *AccountApi* | [**add_countries_to_allowed_list**](docs/AccountApi.md#add_countries_to_allowed_list) | **POST** /api/v1/auth/access/countries | Добавление стран в список разрешенных
 *AccountApi* | [**add_ips_to_allowed_list**](docs/AccountApi.md#add_ips_to_allowed_list) | **POST** /api/v1/auth/access/ips | Добавление IP-адресов в список разрешенных
@@ -856,7 +857,8 @@ Class | Method | HTTP request | Description
  - [GetLocations200Response](docs/GetLocations200Response.md)
  - [GetMailboxes200Response](docs/GetMailboxes200Response.md)
  - [GetModels200Response](docs/GetModels200Response.md)
- - [GetModels200ResponseMeta](docs/GetModels200ResponseMeta.md)
+ - [GetModelsV3200Response](docs/GetModelsV3200Response.md)
+ - [GetModelsV3200ResponseMeta](docs/GetModelsV3200ResponseMeta.md)
  - [GetNetworkDrives200Response](docs/GetNetworkDrives200Response.md)
  - [GetNetworkDrivesAvailableResources200Response](docs/GetNetworkDrivesAvailableResources200Response.md)
  - [GetNetworkDrivesPresets200Response](docs/GetNetworkDrivesPresets200Response.md)
@@ -930,6 +932,7 @@ Class | Method | HTTP request | Description
  - [ModelParamsInfoMaxTokens](docs/ModelParamsInfoMaxTokens.md)
  - [ModelParamsInfoReasoningEffort](docs/ModelParamsInfoReasoningEffort.md)
  - [ModelParamsInfoTemperature](docs/ModelParamsInfoTemperature.md)
+ - [ModelV3](docs/ModelV3.md)
  - [Mongodb](docs/Mongodb.md)
  - [MountNetworkDrive](docs/MountNetworkDrive.md)
  - [Mysql](docs/Mysql.md)

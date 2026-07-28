@@ -40,13 +40,13 @@ class TestGetModels200Response(unittest.TestCase):
         if include_optional :
             return GetModels200Response(
                 models = None, 
-                meta = timeweb_cloud_api.models.get_models_200_response_meta.getModels_200_response_meta(
+                meta = timeweb_cloud_api.models.get_models_v3_200_response_meta.getModelsV3_200_response_meta(
                     total = 10, )
             )
         else :
             return GetModels200Response(
                 models = None,
-                meta = timeweb_cloud_api.models.get_models_200_response_meta.getModels_200_response_meta(
+                meta = timeweb_cloud_api.models.get_models_v3_200_response_meta.getModelsV3_200_response_meta(
                     total = 10, ),
         )
         """

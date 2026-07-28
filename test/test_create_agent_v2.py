@@ -60,7 +60,7 @@ class TestCreateAgentV2(unittest.TestCase):
                         welcome_message = Здравствуйте! Чем могу помочь?, 
                         primary_color = #7177F8, 
                         font = Inter, Arial, sans-serif, 
-                        icon_url = https://st.timeweb.com/cloud-static/cloud-ai/agent-widget/agent_icons/1.svg, 
+                        icon_url = https://s3.twcstorage.ru/tw-cloud-static/cloud-ai/agent-widget/agent_icons/1.svg, 
                         chat_position = bottom_right, ), ), 
                 project_id = 1, 
                 additional_model_ids = [2, 3], 
@@ -87,7 +87,7 @@ class TestCreateAgentV2(unittest.TestCase):
                         welcome_message = Здравствуйте! Чем могу помочь?, 
                         primary_color = #7177F8, 
                         font = Inter, Arial, sans-serif, 
-                        icon_url = https://st.timeweb.com/cloud-static/cloud-ai/agent-widget/agent_icons/1.svg, 
+                        icon_url = https://s3.twcstorage.ru/tw-cloud-static/cloud-ai/agent-widget/agent_icons/1.svg, 
                         chat_position = bottom_right, ), ),
         )
         """

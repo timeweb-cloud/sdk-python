@@ -14,6 +14,7 @@ Method | HTTP request | Description
 [**get_agents_token_packages**](AIAgentsApi.md#get_agents_token_packages) | **GET** /api/v1/cloud-ai/token-packages/agents | Получение списка пакетов токенов для агентов
 [**get_knowledgebases_token_packages**](AIAgentsApi.md#get_knowledgebases_token_packages) | **GET** /api/v1/cloud-ai/token-packages/knowledge-bases | Получение списка пакетов токенов для баз знаний
 [**get_models**](AIAgentsApi.md#get_models) | **GET** /api/v1/cloud-ai/models | Получение списка моделей
+[**get_models_v3**](AIAgentsApi.md#get_models_v3) | **GET** /api/v3/cloud-ai/models | Получение списка моделей
 [**update_agent**](AIAgentsApi.md#update_agent) | **PATCH** /api/v1/cloud-ai/agents/{id} | Обновление AI агента
 
 
@@ -595,7 +596,7 @@ This endpoint does not need any parameter.
 
 Получение списка пакетов токенов для агентов
 
-Чтобы получить список доступных пакетов токенов для AI агентов, отправьте GET-запрос на `/api/v1/cloud-ai/token-packages/agents`.  Тело ответа будет представлять собой объект JSON с ключом `token_packages`.
+Метод устарел.  Чтобы получить список доступных пакетов токенов для AI агентов, отправьте GET-запрос на `/api/v1/cloud-ai/token-packages/agents`.  Тело ответа будет представлять собой объект JSON с ключом `token_packages`.
 
 ### Example
 
@@ -751,7 +752,7 @@ This endpoint does not need any parameter.
 
 Получение списка моделей
 
-Чтобы получить список доступных AI моделей, отправьте GET-запрос на `/api/v1/cloud-ai/models`.  Тело ответа будет представлять собой объект JSON с ключом `models`.
+Метод устарел — используйте `GET /api/v3/cloud-ai/models`.  Чтобы получить список доступных AI моделей, отправьте GET-запрос на `/api/v1/cloud-ai/models`.  Тело ответа будет представлять собой объект JSON с ключом `models`.
 
 ### Example
 
@@ -801,6 +802,84 @@ This endpoint does not need any parameter.
 ### Return type
 
 [**GetModels200Response**](GetModels200Response.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Объект JSON c ключами &#x60;models&#x60; и &#x60;meta&#x60; |  -  |
+**400** |  |  -  |
+**401** |  |  -  |
+**403** |  |  -  |
+**404** |  |  -  |
+**429** |  |  -  |
+**500** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_models_v3**
+> GetModelsV3200Response get_models_v3()
+
+Получение списка моделей
+
+Чтобы получить список доступных AI моделей с их характеристиками, отправьте GET-запрос на `/api/v3/cloud-ai/models`.  Тело ответа будет представлять собой объект JSON с ключом `models`.  Характеристики модели (цены, лимиты, возможности) возвращаются в словаре `parameter_values`. Актуальные цены за токены — в ключах `parameter_values.cost_in` и `parameter_values.cost_out` (в рублях за 1 токен).
+
+### Example
+
+* Bearer (JWT) Authentication (Bearer):
+```python
+import time
+import os
+import timeweb_cloud_api
+from timeweb_cloud_api.models.get_models_v3200_response import GetModelsV3200Response
+from timeweb_cloud_api.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.timeweb.cloud
+# See configuration.py for a list of all supported configuration parameters.
+configuration = timeweb_cloud_api.Configuration(
+    host = "https://api.timeweb.cloud"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): Bearer
+configuration = timeweb_cloud_api.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = timeweb_cloud_api.AIAgentsApi(api_client)
+
+    try:
+        # Получение списка моделей
+        api_response = api_instance.get_models_v3()
+        print("The response of AIAgentsApi->get_models_v3:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling AIAgentsApi->get_models_v3: %s\n" % e)
+```
+
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**GetModelsV3200Response**](GetModelsV3200Response.md)
 
 ### Authorization
 

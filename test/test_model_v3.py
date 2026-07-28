@@ -17,11 +17,11 @@ import unittest
 import datetime
 
 import timeweb_cloud_api
-from timeweb_cloud_api.models.get_models200_response_meta import GetModels200ResponseMeta  # noqa: E501
+from timeweb_cloud_api.models.model_v3 import ModelV3  # noqa: E501
 from timeweb_cloud_api.rest import ApiException
 
-class TestGetModels200ResponseMeta(unittest.TestCase):
-    """GetModels200ResponseMeta unit test stubs"""
+class TestModelV3(unittest.TestCase):
+    """ModelV3 unit test stubs"""
 
     def setUp(self):
         pass
@@ -30,25 +30,49 @@ class TestGetModels200ResponseMeta(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test GetModels200ResponseMeta
+        """Test ModelV3
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # uncomment below to create an instance of `GetModels200ResponseMeta`
+        # uncomment below to create an instance of `ModelV3`
         """
-        model = timeweb_cloud_api.models.get_models200_response_meta.GetModels200ResponseMeta()  # noqa: E501
+        model = timeweb_cloud_api.models.model_v3.ModelV3()  # noqa: E501
         if include_optional :
-            return GetModels200ResponseMeta(
-                total = 10
+            return ModelV3(
+                id = 66, 
+                provider_id = 1, 
+                name = gpt, 
+                public_name = GPT 5.1, 
+                model_name = openai/gpt-5.1, 
+                type = llm, 
+                version = 5.1, 
+                is_deprecated = false, 
+                is_stopped = false, 
+                deprecation_date = None, 
+                created_at = 2025-11-17T10:35:46.000Z, 
+                updated_at = 2026-07-17T09:37:23.000Z, 
+                params_info = {temperature={type=number, min=0, max=2, default=1, description=Контролирует случайность вывода модели}, max_tokens={type=number, min=1, max=128000, default=4096, description=Максимальное количество токенов в выводе}, reasoning_effort={type=enum, enum=[none, low, medium, high], default=none, description=Уровень усилий рассуждения}}, 
+                parameter_values = {cost_in=1.62E-4, cost_out=0.00135, context_window=272000, max_output_tokens=128000, is_reasoning=true, supports_function_calling=true, supported_input_modalities=[text, image], supported_output_modalities=[text], avg_speed=124.8, aa_intelligence_index=48, aa_coding_index=45, aa_agentic_index=51, release_date=2025-11-13}
             )
         else :
-            return GetModels200ResponseMeta(
-                total = 10,
+            return ModelV3(
+                id = 66,
+                provider_id = 1,
+                name = gpt,
+                public_name = GPT 5.1,
+                model_name = openai/gpt-5.1,
+                type = llm,
+                version = 5.1,
+                is_deprecated = false,
+                is_stopped = false,
+                created_at = 2025-11-17T10:35:46.000Z,
+                updated_at = 2026-07-17T09:37:23.000Z,
+                parameter_values = {cost_in=1.62E-4, cost_out=0.00135, context_window=272000, max_output_tokens=128000, is_reasoning=true, supports_function_calling=true, supported_input_modalities=[text, image], supported_output_modalities=[text], avg_speed=124.8, aa_intelligence_index=48, aa_coding_index=45, aa_agentic_index=51, release_date=2025-11-13},
         )
         """
 
-    def testGetModels200ResponseMeta(self):
-        """Test GetModels200ResponseMeta"""
+    def testModelV3(self):
+        """Test ModelV3"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

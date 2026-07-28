@@ -99,6 +99,13 @@ class TestAIAgentsApi(unittest.TestCase):
         """
         pass
 
+    def test_get_models_v3(self):
+        """Test case for get_models_v3
+
+        Получение списка моделей  # noqa: E501
+        """
+        pass
+
     def test_update_agent(self):
         """Test case for update_agent
 

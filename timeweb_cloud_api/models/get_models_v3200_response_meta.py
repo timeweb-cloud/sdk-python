@@ -22,9 +22,9 @@ import json
 from typing import Any, Optional
 from pydantic import BaseModel, Field
 
-class GetModels200ResponseMeta(BaseModel):
+class GetModelsV3200ResponseMeta(BaseModel):
     """
-    GetModels200ResponseMeta
+    GetModelsV3200ResponseMeta
     """
     total: Optional[Any] = Field(..., description="Общее количество моделей")
     __properties = ["total"]
@@ -43,8 +43,8 @@ class GetModels200ResponseMeta(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> GetModels200ResponseMeta:
-        """Create an instance of GetModels200ResponseMeta from a JSON string"""
+    def from_json(cls, json_str: str) -> GetModelsV3200ResponseMeta:
+        """Create an instance of GetModelsV3200ResponseMeta from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self):
@@ -61,15 +61,15 @@ class GetModels200ResponseMeta(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> GetModels200ResponseMeta:
-        """Create an instance of GetModels200ResponseMeta from a dict"""
+    def from_dict(cls, obj: dict) -> GetModelsV3200ResponseMeta:
+        """Create an instance of GetModelsV3200ResponseMeta from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return GetModels200ResponseMeta.parse_obj(obj)
+            return GetModelsV3200ResponseMeta.parse_obj(obj)
 
-        _obj = GetModels200ResponseMeta.parse_obj({
+        _obj = GetModelsV3200ResponseMeta.parse_obj({
             "total": obj.get("total")
         })
         return _obj

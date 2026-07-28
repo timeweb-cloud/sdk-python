@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **models** | **object** |  | 
-**meta** | [**GetModels200ResponseMeta**](GetModels200ResponseMeta.md) |  | 
+**meta** | [**GetModelsV3200ResponseMeta**](GetModelsV3200ResponseMeta.md) |  | 
 
 ## Example
 
