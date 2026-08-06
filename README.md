@@ -296,6 +296,26 @@ Class | Method | HTTP request | Description
 *BalancersApi* | [**get_balancers_presets**](docs/BalancersApi.md#get_balancers_presets) | **GET** /api/v1/presets/balancers | Получение списка тарифов для балансировщика
 *BalancersApi* | [**update_balancer**](docs/BalancersApi.md#update_balancer) | **PATCH** /api/v1/balancers/{balancer_id} | Обновление балансировщика
 *BalancersApi* | [**update_balancer_rule**](docs/BalancersApi.md#update_balancer_rule) | **PATCH** /api/v1/balancers/{balancer_id}/rules/{rule_id} | Обновление правила для балансировщика
+*CDNApi* | [**add_cdn_certificate**](docs/CDNApi.md#add_cdn_certificate) | **POST** /api/v1/cdn/certificates | Загрузка собственного сертификата CDN
+*CDNApi* | [**archive_cdn_certificate_task**](docs/CDNApi.md#archive_cdn_certificate_task) | **POST** /api/v1/cdn/certificates/tasks/{task_id}/archive | Архивация задачи на выпуск сертификата
+*CDNApi* | [**clear_cdn_resource_cache**](docs/CDNApi.md#clear_cdn_resource_cache) | **POST** /api/v1/cdn/http-resources/{resource_id}/clear-cache | Очистка кэша CDN-ресурса
+*CDNApi* | [**create_cdn_resource**](docs/CDNApi.md#create_cdn_resource) | **POST** /api/v1/cdn/http-resources | Создание CDN-ресурса
+*CDNApi* | [**delete_cdn_certificate**](docs/CDNApi.md#delete_cdn_certificate) | **DELETE** /api/v1/cdn/certificates/{certificate_id} | Удаление сертификата CDN
+*CDNApi* | [**delete_cdn_resource**](docs/CDNApi.md#delete_cdn_resource) | **DELETE** /api/v1/cdn/http-resources/{resource_id} | Удаление CDN-ресурса
+*CDNApi* | [**get_cdn_certificate_tasks**](docs/CDNApi.md#get_cdn_certificate_tasks) | **GET** /api/v1/cdn/certificates/tasks | Получение списка задач на выпуск сертификатов
+*CDNApi* | [**get_cdn_certificates**](docs/CDNApi.md#get_cdn_certificates) | **GET** /api/v1/cdn/certificates | Получение списка сертификатов CDN
+*CDNApi* | [**get_cdn_origin_nodes**](docs/CDNApi.md#get_cdn_origin_nodes) | **GET** /api/v1/cdn/nodes/origin | Получение списка подсетей узлов CDN
+*CDNApi* | [**get_cdn_presets**](docs/CDNApi.md#get_cdn_presets) | **GET** /api/v1/cdn/presets | Получение списка тарифов CDN
+*CDNApi* | [**get_cdn_resource**](docs/CDNApi.md#get_cdn_resource) | **GET** /api/v1/cdn/http-resources/{resource_id} | Получение CDN-ресурса
+*CDNApi* | [**get_cdn_resource_configuration**](docs/CDNApi.md#get_cdn_resource_configuration) | **GET** /api/v1/cdn/http-resources/{resource_id}/configuration | Получение конфигурации CDN-ресурса
+*CDNApi* | [**get_cdn_resource_nodes**](docs/CDNApi.md#get_cdn_resource_nodes) | **GET** /api/v1/cdn/nodes/http-resources/{resource_id} | Получение списка раздающих узлов CDN-ресурса
+*CDNApi* | [**get_cdn_resource_statistics**](docs/CDNApi.md#get_cdn_resource_statistics) | **GET** /api/v1/cdn/http-resources/{resource_id}/statistics | Получение статистики CDN-ресурса
+*CDNApi* | [**get_cdn_resources**](docs/CDNApi.md#get_cdn_resources) | **GET** /api/v1/cdn/http-resources | Получение списка CDN-ресурсов
+*CDNApi* | [**issue_cdn_certificate**](docs/CDNApi.md#issue_cdn_certificate) | **POST** /api/v1/cdn/certificates/issue | Выпуск сертификата Let&#39;s Encrypt для CDN-ресурса
+*CDNApi* | [**preload_cdn_resource_cache**](docs/CDNApi.md#preload_cdn_resource_cache) | **POST** /api/v1/cdn/http-resources/{resource_id}/preload-cache | Предварительная загрузка кэша CDN-ресурса
+*CDNApi* | [**resume_cdn_resource**](docs/CDNApi.md#resume_cdn_resource) | **POST** /api/v1/cdn/http-resources/{resource_id}/resume | Возобновление раздачи CDN-ресурса
+*CDNApi* | [**suspend_cdn_resource**](docs/CDNApi.md#suspend_cdn_resource) | **POST** /api/v1/cdn/http-resources/{resource_id}/suspend | Приостановка раздачи CDN-ресурса
+*CDNApi* | [**update_cdn_resource**](docs/CDNApi.md#update_cdn_resource) | **PATCH** /api/v1/cdn/http-resources/{resource_id} | Изменение CDN-ресурса
 *ContainerRegistryApi* | [**create_registry**](docs/ContainerRegistryApi.md#create_registry) | **POST** /api/v1/container-registry | Создание реестра
 *ContainerRegistryApi* | [**delete_registry**](docs/ContainerRegistryApi.md#delete_registry) | **DELETE** /api/v1/container-registry/{registry_id} | Удаление реестра
 *ContainerRegistryApi* | [**get_registries**](docs/ContainerRegistryApi.md#get_registries) | **GET** /api/v1/container-registry | Получение списка реестров контейнеров
@@ -589,6 +609,7 @@ Class | Method | HTTP request | Description
  - [AddBalancerToProject200Response](docs/AddBalancerToProject200Response.md)
  - [AddBalancerToProjectRequest](docs/AddBalancerToProjectRequest.md)
  - [AddBitbucket](docs/AddBitbucket.md)
+ - [AddCertificate](docs/AddCertificate.md)
  - [AddClusterToProjectRequest](docs/AddClusterToProjectRequest.md)
  - [AddCountries](docs/AddCountries.md)
  - [AddCountriesToAllowedList201Response](docs/AddCountriesToAllowedList201Response.md)
@@ -648,7 +669,10 @@ Class | Method | HTTP request | Description
  - [BucketDiskStats](docs/BucketDiskStats.md)
  - [BucketUser](docs/BucketUser.md)
  - [BucketWebsiteConfig](docs/BucketWebsiteConfig.md)
+ - [Certificate](docs/Certificate.md)
+ - [CertificateTask](docs/CertificateTask.md)
  - [CheckDomain200Response](docs/CheckDomain200Response.md)
+ - [ClearCache](docs/ClearCache.md)
  - [Clickhouse](docs/Clickhouse.md)
  - [ClusterEdit](docs/ClusterEdit.md)
  - [ClusterEditOidcProvider](docs/ClusterEditOidcProvider.md)
@@ -666,10 +690,28 @@ Class | Method | HTTP request | Description
  - [Commit](docs/Commit.md)
  - [ComponentsSchemasBaseError](docs/ComponentsSchemasBaseError.md)
  - [ComponentsSchemasMeta](docs/ComponentsSchemasMeta.md)
+ - [ConfigAccess](docs/ConfigAccess.md)
+ - [ConfigCache](docs/ConfigCache.md)
+ - [ConfigCacheAlwaysOnline](docs/ConfigCacheAlwaysOnline.md)
+ - [ConfigCacheBrowser](docs/ConfigCacheBrowser.md)
+ - [ConfigCacheCdn](docs/ConfigCacheCdn.md)
+ - [ConfigCacheCdnTtl](docs/ConfigCacheCdnTtl.md)
+ - [ConfigCacheQueryArgs](docs/ConfigCacheQueryArgs.md)
+ - [ConfigDelivery](docs/ConfigDelivery.md)
+ - [ConfigDeliveryPackaging](docs/ConfigDeliveryPackaging.md)
+ - [ConfigDeliveryPackagingMp4](docs/ConfigDeliveryPackagingMp4.md)
+ - [ConfigDomains](docs/ConfigDomains.md)
+ - [ConfigHttpHeaders](docs/ConfigHttpHeaders.md)
+ - [ConfigHttpHeadersCors](docs/ConfigHttpHeadersCors.md)
+ - [ConfigOrigin](docs/ConfigOrigin.md)
+ - [ConfigOriginAws](docs/ConfigOriginAws.md)
  - [ConfigParameters](docs/ConfigParameters.md)
  - [ConfigParametersMysql](docs/ConfigParametersMysql.md)
  - [ConfigParametersPostgres](docs/ConfigParametersPostgres.md)
  - [ConfigParametersValkey](docs/ConfigParametersValkey.md)
+ - [ConfigRobots](docs/ConfigRobots.md)
+ - [ConfigSecurity](docs/ConfigSecurity.md)
+ - [ConfigSecuritySecureToken](docs/ConfigSecuritySecureToken.md)
  - [CreateAdmin](docs/CreateAdmin.md)
  - [CreateAgent](docs/CreateAgent.md)
  - [CreateAgent201Response](docs/CreateAgent201Response.md)
@@ -680,6 +722,7 @@ Class | Method | HTTP request | Description
  - [CreateBalancer200Response](docs/CreateBalancer200Response.md)
  - [CreateBalancerCertificates](docs/CreateBalancerCertificates.md)
  - [CreateBalancerRule200Response](docs/CreateBalancerRule200Response.md)
+ - [CreateCdnResource201Response](docs/CreateCdnResource201Response.md)
  - [CreateCluster](docs/CreateCluster.md)
  - [CreateClusterAdmin](docs/CreateClusterAdmin.md)
  - [CreateClusterInstance](docs/CreateClusterInstance.md)
@@ -703,6 +746,7 @@ Class | Method | HTTP request | Description
  - [CreateDomainRequest201Response](docs/CreateDomainRequest201Response.md)
  - [CreateFloatingIp](docs/CreateFloatingIp.md)
  - [CreateFloatingIp201Response](docs/CreateFloatingIp201Response.md)
+ - [CreateHttpResource](docs/CreateHttpResource.md)
  - [CreateInstance](docs/CreateInstance.md)
  - [CreateKey201Response](docs/CreateKey201Response.md)
  - [CreateKeyRequest](docs/CreateKeyRequest.md)
@@ -823,6 +867,14 @@ Class | Method | HTTP request | Description
  - [GetBalancers200Response](docs/GetBalancers200Response.md)
  - [GetBalancersPresets200Response](docs/GetBalancersPresets200Response.md)
  - [GetBranches200Response](docs/GetBranches200Response.md)
+ - [GetCdnCertificateTasks200Response](docs/GetCdnCertificateTasks200Response.md)
+ - [GetCdnCertificates200Response](docs/GetCdnCertificates200Response.md)
+ - [GetCdnOriginNodes200Response](docs/GetCdnOriginNodes200Response.md)
+ - [GetCdnPresets200Response](docs/GetCdnPresets200Response.md)
+ - [GetCdnResourceConfiguration200Response](docs/GetCdnResourceConfiguration200Response.md)
+ - [GetCdnResourceNodes200Response](docs/GetCdnResourceNodes200Response.md)
+ - [GetCdnResourceStatistics200Response](docs/GetCdnResourceStatistics200Response.md)
+ - [GetCdnResources200Response](docs/GetCdnResources200Response.md)
  - [GetCommits200Response](docs/GetCommits200Response.md)
  - [GetConfigurators200Response](docs/GetConfigurators200Response.md)
  - [GetCountries200Response](docs/GetCountries200Response.md)
@@ -895,6 +947,8 @@ Class | Method | HTTP request | Description
  - [GetVPCPorts200Response](docs/GetVPCPorts200Response.md)
  - [GetVPCServices200Response](docs/GetVPCServices200Response.md)
  - [GetVPCs200Response](docs/GetVPCs200Response.md)
+ - [HttpResource](docs/HttpResource.md)
+ - [HttpResourceConfig](docs/HttpResourceConfig.md)
  - [Image](docs/Image.md)
  - [ImageDownload](docs/ImageDownload.md)
  - [ImageDownloadResponse](docs/ImageDownloadResponse.md)
@@ -910,6 +964,7 @@ Class | Method | HTTP request | Description
  - [InfoServicePrice](docs/InfoServicePrice.md)
  - [Invoice](docs/Invoice.md)
  - [Ip](docs/Ip.md)
+ - [IssueCertificate](docs/IssueCertificate.md)
  - [K8SVersionsResponse](docs/K8SVersionsResponse.md)
  - [Kafka](docs/Kafka.md)
  - [Knowledgebase](docs/Knowledgebase.md)
@@ -963,6 +1018,8 @@ Class | Method | HTTP request | Description
  - [OS](docs/OS.md)
  - [Opensearch](docs/Opensearch.md)
  - [Org](docs/Org.md)
+ - [OriginNode](docs/OriginNode.md)
+ - [OriginServer](docs/OriginServer.md)
  - [OutgoingIsDisabled](docs/OutgoingIsDisabled.md)
  - [OutgoingIsEnabled](docs/OutgoingIsEnabled.md)
  - [PerformActionOnBackupRequest](docs/PerformActionOnBackupRequest.md)
@@ -972,6 +1029,8 @@ Class | Method | HTTP request | Description
  - [Policy](docs/Policy.md)
  - [Postgres](docs/Postgres.md)
  - [Postgresql](docs/Postgresql.md)
+ - [PreloadCache](docs/PreloadCache.md)
+ - [Preset](docs/Preset.md)
  - [PresetsBalancer](docs/PresetsBalancer.md)
  - [PresetsDbs](docs/PresetsDbs.md)
  - [PresetsResponse](docs/PresetsResponse.md)
@@ -1048,12 +1107,14 @@ Class | Method | HTTP request | Description
  - [StaticRouteOut](docs/StaticRouteOut.md)
  - [StaticRouteResponse](docs/StaticRouteResponse.md)
  - [StaticRoutesResponse](docs/StaticRoutesResponse.md)
+ - [Statistics](docs/Statistics.md)
  - [Status](docs/Status.md)
  - [StatusCompanyInfo](docs/StatusCompanyInfo.md)
  - [Subdomain](docs/Subdomain.md)
  - [TokenPackage](docs/TokenPackage.md)
  - [TokenStatistic](docs/TokenStatistic.md)
  - [TopLevelDomain](docs/TopLevelDomain.md)
+ - [TrafficUsage](docs/TrafficUsage.md)
  - [TransferStatus](docs/TransferStatus.md)
  - [TransferStorageRequest](docs/TransferStorageRequest.md)
  - [URLType](docs/URLType.md)
@@ -1070,6 +1131,7 @@ Class | Method | HTTP request | Description
  - [UpdateDomainMailInfoRequest](docs/UpdateDomainMailInfoRequest.md)
  - [UpdateDomainNameServers](docs/UpdateDomainNameServers.md)
  - [UpdateFloatingIp](docs/UpdateFloatingIp.md)
+ - [UpdateHttpResource](docs/UpdateHttpResource.md)
  - [UpdateInstance](docs/UpdateInstance.md)
  - [UpdateKeyRequest](docs/UpdateKeyRequest.md)
  - [UpdateKnowledgebase](docs/UpdateKnowledgebase.md)
@@ -1099,6 +1161,7 @@ Class | Method | HTTP request | Description
  - [UploadSuccessfulResponse](docs/UploadSuccessfulResponse.md)
  - [UrlStatus](docs/UrlStatus.md)
  - [Use](docs/Use.md)
+ - [UserNode](docs/UserNode.md)
  - [Valkey](docs/Valkey.md)
  - [Vds](docs/Vds.md)
  - [VdsImage](docs/VdsImage.md)
