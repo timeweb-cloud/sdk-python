@@ -19,17 +19,16 @@ import re  # noqa: F401
 import json
 
 
-from typing import Any, Optional
+
 from pydantic import BaseModel, Field
-from timeweb_cloud_api.models.meta import Meta
+from timeweb_cloud_api.models.auto_backup import AutoBackup
 
 class GetDatabaseAutoBackupsSettings200Response(BaseModel):
     """
     GetDatabaseAutoBackupsSettings200Response
     """
-    meta: Meta = Field(...)
-    auto_backups_settings: Optional[Any] = Field(...)
-    __properties = ["meta", "auto_backups_settings"]
+    auto_backups_settings: AutoBackup = Field(...)
+    __properties = ["auto_backups_settings"]
 
     class Config:
         """Pydantic configuration"""
@@ -55,14 +54,9 @@ class GetDatabaseAutoBackupsSettings200Response(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of meta
-        if self.meta:
-            _dict['meta'] = self.meta.to_dict()
-        # set to None if auto_backups_settings (nullable) is None
-        # and __fields_set__ contains the field
-        if self.auto_backups_settings is None and "auto_backups_settings" in self.__fields_set__:
-            _dict['auto_backups_settings'] = None
-
+        # override the default output from pydantic by calling `to_dict()` of auto_backups_settings
+        if self.auto_backups_settings:
+            _dict['auto_backups_settings'] = self.auto_backups_settings.to_dict()
         return _dict
 
     @classmethod
@@ -75,8 +69,7 @@ class GetDatabaseAutoBackupsSettings200Response(BaseModel):
             return GetDatabaseAutoBackupsSettings200Response.parse_obj(obj)
 
         _obj = GetDatabaseAutoBackupsSettings200Response.parse_obj({
-            "meta": Meta.from_dict(obj.get("meta")) if obj.get("meta") is not None else None,
-            "auto_backups_settings": obj.get("auto_backups_settings")
+            "auto_backups_settings": AutoBackup.from_dict(obj.get("auto_backups_settings")) if obj.get("auto_backups_settings") is not None else None
         })
         return _obj
 

@@ -43,6 +43,7 @@ class TestCreateAdmin(unittest.TestCase):
                 password = bs.:L2f$Tm:SC~, 
                 host = %, 
                 instance_id = 1476, 
+                for_all = false, 
                 privileges = None, 
                 description = description
             )
@@ -50,7 +51,6 @@ class TestCreateAdmin(unittest.TestCase):
             return CreateAdmin(
                 login = default_login,
                 password = bs.:L2f$Tm:SC~,
-                privileges = None,
         )
         """
 

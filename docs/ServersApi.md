@@ -1454,7 +1454,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_server_disk_auto_backup_settings**
-> GetServerDiskAutoBackupSettings200Response get_server_disk_auto_backup_settings(server_id, disk_id)
+> GetDatabaseAutoBackupsSettings200Response get_server_disk_auto_backup_settings(server_id, disk_id)
 
 Получить настройки автобэкапов диска сервера
 
@@ -1467,7 +1467,7 @@ Name | Type | Description  | Notes
 import time
 import os
 import timeweb_cloud_api
-from timeweb_cloud_api.models.get_server_disk_auto_backup_settings200_response import GetServerDiskAutoBackupSettings200Response
+from timeweb_cloud_api.models.get_database_auto_backups_settings200_response import GetDatabaseAutoBackupsSettings200Response
 from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
@@ -1513,7 +1513,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetServerDiskAutoBackupSettings200Response**](GetServerDiskAutoBackupSettings200Response.md)
+[**GetDatabaseAutoBackupsSettings200Response**](GetDatabaseAutoBackupsSettings200Response.md)
 
 ### Authorization
 
@@ -3351,7 +3351,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_server_disk_auto_backup_settings**
-> GetServerDiskAutoBackupSettings200Response update_server_disk_auto_backup_settings(server_id, disk_id, auto_backup=auto_backup)
+> GetDatabaseAutoBackupsSettings200Response update_server_disk_auto_backup_settings(server_id, disk_id, auto_backup=auto_backup)
 
 Изменение настроек автобэкапов диска сервера
 
@@ -3365,7 +3365,7 @@ import time
 import os
 import timeweb_cloud_api
 from timeweb_cloud_api.models.auto_backup import AutoBackup
-from timeweb_cloud_api.models.get_server_disk_auto_backup_settings200_response import GetServerDiskAutoBackupSettings200Response
+from timeweb_cloud_api.models.get_database_auto_backups_settings200_response import GetDatabaseAutoBackupsSettings200Response
 from timeweb_cloud_api.rest import ApiException
 from pprint import pprint
 
@@ -3413,7 +3413,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetServerDiskAutoBackupSettings200Response**](GetServerDiskAutoBackupSettings200Response.md)
+[**GetDatabaseAutoBackupsSettings200Response**](GetDatabaseAutoBackupsSettings200Response.md)
 
 ### Authorization
 

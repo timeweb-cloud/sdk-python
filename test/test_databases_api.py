@@ -36,6 +36,13 @@ class TestDatabasesApi(unittest.TestCase):
         """
         pass
 
+    def test_create_database_backup_download_url(self):
+        """Test case for create_database_backup_download_url
+
+        Получение ссылки для скачивания бэкапа базы данных  # noqa: E501
+        """
+        pass
+
     def test_create_database_cluster(self):
         """Test case for create_database_cluster
 
@@ -47,6 +54,13 @@ class TestDatabasesApi(unittest.TestCase):
         """Test case for create_database_instance
 
         Создание инстанса базы данных  # noqa: E501
+        """
+        pass
+
+    def test_create_database_s3_backup(self):
+        """Test case for create_database_s3_backup
+
+        Создание S3-бэкапа базы данных  # noqa: E501
         """
         pass
 
@@ -75,6 +89,13 @@ class TestDatabasesApi(unittest.TestCase):
         """Test case for delete_database_instance
 
         Удаление инстанса базы данных  # noqa: E501
+        """
+        pass
+
+    def test_delete_database_s3_backup(self):
+        """Test case for delete_database_s3_backup
+
+        Удаление S3-бэкапа базы данных  # noqa: E501
         """
         pass
 
@@ -113,6 +134,13 @@ class TestDatabasesApi(unittest.TestCase):
         """
         pass
 
+    def test_get_database_cluster_replicas(self):
+        """Test case for get_database_cluster_replicas
+
+        Получение списка реплик кластера базы данных  # noqa: E501
+        """
+        pass
+
     def test_get_database_cluster_types(self):
         """Test case for get_database_cluster_types
 
@@ -124,6 +152,20 @@ class TestDatabasesApi(unittest.TestCase):
         """Test case for get_database_clusters
 
         Получение списка кластеров баз данных  # noqa: E501
+        """
+        pass
+
+    def test_get_database_configurators(self):
+        """Test case for get_database_configurators
+
+        Получение списка конфигураторов баз данных  # noqa: E501
+        """
+        pass
+
+    def test_get_database_default_parameters(self):
+        """Test case for get_database_default_parameters
+
+        Получение рекомендуемых значений параметров баз данных  # noqa: E501
         """
         pass
 
@@ -148,6 +190,34 @@ class TestDatabasesApi(unittest.TestCase):
         """
         pass
 
+    def test_get_database_preset(self):
+        """Test case for get_database_preset
+
+        Получение тарифа для базы данных  # noqa: E501
+        """
+        pass
+
+    def test_get_database_privileges(self):
+        """Test case for get_database_privileges
+
+        Получение привилегий кластера базы данных  # noqa: E501
+        """
+        pass
+
+    def test_get_database_s3_backup(self):
+        """Test case for get_database_s3_backup
+
+        Получение S3-бэкапа базы данных  # noqa: E501
+        """
+        pass
+
+    def test_get_database_s3_backups(self):
+        """Test case for get_database_s3_backups
+
+        Список S3-бэкапов базы данных  # noqa: E501
+        """
+        pass
+
     def test_get_database_user(self):
         """Test case for get_database_user
 
@@ -169,10 +239,24 @@ class TestDatabasesApi(unittest.TestCase):
         """
         pass
 
+    def test_perform_database_cluster_action(self):
+        """Test case for perform_database_cluster_action
+
+        Выполнение действия над кластером базы данных  # noqa: E501
+        """
+        pass
+
     def test_restore_database_from_backup(self):
         """Test case for restore_database_from_backup
 
         Восстановление базы данных из бэкапа  # noqa: E501
+        """
+        pass
+
+    def test_restore_database_from_s3_backup(self):
+        """Test case for restore_database_from_s3_backup
+
+        Восстановление базы данных из S3-бэкапа  # noqa: E501
         """
         pass
 
@@ -183,6 +267,13 @@ class TestDatabasesApi(unittest.TestCase):
         """
         pass
 
+    def test_update_database_backup(self):
+        """Test case for update_database_backup
+
+        Изменение комментария к бэкапу базы данных  # noqa: E501
+        """
+        pass
+
     def test_update_database_cluster(self):
         """Test case for update_database_cluster
 
@@ -190,10 +281,24 @@ class TestDatabasesApi(unittest.TestCase):
         """
         pass
 
+    def test_update_database_cluster_v2(self):
+        """Test case for update_database_cluster_v2
+
+        Изменение кластера базы данных (v2)  # noqa: E501
+        """
+        pass
+
     def test_update_database_instance(self):
         """Test case for update_database_instance
 
         Изменение инстанса базы данных  # noqa: E501
+        """
+        pass
+
+    def test_update_database_s3_backup(self):
+        """Test case for update_database_s3_backup
+
+        Изменение комментария S3-бэкапа базы данных  # noqa: E501
         """
         pass
 

@@ -40,7 +40,37 @@ class TestUpdateInstance(unittest.TestCase):
         if include_optional :
             return UpdateInstance(
                 name = default_name, 
-                description = description
+                description = description, 
+                owner_id = 1, 
+                extensions = timeweb_cloud_api.models.database_extensions.database-extensions(
+                    extension_list = null, 
+                    is_global = false, ), 
+                config_parameters = timeweb_cloud_api.models.update_kafka_config_parameters.update-kafka-config-parameters(
+                    partitions = 1, 
+                    cleanup_policy = delete, 
+                    compression_type = producer, 
+                    delete_retention_ms = 86400000, 
+                    file_delete_delay_ms = 60000, 
+                    flush_messages = 10000, 
+                    flush_ms = 1000, 
+                    index_interval_bytes = 4096, 
+                    min_compaction_lag_ms = 0, 
+                    max_compaction_lag_ms = 604800000, 
+                    max_message_bytes = 1048588, 
+                    message_format_version = 3.0-IV1, 
+                    message_timestamp_difference_max_ms = 604800000, 
+                    message_downconversion_enable = ON, 
+                    message_timestamp_type = CreateTime, 
+                    min_cleanable_dirty_ratio = 0.5, 
+                    min_insync_replicas = 1, 
+                    preallocate = OFF, 
+                    retention_bytes = -1, 
+                    retention_ms = 604800000, 
+                    segment_bytes = 1073741824, 
+                    segment_index_bytes = 10485760, 
+                    segment_jitter_ms = 0, 
+                    segment_ms = 604800000, 
+                    unclean_leader_election_enable = OFF, )
             )
         else :
             return UpdateInstance(

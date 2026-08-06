@@ -21,6 +21,8 @@ import json
 
 from typing import Any, Optional
 from pydantic import BaseModel, Field
+from timeweb_cloud_api.models.database_extensions import DatabaseExtensions
+from timeweb_cloud_api.models.kafka_config_parameters import KafkaConfigParameters
 
 class DatabaseInstance(BaseModel):
     """
@@ -30,7 +32,10 @@ class DatabaseInstance(BaseModel):
     created_at: Optional[Any] = Field(..., description="Значение времени, указанное в комбинированном формате даты и времени ISO8601, которое представляет, когда была создана база данных.")
     name: Optional[Any] = Field(..., description="Название базы данных.")
     description: Optional[Any] = Field(..., description="Описание базы данных")
-    __properties = ["id", "created_at", "name", "description"]
+    extensions: DatabaseExtensions = Field(...)
+    owner_id: Optional[Any] = Field(..., description="ID администратора базы данных, который является владельцем этой базы данных. `null`, если владелец не задан.")
+    config_parameters: KafkaConfigParameters = Field(...)
+    __properties = ["id", "created_at", "name", "description", "extensions", "owner_id", "config_parameters"]
 
     class Config:
         """Pydantic configuration"""
@@ -56,6 +61,12 @@ class DatabaseInstance(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
+        # override the default output from pydantic by calling `to_dict()` of extensions
+        if self.extensions:
+            _dict['extensions'] = self.extensions.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of config_parameters
+        if self.config_parameters:
+            _dict['config_parameters'] = self.config_parameters.to_dict()
         # set to None if id (nullable) is None
         # and __fields_set__ contains the field
         if self.id is None and "id" in self.__fields_set__:
@@ -76,6 +87,11 @@ class DatabaseInstance(BaseModel):
         if self.description is None and "description" in self.__fields_set__:
             _dict['description'] = None
 
+        # set to None if owner_id (nullable) is None
+        # and __fields_set__ contains the field
+        if self.owner_id is None and "owner_id" in self.__fields_set__:
+            _dict['owner_id'] = None
+
         return _dict
 
     @classmethod
@@ -91,7 +107,10 @@ class DatabaseInstance(BaseModel):
             "id": obj.get("id"),
             "created_at": obj.get("created_at"),
             "name": obj.get("name"),
-            "description": obj.get("description")
+            "description": obj.get("description"),
+            "extensions": DatabaseExtensions.from_dict(obj.get("extensions")) if obj.get("extensions") is not None else None,
+            "owner_id": obj.get("owner_id"),
+            "config_parameters": KafkaConfigParameters.from_dict(obj.get("config_parameters")) if obj.get("config_parameters") is not None else None
         })
         return _obj
 

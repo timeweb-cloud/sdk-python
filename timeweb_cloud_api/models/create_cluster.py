@@ -23,7 +23,11 @@ from typing import Any, Optional
 from pydantic import BaseModel, Field, validator
 from timeweb_cloud_api.models.availability_zone import AvailabilityZone
 from timeweb_cloud_api.models.create_cluster_admin import CreateClusterAdmin
+from timeweb_cloud_api.models.create_cluster_backup_schedule import CreateClusterBackupSchedule
+from timeweb_cloud_api.models.create_cluster_configuration import CreateClusterConfiguration
+from timeweb_cloud_api.models.create_cluster_disk_autoscaling import CreateClusterDiskAutoscaling
 from timeweb_cloud_api.models.create_cluster_instance import CreateClusterInstance
+from timeweb_cloud_api.models.create_cluster_maintenance_slot import CreateClusterMaintenanceSlot
 from timeweb_cloud_api.models.create_db_auto_backups import CreateDbAutoBackups
 from timeweb_cloud_api.models.db_replication import DbReplication
 from timeweb_cloud_api.models.db_type import DbType
@@ -39,8 +43,8 @@ class CreateCluster(BaseModel):
     admin: Optional[CreateClusterAdmin] = None
     instance: Optional[CreateClusterInstance] = None
     hash_type: Optional[Any] = Field(None, description="Тип хеширования базы данных (mysql | postgres).")
-    preset_id: Optional[Any] = Field(None, description="ID тарифа. Нельзя передавать вместе с `configurator_id`")
-    configurator_id: Optional[Any] = Field(None, description="ID конфигуратора. Нельзя передавать вместе с `preset_id`")
+    preset_id: Optional[Any] = Field(None, description="ID тарифа. Нельзя передавать вместе с `configuration`")
+    configuration: Optional[CreateClusterConfiguration] = None
     project_id: Optional[Any] = Field(None, description="ID проекта.")
     config_parameters: Optional[Mysql] = None
     replication: Optional[DbReplication] = None
@@ -49,7 +53,10 @@ class CreateCluster(BaseModel):
     description: Optional[Any] = Field(None, description="Описание кластера базы данных")
     availability_zone: Optional[AvailabilityZone] = None
     auto_backups: Optional[CreateDbAutoBackups] = None
-    __properties = ["name", "type", "admin", "instance", "hash_type", "preset_id", "configurator_id", "project_id", "config_parameters", "replication", "network", "is_public_ipv6", "description", "availability_zone", "auto_backups"]
+    backup_schedule: Optional[CreateClusterBackupSchedule] = None
+    maintenance_slot: Optional[CreateClusterMaintenanceSlot] = None
+    disk_autoscaling: Optional[CreateClusterDiskAutoscaling] = None
+    __properties = ["name", "type", "admin", "instance", "hash_type", "preset_id", "configuration", "project_id", "config_parameters", "replication", "network", "is_public_ipv6", "description", "availability_zone", "auto_backups", "backup_schedule", "maintenance_slot", "disk_autoscaling"]
 
     @validator('hash_type')
     def hash_type_validate_enum(cls, value):
@@ -91,6 +98,9 @@ class CreateCluster(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of instance
         if self.instance:
             _dict['instance'] = self.instance.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of configuration
+        if self.configuration:
+            _dict['configuration'] = self.configuration.to_dict()
         # override the default output from pydantic by calling `to_dict()` of config_parameters
         if self.config_parameters:
             _dict['config_parameters'] = self.config_parameters.to_dict()
@@ -103,6 +113,15 @@ class CreateCluster(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of auto_backups
         if self.auto_backups:
             _dict['auto_backups'] = self.auto_backups.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of backup_schedule
+        if self.backup_schedule:
+            _dict['backup_schedule'] = self.backup_schedule.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of maintenance_slot
+        if self.maintenance_slot:
+            _dict['maintenance_slot'] = self.maintenance_slot.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of disk_autoscaling
+        if self.disk_autoscaling:
+            _dict['disk_autoscaling'] = self.disk_autoscaling.to_dict()
         # set to None if name (nullable) is None
         # and __fields_set__ contains the field
         if self.name is None and "name" in self.__fields_set__:
@@ -117,11 +136,6 @@ class CreateCluster(BaseModel):
         # and __fields_set__ contains the field
         if self.preset_id is None and "preset_id" in self.__fields_set__:
             _dict['preset_id'] = None
-
-        # set to None if configurator_id (nullable) is None
-        # and __fields_set__ contains the field
-        if self.configurator_id is None and "configurator_id" in self.__fields_set__:
-            _dict['configurator_id'] = None
 
         # set to None if project_id (nullable) is None
         # and __fields_set__ contains the field
@@ -156,7 +170,7 @@ class CreateCluster(BaseModel):
             "instance": CreateClusterInstance.from_dict(obj.get("instance")) if obj.get("instance") is not None else None,
             "hash_type": obj.get("hash_type"),
             "preset_id": obj.get("preset_id"),
-            "configurator_id": obj.get("configurator_id"),
+            "configuration": CreateClusterConfiguration.from_dict(obj.get("configuration")) if obj.get("configuration") is not None else None,
             "project_id": obj.get("project_id"),
             "config_parameters": Mysql.from_dict(obj.get("config_parameters")) if obj.get("config_parameters") is not None else None,
             "replication": DbReplication.from_dict(obj.get("replication")) if obj.get("replication") is not None else None,
@@ -164,7 +178,10 @@ class CreateCluster(BaseModel):
             "is_public_ipv6": obj.get("is_public_ipv6"),
             "description": obj.get("description"),
             "availability_zone": obj.get("availability_zone"),
-            "auto_backups": CreateDbAutoBackups.from_dict(obj.get("auto_backups")) if obj.get("auto_backups") is not None else None
+            "auto_backups": CreateDbAutoBackups.from_dict(obj.get("auto_backups")) if obj.get("auto_backups") is not None else None,
+            "backup_schedule": CreateClusterBackupSchedule.from_dict(obj.get("backup_schedule")) if obj.get("backup_schedule") is not None else None,
+            "maintenance_slot": CreateClusterMaintenanceSlot.from_dict(obj.get("maintenance_slot")) if obj.get("maintenance_slot") is not None else None,
+            "disk_autoscaling": CreateClusterDiskAutoscaling.from_dict(obj.get("disk_autoscaling")) if obj.get("disk_autoscaling") is not None else None
         })
         return _obj
 

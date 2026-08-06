@@ -39,15 +39,21 @@ class TestGetDatabaseAutoBackupsSettings200Response(unittest.TestCase):
         model = timeweb_cloud_api.models.get_database_auto_backups_settings200_response.GetDatabaseAutoBackupsSettings200Response()  # noqa: E501
         if include_optional :
             return GetDatabaseAutoBackupsSettings200Response(
-                meta = timeweb_cloud_api.models.meta.meta(
-                    total = 10, ), 
-                auto_backups_settings = None
+                auto_backups_settings = timeweb_cloud_api.models.auto_backup.auto-backup(
+                    copy_count = 2, 
+                    creation_start_at = 2023-02-02T00:00:00.000Z, 
+                    is_enabled = true, 
+                    interval = week, 
+                    day_of_week = 1, )
             )
         else :
             return GetDatabaseAutoBackupsSettings200Response(
-                meta = timeweb_cloud_api.models.meta.meta(
-                    total = 10, ),
-                auto_backups_settings = None,
+                auto_backups_settings = timeweb_cloud_api.models.auto_backup.auto-backup(
+                    copy_count = 2, 
+                    creation_start_at = 2023-02-02T00:00:00.000Z, 
+                    is_enabled = true, 
+                    interval = week, 
+                    day_of_week = 1, ),
         )
         """
 

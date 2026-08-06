@@ -21,7 +21,6 @@ import json
 
 from typing import Any, Optional
 from pydantic import BaseModel, Field, validator
-from timeweb_cloud_api.models.db_type import DbType
 
 class PresetsDbs(BaseModel):
     """
@@ -30,13 +29,25 @@ class PresetsDbs(BaseModel):
     id: Optional[Any] = Field(None, description="ID для каждого экземпляра тарифа базы данных.")
     description: Optional[Any] = Field(None, description="Описание тарифа.")
     description_short: Optional[Any] = Field(None, description="Краткое описание тарифа.")
-    cpu: Optional[Any] = Field(None, description="Описание процессора тарифа.")
-    ram: Optional[Any] = Field(None, description="Описание ОЗУ тарифа.")
-    disk: Optional[Any] = Field(None, description="Описание диска тарифа.")
-    type: Optional[DbType] = None
+    cpu: Optional[Any] = Field(None, description="Количество ядер процессора тарифа.")
+    cpu_frequency: Optional[Any] = Field(None, description="Частота процессора (в ГГц).")
+    ram: Optional[Any] = Field(None, description="Объём оперативной памяти тарифа (в Мб).")
+    disk: Optional[Any] = Field(None, description="Размер диска тарифа (в Мб).")
+    type: Optional[Any] = Field(None, description="Семейство СУБД тарифа. Значение не совпадает с типом кластера, который передаётся в поле `type` при создании кластера (`POST /api/v1/databases`): там используется версионированный тип, например `postgres17`. Тарифы для Valkey возвращаются со значением `redis` — отдельного значения `valkey` в этом поле не бывает.")
     price: Optional[Any] = Field(None, description="Стоимость тарифа базы данных")
     location: Optional[Any] = Field(None, description="Географическое расположение тарифа.")
-    __properties = ["id", "description", "description_short", "cpu", "ram", "disk", "type", "price", "location"]
+    tags: Optional[Any] = Field(None, description="Теги тарифа, в том числе тег группы тарифов, в пределах которой доступна смена тарифа.")
+    __properties = ["id", "description", "description_short", "cpu", "cpu_frequency", "ram", "disk", "type", "price", "location", "tags"]
+
+    @validator('type')
+    def type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in ('mysql', 'mysql5', 'postgres', 'redis', 'mongodb', 'opensearch', 'clickhouse', 'kafka', 'rabbitmq'):
+            raise ValueError("must be one of enum values ('mysql', 'mysql5', 'postgres', 'redis', 'mongodb', 'opensearch', 'clickhouse', 'kafka', 'rabbitmq')")
+        return value
 
     @validator('location')
     def location_validate_enum(cls, value):
@@ -44,8 +55,8 @@ class PresetsDbs(BaseModel):
         if value is None:
             return value
 
-        if value not in ('ru-1', 'pl-1', 'kz-1'):
-            raise ValueError("must be one of enum values ('ru-1', 'pl-1', 'kz-1')")
+        if value not in ('ru-1', 'ru-3', 'pl-1', 'nl-1', 'de-1', 'us-2', 'us-3'):
+            raise ValueError("must be one of enum values ('ru-1', 'ru-3', 'pl-1', 'nl-1', 'de-1', 'us-2', 'us-3')")
         return value
 
     class Config:
@@ -92,6 +103,11 @@ class PresetsDbs(BaseModel):
         if self.cpu is None and "cpu" in self.__fields_set__:
             _dict['cpu'] = None
 
+        # set to None if cpu_frequency (nullable) is None
+        # and __fields_set__ contains the field
+        if self.cpu_frequency is None and "cpu_frequency" in self.__fields_set__:
+            _dict['cpu_frequency'] = None
+
         # set to None if ram (nullable) is None
         # and __fields_set__ contains the field
         if self.ram is None and "ram" in self.__fields_set__:
@@ -102,6 +118,11 @@ class PresetsDbs(BaseModel):
         if self.disk is None and "disk" in self.__fields_set__:
             _dict['disk'] = None
 
+        # set to None if type (nullable) is None
+        # and __fields_set__ contains the field
+        if self.type is None and "type" in self.__fields_set__:
+            _dict['type'] = None
+
         # set to None if price (nullable) is None
         # and __fields_set__ contains the field
         if self.price is None and "price" in self.__fields_set__:
@@ -111,6 +132,11 @@ class PresetsDbs(BaseModel):
         # and __fields_set__ contains the field
         if self.location is None and "location" in self.__fields_set__:
             _dict['location'] = None
+
+        # set to None if tags (nullable) is None
+        # and __fields_set__ contains the field
+        if self.tags is None and "tags" in self.__fields_set__:
+            _dict['tags'] = None
 
         return _dict
 
@@ -128,11 +154,13 @@ class PresetsDbs(BaseModel):
             "description": obj.get("description"),
             "description_short": obj.get("description_short"),
             "cpu": obj.get("cpu"),
+            "cpu_frequency": obj.get("cpu_frequency"),
             "ram": obj.get("ram"),
             "disk": obj.get("disk"),
             "type": obj.get("type"),
             "price": obj.get("price"),
-            "location": obj.get("location")
+            "location": obj.get("location"),
+            "tags": obj.get("tags")
         })
         return _obj
 

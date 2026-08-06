@@ -19,15 +19,16 @@ import re  # noqa: F401
 import json
 
 
-from typing import Any, Optional
+
 from pydantic import BaseModel, Field
+from timeweb_cloud_api.models.delete_database_cluster200_response_database_delete import DeleteDatabaseCluster200ResponseDatabaseDelete
 
 class DeleteDatabaseCluster200Response(BaseModel):
     """
     DeleteDatabaseCluster200Response
     """
-    hash: Optional[Any] = Field(..., description="Хеш, который совместно с кодом авторизации надо будет отправить для удаления")
-    __properties = ["hash"]
+    database_delete: DeleteDatabaseCluster200ResponseDatabaseDelete = Field(...)
+    __properties = ["database_delete"]
 
     class Config:
         """Pydantic configuration"""
@@ -53,11 +54,9 @@ class DeleteDatabaseCluster200Response(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # set to None if hash (nullable) is None
-        # and __fields_set__ contains the field
-        if self.hash is None and "hash" in self.__fields_set__:
-            _dict['hash'] = None
-
+        # override the default output from pydantic by calling `to_dict()` of database_delete
+        if self.database_delete:
+            _dict['database_delete'] = self.database_delete.to_dict()
         return _dict
 
     @classmethod
@@ -70,7 +69,7 @@ class DeleteDatabaseCluster200Response(BaseModel):
             return DeleteDatabaseCluster200Response.parse_obj(obj)
 
         _obj = DeleteDatabaseCluster200Response.parse_obj({
-            "hash": obj.get("hash")
+            "database_delete": DeleteDatabaseCluster200ResponseDatabaseDelete.from_dict(obj.get("database_delete")) if obj.get("database_delete") is not None else None
         })
         return _obj
 

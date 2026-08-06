@@ -39,11 +39,13 @@ class TestDeleteDatabaseCluster200Response(unittest.TestCase):
         model = timeweb_cloud_api.models.delete_database_cluster200_response.DeleteDatabaseCluster200Response()  # noqa: E501
         if include_optional :
             return DeleteDatabaseCluster200Response(
-                hash = 15095f25-aac3-4d60-a788-96cb5136f186
+                database_delete = timeweb_cloud_api.models.delete_database_cluster_200_response_database_delete.deleteDatabaseCluster_200_response_database_delete(
+                    hash = 15095f25-aac3-4d60-a788-96cb5136f186, )
             )
         else :
             return DeleteDatabaseCluster200Response(
-                hash = 15095f25-aac3-4d60-a788-96cb5136f186,
+                database_delete = timeweb_cloud_api.models.delete_database_cluster_200_response_database_delete.deleteDatabaseCluster_200_response_database_delete(
+                    hash = 15095f25-aac3-4d60-a788-96cb5136f186, ),
         )
         """
 

@@ -24,26 +24,43 @@ from pydantic import Field
 
 from typing import Any, Optional
 
-from timeweb_cloud_api.models.auto_backup import AutoBackup
-from timeweb_cloud_api.models.config_parameters import ConfigParameters
+from timeweb_cloud_api.models.backup_download_url_request import BackupDownloadUrlRequest
+from timeweb_cloud_api.models.cluster_action import ClusterAction
 from timeweb_cloud_api.models.create_admin import CreateAdmin
 from timeweb_cloud_api.models.create_cluster import CreateCluster
 from timeweb_cloud_api.models.create_database_backup201_response import CreateDatabaseBackup201Response
+from timeweb_cloud_api.models.create_database_backup_download_url201_response import CreateDatabaseBackupDownloadUrl201Response
 from timeweb_cloud_api.models.create_database_cluster201_response import CreateDatabaseCluster201Response
 from timeweb_cloud_api.models.create_database_instance201_response import CreateDatabaseInstance201Response
+from timeweb_cloud_api.models.create_database_s3_backup201_response import CreateDatabaseS3Backup201Response
 from timeweb_cloud_api.models.create_database_user201_response import CreateDatabaseUser201Response
 from timeweb_cloud_api.models.create_instance import CreateInstance
+from timeweb_cloud_api.models.create_s3_backup import CreateS3Backup
+from timeweb_cloud_api.models.db_parameters_by_type import DbParametersByType
+from timeweb_cloud_api.models.dbs_create_backup import DbsCreateBackup
+from timeweb_cloud_api.models.dbs_update_backup import DbsUpdateBackup
 from timeweb_cloud_api.models.delete_database_cluster200_response import DeleteDatabaseCluster200Response
 from timeweb_cloud_api.models.get_database_auto_backups_settings200_response import GetDatabaseAutoBackupsSettings200Response
+from timeweb_cloud_api.models.get_database_backup200_response import GetDatabaseBackup200Response
 from timeweb_cloud_api.models.get_database_backups200_response import GetDatabaseBackups200Response
+from timeweb_cloud_api.models.get_database_cluster_replicas200_response import GetDatabaseClusterReplicas200Response
 from timeweb_cloud_api.models.get_database_cluster_types200_response import GetDatabaseClusterTypes200Response
 from timeweb_cloud_api.models.get_database_clusters200_response import GetDatabaseClusters200Response
+from timeweb_cloud_api.models.get_database_configurators200_response import GetDatabaseConfigurators200Response
+from timeweb_cloud_api.models.get_database_default_parameters200_response import GetDatabaseDefaultParameters200Response
 from timeweb_cloud_api.models.get_database_instances200_response import GetDatabaseInstances200Response
+from timeweb_cloud_api.models.get_database_preset200_response import GetDatabasePreset200Response
+from timeweb_cloud_api.models.get_database_privileges200_response import GetDatabasePrivileges200Response
+from timeweb_cloud_api.models.get_database_s3_backups200_response import GetDatabaseS3Backups200Response
 from timeweb_cloud_api.models.get_database_users200_response import GetDatabaseUsers200Response
 from timeweb_cloud_api.models.get_databases_presets200_response import GetDatabasesPresets200Response
 from timeweb_cloud_api.models.update_admin import UpdateAdmin
+from timeweb_cloud_api.models.update_auto_backup import UpdateAutoBackup
 from timeweb_cloud_api.models.update_cluster import UpdateCluster
+from timeweb_cloud_api.models.update_cluster_v2 import UpdateClusterV2
+from timeweb_cloud_api.models.update_database_cluster200_response import UpdateDatabaseCluster200Response
 from timeweb_cloud_api.models.update_instance import UpdateInstance
+from timeweb_cloud_api.models.update_s3_backup import UpdateS3Backup
 
 from timeweb_cloud_api.api_client import ApiClient
 from timeweb_cloud_api.api_response import ApiResponse
@@ -66,20 +83,20 @@ class DatabasesApi(object):
         self.api_client = api_client
 
     @validate_arguments
-    def create_database_backup(self, db_id : Annotated[Any, Field(..., description="ID базы данных")], comment : Annotated[Optional[Any], Field(description="Описание бэкапа")] = None, **kwargs) -> CreateDatabaseBackup201Response:  # noqa: E501
+    def create_database_backup(self, db_id : Annotated[Any, Field(..., description="ID базы данных")], dbs_create_backup : Optional[DbsCreateBackup] = None, **kwargs) -> CreateDatabaseBackup201Response:  # noqa: E501
         """Создание бэкапа базы данных  # noqa: E501
 
         Чтобы создать бэкап базы данных, отправьте запрос POST в `api/v1/dbs/{db_id}/backups`.   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.create_database_backup(db_id, comment, async_req=True)
+        >>> thread = api.create_database_backup(db_id, dbs_create_backup, async_req=True)
         >>> result = thread.get()
 
         :param db_id: ID базы данных (required)
         :type db_id: object
-        :param comment: Описание бэкапа
-        :type comment: object
+        :param dbs_create_backup:
+        :type dbs_create_backup: DbsCreateBackup
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request. If one
@@ -94,23 +111,23 @@ class DatabasesApi(object):
         kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             raise ValueError("Error! Please call the create_database_backup_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
-        return self.create_database_backup_with_http_info(db_id, comment, **kwargs)  # noqa: E501
+        return self.create_database_backup_with_http_info(db_id, dbs_create_backup, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def create_database_backup_with_http_info(self, db_id : Annotated[Any, Field(..., description="ID базы данных")], comment : Annotated[Optional[Any], Field(description="Описание бэкапа")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def create_database_backup_with_http_info(self, db_id : Annotated[Any, Field(..., description="ID базы данных")], dbs_create_backup : Optional[DbsCreateBackup] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Создание бэкапа базы данных  # noqa: E501
 
         Чтобы создать бэкап базы данных, отправьте запрос POST в `api/v1/dbs/{db_id}/backups`.   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.create_database_backup_with_http_info(db_id, comment, async_req=True)
+        >>> thread = api.create_database_backup_with_http_info(db_id, dbs_create_backup, async_req=True)
         >>> result = thread.get()
 
         :param db_id: ID базы данных (required)
         :type db_id: object
-        :param comment: Описание бэкапа
-        :type comment: object
+        :param dbs_create_backup:
+        :type dbs_create_backup: DbsCreateBackup
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
@@ -140,7 +157,7 @@ class DatabasesApi(object):
 
         _all_params = [
             'db_id',
-            'comment'
+            'dbs_create_backup'
         ]
         _all_params.extend(
             [
@@ -174,9 +191,6 @@ class DatabasesApi(object):
 
         # process the query parameters
         _query_params = []
-        if _params.get('comment') is not None:  # noqa: E501
-            _query_params.append(('comment', _params['comment']))
-
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
         # process the form parameters
@@ -184,9 +198,19 @@ class DatabasesApi(object):
         _files = {}
         # process the body parameter
         _body_params = None
+        if _params['dbs_create_backup'] is not None:
+            _body_params = _params['dbs_create_backup']
+
         # set the HTTP header `Accept`
         _header_params['Accept'] = self.api_client.select_header_accept(
             ['application/json'])  # noqa: E501
+
+        # set the HTTP header `Content-Type`
+        _content_types_list = _params.get('_content_type',
+            self.api_client.select_header_content_type(
+                ['application/json']))
+        if _content_types_list:
+                _header_params['Content-Type'] = _content_types_list
 
         # authentication setting
         _auth_settings = ['Bearer']  # noqa: E501
@@ -220,10 +244,179 @@ class DatabasesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
+    def create_database_backup_download_url(self, db_id : Annotated[Any, Field(..., description="ID базы данных")], backup_id : Annotated[Any, Field(..., description="ID резервной копии")], backup_download_url_request : BackupDownloadUrlRequest, **kwargs) -> CreateDatabaseBackupDownloadUrl201Response:  # noqa: E501
+        """Получение ссылки для скачивания бэкапа базы данных  # noqa: E501
+
+        Чтобы получить ссылку для скачивания резервной копии базы данных, отправьте POST-запрос на `/api/v1/dbs/{db_id}/backups/{backup_id}/download-url`.   Скачивание резервных копий доступно не для всех кластеров. Если для вашего кластера оно недоступно, метод вернет ошибку со статусом `400`.   Тело ответа будет представлять собой объект JSON с ключом `backup_url`.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.create_database_backup_download_url(db_id, backup_id, backup_download_url_request, async_req=True)
+        >>> result = thread.get()
+
+        :param db_id: ID базы данных (required)
+        :type db_id: object
+        :param backup_id: ID резервной копии (required)
+        :type backup_id: object
+        :param backup_download_url_request: (required)
+        :type backup_download_url_request: BackupDownloadUrlRequest
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: CreateDatabaseBackupDownloadUrl201Response
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            raise ValueError("Error! Please call the create_database_backup_download_url_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
+        return self.create_database_backup_download_url_with_http_info(db_id, backup_id, backup_download_url_request, **kwargs)  # noqa: E501
+
+    @validate_arguments
+    def create_database_backup_download_url_with_http_info(self, db_id : Annotated[Any, Field(..., description="ID базы данных")], backup_id : Annotated[Any, Field(..., description="ID резервной копии")], backup_download_url_request : BackupDownloadUrlRequest, **kwargs) -> ApiResponse:  # noqa: E501
+        """Получение ссылки для скачивания бэкапа базы данных  # noqa: E501
+
+        Чтобы получить ссылку для скачивания резервной копии базы данных, отправьте POST-запрос на `/api/v1/dbs/{db_id}/backups/{backup_id}/download-url`.   Скачивание резервных копий доступно не для всех кластеров. Если для вашего кластера оно недоступно, метод вернет ошибку со статусом `400`.   Тело ответа будет представлять собой объект JSON с ключом `backup_url`.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.create_database_backup_download_url_with_http_info(db_id, backup_id, backup_download_url_request, async_req=True)
+        >>> result = thread.get()
+
+        :param db_id: ID базы данных (required)
+        :type db_id: object
+        :param backup_id: ID резервной копии (required)
+        :type backup_id: object
+        :param backup_download_url_request: (required)
+        :type backup_download_url_request: BackupDownloadUrlRequest
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the 
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(CreateDatabaseBackupDownloadUrl201Response, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'db_id',
+            'backup_id',
+            'backup_download_url_request'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method create_database_backup_download_url" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['db_id']:
+            _path_params['db_id'] = _params['db_id']
+
+        if _params['backup_id']:
+            _path_params['backup_id'] = _params['backup_id']
+
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        if _params['backup_download_url_request'] is not None:
+            _body_params = _params['backup_download_url_request']
+
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # set the HTTP header `Content-Type`
+        _content_types_list = _params.get('_content_type',
+            self.api_client.select_header_content_type(
+                ['application/json']))
+        if _content_types_list:
+                _header_params['Content-Type'] = _content_types_list
+
+        # authentication setting
+        _auth_settings = ['Bearer']  # noqa: E501
+
+        _response_types_map = {
+            '201': "CreateDatabaseBackupDownloadUrl201Response",
+            '400': None,
+            '401': None,
+            '403': None,
+            '404': None,
+            '409': None,
+            '429': None,
+            '500': None,
+        }
+
+        return self.api_client.call_api(
+            '/api/v1/dbs/{db_id}/backups/{backup_id}/download-url', 'POST',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @validate_arguments
     def create_database_cluster(self, create_cluster : CreateCluster, **kwargs) -> CreateDatabaseCluster201Response:  # noqa: E501
         """Создание кластера базы данных  # noqa: E501
 
-        Чтобы создать кластер базы данных на вашем аккаунте, отправьте POST-запрос на `/api/v1/databases`.   Вместе с кластером будет создан один инстанс базы данных и один пользователь.  # noqa: E501
+        Чтобы создать кластер базы данных на вашем аккаунте, отправьте POST-запрос на `/api/v1/databases`.   Вместе с кластером будет создан один инстанс базы данных и один пользователь.   Размер кластера задается либо тарифом (`preset_id`), либо конфигуратором (`configuration`). Эти поля взаимоисключающие, но одно из них передать обязательно — запрос без обоих вернется с ошибкой.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -252,7 +445,7 @@ class DatabasesApi(object):
     def create_database_cluster_with_http_info(self, create_cluster : CreateCluster, **kwargs) -> ApiResponse:  # noqa: E501
         """Создание кластера базы данных  # noqa: E501
 
-        Чтобы создать кластер базы данных на вашем аккаунте, отправьте POST-запрос на `/api/v1/databases`.   Вместе с кластером будет создан один инстанс базы данных и один пользователь.  # noqa: E501
+        Чтобы создать кластер базы данных на вашем аккаунте, отправьте POST-запрос на `/api/v1/databases`.   Вместе с кластером будет создан один инстанс базы данных и один пользователь.   Размер кластера задается либо тарифом (`preset_id`), либо конфигуратором (`configuration`). Эти поля взаимоисключающие, но одно из них передать обязательно — запрос без обоих вернется с ошибкой.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -516,6 +709,167 @@ class DatabasesApi(object):
 
         return self.api_client.call_api(
             '/api/v1/databases/{db_cluster_id}/instances', 'POST',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @validate_arguments
+    def create_database_s3_backup(self, db_id : Annotated[Any, Field(..., description="ID базы данных")], create_s3_backup : Optional[CreateS3Backup] = None, **kwargs) -> CreateDatabaseS3Backup201Response:  # noqa: E501
+        """Создание S3-бэкапа базы данных  # noqa: E501
+
+        Чтобы создать резервную копию кластера базы данных в объектном хранилище, отправьте POST-запрос на `/api/v2/databases/{db_id}/backups`.   Тело запроса необязательно: единственное поле `comment` можно не передавать. Тело ответа будет представлять собой объект JSON с ключом `backup`.   Копия создается асинхронно. Пока она создается, ее статус — `running`, и восстановиться из нее нельзя. Дождитесь статуса `success`, опрашивая `/api/v2/databases/{db_id}/backups/{backup_id}`.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.create_database_s3_backup(db_id, create_s3_backup, async_req=True)
+        >>> result = thread.get()
+
+        :param db_id: ID базы данных (required)
+        :type db_id: object
+        :param create_s3_backup:
+        :type create_s3_backup: CreateS3Backup
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: CreateDatabaseS3Backup201Response
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            raise ValueError("Error! Please call the create_database_s3_backup_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
+        return self.create_database_s3_backup_with_http_info(db_id, create_s3_backup, **kwargs)  # noqa: E501
+
+    @validate_arguments
+    def create_database_s3_backup_with_http_info(self, db_id : Annotated[Any, Field(..., description="ID базы данных")], create_s3_backup : Optional[CreateS3Backup] = None, **kwargs) -> ApiResponse:  # noqa: E501
+        """Создание S3-бэкапа базы данных  # noqa: E501
+
+        Чтобы создать резервную копию кластера базы данных в объектном хранилище, отправьте POST-запрос на `/api/v2/databases/{db_id}/backups`.   Тело запроса необязательно: единственное поле `comment` можно не передавать. Тело ответа будет представлять собой объект JSON с ключом `backup`.   Копия создается асинхронно. Пока она создается, ее статус — `running`, и восстановиться из нее нельзя. Дождитесь статуса `success`, опрашивая `/api/v2/databases/{db_id}/backups/{backup_id}`.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.create_database_s3_backup_with_http_info(db_id, create_s3_backup, async_req=True)
+        >>> result = thread.get()
+
+        :param db_id: ID базы данных (required)
+        :type db_id: object
+        :param create_s3_backup:
+        :type create_s3_backup: CreateS3Backup
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the 
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(CreateDatabaseS3Backup201Response, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'db_id',
+            'create_s3_backup'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method create_database_s3_backup" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['db_id']:
+            _path_params['db_id'] = _params['db_id']
+
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        if _params['create_s3_backup'] is not None:
+            _body_params = _params['create_s3_backup']
+
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # set the HTTP header `Content-Type`
+        _content_types_list = _params.get('_content_type',
+            self.api_client.select_header_content_type(
+                ['application/json']))
+        if _content_types_list:
+                _header_params['Content-Type'] = _content_types_list
+
+        # authentication setting
+        _auth_settings = ['Bearer']  # noqa: E501
+
+        _response_types_map = {
+            '201': "CreateDatabaseS3Backup201Response",
+            '400': None,
+            '401': None,
+            '403': None,
+            '404': None,
+            '409': None,
+            '429': None,
+            '500': None,
+        }
+
+        return self.api_client.call_api(
+            '/api/v2/databases/{db_id}/backups', 'POST',
             _path_params,
             _query_params,
             _header_params,
@@ -810,6 +1164,10 @@ class DatabasesApi(object):
         _files = {}
         # process the body parameter
         _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
         # authentication setting
         _auth_settings = ['Bearer']  # noqa: E501
 
@@ -833,22 +1191,18 @@ class DatabasesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def delete_database_cluster(self, db_cluster_id : Annotated[Any, Field(..., description="ID кластера базы данных")], hash : Annotated[Optional[Any], Field(description="Хеш, который совместно с кодом авторизации надо отправить для удаления, если включено подтверждение удаления сервисов через Телеграм.")] = None, code : Annotated[Optional[Any], Field(description="Код подтверждения, который придет к вам в Телеграм, после запроса удаления, если включено подтверждение удаления сервисов.  При помощи API токена сервисы можно удалять без подтверждения, если параметр токена `is_able_to_delete` установлен в значение `true`")] = None, **kwargs) -> DeleteDatabaseCluster200Response:  # noqa: E501
+    def delete_database_cluster(self, db_cluster_id : Annotated[Any, Field(..., description="ID кластера базы данных")], **kwargs) -> DeleteDatabaseCluster200Response:  # noqa: E501
         """Удаление кластера базы данных  # noqa: E501
 
         Чтобы удалить кластер базы данных, отправьте DELETE-запрос на `/api/v1/databases/{db_cluster_id}`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.delete_database_cluster(db_cluster_id, hash, code, async_req=True)
+        >>> thread = api.delete_database_cluster(db_cluster_id, async_req=True)
         >>> result = thread.get()
 
         :param db_cluster_id: ID кластера базы данных (required)
         :type db_cluster_id: object
-        :param hash: Хеш, который совместно с кодом авторизации надо отправить для удаления, если включено подтверждение удаления сервисов через Телеграм.
-        :type hash: object
-        :param code: Код подтверждения, который придет к вам в Телеграм, после запроса удаления, если включено подтверждение удаления сервисов.  При помощи API токена сервисы можно удалять без подтверждения, если параметр токена `is_able_to_delete` установлен в значение `true`
-        :type code: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request. If one
@@ -863,25 +1217,21 @@ class DatabasesApi(object):
         kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             raise ValueError("Error! Please call the delete_database_cluster_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
-        return self.delete_database_cluster_with_http_info(db_cluster_id, hash, code, **kwargs)  # noqa: E501
+        return self.delete_database_cluster_with_http_info(db_cluster_id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def delete_database_cluster_with_http_info(self, db_cluster_id : Annotated[Any, Field(..., description="ID кластера базы данных")], hash : Annotated[Optional[Any], Field(description="Хеш, который совместно с кодом авторизации надо отправить для удаления, если включено подтверждение удаления сервисов через Телеграм.")] = None, code : Annotated[Optional[Any], Field(description="Код подтверждения, который придет к вам в Телеграм, после запроса удаления, если включено подтверждение удаления сервисов.  При помощи API токена сервисы можно удалять без подтверждения, если параметр токена `is_able_to_delete` установлен в значение `true`")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def delete_database_cluster_with_http_info(self, db_cluster_id : Annotated[Any, Field(..., description="ID кластера базы данных")], **kwargs) -> ApiResponse:  # noqa: E501
         """Удаление кластера базы данных  # noqa: E501
 
         Чтобы удалить кластер базы данных, отправьте DELETE-запрос на `/api/v1/databases/{db_cluster_id}`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.delete_database_cluster_with_http_info(db_cluster_id, hash, code, async_req=True)
+        >>> thread = api.delete_database_cluster_with_http_info(db_cluster_id, async_req=True)
         >>> result = thread.get()
 
         :param db_cluster_id: ID кластера базы данных (required)
         :type db_cluster_id: object
-        :param hash: Хеш, который совместно с кодом авторизации надо отправить для удаления, если включено подтверждение удаления сервисов через Телеграм.
-        :type hash: object
-        :param code: Код подтверждения, который придет к вам в Телеграм, после запроса удаления, если включено подтверждение удаления сервисов.  При помощи API токена сервисы можно удалять без подтверждения, если параметр токена `is_able_to_delete` установлен в значение `true`
-        :type code: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
@@ -910,9 +1260,7 @@ class DatabasesApi(object):
         _params = locals()
 
         _all_params = [
-            'db_cluster_id',
-            'hash',
-            'code'
+            'db_cluster_id'
         ]
         _all_params.extend(
             [
@@ -946,12 +1294,6 @@ class DatabasesApi(object):
 
         # process the query parameters
         _query_params = []
-        if _params.get('hash') is not None:  # noqa: E501
-            _query_params.append(('hash', _params['hash']))
-
-        if _params.get('code') is not None:  # noqa: E501
-            _query_params.append(('code', _params['code']))
-
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
         # process the form parameters
@@ -1120,6 +1462,151 @@ class DatabasesApi(object):
 
         return self.api_client.call_api(
             '/api/v1/databases/{db_cluster_id}/instances/{instance_id}', 'DELETE',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @validate_arguments
+    def delete_database_s3_backup(self, db_id : Annotated[Any, Field(..., description="ID базы данных")], backup_id : Annotated[Any, Field(..., description="ID резервной копии в формате UUID")], **kwargs) -> None:  # noqa: E501
+        """Удаление S3-бэкапа базы данных  # noqa: E501
+
+        Чтобы удалить резервную копию кластера базы данных из объектного хранилища, отправьте DELETE-запрос на `/api/v2/databases/{db_id}/backups/{backup_id}`.   Копия удаляется безвозвратно, тело ответа пустое. На резервные копии из `/api/v1/dbs/{db_id}/backups/{backup_id}` этот метод не действует — они удаляются отдельным запросом.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.delete_database_s3_backup(db_id, backup_id, async_req=True)
+        >>> result = thread.get()
+
+        :param db_id: ID базы данных (required)
+        :type db_id: object
+        :param backup_id: ID резервной копии в формате UUID (required)
+        :type backup_id: object
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: None
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            raise ValueError("Error! Please call the delete_database_s3_backup_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
+        return self.delete_database_s3_backup_with_http_info(db_id, backup_id, **kwargs)  # noqa: E501
+
+    @validate_arguments
+    def delete_database_s3_backup_with_http_info(self, db_id : Annotated[Any, Field(..., description="ID базы данных")], backup_id : Annotated[Any, Field(..., description="ID резервной копии в формате UUID")], **kwargs) -> ApiResponse:  # noqa: E501
+        """Удаление S3-бэкапа базы данных  # noqa: E501
+
+        Чтобы удалить резервную копию кластера базы данных из объектного хранилища, отправьте DELETE-запрос на `/api/v2/databases/{db_id}/backups/{backup_id}`.   Копия удаляется безвозвратно, тело ответа пустое. На резервные копии из `/api/v1/dbs/{db_id}/backups/{backup_id}` этот метод не действует — они удаляются отдельным запросом.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.delete_database_s3_backup_with_http_info(db_id, backup_id, async_req=True)
+        >>> result = thread.get()
+
+        :param db_id: ID базы данных (required)
+        :type db_id: object
+        :param backup_id: ID резервной копии в формате UUID (required)
+        :type backup_id: object
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the 
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: None
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'db_id',
+            'backup_id'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method delete_database_s3_backup" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['db_id']:
+            _path_params['db_id'] = _params['db_id']
+
+        if _params['backup_id']:
+            _path_params['backup_id'] = _params['backup_id']
+
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = ['Bearer']  # noqa: E501
+
+        _response_types_map = {}
+
+        return self.api_client.call_api(
+            '/api/v2/databases/{db_id}/backups/{backup_id}', 'DELETE',
             _path_params,
             _query_params,
             _header_params,
@@ -1400,6 +1887,7 @@ class DatabasesApi(object):
             '401': None,
             '403': None,
             '404': None,
+            '409': None,
             '429': None,
             '500': None,
         }
@@ -1422,7 +1910,7 @@ class DatabasesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def get_database_backup(self, db_id : Annotated[Any, Field(..., description="ID базы данных")], backup_id : Annotated[Any, Field(..., description="ID резервной копии")], **kwargs) -> CreateDatabaseBackup201Response:  # noqa: E501
+    def get_database_backup(self, db_id : Annotated[Any, Field(..., description="ID базы данных")], backup_id : Annotated[Any, Field(..., description="ID резервной копии")], **kwargs) -> GetDatabaseBackup200Response:  # noqa: E501
         """Получение бэкапа базы данных  # noqa: E501
 
         Чтобы получить бэкап базы данных, отправьте запрос GET в `api/v1/dbs/{db_id}/backups/{backup_id}`.   # noqa: E501
@@ -1445,7 +1933,7 @@ class DatabasesApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: CreateDatabaseBackup201Response
+        :rtype: GetDatabaseBackup200Response
         """
         kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
@@ -1489,7 +1977,7 @@ class DatabasesApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: tuple(CreateDatabaseBackup201Response, status_code(int), headers(HTTPHeaderDict))
+        :rtype: tuple(GetDatabaseBackup200Response, status_code(int), headers(HTTPHeaderDict))
         """
 
         _params = locals()
@@ -1548,11 +2036,12 @@ class DatabasesApi(object):
         _auth_settings = ['Bearer']  # noqa: E501
 
         _response_types_map = {
-            '200': "CreateDatabaseBackup201Response",
+            '200': "GetDatabaseBackup200Response",
             '400': None,
             '401': None,
             '403': None,
             '404': None,
+            '409': None,
             '429': None,
             '500': None,
         }
@@ -1854,7 +2343,7 @@ class DatabasesApi(object):
         _auth_settings = ['Bearer']  # noqa: E501
 
         _response_types_map = {
-            '201': "CreateDatabaseCluster201Response",
+            '200': "CreateDatabaseCluster201Response",
             '400': None,
             '401': None,
             '403': None,
@@ -1865,6 +2354,151 @@ class DatabasesApi(object):
 
         return self.api_client.call_api(
             '/api/v1/databases/{db_cluster_id}', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @validate_arguments
+    def get_database_cluster_replicas(self, db_cluster_id : Annotated[Any, Field(..., description="ID кластера базы данных")], **kwargs) -> GetDatabaseClusterReplicas200Response:  # noqa: E501
+        """Получение списка реплик кластера базы данных  # noqa: E501
+
+        Чтобы получить список реплик кластера базы данных, отправьте GET-запрос на `/api/v1/databases/{db_cluster_id}/replicas`.   Тело ответа будет представлять собой объект JSON с ключом `replicas`.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_database_cluster_replicas(db_cluster_id, async_req=True)
+        >>> result = thread.get()
+
+        :param db_cluster_id: ID кластера базы данных (required)
+        :type db_cluster_id: object
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: GetDatabaseClusterReplicas200Response
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            raise ValueError("Error! Please call the get_database_cluster_replicas_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
+        return self.get_database_cluster_replicas_with_http_info(db_cluster_id, **kwargs)  # noqa: E501
+
+    @validate_arguments
+    def get_database_cluster_replicas_with_http_info(self, db_cluster_id : Annotated[Any, Field(..., description="ID кластера базы данных")], **kwargs) -> ApiResponse:  # noqa: E501
+        """Получение списка реплик кластера базы данных  # noqa: E501
+
+        Чтобы получить список реплик кластера базы данных, отправьте GET-запрос на `/api/v1/databases/{db_cluster_id}/replicas`.   Тело ответа будет представлять собой объект JSON с ключом `replicas`.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_database_cluster_replicas_with_http_info(db_cluster_id, async_req=True)
+        >>> result = thread.get()
+
+        :param db_cluster_id: ID кластера базы данных (required)
+        :type db_cluster_id: object
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the 
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(GetDatabaseClusterReplicas200Response, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'db_cluster_id'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_database_cluster_replicas" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['db_cluster_id']:
+            _path_params['db_cluster_id'] = _params['db_cluster_id']
+
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = ['Bearer']  # noqa: E501
+
+        _response_types_map = {
+            '200': "GetDatabaseClusterReplicas200Response",
+            '400': None,
+            '401': None,
+            '403': None,
+            '404': None,
+            '429': None,
+            '500': None,
+        }
+
+        return self.api_client.call_api(
+            '/api/v1/databases/{db_cluster_id}/replicas', 'GET',
             _path_params,
             _query_params,
             _header_params,
@@ -2155,6 +2789,320 @@ class DatabasesApi(object):
 
         return self.api_client.call_api(
             '/api/v1/databases', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @validate_arguments
+    def get_database_configurators(self, cluster_id : Annotated[Optional[Any], Field(description="ID кластера базы данных. Возвращает конфигураторы группы, в пределах которой доступна смена конфигурации этого кластера (сценарий изменения кластера).")] = None, with_unavailable : Annotated[Optional[Any], Field(description="Включить в ответ конфигураторы, недоступные к заказу из-за нехватки свободных ресурсов. Учитывается только при запросе без `cluster_id`.")] = None, **kwargs) -> GetDatabaseConfigurators200Response:  # noqa: E501
+        """Получение списка конфигураторов баз данных  # noqa: E501
+
+        Чтобы получить список конфигураторов баз данных, отправьте GET-запрос на `/api/v1/configurator/databases`.   Конфигуратор позволяет создать кластер с произвольным количеством ресурсов вместо готового тарифа: его ID передается при создании кластера в поле `configuration.configurator_id`, а допустимые значения ресурсов ограничены объектом `requirements`.   Тело ответа будет представлять собой объект JSON с ключом `database_configurators`.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_database_configurators(cluster_id, with_unavailable, async_req=True)
+        >>> result = thread.get()
+
+        :param cluster_id: ID кластера базы данных. Возвращает конфигураторы группы, в пределах которой доступна смена конфигурации этого кластера (сценарий изменения кластера).
+        :type cluster_id: object
+        :param with_unavailable: Включить в ответ конфигураторы, недоступные к заказу из-за нехватки свободных ресурсов. Учитывается только при запросе без `cluster_id`.
+        :type with_unavailable: object
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: GetDatabaseConfigurators200Response
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            raise ValueError("Error! Please call the get_database_configurators_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
+        return self.get_database_configurators_with_http_info(cluster_id, with_unavailable, **kwargs)  # noqa: E501
+
+    @validate_arguments
+    def get_database_configurators_with_http_info(self, cluster_id : Annotated[Optional[Any], Field(description="ID кластера базы данных. Возвращает конфигураторы группы, в пределах которой доступна смена конфигурации этого кластера (сценарий изменения кластера).")] = None, with_unavailable : Annotated[Optional[Any], Field(description="Включить в ответ конфигураторы, недоступные к заказу из-за нехватки свободных ресурсов. Учитывается только при запросе без `cluster_id`.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+        """Получение списка конфигураторов баз данных  # noqa: E501
+
+        Чтобы получить список конфигураторов баз данных, отправьте GET-запрос на `/api/v1/configurator/databases`.   Конфигуратор позволяет создать кластер с произвольным количеством ресурсов вместо готового тарифа: его ID передается при создании кластера в поле `configuration.configurator_id`, а допустимые значения ресурсов ограничены объектом `requirements`.   Тело ответа будет представлять собой объект JSON с ключом `database_configurators`.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_database_configurators_with_http_info(cluster_id, with_unavailable, async_req=True)
+        >>> result = thread.get()
+
+        :param cluster_id: ID кластера базы данных. Возвращает конфигураторы группы, в пределах которой доступна смена конфигурации этого кластера (сценарий изменения кластера).
+        :type cluster_id: object
+        :param with_unavailable: Включить в ответ конфигураторы, недоступные к заказу из-за нехватки свободных ресурсов. Учитывается только при запросе без `cluster_id`.
+        :type with_unavailable: object
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the 
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(GetDatabaseConfigurators200Response, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'cluster_id',
+            'with_unavailable'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_database_configurators" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+
+        # process the query parameters
+        _query_params = []
+        if _params.get('cluster_id') is not None:  # noqa: E501
+            _query_params.append(('cluster_id', _params['cluster_id']))
+
+        if _params.get('with_unavailable') is not None:  # noqa: E501
+            _query_params.append(('with_unavailable', _params['with_unavailable']))
+
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = ['Bearer']  # noqa: E501
+
+        _response_types_map = {
+            '200': "GetDatabaseConfigurators200Response",
+            '400': None,
+            '401': None,
+            '403': None,
+            '404': None,
+            '429': None,
+            '500': None,
+        }
+
+        return self.api_client.call_api(
+            '/api/v1/configurator/databases', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @validate_arguments
+    def get_database_default_parameters(self, type : Annotated[Any, Field(..., description="Тип кластера базы данных.")], ram : Annotated[Any, Field(..., description="Объём оперативной памяти кластера (в Мб).")], replica_count : Annotated[Optional[Any], Field(description="Количество нод (реплик) кластера.")] = None, **kwargs) -> GetDatabaseDefaultParameters200Response:  # noqa: E501
+        """Получение рекомендуемых значений параметров баз данных  # noqa: E501
+
+        Чтобы получить рекомендуемые значения параметров базы данных, отправьте GET-запрос на `/api/v1/dbs/default-parameters`.   Значения рассчитываются для указанного типа кластера, объема оперативной памяти и количества реплик — их можно передать при создании кластера в поле `config_parameters`. Список имен параметров, доступных для каждого типа кластера, возвращает `GET /api/v1/dbs/parameters`.   Тело ответа будет представлять собой объект JSON с ключом `config_params`. Рекомендуемые значения рассчитываются только для кластеров MySQL, PostgreSQL и Valkey — для остальных типов возвращается пустой объект.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_database_default_parameters(type, ram, replica_count, async_req=True)
+        >>> result = thread.get()
+
+        :param type: Тип кластера базы данных. (required)
+        :type type: object
+        :param ram: Объём оперативной памяти кластера (в Мб). (required)
+        :type ram: object
+        :param replica_count: Количество нод (реплик) кластера.
+        :type replica_count: object
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: GetDatabaseDefaultParameters200Response
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            raise ValueError("Error! Please call the get_database_default_parameters_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
+        return self.get_database_default_parameters_with_http_info(type, ram, replica_count, **kwargs)  # noqa: E501
+
+    @validate_arguments
+    def get_database_default_parameters_with_http_info(self, type : Annotated[Any, Field(..., description="Тип кластера базы данных.")], ram : Annotated[Any, Field(..., description="Объём оперативной памяти кластера (в Мб).")], replica_count : Annotated[Optional[Any], Field(description="Количество нод (реплик) кластера.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+        """Получение рекомендуемых значений параметров баз данных  # noqa: E501
+
+        Чтобы получить рекомендуемые значения параметров базы данных, отправьте GET-запрос на `/api/v1/dbs/default-parameters`.   Значения рассчитываются для указанного типа кластера, объема оперативной памяти и количества реплик — их можно передать при создании кластера в поле `config_parameters`. Список имен параметров, доступных для каждого типа кластера, возвращает `GET /api/v1/dbs/parameters`.   Тело ответа будет представлять собой объект JSON с ключом `config_params`. Рекомендуемые значения рассчитываются только для кластеров MySQL, PostgreSQL и Valkey — для остальных типов возвращается пустой объект.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_database_default_parameters_with_http_info(type, ram, replica_count, async_req=True)
+        >>> result = thread.get()
+
+        :param type: Тип кластера базы данных. (required)
+        :type type: object
+        :param ram: Объём оперативной памяти кластера (в Мб). (required)
+        :type ram: object
+        :param replica_count: Количество нод (реплик) кластера.
+        :type replica_count: object
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the 
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(GetDatabaseDefaultParameters200Response, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'type',
+            'ram',
+            'replica_count'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_database_default_parameters" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+
+        # process the query parameters
+        _query_params = []
+        if _params.get('type') is not None:  # noqa: E501
+            _query_params.append(('type', _params['type'].value))
+
+        if _params.get('ram') is not None:  # noqa: E501
+            _query_params.append(('ram', _params['ram']))
+
+        if _params.get('replica_count') is not None:  # noqa: E501
+            _query_params.append(('replica_count', _params['replica_count']))
+
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = ['Bearer']  # noqa: E501
+
+        _response_types_map = {
+            '200': "GetDatabaseDefaultParameters200Response",
+            '400': None,
+            '401': None,
+            '403': None,
+            '404': None,
+            '429': None,
+            '500': None,
+        }
+
+        return self.api_client.call_api(
+            '/api/v1/dbs/default-parameters', 'GET',
             _path_params,
             _query_params,
             _header_params,
@@ -2469,10 +3417,10 @@ class DatabasesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def get_database_parameters(self, **kwargs) -> ConfigParameters:  # noqa: E501
+    def get_database_parameters(self, **kwargs) -> DbParametersByType:  # noqa: E501
         """Получение списка параметров баз данных  # noqa: E501
 
-        Чтобы получить список параметров баз данных, отправьте GET-запрос на `/api/v1/dbs/parameters`.  # noqa: E501
+        Чтобы получить список параметров баз данных, отправьте GET-запрос на `/api/v1/dbs/parameters`.   Ответ содержит только имена параметров, доступных для каждого типа кластера. Рекомендуемые значения этих параметров для конкретной конфигурации возвращает `GET /api/v1/dbs/default-parameters`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -2488,7 +3436,7 @@ class DatabasesApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: ConfigParameters
+        :rtype: DbParametersByType
         """
         kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
@@ -2499,7 +3447,7 @@ class DatabasesApi(object):
     def get_database_parameters_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
         """Получение списка параметров баз данных  # noqa: E501
 
-        Чтобы получить список параметров баз данных, отправьте GET-запрос на `/api/v1/dbs/parameters`.  # noqa: E501
+        Чтобы получить список параметров баз данных, отправьте GET-запрос на `/api/v1/dbs/parameters`.   Ответ содержит только имена параметров, доступных для каждого типа кластера. Рекомендуемые значения этих параметров для конкретной конфигурации возвращает `GET /api/v1/dbs/default-parameters`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -2528,7 +3476,7 @@ class DatabasesApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: tuple(ConfigParameters, status_code(int), headers(HTTPHeaderDict))
+        :rtype: tuple(DbParametersByType, status_code(int), headers(HTTPHeaderDict))
         """
 
         _params = locals()
@@ -2579,7 +3527,7 @@ class DatabasesApi(object):
         _auth_settings = ['Bearer']  # noqa: E501
 
         _response_types_map = {
-            '200': "ConfigParameters",
+            '200': "DbParametersByType",
             '400': None,
             '401': None,
             '403': None,
@@ -2590,6 +3538,594 @@ class DatabasesApi(object):
 
         return self.api_client.call_api(
             '/api/v1/dbs/parameters', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @validate_arguments
+    def get_database_preset(self, preset_id : Annotated[Any, Field(..., description="ID тарифа")], **kwargs) -> GetDatabasePreset200Response:  # noqa: E501
+        """Получение тарифа для базы данных  # noqa: E501
+
+        Чтобы получить тариф для базы данных, отправьте GET-запрос на `/api/v2/dbs/presets/{preset_id}`.   Тело ответа будет представлять собой объект JSON с ключом `databases_preset`.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_database_preset(preset_id, async_req=True)
+        >>> result = thread.get()
+
+        :param preset_id: ID тарифа (required)
+        :type preset_id: object
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: GetDatabasePreset200Response
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            raise ValueError("Error! Please call the get_database_preset_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
+        return self.get_database_preset_with_http_info(preset_id, **kwargs)  # noqa: E501
+
+    @validate_arguments
+    def get_database_preset_with_http_info(self, preset_id : Annotated[Any, Field(..., description="ID тарифа")], **kwargs) -> ApiResponse:  # noqa: E501
+        """Получение тарифа для базы данных  # noqa: E501
+
+        Чтобы получить тариф для базы данных, отправьте GET-запрос на `/api/v2/dbs/presets/{preset_id}`.   Тело ответа будет представлять собой объект JSON с ключом `databases_preset`.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_database_preset_with_http_info(preset_id, async_req=True)
+        >>> result = thread.get()
+
+        :param preset_id: ID тарифа (required)
+        :type preset_id: object
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the 
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(GetDatabasePreset200Response, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'preset_id'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_database_preset" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['preset_id']:
+            _path_params['preset_id'] = _params['preset_id']
+
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = ['Bearer']  # noqa: E501
+
+        _response_types_map = {
+            '200': "GetDatabasePreset200Response",
+            '400': None,
+            '401': None,
+            '403': None,
+            '404': None,
+            '429': None,
+            '500': None,
+        }
+
+        return self.api_client.call_api(
+            '/api/v2/dbs/presets/{preset_id}', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @validate_arguments
+    def get_database_privileges(self, db_cluster_id : Annotated[Any, Field(..., description="ID кластера базы данных")], **kwargs) -> GetDatabasePrivileges200Response:  # noqa: E501
+        """Получение привилегий кластера базы данных  # noqa: E501
+
+        Чтобы получить список привилегий, которые можно выдать пользователям кластера базы данных, отправьте GET-запрос на `/api/v1/databases/{db_cluster_id}/privileges`.\\    Список зависит от типа СУБД кластера и определяется сервером автоматически: возвращаются только те привилегии, которые допустимы для этого кластера. Используйте его, чтобы заполнить поле `privileges` при <a href='#tag/Bazy-dannyh/operation/createDatabaseUser'>создании</a> или <a href='#tag/Bazy-dannyh/operation/updateDatabaseUser'>изменении</a> пользователя базы данных.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_database_privileges(db_cluster_id, async_req=True)
+        >>> result = thread.get()
+
+        :param db_cluster_id: ID кластера базы данных (required)
+        :type db_cluster_id: object
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: GetDatabasePrivileges200Response
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            raise ValueError("Error! Please call the get_database_privileges_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
+        return self.get_database_privileges_with_http_info(db_cluster_id, **kwargs)  # noqa: E501
+
+    @validate_arguments
+    def get_database_privileges_with_http_info(self, db_cluster_id : Annotated[Any, Field(..., description="ID кластера базы данных")], **kwargs) -> ApiResponse:  # noqa: E501
+        """Получение привилегий кластера базы данных  # noqa: E501
+
+        Чтобы получить список привилегий, которые можно выдать пользователям кластера базы данных, отправьте GET-запрос на `/api/v1/databases/{db_cluster_id}/privileges`.\\    Список зависит от типа СУБД кластера и определяется сервером автоматически: возвращаются только те привилегии, которые допустимы для этого кластера. Используйте его, чтобы заполнить поле `privileges` при <a href='#tag/Bazy-dannyh/operation/createDatabaseUser'>создании</a> или <a href='#tag/Bazy-dannyh/operation/updateDatabaseUser'>изменении</a> пользователя базы данных.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_database_privileges_with_http_info(db_cluster_id, async_req=True)
+        >>> result = thread.get()
+
+        :param db_cluster_id: ID кластера базы данных (required)
+        :type db_cluster_id: object
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the 
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(GetDatabasePrivileges200Response, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'db_cluster_id'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_database_privileges" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['db_cluster_id']:
+            _path_params['db_cluster_id'] = _params['db_cluster_id']
+
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = ['Bearer']  # noqa: E501
+
+        _response_types_map = {
+            '200': "GetDatabasePrivileges200Response",
+            '400': None,
+            '401': None,
+            '403': None,
+            '404': None,
+            '429': None,
+            '500': None,
+        }
+
+        return self.api_client.call_api(
+            '/api/v1/databases/{db_cluster_id}/privileges', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @validate_arguments
+    def get_database_s3_backup(self, db_id : Annotated[Any, Field(..., description="ID базы данных")], backup_id : Annotated[Any, Field(..., description="ID резервной копии в формате UUID")], **kwargs) -> CreateDatabaseS3Backup201Response:  # noqa: E501
+        """Получение S3-бэкапа базы данных  # noqa: E501
+
+        Чтобы получить информацию о резервной копии кластера базы данных в объектном хранилище, отправьте GET-запрос на `/api/v2/databases/{db_id}/backups/{backup_id}`.   Тело ответа будет представлять собой объект JSON с ключом `backup`. Обратите внимание, что `backup_id` здесь — строка в формате UUID, а не число, как в `/api/v1/dbs/{db_id}/backups/{backup_id}`.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_database_s3_backup(db_id, backup_id, async_req=True)
+        >>> result = thread.get()
+
+        :param db_id: ID базы данных (required)
+        :type db_id: object
+        :param backup_id: ID резервной копии в формате UUID (required)
+        :type backup_id: object
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: CreateDatabaseS3Backup201Response
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            raise ValueError("Error! Please call the get_database_s3_backup_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
+        return self.get_database_s3_backup_with_http_info(db_id, backup_id, **kwargs)  # noqa: E501
+
+    @validate_arguments
+    def get_database_s3_backup_with_http_info(self, db_id : Annotated[Any, Field(..., description="ID базы данных")], backup_id : Annotated[Any, Field(..., description="ID резервной копии в формате UUID")], **kwargs) -> ApiResponse:  # noqa: E501
+        """Получение S3-бэкапа базы данных  # noqa: E501
+
+        Чтобы получить информацию о резервной копии кластера базы данных в объектном хранилище, отправьте GET-запрос на `/api/v2/databases/{db_id}/backups/{backup_id}`.   Тело ответа будет представлять собой объект JSON с ключом `backup`. Обратите внимание, что `backup_id` здесь — строка в формате UUID, а не число, как в `/api/v1/dbs/{db_id}/backups/{backup_id}`.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_database_s3_backup_with_http_info(db_id, backup_id, async_req=True)
+        >>> result = thread.get()
+
+        :param db_id: ID базы данных (required)
+        :type db_id: object
+        :param backup_id: ID резервной копии в формате UUID (required)
+        :type backup_id: object
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the 
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(CreateDatabaseS3Backup201Response, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'db_id',
+            'backup_id'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_database_s3_backup" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['db_id']:
+            _path_params['db_id'] = _params['db_id']
+
+        if _params['backup_id']:
+            _path_params['backup_id'] = _params['backup_id']
+
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = ['Bearer']  # noqa: E501
+
+        _response_types_map = {
+            '200': "CreateDatabaseS3Backup201Response",
+            '400': None,
+            '401': None,
+            '403': None,
+            '404': None,
+            '429': None,
+            '500': None,
+        }
+
+        return self.api_client.call_api(
+            '/api/v2/databases/{db_id}/backups/{backup_id}', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @validate_arguments
+    def get_database_s3_backups(self, db_id : Annotated[Any, Field(..., description="ID базы данных")], **kwargs) -> GetDatabaseS3Backups200Response:  # noqa: E501
+        """Список S3-бэкапов базы данных  # noqa: E501
+
+        Чтобы получить список резервных копий кластера базы данных в объектном хранилище, отправьте GET-запрос на `/api/v2/databases/{db_id}/backups`.   Тело ответа будет представлять собой объект JSON с ключом `backups`. Копии отсортированы по дате создания по убыванию — сначала самые свежие.   Резервное копирование в объектное хранилище доступно для кластеров MySQL и PostgreSQL. Идентификатор такой копии — строка в формате UUID; это отдельный от `/api/v1/dbs/{db_id}/backups` механизм, и идентификаторы копий между ними не взаимозаменяемы.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_database_s3_backups(db_id, async_req=True)
+        >>> result = thread.get()
+
+        :param db_id: ID базы данных (required)
+        :type db_id: object
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: GetDatabaseS3Backups200Response
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            raise ValueError("Error! Please call the get_database_s3_backups_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
+        return self.get_database_s3_backups_with_http_info(db_id, **kwargs)  # noqa: E501
+
+    @validate_arguments
+    def get_database_s3_backups_with_http_info(self, db_id : Annotated[Any, Field(..., description="ID базы данных")], **kwargs) -> ApiResponse:  # noqa: E501
+        """Список S3-бэкапов базы данных  # noqa: E501
+
+        Чтобы получить список резервных копий кластера базы данных в объектном хранилище, отправьте GET-запрос на `/api/v2/databases/{db_id}/backups`.   Тело ответа будет представлять собой объект JSON с ключом `backups`. Копии отсортированы по дате создания по убыванию — сначала самые свежие.   Резервное копирование в объектное хранилище доступно для кластеров MySQL и PostgreSQL. Идентификатор такой копии — строка в формате UUID; это отдельный от `/api/v1/dbs/{db_id}/backups` механизм, и идентификаторы копий между ними не взаимозаменяемы.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_database_s3_backups_with_http_info(db_id, async_req=True)
+        >>> result = thread.get()
+
+        :param db_id: ID базы данных (required)
+        :type db_id: object
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the 
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(GetDatabaseS3Backups200Response, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'db_id'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_database_s3_backups" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['db_id']:
+            _path_params['db_id'] = _params['db_id']
+
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = ['Bearer']  # noqa: E501
+
+        _response_types_map = {
+            '200': "GetDatabaseS3Backups200Response",
+            '400': None,
+            '401': None,
+            '403': None,
+            '404': None,
+            '429': None,
+            '500': None,
+        }
+
+        return self.api_client.call_api(
+            '/api/v2/databases/{db_id}/backups', 'GET',
             _path_params,
             _query_params,
             _header_params,
@@ -2904,18 +4440,20 @@ class DatabasesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def get_databases_presets(self, db_id : Annotated[Optional[Any], Field(description="ID базы данных")] = None, **kwargs) -> GetDatabasesPresets200Response:  # noqa: E501
+    def get_databases_presets(self, cluster_id : Annotated[Optional[Any], Field(description="ID кластера базы данных. Возвращает тарифы группы, в пределах которой доступна смена тарифа этого кластера (сценарий изменения кластера).")] = None, with_unavailable : Annotated[Optional[Any], Field(description="Включить в ответ тарифы, недоступные к заказу из-за нехватки свободных ресурсов. Учитывается только при запросе без `cluster_id`: вместе с `cluster_id` фильтр по свободным ресурсам и так не применяется.")] = None, **kwargs) -> GetDatabasesPresets200Response:  # noqa: E501
         """Получение списка тарифов для баз данных  # noqa: E501
 
-        Чтобы получить список тарифов для баз данных, отправьте GET-запрос на `/api/v2/presets/dbs`.   Тело ответа будет представлять собой объект JSON с ключом `databases_presets`.  # noqa: E501
+        Чтобы получить список тарифов для баз данных, отправьте GET-запрос на `/api/v2/presets/dbs`.   Без параметров возвращаются тарифы, доступные к заказу — этот список используется при создании кластера. Если передать `cluster_id`, вернутся тарифы группы, в пределах которой можно сменить тариф указанного кластера.   Тело ответа будет представлять собой объект JSON с ключом `databases_presets`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.get_databases_presets(db_id, async_req=True)
+        >>> thread = api.get_databases_presets(cluster_id, with_unavailable, async_req=True)
         >>> result = thread.get()
 
-        :param db_id: ID базы данных
-        :type db_id: object
+        :param cluster_id: ID кластера базы данных. Возвращает тарифы группы, в пределах которой доступна смена тарифа этого кластера (сценарий изменения кластера).
+        :type cluster_id: object
+        :param with_unavailable: Включить в ответ тарифы, недоступные к заказу из-за нехватки свободных ресурсов. Учитывается только при запросе без `cluster_id`: вместе с `cluster_id` фильтр по свободным ресурсам и так не применяется.
+        :type with_unavailable: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request. If one
@@ -2930,21 +4468,23 @@ class DatabasesApi(object):
         kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             raise ValueError("Error! Please call the get_databases_presets_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
-        return self.get_databases_presets_with_http_info(db_id, **kwargs)  # noqa: E501
+        return self.get_databases_presets_with_http_info(cluster_id, with_unavailable, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def get_databases_presets_with_http_info(self, db_id : Annotated[Optional[Any], Field(description="ID базы данных")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def get_databases_presets_with_http_info(self, cluster_id : Annotated[Optional[Any], Field(description="ID кластера базы данных. Возвращает тарифы группы, в пределах которой доступна смена тарифа этого кластера (сценарий изменения кластера).")] = None, with_unavailable : Annotated[Optional[Any], Field(description="Включить в ответ тарифы, недоступные к заказу из-за нехватки свободных ресурсов. Учитывается только при запросе без `cluster_id`: вместе с `cluster_id` фильтр по свободным ресурсам и так не применяется.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Получение списка тарифов для баз данных  # noqa: E501
 
-        Чтобы получить список тарифов для баз данных, отправьте GET-запрос на `/api/v2/presets/dbs`.   Тело ответа будет представлять собой объект JSON с ключом `databases_presets`.  # noqa: E501
+        Чтобы получить список тарифов для баз данных, отправьте GET-запрос на `/api/v2/presets/dbs`.   Без параметров возвращаются тарифы, доступные к заказу — этот список используется при создании кластера. Если передать `cluster_id`, вернутся тарифы группы, в пределах которой можно сменить тариф указанного кластера.   Тело ответа будет представлять собой объект JSON с ключом `databases_presets`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.get_databases_presets_with_http_info(db_id, async_req=True)
+        >>> thread = api.get_databases_presets_with_http_info(cluster_id, with_unavailable, async_req=True)
         >>> result = thread.get()
 
-        :param db_id: ID базы данных
-        :type db_id: object
+        :param cluster_id: ID кластера базы данных. Возвращает тарифы группы, в пределах которой доступна смена тарифа этого кластера (сценарий изменения кластера).
+        :type cluster_id: object
+        :param with_unavailable: Включить в ответ тарифы, недоступные к заказу из-за нехватки свободных ресурсов. Учитывается только при запросе без `cluster_id`: вместе с `cluster_id` фильтр по свободным ресурсам и так не применяется.
+        :type with_unavailable: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
@@ -2973,7 +4513,8 @@ class DatabasesApi(object):
         _params = locals()
 
         _all_params = [
-            'db_id'
+            'cluster_id',
+            'with_unavailable'
         ]
         _all_params.extend(
             [
@@ -3004,8 +4545,11 @@ class DatabasesApi(object):
 
         # process the query parameters
         _query_params = []
-        if _params.get('db_id') is not None:  # noqa: E501
-            _query_params.append(('db_id', _params['db_id']))
+        if _params.get('cluster_id') is not None:  # noqa: E501
+            _query_params.append(('cluster_id', _params['cluster_id']))
+
+        if _params.get('with_unavailable') is not None:  # noqa: E501
+            _query_params.append(('with_unavailable', _params['with_unavailable']))
 
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
@@ -3033,6 +4577,154 @@ class DatabasesApi(object):
 
         return self.api_client.call_api(
             '/api/v2/presets/dbs', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @validate_arguments
+    def perform_database_cluster_action(self, db_cluster_id : Annotated[Any, Field(..., description="ID кластера базы данных")], cluster_action : ClusterAction, **kwargs) -> None:  # noqa: E501
+        """Выполнение действия над кластером базы данных  # noqa: E501
+
+        Чтобы выполнить действие над кластером базы данных, отправьте POST-запрос на `/api/v1/databases/{db_cluster_id}/action`.   Доступные действия: `reboot` — перезагрузка кластера, `shutdown` — выключение кластера, `start` — включение кластера.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.perform_database_cluster_action(db_cluster_id, cluster_action, async_req=True)
+        >>> result = thread.get()
+
+        :param db_cluster_id: ID кластера базы данных (required)
+        :type db_cluster_id: object
+        :param cluster_action: (required)
+        :type cluster_action: ClusterAction
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: None
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            raise ValueError("Error! Please call the perform_database_cluster_action_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
+        return self.perform_database_cluster_action_with_http_info(db_cluster_id, cluster_action, **kwargs)  # noqa: E501
+
+    @validate_arguments
+    def perform_database_cluster_action_with_http_info(self, db_cluster_id : Annotated[Any, Field(..., description="ID кластера базы данных")], cluster_action : ClusterAction, **kwargs) -> ApiResponse:  # noqa: E501
+        """Выполнение действия над кластером базы данных  # noqa: E501
+
+        Чтобы выполнить действие над кластером базы данных, отправьте POST-запрос на `/api/v1/databases/{db_cluster_id}/action`.   Доступные действия: `reboot` — перезагрузка кластера, `shutdown` — выключение кластера, `start` — включение кластера.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.perform_database_cluster_action_with_http_info(db_cluster_id, cluster_action, async_req=True)
+        >>> result = thread.get()
+
+        :param db_cluster_id: ID кластера базы данных (required)
+        :type db_cluster_id: object
+        :param cluster_action: (required)
+        :type cluster_action: ClusterAction
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the 
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: None
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'db_cluster_id',
+            'cluster_action'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method perform_database_cluster_action" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['db_cluster_id']:
+            _path_params['db_cluster_id'] = _params['db_cluster_id']
+
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        if _params['cluster_action'] is not None:
+            _body_params = _params['cluster_action']
+
+        # set the HTTP header `Content-Type`
+        _content_types_list = _params.get('_content_type',
+            self.api_client.select_header_content_type(
+                ['application/json']))
+        if _content_types_list:
+                _header_params['Content-Type'] = _content_types_list
+
+        # authentication setting
+        _auth_settings = ['Bearer']  # noqa: E501
+
+        _response_types_map = {}
+
+        return self.api_client.call_api(
+            '/api/v1/databases/{db_cluster_id}/action', 'POST',
             _path_params,
             _query_params,
             _header_params,
@@ -3194,20 +4886,165 @@ class DatabasesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def update_database_auto_backups_settings(self, db_id : Annotated[Any, Field(..., description="ID базы данных")], auto_backup : Annotated[Optional[AutoBackup], Field(description="При значении `is_enabled`: `true`, поля `copy_count`, `creation_start_at`, `interval` являются обязательными")] = None, **kwargs) -> GetDatabaseAutoBackupsSettings200Response:  # noqa: E501
+    def restore_database_from_s3_backup(self, db_id : Annotated[Any, Field(..., description="ID базы данных")], backup_id : Annotated[Any, Field(..., description="ID резервной копии в формате UUID")], **kwargs) -> None:  # noqa: E501
+        """Восстановление базы данных из S3-бэкапа  # noqa: E501
+
+        Чтобы восстановить кластер базы данных из резервной копии в объектном хранилище, отправьте POST-запрос на `/api/v2/databases/{db_id}/backups/{backup_id}/restore`.   Тела запроса нет, тело ответа пустое. Восстановиться можно только из копии со статусом `success`.   Сразу после запуска кластер переходит в статус `backup_recovery`. Пока восстановление не завершится, создание, изменение и удаление резервных копий, а также повторный запуск восстановления недоступны.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.restore_database_from_s3_backup(db_id, backup_id, async_req=True)
+        >>> result = thread.get()
+
+        :param db_id: ID базы данных (required)
+        :type db_id: object
+        :param backup_id: ID резервной копии в формате UUID (required)
+        :type backup_id: object
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: None
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            raise ValueError("Error! Please call the restore_database_from_s3_backup_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
+        return self.restore_database_from_s3_backup_with_http_info(db_id, backup_id, **kwargs)  # noqa: E501
+
+    @validate_arguments
+    def restore_database_from_s3_backup_with_http_info(self, db_id : Annotated[Any, Field(..., description="ID базы данных")], backup_id : Annotated[Any, Field(..., description="ID резервной копии в формате UUID")], **kwargs) -> ApiResponse:  # noqa: E501
+        """Восстановление базы данных из S3-бэкапа  # noqa: E501
+
+        Чтобы восстановить кластер базы данных из резервной копии в объектном хранилище, отправьте POST-запрос на `/api/v2/databases/{db_id}/backups/{backup_id}/restore`.   Тела запроса нет, тело ответа пустое. Восстановиться можно только из копии со статусом `success`.   Сразу после запуска кластер переходит в статус `backup_recovery`. Пока восстановление не завершится, создание, изменение и удаление резервных копий, а также повторный запуск восстановления недоступны.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.restore_database_from_s3_backup_with_http_info(db_id, backup_id, async_req=True)
+        >>> result = thread.get()
+
+        :param db_id: ID базы данных (required)
+        :type db_id: object
+        :param backup_id: ID резервной копии в формате UUID (required)
+        :type backup_id: object
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the 
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: None
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'db_id',
+            'backup_id'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method restore_database_from_s3_backup" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['db_id']:
+            _path_params['db_id'] = _params['db_id']
+
+        if _params['backup_id']:
+            _path_params['backup_id'] = _params['backup_id']
+
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = ['Bearer']  # noqa: E501
+
+        _response_types_map = {}
+
+        return self.api_client.call_api(
+            '/api/v2/databases/{db_id}/backups/{backup_id}/restore', 'POST',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @validate_arguments
+    def update_database_auto_backups_settings(self, db_id : Annotated[Any, Field(..., description="ID базы данных")], update_auto_backup : Annotated[UpdateAutoBackup, Field(..., description="При значении `is_enabled`: `true`, поля `copy_count`, `creation_start_at`, `interval` являются обязательными")], **kwargs) -> GetDatabaseAutoBackupsSettings200Response:  # noqa: E501
         """Изменение настроек автобэкапов базы данных  # noqa: E501
 
         Чтобы изменить список настроек автобэкапов базы данных, отправьте запрос PATCH в `api/v1/dbs/{db_id}/auto-backups`  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.update_database_auto_backups_settings(db_id, auto_backup, async_req=True)
+        >>> thread = api.update_database_auto_backups_settings(db_id, update_auto_backup, async_req=True)
         >>> result = thread.get()
 
         :param db_id: ID базы данных (required)
         :type db_id: object
-        :param auto_backup: При значении `is_enabled`: `true`, поля `copy_count`, `creation_start_at`, `interval` являются обязательными
-        :type auto_backup: AutoBackup
+        :param update_auto_backup: При значении `is_enabled`: `true`, поля `copy_count`, `creation_start_at`, `interval` являются обязательными (required)
+        :type update_auto_backup: UpdateAutoBackup
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request. If one
@@ -3222,23 +5059,23 @@ class DatabasesApi(object):
         kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             raise ValueError("Error! Please call the update_database_auto_backups_settings_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
-        return self.update_database_auto_backups_settings_with_http_info(db_id, auto_backup, **kwargs)  # noqa: E501
+        return self.update_database_auto_backups_settings_with_http_info(db_id, update_auto_backup, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def update_database_auto_backups_settings_with_http_info(self, db_id : Annotated[Any, Field(..., description="ID базы данных")], auto_backup : Annotated[Optional[AutoBackup], Field(description="При значении `is_enabled`: `true`, поля `copy_count`, `creation_start_at`, `interval` являются обязательными")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def update_database_auto_backups_settings_with_http_info(self, db_id : Annotated[Any, Field(..., description="ID базы данных")], update_auto_backup : Annotated[UpdateAutoBackup, Field(..., description="При значении `is_enabled`: `true`, поля `copy_count`, `creation_start_at`, `interval` являются обязательными")], **kwargs) -> ApiResponse:  # noqa: E501
         """Изменение настроек автобэкапов базы данных  # noqa: E501
 
         Чтобы изменить список настроек автобэкапов базы данных, отправьте запрос PATCH в `api/v1/dbs/{db_id}/auto-backups`  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.update_database_auto_backups_settings_with_http_info(db_id, auto_backup, async_req=True)
+        >>> thread = api.update_database_auto_backups_settings_with_http_info(db_id, update_auto_backup, async_req=True)
         >>> result = thread.get()
 
         :param db_id: ID базы данных (required)
         :type db_id: object
-        :param auto_backup: При значении `is_enabled`: `true`, поля `copy_count`, `creation_start_at`, `interval` являются обязательными
-        :type auto_backup: AutoBackup
+        :param update_auto_backup: При значении `is_enabled`: `true`, поля `copy_count`, `creation_start_at`, `interval` являются обязательными (required)
+        :type update_auto_backup: UpdateAutoBackup
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
@@ -3268,7 +5105,7 @@ class DatabasesApi(object):
 
         _all_params = [
             'db_id',
-            'auto_backup'
+            'update_auto_backup'
         ]
         _all_params.extend(
             [
@@ -3309,8 +5146,8 @@ class DatabasesApi(object):
         _files = {}
         # process the body parameter
         _body_params = None
-        if _params['auto_backup'] is not None:
-            _body_params = _params['auto_backup']
+        if _params['update_auto_backup'] is not None:
+            _body_params = _params['update_auto_backup']
 
         # set the HTTP header `Accept`
         _header_params['Accept'] = self.api_client.select_header_accept(
@@ -3332,6 +5169,7 @@ class DatabasesApi(object):
             '401': None,
             '403': None,
             '404': None,
+            '409': None,
             '429': None,
             '500': None,
         }
@@ -3354,10 +5192,179 @@ class DatabasesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def update_database_cluster(self, db_cluster_id : Annotated[Any, Field(..., description="ID кластера базы данных")], update_cluster : UpdateCluster, **kwargs) -> CreateDatabaseCluster201Response:  # noqa: E501
+    def update_database_backup(self, db_id : Annotated[Any, Field(..., description="ID базы данных")], backup_id : Annotated[Any, Field(..., description="ID резервной копии")], dbs_update_backup : DbsUpdateBackup, **kwargs) -> GetDatabaseBackup200Response:  # noqa: E501
+        """Изменение комментария к бэкапу базы данных  # noqa: E501
+
+        Чтобы изменить комментарий к бэкапу базы данных, отправьте PATCH-запрос на `/api/v1/dbs/{db_id}/backups/{backup_id}`.  Тело ответа будет представлять собой объект JSON с ключом `backup`.   # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.update_database_backup(db_id, backup_id, dbs_update_backup, async_req=True)
+        >>> result = thread.get()
+
+        :param db_id: ID базы данных (required)
+        :type db_id: object
+        :param backup_id: ID резервной копии (required)
+        :type backup_id: object
+        :param dbs_update_backup: (required)
+        :type dbs_update_backup: DbsUpdateBackup
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: GetDatabaseBackup200Response
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            raise ValueError("Error! Please call the update_database_backup_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
+        return self.update_database_backup_with_http_info(db_id, backup_id, dbs_update_backup, **kwargs)  # noqa: E501
+
+    @validate_arguments
+    def update_database_backup_with_http_info(self, db_id : Annotated[Any, Field(..., description="ID базы данных")], backup_id : Annotated[Any, Field(..., description="ID резервной копии")], dbs_update_backup : DbsUpdateBackup, **kwargs) -> ApiResponse:  # noqa: E501
+        """Изменение комментария к бэкапу базы данных  # noqa: E501
+
+        Чтобы изменить комментарий к бэкапу базы данных, отправьте PATCH-запрос на `/api/v1/dbs/{db_id}/backups/{backup_id}`.  Тело ответа будет представлять собой объект JSON с ключом `backup`.   # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.update_database_backup_with_http_info(db_id, backup_id, dbs_update_backup, async_req=True)
+        >>> result = thread.get()
+
+        :param db_id: ID базы данных (required)
+        :type db_id: object
+        :param backup_id: ID резервной копии (required)
+        :type backup_id: object
+        :param dbs_update_backup: (required)
+        :type dbs_update_backup: DbsUpdateBackup
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the 
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(GetDatabaseBackup200Response, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'db_id',
+            'backup_id',
+            'dbs_update_backup'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method update_database_backup" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['db_id']:
+            _path_params['db_id'] = _params['db_id']
+
+        if _params['backup_id']:
+            _path_params['backup_id'] = _params['backup_id']
+
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        if _params['dbs_update_backup'] is not None:
+            _body_params = _params['dbs_update_backup']
+
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # set the HTTP header `Content-Type`
+        _content_types_list = _params.get('_content_type',
+            self.api_client.select_header_content_type(
+                ['application/json']))
+        if _content_types_list:
+                _header_params['Content-Type'] = _content_types_list
+
+        # authentication setting
+        _auth_settings = ['Bearer']  # noqa: E501
+
+        _response_types_map = {
+            '200': "GetDatabaseBackup200Response",
+            '400': None,
+            '401': None,
+            '403': None,
+            '404': None,
+            '409': None,
+            '429': None,
+            '500': None,
+        }
+
+        return self.api_client.call_api(
+            '/api/v1/dbs/{db_id}/backups/{backup_id}', 'PATCH',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @validate_arguments
+    def update_database_cluster(self, db_cluster_id : Annotated[Any, Field(..., description="ID кластера базы данных")], update_cluster : UpdateCluster, **kwargs) -> UpdateDatabaseCluster200Response:  # noqa: E501
         """Изменение кластера базы данных  # noqa: E501
 
-        Чтобы изменить кластер базы данных на вашем аккаунте, отправьте PATCH-запрос на `/api/v1/databases/{db_cluster_id}`.  # noqa: E501
+        Чтобы изменить кластер базы данных на вашем аккаунте, отправьте PATCH-запрос на `/api/v1/databases/{db_cluster_id}`.   Размер кластера задается либо тарифом (`preset_id`), либо конфигуратором (`configuration`) — эти поля взаимоисключающие.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -3377,7 +5384,7 @@ class DatabasesApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: CreateDatabaseCluster201Response
+        :rtype: UpdateDatabaseCluster200Response
         """
         kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
@@ -3388,7 +5395,7 @@ class DatabasesApi(object):
     def update_database_cluster_with_http_info(self, db_cluster_id : Annotated[Any, Field(..., description="ID кластера базы данных")], update_cluster : UpdateCluster, **kwargs) -> ApiResponse:  # noqa: E501
         """Изменение кластера базы данных  # noqa: E501
 
-        Чтобы изменить кластер базы данных на вашем аккаунте, отправьте PATCH-запрос на `/api/v1/databases/{db_cluster_id}`.  # noqa: E501
+        Чтобы изменить кластер базы данных на вашем аккаунте, отправьте PATCH-запрос на `/api/v1/databases/{db_cluster_id}`.   Размер кластера задается либо тарифом (`preset_id`), либо конфигуратором (`configuration`) — эти поля взаимоисключающие.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -3421,7 +5428,7 @@ class DatabasesApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: tuple(CreateDatabaseCluster201Response, status_code(int), headers(HTTPHeaderDict))
+        :rtype: tuple(UpdateDatabaseCluster200Response, status_code(int), headers(HTTPHeaderDict))
         """
 
         _params = locals()
@@ -3487,7 +5494,7 @@ class DatabasesApi(object):
         _auth_settings = ['Bearer']  # noqa: E501
 
         _response_types_map = {
-            '200': "CreateDatabaseCluster201Response",
+            '200': "UpdateDatabaseCluster200Response",
             '400': None,
             '401': None,
             '403': None,
@@ -3514,18 +5521,180 @@ class DatabasesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def update_database_instance(self, db_cluster_id : Annotated[Any, Field(..., description="ID кластера базы данных")], update_instance : UpdateInstance, **kwargs) -> CreateDatabaseInstance201Response:  # noqa: E501
-        """Изменение инстанса базы данных  # noqa: E501
+    def update_database_cluster_v2(self, db_cluster_id : Annotated[Any, Field(..., description="ID кластера базы данных")], update_cluster_v2 : UpdateClusterV2, **kwargs) -> UpdateDatabaseCluster200Response:  # noqa: E501
+        """Изменение кластера базы данных (v2)  # noqa: E501
 
-        Чтобы изменить инстанс базы данных, отправьте PATCH-запрос на `/api/v1/databases/{db_cluster_id}/instances/{instance_id}`.  # noqa: E501
+        Чтобы изменить кластер базы данных на вашем аккаунте, отправьте PATCH-запрос на `/api/v2/databases/{db_cluster_id}`.   В отличие от `/api/v1/databases/{db_cluster_id}`, эта версия дополнительно позволяет привязать плавающий IP-адрес (`floating_ip`).   Размер кластера задается либо тарифом (`preset_id`), либо конфигуратором (`configuration`) — эти поля взаимоисключающие.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.update_database_instance(db_cluster_id, update_instance, async_req=True)
+        >>> thread = api.update_database_cluster_v2(db_cluster_id, update_cluster_v2, async_req=True)
         >>> result = thread.get()
 
         :param db_cluster_id: ID кластера базы данных (required)
         :type db_cluster_id: object
+        :param update_cluster_v2: (required)
+        :type update_cluster_v2: UpdateClusterV2
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: UpdateDatabaseCluster200Response
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            raise ValueError("Error! Please call the update_database_cluster_v2_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
+        return self.update_database_cluster_v2_with_http_info(db_cluster_id, update_cluster_v2, **kwargs)  # noqa: E501
+
+    @validate_arguments
+    def update_database_cluster_v2_with_http_info(self, db_cluster_id : Annotated[Any, Field(..., description="ID кластера базы данных")], update_cluster_v2 : UpdateClusterV2, **kwargs) -> ApiResponse:  # noqa: E501
+        """Изменение кластера базы данных (v2)  # noqa: E501
+
+        Чтобы изменить кластер базы данных на вашем аккаунте, отправьте PATCH-запрос на `/api/v2/databases/{db_cluster_id}`.   В отличие от `/api/v1/databases/{db_cluster_id}`, эта версия дополнительно позволяет привязать плавающий IP-адрес (`floating_ip`).   Размер кластера задается либо тарифом (`preset_id`), либо конфигуратором (`configuration`) — эти поля взаимоисключающие.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.update_database_cluster_v2_with_http_info(db_cluster_id, update_cluster_v2, async_req=True)
+        >>> result = thread.get()
+
+        :param db_cluster_id: ID кластера базы данных (required)
+        :type db_cluster_id: object
+        :param update_cluster_v2: (required)
+        :type update_cluster_v2: UpdateClusterV2
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the 
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(UpdateDatabaseCluster200Response, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'db_cluster_id',
+            'update_cluster_v2'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method update_database_cluster_v2" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['db_cluster_id']:
+            _path_params['db_cluster_id'] = _params['db_cluster_id']
+
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        if _params['update_cluster_v2'] is not None:
+            _body_params = _params['update_cluster_v2']
+
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # set the HTTP header `Content-Type`
+        _content_types_list = _params.get('_content_type',
+            self.api_client.select_header_content_type(
+                ['application/json']))
+        if _content_types_list:
+                _header_params['Content-Type'] = _content_types_list
+
+        # authentication setting
+        _auth_settings = ['Bearer']  # noqa: E501
+
+        _response_types_map = {
+            '200': "UpdateDatabaseCluster200Response",
+            '400': None,
+            '401': None,
+            '403': None,
+            '404': None,
+            '429': None,
+            '500': None,
+        }
+
+        return self.api_client.call_api(
+            '/api/v2/databases/{db_cluster_id}', 'PATCH',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @validate_arguments
+    def update_database_instance(self, db_cluster_id : Annotated[Any, Field(..., description="ID кластера базы данных")], instance_id : Annotated[Any, Field(..., description="ID инстанса базы данных")], update_instance : UpdateInstance, **kwargs) -> CreateDatabaseInstance201Response:  # noqa: E501
+        """Изменение инстанса базы данных  # noqa: E501
+
+        Чтобы изменить инстанс базы данных, отправьте PATCH-запрос на `/api/v1/databases/{db_cluster_id}/instances/{instance_id}`.   Изменить название базы данных (`name`) и ее владельца (`owner_id`) можно только в кластере PostgreSQL, а настройки топика (`config_parameters`) — только в кластере Kafka. Если один из этих трех параметров передан для неподходящего типа кластера, запрос вернется с ошибкой 409.   Расширения (`extensions`) применимы к кластерам PostgreSQL и RabbitMQ.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.update_database_instance(db_cluster_id, instance_id, update_instance, async_req=True)
+        >>> result = thread.get()
+
+        :param db_cluster_id: ID кластера базы данных (required)
+        :type db_cluster_id: object
+        :param instance_id: ID инстанса базы данных (required)
+        :type instance_id: object
         :param update_instance: (required)
         :type update_instance: UpdateInstance
         :param async_req: Whether to execute the request asynchronously.
@@ -3542,21 +5711,23 @@ class DatabasesApi(object):
         kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             raise ValueError("Error! Please call the update_database_instance_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
-        return self.update_database_instance_with_http_info(db_cluster_id, update_instance, **kwargs)  # noqa: E501
+        return self.update_database_instance_with_http_info(db_cluster_id, instance_id, update_instance, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def update_database_instance_with_http_info(self, db_cluster_id : Annotated[Any, Field(..., description="ID кластера базы данных")], update_instance : UpdateInstance, **kwargs) -> ApiResponse:  # noqa: E501
+    def update_database_instance_with_http_info(self, db_cluster_id : Annotated[Any, Field(..., description="ID кластера базы данных")], instance_id : Annotated[Any, Field(..., description="ID инстанса базы данных")], update_instance : UpdateInstance, **kwargs) -> ApiResponse:  # noqa: E501
         """Изменение инстанса базы данных  # noqa: E501
 
-        Чтобы изменить инстанс базы данных, отправьте PATCH-запрос на `/api/v1/databases/{db_cluster_id}/instances/{instance_id}`.  # noqa: E501
+        Чтобы изменить инстанс базы данных, отправьте PATCH-запрос на `/api/v1/databases/{db_cluster_id}/instances/{instance_id}`.   Изменить название базы данных (`name`) и ее владельца (`owner_id`) можно только в кластере PostgreSQL, а настройки топика (`config_parameters`) — только в кластере Kafka. Если один из этих трех параметров передан для неподходящего типа кластера, запрос вернется с ошибкой 409.   Расширения (`extensions`) применимы к кластерам PostgreSQL и RabbitMQ.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.update_database_instance_with_http_info(db_cluster_id, update_instance, async_req=True)
+        >>> thread = api.update_database_instance_with_http_info(db_cluster_id, instance_id, update_instance, async_req=True)
         >>> result = thread.get()
 
         :param db_cluster_id: ID кластера базы данных (required)
         :type db_cluster_id: object
+        :param instance_id: ID инстанса базы данных (required)
+        :type instance_id: object
         :param update_instance: (required)
         :type update_instance: UpdateInstance
         :param async_req: Whether to execute the request asynchronously.
@@ -3588,6 +5759,7 @@ class DatabasesApi(object):
 
         _all_params = [
             'db_cluster_id',
+            'instance_id',
             'update_instance'
         ]
         _all_params.extend(
@@ -3618,6 +5790,9 @@ class DatabasesApi(object):
         _path_params = {}
         if _params['db_cluster_id']:
             _path_params['db_cluster_id'] = _params['db_cluster_id']
+
+        if _params['instance_id']:
+            _path_params['instance_id'] = _params['instance_id']
 
 
         # process the query parameters
@@ -3652,12 +5827,182 @@ class DatabasesApi(object):
             '401': None,
             '403': None,
             '404': None,
+            '409': None,
             '429': None,
             '500': None,
         }
 
         return self.api_client.call_api(
             '/api/v1/databases/{db_cluster_id}/instances/{instance_id}', 'PATCH',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @validate_arguments
+    def update_database_s3_backup(self, db_id : Annotated[Any, Field(..., description="ID базы данных")], backup_id : Annotated[Any, Field(..., description="ID резервной копии в формате UUID")], update_s3_backup : Optional[UpdateS3Backup] = None, **kwargs) -> CreateDatabaseS3Backup201Response:  # noqa: E501
+        """Изменение комментария S3-бэкапа базы данных  # noqa: E501
+
+        Чтобы изменить комментарий к резервной копии кластера базы данных, отправьте PATCH-запрос на `/api/v2/databases/{db_id}/backups/{backup_id}`.   Изменить можно только комментарий: других полей метод не принимает, сама резервная копия при этом не пересоздается. Тело ответа будет представлять собой объект JSON с ключом `backup`.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.update_database_s3_backup(db_id, backup_id, update_s3_backup, async_req=True)
+        >>> result = thread.get()
+
+        :param db_id: ID базы данных (required)
+        :type db_id: object
+        :param backup_id: ID резервной копии в формате UUID (required)
+        :type backup_id: object
+        :param update_s3_backup:
+        :type update_s3_backup: UpdateS3Backup
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: CreateDatabaseS3Backup201Response
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            raise ValueError("Error! Please call the update_database_s3_backup_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
+        return self.update_database_s3_backup_with_http_info(db_id, backup_id, update_s3_backup, **kwargs)  # noqa: E501
+
+    @validate_arguments
+    def update_database_s3_backup_with_http_info(self, db_id : Annotated[Any, Field(..., description="ID базы данных")], backup_id : Annotated[Any, Field(..., description="ID резервной копии в формате UUID")], update_s3_backup : Optional[UpdateS3Backup] = None, **kwargs) -> ApiResponse:  # noqa: E501
+        """Изменение комментария S3-бэкапа базы данных  # noqa: E501
+
+        Чтобы изменить комментарий к резервной копии кластера базы данных, отправьте PATCH-запрос на `/api/v2/databases/{db_id}/backups/{backup_id}`.   Изменить можно только комментарий: других полей метод не принимает, сама резервная копия при этом не пересоздается. Тело ответа будет представлять собой объект JSON с ключом `backup`.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.update_database_s3_backup_with_http_info(db_id, backup_id, update_s3_backup, async_req=True)
+        >>> result = thread.get()
+
+        :param db_id: ID базы данных (required)
+        :type db_id: object
+        :param backup_id: ID резервной копии в формате UUID (required)
+        :type backup_id: object
+        :param update_s3_backup:
+        :type update_s3_backup: UpdateS3Backup
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the 
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(CreateDatabaseS3Backup201Response, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'db_id',
+            'backup_id',
+            'update_s3_backup'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method update_database_s3_backup" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['db_id']:
+            _path_params['db_id'] = _params['db_id']
+
+        if _params['backup_id']:
+            _path_params['backup_id'] = _params['backup_id']
+
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        if _params['update_s3_backup'] is not None:
+            _body_params = _params['update_s3_backup']
+
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # set the HTTP header `Content-Type`
+        _content_types_list = _params.get('_content_type',
+            self.api_client.select_header_content_type(
+                ['application/json']))
+        if _content_types_list:
+                _header_params['Content-Type'] = _content_types_list
+
+        # authentication setting
+        _auth_settings = ['Bearer']  # noqa: E501
+
+        _response_types_map = {
+            '200': "CreateDatabaseS3Backup201Response",
+            '400': None,
+            '401': None,
+            '403': None,
+            '404': None,
+            '409': None,
+            '429': None,
+            '500': None,
+        }
+
+        return self.api_client.call_api(
+            '/api/v2/databases/{db_id}/backups/{backup_id}', 'PATCH',
             _path_params,
             _query_params,
             _header_params,

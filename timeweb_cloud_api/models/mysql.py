@@ -42,8 +42,9 @@ class Mysql(BaseModel):
     max_allowed_packet: Optional[Any] = Field(None, description="Максимальный размер пакета данных, который может передаваться между клиентом и сервером (`mysql5` | `mysql` | `mysql8_4`).")
     max_heap_table_size: Optional[Any] = Field(None, description="Максимальный размер таблиц типа MEMORY (`mysql5` | `mysql` | `mysql8_4`).")
     sql_mode: Optional[Any] = Field(None, description="Режим работы SQL сервера, определяющий поведение обработки запросов (`mysql5` | `mysql` | `mysql8_4`).")
-    query_cache_type: Optional[Any] = Field(None, description="Тип кэша запросов (`mysql5` | `mysql` | `mysql8_4`).")
-    query_cache_size: Optional[Any] = Field(None, description="Объем памяти, выделяемый для кэширования результатов запросов (`mysql5` | `mysql` | `mysql8_4`).")
+    query_cache_type: Optional[Any] = Field(None, description="Тип кэша запросов (`mysql5`).")
+    query_cache_size: Optional[Any] = Field(None, description="Объем памяти, выделяемый для кэширования результатов запросов (`mysql5`).")
+    query_cache_limit: Optional[Any] = Field(None, description="Максимальный размер результата запроса, который может быть закэширован (`mysql5`).")
     innodb_flush_log_at_trx_commit: Optional[Any] = Field(None, description="Режим записи журнала InnoDB при фиксации транзакций (`mysql5` | `mysql` | `mysql8_4`).")
     transaction_isolation: Optional[Any] = Field(None, description="Уровень изоляции транзакций по умолчанию (`mysql5` | `mysql` | `mysql8_4`).")
     long_query_time: Optional[Any] = Field(None, description="Время выполнения запроса, после которого он считается долгим и может попасть в slow query log (`mysql5` | `mysql` | `mysql8_4`).")
@@ -75,7 +76,7 @@ class Mysql(BaseModel):
     interactive_timeout: Optional[Any] = Field(None, description="Время ожидания неактивного интерактивного соединения перед закрытием (`mysql5` | `mysql` | `mysql8_4`).")
     default_time_zone: Optional[Any] = Field(None, alias="default-time-zone", description="Часовой пояс сервера MySQL по умолчанию (`mysql5` | `mysql` | `mysql8_4`).")
     pxc_strict_mode: Optional[Any] = Field(None, description="Режим строгой проверки операций в Percona XtraDB Cluster (`mysql5` | `mysql` | `mysql8_4`).")
-    __properties = ["join_buffer_size", "max_connections", "sort_buffer_size", "thread_cache_size", "innodb_buffer_pool_size", "auto_increment_increment", "auto_increment_offset", "innodb_io_capacity", "innodb_purge_threads", "innodb_read_io_threads", "innodb_thread_concurrency", "innodb_write_io_threads", "innodb_log_file_size", "max_allowed_packet", "max_heap_table_size", "sql_mode", "query_cache_type", "query_cache_size", "innodb_flush_log_at_trx_commit", "transaction_isolation", "long_query_time", "tmp_table_size", "table_open_cache", "table_open_cache_instances", "innodb_flush_method", "innodb_strict_mode", "slow_query_log", "binlog_cache_size", "binlog_group_commit_sync_delay", "binlog_row_image", "binlog_rows_query_log_events", "character_set_server", "explicit_defaults_for_timestamp", "group_concat_max_len", "innodb_adaptive_hash_index", "innodb_lock_wait_timeout", "innodb_numa_interleave", "net_read_timeout", "net_write_timeout", "regexp_time_limit", "sync_binlog", "table_definition_cache", "log_bin_trust_function_creators", "skip_name_resolve", "innodb_redo_log_capacity", "wait_timeout", "interactive_timeout", "default-time-zone", "pxc_strict_mode"]
+    __properties = ["join_buffer_size", "max_connections", "sort_buffer_size", "thread_cache_size", "innodb_buffer_pool_size", "auto_increment_increment", "auto_increment_offset", "innodb_io_capacity", "innodb_purge_threads", "innodb_read_io_threads", "innodb_thread_concurrency", "innodb_write_io_threads", "innodb_log_file_size", "max_allowed_packet", "max_heap_table_size", "sql_mode", "query_cache_type", "query_cache_size", "query_cache_limit", "innodb_flush_log_at_trx_commit", "transaction_isolation", "long_query_time", "tmp_table_size", "table_open_cache", "table_open_cache_instances", "innodb_flush_method", "innodb_strict_mode", "slow_query_log", "binlog_cache_size", "binlog_group_commit_sync_delay", "binlog_row_image", "binlog_rows_query_log_events", "character_set_server", "explicit_defaults_for_timestamp", "group_concat_max_len", "innodb_adaptive_hash_index", "innodb_lock_wait_timeout", "innodb_numa_interleave", "net_read_timeout", "net_write_timeout", "regexp_time_limit", "sync_binlog", "table_definition_cache", "log_bin_trust_function_creators", "skip_name_resolve", "innodb_redo_log_capacity", "wait_timeout", "interactive_timeout", "default-time-zone", "pxc_strict_mode"]
 
     class Config:
         """Pydantic configuration"""
@@ -190,6 +191,11 @@ class Mysql(BaseModel):
         # and __fields_set__ contains the field
         if self.query_cache_size is None and "query_cache_size" in self.__fields_set__:
             _dict['query_cache_size'] = None
+
+        # set to None if query_cache_limit (nullable) is None
+        # and __fields_set__ contains the field
+        if self.query_cache_limit is None and "query_cache_limit" in self.__fields_set__:
+            _dict['query_cache_limit'] = None
 
         # set to None if innodb_flush_log_at_trx_commit (nullable) is None
         # and __fields_set__ contains the field
@@ -376,6 +382,7 @@ class Mysql(BaseModel):
             "sql_mode": obj.get("sql_mode"),
             "query_cache_type": obj.get("query_cache_type"),
             "query_cache_size": obj.get("query_cache_size"),
+            "query_cache_limit": obj.get("query_cache_limit"),
             "innodb_flush_log_at_trx_commit": obj.get("innodb_flush_log_at_trx_commit"),
             "transaction_isolation": obj.get("transaction_isolation"),
             "long_query_time": obj.get("long_query_time"),

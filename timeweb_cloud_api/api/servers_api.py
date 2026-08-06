@@ -36,10 +36,10 @@ from timeweb_cloud_api.models.create_server_disk_request import CreateServerDisk
 from timeweb_cloud_api.models.delete_server200_response import DeleteServer200Response
 from timeweb_cloud_api.models.delete_server_ip_request import DeleteServerIPRequest
 from timeweb_cloud_api.models.get_configurators200_response import GetConfigurators200Response
+from timeweb_cloud_api.models.get_database_auto_backups_settings200_response import GetDatabaseAutoBackupsSettings200Response
 from timeweb_cloud_api.models.get_os_list200_response import GetOsList200Response
 from timeweb_cloud_api.models.get_restore_point200_response import GetRestorePoint200Response
 from timeweb_cloud_api.models.get_restore_points200_response import GetRestorePoints200Response
-from timeweb_cloud_api.models.get_server_disk_auto_backup_settings200_response import GetServerDiskAutoBackupSettings200Response
 from timeweb_cloud_api.models.get_server_disk_backup200_response import GetServerDiskBackup200Response
 from timeweb_cloud_api.models.get_server_disk_backups200_response import GetServerDiskBackups200Response
 from timeweb_cloud_api.models.get_server_disks200_response import GetServerDisks200Response
@@ -2610,7 +2610,7 @@ class ServersApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def get_server_disk_auto_backup_settings(self, server_id : Annotated[Any, Field(..., description="ID облачного сервера.")], disk_id : Annotated[Any, Field(..., description="ID диска сервера.")], **kwargs) -> GetServerDiskAutoBackupSettings200Response:  # noqa: E501
+    def get_server_disk_auto_backup_settings(self, server_id : Annotated[Any, Field(..., description="ID облачного сервера.")], disk_id : Annotated[Any, Field(..., description="ID диска сервера.")], **kwargs) -> GetDatabaseAutoBackupsSettings200Response:  # noqa: E501
         """Получить настройки автобэкапов диска сервера  # noqa: E501
 
         Чтобы полученить настройки автобэкапов диска сервера, отправьте GET-запрос на `/api/v1/servers/{server_id}/disks/{disk_id}/auto-backups`.  # noqa: E501
@@ -2633,7 +2633,7 @@ class ServersApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: GetServerDiskAutoBackupSettings200Response
+        :rtype: GetDatabaseAutoBackupsSettings200Response
         """
         kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
@@ -2677,7 +2677,7 @@ class ServersApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: tuple(GetServerDiskAutoBackupSettings200Response, status_code(int), headers(HTTPHeaderDict))
+        :rtype: tuple(GetDatabaseAutoBackupsSettings200Response, status_code(int), headers(HTTPHeaderDict))
         """
 
         _params = locals()
@@ -2736,7 +2736,7 @@ class ServersApi(object):
         _auth_settings = ['Bearer']  # noqa: E501
 
         _response_types_map = {
-            '200': "GetServerDiskAutoBackupSettings200Response",
+            '200': "GetDatabaseAutoBackupsSettings200Response",
             '400': None,
             '401': None,
             '403': None,
@@ -6039,7 +6039,7 @@ class ServersApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def update_server_disk_auto_backup_settings(self, server_id : Annotated[Any, Field(..., description="ID облачного сервера.")], disk_id : Annotated[Any, Field(..., description="ID диска сервера.")], auto_backup : Annotated[Optional[AutoBackup], Field(description="При значении `is_enabled`: `true`, поля `copy_count`, `creation_start_at`, `interval` являются обязательными")] = None, **kwargs) -> GetServerDiskAutoBackupSettings200Response:  # noqa: E501
+    def update_server_disk_auto_backup_settings(self, server_id : Annotated[Any, Field(..., description="ID облачного сервера.")], disk_id : Annotated[Any, Field(..., description="ID диска сервера.")], auto_backup : Annotated[Optional[AutoBackup], Field(description="При значении `is_enabled`: `true`, поля `copy_count`, `creation_start_at`, `interval` являются обязательными")] = None, **kwargs) -> GetDatabaseAutoBackupsSettings200Response:  # noqa: E501
         """Изменение настроек автобэкапов диска сервера  # noqa: E501
 
         Чтобы изменить настройки автобэкапов диска сервера, отправьте PATCH-запрос на `/api/v1/servers/{server_id}/disks/{disk_id}/auto-backups`.  # noqa: E501
@@ -6064,7 +6064,7 @@ class ServersApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: GetServerDiskAutoBackupSettings200Response
+        :rtype: GetDatabaseAutoBackupsSettings200Response
         """
         kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
@@ -6110,7 +6110,7 @@ class ServersApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: tuple(GetServerDiskAutoBackupSettings200Response, status_code(int), headers(HTTPHeaderDict))
+        :rtype: tuple(GetDatabaseAutoBackupsSettings200Response, status_code(int), headers(HTTPHeaderDict))
         """
 
         _params = locals()
@@ -6180,7 +6180,7 @@ class ServersApi(object):
         _auth_settings = ['Bearer']  # noqa: E501
 
         _response_types_map = {
-            '200': "GetServerDiskAutoBackupSettings200Response",
+            '200': "GetDatabaseAutoBackupsSettings200Response",
             '400': None,
             '401': None,
             '403': None,

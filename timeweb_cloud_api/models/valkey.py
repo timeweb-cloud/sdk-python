@@ -27,6 +27,7 @@ class Valkey(BaseModel):
     Параметры Valkey (`valkey` | `valkey7` | `valkey8_1` | `valkey9_1`)
     """
     client_output_buffer_limit_normal: Optional[Any] = Field(None, alias="client-output-buffer-limit normal", description="Ограничение буфера вывода для обычных клиентских подключений. Формат: `hard-limit soft-limit soft-seconds` (`valkey` | `valkey7` | `valkey8_1` | `valkey9_1`).")
+    notify_keyspace_events: Optional[Any] = Field(None, alias="notify-keyspace-events", description="Настройка уведомлений о событиях пространства ключей (`valkey` | `valkey7` | `valkey8_1` | `valkey9_1`).")
     client_output_buffer_limit_pubsub: Optional[Any] = Field(None, alias="client-output-buffer-limit pubsub", description="Ограничение буфера вывода для клиентов pub/sub. Формат: `hard-limit soft-limit soft-seconds` (`valkey` | `valkey7` | `valkey8_1` | `valkey9_1`).")
     databases: Optional[Any] = Field(None, description="Количество логических баз данных на сервере (`valkey` | `valkey7` | `valkey8_1` | `valkey9_1`).")
     timeout: Optional[Any] = Field(None, description="Время ожидания в секундах перед закрытием неактивного клиентского соединения. `0` — отключено (`valkey` | `valkey7` | `valkey8_1` | `valkey9_1`).")
@@ -37,7 +38,7 @@ class Valkey(BaseModel):
     appendonly: Optional[Any] = Field(None, description="Включение режима AOF (Append Only File) для персистентного хранения данных (`valkey` | `valkey7` | `valkey8_1` | `valkey9_1`).")
     appendfsync: Optional[Any] = Field(None, description="Режим синхронизации AOF-файла с диском: `always` — при каждой записи, `everysec` — раз в секунду, `no` — управление передаётся ОС (`valkey` | `valkey7` | `valkey8_1` | `valkey9_1`).")
     tcp_keepalive: Optional[Any] = Field(None, alias="tcp-keepalive", description="Интервал проверки активности TCP-соединения в секундах. `0` — отключено (`valkey` | `valkey7` | `valkey8_1` | `valkey9_1`).")
-    __properties = ["client-output-buffer-limit normal", "client-output-buffer-limit pubsub", "databases", "timeout", "maxmemory-policy", "slowlog-log-slower-than", "slowlog-max-len", "save", "appendonly", "appendfsync", "tcp-keepalive"]
+    __properties = ["client-output-buffer-limit normal", "notify-keyspace-events", "client-output-buffer-limit pubsub", "databases", "timeout", "maxmemory-policy", "slowlog-log-slower-than", "slowlog-max-len", "save", "appendonly", "appendfsync", "tcp-keepalive"]
 
     class Config:
         """Pydantic configuration"""
@@ -67,6 +68,11 @@ class Valkey(BaseModel):
         # and __fields_set__ contains the field
         if self.client_output_buffer_limit_normal is None and "client_output_buffer_limit_normal" in self.__fields_set__:
             _dict['client-output-buffer-limit normal'] = None
+
+        # set to None if notify_keyspace_events (nullable) is None
+        # and __fields_set__ contains the field
+        if self.notify_keyspace_events is None and "notify_keyspace_events" in self.__fields_set__:
+            _dict['notify-keyspace-events'] = None
 
         # set to None if client_output_buffer_limit_pubsub (nullable) is None
         # and __fields_set__ contains the field
@@ -131,6 +137,7 @@ class Valkey(BaseModel):
 
         _obj = Valkey.parse_obj({
             "client_output_buffer_limit_normal": obj.get("client-output-buffer-limit normal"),
+            "notify_keyspace_events": obj.get("notify-keyspace-events"),
             "client_output_buffer_limit_pubsub": obj.get("client-output-buffer-limit pubsub"),
             "databases": obj.get("databases"),
             "timeout": obj.get("timeout"),

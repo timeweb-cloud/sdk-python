@@ -27,13 +27,15 @@ class DatabaseAdmin(BaseModel):
     Пользователь базы данных
     """
     id: Optional[Any] = Field(..., description="ID для каждого экземпляра пользователя базы данных. Автоматически генерируется при создании.")
-    created_at: Optional[Any] = Field(..., description="Значение времени, указанное в комбинированном формате даты и времени ISO8601, которое представляет, когда была создана база данных.")
+    created_at: Optional[Any] = Field(..., description="Значение времени, указанное в комбинированном формате даты и времени ISO8601, которое представляет, когда был создан пользователь базы данных.")
     login: Optional[Any] = Field(..., description="Имя пользователя базы данных")
     password: Optional[Any] = Field(..., description="Пароль пользователя базы данных")
     description: Optional[Any] = Field(..., description="Описание пользователя базы данных")
     host: Optional[Any] = Field(..., description="Хост пользователя")
+    for_all: Optional[Any] = Field(..., description="Флаг, выданы ли пользователю привилегии на все инстансы базы данных")
+    is_reset_password: Optional[Any] = Field(..., description="Флаг, был ли сброшен пароль пользователя")
     instances: Optional[Any] = Field(...)
-    __properties = ["id", "created_at", "login", "password", "description", "host", "instances"]
+    __properties = ["id", "created_at", "login", "password", "description", "host", "for_all", "is_reset_password", "instances"]
 
     class Config:
         """Pydantic configuration"""
@@ -89,6 +91,16 @@ class DatabaseAdmin(BaseModel):
         if self.host is None and "host" in self.__fields_set__:
             _dict['host'] = None
 
+        # set to None if for_all (nullable) is None
+        # and __fields_set__ contains the field
+        if self.for_all is None and "for_all" in self.__fields_set__:
+            _dict['for_all'] = None
+
+        # set to None if is_reset_password (nullable) is None
+        # and __fields_set__ contains the field
+        if self.is_reset_password is None and "is_reset_password" in self.__fields_set__:
+            _dict['is_reset_password'] = None
+
         # set to None if instances (nullable) is None
         # and __fields_set__ contains the field
         if self.instances is None and "instances" in self.__fields_set__:
@@ -112,6 +124,8 @@ class DatabaseAdmin(BaseModel):
             "password": obj.get("password"),
             "description": obj.get("description"),
             "host": obj.get("host"),
+            "for_all": obj.get("for_all"),
+            "is_reset_password": obj.get("is_reset_password"),
             "instances": obj.get("instances")
         })
         return _obj

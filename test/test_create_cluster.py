@@ -52,7 +52,11 @@ class TestCreateCluster(unittest.TestCase):
                     description = null, ), 
                 hash_type = caching_sha2, 
                 preset_id = 5, 
-                configurator_id = 5, 
+                configuration = timeweb_cloud_api.models.create_cluster_configuration.create_cluster_configuration(
+                    configurator_id = 11, 
+                    disk = 10240, 
+                    cpu = 2, 
+                    ram = 2048, ), 
                 project_id = 5, 
                 config_parameters = timeweb_cloud_api.models.mysql.mysql(
                     join_buffer_size = 4194304, 
@@ -73,6 +77,7 @@ class TestCreateCluster(unittest.TestCase):
                     sql_mode = , 
                     query_cache_type = 2, 
                     query_cache_size = 1, 
+                    query_cache_limit = 1048576, 
                     innodb_flush_log_at_trx_commit = 1, 
                     transaction_isolation = read-uncommitted, 
                     long_query_time = 10, 
@@ -118,7 +123,20 @@ class TestCreateCluster(unittest.TestCase):
                     copy_count = 2, 
                     creation_start_at = 2023-02-02T00:00:00.000Z, 
                     interval = week, 
-                    day_of_week = 1, )
+                    day_of_week = 1, ), 
+                backup_schedule = timeweb_cloud_api.models.create_cluster_backup_schedule.create_cluster_backup_schedule(
+                    copy_count = 3, 
+                    interval = day, 
+                    day_of_week = 1, 
+                    day_of_month = 1, ), 
+                maintenance_slot = timeweb_cloud_api.models.create_cluster_maintenance_slot.create_cluster_maintenance_slot(
+                    type = fixed_time, 
+                    from = 14:00Z, 
+                    to = 18:00Z, ), 
+                disk_autoscaling = timeweb_cloud_api.models.create_cluster_disk_autoscaling.create_cluster_disk_autoscaling(
+                    is_enabled = true, 
+                    step_size = 5120, 
+                    threshold_percent = 80, )
             )
         else :
             return CreateCluster(

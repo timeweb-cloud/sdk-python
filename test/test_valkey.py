@@ -40,6 +40,7 @@ class TestValkey(unittest.TestCase):
         if include_optional :
             return Valkey(
                 client_output_buffer_limit_normal = 0 0 0, 
+                notify_keyspace_events = , 
                 client_output_buffer_limit_pubsub = 33554432 8388608 60, 
                 databases = 16, 
                 timeout = 0, 

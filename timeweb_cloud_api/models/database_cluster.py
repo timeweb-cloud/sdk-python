@@ -21,8 +21,10 @@ import json
 
 from typing import Any, Optional
 from pydantic import BaseModel, Field, validator
+from timeweb_cloud_api.models.availability_zone import AvailabilityZone
 from timeweb_cloud_api.models.database_cluster_disk import DatabaseClusterDisk
-from timeweb_cloud_api.models.db_type import DbType
+from timeweb_cloud_api.models.database_cluster_disk_autoscaling import DatabaseClusterDiskAutoscaling
+from timeweb_cloud_api.models.database_cluster_maintenance_slot import DatabaseClusterMaintenanceSlot
 from timeweb_cloud_api.models.mysql import Mysql
 
 class DatabaseCluster(BaseModel):
@@ -33,18 +35,36 @@ class DatabaseCluster(BaseModel):
     created_at: Optional[Any] = Field(..., description="Значение времени, указанное в комбинированном формате даты и времени ISO8601, которое представляет, когда была создана база данных.")
     location: Optional[Any] = Field(..., description="Локация сервера.")
     name: Optional[Any] = Field(..., description="Название кластера базы данных.")
+    description: Optional[Any] = Field(..., description="Описание кластера базы данных.")
     networks: Optional[Any] = Field(..., description="Список сетей кластера базы данных.")
-    is_public_ipv6: Optional[Any] = Field(None, description="Использование IPv6 адреса.")
-    type: DbType = Field(...)
+    is_enabled_public_ipv6: Optional[Any] = Field(..., description="Использование публичного IPv6-адреса.")
+    type: Optional[Any] = Field(..., description="Тип базы данных. Список возможных значений шире, чем список типов, доступных при создании нового кластера.")
     hash_type: Optional[Any] = Field(..., description="Тип хеширования кластера базы данных (mysql5 | mysql | postgres).")
     avatar_link: Optional[Any] = Field(..., description="Ссылка на аватар для базы данных.")
     port: Optional[Any] = Field(..., description="Порт")
-    status: Optional[Any] = Field(..., description="Текущий статус кластера базы данных.")
-    preset_id: Optional[Any] = Field(..., description="ID тарифа.")
-    disk: Optional[DatabaseClusterDisk] = None
+    status: Optional[Any] = Field(..., description="Текущий статус кластера базы данных. Значение `read_only` означает, что запись в кластер заблокирована из-за переполнения диска — чтобы снять блокировку, освободите место или увеличьте размер диска.")
+    preset_id: Optional[Any] = Field(..., description="ID тарифа. Равен `null` у кластеров, созданных через конфигуратор — в этом случае заполнен `configurator_id`.")
+    configurator_id: Optional[Any] = Field(..., description="ID конфигуратора. Равен `null` у кластеров, созданных по тарифу.")
+    cpu: Optional[Any] = Field(..., description="Количество ядер процессора.")
+    cpu_frequency: Optional[Any] = Field(..., description="Частота процессора.")
+    is_dedicated_cpu: Optional[Any] = Field(..., description="Используются ли выделенные ядра процессора.")
+    ram: Optional[Any] = Field(..., description="Объем оперативной памяти (в Мб).")
+    disk: DatabaseClusterDisk = Field(...)
+    has_additional_disk: Optional[Any] = Field(..., description="Подключен ли к кластеру дополнительный диск.")
+    disk_autoscaling: DatabaseClusterDiskAutoscaling = Field(...)
     config_parameters: Mysql = Field(...)
     is_enabled_public_network: Optional[Any] = Field(..., description="Доступность публичного IP-адреса")
-    __properties = ["id", "created_at", "location", "name", "networks", "is_public_ipv6", "type", "hash_type", "avatar_link", "port", "status", "preset_id", "disk", "config_parameters", "is_enabled_public_network"]
+    is_secure_connection_enabled: Optional[Any] = Field(..., description="Включено ли защищенное подключение к кластеру базы данных.")
+    is_autobackups_enabled: Optional[Any] = Field(..., description="Включены ли автоматические резервные копии кластера базы данных.")
+    is_backup_schedule_enabled: Optional[Any] = Field(..., description="Включено ли расписание резервного копирования кластера базы данных.")
+    availability_zone: AvailabilityZone = Field(...)
+    project_id: Optional[Any] = Field(None, description="ID проекта, в котором находится кластер базы данных.")
+    replica_list: Optional[Any] = Field(..., description="Список реплик кластера базы данных.")
+    domains: Optional[Any] = Field(..., description="Список доменов кластера базы данных. Если публичная сеть отключена (`is_enabled_public_network: false`), список всегда пустой.")
+    child_services: Optional[Any] = Field(..., description="Список дочерних сервисов кластера базы данных.")
+    parent_services: Optional[Any] = Field(..., description="Список родительских сервисов кластера базы данных.")
+    maintenance_slot: DatabaseClusterMaintenanceSlot = Field(...)
+    __properties = ["id", "created_at", "location", "name", "description", "networks", "is_enabled_public_ipv6", "type", "hash_type", "avatar_link", "port", "status", "preset_id", "configurator_id", "cpu", "cpu_frequency", "is_dedicated_cpu", "ram", "disk", "has_additional_disk", "disk_autoscaling", "config_parameters", "is_enabled_public_network", "is_secure_connection_enabled", "is_autobackups_enabled", "is_backup_schedule_enabled", "availability_zone", "project_id", "replica_list", "domains", "child_services", "parent_services", "maintenance_slot"]
 
     @validator('location')
     def location_validate_enum(cls, value):
@@ -52,8 +72,18 @@ class DatabaseCluster(BaseModel):
         if value is None:
             return value
 
-        if value not in ('ru-1', 'ru-3', 'nl-1', 'de-1'):
-            raise ValueError("must be one of enum values ('ru-1', 'ru-3', 'nl-1', 'de-1')")
+        if value not in ('ru-1', 'ru-3', 'pl-1', 'nl-1', 'de-1', 'us-2', 'us-3'):
+            raise ValueError("must be one of enum values ('ru-1', 'ru-3', 'pl-1', 'nl-1', 'de-1', 'us-2', 'us-3')")
+        return value
+
+    @validator('type')
+    def type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in ('mysql', 'mysql5', 'mysql8_4', 'postgres', 'postgres14', 'postgres15', 'postgres16', 'postgres17', 'postgres18', 'redis', 'redis7', 'redis8_1', 'valkey', 'valkey7', 'valkey8_1', 'valkey9_1', 'mongodb', 'mongodb4', 'mongodb6', 'mongodb7', 'mongodb8_0', 'opensearch', 'opensearch2_19', 'clickhouse', 'clickhouse24', 'clickhouse25', 'kafka', 'rabbitmq', 'rabbitmq4_0'):
+            raise ValueError("must be one of enum values ('mysql', 'mysql5', 'mysql8_4', 'postgres', 'postgres14', 'postgres15', 'postgres16', 'postgres17', 'postgres18', 'redis', 'redis7', 'redis8_1', 'valkey', 'valkey7', 'valkey8_1', 'valkey9_1', 'mongodb', 'mongodb4', 'mongodb6', 'mongodb7', 'mongodb8_0', 'opensearch', 'opensearch2_19', 'clickhouse', 'clickhouse24', 'clickhouse25', 'kafka', 'rabbitmq', 'rabbitmq4_0')")
         return value
 
     @validator('hash_type')
@@ -72,8 +102,8 @@ class DatabaseCluster(BaseModel):
         if value is None:
             return value
 
-        if value not in ('started', 'starting', 'stopped', 'no_paid', 'lan_transfer', 'error', 'blocked', 'backup_recovery', 'rebooting', 'turning_off', 'turning_on'):
-            raise ValueError("must be one of enum values ('started', 'starting', 'stopped', 'no_paid', 'lan_transfer', 'error', 'blocked', 'backup_recovery', 'rebooting', 'turning_off', 'turning_on')")
+        if value not in ('started', 'starting', 'stopped', 'no_paid', 'lan_transfer', 'error', 'blocked', 'backup_recovery', 'transfer', 'rebooting', 'turning_off', 'turning_on', 'read_only', 'user_transfer'):
+            raise ValueError("must be one of enum values ('started', 'starting', 'stopped', 'no_paid', 'lan_transfer', 'error', 'blocked', 'backup_recovery', 'transfer', 'rebooting', 'turning_off', 'turning_on', 'read_only', 'user_transfer')")
         return value
 
     class Config:
@@ -103,9 +133,15 @@ class DatabaseCluster(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of disk
         if self.disk:
             _dict['disk'] = self.disk.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of disk_autoscaling
+        if self.disk_autoscaling:
+            _dict['disk_autoscaling'] = self.disk_autoscaling.to_dict()
         # override the default output from pydantic by calling `to_dict()` of config_parameters
         if self.config_parameters:
             _dict['config_parameters'] = self.config_parameters.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of maintenance_slot
+        if self.maintenance_slot:
+            _dict['maintenance_slot'] = self.maintenance_slot.to_dict()
         # set to None if id (nullable) is None
         # and __fields_set__ contains the field
         if self.id is None and "id" in self.__fields_set__:
@@ -126,15 +162,25 @@ class DatabaseCluster(BaseModel):
         if self.name is None and "name" in self.__fields_set__:
             _dict['name'] = None
 
+        # set to None if description (nullable) is None
+        # and __fields_set__ contains the field
+        if self.description is None and "description" in self.__fields_set__:
+            _dict['description'] = None
+
         # set to None if networks (nullable) is None
         # and __fields_set__ contains the field
         if self.networks is None and "networks" in self.__fields_set__:
             _dict['networks'] = None
 
-        # set to None if is_public_ipv6 (nullable) is None
+        # set to None if is_enabled_public_ipv6 (nullable) is None
         # and __fields_set__ contains the field
-        if self.is_public_ipv6 is None and "is_public_ipv6" in self.__fields_set__:
-            _dict['is_public_ipv6'] = None
+        if self.is_enabled_public_ipv6 is None and "is_enabled_public_ipv6" in self.__fields_set__:
+            _dict['is_enabled_public_ipv6'] = None
+
+        # set to None if type (nullable) is None
+        # and __fields_set__ contains the field
+        if self.type is None and "type" in self.__fields_set__:
+            _dict['type'] = None
 
         # set to None if hash_type (nullable) is None
         # and __fields_set__ contains the field
@@ -161,10 +207,80 @@ class DatabaseCluster(BaseModel):
         if self.preset_id is None and "preset_id" in self.__fields_set__:
             _dict['preset_id'] = None
 
+        # set to None if configurator_id (nullable) is None
+        # and __fields_set__ contains the field
+        if self.configurator_id is None and "configurator_id" in self.__fields_set__:
+            _dict['configurator_id'] = None
+
+        # set to None if cpu (nullable) is None
+        # and __fields_set__ contains the field
+        if self.cpu is None and "cpu" in self.__fields_set__:
+            _dict['cpu'] = None
+
+        # set to None if cpu_frequency (nullable) is None
+        # and __fields_set__ contains the field
+        if self.cpu_frequency is None and "cpu_frequency" in self.__fields_set__:
+            _dict['cpu_frequency'] = None
+
+        # set to None if is_dedicated_cpu (nullable) is None
+        # and __fields_set__ contains the field
+        if self.is_dedicated_cpu is None and "is_dedicated_cpu" in self.__fields_set__:
+            _dict['is_dedicated_cpu'] = None
+
+        # set to None if ram (nullable) is None
+        # and __fields_set__ contains the field
+        if self.ram is None and "ram" in self.__fields_set__:
+            _dict['ram'] = None
+
+        # set to None if has_additional_disk (nullable) is None
+        # and __fields_set__ contains the field
+        if self.has_additional_disk is None and "has_additional_disk" in self.__fields_set__:
+            _dict['has_additional_disk'] = None
+
         # set to None if is_enabled_public_network (nullable) is None
         # and __fields_set__ contains the field
         if self.is_enabled_public_network is None and "is_enabled_public_network" in self.__fields_set__:
             _dict['is_enabled_public_network'] = None
+
+        # set to None if is_secure_connection_enabled (nullable) is None
+        # and __fields_set__ contains the field
+        if self.is_secure_connection_enabled is None and "is_secure_connection_enabled" in self.__fields_set__:
+            _dict['is_secure_connection_enabled'] = None
+
+        # set to None if is_autobackups_enabled (nullable) is None
+        # and __fields_set__ contains the field
+        if self.is_autobackups_enabled is None and "is_autobackups_enabled" in self.__fields_set__:
+            _dict['is_autobackups_enabled'] = None
+
+        # set to None if is_backup_schedule_enabled (nullable) is None
+        # and __fields_set__ contains the field
+        if self.is_backup_schedule_enabled is None and "is_backup_schedule_enabled" in self.__fields_set__:
+            _dict['is_backup_schedule_enabled'] = None
+
+        # set to None if project_id (nullable) is None
+        # and __fields_set__ contains the field
+        if self.project_id is None and "project_id" in self.__fields_set__:
+            _dict['project_id'] = None
+
+        # set to None if replica_list (nullable) is None
+        # and __fields_set__ contains the field
+        if self.replica_list is None and "replica_list" in self.__fields_set__:
+            _dict['replica_list'] = None
+
+        # set to None if domains (nullable) is None
+        # and __fields_set__ contains the field
+        if self.domains is None and "domains" in self.__fields_set__:
+            _dict['domains'] = None
+
+        # set to None if child_services (nullable) is None
+        # and __fields_set__ contains the field
+        if self.child_services is None and "child_services" in self.__fields_set__:
+            _dict['child_services'] = None
+
+        # set to None if parent_services (nullable) is None
+        # and __fields_set__ contains the field
+        if self.parent_services is None and "parent_services" in self.__fields_set__:
+            _dict['parent_services'] = None
 
         return _dict
 
@@ -182,17 +298,35 @@ class DatabaseCluster(BaseModel):
             "created_at": obj.get("created_at"),
             "location": obj.get("location"),
             "name": obj.get("name"),
+            "description": obj.get("description"),
             "networks": obj.get("networks"),
-            "is_public_ipv6": obj.get("is_public_ipv6"),
+            "is_enabled_public_ipv6": obj.get("is_enabled_public_ipv6"),
             "type": obj.get("type"),
             "hash_type": obj.get("hash_type"),
             "avatar_link": obj.get("avatar_link"),
             "port": obj.get("port"),
             "status": obj.get("status"),
             "preset_id": obj.get("preset_id"),
+            "configurator_id": obj.get("configurator_id"),
+            "cpu": obj.get("cpu"),
+            "cpu_frequency": obj.get("cpu_frequency"),
+            "is_dedicated_cpu": obj.get("is_dedicated_cpu"),
+            "ram": obj.get("ram"),
             "disk": DatabaseClusterDisk.from_dict(obj.get("disk")) if obj.get("disk") is not None else None,
+            "has_additional_disk": obj.get("has_additional_disk"),
+            "disk_autoscaling": DatabaseClusterDiskAutoscaling.from_dict(obj.get("disk_autoscaling")) if obj.get("disk_autoscaling") is not None else None,
             "config_parameters": Mysql.from_dict(obj.get("config_parameters")) if obj.get("config_parameters") is not None else None,
-            "is_enabled_public_network": obj.get("is_enabled_public_network")
+            "is_enabled_public_network": obj.get("is_enabled_public_network"),
+            "is_secure_connection_enabled": obj.get("is_secure_connection_enabled"),
+            "is_autobackups_enabled": obj.get("is_autobackups_enabled"),
+            "is_backup_schedule_enabled": obj.get("is_backup_schedule_enabled"),
+            "availability_zone": obj.get("availability_zone"),
+            "project_id": obj.get("project_id"),
+            "replica_list": obj.get("replica_list"),
+            "domains": obj.get("domains"),
+            "child_services": obj.get("child_services"),
+            "parent_services": obj.get("parent_services"),
+            "maintenance_slot": DatabaseClusterMaintenanceSlot.from_dict(obj.get("maintenance_slot")) if obj.get("maintenance_slot") is not None else None
         })
         return _obj
 

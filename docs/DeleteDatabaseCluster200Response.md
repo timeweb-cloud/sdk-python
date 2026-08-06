@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**hash** | **object** | Хеш, который совместно с кодом авторизации надо будет отправить для удаления | 
+**database_delete** | [**DeleteDatabaseCluster200ResponseDatabaseDelete**](DeleteDatabaseCluster200ResponseDatabaseDelete.md) |  | 
 
 ## Example
 

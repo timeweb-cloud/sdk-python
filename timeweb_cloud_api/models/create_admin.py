@@ -30,9 +30,10 @@ class CreateAdmin(BaseModel):
     password: Optional[Any] = Field(..., description="Пароль пользователя базы данных")
     host: Optional[Any] = Field(None, description="Хост пользователя")
     instance_id: Optional[Any] = Field(None, description="ID инстанса базы данных для применения привилегий. Если поле не передано, то привилегии будут применены ко всем инстансам")
-    privileges: Optional[Any] = Field(..., description="Список привилегий пользователя базы данных")
+    for_all: Optional[Any] = Field(None, description="Выдать привилегии на все инстансы базы данных")
+    privileges: Optional[Any] = Field(None, description="Список привилегий пользователя базы данных")
     description: Optional[Any] = Field(None, description="Описание пользователя базы данных")
-    __properties = ["login", "password", "host", "instance_id", "privileges", "description"]
+    __properties = ["login", "password", "host", "instance_id", "for_all", "privileges", "description"]
 
     class Config:
         """Pydantic configuration"""
@@ -78,6 +79,11 @@ class CreateAdmin(BaseModel):
         if self.instance_id is None and "instance_id" in self.__fields_set__:
             _dict['instance_id'] = None
 
+        # set to None if for_all (nullable) is None
+        # and __fields_set__ contains the field
+        if self.for_all is None and "for_all" in self.__fields_set__:
+            _dict['for_all'] = None
+
         # set to None if privileges (nullable) is None
         # and __fields_set__ contains the field
         if self.privileges is None and "privileges" in self.__fields_set__:
@@ -104,6 +110,7 @@ class CreateAdmin(BaseModel):
             "password": obj.get("password"),
             "host": obj.get("host"),
             "instance_id": obj.get("instance_id"),
+            "for_all": obj.get("for_all"),
             "privileges": obj.get("privileges"),
             "description": obj.get("description")
         })

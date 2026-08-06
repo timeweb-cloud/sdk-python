@@ -6,6 +6,9 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **object** | Название инстанса базы данных | [optional] 
 **description** | **object** | Описание инстанса базы данных | [optional] 
+**owner_id** | **object** | ID пользователя базы данных, который станет владельцем инстанса. Доступно только в кластерах PostgreSQL | [optional] 
+**extensions** | [**DatabaseExtensions**](DatabaseExtensions.md) |  | [optional] 
+**config_parameters** | [**UpdateKafkaConfigParameters**](UpdateKafkaConfigParameters.md) |  | [optional] 
 
 ## Example
 

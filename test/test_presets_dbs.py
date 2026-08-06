@@ -43,11 +43,13 @@ class TestPresetsDbs(unittest.TestCase):
                 description = Услуга Управляемые базы данных, 
                 description_short = Тариф 3, 
                 cpu = 2, 
-                ram = 8, 
-                disk = 30, 
-                type = mysql, 
+                cpu_frequency = 3.3, 
+                ram = 2048, 
+                disk = 30720, 
+                type = postgres, 
                 price = 100, 
-                location = ru-1
+                location = ru-1, 
+                tags = None
             )
         else :
             return PresetsDbs(

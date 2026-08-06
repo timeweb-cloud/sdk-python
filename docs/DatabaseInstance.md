@@ -9,6 +9,9 @@ Name | Type | Description | Notes
 **created_at** | **object** | Значение времени, указанное в комбинированном формате даты и времени ISO8601, которое представляет, когда была создана база данных. | 
 **name** | **object** | Название базы данных. | 
 **description** | **object** | Описание базы данных | 
+**extensions** | [**DatabaseExtensions**](DatabaseExtensions.md) |  | 
+**owner_id** | **object** | ID администратора базы данных, который является владельцем этой базы данных. &#x60;null&#x60;, если владелец не задан. | 
+**config_parameters** | [**KafkaConfigParameters**](KafkaConfigParameters.md) |  | 
 
 ## Example
 

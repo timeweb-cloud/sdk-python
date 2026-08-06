@@ -20,20 +20,38 @@ import json
 
 
 from typing import Any, Optional
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, validator
+from timeweb_cloud_api.models.create_cluster_disk_autoscaling import CreateClusterDiskAutoscaling
+from timeweb_cloud_api.models.create_cluster_maintenance_slot import CreateClusterMaintenanceSlot
 from timeweb_cloud_api.models.mysql import Mysql
+from timeweb_cloud_api.models.update_cluster_configuration import UpdateClusterConfiguration
 
 class UpdateCluster(BaseModel):
     """
     UpdateCluster
     """
     name: Optional[Any] = Field(None, description="Название кластера базы данных.")
-    preset_id: Optional[Any] = Field(None, description="ID тарифа.")
+    preset_id: Optional[Any] = Field(None, description="ID тарифа. Нельзя передавать вместе с `configuration`")
+    configuration: Optional[UpdateClusterConfiguration] = None
     config_parameters: Optional[Mysql] = None
+    hash_type: Optional[Any] = Field(None, description="Тип хеширования базы данных (mysql | postgres).")
     description: Optional[Any] = Field(None, description="Описание кластера базы данных")
     is_enabled_public_network: Optional[Any] = Field(None, description="Доступность публичного IP-адреса")
-    is_public_ipv6: Optional[Any] = Field(None, description="Использование IPv6 адреса.")
-    __properties = ["name", "preset_id", "config_parameters", "description", "is_enabled_public_network", "is_public_ipv6"]
+    is_enabled_public_ipv6: Optional[Any] = Field(None, description="Использование публичного IPv6-адреса.")
+    is_secure_connection_enable: Optional[Any] = Field(None, description="Включить защищенное подключение к кластеру базы данных")
+    maintenance_slot: Optional[CreateClusterMaintenanceSlot] = None
+    disk_autoscaling: Optional[CreateClusterDiskAutoscaling] = None
+    __properties = ["name", "preset_id", "configuration", "config_parameters", "hash_type", "description", "is_enabled_public_network", "is_enabled_public_ipv6", "is_secure_connection_enable", "maintenance_slot", "disk_autoscaling"]
+
+    @validator('hash_type')
+    def hash_type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in ('caching_sha2', 'mysql_native'):
+            raise ValueError("must be one of enum values ('caching_sha2', 'mysql_native')")
+        return value
 
     class Config:
         """Pydantic configuration"""
@@ -59,9 +77,18 @@ class UpdateCluster(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
+        # override the default output from pydantic by calling `to_dict()` of configuration
+        if self.configuration:
+            _dict['configuration'] = self.configuration.to_dict()
         # override the default output from pydantic by calling `to_dict()` of config_parameters
         if self.config_parameters:
             _dict['config_parameters'] = self.config_parameters.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of maintenance_slot
+        if self.maintenance_slot:
+            _dict['maintenance_slot'] = self.maintenance_slot.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of disk_autoscaling
+        if self.disk_autoscaling:
+            _dict['disk_autoscaling'] = self.disk_autoscaling.to_dict()
         # set to None if name (nullable) is None
         # and __fields_set__ contains the field
         if self.name is None and "name" in self.__fields_set__:
@@ -71,6 +98,11 @@ class UpdateCluster(BaseModel):
         # and __fields_set__ contains the field
         if self.preset_id is None and "preset_id" in self.__fields_set__:
             _dict['preset_id'] = None
+
+        # set to None if hash_type (nullable) is None
+        # and __fields_set__ contains the field
+        if self.hash_type is None and "hash_type" in self.__fields_set__:
+            _dict['hash_type'] = None
 
         # set to None if description (nullable) is None
         # and __fields_set__ contains the field
@@ -82,10 +114,15 @@ class UpdateCluster(BaseModel):
         if self.is_enabled_public_network is None and "is_enabled_public_network" in self.__fields_set__:
             _dict['is_enabled_public_network'] = None
 
-        # set to None if is_public_ipv6 (nullable) is None
+        # set to None if is_enabled_public_ipv6 (nullable) is None
         # and __fields_set__ contains the field
-        if self.is_public_ipv6 is None and "is_public_ipv6" in self.__fields_set__:
-            _dict['is_public_ipv6'] = None
+        if self.is_enabled_public_ipv6 is None and "is_enabled_public_ipv6" in self.__fields_set__:
+            _dict['is_enabled_public_ipv6'] = None
+
+        # set to None if is_secure_connection_enable (nullable) is None
+        # and __fields_set__ contains the field
+        if self.is_secure_connection_enable is None and "is_secure_connection_enable" in self.__fields_set__:
+            _dict['is_secure_connection_enable'] = None
 
         return _dict
 
@@ -101,10 +138,15 @@ class UpdateCluster(BaseModel):
         _obj = UpdateCluster.parse_obj({
             "name": obj.get("name"),
             "preset_id": obj.get("preset_id"),
+            "configuration": UpdateClusterConfiguration.from_dict(obj.get("configuration")) if obj.get("configuration") is not None else None,
             "config_parameters": Mysql.from_dict(obj.get("config_parameters")) if obj.get("config_parameters") is not None else None,
+            "hash_type": obj.get("hash_type"),
             "description": obj.get("description"),
             "is_enabled_public_network": obj.get("is_enabled_public_network"),
-            "is_public_ipv6": obj.get("is_public_ipv6")
+            "is_enabled_public_ipv6": obj.get("is_enabled_public_ipv6"),
+            "is_secure_connection_enable": obj.get("is_secure_connection_enable"),
+            "maintenance_slot": CreateClusterMaintenanceSlot.from_dict(obj.get("maintenance_slot")) if obj.get("maintenance_slot") is not None else None,
+            "disk_autoscaling": CreateClusterDiskAutoscaling.from_dict(obj.get("disk_autoscaling")) if obj.get("disk_autoscaling") is not None else None
         })
         return _obj
 

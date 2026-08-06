@@ -39,10 +39,12 @@ class TestUpdateAdmin(unittest.TestCase):
         model = timeweb_cloud_api.models.update_admin.UpdateAdmin()  # noqa: E501
         if include_optional :
             return UpdateAdmin(
+                login = default_login, 
                 password = bs.:L2f$Tm:SC~, 
                 privileges = None, 
                 description = description, 
-                instance_id = 1476
+                instance_id = 1476, 
+                for_all = false
             )
         else :
             return UpdateAdmin(

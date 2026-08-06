@@ -57,6 +57,7 @@ class TestMysql(unittest.TestCase):
                 sql_mode = , 
                 query_cache_type = 2, 
                 query_cache_size = 1, 
+                query_cache_limit = 1048576, 
                 innodb_flush_log_at_trx_commit = 1, 
                 transaction_isolation = read-uncommitted, 
                 long_query_time = 10, 

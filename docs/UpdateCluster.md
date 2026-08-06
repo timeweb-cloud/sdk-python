@@ -5,11 +5,16 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **object** | Название кластера базы данных. | [optional] 
-**preset_id** | **object** | ID тарифа. | [optional] 
+**preset_id** | **object** | ID тарифа. Нельзя передавать вместе с &#x60;configuration&#x60; | [optional] 
+**configuration** | [**UpdateClusterConfiguration**](UpdateClusterConfiguration.md) |  | [optional] 
 **config_parameters** | [**Mysql**](Mysql.md) |  | [optional] 
+**hash_type** | **object** | Тип хеширования базы данных (mysql | postgres). | [optional] 
 **description** | **object** | Описание кластера базы данных | [optional] 
 **is_enabled_public_network** | **object** | Доступность публичного IP-адреса | [optional] 
-**is_public_ipv6** | **object** | Использование IPv6 адреса. | [optional] 
+**is_enabled_public_ipv6** | **object** | Использование публичного IPv6-адреса. | [optional] 
+**is_secure_connection_enable** | **object** | Включить защищенное подключение к кластеру базы данных | [optional] 
+**maintenance_slot** | [**CreateClusterMaintenanceSlot**](CreateClusterMaintenanceSlot.md) |  | [optional] 
+**disk_autoscaling** | [**CreateClusterDiskAutoscaling**](CreateClusterDiskAutoscaling.md) |  | [optional] 
 
 ## Example
 

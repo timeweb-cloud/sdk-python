@@ -45,6 +45,8 @@ class TestDatabaseAdmin(unittest.TestCase):
                 password = bs.:L2f$Tm:SC~, 
                 description = description, 
                 host = %, 
+                for_all = false, 
+                is_reset_password = false, 
                 instances = None
             )
         else :
@@ -55,6 +57,8 @@ class TestDatabaseAdmin(unittest.TestCase):
                 password = bs.:L2f$Tm:SC~,
                 description = description,
                 host = %,
+                for_all = false,
+                is_reset_password = false,
                 instances = None,
         )
         """

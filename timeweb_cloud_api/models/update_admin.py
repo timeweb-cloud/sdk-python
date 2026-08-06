@@ -26,11 +26,13 @@ class UpdateAdmin(BaseModel):
     """
     UpdateAdmin
     """
+    login: Optional[Any] = Field(None, description="Новое имя пользователя базы данных. Переименование доступно только в кластерах PostgreSQL")
     password: Optional[Any] = Field(None, description="Пароль пользователя базы данных")
     privileges: Optional[Any] = Field(None, description="Список привилегий пользователя базы данных")
     description: Optional[Any] = Field(None, description="Описание пользователя базы данных")
     instance_id: Optional[Any] = Field(None, description="ID инстанса базы данных для применения привилегий. Если поле не передано, то привилегии будут применены ко всем инстансам")
-    __properties = ["password", "privileges", "description", "instance_id"]
+    for_all: Optional[Any] = Field(None, description="Выдать привилегии на все инстансы базы данных")
+    __properties = ["login", "password", "privileges", "description", "instance_id", "for_all"]
 
     class Config:
         """Pydantic configuration"""
@@ -56,6 +58,11 @@ class UpdateAdmin(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
+        # set to None if login (nullable) is None
+        # and __fields_set__ contains the field
+        if self.login is None and "login" in self.__fields_set__:
+            _dict['login'] = None
+
         # set to None if password (nullable) is None
         # and __fields_set__ contains the field
         if self.password is None and "password" in self.__fields_set__:
@@ -76,6 +83,11 @@ class UpdateAdmin(BaseModel):
         if self.instance_id is None and "instance_id" in self.__fields_set__:
             _dict['instance_id'] = None
 
+        # set to None if for_all (nullable) is None
+        # and __fields_set__ contains the field
+        if self.for_all is None and "for_all" in self.__fields_set__:
+            _dict['for_all'] = None
+
         return _dict
 
     @classmethod
@@ -88,10 +100,12 @@ class UpdateAdmin(BaseModel):
             return UpdateAdmin.parse_obj(obj)
 
         _obj = UpdateAdmin.parse_obj({
+            "login": obj.get("login"),
             "password": obj.get("password"),
             "privileges": obj.get("privileges"),
             "description": obj.get("description"),
-            "instance_id": obj.get("instance_id")
+            "instance_id": obj.get("instance_id"),
+            "for_all": obj.get("for_all")
         })
         return _obj
 

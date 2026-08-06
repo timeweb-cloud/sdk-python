@@ -43,17 +43,28 @@ class TestDatabaseCluster(unittest.TestCase):
                 created_at = 2021-02-25T11:04:15Z, 
                 location = ru-1, 
                 name = default_db, 
+                description = description, 
                 networks = None, 
-                is_public_ipv6 = true, 
+                is_enabled_public_ipv6 = true, 
                 type = mysql, 
                 hash_type = caching_sha2, 
                 avatar_link = https://urltoimage.com/avatars/image.png, 
                 port = 3000, 
                 status = started, 
                 preset_id = 5, 
+                configurator_id = 11, 
+                cpu = 2, 
+                cpu_frequency = 3.3, 
+                is_dedicated_cpu = false, 
+                ram = 2048, 
                 disk = timeweb_cloud_api.models.database_cluster_disk.database_cluster_disk(
                     size = 10485760, 
                     used = 486.11328125, ), 
+                has_additional_disk = false, 
+                disk_autoscaling = timeweb_cloud_api.models.database_cluster_disk_autoscaling.database_cluster_disk_autoscaling(
+                    is_enabled = true, 
+                    step_size = 5120, 
+                    threshold_percent = 80, ), 
                 config_parameters = timeweb_cloud_api.models.mysql.mysql(
                     join_buffer_size = 4194304, 
                     max_connections = 200, 
@@ -73,6 +84,7 @@ class TestDatabaseCluster(unittest.TestCase):
                     sql_mode = , 
                     query_cache_type = 2, 
                     query_cache_size = 1, 
+                    query_cache_limit = 1048576, 
                     innodb_flush_log_at_trx_commit = 1, 
                     transaction_isolation = read-uncommitted, 
                     long_query_time = 10, 
@@ -104,7 +116,18 @@ class TestDatabaseCluster(unittest.TestCase):
                     interactive_timeout = 28800, 
                     default_time_zone = +00:00, 
                     pxc_strict_mode = ENFORCING, ), 
-                is_enabled_public_network = false
+                is_enabled_public_network = false, 
+                is_secure_connection_enabled = false, 
+                is_autobackups_enabled = true, 
+                is_backup_schedule_enabled = false, 
+                availability_zone = spb-1, 
+                project_id = 5, 
+                replica_list = None, 
+                domains = None, 
+                child_services = None, 
+                parent_services = None, 
+                maintenance_slot = timeweb_cloud_api.models.database_cluster_maintenance_slot.database_cluster_maintenance_slot(
+                    type = any_time, )
             )
         else :
             return DatabaseCluster(
@@ -112,13 +135,28 @@ class TestDatabaseCluster(unittest.TestCase):
                 created_at = 2021-02-25T11:04:15Z,
                 location = ru-1,
                 name = default_db,
+                description = description,
                 networks = None,
+                is_enabled_public_ipv6 = true,
                 type = mysql,
                 hash_type = caching_sha2,
                 avatar_link = https://urltoimage.com/avatars/image.png,
                 port = 3000,
                 status = started,
                 preset_id = 5,
+                configurator_id = 11,
+                cpu = 2,
+                cpu_frequency = 3.3,
+                is_dedicated_cpu = false,
+                ram = 2048,
+                disk = timeweb_cloud_api.models.database_cluster_disk.database_cluster_disk(
+                    size = 10485760, 
+                    used = 486.11328125, ),
+                has_additional_disk = false,
+                disk_autoscaling = timeweb_cloud_api.models.database_cluster_disk_autoscaling.database_cluster_disk_autoscaling(
+                    is_enabled = true, 
+                    step_size = 5120, 
+                    threshold_percent = 80, ),
                 config_parameters = timeweb_cloud_api.models.mysql.mysql(
                     join_buffer_size = 4194304, 
                     max_connections = 200, 
@@ -138,6 +176,7 @@ class TestDatabaseCluster(unittest.TestCase):
                     sql_mode = , 
                     query_cache_type = 2, 
                     query_cache_size = 1, 
+                    query_cache_limit = 1048576, 
                     innodb_flush_log_at_trx_commit = 1, 
                     transaction_isolation = read-uncommitted, 
                     long_query_time = 10, 
@@ -170,6 +209,16 @@ class TestDatabaseCluster(unittest.TestCase):
                     default_time_zone = +00:00, 
                     pxc_strict_mode = ENFORCING, ),
                 is_enabled_public_network = false,
+                is_secure_connection_enabled = false,
+                is_autobackups_enabled = true,
+                is_backup_schedule_enabled = false,
+                availability_zone = spb-1,
+                replica_list = None,
+                domains = None,
+                child_services = None,
+                parent_services = None,
+                maintenance_slot = timeweb_cloud_api.models.database_cluster_maintenance_slot.database_cluster_maintenance_slot(
+                    type = any_time, ),
         )
         """
 

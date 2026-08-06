@@ -7,12 +7,14 @@ Name | Type | Description | Notes
 **id** | **object** | ID для каждого экземпляра тарифа базы данных. | [optional] 
 **description** | **object** | Описание тарифа. | [optional] 
 **description_short** | **object** | Краткое описание тарифа. | [optional] 
-**cpu** | **object** | Описание процессора тарифа. | [optional] 
-**ram** | **object** | Описание ОЗУ тарифа. | [optional] 
-**disk** | **object** | Описание диска тарифа. | [optional] 
-**type** | [**DbType**](DbType.md) |  | [optional] 
+**cpu** | **object** | Количество ядер процессора тарифа. | [optional] 
+**cpu_frequency** | **object** | Частота процессора (в ГГц). | [optional] 
+**ram** | **object** | Объём оперативной памяти тарифа (в Мб). | [optional] 
+**disk** | **object** | Размер диска тарифа (в Мб). | [optional] 
+**type** | **object** | Семейство СУБД тарифа. Значение не совпадает с типом кластера, который передаётся в поле &#x60;type&#x60; при создании кластера (&#x60;POST /api/v1/databases&#x60;): там используется версионированный тип, например &#x60;postgres17&#x60;. Тарифы для Valkey возвращаются со значением &#x60;redis&#x60; — отдельного значения &#x60;valkey&#x60; в этом поле не бывает. | [optional] 
 **price** | **object** | Стоимость тарифа базы данных | [optional] 
 **location** | **object** | Географическое расположение тарифа. | [optional] 
+**tags** | **object** | Теги тарифа, в том числе тег группы тарифов, в пределах которой доступна смена тарифа. | [optional] 
 
 ## Example
 

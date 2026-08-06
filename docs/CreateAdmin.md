@@ -8,7 +8,8 @@ Name | Type | Description | Notes
 **password** | **object** | Пароль пользователя базы данных | 
 **host** | **object** | Хост пользователя | [optional] 
 **instance_id** | **object** | ID инстанса базы данных для применения привилегий. Если поле не передано, то привилегии будут применены ко всем инстансам | [optional] 
-**privileges** | **object** | Список привилегий пользователя базы данных | 
+**for_all** | **object** | Выдать привилегии на все инстансы базы данных | [optional] 
+**privileges** | **object** | Список привилегий пользователя базы данных | [optional] 
 **description** | **object** | Описание пользователя базы данных | [optional] 
 
 ## Example

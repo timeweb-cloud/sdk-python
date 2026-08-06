@@ -21,6 +21,8 @@ import json
 
 from typing import Any, Optional
 from pydantic import BaseModel, Field
+from timeweb_cloud_api.models.database_extensions import DatabaseExtensions
+from timeweb_cloud_api.models.update_kafka_config_parameters import UpdateKafkaConfigParameters
 
 class UpdateInstance(BaseModel):
     """
@@ -28,7 +30,10 @@ class UpdateInstance(BaseModel):
     """
     name: Optional[Any] = Field(None, description="Название инстанса базы данных")
     description: Optional[Any] = Field(None, description="Описание инстанса базы данных")
-    __properties = ["name", "description"]
+    owner_id: Optional[Any] = Field(None, description="ID пользователя базы данных, который станет владельцем инстанса. Доступно только в кластерах PostgreSQL")
+    extensions: Optional[DatabaseExtensions] = None
+    config_parameters: Optional[UpdateKafkaConfigParameters] = None
+    __properties = ["name", "description", "owner_id", "extensions", "config_parameters"]
 
     class Config:
         """Pydantic configuration"""
@@ -54,6 +59,12 @@ class UpdateInstance(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
+        # override the default output from pydantic by calling `to_dict()` of extensions
+        if self.extensions:
+            _dict['extensions'] = self.extensions.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of config_parameters
+        if self.config_parameters:
+            _dict['config_parameters'] = self.config_parameters.to_dict()
         # set to None if name (nullable) is None
         # and __fields_set__ contains the field
         if self.name is None and "name" in self.__fields_set__:
@@ -63,6 +74,11 @@ class UpdateInstance(BaseModel):
         # and __fields_set__ contains the field
         if self.description is None and "description" in self.__fields_set__:
             _dict['description'] = None
+
+        # set to None if owner_id (nullable) is None
+        # and __fields_set__ contains the field
+        if self.owner_id is None and "owner_id" in self.__fields_set__:
+            _dict['owner_id'] = None
 
         return _dict
 
@@ -77,7 +93,10 @@ class UpdateInstance(BaseModel):
 
         _obj = UpdateInstance.parse_obj({
             "name": obj.get("name"),
-            "description": obj.get("description")
+            "description": obj.get("description"),
+            "owner_id": obj.get("owner_id"),
+            "extensions": DatabaseExtensions.from_dict(obj.get("extensions")) if obj.get("extensions") is not None else None,
+            "config_parameters": UpdateKafkaConfigParameters.from_dict(obj.get("config_parameters")) if obj.get("config_parameters") is not None else None
         })
         return _obj
 

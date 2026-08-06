@@ -46,6 +46,8 @@ class TestCreateDatabaseUser201Response(unittest.TestCase):
                     password = bs.:L2f$Tm:SC~, 
                     description = description, 
                     host = %, 
+                    for_all = false, 
+                    is_reset_password = false, 
                     instances = null, )
             )
         else :
@@ -57,6 +59,8 @@ class TestCreateDatabaseUser201Response(unittest.TestCase):
                     password = bs.:L2f$Tm:SC~, 
                     description = description, 
                     host = %, 
+                    for_all = false, 
+                    is_reset_password = false, 
                     instances = null, ),
         )
         """

@@ -4,8 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**meta** | [**Meta**](Meta.md) |  | 
-**auto_backups_settings** | **object** |  | 
+**auto_backups_settings** | [**AutoBackup**](AutoBackup.md) |  | 
 
 ## Example
 
