@@ -22,6 +22,7 @@ import json
 from typing import Any, Optional
 from pydantic import BaseModel, Field, validator
 from timeweb_cloud_api.models.image_status import ImageStatus
+from timeweb_cloud_api.models.location import Location
 from timeweb_cloud_api.models.os import OS
 
 class Image(BaseModel):
@@ -37,22 +38,12 @@ class Image(BaseModel):
     name: Optional[Any] = Field(..., description="Имя образа.")
     description: Optional[Any] = Field(..., description="Описание образа.")
     disk_id: Optional[Any] = Field(..., description="ID связанного с образом диска.")
-    location: Optional[Any] = Field(..., description="Локация образа.")
+    location: Location = Field(...)
     os: OS = Field(...)
     progress: Optional[Any] = Field(..., description="Процент создания образа.")
     is_custom: Optional[Any] = Field(..., description="Логическое значение, которое показывает, является ли образ кастомным.")
     type: Optional[Any] = Field(..., description="Тип образа.")
     __properties = ["id", "status", "created_at", "deleted_at", "size", "virtual_size", "name", "description", "disk_id", "location", "os", "progress", "is_custom", "type"]
-
-    @validator('location')
-    def location_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in ('ru-1', 'ru-2', 'pl-1', 'kz-1', 'nl-1'):
-            raise ValueError("must be one of enum values ('ru-1', 'ru-2', 'pl-1', 'kz-1', 'nl-1')")
-        return value
 
     @validator('type')
     def type_validate_enum(cls, value):
@@ -127,11 +118,6 @@ class Image(BaseModel):
         # and __fields_set__ contains the field
         if self.disk_id is None and "disk_id" in self.__fields_set__:
             _dict['disk_id'] = None
-
-        # set to None if location (nullable) is None
-        # and __fields_set__ contains the field
-        if self.location is None and "location" in self.__fields_set__:
-            _dict['location'] = None
 
         # set to None if progress (nullable) is None
         # and __fields_set__ contains the field

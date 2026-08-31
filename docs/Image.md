@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **name** | **object** | Имя образа. | 
 **description** | **object** | Описание образа. | 
 **disk_id** | **object** | ID связанного с образом диска. | 
-**location** | **object** | Локация образа. | 
+**location** | [**Location**](Location.md) |  | 
 **os** | [**OS**](OS.md) |  | 
 **progress** | **object** | Процент создания образа. | 
 **is_custom** | **object** | Логическое значение, которое показывает, является ли образ кастомным. | 
