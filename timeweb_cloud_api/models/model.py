@@ -21,24 +21,24 @@ import json
 
 from typing import Any, Optional
 from pydantic import BaseModel, Field, validator
-from timeweb_cloud_api.models.model_params_info import ModelParamsInfo
 
 class Model(BaseModel):
     """
-    Модель AI
+    AI модель
     """
-    id: Optional[Any] = Field(..., description="Уникальный идентификатор модели")
-    provider_id: Optional[Any] = Field(..., description="ID провайдера, который предоставляет модель")
-    name: Optional[Any] = Field(..., description="Название модели")
-    public_name: Optional[Any] = Field(..., description="Публичное имя модели")
-    type: Optional[Any] = Field(..., description="Тип модели (llm - языковая модель, embedding - модель для эмбеддингов)")
-    is_deprecated: Optional[Any] = Field(..., description="Признак, что модель устарела")
-    is_stopped: Optional[Any] = Field(..., description="Признак, что поддержка модели остановлена в системе")
-    deprecation_date: Optional[Any] = Field(None, description="Дата депрекейта модели у провайдера")
-    is_reasoning: Optional[Any] = Field(..., description="Признак поддержки режима рассуждения")
+    id: Optional[Any] = Field(..., description="ID модели")
+    provider_id: Optional[Any] = Field(..., description="ID провайдера модели")
+    name: Optional[Any] = Field(..., description="Семейство модели")
+    public_name: Optional[Any] = Field(..., description="Отображаемое название модели")
+    model_name: Optional[Any] = Field(..., description="Идентификатор модели с префиксом провайдера — передаётся в поле `model` запросов к AI Gateway")
+    type: Optional[Any] = Field(..., description="Тип модели: - `llm` — языковая модель - `hosted-llm` — языковая модель, размещённая в Timeweb Cloud - `embedding` — модель эмбеддингов - `image` — генерация изображений - `audio` — работа с аудио - `video` — генерация видео - `moderation` — модерация контента - `system-one` — служебная модель с собственным API")
     version: Optional[Any] = Field(..., description="Версия модели")
-    params_info: Optional[ModelParamsInfo] = None
-    __properties = ["id", "provider_id", "name", "public_name", "type", "is_deprecated", "is_stopped", "deprecation_date", "is_reasoning", "version", "params_info"]
+    is_deprecated: Optional[Any] = Field(..., description="Модель устарела и недоступна для выбора в новых агентах")
+    is_stopped: Optional[Any] = Field(..., description="Поддержка модели остановлена: запросы к ней не выполняются")
+    deprecation_date: Optional[Any] = Field(..., description="Дата отключения модели у провайдера. `null`, если отключение не запланировано")
+    is_reasoning: Optional[Any] = Field(..., description="Модель поддерживает режим рассуждений")
+    params_info: Optional[Any] = Field(..., description="Параметры генерации, которые можно настроить у агента с этой моделью. Ключ — имя параметра (`temperature`, `top_p`, `max_tokens`, `reasoning_effort` и т.д.). `null`, если параметры не заданы")
+    __properties = ["id", "provider_id", "name", "public_name", "model_name", "type", "version", "is_deprecated", "is_stopped", "deprecation_date", "is_reasoning", "params_info"]
 
     @validator('type')
     def type_validate_enum(cls, value):
@@ -46,8 +46,8 @@ class Model(BaseModel):
         if value is None:
             return value
 
-        if value not in ('llm', 'embedding'):
-            raise ValueError("must be one of enum values ('llm', 'embedding')")
+        if value not in ('llm', 'hosted-llm', 'embedding', 'image', 'audio', 'video', 'moderation', 'system-one'):
+            raise ValueError("must be one of enum values ('llm', 'hosted-llm', 'embedding', 'image', 'audio', 'video', 'moderation', 'system-one')")
         return value
 
     class Config:
@@ -74,9 +74,6 @@ class Model(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of params_info
-        if self.params_info:
-            _dict['params_info'] = self.params_info.to_dict()
         # set to None if id (nullable) is None
         # and __fields_set__ contains the field
         if self.id is None and "id" in self.__fields_set__:
@@ -97,10 +94,20 @@ class Model(BaseModel):
         if self.public_name is None and "public_name" in self.__fields_set__:
             _dict['public_name'] = None
 
+        # set to None if model_name (nullable) is None
+        # and __fields_set__ contains the field
+        if self.model_name is None and "model_name" in self.__fields_set__:
+            _dict['model_name'] = None
+
         # set to None if type (nullable) is None
         # and __fields_set__ contains the field
         if self.type is None and "type" in self.__fields_set__:
             _dict['type'] = None
+
+        # set to None if version (nullable) is None
+        # and __fields_set__ contains the field
+        if self.version is None and "version" in self.__fields_set__:
+            _dict['version'] = None
 
         # set to None if is_deprecated (nullable) is None
         # and __fields_set__ contains the field
@@ -122,10 +129,10 @@ class Model(BaseModel):
         if self.is_reasoning is None and "is_reasoning" in self.__fields_set__:
             _dict['is_reasoning'] = None
 
-        # set to None if version (nullable) is None
+        # set to None if params_info (nullable) is None
         # and __fields_set__ contains the field
-        if self.version is None and "version" in self.__fields_set__:
-            _dict['version'] = None
+        if self.params_info is None and "params_info" in self.__fields_set__:
+            _dict['params_info'] = None
 
         return _dict
 
@@ -143,13 +150,13 @@ class Model(BaseModel):
             "provider_id": obj.get("provider_id"),
             "name": obj.get("name"),
             "public_name": obj.get("public_name"),
+            "model_name": obj.get("model_name"),
             "type": obj.get("type"),
+            "version": obj.get("version"),
             "is_deprecated": obj.get("is_deprecated"),
             "is_stopped": obj.get("is_stopped"),
             "deprecation_date": obj.get("deprecation_date"),
             "is_reasoning": obj.get("is_reasoning"),
-            "version": obj.get("version"),
-            "params_info": ModelParamsInfo.from_dict(obj.get("params_info")) if obj.get("params_info") is not None else None
         })
         return _obj
 

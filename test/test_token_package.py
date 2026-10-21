@@ -39,25 +39,28 @@ class TestTokenPackage(unittest.TestCase):
         model = timeweb_cloud_api.models.token_package.TokenPackage()  # noqa: E501
         if include_optional :
             return TokenPackage(
-                id = 1, 
-                model_id = 1, 
-                name = Базовый пакет, 
+                id = 111, 
+                model_id = 23, 
+                service_type_id = 2285, 
+                name = Knowledge Base, 
                 package_type = base, 
-                type = agent, 
-                token_amount = 100000, 
-                price = 500, 
+                type = knowledgebase, 
+                token_amount = 10000000, 
+                price = 450, 
                 duration_days = 30, 
                 is_available = true
             )
         else :
             return TokenPackage(
-                id = 1,
-                model_id = 1,
-                name = Базовый пакет,
+                id = 111,
+                model_id = 23,
+                service_type_id = 2285,
+                name = Knowledge Base,
                 package_type = base,
-                type = agent,
-                token_amount = 100000,
-                price = 500,
+                type = knowledgebase,
+                token_amount = 10000000,
+                price = 450,
+                duration_days = 30,
                 is_available = true,
         )
         """

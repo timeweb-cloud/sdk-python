@@ -27,13 +27,14 @@ class Status(BaseModel):
     """
     Статус аккаунта
     """
+    login: Optional[Any] = Field(..., description="Логин аккаунта.")
     is_blocked: Optional[Any] = Field(..., description="Это логическое значение, которое показывает, заблокирован ли аккаунт.")
     is_permanent_blocked: Optional[Any] = Field(..., description="Это логическое значение, которое показывает, заблокирован ли аккаунт навсегда.")
     is_send_bill_letters: Optional[Any] = Field(..., description="Это логическое значение, которое показывает, требуется ли отправлять счета на почту.")
     company_info: StatusCompanyInfo = Field(...)
     last_password_changed_at: Optional[Any] = Field(..., description="Значение времени, указанное в комбинированном формате даты и времени ISO8601, которое представляет, когда последний раз изменялся пароль.")
     ym_client_id: Optional[Any] = Field(..., description="ID аккаунта для яндекс метрики.")
-    __properties = ["is_blocked", "is_permanent_blocked", "is_send_bill_letters", "company_info", "last_password_changed_at", "ym_client_id"]
+    __properties = ["login", "is_blocked", "is_permanent_blocked", "is_send_bill_letters", "company_info", "last_password_changed_at", "ym_client_id"]
 
     class Config:
         """Pydantic configuration"""
@@ -62,6 +63,11 @@ class Status(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of company_info
         if self.company_info:
             _dict['company_info'] = self.company_info.to_dict()
+        # set to None if login (nullable) is None
+        # and __fields_set__ contains the field
+        if self.login is None and "login" in self.__fields_set__:
+            _dict['login'] = None
+
         # set to None if is_blocked (nullable) is None
         # and __fields_set__ contains the field
         if self.is_blocked is None and "is_blocked" in self.__fields_set__:
@@ -99,6 +105,7 @@ class Status(BaseModel):
             return Status.parse_obj(obj)
 
         _obj = Status.parse_obj({
+            "login": obj.get("login"),
             "is_blocked": obj.get("is_blocked"),
             "is_permanent_blocked": obj.get("is_permanent_blocked"),
             "is_send_bill_letters": obj.get("is_send_bill_letters"),

@@ -20,17 +20,27 @@ import json
 
 
 from typing import Any, Optional
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, validator
 
 class Resource(BaseModel):
     """
-    Resource
+    Ресурс MCP
     """
-    requested: Optional[Any] = Field(None, description="Запрошенное количество ресурса")
-    allocatable: Optional[Any] = Field(None, description="Доступное количество")
-    capacity: Optional[Any] = Field(None, description="Общее количество")
-    used: Optional[Any] = Field(None, description="Используемое количество")
-    __properties = ["requested", "allocatable", "capacity", "used"]
+    uri: Optional[Any] = Field(..., description="URI ресурса")
+    name: Optional[Any] = Field(..., description="Имя ресурса")
+    description: Optional[Any] = Field(None, description="Описание ресурса")
+    mime_type: Optional[Any] = Field(None, alias="mimeType", description="Тип содержимого")
+    __properties = ["uri", "name", "description", "mimeType"]
+
+    @validator('uri')
+    def uri_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in ('billing://me/finances', 'services://me/active', 'services://cloud/catalog', 'locations://cloud/list'):
+            raise ValueError("must be one of enum values ('billing://me/finances', 'services://me/active', 'services://cloud/catalog', 'locations://cloud/list')")
+        return value
 
     class Config:
         """Pydantic configuration"""
@@ -56,25 +66,25 @@ class Resource(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # set to None if requested (nullable) is None
+        # set to None if uri (nullable) is None
         # and __fields_set__ contains the field
-        if self.requested is None and "requested" in self.__fields_set__:
-            _dict['requested'] = None
+        if self.uri is None and "uri" in self.__fields_set__:
+            _dict['uri'] = None
 
-        # set to None if allocatable (nullable) is None
+        # set to None if name (nullable) is None
         # and __fields_set__ contains the field
-        if self.allocatable is None and "allocatable" in self.__fields_set__:
-            _dict['allocatable'] = None
+        if self.name is None and "name" in self.__fields_set__:
+            _dict['name'] = None
 
-        # set to None if capacity (nullable) is None
+        # set to None if description (nullable) is None
         # and __fields_set__ contains the field
-        if self.capacity is None and "capacity" in self.__fields_set__:
-            _dict['capacity'] = None
+        if self.description is None and "description" in self.__fields_set__:
+            _dict['description'] = None
 
-        # set to None if used (nullable) is None
+        # set to None if mime_type (nullable) is None
         # and __fields_set__ contains the field
-        if self.used is None and "used" in self.__fields_set__:
-            _dict['used'] = None
+        if self.mime_type is None and "mime_type" in self.__fields_set__:
+            _dict['mimeType'] = None
 
         return _dict
 
@@ -88,10 +98,10 @@ class Resource(BaseModel):
             return Resource.parse_obj(obj)
 
         _obj = Resource.parse_obj({
-            "requested": obj.get("requested"),
-            "allocatable": obj.get("allocatable"),
-            "capacity": obj.get("capacity"),
-            "used": obj.get("used")
+            "uri": obj.get("uri"),
+            "name": obj.get("name"),
+            "description": obj.get("description"),
+            "mime_type": obj.get("mimeType")
         })
         return _obj
 

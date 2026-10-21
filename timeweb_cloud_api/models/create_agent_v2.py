@@ -25,18 +25,22 @@ from timeweb_cloud_api.models.agent_settings import AgentSettings
 
 class CreateAgentV2(BaseModel):
     """
-    Данные для создания AI агента через API v2
+    Данные для создания AI агента
     """
     name: Optional[Any] = Field(..., description="Название агента")
     description: Optional[Any] = Field(None, description="Описание агента")
-    access_type: Optional[Any] = Field(..., description="Тип доступа к агенту")
-    model_id: Optional[Any] = Field(..., description="ID основной модели")
-    token_limit: Optional[Any] = Field(None, description="Дневной лимит токенов для агента (0 — без лимита)")
+    access_type: Optional[Any] = Field(..., description="Тип доступа: `public` — агент отвечает анонимным посетителям сайта через виджет; `private` — только по токену аккаунта.")
+    model_id: Optional[Any] = Field(..., description="ID основной модели агента")
     settings: AgentSettings = Field(...)
-    project_id: Optional[Any] = Field(None, description="ID проекта")
-    additional_model_ids: Optional[Any] = Field(None, description="Список ID дополнительных моделей агента")
-    is_web_search_enabled: Optional[Any] = Field(None, description="Признак использования веб-поиска агентом")
-    __properties = ["name", "description", "access_type", "model_id", "token_limit", "settings", "project_id", "additional_model_ids", "is_web_search_enabled"]
+    project_id: Optional[Any] = Field(None, description="ID проекта, в который нужно добавить агента. По умолчанию — проект по умолчанию.")
+    is_web_search_enabled: Optional[Any] = Field(None, description="Включить веб-поиск")
+    money_limit: Optional[Any] = Field(None, description="Дневной лимит расходов агента в валюте аккаунта. `0` или не передан — без лимита. Создаётся как лимит агента с периодом `day`; изменить его можно через лимиты агента.")
+    token_limit: Optional[Any] = Field(None, description="Устарело: дневной лимит агента в токенах. `0` или не передан — без лимита. Не учитывается, если передан `money_limit`.")
+    token_package_id: Optional[Any] = Field(None, description="Устарело и не учитывается: агент всегда создаётся с поресурсной оплатой.")
+    additional_model_ids: Optional[Any] = Field(None, description="ID дополнительных моделей агента (например, для генерации изображений). Список заменяет текущий целиком.")
+    additional_models: Optional[Any] = Field(None, description="Дополнительные модели вместе с настройками (для моделей генерации изображений — `width`/`height`). Если переданы и `additional_models`, и `additional_model_ids`, используется `additional_models`.")
+    skill_ids: Optional[Any] = Field(None, description="ID навыков, которые нужно подключить к агенту сразу после создания (текущие версии навыков). Неизвестные ID пропускаются; ошибка подключения навыков не отменяет создание агента.")
+    __properties = ["name", "description", "access_type", "model_id", "settings", "project_id", "is_web_search_enabled", "money_limit", "token_limit", "token_package_id", "additional_model_ids", "additional_models", "skill_ids"]
 
     @validator('access_type')
     def access_type_validate_enum(cls, value):
@@ -95,25 +99,45 @@ class CreateAgentV2(BaseModel):
         if self.model_id is None and "model_id" in self.__fields_set__:
             _dict['model_id'] = None
 
+        # set to None if project_id (nullable) is None
+        # and __fields_set__ contains the field
+        if self.project_id is None and "project_id" in self.__fields_set__:
+            _dict['project_id'] = None
+
+        # set to None if is_web_search_enabled (nullable) is None
+        # and __fields_set__ contains the field
+        if self.is_web_search_enabled is None and "is_web_search_enabled" in self.__fields_set__:
+            _dict['is_web_search_enabled'] = None
+
+        # set to None if money_limit (nullable) is None
+        # and __fields_set__ contains the field
+        if self.money_limit is None and "money_limit" in self.__fields_set__:
+            _dict['money_limit'] = None
+
         # set to None if token_limit (nullable) is None
         # and __fields_set__ contains the field
         if self.token_limit is None and "token_limit" in self.__fields_set__:
             _dict['token_limit'] = None
 
-        # set to None if project_id (nullable) is None
+        # set to None if token_package_id (nullable) is None
         # and __fields_set__ contains the field
-        if self.project_id is None and "project_id" in self.__fields_set__:
-            _dict['project_id'] = None
+        if self.token_package_id is None and "token_package_id" in self.__fields_set__:
+            _dict['token_package_id'] = None
 
         # set to None if additional_model_ids (nullable) is None
         # and __fields_set__ contains the field
         if self.additional_model_ids is None and "additional_model_ids" in self.__fields_set__:
             _dict['additional_model_ids'] = None
 
-        # set to None if is_web_search_enabled (nullable) is None
+        # set to None if additional_models (nullable) is None
         # and __fields_set__ contains the field
-        if self.is_web_search_enabled is None and "is_web_search_enabled" in self.__fields_set__:
-            _dict['is_web_search_enabled'] = None
+        if self.additional_models is None and "additional_models" in self.__fields_set__:
+            _dict['additional_models'] = None
+
+        # set to None if skill_ids (nullable) is None
+        # and __fields_set__ contains the field
+        if self.skill_ids is None and "skill_ids" in self.__fields_set__:
+            _dict['skill_ids'] = None
 
         return _dict
 
@@ -131,11 +155,15 @@ class CreateAgentV2(BaseModel):
             "description": obj.get("description"),
             "access_type": obj.get("access_type"),
             "model_id": obj.get("model_id"),
-            "token_limit": obj.get("token_limit"),
             "settings": AgentSettings.from_dict(obj.get("settings")) if obj.get("settings") is not None else None,
             "project_id": obj.get("project_id"),
+            "is_web_search_enabled": obj.get("is_web_search_enabled"),
+            "money_limit": obj.get("money_limit"),
+            "token_limit": obj.get("token_limit"),
+            "token_package_id": obj.get("token_package_id"),
             "additional_model_ids": obj.get("additional_model_ids"),
-            "is_web_search_enabled": obj.get("is_web_search_enabled")
+            "additional_models": obj.get("additional_models"),
+            "skill_ids": obj.get("skill_ids")
         })
         return _obj
 

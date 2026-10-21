@@ -41,13 +41,13 @@ class TestGetAgentsTokenPackages200Response(unittest.TestCase):
             return GetAgentsTokenPackages200Response(
                 token_packages = None, 
                 meta = timeweb_cloud_api.models.get_agents_token_packages_200_response_meta.getAgentsTokenPackages_200_response_meta(
-                    total = 5, )
+                    total = 497, )
             )
         else :
             return GetAgentsTokenPackages200Response(
                 token_packages = None,
                 meta = timeweb_cloud_api.models.get_agents_token_packages_200_response_meta.getAgentsTokenPackages_200_response_meta(
-                    total = 5, ),
+                    total = 497, ),
         )
         """
 

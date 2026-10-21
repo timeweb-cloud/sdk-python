@@ -1,13 +1,22 @@
 # DocumentStatusInfoDetails
 
-Дополнительные детали, зависящие от типа статуса
+Подробности, набор полей зависит от состояния. Могут присутствовать и другие поля
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**started_at** | **object** | Время начала индексации | [optional] 
-**current_stage** | **object** | Текущий этап индексации | [optional] 
-**progress** | **object** | Прогресс в процентах (0-100) | [optional] 
+**started_at** | **object** | &#x60;indexing&#x60;: время начала индексации | [optional] 
+**current_stage** | **object** | &#x60;indexing&#x60;: текущий этап | [optional] 
+**progress** | **object** | &#x60;indexing&#x60;: прогресс в процентах | [optional] 
+**indexing_duration_ms** | **object** | &#x60;indexed&#x60;: длительность индексации в миллисекундах | [optional] 
+**tokens_used** | **object** | &#x60;indexed&#x60;: израсходовано токенов | [optional] 
+**tokens_estimated** | **object** | &#x60;indexed&#x60;: оценка количества токенов перед индексацией | [optional] 
+**chunks_count** | **object** | &#x60;indexed&#x60;: количество фрагментов, на которые разбит документ | [optional] 
+**needed** | **object** | &#x60;INSUFFICIENT_TOKENS&#x60;: сколько токенов нужно | [optional] 
+**available** | **object** | &#x60;INSUFFICIENT_TOKENS&#x60;: сколько токенов доступно | [optional] 
+**estimated** | **object** | &#x60;INSUFFICIENT_TOKENS&#x60;: оценка без запаса | [optional] 
+**balance** | **object** | &#x60;CRITICAL_BALANCE&#x60;, &#x60;NEGATIVE_BALANCE&#x60;: текущий остаток токенов | [optional] 
+**min_required** | **object** | &#x60;CRITICAL_BALANCE&#x60;: минимально необходимый остаток | [optional] 
 
 ## Example
 

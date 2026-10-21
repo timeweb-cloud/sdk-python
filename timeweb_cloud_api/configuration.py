@@ -367,6 +367,13 @@ class Configuration(object):
                 'key': 'Authorization',
                 'value': 'Bearer ' + self.access_token
             }
+        if self.access_token is not None:
+            auth['AiGatewayKey'] = {
+                'type': 'bearer',
+                'in': 'header',
+                'key': 'Authorization',
+                'value': 'Bearer ' + self.access_token
+            }
         return auth
 
     def to_debug_report(self):

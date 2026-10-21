@@ -39,29 +39,33 @@ class TestModel(unittest.TestCase):
         model = timeweb_cloud_api.models.model.Model()  # noqa: E501
         if include_optional :
             return Model(
-                id = 1, 
+                id = 17, 
                 provider_id = 1, 
-                name = gpt-4o, 
-                public_name = GPT 4o, 
+                name = gpt, 
+                public_name = GPT 4.1, 
+                model_name = openai/gpt-4.1, 
                 type = llm, 
+                version = 4.1, 
                 is_deprecated = false, 
                 is_stopped = false, 
-                deprecation_date = 2026-12-31T00:00:00.000Z, 
+                deprecation_date = None, 
                 is_reasoning = false, 
-                version = 2024-08-06, 
-                params_info = {temperature={type=number, min=0, max=2, default=1, description=Контролирует случайность вывода модели}, max_tokens={type=number, min=1, max=128000, default=4096, description=Максимальное количество токенов в выводе}}
+                params_info = {temperature={type=number, min=0, max=2, default=1, description=Controls randomness of the model output}, max_tokens={type=number, min=1, max=128000, default=4096, description=Maximum number of tokens in the output}}
             )
         else :
             return Model(
-                id = 1,
+                id = 17,
                 provider_id = 1,
-                name = gpt-4o,
-                public_name = GPT 4o,
+                name = gpt,
+                public_name = GPT 4.1,
+                model_name = openai/gpt-4.1,
                 type = llm,
+                version = 4.1,
                 is_deprecated = false,
                 is_stopped = false,
+                deprecation_date = None,
                 is_reasoning = false,
-                version = 2024-08-06,
+                params_info = {temperature={type=number, min=0, max=2, default=1, description=Controls randomness of the model output}, max_tokens={type=number, min=1, max=128000, default=4096, description=Maximum number of tokens in the output}},
         )
         """
 

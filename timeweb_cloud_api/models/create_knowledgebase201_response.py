@@ -27,8 +27,8 @@ class CreateKnowledgebase201Response(BaseModel):
     """
     CreateKnowledgebase201Response
     """
-    knowledgebase: Knowledgebase = Field(...)
-    __properties = ["knowledgebase"]
+    knowledge_base: Knowledgebase = Field(...)
+    __properties = ["knowledge_base"]
 
     class Config:
         """Pydantic configuration"""
@@ -54,9 +54,9 @@ class CreateKnowledgebase201Response(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of knowledgebase
-        if self.knowledgebase:
-            _dict['knowledgebase'] = self.knowledgebase.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of knowledge_base
+        if self.knowledge_base:
+            _dict['knowledge_base'] = self.knowledge_base.to_dict()
         return _dict
 
     @classmethod
@@ -69,7 +69,7 @@ class CreateKnowledgebase201Response(BaseModel):
             return CreateKnowledgebase201Response.parse_obj(obj)
 
         _obj = CreateKnowledgebase201Response.parse_obj({
-            "knowledgebase": Knowledgebase.from_dict(obj.get("knowledgebase")) if obj.get("knowledgebase") is not None else None
+            "knowledge_base": Knowledgebase.from_dict(obj.get("knowledge_base")) if obj.get("knowledge_base") is not None else None
         })
         return _obj
 

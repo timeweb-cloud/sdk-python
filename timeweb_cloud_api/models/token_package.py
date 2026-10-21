@@ -26,16 +26,17 @@ class TokenPackage(BaseModel):
     """
     Пакет токенов
     """
-    id: Optional[Any] = Field(..., description="Уникальный идентификатор пакета")
-    model_id: Optional[Any] = Field(..., description="ID модели, к которой применяется пакет токенов")
-    name: Optional[Any] = Field(..., description="Название пакета токенов")
-    package_type: Optional[Any] = Field(..., description="Тип пакета (base - базовый, additional - дополнительный, promo - промо)")
-    type: Optional[Any] = Field(..., description="Тип сущности, к которой относится пакет (agent - агент, knowledgebase - база знаний)")
+    id: Optional[Any] = Field(..., description="ID пакета")
+    model_id: Optional[Any] = Field(..., description="ID модели, к которой относится пакет")
+    service_type_id: Optional[Any] = Field(..., description="ID тарифа пакета в биллинге")
+    name: Optional[Any] = Field(..., description="Название пакета")
+    package_type: Optional[Any] = Field(..., description="Тип пакета: `base` — пакет подписки, `additional` — дополнительный пакет, `promo` — промо-пакет")
+    type: Optional[Any] = Field(..., description="Для чего пакет: `agent` — AI агент, `knowledgebase` — база знаний")
     token_amount: Optional[Any] = Field(..., description="Количество токенов в пакете")
-    price: Optional[Any] = Field(..., description="Цена пакета в целых единицах")
-    duration_days: Optional[Any] = Field(None, description="Продолжительность пакета в днях (null для дополнительных пакетов)")
-    is_available: Optional[Any] = Field(..., description="Флаг, указывающий доступность пакета")
-    __properties = ["id", "model_id", "name", "package_type", "type", "token_amount", "price", "duration_days", "is_available"]
+    price: Optional[Any] = Field(..., description="Цена пакета в рублях")
+    duration_days: Optional[Any] = Field(..., description="Период подписки в днях. `null` для дополнительных пакетов")
+    is_available: Optional[Any] = Field(..., description="Пакет доступен для покупки")
+    __properties = ["id", "model_id", "service_type_id", "name", "package_type", "type", "token_amount", "price", "duration_days", "is_available"]
 
     @validator('package_type')
     def package_type_validate_enum(cls, value):
@@ -91,6 +92,11 @@ class TokenPackage(BaseModel):
         if self.model_id is None and "model_id" in self.__fields_set__:
             _dict['model_id'] = None
 
+        # set to None if service_type_id (nullable) is None
+        # and __fields_set__ contains the field
+        if self.service_type_id is None and "service_type_id" in self.__fields_set__:
+            _dict['service_type_id'] = None
+
         # set to None if name (nullable) is None
         # and __fields_set__ contains the field
         if self.name is None and "name" in self.__fields_set__:
@@ -140,6 +146,7 @@ class TokenPackage(BaseModel):
         _obj = TokenPackage.parse_obj({
             "id": obj.get("id"),
             "model_id": obj.get("model_id"),
+            "service_type_id": obj.get("service_type_id"),
             "name": obj.get("name"),
             "package_type": obj.get("package_type"),
             "type": obj.get("type"),

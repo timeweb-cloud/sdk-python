@@ -1,13 +1,14 @@
 # Resource
 
+Ресурс MCP
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**requested** | **object** | Запрошенное количество ресурса | [optional] 
-**allocatable** | **object** | Доступное количество | [optional] 
-**capacity** | **object** | Общее количество | [optional] 
-**used** | **object** | Используемое количество | [optional] 
+**uri** | **object** | URI ресурса | 
+**name** | **object** | Имя ресурса | 
+**description** | **object** | Описание ресурса | [optional] 
+**mime_type** | **object** | Тип содержимого | [optional] 
 
 ## Example
 

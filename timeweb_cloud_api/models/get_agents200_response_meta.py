@@ -26,7 +26,7 @@ class GetAgents200ResponseMeta(BaseModel):
     """
     GetAgents200ResponseMeta
     """
-    total: Optional[Any] = Field(..., description="Общее количество агентов")
+    total: Optional[Any] = Field(..., description="Количество агентов")
     __properties = ["total"]
 
     class Config:

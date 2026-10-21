@@ -39,35 +39,53 @@ class TestModelV3(unittest.TestCase):
         model = timeweb_cloud_api.models.model_v3.ModelV3()  # noqa: E501
         if include_optional :
             return ModelV3(
-                id = 66, 
+                id = 17, 
                 provider_id = 1, 
                 name = gpt, 
-                public_name = GPT 5.1, 
-                model_name = openai/gpt-5.1, 
+                public_name = GPT 4.1, 
+                model_name = openai/gpt-4.1, 
                 type = llm, 
-                version = 5.1, 
+                version = 4.1, 
                 is_deprecated = false, 
                 is_stopped = false, 
                 deprecation_date = None, 
-                created_at = 2025-11-17T10:35:46.000Z, 
-                updated_at = 2026-07-17T09:37:23.000Z, 
-                params_info = {temperature={type=number, min=0, max=2, default=1, description=Контролирует случайность вывода модели}, max_tokens={type=number, min=1, max=128000, default=4096, description=Максимальное количество токенов в выводе}, reasoning_effort={type=enum, enum=[none, low, medium, high], default=none, description=Уровень усилий рассуждения}}, 
-                parameter_values = {cost_in=1.62E-4, cost_out=0.00135, context_window=272000, max_output_tokens=128000, is_reasoning=true, supports_function_calling=true, supported_input_modalities=[text, image], supported_output_modalities=[text], avg_speed=124.8, aa_intelligence_index=48, aa_coding_index=45, aa_agentic_index=51, release_date=2025-11-13}
+                created_at = 2025-07-31T17:57:27.000Z, 
+                updated_at = 2026-09-02T22:56:58.000Z, 
+                params_info = {temperature={type=number, min=0, max=2, default=1, description=Controls randomness of the model output}, max_tokens={type=number, min=1, max=128000, default=4096, description=Maximum number of tokens in the output}}, 
+                parameter_values = {context_window=1000000, max_output_tokens=32768, aa_intelligence_index=26, avg_speed=110, supports_function_calling=true, supported_input_modalities=[text, image], supported_output_modalities=[text], release_date=2025-04-14, is_reasoning=false, cost_in=2.7E-4, cost_out=0.00108, cost_cache_read=6.75E-5}, 
+                price_tiers = None, 
+                batch = timeweb_cloud_api.models.model_batch.model-batch(
+                    multiplier_in = 0.5, 
+                    multiplier_out = 0.5, 
+                    multiplier_cache_read = 0.5, 
+                    multiplier_cache_write = 0.5, 
+                    endpoints = [/v1/chat/completions], 
+                    supports_images = false, )
             )
         else :
             return ModelV3(
-                id = 66,
+                id = 17,
                 provider_id = 1,
                 name = gpt,
-                public_name = GPT 5.1,
-                model_name = openai/gpt-5.1,
+                public_name = GPT 4.1,
+                model_name = openai/gpt-4.1,
                 type = llm,
-                version = 5.1,
+                version = 4.1,
                 is_deprecated = false,
                 is_stopped = false,
-                created_at = 2025-11-17T10:35:46.000Z,
-                updated_at = 2026-07-17T09:37:23.000Z,
-                parameter_values = {cost_in=1.62E-4, cost_out=0.00135, context_window=272000, max_output_tokens=128000, is_reasoning=true, supports_function_calling=true, supported_input_modalities=[text, image], supported_output_modalities=[text], avg_speed=124.8, aa_intelligence_index=48, aa_coding_index=45, aa_agentic_index=51, release_date=2025-11-13},
+                deprecation_date = None,
+                created_at = 2025-07-31T17:57:27.000Z,
+                updated_at = 2026-09-02T22:56:58.000Z,
+                params_info = {temperature={type=number, min=0, max=2, default=1, description=Controls randomness of the model output}, max_tokens={type=number, min=1, max=128000, default=4096, description=Maximum number of tokens in the output}},
+                parameter_values = {context_window=1000000, max_output_tokens=32768, aa_intelligence_index=26, avg_speed=110, supports_function_calling=true, supported_input_modalities=[text, image], supported_output_modalities=[text], release_date=2025-04-14, is_reasoning=false, cost_in=2.7E-4, cost_out=0.00108, cost_cache_read=6.75E-5},
+                price_tiers = None,
+                batch = timeweb_cloud_api.models.model_batch.model-batch(
+                    multiplier_in = 0.5, 
+                    multiplier_out = 0.5, 
+                    multiplier_cache_read = 0.5, 
+                    multiplier_cache_write = 0.5, 
+                    endpoints = [/v1/chat/completions], 
+                    supports_images = false, ),
         )
         """
 

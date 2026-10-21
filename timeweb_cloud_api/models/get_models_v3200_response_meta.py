@@ -26,7 +26,7 @@ class GetModelsV3200ResponseMeta(BaseModel):
     """
     GetModelsV3200ResponseMeta
     """
-    total: Optional[Any] = Field(..., description="Общее количество моделей")
+    total: Optional[Any] = Field(..., description="Количество моделей")
     __properties = ["total"]
 
     class Config:

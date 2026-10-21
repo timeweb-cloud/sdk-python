@@ -4,8 +4,8 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**knowledgebases** | **object** |  | 
-**meta** | [**GetKnowledgebasesV2200ResponseMeta**](GetKnowledgebasesV2200ResponseMeta.md) |  | 
+**knowledge_bases** | **object** |  | 
+**meta** | [**GetKnowledgebasesV3200ResponseMeta**](GetKnowledgebasesV3200ResponseMeta.md) |  | 
 
 ## Example
 

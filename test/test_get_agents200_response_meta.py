@@ -39,11 +39,11 @@ class TestGetAgents200ResponseMeta(unittest.TestCase):
         model = timeweb_cloud_api.models.get_agents200_response_meta.GetAgents200ResponseMeta()  # noqa: E501
         if include_optional :
             return GetAgents200ResponseMeta(
-                total = 5
+                total = 1
             )
         else :
             return GetAgents200ResponseMeta(
-                total = 5,
+                total = 1,
         )
         """
 

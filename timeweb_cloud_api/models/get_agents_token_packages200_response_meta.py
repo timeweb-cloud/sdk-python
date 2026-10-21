@@ -26,7 +26,7 @@ class GetAgentsTokenPackages200ResponseMeta(BaseModel):
     """
     GetAgentsTokenPackages200ResponseMeta
     """
-    total: Optional[Any] = Field(..., description="Общее количество пакетов токенов")
+    total: Optional[Any] = Field(..., description="Количество пакетов токенов")
     __properties = ["total"]
 
     class Config:

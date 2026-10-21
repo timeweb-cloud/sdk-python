@@ -39,13 +39,15 @@ class TestResource(unittest.TestCase):
         model = timeweb_cloud_api.models.resource.Resource()  # noqa: E501
         if include_optional :
             return Resource(
-                requested = None, 
-                allocatable = None, 
-                capacity = None, 
-                used = None
+                uri = billing://me/finances, 
+                name = account-finances, 
+                description = Account balance, hours left and costs, 
+                mime_type = application/json
             )
         else :
             return Resource(
+                uri = billing://me/finances,
+                name = account-finances,
         )
         """
 

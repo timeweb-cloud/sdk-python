@@ -24,15 +24,20 @@ from pydantic import Field
 
 from typing import Any, Optional
 
-from timeweb_cloud_api.models.add_token_package import AddTokenPackage
+from timeweb_cloud_api.models.create_document import CreateDocument
 from timeweb_cloud_api.models.create_knowledgebase import CreateKnowledgebase
 from timeweb_cloud_api.models.create_knowledgebase201_response import CreateKnowledgebase201Response
+from timeweb_cloud_api.models.create_knowledgebase_document201_response import CreateKnowledgebaseDocument201Response
 from timeweb_cloud_api.models.get_knowledgebase_documents_v2200_response import GetKnowledgebaseDocumentsV2200Response
-from timeweb_cloud_api.models.get_knowledgebase_statistics200_response import GetKnowledgebaseStatistics200Response
+from timeweb_cloud_api.models.get_knowledgebase_v3200_response import GetKnowledgebaseV3200Response
 from timeweb_cloud_api.models.get_knowledgebases200_response import GetKnowledgebases200Response
 from timeweb_cloud_api.models.get_knowledgebases_v2200_response import GetKnowledgebasesV2200Response
+from timeweb_cloud_api.models.get_knowledgebases_v3200_response import GetKnowledgebasesV3200Response
+from timeweb_cloud_api.models.knowledgebase_add_token_package import KnowledgebaseAddTokenPackage
+from timeweb_cloud_api.models.link_knowledgebase import LinkKnowledgebase
+from timeweb_cloud_api.models.update_document import UpdateDocument
 from timeweb_cloud_api.models.update_knowledgebase import UpdateKnowledgebase
-from timeweb_cloud_api.models.upload_files_to_knowledgebase200_response import UploadFilesToKnowledgebase200Response
+from timeweb_cloud_api.models.upload_result import UploadResult
 
 from timeweb_cloud_api.api_client import ApiClient
 from timeweb_cloud_api.api_response import ApiResponse
@@ -55,20 +60,20 @@ class KnowledgeBasesApi(object):
         self.api_client = api_client
 
     @validate_arguments
-    def add_additional_token_package_to_knowledgebase(self, id : Annotated[Any, Field(..., description="ID базы знаний")], add_token_package : Optional[AddTokenPackage] = None, **kwargs) -> None:  # noqa: E501
-        """Добавление дополнительного пакета токенов  # noqa: E501
+    def add_additional_token_package_to_knowledgebase(self, id : Annotated[Any, Field(..., description="ID базы знаний")], knowledgebase_add_token_package : Optional[KnowledgebaseAddTokenPackage] = None, **kwargs) -> None:  # noqa: E501
+        """Покупка дополнительных пакетов токенов  # noqa: E501
 
-        Чтобы добавить дополнительный пакет токенов для базы знаний, отправьте POST-запрос на `/api/v1/cloud-ai/knowledge-bases/{id}/add-additional-token-package`.  # noqa: E501
+        Чтобы докупить токены для базы знаний, отправьте POST-запрос на `/api/v1/cloud-ai/knowledge-bases/{id}/add-additional-token-package`.  Покупается дополнительный пакет (`package_type: additional`) из `GET /api/v1/cloud-ai/token-packages/knowledge-bases` в количестве `count`. Стоимость списывается с баланса, токены добавляются к текущему периоду подписки, заблокированная база знаний разблокируется.  Возможные ошибки: - `400 insufficient_balance` — на балансе недостаточно средств - `400 subscription_expired` — база знаний заблокирована и дата продления подписки прошла: продлите подписку в панели управления - `404 additional_token_package_not_found` — дополнительный пакет недоступен  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.add_additional_token_package_to_knowledgebase(id, add_token_package, async_req=True)
+        >>> thread = api.add_additional_token_package_to_knowledgebase(id, knowledgebase_add_token_package, async_req=True)
         >>> result = thread.get()
 
         :param id: ID базы знаний (required)
         :type id: object
-        :param add_token_package:
-        :type add_token_package: AddTokenPackage
+        :param knowledgebase_add_token_package:
+        :type knowledgebase_add_token_package: KnowledgebaseAddTokenPackage
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request. If one
@@ -83,23 +88,23 @@ class KnowledgeBasesApi(object):
         kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             raise ValueError("Error! Please call the add_additional_token_package_to_knowledgebase_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
-        return self.add_additional_token_package_to_knowledgebase_with_http_info(id, add_token_package, **kwargs)  # noqa: E501
+        return self.add_additional_token_package_to_knowledgebase_with_http_info(id, knowledgebase_add_token_package, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def add_additional_token_package_to_knowledgebase_with_http_info(self, id : Annotated[Any, Field(..., description="ID базы знаний")], add_token_package : Optional[AddTokenPackage] = None, **kwargs) -> ApiResponse:  # noqa: E501
-        """Добавление дополнительного пакета токенов  # noqa: E501
+    def add_additional_token_package_to_knowledgebase_with_http_info(self, id : Annotated[Any, Field(..., description="ID базы знаний")], knowledgebase_add_token_package : Optional[KnowledgebaseAddTokenPackage] = None, **kwargs) -> ApiResponse:  # noqa: E501
+        """Покупка дополнительных пакетов токенов  # noqa: E501
 
-        Чтобы добавить дополнительный пакет токенов для базы знаний, отправьте POST-запрос на `/api/v1/cloud-ai/knowledge-bases/{id}/add-additional-token-package`.  # noqa: E501
+        Чтобы докупить токены для базы знаний, отправьте POST-запрос на `/api/v1/cloud-ai/knowledge-bases/{id}/add-additional-token-package`.  Покупается дополнительный пакет (`package_type: additional`) из `GET /api/v1/cloud-ai/token-packages/knowledge-bases` в количестве `count`. Стоимость списывается с баланса, токены добавляются к текущему периоду подписки, заблокированная база знаний разблокируется.  Возможные ошибки: - `400 insufficient_balance` — на балансе недостаточно средств - `400 subscription_expired` — база знаний заблокирована и дата продления подписки прошла: продлите подписку в панели управления - `404 additional_token_package_not_found` — дополнительный пакет недоступен  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.add_additional_token_package_to_knowledgebase_with_http_info(id, add_token_package, async_req=True)
+        >>> thread = api.add_additional_token_package_to_knowledgebase_with_http_info(id, knowledgebase_add_token_package, async_req=True)
         >>> result = thread.get()
 
         :param id: ID базы знаний (required)
         :type id: object
-        :param add_token_package:
-        :type add_token_package: AddTokenPackage
+        :param knowledgebase_add_token_package:
+        :type knowledgebase_add_token_package: KnowledgebaseAddTokenPackage
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
@@ -129,7 +134,7 @@ class KnowledgeBasesApi(object):
 
         _all_params = [
             'id',
-            'add_token_package'
+            'knowledgebase_add_token_package'
         ]
         _all_params.extend(
             [
@@ -170,8 +175,8 @@ class KnowledgeBasesApi(object):
         _files = {}
         # process the body parameter
         _body_params = None
-        if _params['add_token_package'] is not None:
-            _body_params = _params['add_token_package']
+        if _params['knowledgebase_add_token_package'] is not None:
+            _body_params = _params['knowledgebase_add_token_package']
 
         # set the HTTP header `Content-Type`
         _content_types_list = _params.get('_content_type',
@@ -206,7 +211,7 @@ class KnowledgeBasesApi(object):
     def create_knowledgebase(self, create_knowledgebase : CreateKnowledgebase, **kwargs) -> CreateKnowledgebase201Response:  # noqa: E501
         """Создание базы знаний  # noqa: E501
 
-        Чтобы создать базу знаний, отправьте POST-запрос на `/api/v1/cloud-ai/knowledge-bases`, задав необходимые атрибуты.  База знаний будет создана с использованием предоставленной информации. Тело ответа будет содержать объект JSON с информацией о созданной базе знаний.  # noqa: E501
+        Чтобы создать базу знаний, отправьте POST-запрос на `/api/v1/cloud-ai/knowledge-bases`, задав необходимые атрибуты.  Для базы знаний в вашем аккаунте создаётся кластер базы данных OpenSearch по выбранному тарифу в указанной приватной сети, а с баланса сразу списывается стоимость пакета токенов. Подписка продлевается автоматически раз в период пакета.  Пока кластер создаётся, база знаний находится в статусе `creating`; документы, добавленные в это время, будут проиндексированы после перехода в `active`.  Возможные ошибки: - `404 token_package_not_found` — пакет токенов не найден или недоступен - `400 invalid_token_package_type` — пакет не является базовым пакетом для баз знаний - `400 insufficient_balance` — на балансе недостаточно средств для оплаты пакета  Тело ответа будет представлять собой объект JSON с ключом `knowledge_base`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -235,7 +240,7 @@ class KnowledgeBasesApi(object):
     def create_knowledgebase_with_http_info(self, create_knowledgebase : CreateKnowledgebase, **kwargs) -> ApiResponse:  # noqa: E501
         """Создание базы знаний  # noqa: E501
 
-        Чтобы создать базу знаний, отправьте POST-запрос на `/api/v1/cloud-ai/knowledge-bases`, задав необходимые атрибуты.  База знаний будет создана с использованием предоставленной информации. Тело ответа будет содержать объект JSON с информацией о созданной базе знаний.  # noqa: E501
+        Чтобы создать базу знаний, отправьте POST-запрос на `/api/v1/cloud-ai/knowledge-bases`, задав необходимые атрибуты.  Для базы знаний в вашем аккаунте создаётся кластер базы данных OpenSearch по выбранному тарифу в указанной приватной сети, а с баланса сразу списывается стоимость пакета токенов. Подписка продлевается автоматически раз в период пакета.  Пока кластер создаётся, база знаний находится в статусе `creating`; документы, добавленные в это время, будут проиндексированы после перехода в `active`.  Возможные ошибки: - `404 token_package_not_found` — пакет токенов не найден или недоступен - `400 invalid_token_package_type` — пакет не является базовым пакетом для баз знаний - `400 insufficient_balance` — на балансе недостаточно средств для оплаты пакета  Тело ответа будет представлять собой объект JSON с ключом `knowledge_base`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -332,6 +337,7 @@ class KnowledgeBasesApi(object):
             '400': None,
             '401': None,
             '403': None,
+            '404': None,
             '429': None,
             '500': None,
         }
@@ -354,10 +360,170 @@ class KnowledgeBasesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
+    def create_knowledgebase_document(self, id : Annotated[Any, Field(..., description="ID базы знаний")], create_document : CreateDocument, **kwargs) -> CreateKnowledgebaseDocument201Response:  # noqa: E501
+        """Добавление документа по ссылке  # noqa: E501
+
+        Чтобы добавить в базу знаний документ по ссылке, отправьте POST-запрос на `/api/v1/cloud-ai/knowledge-bases/{id}/documents`.  Перед добавлением выполняется HEAD-запрос к `url`: адрес должен быть публично доступен, а ответ — содержать заголовок `Content-Type` одного из поддерживаемых форматов (текст, Markdown, HTML, XML, CSV, PDF, DOC, DOCX, XLS, XLSX; JSON не поддерживается). Документ сразу ставится в очередь на индексацию. Чтобы содержимое по ссылке переиндексировалось автоматически, задайте `indexing_schedule`.  Возможные ошибки: - `400 url_is_not_accessible` — адрес недоступен или вернул ошибку - `400 unsupported_file_type` — неподдерживаемый `Content-Type`  Тело ответа будет представлять собой объект JSON с ключом `document`.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.create_knowledgebase_document(id, create_document, async_req=True)
+        >>> result = thread.get()
+
+        :param id: ID базы знаний (required)
+        :type id: object
+        :param create_document: (required)
+        :type create_document: CreateDocument
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: CreateKnowledgebaseDocument201Response
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            raise ValueError("Error! Please call the create_knowledgebase_document_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
+        return self.create_knowledgebase_document_with_http_info(id, create_document, **kwargs)  # noqa: E501
+
+    @validate_arguments
+    def create_knowledgebase_document_with_http_info(self, id : Annotated[Any, Field(..., description="ID базы знаний")], create_document : CreateDocument, **kwargs) -> ApiResponse:  # noqa: E501
+        """Добавление документа по ссылке  # noqa: E501
+
+        Чтобы добавить в базу знаний документ по ссылке, отправьте POST-запрос на `/api/v1/cloud-ai/knowledge-bases/{id}/documents`.  Перед добавлением выполняется HEAD-запрос к `url`: адрес должен быть публично доступен, а ответ — содержать заголовок `Content-Type` одного из поддерживаемых форматов (текст, Markdown, HTML, XML, CSV, PDF, DOC, DOCX, XLS, XLSX; JSON не поддерживается). Документ сразу ставится в очередь на индексацию. Чтобы содержимое по ссылке переиндексировалось автоматически, задайте `indexing_schedule`.  Возможные ошибки: - `400 url_is_not_accessible` — адрес недоступен или вернул ошибку - `400 unsupported_file_type` — неподдерживаемый `Content-Type`  Тело ответа будет представлять собой объект JSON с ключом `document`.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.create_knowledgebase_document_with_http_info(id, create_document, async_req=True)
+        >>> result = thread.get()
+
+        :param id: ID базы знаний (required)
+        :type id: object
+        :param create_document: (required)
+        :type create_document: CreateDocument
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the 
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(CreateKnowledgebaseDocument201Response, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'id',
+            'create_document'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method create_knowledgebase_document" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['id']:
+            _path_params['id'] = _params['id']
+
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        if _params['create_document'] is not None:
+            _body_params = _params['create_document']
+
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # set the HTTP header `Content-Type`
+        _content_types_list = _params.get('_content_type',
+            self.api_client.select_header_content_type(
+                ['application/json']))
+        if _content_types_list:
+                _header_params['Content-Type'] = _content_types_list
+
+        # authentication setting
+        _auth_settings = ['Bearer']  # noqa: E501
+
+        _response_types_map = {
+            '201': "CreateKnowledgebaseDocument201Response",
+            '400': None,
+            '401': None,
+            '403': None,
+            '404': None,
+            '429': None,
+            '500': None,
+        }
+
+        return self.api_client.call_api(
+            '/api/v1/cloud-ai/knowledge-bases/{id}/documents', 'POST',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @validate_arguments
     def delete_document(self, id : Annotated[Any, Field(..., description="ID базы знаний")], document_id : Annotated[Any, Field(..., description="ID документа")], **kwargs) -> None:  # noqa: E501
         """Удаление документа из базы знаний  # noqa: E501
 
-        Чтобы удалить документ из базы знаний, отправьте DELETE-запрос на `/api/v1/cloud-ai/knowledge-bases/{id}/documents/{document_id}`.  # noqa: E501
+        Чтобы удалить документ из базы знаний, отправьте DELETE-запрос на `/api/v1/cloud-ai/knowledge-bases/{id}/documents/{document_id}`.  Документ удаляется вместе с его фрагментами в поисковом индексе.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -388,7 +554,7 @@ class KnowledgeBasesApi(object):
     def delete_document_with_http_info(self, id : Annotated[Any, Field(..., description="ID базы знаний")], document_id : Annotated[Any, Field(..., description="ID документа")], **kwargs) -> ApiResponse:  # noqa: E501
         """Удаление документа из базы знаний  # noqa: E501
 
-        Чтобы удалить документ из базы знаний, отправьте DELETE-запрос на `/api/v1/cloud-ai/knowledge-bases/{id}/documents/{document_id}`.  # noqa: E501
+        Чтобы удалить документ из базы знаний, отправьте DELETE-запрос на `/api/v1/cloud-ai/knowledge-bases/{id}/documents/{document_id}`.  Документ удаляется вместе с его фрагментами в поисковом индексе.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -498,7 +664,7 @@ class KnowledgeBasesApi(object):
     def delete_knowledgebase(self, id : Annotated[Any, Field(..., description="ID базы знаний")], **kwargs) -> None:  # noqa: E501
         """Удаление базы знаний  # noqa: E501
 
-        Чтобы удалить базу знаний, отправьте DELETE-запрос на `/api/v1/cloud-ai/knowledge-bases/{id}`.  # noqa: E501
+        Чтобы удалить базу знаний, отправьте DELETE-запрос на `/api/v1/cloud-ai/knowledge-bases/{id}`.  База знаний отвязывается от всех агентов, её кластер базы данных OpenSearch удаляется, подписка закрывается.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -527,7 +693,7 @@ class KnowledgeBasesApi(object):
     def delete_knowledgebase_with_http_info(self, id : Annotated[Any, Field(..., description="ID базы знаний")], **kwargs) -> ApiResponse:  # noqa: E501
         """Удаление базы знаний  # noqa: E501
 
-        Чтобы удалить базу знаний, отправьте DELETE-запрос на `/api/v1/cloud-ai/knowledge-bases/{id}`.  # noqa: E501
+        Чтобы удалить базу знаний, отправьте DELETE-запрос на `/api/v1/cloud-ai/knowledge-bases/{id}`.  База знаний отвязывается от всех агентов, её кластер базы данных OpenSearch удаляется, подписка закрывается.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -629,9 +795,9 @@ class KnowledgeBasesApi(object):
 
     @validate_arguments
     def download_document(self, id : Annotated[Any, Field(..., description="ID базы знаний")], document_id : Annotated[Any, Field(..., description="ID документа")], **kwargs) -> object:  # noqa: E501
-        """Скачивание документа из базы знаний  # noqa: E501
+        """Скачивание файла документа  # noqa: E501
 
-        Чтобы скачать документ из базы знаний, отправьте GET-запрос на `/api/v1/cloud-ai/knowledge-bases/{id}/documents/{document_id}/download`.  # noqa: E501
+        Чтобы скачать загруженный файл документа, отправьте GET-запрос на `/api/v1/cloud-ai/knowledge-bases/{id}/documents/{document_id}/download`.  Доступно только для документов типа `file`. Файл возвращается потоком с исходным MIME-типом в заголовке `Content-Type` и именем в `Content-Disposition`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -660,9 +826,9 @@ class KnowledgeBasesApi(object):
 
     @validate_arguments
     def download_document_with_http_info(self, id : Annotated[Any, Field(..., description="ID базы знаний")], document_id : Annotated[Any, Field(..., description="ID документа")], **kwargs) -> ApiResponse:  # noqa: E501
-        """Скачивание документа из базы знаний  # noqa: E501
+        """Скачивание файла документа  # noqa: E501
 
-        Чтобы скачать документ из базы знаний, отправьте GET-запрос на `/api/v1/cloud-ai/knowledge-bases/{id}/documents/{document_id}/download`.  # noqa: E501
+        Чтобы скачать загруженный файл документа, отправьте GET-запрос на `/api/v1/cloud-ai/knowledge-bases/{id}/documents/{document_id}/download`.  Доступно только для документов типа `file`. Файл возвращается потоком с исходным MIME-типом в заголовке `Content-Type` и именем в `Content-Disposition`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -757,6 +923,7 @@ class KnowledgeBasesApi(object):
             '200': "object",
             '400': None,
             '401': None,
+            '403': None,
             '404': None,
             '429': None,
             '500': None,
@@ -781,9 +948,9 @@ class KnowledgeBasesApi(object):
 
     @validate_arguments
     def get_knowledgebase(self, id : Annotated[Any, Field(..., description="ID базы знаний")], **kwargs) -> CreateKnowledgebase201Response:  # noqa: E501
-        """Получение базы знаний  # noqa: E501
+        """Получение базы знаний со списком документов  # noqa: E501
 
-        Чтобы получить информацию о базе знаний, отправьте GET-запрос на `/api/v1/cloud-ai/knowledge-bases/{id}`.  # noqa: E501
+        Чтобы получить информацию о базе знаний вместе со всеми её документами, отправьте GET-запрос на `/api/v1/cloud-ai/knowledge-bases/{id}`.  Тело ответа будет представлять собой объект JSON с ключом `knowledge_base`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -810,9 +977,9 @@ class KnowledgeBasesApi(object):
 
     @validate_arguments
     def get_knowledgebase_with_http_info(self, id : Annotated[Any, Field(..., description="ID базы знаний")], **kwargs) -> ApiResponse:  # noqa: E501
-        """Получение базы знаний  # noqa: E501
+        """Получение базы знаний со списком документов  # noqa: E501
 
-        Чтобы получить информацию о базе знаний, отправьте GET-запрос на `/api/v1/cloud-ai/knowledge-bases/{id}`.  # noqa: E501
+        Чтобы получить информацию о базе знаний вместе со всеми её документами, отправьте GET-запрос на `/api/v1/cloud-ai/knowledge-bases/{id}`.  Тело ответа будет представлять собой объект JSON с ключом `knowledge_base`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -925,26 +1092,28 @@ class KnowledgeBasesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def get_knowledgebase_documents_v2(self, id : Annotated[Any, Field(..., description="ID базы знаний")], limit : Annotated[Optional[Any], Field(description="Количество документов на странице (по умолчанию: 10, максимум: 100)")] = None, offset : Annotated[Optional[Any], Field(description="Количество документов для пропуска (по умолчанию: 0)")] = None, sort_by : Annotated[Optional[Any], Field(description="Поле для сортировки (по умолчанию: indexing_timestamp - время последней индексации документа)")] = None, sort_order : Annotated[Optional[Any], Field(description="Порядок сортировки (по умолчанию: DESC)")] = None, **kwargs) -> GetKnowledgebaseDocumentsV2200Response:  # noqa: E501
+    def get_knowledgebase_documents_v2(self, id : Annotated[Any, Field(..., description="ID базы знаний")], limit : Annotated[Optional[Any], Field(description="Количество документов на странице. Значения больше 100 уменьшаются до 100")] = None, offset : Annotated[Optional[Any], Field(description="Количество документов, которые нужно пропустить")] = None, sort_by : Annotated[Optional[Any], Field(description="Поле сортировки. `indexing_timestamp` — время последнего изменения документа")] = None, sort_order : Annotated[Optional[Any], Field(description="Порядок сортировки")] = None, search : Annotated[Optional[Any], Field(description="Фильтр по подстроке в названии документа")] = None, **kwargs) -> GetKnowledgebaseDocumentsV2200Response:  # noqa: E501
         """Получение списка документов базы знаний  # noqa: E501
 
-        Чтобы получить список документов базы знаний, отправьте GET-запрос на `/api/v2/cloud-ai/knowledge-bases/{id}/documents`.  Тело ответа будет представлять собой объект JSON с ключами `knowledgebase_documents` и `meta`.  # noqa: E501
+        Чтобы получить список документов базы знаний с пагинацией, отправьте GET-запрос на `/api/v2/cloud-ai/knowledge-bases/{id}/documents`.  Некорректные значения параметров пагинации и сортировки не приводят к ошибке — вместо них применяются значения по умолчанию.  Тело ответа будет представлять собой объект JSON с ключами `knowledgebase_documents` и `meta`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.get_knowledgebase_documents_v2(id, limit, offset, sort_by, sort_order, async_req=True)
+        >>> thread = api.get_knowledgebase_documents_v2(id, limit, offset, sort_by, sort_order, search, async_req=True)
         >>> result = thread.get()
 
         :param id: ID базы знаний (required)
         :type id: object
-        :param limit: Количество документов на странице (по умолчанию: 10, максимум: 100)
+        :param limit: Количество документов на странице. Значения больше 100 уменьшаются до 100
         :type limit: object
-        :param offset: Количество документов для пропуска (по умолчанию: 0)
+        :param offset: Количество документов, которые нужно пропустить
         :type offset: object
-        :param sort_by: Поле для сортировки (по умолчанию: indexing_timestamp - время последней индексации документа)
+        :param sort_by: Поле сортировки. `indexing_timestamp` — время последнего изменения документа
         :type sort_by: object
-        :param sort_order: Порядок сортировки (по умолчанию: DESC)
+        :param sort_order: Порядок сортировки
         :type sort_order: object
+        :param search: Фильтр по подстроке в названии документа
+        :type search: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request. If one
@@ -959,29 +1128,31 @@ class KnowledgeBasesApi(object):
         kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             raise ValueError("Error! Please call the get_knowledgebase_documents_v2_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
-        return self.get_knowledgebase_documents_v2_with_http_info(id, limit, offset, sort_by, sort_order, **kwargs)  # noqa: E501
+        return self.get_knowledgebase_documents_v2_with_http_info(id, limit, offset, sort_by, sort_order, search, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def get_knowledgebase_documents_v2_with_http_info(self, id : Annotated[Any, Field(..., description="ID базы знаний")], limit : Annotated[Optional[Any], Field(description="Количество документов на странице (по умолчанию: 10, максимум: 100)")] = None, offset : Annotated[Optional[Any], Field(description="Количество документов для пропуска (по умолчанию: 0)")] = None, sort_by : Annotated[Optional[Any], Field(description="Поле для сортировки (по умолчанию: indexing_timestamp - время последней индексации документа)")] = None, sort_order : Annotated[Optional[Any], Field(description="Порядок сортировки (по умолчанию: DESC)")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def get_knowledgebase_documents_v2_with_http_info(self, id : Annotated[Any, Field(..., description="ID базы знаний")], limit : Annotated[Optional[Any], Field(description="Количество документов на странице. Значения больше 100 уменьшаются до 100")] = None, offset : Annotated[Optional[Any], Field(description="Количество документов, которые нужно пропустить")] = None, sort_by : Annotated[Optional[Any], Field(description="Поле сортировки. `indexing_timestamp` — время последнего изменения документа")] = None, sort_order : Annotated[Optional[Any], Field(description="Порядок сортировки")] = None, search : Annotated[Optional[Any], Field(description="Фильтр по подстроке в названии документа")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Получение списка документов базы знаний  # noqa: E501
 
-        Чтобы получить список документов базы знаний, отправьте GET-запрос на `/api/v2/cloud-ai/knowledge-bases/{id}/documents`.  Тело ответа будет представлять собой объект JSON с ключами `knowledgebase_documents` и `meta`.  # noqa: E501
+        Чтобы получить список документов базы знаний с пагинацией, отправьте GET-запрос на `/api/v2/cloud-ai/knowledge-bases/{id}/documents`.  Некорректные значения параметров пагинации и сортировки не приводят к ошибке — вместо них применяются значения по умолчанию.  Тело ответа будет представлять собой объект JSON с ключами `knowledgebase_documents` и `meta`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.get_knowledgebase_documents_v2_with_http_info(id, limit, offset, sort_by, sort_order, async_req=True)
+        >>> thread = api.get_knowledgebase_documents_v2_with_http_info(id, limit, offset, sort_by, sort_order, search, async_req=True)
         >>> result = thread.get()
 
         :param id: ID базы знаний (required)
         :type id: object
-        :param limit: Количество документов на странице (по умолчанию: 10, максимум: 100)
+        :param limit: Количество документов на странице. Значения больше 100 уменьшаются до 100
         :type limit: object
-        :param offset: Количество документов для пропуска (по умолчанию: 0)
+        :param offset: Количество документов, которые нужно пропустить
         :type offset: object
-        :param sort_by: Поле для сортировки (по умолчанию: indexing_timestamp - время последней индексации документа)
+        :param sort_by: Поле сортировки. `indexing_timestamp` — время последнего изменения документа
         :type sort_by: object
-        :param sort_order: Порядок сортировки (по умолчанию: DESC)
+        :param sort_order: Порядок сортировки
         :type sort_order: object
+        :param search: Фильтр по подстроке в названии документа
+        :type search: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
@@ -1014,7 +1185,8 @@ class KnowledgeBasesApi(object):
             'limit',
             'offset',
             'sort_by',
-            'sort_order'
+            'sort_order',
+            'search'
         ]
         _all_params.extend(
             [
@@ -1060,6 +1232,9 @@ class KnowledgeBasesApi(object):
         if _params.get('sort_order') is not None:  # noqa: E501
             _query_params.append(('sort_order', _params['sort_order'].value))
 
+        if _params.get('search') is not None:  # noqa: E501
+            _query_params.append(('search', _params['search']))
+
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
         # process the form parameters
@@ -1102,24 +1277,18 @@ class KnowledgeBasesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def get_knowledgebase_statistics(self, id : Annotated[Any, Field(..., description="ID базы знаний")], start_time : Annotated[Optional[Any], Field(description="Начало временного диапазона (ISO 8601)")] = None, end_time : Annotated[Optional[Any], Field(description="Конец временного диапазона (ISO 8601)")] = None, interval : Annotated[Optional[Any], Field(description="Интервал в минутах (по умолчанию 60)")] = None, **kwargs) -> GetKnowledgebaseStatistics200Response:  # noqa: E501
-        """Получение статистики использования токенов базы знаний  # noqa: E501
+    def get_knowledgebase_v3(self, id : Annotated[Any, Field(..., description="ID базы знаний")], **kwargs) -> GetKnowledgebaseV3200Response:  # noqa: E501
+        """Получение базы знаний  # noqa: E501
 
-        Чтобы получить статистику использования токенов базы знаний, отправьте GET-запрос на `/api/v1/cloud-ai/knowledge-bases/{id}/statistic`.  Можно указать временной диапазон и интервал агрегации.  # noqa: E501
+        Чтобы получить информацию о базе знаний, отправьте GET-запрос на `/api/v3/cloud-ai/knowledge-bases/{id}`.  Тело ответа будет представлять собой объект JSON с ключом `knowledge_base`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.get_knowledgebase_statistics(id, start_time, end_time, interval, async_req=True)
+        >>> thread = api.get_knowledgebase_v3(id, async_req=True)
         >>> result = thread.get()
 
         :param id: ID базы знаний (required)
         :type id: object
-        :param start_time: Начало временного диапазона (ISO 8601)
-        :type start_time: object
-        :param end_time: Конец временного диапазона (ISO 8601)
-        :type end_time: object
-        :param interval: Интервал в минутах (по умолчанию 60)
-        :type interval: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request. If one
@@ -1129,32 +1298,26 @@ class KnowledgeBasesApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: GetKnowledgebaseStatistics200Response
+        :rtype: GetKnowledgebaseV3200Response
         """
         kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
-            raise ValueError("Error! Please call the get_knowledgebase_statistics_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
-        return self.get_knowledgebase_statistics_with_http_info(id, start_time, end_time, interval, **kwargs)  # noqa: E501
+            raise ValueError("Error! Please call the get_knowledgebase_v3_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
+        return self.get_knowledgebase_v3_with_http_info(id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def get_knowledgebase_statistics_with_http_info(self, id : Annotated[Any, Field(..., description="ID базы знаний")], start_time : Annotated[Optional[Any], Field(description="Начало временного диапазона (ISO 8601)")] = None, end_time : Annotated[Optional[Any], Field(description="Конец временного диапазона (ISO 8601)")] = None, interval : Annotated[Optional[Any], Field(description="Интервал в минутах (по умолчанию 60)")] = None, **kwargs) -> ApiResponse:  # noqa: E501
-        """Получение статистики использования токенов базы знаний  # noqa: E501
+    def get_knowledgebase_v3_with_http_info(self, id : Annotated[Any, Field(..., description="ID базы знаний")], **kwargs) -> ApiResponse:  # noqa: E501
+        """Получение базы знаний  # noqa: E501
 
-        Чтобы получить статистику использования токенов базы знаний, отправьте GET-запрос на `/api/v1/cloud-ai/knowledge-bases/{id}/statistic`.  Можно указать временной диапазон и интервал агрегации.  # noqa: E501
+        Чтобы получить информацию о базе знаний, отправьте GET-запрос на `/api/v3/cloud-ai/knowledge-bases/{id}`.  Тело ответа будет представлять собой объект JSON с ключом `knowledge_base`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.get_knowledgebase_statistics_with_http_info(id, start_time, end_time, interval, async_req=True)
+        >>> thread = api.get_knowledgebase_v3_with_http_info(id, async_req=True)
         >>> result = thread.get()
 
         :param id: ID базы знаний (required)
         :type id: object
-        :param start_time: Начало временного диапазона (ISO 8601)
-        :type start_time: object
-        :param end_time: Конец временного диапазона (ISO 8601)
-        :type end_time: object
-        :param interval: Интервал в минутах (по умолчанию 60)
-        :type interval: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
@@ -1177,16 +1340,13 @@ class KnowledgeBasesApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: tuple(GetKnowledgebaseStatistics200Response, status_code(int), headers(HTTPHeaderDict))
+        :rtype: tuple(GetKnowledgebaseV3200Response, status_code(int), headers(HTTPHeaderDict))
         """
 
         _params = locals()
 
         _all_params = [
-            'id',
-            'start_time',
-            'end_time',
-            'interval'
+            'id'
         ]
         _all_params.extend(
             [
@@ -1205,7 +1365,7 @@ class KnowledgeBasesApi(object):
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method get_knowledgebase_statistics" % _key
+                    " to method get_knowledgebase_v3" % _key
                 )
             _params[_key] = _val
         del _params['kwargs']
@@ -1220,15 +1380,6 @@ class KnowledgeBasesApi(object):
 
         # process the query parameters
         _query_params = []
-        if _params.get('start_time') is not None:  # noqa: E501
-            _query_params.append(('startTime', _params['start_time']))
-
-        if _params.get('end_time') is not None:  # noqa: E501
-            _query_params.append(('endTime', _params['end_time']))
-
-        if _params.get('interval') is not None:  # noqa: E501
-            _query_params.append(('interval', _params['interval']))
-
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
         # process the form parameters
@@ -1244,7 +1395,7 @@ class KnowledgeBasesApi(object):
         _auth_settings = ['Bearer']  # noqa: E501
 
         _response_types_map = {
-            '200': "GetKnowledgebaseStatistics200Response",
+            '200': "GetKnowledgebaseV3200Response",
             '400': None,
             '401': None,
             '403': None,
@@ -1254,7 +1405,7 @@ class KnowledgeBasesApi(object):
         }
 
         return self.api_client.call_api(
-            '/api/v1/cloud-ai/knowledge-bases/{id}/statistic', 'GET',
+            '/api/v3/cloud-ai/knowledge-bases/{id}', 'GET',
             _path_params,
             _query_params,
             _header_params,
@@ -1272,9 +1423,9 @@ class KnowledgeBasesApi(object):
 
     @validate_arguments
     def get_knowledgebases(self, **kwargs) -> GetKnowledgebases200Response:  # noqa: E501
-        """(Deprecated) Получение списка баз знаний  # noqa: E501
+        """(Deprecated) Получение списка баз знаний (v1)  # noqa: E501
 
-        Чтобы получить список баз знаний, отправьте GET-запрос на `/api/v1/cloud-ai/knowledge-bases`.  Тело ответа будет представлять собой объект JSON с ключом `knowledgebases`.  # noqa: E501
+        Метод устарел — используйте `GET /api/v3/cloud-ai/knowledge-bases`.  Чтобы получить список баз знаний вместе со всеми их документами, отправьте GET-запрос на `/api/v1/cloud-ai/knowledge-bases`.  Тело ответа будет представлять собой объект JSON с ключами `knowledge_bases` и `meta`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -1299,9 +1450,9 @@ class KnowledgeBasesApi(object):
 
     @validate_arguments
     def get_knowledgebases_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
-        """(Deprecated) Получение списка баз знаний  # noqa: E501
+        """(Deprecated) Получение списка баз знаний (v1)  # noqa: E501
 
-        Чтобы получить список баз знаний, отправьте GET-запрос на `/api/v1/cloud-ai/knowledge-bases`.  Тело ответа будет представлять собой объект JSON с ключом `knowledgebases`.  # noqa: E501
+        Метод устарел — используйте `GET /api/v3/cloud-ai/knowledge-bases`.  Чтобы получить список баз знаний вместе со всеми их документами, отправьте GET-запрос на `/api/v1/cloud-ai/knowledge-bases`.  Тело ответа будет представлять собой объект JSON с ключами `knowledge_bases` и `meta`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -1387,7 +1538,6 @@ class KnowledgeBasesApi(object):
             '400': None,
             '401': None,
             '403': None,
-            '404': None,
             '429': None,
             '500': None,
         }
@@ -1413,7 +1563,7 @@ class KnowledgeBasesApi(object):
     def get_knowledgebases_v2(self, **kwargs) -> GetKnowledgebasesV2200Response:  # noqa: E501
         """Получение списка баз знаний (v2)  # noqa: E501
 
-        Чтобы получить список баз знаний, отправьте GET-запрос на `/api/v2/cloud-ai/knowledge-bases`.  Версия API v2 возвращает оптимизированный ответ с количеством документов вместо полного списка документов.  Тело ответа будет представлять собой объект JSON с ключом `knowledgebases`.  # noqa: E501
+        Чтобы получить список баз знаний, отправьте GET-запрос на `/api/v2/cloud-ai/knowledge-bases`.  Вместо списка документов возвращается их количество, привязанные агенты — списком ID. Режим поиска для каждого агента возвращает `GET /api/v3/cloud-ai/knowledge-bases`.  Тело ответа будет представлять собой объект JSON с ключами `knowledge_bases` и `meta`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -1440,7 +1590,7 @@ class KnowledgeBasesApi(object):
     def get_knowledgebases_v2_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
         """Получение списка баз знаний (v2)  # noqa: E501
 
-        Чтобы получить список баз знаний, отправьте GET-запрос на `/api/v2/cloud-ai/knowledge-bases`.  Версия API v2 возвращает оптимизированный ответ с количеством документов вместо полного списка документов.  Тело ответа будет представлять собой объект JSON с ключом `knowledgebases`.  # noqa: E501
+        Чтобы получить список баз знаний, отправьте GET-запрос на `/api/v2/cloud-ai/knowledge-bases`.  Вместо списка документов возвращается их количество, привязанные агенты — списком ID. Режим поиска для каждого агента возвращает `GET /api/v3/cloud-ai/knowledge-bases`.  Тело ответа будет представлять собой объект JSON с ключами `knowledge_bases` и `meta`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -1524,7 +1674,6 @@ class KnowledgeBasesApi(object):
             '400': None,
             '401': None,
             '403': None,
-            '404': None,
             '429': None,
             '500': None,
         }
@@ -1547,20 +1696,158 @@ class KnowledgeBasesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def link_knowledgebase_to_agent(self, id : Annotated[Any, Field(..., description="ID базы знаний")], agent_id : Annotated[Any, Field(..., description="ID агента")], **kwargs) -> None:  # noqa: E501
-        """Привязка базы знаний к агенту  # noqa: E501
+    def get_knowledgebases_v3(self, **kwargs) -> GetKnowledgebasesV3200Response:  # noqa: E501
+        """Получение списка баз знаний  # noqa: E501
 
-        Чтобы привязать базу знаний к AI агенту, отправьте POST-запрос на `/api/v1/cloud-ai/knowledge-bases/{id}/link/{agent_id}`.  # noqa: E501
+        Чтобы получить список баз знаний, отправьте GET-запрос на `/api/v3/cloud-ai/knowledge-bases`.  Ответ содержит количество документов и привязанных агентов с режимом поиска. Документы базы знаний запрашивайте отдельно — `GET /api/v2/cloud-ai/knowledge-bases/{id}/documents`.  Тело ответа будет представлять собой объект JSON с ключами `knowledge_bases` и `meta`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.link_knowledgebase_to_agent(id, agent_id, async_req=True)
+        >>> thread = api.get_knowledgebases_v3(async_req=True)
+        >>> result = thread.get()
+
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: GetKnowledgebasesV3200Response
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            raise ValueError("Error! Please call the get_knowledgebases_v3_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
+        return self.get_knowledgebases_v3_with_http_info(**kwargs)  # noqa: E501
+
+    @validate_arguments
+    def get_knowledgebases_v3_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
+        """Получение списка баз знаний  # noqa: E501
+
+        Чтобы получить список баз знаний, отправьте GET-запрос на `/api/v3/cloud-ai/knowledge-bases`.  Ответ содержит количество документов и привязанных агентов с режимом поиска. Документы базы знаний запрашивайте отдельно — `GET /api/v2/cloud-ai/knowledge-bases/{id}/documents`.  Тело ответа будет представлять собой объект JSON с ключами `knowledge_bases` и `meta`.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_knowledgebases_v3_with_http_info(async_req=True)
+        >>> result = thread.get()
+
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the 
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(GetKnowledgebasesV3200Response, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_knowledgebases_v3" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = ['Bearer']  # noqa: E501
+
+        _response_types_map = {
+            '200': "GetKnowledgebasesV3200Response",
+            '400': None,
+            '401': None,
+            '403': None,
+            '429': None,
+            '500': None,
+        }
+
+        return self.api_client.call_api(
+            '/api/v3/cloud-ai/knowledge-bases', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @validate_arguments
+    def link_knowledgebase_to_agent(self, id : Annotated[Any, Field(..., description="ID базы знаний")], agent_id : Annotated[Any, Field(..., description="ID AI агента")], link_knowledgebase : Optional[LinkKnowledgebase] = None, **kwargs) -> None:  # noqa: E501
+        """Привязка базы знаний к агенту  # noqa: E501
+
+        Чтобы привязать базу знаний к AI агенту, отправьте POST-запрос на `/api/v1/cloud-ai/knowledge-bases/{id}/link/{agent_id}`.  Тело запроса необязательно: в нём можно выбрать режим поиска `retrievalMode` (по умолчанию `agentic`). Изменить режим для существующей привязки можно запросом PATCH на тот же адрес.  Возможные ошибки: `404 knowledgebase_not_found`, `404 agent_not_found`.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.link_knowledgebase_to_agent(id, agent_id, link_knowledgebase, async_req=True)
         >>> result = thread.get()
 
         :param id: ID базы знаний (required)
         :type id: object
-        :param agent_id: ID агента (required)
+        :param agent_id: ID AI агента (required)
         :type agent_id: object
+        :param link_knowledgebase:
+        :type link_knowledgebase: LinkKnowledgebase
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request. If one
@@ -1575,23 +1862,25 @@ class KnowledgeBasesApi(object):
         kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             raise ValueError("Error! Please call the link_knowledgebase_to_agent_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
-        return self.link_knowledgebase_to_agent_with_http_info(id, agent_id, **kwargs)  # noqa: E501
+        return self.link_knowledgebase_to_agent_with_http_info(id, agent_id, link_knowledgebase, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def link_knowledgebase_to_agent_with_http_info(self, id : Annotated[Any, Field(..., description="ID базы знаний")], agent_id : Annotated[Any, Field(..., description="ID агента")], **kwargs) -> ApiResponse:  # noqa: E501
+    def link_knowledgebase_to_agent_with_http_info(self, id : Annotated[Any, Field(..., description="ID базы знаний")], agent_id : Annotated[Any, Field(..., description="ID AI агента")], link_knowledgebase : Optional[LinkKnowledgebase] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Привязка базы знаний к агенту  # noqa: E501
 
-        Чтобы привязать базу знаний к AI агенту, отправьте POST-запрос на `/api/v1/cloud-ai/knowledge-bases/{id}/link/{agent_id}`.  # noqa: E501
+        Чтобы привязать базу знаний к AI агенту, отправьте POST-запрос на `/api/v1/cloud-ai/knowledge-bases/{id}/link/{agent_id}`.  Тело запроса необязательно: в нём можно выбрать режим поиска `retrievalMode` (по умолчанию `agentic`). Изменить режим для существующей привязки можно запросом PATCH на тот же адрес.  Возможные ошибки: `404 knowledgebase_not_found`, `404 agent_not_found`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.link_knowledgebase_to_agent_with_http_info(id, agent_id, async_req=True)
+        >>> thread = api.link_knowledgebase_to_agent_with_http_info(id, agent_id, link_knowledgebase, async_req=True)
         >>> result = thread.get()
 
         :param id: ID базы знаний (required)
         :type id: object
-        :param agent_id: ID агента (required)
+        :param agent_id: ID AI агента (required)
         :type agent_id: object
+        :param link_knowledgebase:
+        :type link_knowledgebase: LinkKnowledgebase
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
@@ -1621,7 +1910,8 @@ class KnowledgeBasesApi(object):
 
         _all_params = [
             'id',
-            'agent_id'
+            'agent_id',
+            'link_knowledgebase'
         ]
         _all_params.extend(
             [
@@ -1665,6 +1955,16 @@ class KnowledgeBasesApi(object):
         _files = {}
         # process the body parameter
         _body_params = None
+        if _params['link_knowledgebase'] is not None:
+            _body_params = _params['link_knowledgebase']
+
+        # set the HTTP header `Content-Type`
+        _content_types_list = _params.get('_content_type',
+            self.api_client.select_header_content_type(
+                ['application/json']))
+        if _content_types_list:
+                _header_params['Content-Type'] = _content_types_list
+
         # authentication setting
         _auth_settings = ['Bearer']  # noqa: E501
 
@@ -1691,7 +1991,7 @@ class KnowledgeBasesApi(object):
     def reindex_document(self, id : Annotated[Any, Field(..., description="ID базы знаний")], document_id : Annotated[Any, Field(..., description="ID документа")], **kwargs) -> None:  # noqa: E501
         """Переиндексация документа  # noqa: E501
 
-        Чтобы переиндексировать документ в базе знаний, отправьте POST-запрос на `/api/v1/cloud-ai/knowledge-bases/{id}/documents/{document_id}/reindex`.  # noqa: E501
+        Чтобы переиндексировать документ, отправьте POST-запрос на `/api/v1/cloud-ai/knowledge-bases/{id}/documents/{document_id}/reindex`.  Документ ставится в очередь на индексацию; следите за полем `status` документа. Для документа по ссылке содержимое скачивается заново. Если база знаний не в статусе `active`, документ будет проиндексирован после активации.  Возможные ошибки: `404 knowledgebase_not_found`, `404 document_not_found`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -1722,7 +2022,7 @@ class KnowledgeBasesApi(object):
     def reindex_document_with_http_info(self, id : Annotated[Any, Field(..., description="ID базы знаний")], document_id : Annotated[Any, Field(..., description="ID документа")], **kwargs) -> ApiResponse:  # noqa: E501
         """Переиндексация документа  # noqa: E501
 
-        Чтобы переиндексировать документ в базе знаний, отправьте POST-запрос на `/api/v1/cloud-ai/knowledge-bases/{id}/documents/{document_id}/reindex`.  # noqa: E501
+        Чтобы переиндексировать документ, отправьте POST-запрос на `/api/v1/cloud-ai/knowledge-bases/{id}/documents/{document_id}/reindex`.  Документ ставится в очередь на индексацию; следите за полем `status` документа. Для документа по ссылке содержимое скачивается заново. Если база знаний не в статусе `active`, документ будет проиндексирован после активации.  Возможные ошибки: `404 knowledgebase_not_found`, `404 document_not_found`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -1829,10 +2129,10 @@ class KnowledgeBasesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def unlink_knowledgebase_from_agent(self, id : Annotated[Any, Field(..., description="ID базы знаний")], agent_id : Annotated[Any, Field(..., description="ID агента")], **kwargs) -> None:  # noqa: E501
+    def unlink_knowledgebase_from_agent(self, id : Annotated[Any, Field(..., description="ID базы знаний")], agent_id : Annotated[Any, Field(..., description="ID AI агента")], **kwargs) -> None:  # noqa: E501
         """Отвязка базы знаний от агента  # noqa: E501
 
-        Чтобы отвязать базу знаний от AI агента, отправьте DELETE-запрос на `/api/v1/cloud-ai/knowledge-bases/{id}/link/{agent_id}`.  # noqa: E501
+        Чтобы отвязать базу знаний от AI агента, отправьте DELETE-запрос на `/api/v1/cloud-ai/knowledge-bases/{id}/link/{agent_id}`.  Возможные ошибки: `404 knowledgebase_not_found`, `404 agent_not_found`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -1841,7 +2141,7 @@ class KnowledgeBasesApi(object):
 
         :param id: ID базы знаний (required)
         :type id: object
-        :param agent_id: ID агента (required)
+        :param agent_id: ID AI агента (required)
         :type agent_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -1860,10 +2160,10 @@ class KnowledgeBasesApi(object):
         return self.unlink_knowledgebase_from_agent_with_http_info(id, agent_id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def unlink_knowledgebase_from_agent_with_http_info(self, id : Annotated[Any, Field(..., description="ID базы знаний")], agent_id : Annotated[Any, Field(..., description="ID агента")], **kwargs) -> ApiResponse:  # noqa: E501
+    def unlink_knowledgebase_from_agent_with_http_info(self, id : Annotated[Any, Field(..., description="ID базы знаний")], agent_id : Annotated[Any, Field(..., description="ID AI агента")], **kwargs) -> ApiResponse:  # noqa: E501
         """Отвязка базы знаний от агента  # noqa: E501
 
-        Чтобы отвязать базу знаний от AI агента, отправьте DELETE-запрос на `/api/v1/cloud-ai/knowledge-bases/{id}/link/{agent_id}`.  # noqa: E501
+        Чтобы отвязать базу знаний от AI агента, отправьте DELETE-запрос на `/api/v1/cloud-ai/knowledge-bases/{id}/link/{agent_id}`.  Возможные ошибки: `404 knowledgebase_not_found`, `404 agent_not_found`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -1872,7 +2172,7 @@ class KnowledgeBasesApi(object):
 
         :param id: ID базы знаний (required)
         :type id: object
-        :param agent_id: ID агента (required)
+        :param agent_id: ID AI агента (required)
         :type agent_id: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -1971,9 +2271,9 @@ class KnowledgeBasesApi(object):
 
     @validate_arguments
     def update_knowledgebase(self, id : Annotated[Any, Field(..., description="ID базы знаний")], update_knowledgebase : UpdateKnowledgebase, **kwargs) -> CreateKnowledgebase201Response:  # noqa: E501
-        """Обновление базы знаний  # noqa: E501
+        """Изменение базы знаний  # noqa: E501
 
-        Чтобы обновить базу знаний, отправьте PATCH-запрос на `/api/v1/cloud-ai/knowledge-bases/{id}`.  # noqa: E501
+        Чтобы изменить название или описание базы знаний, отправьте PATCH-запрос на `/api/v1/cloud-ai/knowledge-bases/{id}`.  Тело ответа будет представлять собой объект JSON с ключом `knowledge_base`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -2002,9 +2302,9 @@ class KnowledgeBasesApi(object):
 
     @validate_arguments
     def update_knowledgebase_with_http_info(self, id : Annotated[Any, Field(..., description="ID базы знаний")], update_knowledgebase : UpdateKnowledgebase, **kwargs) -> ApiResponse:  # noqa: E501
-        """Обновление базы знаний  # noqa: E501
+        """Изменение базы знаний  # noqa: E501
 
-        Чтобы обновить базу знаний, отправьте PATCH-запрос на `/api/v1/cloud-ai/knowledge-bases/{id}`.  # noqa: E501
+        Чтобы изменить название или описание базы знаний, отправьте PATCH-запрос на `/api/v1/cloud-ai/knowledge-bases/{id}`.  Тело ответа будет представлять собой объект JSON с ключом `knowledge_base`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -2130,10 +2430,334 @@ class KnowledgeBasesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def upload_files_to_knowledgebase(self, id : Annotated[Any, Field(..., description="ID базы знаний")], files : Annotated[Optional[Any], Field(..., description="Файлы для загрузки (максимум 10 файлов, 10 МБ каждый)")], **kwargs) -> UploadFilesToKnowledgebase200Response:  # noqa: E501
+    def update_knowledgebase_agent_link(self, id : Annotated[Any, Field(..., description="ID базы знаний")], agent_id : Annotated[Any, Field(..., description="ID AI агента")], link_knowledgebase : Optional[LinkKnowledgebase] = None, **kwargs) -> None:  # noqa: E501
+        """Изменение режима поиска по базе знаний для агента  # noqa: E501
+
+        Чтобы изменить режим поиска по привязанной базе знаний для AI агента, отправьте PATCH-запрос на `/api/v1/cloud-ai/knowledge-bases/{id}/link/{agent_id}`.  Если `retrievalMode` не передан, устанавливается `agentic`. Если база знаний не привязана к агенту, запрос ничего не меняет и также возвращает `204`.  Возможные ошибки: `404 knowledgebase_not_found`, `404 agent_not_found`.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.update_knowledgebase_agent_link(id, agent_id, link_knowledgebase, async_req=True)
+        >>> result = thread.get()
+
+        :param id: ID базы знаний (required)
+        :type id: object
+        :param agent_id: ID AI агента (required)
+        :type agent_id: object
+        :param link_knowledgebase:
+        :type link_knowledgebase: LinkKnowledgebase
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: None
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            raise ValueError("Error! Please call the update_knowledgebase_agent_link_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
+        return self.update_knowledgebase_agent_link_with_http_info(id, agent_id, link_knowledgebase, **kwargs)  # noqa: E501
+
+    @validate_arguments
+    def update_knowledgebase_agent_link_with_http_info(self, id : Annotated[Any, Field(..., description="ID базы знаний")], agent_id : Annotated[Any, Field(..., description="ID AI агента")], link_knowledgebase : Optional[LinkKnowledgebase] = None, **kwargs) -> ApiResponse:  # noqa: E501
+        """Изменение режима поиска по базе знаний для агента  # noqa: E501
+
+        Чтобы изменить режим поиска по привязанной базе знаний для AI агента, отправьте PATCH-запрос на `/api/v1/cloud-ai/knowledge-bases/{id}/link/{agent_id}`.  Если `retrievalMode` не передан, устанавливается `agentic`. Если база знаний не привязана к агенту, запрос ничего не меняет и также возвращает `204`.  Возможные ошибки: `404 knowledgebase_not_found`, `404 agent_not_found`.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.update_knowledgebase_agent_link_with_http_info(id, agent_id, link_knowledgebase, async_req=True)
+        >>> result = thread.get()
+
+        :param id: ID базы знаний (required)
+        :type id: object
+        :param agent_id: ID AI агента (required)
+        :type agent_id: object
+        :param link_knowledgebase:
+        :type link_knowledgebase: LinkKnowledgebase
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the 
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: None
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'id',
+            'agent_id',
+            'link_knowledgebase'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method update_knowledgebase_agent_link" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['id']:
+            _path_params['id'] = _params['id']
+
+        if _params['agent_id']:
+            _path_params['agent_id'] = _params['agent_id']
+
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        if _params['link_knowledgebase'] is not None:
+            _body_params = _params['link_knowledgebase']
+
+        # set the HTTP header `Content-Type`
+        _content_types_list = _params.get('_content_type',
+            self.api_client.select_header_content_type(
+                ['application/json']))
+        if _content_types_list:
+                _header_params['Content-Type'] = _content_types_list
+
+        # authentication setting
+        _auth_settings = ['Bearer']  # noqa: E501
+
+        _response_types_map = {}
+
+        return self.api_client.call_api(
+            '/api/v1/cloud-ai/knowledge-bases/{id}/link/{agent_id}', 'PATCH',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @validate_arguments
+    def update_knowledgebase_document(self, id : Annotated[Any, Field(..., description="ID базы знаний")], document_id : Annotated[Any, Field(..., description="ID документа")], update_document : UpdateDocument, **kwargs) -> CreateKnowledgebaseDocument201Response:  # noqa: E501
+        """Изменение документа  # noqa: E501
+
+        Чтобы изменить документ базы знаний, отправьте PATCH-запрос на `/api/v1/cloud-ai/knowledge-bases/{id}/documents/{document_id}`.  Можно изменить название, расписание переиндексации и — только для документов типа `link` — адрес. После смены адреса документ переиндексируется; изменение названия и расписания переиндексацию не запускает. Новый адрес проверяется так же, как при добавлении документа.  Тело ответа будет представлять собой объект JSON с ключом `document`.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.update_knowledgebase_document(id, document_id, update_document, async_req=True)
+        >>> result = thread.get()
+
+        :param id: ID базы знаний (required)
+        :type id: object
+        :param document_id: ID документа (required)
+        :type document_id: object
+        :param update_document: (required)
+        :type update_document: UpdateDocument
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: CreateKnowledgebaseDocument201Response
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            raise ValueError("Error! Please call the update_knowledgebase_document_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
+        return self.update_knowledgebase_document_with_http_info(id, document_id, update_document, **kwargs)  # noqa: E501
+
+    @validate_arguments
+    def update_knowledgebase_document_with_http_info(self, id : Annotated[Any, Field(..., description="ID базы знаний")], document_id : Annotated[Any, Field(..., description="ID документа")], update_document : UpdateDocument, **kwargs) -> ApiResponse:  # noqa: E501
+        """Изменение документа  # noqa: E501
+
+        Чтобы изменить документ базы знаний, отправьте PATCH-запрос на `/api/v1/cloud-ai/knowledge-bases/{id}/documents/{document_id}`.  Можно изменить название, расписание переиндексации и — только для документов типа `link` — адрес. После смены адреса документ переиндексируется; изменение названия и расписания переиндексацию не запускает. Новый адрес проверяется так же, как при добавлении документа.  Тело ответа будет представлять собой объект JSON с ключом `document`.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.update_knowledgebase_document_with_http_info(id, document_id, update_document, async_req=True)
+        >>> result = thread.get()
+
+        :param id: ID базы знаний (required)
+        :type id: object
+        :param document_id: ID документа (required)
+        :type document_id: object
+        :param update_document: (required)
+        :type update_document: UpdateDocument
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the 
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(CreateKnowledgebaseDocument201Response, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'id',
+            'document_id',
+            'update_document'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method update_knowledgebase_document" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['id']:
+            _path_params['id'] = _params['id']
+
+        if _params['document_id']:
+            _path_params['document_id'] = _params['document_id']
+
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        if _params['update_document'] is not None:
+            _body_params = _params['update_document']
+
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # set the HTTP header `Content-Type`
+        _content_types_list = _params.get('_content_type',
+            self.api_client.select_header_content_type(
+                ['application/json']))
+        if _content_types_list:
+                _header_params['Content-Type'] = _content_types_list
+
+        # authentication setting
+        _auth_settings = ['Bearer']  # noqa: E501
+
+        _response_types_map = {
+            '200': "CreateKnowledgebaseDocument201Response",
+            '400': None,
+            '401': None,
+            '403': None,
+            '404': None,
+            '429': None,
+            '500': None,
+        }
+
+        return self.api_client.call_api(
+            '/api/v1/cloud-ai/knowledge-bases/{id}/documents/{document_id}', 'PATCH',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @validate_arguments
+    def upload_files_to_knowledgebase(self, id : Annotated[Any, Field(..., description="ID базы знаний")], files : Annotated[Optional[Any], Field(..., description="Файлы для загрузки")], **kwargs) -> UploadResult:  # noqa: E501
         """Загрузка файлов в базу знаний  # noqa: E501
 
-        Чтобы загрузить файлы в базу знаний, отправьте POST-запрос на `/api/v1/cloud-ai/knowledge-bases/{id}/upload` с файлами в формате multipart/form-data.  Поддерживаемые форматы: CSV, XML, Markdown (md), HTML, TXT. JSON не поддерживается. Максимум 10 файлов, до 10 МБ каждый.  # noqa: E501
+        Чтобы загрузить файлы в базу знаний, отправьте POST-запрос на `/api/v1/cloud-ai/knowledge-bases/{id}/upload` с файлами в поле `files` формата `multipart/form-data`. Для каждого файла создаётся документ типа `file`, после загрузки документы ставятся в очередь на индексацию (если база знаний в статусе `active`; иначе — после активации).  Поддерживаемые форматы: TXT, Markdown (`md`, `markdown`), HTML (`html`, `htm`), XML, CSV, PDF, DOC, DOCX, XLS, XLSX, а также другие файлы с MIME-типом `text/*`. JSON (`json`, `jsonl`, `ndjson`) не поддерживается. Размер одного файла — не более 50 МБ.  Если хотя бы один файл неподдерживаемого формата, запрос завершается ошибкой.  Тело ответа будет представлять собой объект JSON с ключами `uploadedFiles` и `documents`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -2142,7 +2766,7 @@ class KnowledgeBasesApi(object):
 
         :param id: ID базы знаний (required)
         :type id: object
-        :param files: Файлы для загрузки (максимум 10 файлов, 10 МБ каждый) (required)
+        :param files: Файлы для загрузки (required)
         :type files: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -2153,7 +2777,7 @@ class KnowledgeBasesApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: UploadFilesToKnowledgebase200Response
+        :rtype: UploadResult
         """
         kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
@@ -2161,10 +2785,10 @@ class KnowledgeBasesApi(object):
         return self.upload_files_to_knowledgebase_with_http_info(id, files, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def upload_files_to_knowledgebase_with_http_info(self, id : Annotated[Any, Field(..., description="ID базы знаний")], files : Annotated[Optional[Any], Field(..., description="Файлы для загрузки (максимум 10 файлов, 10 МБ каждый)")], **kwargs) -> ApiResponse:  # noqa: E501
+    def upload_files_to_knowledgebase_with_http_info(self, id : Annotated[Any, Field(..., description="ID базы знаний")], files : Annotated[Optional[Any], Field(..., description="Файлы для загрузки")], **kwargs) -> ApiResponse:  # noqa: E501
         """Загрузка файлов в базу знаний  # noqa: E501
 
-        Чтобы загрузить файлы в базу знаний, отправьте POST-запрос на `/api/v1/cloud-ai/knowledge-bases/{id}/upload` с файлами в формате multipart/form-data.  Поддерживаемые форматы: CSV, XML, Markdown (md), HTML, TXT. JSON не поддерживается. Максимум 10 файлов, до 10 МБ каждый.  # noqa: E501
+        Чтобы загрузить файлы в базу знаний, отправьте POST-запрос на `/api/v1/cloud-ai/knowledge-bases/{id}/upload` с файлами в поле `files` формата `multipart/form-data`. Для каждого файла создаётся документ типа `file`, после загрузки документы ставятся в очередь на индексацию (если база знаний в статусе `active`; иначе — после активации).  Поддерживаемые форматы: TXT, Markdown (`md`, `markdown`), HTML (`html`, `htm`), XML, CSV, PDF, DOC, DOCX, XLS, XLSX, а также другие файлы с MIME-типом `text/*`. JSON (`json`, `jsonl`, `ndjson`) не поддерживается. Размер одного файла — не более 50 МБ.  Если хотя бы один файл неподдерживаемого формата, запрос завершается ошибкой.  Тело ответа будет представлять собой объект JSON с ключами `uploadedFiles` и `documents`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -2173,7 +2797,7 @@ class KnowledgeBasesApi(object):
 
         :param id: ID базы знаний (required)
         :type id: object
-        :param files: Файлы для загрузки (максимум 10 файлов, 10 МБ каждый) (required)
+        :param files: Файлы для загрузки (required)
         :type files: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -2197,7 +2821,7 @@ class KnowledgeBasesApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: tuple(UploadFilesToKnowledgebase200Response, status_code(int), headers(HTTPHeaderDict))
+        :rtype: tuple(UploadResult, status_code(int), headers(HTTPHeaderDict))
         """
 
         _params = locals()
@@ -2263,7 +2887,7 @@ class KnowledgeBasesApi(object):
         _auth_settings = ['Bearer']  # noqa: E501
 
         _response_types_map = {
-            '200': "UploadFilesToKnowledgebase200Response",
+            '200': "UploadResult",
             '400': None,
             '401': None,
             '403': None,

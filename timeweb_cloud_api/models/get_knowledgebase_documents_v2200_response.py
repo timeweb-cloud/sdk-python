@@ -27,7 +27,7 @@ class GetKnowledgebaseDocumentsV2200Response(BaseModel):
     """
     GetKnowledgebaseDocumentsV2200Response
     """
-    knowledgebase_documents: Optional[Any] = Field(..., description="Список документов")
+    knowledgebase_documents: Optional[Any] = Field(..., description="Документы")
     meta: GetKnowledgebaseDocumentsV2200ResponseMeta = Field(...)
     __properties = ["knowledgebase_documents", "meta"]
 

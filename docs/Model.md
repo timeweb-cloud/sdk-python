@@ -1,21 +1,22 @@
 # Model
 
-Модель AI
+AI модель
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **object** | Уникальный идентификатор модели | 
-**provider_id** | **object** | ID провайдера, который предоставляет модель | 
-**name** | **object** | Название модели | 
-**public_name** | **object** | Публичное имя модели | 
-**type** | **object** | Тип модели (llm - языковая модель, embedding - модель для эмбеддингов) | 
-**is_deprecated** | **object** | Признак, что модель устарела | 
-**is_stopped** | **object** | Признак, что поддержка модели остановлена в системе | 
-**deprecation_date** | **object** | Дата депрекейта модели у провайдера | [optional] 
-**is_reasoning** | **object** | Признак поддержки режима рассуждения | 
+**id** | **object** | ID модели | 
+**provider_id** | **object** | ID провайдера модели | 
+**name** | **object** | Семейство модели | 
+**public_name** | **object** | Отображаемое название модели | 
+**model_name** | **object** | Идентификатор модели с префиксом провайдера — передаётся в поле &#x60;model&#x60; запросов к AI Gateway | 
+**type** | **object** | Тип модели: - &#x60;llm&#x60; — языковая модель - &#x60;hosted-llm&#x60; — языковая модель, размещённая в Timeweb Cloud - &#x60;embedding&#x60; — модель эмбеддингов - &#x60;image&#x60; — генерация изображений - &#x60;audio&#x60; — работа с аудио - &#x60;video&#x60; — генерация видео - &#x60;moderation&#x60; — модерация контента - &#x60;system-one&#x60; — служебная модель с собственным API | 
 **version** | **object** | Версия модели | 
-**params_info** | [**ModelParamsInfo**](ModelParamsInfo.md) |  | [optional] 
+**is_deprecated** | **object** | Модель устарела и недоступна для выбора в новых агентах | 
+**is_stopped** | **object** | Поддержка модели остановлена: запросы к ней не выполняются | 
+**deprecation_date** | **object** | Дата отключения модели у провайдера. &#x60;null&#x60;, если отключение не запланировано | 
+**is_reasoning** | **object** | Модель поддерживает режим рассуждений | 
+**params_info** | [**Dict[str, ModelParamInfo]**](ModelParamInfo.md) | Параметры генерации, которые можно настроить у агента с этой моделью. Ключ — имя параметра (&#x60;temperature&#x60;, &#x60;top_p&#x60;, &#x60;max_tokens&#x60;, &#x60;reasoning_effort&#x60; и т.д.). &#x60;null&#x60;, если параметры не заданы | 
 
 ## Example
 

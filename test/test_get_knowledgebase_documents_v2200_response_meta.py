@@ -40,13 +40,13 @@ class TestGetKnowledgebaseDocumentsV2200ResponseMeta(unittest.TestCase):
         if include_optional :
             return GetKnowledgebaseDocumentsV2200ResponseMeta(
                 total = 150, 
-                limit = 20, 
+                limit = 10, 
                 offset = 0
             )
         else :
             return GetKnowledgebaseDocumentsV2200ResponseMeta(
                 total = 150,
-                limit = 20,
+                limit = 10,
                 offset = 0,
         )
         """

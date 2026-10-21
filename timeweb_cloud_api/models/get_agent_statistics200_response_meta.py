@@ -26,7 +26,7 @@ class GetAgentStatistics200ResponseMeta(BaseModel):
     """
     GetAgentStatistics200ResponseMeta
     """
-    total: Optional[Any] = Field(..., description="Количество полученных временных отрезков")
+    total: Optional[Any] = Field(..., description="Количество точек статистики")
     __properties = ["total"]
 
     class Config:

@@ -21,15 +21,15 @@ import json
 
 from typing import Any, Optional
 from pydantic import BaseModel, Field
-from timeweb_cloud_api.models.get_knowledgebases_v2200_response_meta import GetKnowledgebasesV2200ResponseMeta
+from timeweb_cloud_api.models.get_knowledgebases_v3200_response_meta import GetKnowledgebasesV3200ResponseMeta
 
 class GetKnowledgebasesV2200Response(BaseModel):
     """
     GetKnowledgebasesV2200Response
     """
-    knowledgebases: Optional[Any] = Field(...)
-    meta: GetKnowledgebasesV2200ResponseMeta = Field(...)
-    __properties = ["knowledgebases", "meta"]
+    knowledge_bases: Optional[Any] = Field(...)
+    meta: GetKnowledgebasesV3200ResponseMeta = Field(...)
+    __properties = ["knowledge_bases", "meta"]
 
     class Config:
         """Pydantic configuration"""
@@ -58,10 +58,10 @@ class GetKnowledgebasesV2200Response(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of meta
         if self.meta:
             _dict['meta'] = self.meta.to_dict()
-        # set to None if knowledgebases (nullable) is None
+        # set to None if knowledge_bases (nullable) is None
         # and __fields_set__ contains the field
-        if self.knowledgebases is None and "knowledgebases" in self.__fields_set__:
-            _dict['knowledgebases'] = None
+        if self.knowledge_bases is None and "knowledge_bases" in self.__fields_set__:
+            _dict['knowledge_bases'] = None
 
         return _dict
 
@@ -75,8 +75,8 @@ class GetKnowledgebasesV2200Response(BaseModel):
             return GetKnowledgebasesV2200Response.parse_obj(obj)
 
         _obj = GetKnowledgebasesV2200Response.parse_obj({
-            "knowledgebases": obj.get("knowledgebases"),
-            "meta": GetKnowledgebasesV2200ResponseMeta.from_dict(obj.get("meta")) if obj.get("meta") is not None else None
+            "knowledge_bases": obj.get("knowledge_bases"),
+            "meta": GetKnowledgebasesV3200ResponseMeta.from_dict(obj.get("meta")) if obj.get("meta") is not None else None
         })
         return _obj
 

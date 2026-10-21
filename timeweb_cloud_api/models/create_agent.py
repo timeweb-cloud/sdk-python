@@ -25,16 +25,17 @@ from timeweb_cloud_api.models.agent_settings import AgentSettings
 
 class CreateAgent(BaseModel):
     """
-    Данные для создания AI агента
+    Данные для создания AI агента (устаревший метод API v1)
     """
     name: Optional[Any] = Field(..., description="Название агента")
     description: Optional[Any] = Field(None, description="Описание агента")
-    access_type: Optional[Any] = Field(..., description="Тип доступа к агенту")
-    model_id: Optional[Any] = Field(..., description="ID модели")
-    token_package_id: Optional[Any] = Field(..., description="ID пакета токенов")
+    access_type: Optional[Any] = Field(..., description="Тип доступа: `public` — агент отвечает анонимным посетителям сайта через виджет; `private` — только по токену аккаунта.")
+    model_id: Optional[Any] = Field(..., description="ID основной модели агента")
     settings: AgentSettings = Field(...)
-    project_id: Optional[Any] = Field(None, description="ID проекта")
-    __properties = ["name", "description", "access_type", "model_id", "token_package_id", "settings", "project_id"]
+    project_id: Optional[Any] = Field(None, description="ID проекта, в который нужно добавить агента. По умолчанию — проект по умолчанию.")
+    is_web_search_enabled: Optional[Any] = Field(None, description="Включить веб-поиск")
+    token_package_id: Optional[Any] = Field(..., description="ID пакета токенов. Обязателен для совместимости, но не учитывается: агент всегда создаётся с поресурсной оплатой.")
+    __properties = ["name", "description", "access_type", "model_id", "settings", "project_id", "is_web_search_enabled", "token_package_id"]
 
     @validator('access_type')
     def access_type_validate_enum(cls, value):
@@ -93,15 +94,20 @@ class CreateAgent(BaseModel):
         if self.model_id is None and "model_id" in self.__fields_set__:
             _dict['model_id'] = None
 
-        # set to None if token_package_id (nullable) is None
-        # and __fields_set__ contains the field
-        if self.token_package_id is None and "token_package_id" in self.__fields_set__:
-            _dict['token_package_id'] = None
-
         # set to None if project_id (nullable) is None
         # and __fields_set__ contains the field
         if self.project_id is None and "project_id" in self.__fields_set__:
             _dict['project_id'] = None
+
+        # set to None if is_web_search_enabled (nullable) is None
+        # and __fields_set__ contains the field
+        if self.is_web_search_enabled is None and "is_web_search_enabled" in self.__fields_set__:
+            _dict['is_web_search_enabled'] = None
+
+        # set to None if token_package_id (nullable) is None
+        # and __fields_set__ contains the field
+        if self.token_package_id is None and "token_package_id" in self.__fields_set__:
+            _dict['token_package_id'] = None
 
         return _dict
 
@@ -119,9 +125,10 @@ class CreateAgent(BaseModel):
             "description": obj.get("description"),
             "access_type": obj.get("access_type"),
             "model_id": obj.get("model_id"),
-            "token_package_id": obj.get("token_package_id"),
             "settings": AgentSettings.from_dict(obj.get("settings")) if obj.get("settings") is not None else None,
-            "project_id": obj.get("project_id")
+            "project_id": obj.get("project_id"),
+            "is_web_search_enabled": obj.get("is_web_search_enabled"),
+            "token_package_id": obj.get("token_package_id")
         })
         return _obj
 

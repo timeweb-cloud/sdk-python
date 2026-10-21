@@ -39,35 +39,38 @@ class TestKnowledgebaseV2(unittest.TestCase):
         model = timeweb_cloud_api.models.knowledgebase_v2.KnowledgebaseV2()  # noqa: E501
         if include_optional :
             return KnowledgebaseV2(
-                id = 1, 
-                name = Моя база знаний, 
-                description = База знаний с документацией, 
-                dbaas_id = 123, 
+                id = 5285, 
+                name = Документация продукта, 
+                description = Инструкции и FAQ для службы поддержки, 
+                project_id = 2265605, 
+                dbaas_id = 4212285, 
                 status = active, 
-                last_sync = 2024-10-16T10:00:00.000Z, 
-                total_tokens = 100000, 
-                used_tokens = 5000, 
-                remaining_tokens = 95000, 
-                token_package_id = 1, 
-                subscription_renewal_date = 2025-01-01T00:00:00.000Z, 
-                documents_count = 15, 
-                agents_ids = [1, 2, 3], 
-                created_at = 2024-10-16T10:00:00.000Z
+                last_sync = None, 
+                total_tokens = 10000000, 
+                used_tokens = 74520, 
+                remaining_tokens = 9925480, 
+                token_package_id = 111, 
+                subscription_renewal_date = 2026-10-22T09:03:27.000Z, 
+                documents_count = 3, 
+                agents_ids = [101, 102], 
+                created_at = 2026-09-22T09:03:27.000Z
             )
         else :
             return KnowledgebaseV2(
-                id = 1,
-                name = Моя база знаний,
-                dbaas_id = 123,
+                id = 5285,
+                name = Документация продукта,
+                description = Инструкции и FAQ для службы поддержки,
+                dbaas_id = 4212285,
                 status = active,
-                total_tokens = 100000,
-                used_tokens = 5000,
-                remaining_tokens = 95000,
-                token_package_id = 1,
-                subscription_renewal_date = 2025-01-01T00:00:00.000Z,
-                documents_count = 15,
-                agents_ids = [1, 2, 3],
-                created_at = 2024-10-16T10:00:00.000Z,
+                last_sync = None,
+                total_tokens = 10000000,
+                used_tokens = 74520,
+                remaining_tokens = 9925480,
+                token_package_id = 111,
+                subscription_renewal_date = 2026-10-22T09:03:27.000Z,
+                documents_count = 3,
+                agents_ids = [101, 102],
+                created_at = 2026-09-22T09:03:27.000Z,
         )
         """
 

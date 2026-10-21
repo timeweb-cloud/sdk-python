@@ -39,11 +39,11 @@ class TestGetModelsV3200ResponseMeta(unittest.TestCase):
         model = timeweb_cloud_api.models.get_models_v3200_response_meta.GetModelsV3200ResponseMeta()  # noqa: E501
         if include_optional :
             return GetModelsV3200ResponseMeta(
-                total = 10
+                total = 163
             )
         else :
             return GetModelsV3200ResponseMeta(
-                total = 10,
+                total = 163,
         )
         """
 

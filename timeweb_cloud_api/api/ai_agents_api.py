@@ -25,15 +25,24 @@ from pydantic import Field
 from typing import Any, Optional
 
 from timeweb_cloud_api.models.add_token_package import AddTokenPackage
+from timeweb_cloud_api.models.change_agent_model import ChangeAgentModel
 from timeweb_cloud_api.models.create_agent import CreateAgent
 from timeweb_cloud_api.models.create_agent201_response import CreateAgent201Response
+from timeweb_cloud_api.models.create_agent_entity_limit import CreateAgentEntityLimit
+from timeweb_cloud_api.models.create_agent_entity_limit201_response import CreateAgentEntityLimit201Response
 from timeweb_cloud_api.models.create_agent_v2 import CreateAgentV2
+from timeweb_cloud_api.models.delete_agent import DeleteAgent
+from timeweb_cloud_api.models.export_agent_chats_csv200_response import ExportAgentChatsCsv200Response
+from timeweb_cloud_api.models.get_agent_chat_list200_response import GetAgentChatList200Response
+from timeweb_cloud_api.models.get_agent_chat_messages200_response import GetAgentChatMessages200Response
+from timeweb_cloud_api.models.get_agent_entity_limits200_response import GetAgentEntityLimits200Response
 from timeweb_cloud_api.models.get_agent_statistics200_response import GetAgentStatistics200Response
+from timeweb_cloud_api.models.get_agent_v3200_response import GetAgentV3200Response
 from timeweb_cloud_api.models.get_agents200_response import GetAgents200Response
-from timeweb_cloud_api.models.get_agents_token_packages200_response import GetAgentsTokenPackages200Response
-from timeweb_cloud_api.models.get_models200_response import GetModels200Response
-from timeweb_cloud_api.models.get_models_v3200_response import GetModelsV3200Response
+from timeweb_cloud_api.models.get_agents_v3200_response import GetAgentsV3200Response
+from timeweb_cloud_api.models.sync_agent_entity_limits import SyncAgentEntityLimits
 from timeweb_cloud_api.models.update_agent import UpdateAgent
+from timeweb_cloud_api.models.update_agent_entity_limit import UpdateAgentEntityLimit
 
 from timeweb_cloud_api.api_client import ApiClient
 from timeweb_cloud_api.api_response import ApiResponse
@@ -57,9 +66,9 @@ class AIAgentsApi(object):
 
     @validate_arguments
     def add_additional_token_package(self, id : Annotated[Any, Field(..., description="ID агента")], add_token_package : Optional[AddTokenPackage] = None, **kwargs) -> None:  # noqa: E501
-        """Добавление дополнительного пакета токенов  # noqa: E501
+        """(Deprecated) Добавление дополнительного пакета токенов  # noqa: E501
 
-        Чтобы добавить дополнительный пакет токенов для AI агента, отправьте POST-запрос на `/api/v1/cloud-ai/agents/{id}/add-additional-token-package`.  # noqa: E501
+        Чтобы докупить дополнительные пакеты токенов для AI агента, отправьте POST-запрос на `/api/v1/cloud-ai/agents/{id}/add-additional-token-package`.  Метод относится к устаревшей схеме оплаты пакетами токенов и работает только для агентов с пакетом (`token_package_id` в ответе агента). Для агентов с поресурсной оплатой вернётся 400 `per-resource_agents_do_not_support_additional_token_packages`. Стоимость (цена дополнительного пакета модели агента × `count`) сразу списывается с баланса; при нехватке средств — 400 `insufficient_balance`, если подписка агента истекла — 400 `subscription_expired`. После покупки заблокированный агент разблокируется.  Для токенов дополнительных пользователей аккаунта нужна роль `ai:write`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -88,9 +97,9 @@ class AIAgentsApi(object):
 
     @validate_arguments
     def add_additional_token_package_with_http_info(self, id : Annotated[Any, Field(..., description="ID агента")], add_token_package : Optional[AddTokenPackage] = None, **kwargs) -> ApiResponse:  # noqa: E501
-        """Добавление дополнительного пакета токенов  # noqa: E501
+        """(Deprecated) Добавление дополнительного пакета токенов  # noqa: E501
 
-        Чтобы добавить дополнительный пакет токенов для AI агента, отправьте POST-запрос на `/api/v1/cloud-ai/agents/{id}/add-additional-token-package`.  # noqa: E501
+        Чтобы докупить дополнительные пакеты токенов для AI агента, отправьте POST-запрос на `/api/v1/cloud-ai/agents/{id}/add-additional-token-package`.  Метод относится к устаревшей схеме оплаты пакетами токенов и работает только для агентов с пакетом (`token_package_id` в ответе агента). Для агентов с поресурсной оплатой вернётся 400 `per-resource_agents_do_not_support_additional_token_packages`. Стоимость (цена дополнительного пакета модели агента × `count`) сразу списывается с баланса; при нехватке средств — 400 `insufficient_balance`, если подписка агента истекла — 400 `subscription_expired`. После покупки заблокированный агент разблокируется.  Для токенов дополнительных пользователей аккаунта нужна роль `ai:write`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -125,6 +134,8 @@ class AIAgentsApi(object):
                  returns the request thread.
         :rtype: None
         """
+
+        warnings.warn("POST /api/v1/cloud-ai/agents/{id}/add-additional-token-package is deprecated.", DeprecationWarning)
 
         _params = locals()
 
@@ -204,10 +215,170 @@ class AIAgentsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
+    def change_agent_model(self, id : Annotated[Any, Field(..., description="ID агента")], change_agent_model : ChangeAgentModel, **kwargs) -> CreateAgent201Response:  # noqa: E501
+        """Смена модели AI агента  # noqa: E501
+
+        Чтобы сменить основную модель AI агента, отправьте PATCH-запрос на `/api/v1/cloud-ai/agents/{id}/model`.  Параметры модели из `settings.model`, которые новая модель не поддерживает, отбрасываются. Смена модели доступна только агентам с поресурсной оплатой (для агента с пакетом токенов — 400 `model_change_is_allowed_only_for_per-resource_account_and_agent`). Если модель не найдена или недоступна — 404 `model_not_found`.  Для токенов дополнительных пользователей аккаунта нужна роль `ai:write`.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.change_agent_model(id, change_agent_model, async_req=True)
+        >>> result = thread.get()
+
+        :param id: ID агента (required)
+        :type id: object
+        :param change_agent_model: (required)
+        :type change_agent_model: ChangeAgentModel
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: CreateAgent201Response
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            raise ValueError("Error! Please call the change_agent_model_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
+        return self.change_agent_model_with_http_info(id, change_agent_model, **kwargs)  # noqa: E501
+
+    @validate_arguments
+    def change_agent_model_with_http_info(self, id : Annotated[Any, Field(..., description="ID агента")], change_agent_model : ChangeAgentModel, **kwargs) -> ApiResponse:  # noqa: E501
+        """Смена модели AI агента  # noqa: E501
+
+        Чтобы сменить основную модель AI агента, отправьте PATCH-запрос на `/api/v1/cloud-ai/agents/{id}/model`.  Параметры модели из `settings.model`, которые новая модель не поддерживает, отбрасываются. Смена модели доступна только агентам с поресурсной оплатой (для агента с пакетом токенов — 400 `model_change_is_allowed_only_for_per-resource_account_and_agent`). Если модель не найдена или недоступна — 404 `model_not_found`.  Для токенов дополнительных пользователей аккаунта нужна роль `ai:write`.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.change_agent_model_with_http_info(id, change_agent_model, async_req=True)
+        >>> result = thread.get()
+
+        :param id: ID агента (required)
+        :type id: object
+        :param change_agent_model: (required)
+        :type change_agent_model: ChangeAgentModel
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the 
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(CreateAgent201Response, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'id',
+            'change_agent_model'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method change_agent_model" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['id']:
+            _path_params['id'] = _params['id']
+
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        if _params['change_agent_model'] is not None:
+            _body_params = _params['change_agent_model']
+
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # set the HTTP header `Content-Type`
+        _content_types_list = _params.get('_content_type',
+            self.api_client.select_header_content_type(
+                ['application/json']))
+        if _content_types_list:
+                _header_params['Content-Type'] = _content_types_list
+
+        # authentication setting
+        _auth_settings = ['Bearer']  # noqa: E501
+
+        _response_types_map = {
+            '200': "CreateAgent201Response",
+            '400': None,
+            '401': None,
+            '403': None,
+            '404': None,
+            '429': None,
+            '500': None,
+        }
+
+        return self.api_client.call_api(
+            '/api/v1/cloud-ai/agents/{id}/model', 'PATCH',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @validate_arguments
     def create_agent(self, create_agent : CreateAgent, **kwargs) -> CreateAgent201Response:  # noqa: E501
         """(Deprecated) Создание AI агента  # noqa: E501
 
-        Чтобы создать AI агента, отправьте POST-запрос на `/api/v1/cloud-ai/agents`, задав необходимые атрибуты.  Агент будет создан с использованием предоставленной информации. Тело ответа будет содержать объект JSON с информацией о созданном агенте.  # noqa: E501
+        Чтобы создать AI агента, отправьте POST-запрос на `/api/v1/cloud-ai/agents`, задав необходимые атрибуты.  Метод устарел — используйте `POST /api/v2/cloud-ai/agents`. Поле `token_package_id` обязательно, но не учитывается: агент всегда создаётся с поресурсной оплатой (оплачиваются фактические запросы к модели).  Для токенов дополнительных пользователей аккаунта нужна роль `ai:write`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -236,7 +407,7 @@ class AIAgentsApi(object):
     def create_agent_with_http_info(self, create_agent : CreateAgent, **kwargs) -> ApiResponse:  # noqa: E501
         """(Deprecated) Создание AI агента  # noqa: E501
 
-        Чтобы создать AI агента, отправьте POST-запрос на `/api/v1/cloud-ai/agents`, задав необходимые атрибуты.  Агент будет создан с использованием предоставленной информации. Тело ответа будет содержать объект JSON с информацией о созданном агенте.  # noqa: E501
+        Чтобы создать AI агента, отправьте POST-запрос на `/api/v1/cloud-ai/agents`, задав необходимые атрибуты.  Метод устарел — используйте `POST /api/v2/cloud-ai/agents`. Поле `token_package_id` обязательно, но не учитывается: агент всегда создаётся с поресурсной оплатой (оплачиваются фактические запросы к модели).  Для токенов дополнительных пользователей аккаунта нужна роль `ai:write`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -335,6 +506,7 @@ class AIAgentsApi(object):
             '400': None,
             '401': None,
             '403': None,
+            '404': None,
             '429': None,
             '500': None,
         }
@@ -357,10 +529,171 @@ class AIAgentsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
+    def create_agent_entity_limit(self, id : Annotated[Any, Field(..., description="ID агента")], create_agent_entity_limit : CreateAgentEntityLimit, **kwargs) -> CreateAgentEntityLimit201Response:  # noqa: E501
+        """Создание лимита агента  # noqa: E501
+
+        Чтобы создать лимит AI агента, отправьте POST-запрос на `/api/v1/cloud-ai/agents/{id}/entity-limits`.  Лимиты агента ограничивают расход на его запросы за период (`hour`, `day`, `week`, `month`) — в токенах (`limit`) или в деньгах (`money_limit`, приоритетнее). Лимит действует на все модели агента (`model_id` = `null`) или на одну модель. При достижении лимита запросы к агенту отклоняются до конца периода.  Нужно передать `limit` или `money_limit` (иначе — 400 `entity_keys_limit_value_required`). Если лимит с тем же периодом и моделью уже есть — 409 `entity_keys_limit_already_exists` (измените его или используйте синхронизацию).  Для токенов дополнительных пользователей аккаунта нужна роль `ai:write`.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.create_agent_entity_limit(id, create_agent_entity_limit, async_req=True)
+        >>> result = thread.get()
+
+        :param id: ID агента (required)
+        :type id: object
+        :param create_agent_entity_limit: (required)
+        :type create_agent_entity_limit: CreateAgentEntityLimit
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: CreateAgentEntityLimit201Response
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            raise ValueError("Error! Please call the create_agent_entity_limit_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
+        return self.create_agent_entity_limit_with_http_info(id, create_agent_entity_limit, **kwargs)  # noqa: E501
+
+    @validate_arguments
+    def create_agent_entity_limit_with_http_info(self, id : Annotated[Any, Field(..., description="ID агента")], create_agent_entity_limit : CreateAgentEntityLimit, **kwargs) -> ApiResponse:  # noqa: E501
+        """Создание лимита агента  # noqa: E501
+
+        Чтобы создать лимит AI агента, отправьте POST-запрос на `/api/v1/cloud-ai/agents/{id}/entity-limits`.  Лимиты агента ограничивают расход на его запросы за период (`hour`, `day`, `week`, `month`) — в токенах (`limit`) или в деньгах (`money_limit`, приоритетнее). Лимит действует на все модели агента (`model_id` = `null`) или на одну модель. При достижении лимита запросы к агенту отклоняются до конца периода.  Нужно передать `limit` или `money_limit` (иначе — 400 `entity_keys_limit_value_required`). Если лимит с тем же периодом и моделью уже есть — 409 `entity_keys_limit_already_exists` (измените его или используйте синхронизацию).  Для токенов дополнительных пользователей аккаунта нужна роль `ai:write`.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.create_agent_entity_limit_with_http_info(id, create_agent_entity_limit, async_req=True)
+        >>> result = thread.get()
+
+        :param id: ID агента (required)
+        :type id: object
+        :param create_agent_entity_limit: (required)
+        :type create_agent_entity_limit: CreateAgentEntityLimit
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the 
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(CreateAgentEntityLimit201Response, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'id',
+            'create_agent_entity_limit'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method create_agent_entity_limit" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['id']:
+            _path_params['id'] = _params['id']
+
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        if _params['create_agent_entity_limit'] is not None:
+            _body_params = _params['create_agent_entity_limit']
+
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # set the HTTP header `Content-Type`
+        _content_types_list = _params.get('_content_type',
+            self.api_client.select_header_content_type(
+                ['application/json']))
+        if _content_types_list:
+                _header_params['Content-Type'] = _content_types_list
+
+        # authentication setting
+        _auth_settings = ['Bearer']  # noqa: E501
+
+        _response_types_map = {
+            '201': "CreateAgentEntityLimit201Response",
+            '400': None,
+            '401': None,
+            '403': None,
+            '404': None,
+            '409': None,
+            '429': None,
+            '500': None,
+        }
+
+        return self.api_client.call_api(
+            '/api/v1/cloud-ai/agents/{id}/entity-limits', 'POST',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @validate_arguments
     def create_agent_v2(self, create_agent_v2 : CreateAgentV2, **kwargs) -> CreateAgent201Response:  # noqa: E501
         """Создание AI агента  # noqa: E501
 
-        Чтобы создать AI агента, отправьте POST-запрос на `/api/v2/cloud-ai/agents`, задав необходимые атрибуты.  Агент будет создан с использованием предоставленной информации. Тело ответа будет содержать объект JSON с информацией о созданном агенте.  # noqa: E501
+        Чтобы создать AI агента, отправьте POST-запрос на `/api/v2/cloud-ai/agents`, задав необходимые атрибуты.  Агент создаётся с поресурсной оплатой: оплачиваются фактические запросы к модели. Если не переданы настройки виджета, подставляются значения по умолчанию. Дневной лимит расходов можно задать сразу полем `money_limit`, остальные лимиты — через лимиты агента (`/api/v1/cloud-ai/agents/{id}/entity-limits`).  Если модель не найдена или недоступна, вернётся 404 `model_not_found`; если модель не поддерживается — 400 `model_not_supported`; недопустимые параметры модели в `settings.model` — 400.  Вызывать созданного агента из своих приложений можно через OpenAI-совместимое API по его `access_id` — см. [документацию](https://agent.timeweb.cloud/docs).  Для токенов дополнительных пользователей аккаунта нужна роль `ai:write`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -389,7 +722,7 @@ class AIAgentsApi(object):
     def create_agent_v2_with_http_info(self, create_agent_v2 : CreateAgentV2, **kwargs) -> ApiResponse:  # noqa: E501
         """Создание AI агента  # noqa: E501
 
-        Чтобы создать AI агента, отправьте POST-запрос на `/api/v2/cloud-ai/agents`, задав необходимые атрибуты.  Агент будет создан с использованием предоставленной информации. Тело ответа будет содержать объект JSON с информацией о созданном агенте.  # noqa: E501
+        Чтобы создать AI агента, отправьте POST-запрос на `/api/v2/cloud-ai/agents`, задав необходимые атрибуты.  Агент создаётся с поресурсной оплатой: оплачиваются фактические запросы к модели. Если не переданы настройки виджета, подставляются значения по умолчанию. Дневной лимит расходов можно задать сразу полем `money_limit`, остальные лимиты — через лимиты агента (`/api/v1/cloud-ai/agents/{id}/entity-limits`).  Если модель не найдена или недоступна, вернётся 404 `model_not_found`; если модель не поддерживается — 400 `model_not_supported`; недопустимые параметры модели в `settings.model` — 400.  Вызывать созданного агента из своих приложений можно через OpenAI-совместимое API по его `access_id` — см. [документацию](https://agent.timeweb.cloud/docs).  Для токенов дополнительных пользователей аккаунта нужна роль `ai:write`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -486,6 +819,7 @@ class AIAgentsApi(object):
             '400': None,
             '401': None,
             '403': None,
+            '404': None,
             '429': None,
             '500': None,
         }
@@ -508,18 +842,20 @@ class AIAgentsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def delete_agent(self, id : Annotated[Any, Field(..., description="ID агента")], **kwargs) -> None:  # noqa: E501
+    def delete_agent(self, id : Annotated[Any, Field(..., description="ID агента")], delete_agent : Optional[DeleteAgent] = None, **kwargs) -> None:  # noqa: E501
         """Удаление AI агента  # noqa: E501
 
-        Чтобы удалить AI агента, отправьте DELETE-запрос на `/api/v1/cloud-ai/agents/{id}`.  # noqa: E501
+        Чтобы удалить AI агента, отправьте DELETE-запрос на `/api/v1/cloud-ai/agents/{id}`.  Вместе с агентом отключаются его базы знаний, навыки и интеграции (Telegram, MAX, Jivo, Crisp). В теле запроса можно необязательно указать причину удаления.  Для токенов дополнительных пользователей аккаунта нужна роль `ai:write`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.delete_agent(id, async_req=True)
+        >>> thread = api.delete_agent(id, delete_agent, async_req=True)
         >>> result = thread.get()
 
         :param id: ID агента (required)
         :type id: object
+        :param delete_agent:
+        :type delete_agent: DeleteAgent
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request. If one
@@ -534,21 +870,23 @@ class AIAgentsApi(object):
         kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             raise ValueError("Error! Please call the delete_agent_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
-        return self.delete_agent_with_http_info(id, **kwargs)  # noqa: E501
+        return self.delete_agent_with_http_info(id, delete_agent, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def delete_agent_with_http_info(self, id : Annotated[Any, Field(..., description="ID агента")], **kwargs) -> ApiResponse:  # noqa: E501
+    def delete_agent_with_http_info(self, id : Annotated[Any, Field(..., description="ID агента")], delete_agent : Optional[DeleteAgent] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Удаление AI агента  # noqa: E501
 
-        Чтобы удалить AI агента, отправьте DELETE-запрос на `/api/v1/cloud-ai/agents/{id}`.  # noqa: E501
+        Чтобы удалить AI агента, отправьте DELETE-запрос на `/api/v1/cloud-ai/agents/{id}`.  Вместе с агентом отключаются его базы знаний, навыки и интеграции (Telegram, MAX, Jivo, Crisp). В теле запроса можно необязательно указать причину удаления.  Для токенов дополнительных пользователей аккаунта нужна роль `ai:write`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.delete_agent_with_http_info(id, async_req=True)
+        >>> thread = api.delete_agent_with_http_info(id, delete_agent, async_req=True)
         >>> result = thread.get()
 
         :param id: ID агента (required)
         :type id: object
+        :param delete_agent:
+        :type delete_agent: DeleteAgent
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
@@ -577,7 +915,8 @@ class AIAgentsApi(object):
         _params = locals()
 
         _all_params = [
-            'id'
+            'id',
+            'delete_agent'
         ]
         _all_params.extend(
             [
@@ -618,6 +957,16 @@ class AIAgentsApi(object):
         _files = {}
         # process the body parameter
         _body_params = None
+        if _params['delete_agent'] is not None:
+            _body_params = _params['delete_agent']
+
+        # set the HTTP header `Content-Type`
+        _content_types_list = _params.get('_content_type',
+            self.api_client.select_header_content_type(
+                ['application/json']))
+        if _content_types_list:
+                _header_params['Content-Type'] = _content_types_list
+
         # authentication setting
         _auth_settings = ['Bearer']  # noqa: E501
 
@@ -641,10 +990,344 @@ class AIAgentsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
+    def delete_agent_entity_limit(self, id : Annotated[Any, Field(..., description="ID агента")], limit_id : Annotated[Any, Field(..., description="ID лимита агента")], **kwargs) -> None:  # noqa: E501
+        """Удаление лимита агента  # noqa: E501
+
+        Чтобы удалить лимит AI агента, отправьте DELETE-запрос на `/api/v1/cloud-ai/agents/{id}/entity-limits/{limit_id}`.  Для токенов дополнительных пользователей аккаунта нужна роль `ai:write`.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.delete_agent_entity_limit(id, limit_id, async_req=True)
+        >>> result = thread.get()
+
+        :param id: ID агента (required)
+        :type id: object
+        :param limit_id: ID лимита агента (required)
+        :type limit_id: object
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: None
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            raise ValueError("Error! Please call the delete_agent_entity_limit_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
+        return self.delete_agent_entity_limit_with_http_info(id, limit_id, **kwargs)  # noqa: E501
+
+    @validate_arguments
+    def delete_agent_entity_limit_with_http_info(self, id : Annotated[Any, Field(..., description="ID агента")], limit_id : Annotated[Any, Field(..., description="ID лимита агента")], **kwargs) -> ApiResponse:  # noqa: E501
+        """Удаление лимита агента  # noqa: E501
+
+        Чтобы удалить лимит AI агента, отправьте DELETE-запрос на `/api/v1/cloud-ai/agents/{id}/entity-limits/{limit_id}`.  Для токенов дополнительных пользователей аккаунта нужна роль `ai:write`.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.delete_agent_entity_limit_with_http_info(id, limit_id, async_req=True)
+        >>> result = thread.get()
+
+        :param id: ID агента (required)
+        :type id: object
+        :param limit_id: ID лимита агента (required)
+        :type limit_id: object
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the 
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: None
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'id',
+            'limit_id'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method delete_agent_entity_limit" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['id']:
+            _path_params['id'] = _params['id']
+
+        if _params['limit_id']:
+            _path_params['limit_id'] = _params['limit_id']
+
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # authentication setting
+        _auth_settings = ['Bearer']  # noqa: E501
+
+        _response_types_map = {}
+
+        return self.api_client.call_api(
+            '/api/v1/cloud-ai/agents/{id}/entity-limits/{limit_id}', 'DELETE',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @validate_arguments
+    def export_agent_chats_csv(self, id : Annotated[Any, Field(..., description="ID агента")], offset : Annotated[Optional[Any], Field(description="Смещение относительно начала списка")] = None, limit : Annotated[Optional[Any], Field(description="Количество сообщений в ответе")] = None, order : Annotated[Optional[Any], Field(description="Сортировка по дате сообщения")] = None, var_from : Annotated[Optional[Any], Field(description="Начало периода (дата и время в формате ISO 8601)")] = None, to : Annotated[Optional[Any], Field(description="Конец периода (дата и время в формате ISO 8601)")] = None, locale : Annotated[Optional[Any], Field(description="Язык заголовков и значений CSV")] = None, **kwargs) -> ExportAgentChatsCsv200Response:  # noqa: E501
+        """Выгрузка чатов агента в CSV  # noqa: E501
+
+        Чтобы выгрузить чаты AI агента в формате CSV, отправьте GET-запрос на `/api/v1/cloud-ai/agents/{id}/chats/docs`.  CSV возвращается строкой в поле `chats_csv.csv` тела JSON. `limit` и `offset` применяются к сообщениям, а не к чатам. Если передан `from`, выгружаются сообщения от `from` до `to` (по умолчанию — до текущего момента). Чаты внешнего чата не выгружаются.  Для токенов дополнительных пользователей аккаунта нужна роль `ai:read`.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.export_agent_chats_csv(id, offset, limit, order, var_from, to, locale, async_req=True)
+        >>> result = thread.get()
+
+        :param id: ID агента (required)
+        :type id: object
+        :param offset: Смещение относительно начала списка
+        :type offset: object
+        :param limit: Количество сообщений в ответе
+        :type limit: object
+        :param order: Сортировка по дате сообщения
+        :type order: object
+        :param var_from: Начало периода (дата и время в формате ISO 8601)
+        :type var_from: object
+        :param to: Конец периода (дата и время в формате ISO 8601)
+        :type to: object
+        :param locale: Язык заголовков и значений CSV
+        :type locale: object
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: ExportAgentChatsCsv200Response
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            raise ValueError("Error! Please call the export_agent_chats_csv_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
+        return self.export_agent_chats_csv_with_http_info(id, offset, limit, order, var_from, to, locale, **kwargs)  # noqa: E501
+
+    @validate_arguments
+    def export_agent_chats_csv_with_http_info(self, id : Annotated[Any, Field(..., description="ID агента")], offset : Annotated[Optional[Any], Field(description="Смещение относительно начала списка")] = None, limit : Annotated[Optional[Any], Field(description="Количество сообщений в ответе")] = None, order : Annotated[Optional[Any], Field(description="Сортировка по дате сообщения")] = None, var_from : Annotated[Optional[Any], Field(description="Начало периода (дата и время в формате ISO 8601)")] = None, to : Annotated[Optional[Any], Field(description="Конец периода (дата и время в формате ISO 8601)")] = None, locale : Annotated[Optional[Any], Field(description="Язык заголовков и значений CSV")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+        """Выгрузка чатов агента в CSV  # noqa: E501
+
+        Чтобы выгрузить чаты AI агента в формате CSV, отправьте GET-запрос на `/api/v1/cloud-ai/agents/{id}/chats/docs`.  CSV возвращается строкой в поле `chats_csv.csv` тела JSON. `limit` и `offset` применяются к сообщениям, а не к чатам. Если передан `from`, выгружаются сообщения от `from` до `to` (по умолчанию — до текущего момента). Чаты внешнего чата не выгружаются.  Для токенов дополнительных пользователей аккаунта нужна роль `ai:read`.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.export_agent_chats_csv_with_http_info(id, offset, limit, order, var_from, to, locale, async_req=True)
+        >>> result = thread.get()
+
+        :param id: ID агента (required)
+        :type id: object
+        :param offset: Смещение относительно начала списка
+        :type offset: object
+        :param limit: Количество сообщений в ответе
+        :type limit: object
+        :param order: Сортировка по дате сообщения
+        :type order: object
+        :param var_from: Начало периода (дата и время в формате ISO 8601)
+        :type var_from: object
+        :param to: Конец периода (дата и время в формате ISO 8601)
+        :type to: object
+        :param locale: Язык заголовков и значений CSV
+        :type locale: object
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the 
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(ExportAgentChatsCsv200Response, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'id',
+            'offset',
+            'limit',
+            'order',
+            'var_from',
+            'to',
+            'locale'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method export_agent_chats_csv" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['id']:
+            _path_params['id'] = _params['id']
+
+
+        # process the query parameters
+        _query_params = []
+        if _params.get('offset') is not None:  # noqa: E501
+            _query_params.append(('offset', _params['offset']))
+
+        if _params.get('limit') is not None:  # noqa: E501
+            _query_params.append(('limit', _params['limit']))
+
+        if _params.get('order') is not None:  # noqa: E501
+            _query_params.append(('order', _params['order'].value))
+
+        if _params.get('var_from') is not None:  # noqa: E501
+            _query_params.append(('from', _params['var_from']))
+
+        if _params.get('to') is not None:  # noqa: E501
+            _query_params.append(('to', _params['to']))
+
+        if _params.get('locale') is not None:  # noqa: E501
+            _query_params.append(('locale', _params['locale'].value))
+
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = ['Bearer']  # noqa: E501
+
+        _response_types_map = {
+            '200': "ExportAgentChatsCsv200Response",
+            '400': None,
+            '401': None,
+            '403': None,
+            '404': None,
+            '429': None,
+            '500': None,
+        }
+
+        return self.api_client.call_api(
+            '/api/v1/cloud-ai/agents/{id}/chats/docs', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @validate_arguments
     def get_agent(self, id : Annotated[Any, Field(..., description="ID агента")], **kwargs) -> CreateAgent201Response:  # noqa: E501
         """Получение AI агента  # noqa: E501
 
-        Чтобы получить информацию об AI агенте, отправьте GET-запрос на `/api/v1/cloud-ai/agents/{id}`.  # noqa: E501
+        Чтобы получить информацию об AI агенте, отправьте GET-запрос на `/api/v1/cloud-ai/agents/{id}`.  Для токенов дополнительных пользователей аккаунта нужна роль `ai:read`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -673,7 +1356,7 @@ class AIAgentsApi(object):
     def get_agent_with_http_info(self, id : Annotated[Any, Field(..., description="ID агента")], **kwargs) -> ApiResponse:  # noqa: E501
         """Получение AI агента  # noqa: E501
 
-        Чтобы получить информацию об AI агенте, отправьте GET-запрос на `/api/v1/cloud-ai/agents/{id}`.  # noqa: E501
+        Чтобы получить информацию об AI агенте, отправьте GET-запрос на `/api/v1/cloud-ai/agents/{id}`.  Для токенов дополнительных пользователей аккаунта нужна роль `ai:read`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -786,10 +1469,710 @@ class AIAgentsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def get_agent_statistics(self, id : Annotated[Any, Field(..., description="ID агента")], start_time : Annotated[Optional[Any], Field(description="Начало временного диапазона (ISO 8601)")] = None, end_time : Annotated[Optional[Any], Field(description="Конец временного диапазона (ISO 8601)")] = None, interval : Annotated[Optional[Any], Field(description="Интервал в минутах (по умолчанию 60)")] = None, **kwargs) -> GetAgentStatistics200Response:  # noqa: E501
+    def get_agent_chat_list(self, id : Annotated[Any, Field(..., description="ID агента")], offset : Annotated[Optional[Any], Field(description="Смещение относительно начала списка")] = None, limit : Annotated[Optional[Any], Field(description="Количество чатов в ответе")] = None, order : Annotated[Optional[Any], Field(description="Сортировка по дате первого сообщения")] = None, var_from : Annotated[Optional[Any], Field(description="Начало периода (дата и время в формате ISO 8601)")] = None, to : Annotated[Optional[Any], Field(description="Конец периода (дата и время в формате ISO 8601)")] = None, reaction_type : Annotated[Optional[Any], Field(description="Фильтр по оценкам: `likes` — есть положительная, `dislikes` — есть отрицательная, `with` — есть любая, `none` — без оценок")] = None, response_time_ranges : Annotated[Optional[Any], Field(description="Фильтр по среднему времени ответа в секундах: диапазоны `мин-макс` или `мин-` («от мин и больше»). Можно передать несколько диапазонов — они объединяются по ИЛИ.")] = None, **kwargs) -> GetAgentChatList200Response:  # noqa: E501
+        """Получение списка чатов агента  # noqa: E501
+
+        Чтобы получить список чатов (диалогов) AI агента, отправьте GET-запрос на `/api/v1/cloud-ai/agents/{id}/chat-list`.  Для каждого чата возвращаются первое сообщение пользователя, количество оценок и среднее время ответа. Чаты внешнего чата сюда не входят. Фильтр по периоду применяется, только если переданы оба параметра `from` и `to`. В `meta.metrics` — сводка по чатам для фильтров.  Для токенов дополнительных пользователей аккаунта нужна роль `ai:read`.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_agent_chat_list(id, offset, limit, order, var_from, to, reaction_type, response_time_ranges, async_req=True)
+        >>> result = thread.get()
+
+        :param id: ID агента (required)
+        :type id: object
+        :param offset: Смещение относительно начала списка
+        :type offset: object
+        :param limit: Количество чатов в ответе
+        :type limit: object
+        :param order: Сортировка по дате первого сообщения
+        :type order: object
+        :param var_from: Начало периода (дата и время в формате ISO 8601)
+        :type var_from: object
+        :param to: Конец периода (дата и время в формате ISO 8601)
+        :type to: object
+        :param reaction_type: Фильтр по оценкам: `likes` — есть положительная, `dislikes` — есть отрицательная, `with` — есть любая, `none` — без оценок
+        :type reaction_type: object
+        :param response_time_ranges: Фильтр по среднему времени ответа в секундах: диапазоны `мин-макс` или `мин-` («от мин и больше»). Можно передать несколько диапазонов — они объединяются по ИЛИ.
+        :type response_time_ranges: object
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: GetAgentChatList200Response
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            raise ValueError("Error! Please call the get_agent_chat_list_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
+        return self.get_agent_chat_list_with_http_info(id, offset, limit, order, var_from, to, reaction_type, response_time_ranges, **kwargs)  # noqa: E501
+
+    @validate_arguments
+    def get_agent_chat_list_with_http_info(self, id : Annotated[Any, Field(..., description="ID агента")], offset : Annotated[Optional[Any], Field(description="Смещение относительно начала списка")] = None, limit : Annotated[Optional[Any], Field(description="Количество чатов в ответе")] = None, order : Annotated[Optional[Any], Field(description="Сортировка по дате первого сообщения")] = None, var_from : Annotated[Optional[Any], Field(description="Начало периода (дата и время в формате ISO 8601)")] = None, to : Annotated[Optional[Any], Field(description="Конец периода (дата и время в формате ISO 8601)")] = None, reaction_type : Annotated[Optional[Any], Field(description="Фильтр по оценкам: `likes` — есть положительная, `dislikes` — есть отрицательная, `with` — есть любая, `none` — без оценок")] = None, response_time_ranges : Annotated[Optional[Any], Field(description="Фильтр по среднему времени ответа в секундах: диапазоны `мин-макс` или `мин-` («от мин и больше»). Можно передать несколько диапазонов — они объединяются по ИЛИ.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+        """Получение списка чатов агента  # noqa: E501
+
+        Чтобы получить список чатов (диалогов) AI агента, отправьте GET-запрос на `/api/v1/cloud-ai/agents/{id}/chat-list`.  Для каждого чата возвращаются первое сообщение пользователя, количество оценок и среднее время ответа. Чаты внешнего чата сюда не входят. Фильтр по периоду применяется, только если переданы оба параметра `from` и `to`. В `meta.metrics` — сводка по чатам для фильтров.  Для токенов дополнительных пользователей аккаунта нужна роль `ai:read`.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_agent_chat_list_with_http_info(id, offset, limit, order, var_from, to, reaction_type, response_time_ranges, async_req=True)
+        >>> result = thread.get()
+
+        :param id: ID агента (required)
+        :type id: object
+        :param offset: Смещение относительно начала списка
+        :type offset: object
+        :param limit: Количество чатов в ответе
+        :type limit: object
+        :param order: Сортировка по дате первого сообщения
+        :type order: object
+        :param var_from: Начало периода (дата и время в формате ISO 8601)
+        :type var_from: object
+        :param to: Конец периода (дата и время в формате ISO 8601)
+        :type to: object
+        :param reaction_type: Фильтр по оценкам: `likes` — есть положительная, `dislikes` — есть отрицательная, `with` — есть любая, `none` — без оценок
+        :type reaction_type: object
+        :param response_time_ranges: Фильтр по среднему времени ответа в секундах: диапазоны `мин-макс` или `мин-` («от мин и больше»). Можно передать несколько диапазонов — они объединяются по ИЛИ.
+        :type response_time_ranges: object
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the 
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(GetAgentChatList200Response, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'id',
+            'offset',
+            'limit',
+            'order',
+            'var_from',
+            'to',
+            'reaction_type',
+            'response_time_ranges'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_agent_chat_list" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['id']:
+            _path_params['id'] = _params['id']
+
+
+        # process the query parameters
+        _query_params = []
+        if _params.get('offset') is not None:  # noqa: E501
+            _query_params.append(('offset', _params['offset']))
+
+        if _params.get('limit') is not None:  # noqa: E501
+            _query_params.append(('limit', _params['limit']))
+
+        if _params.get('order') is not None:  # noqa: E501
+            _query_params.append(('order', _params['order'].value))
+
+        if _params.get('var_from') is not None:  # noqa: E501
+            _query_params.append(('from', _params['var_from']))
+
+        if _params.get('to') is not None:  # noqa: E501
+            _query_params.append(('to', _params['to']))
+
+        if _params.get('reaction_type') is not None:  # noqa: E501
+            _query_params.append(('reaction_type', _params['reaction_type'].value))
+
+        if _params.get('response_time_ranges') is not None:  # noqa: E501
+            _query_params.append(('response_time_ranges', _params['response_time_ranges']))
+
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = ['Bearer']  # noqa: E501
+
+        _response_types_map = {
+            '200': "GetAgentChatList200Response",
+            '400': None,
+            '401': None,
+            '403': None,
+            '404': None,
+            '429': None,
+            '500': None,
+        }
+
+        return self.api_client.call_api(
+            '/api/v1/cloud-ai/agents/{id}/chat-list', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @validate_arguments
+    def get_agent_chat_messages(self, id : Annotated[Any, Field(..., description="ID агента")], chat_id : Annotated[Any, Field(..., description="ID чата (диалога) из поля `id` списка чатов агента")], offset : Annotated[Optional[Any], Field(description="Смещение относительно начала списка")] = None, limit : Annotated[Optional[Any], Field(description="Количество сообщений в ответе")] = None, order : Annotated[Optional[Any], Field(description="Сортировка по дате сообщения")] = None, var_from : Annotated[Optional[Any], Field(description="Начало периода (дата и время в формате ISO 8601)")] = None, to : Annotated[Optional[Any], Field(description="Конец периода (дата и время в формате ISO 8601)")] = None, **kwargs) -> GetAgentChatMessages200Response:  # noqa: E501
+        """Получение сообщений чата агента  # noqa: E501
+
+        Чтобы получить сообщения чата AI агента, отправьте GET-запрос на `/api/v1/cloud-ai/agents/{id}/chat-list/{chat_id}/messages`.  Возвращаются сообщения пользователя и ответы агента. Фильтр по периоду применяется, только если переданы оба параметра `from` и `to`.  Для токенов дополнительных пользователей аккаунта нужна роль `ai:read`.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_agent_chat_messages(id, chat_id, offset, limit, order, var_from, to, async_req=True)
+        >>> result = thread.get()
+
+        :param id: ID агента (required)
+        :type id: object
+        :param chat_id: ID чата (диалога) из поля `id` списка чатов агента (required)
+        :type chat_id: object
+        :param offset: Смещение относительно начала списка
+        :type offset: object
+        :param limit: Количество сообщений в ответе
+        :type limit: object
+        :param order: Сортировка по дате сообщения
+        :type order: object
+        :param var_from: Начало периода (дата и время в формате ISO 8601)
+        :type var_from: object
+        :param to: Конец периода (дата и время в формате ISO 8601)
+        :type to: object
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: GetAgentChatMessages200Response
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            raise ValueError("Error! Please call the get_agent_chat_messages_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
+        return self.get_agent_chat_messages_with_http_info(id, chat_id, offset, limit, order, var_from, to, **kwargs)  # noqa: E501
+
+    @validate_arguments
+    def get_agent_chat_messages_with_http_info(self, id : Annotated[Any, Field(..., description="ID агента")], chat_id : Annotated[Any, Field(..., description="ID чата (диалога) из поля `id` списка чатов агента")], offset : Annotated[Optional[Any], Field(description="Смещение относительно начала списка")] = None, limit : Annotated[Optional[Any], Field(description="Количество сообщений в ответе")] = None, order : Annotated[Optional[Any], Field(description="Сортировка по дате сообщения")] = None, var_from : Annotated[Optional[Any], Field(description="Начало периода (дата и время в формате ISO 8601)")] = None, to : Annotated[Optional[Any], Field(description="Конец периода (дата и время в формате ISO 8601)")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+        """Получение сообщений чата агента  # noqa: E501
+
+        Чтобы получить сообщения чата AI агента, отправьте GET-запрос на `/api/v1/cloud-ai/agents/{id}/chat-list/{chat_id}/messages`.  Возвращаются сообщения пользователя и ответы агента. Фильтр по периоду применяется, только если переданы оба параметра `from` и `to`.  Для токенов дополнительных пользователей аккаунта нужна роль `ai:read`.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_agent_chat_messages_with_http_info(id, chat_id, offset, limit, order, var_from, to, async_req=True)
+        >>> result = thread.get()
+
+        :param id: ID агента (required)
+        :type id: object
+        :param chat_id: ID чата (диалога) из поля `id` списка чатов агента (required)
+        :type chat_id: object
+        :param offset: Смещение относительно начала списка
+        :type offset: object
+        :param limit: Количество сообщений в ответе
+        :type limit: object
+        :param order: Сортировка по дате сообщения
+        :type order: object
+        :param var_from: Начало периода (дата и время в формате ISO 8601)
+        :type var_from: object
+        :param to: Конец периода (дата и время в формате ISO 8601)
+        :type to: object
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the 
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(GetAgentChatMessages200Response, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'id',
+            'chat_id',
+            'offset',
+            'limit',
+            'order',
+            'var_from',
+            'to'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_agent_chat_messages" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['id']:
+            _path_params['id'] = _params['id']
+
+        if _params['chat_id']:
+            _path_params['chat_id'] = _params['chat_id']
+
+
+        # process the query parameters
+        _query_params = []
+        if _params.get('offset') is not None:  # noqa: E501
+            _query_params.append(('offset', _params['offset']))
+
+        if _params.get('limit') is not None:  # noqa: E501
+            _query_params.append(('limit', _params['limit']))
+
+        if _params.get('order') is not None:  # noqa: E501
+            _query_params.append(('order', _params['order'].value))
+
+        if _params.get('var_from') is not None:  # noqa: E501
+            _query_params.append(('from', _params['var_from']))
+
+        if _params.get('to') is not None:  # noqa: E501
+            _query_params.append(('to', _params['to']))
+
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = ['Bearer']  # noqa: E501
+
+        _response_types_map = {
+            '200': "GetAgentChatMessages200Response",
+            '400': None,
+            '401': None,
+            '403': None,
+            '404': None,
+            '429': None,
+            '500': None,
+        }
+
+        return self.api_client.call_api(
+            '/api/v1/cloud-ai/agents/{id}/chat-list/{chat_id}/messages', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @validate_arguments
+    def get_agent_entity_limit(self, id : Annotated[Any, Field(..., description="ID агента")], limit_id : Annotated[Any, Field(..., description="ID лимита агента")], **kwargs) -> CreateAgentEntityLimit201Response:  # noqa: E501
+        """Получение лимита агента  # noqa: E501
+
+        Чтобы получить лимит AI агента, отправьте GET-запрос на `/api/v1/cloud-ai/agents/{id}/entity-limits/{limit_id}`.  Для токенов дополнительных пользователей аккаунта нужна роль `ai:read`.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_agent_entity_limit(id, limit_id, async_req=True)
+        >>> result = thread.get()
+
+        :param id: ID агента (required)
+        :type id: object
+        :param limit_id: ID лимита агента (required)
+        :type limit_id: object
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: CreateAgentEntityLimit201Response
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            raise ValueError("Error! Please call the get_agent_entity_limit_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
+        return self.get_agent_entity_limit_with_http_info(id, limit_id, **kwargs)  # noqa: E501
+
+    @validate_arguments
+    def get_agent_entity_limit_with_http_info(self, id : Annotated[Any, Field(..., description="ID агента")], limit_id : Annotated[Any, Field(..., description="ID лимита агента")], **kwargs) -> ApiResponse:  # noqa: E501
+        """Получение лимита агента  # noqa: E501
+
+        Чтобы получить лимит AI агента, отправьте GET-запрос на `/api/v1/cloud-ai/agents/{id}/entity-limits/{limit_id}`.  Для токенов дополнительных пользователей аккаунта нужна роль `ai:read`.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_agent_entity_limit_with_http_info(id, limit_id, async_req=True)
+        >>> result = thread.get()
+
+        :param id: ID агента (required)
+        :type id: object
+        :param limit_id: ID лимита агента (required)
+        :type limit_id: object
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the 
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(CreateAgentEntityLimit201Response, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'id',
+            'limit_id'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_agent_entity_limit" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['id']:
+            _path_params['id'] = _params['id']
+
+        if _params['limit_id']:
+            _path_params['limit_id'] = _params['limit_id']
+
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = ['Bearer']  # noqa: E501
+
+        _response_types_map = {
+            '200': "CreateAgentEntityLimit201Response",
+            '400': None,
+            '401': None,
+            '403': None,
+            '404': None,
+            '429': None,
+            '500': None,
+        }
+
+        return self.api_client.call_api(
+            '/api/v1/cloud-ai/agents/{id}/entity-limits/{limit_id}', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @validate_arguments
+    def get_agent_entity_limits(self, id : Annotated[Any, Field(..., description="ID агента")], limit_type : Annotated[Optional[Any], Field(description="Фильтр по периоду лимита")] = None, **kwargs) -> GetAgentEntityLimits200Response:  # noqa: E501
+        """Получение лимитов агента  # noqa: E501
+
+        Чтобы получить лимиты AI агента, отправьте GET-запрос на `/api/v1/cloud-ai/agents/{id}/entity-limits`.  Лимиты агента ограничивают расход на его запросы за период (`hour`, `day`, `week`, `month`) — в токенах (`limit`) или в деньгах (`money_limit`, приоритетнее). Лимит действует на все модели агента (`model_id` = `null`) или на одну модель. При достижении лимита запросы к агенту отклоняются до конца периода.  Для токенов дополнительных пользователей аккаунта нужна роль `ai:read`.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_agent_entity_limits(id, limit_type, async_req=True)
+        >>> result = thread.get()
+
+        :param id: ID агента (required)
+        :type id: object
+        :param limit_type: Фильтр по периоду лимита
+        :type limit_type: object
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: GetAgentEntityLimits200Response
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            raise ValueError("Error! Please call the get_agent_entity_limits_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
+        return self.get_agent_entity_limits_with_http_info(id, limit_type, **kwargs)  # noqa: E501
+
+    @validate_arguments
+    def get_agent_entity_limits_with_http_info(self, id : Annotated[Any, Field(..., description="ID агента")], limit_type : Annotated[Optional[Any], Field(description="Фильтр по периоду лимита")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+        """Получение лимитов агента  # noqa: E501
+
+        Чтобы получить лимиты AI агента, отправьте GET-запрос на `/api/v1/cloud-ai/agents/{id}/entity-limits`.  Лимиты агента ограничивают расход на его запросы за период (`hour`, `day`, `week`, `month`) — в токенах (`limit`) или в деньгах (`money_limit`, приоритетнее). Лимит действует на все модели агента (`model_id` = `null`) или на одну модель. При достижении лимита запросы к агенту отклоняются до конца периода.  Для токенов дополнительных пользователей аккаунта нужна роль `ai:read`.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_agent_entity_limits_with_http_info(id, limit_type, async_req=True)
+        >>> result = thread.get()
+
+        :param id: ID агента (required)
+        :type id: object
+        :param limit_type: Фильтр по периоду лимита
+        :type limit_type: object
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the 
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(GetAgentEntityLimits200Response, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'id',
+            'limit_type'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_agent_entity_limits" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['id']:
+            _path_params['id'] = _params['id']
+
+
+        # process the query parameters
+        _query_params = []
+        if _params.get('limit_type') is not None:  # noqa: E501
+            _query_params.append(('limit_type', _params['limit_type'].value))
+
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = ['Bearer']  # noqa: E501
+
+        _response_types_map = {
+            '200': "GetAgentEntityLimits200Response",
+            '400': None,
+            '401': None,
+            '403': None,
+            '404': None,
+            '429': None,
+            '500': None,
+        }
+
+        return self.api_client.call_api(
+            '/api/v1/cloud-ai/agents/{id}/entity-limits', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @validate_arguments
+    def get_agent_statistics(self, id : Annotated[Any, Field(..., description="ID агента")], start_time : Annotated[Optional[Any], Field(description="Начало периода (ISO 8601). По умолчанию — за 24 часа до `endTime`.")] = None, end_time : Annotated[Optional[Any], Field(description="Конец периода (ISO 8601). По умолчанию — текущий момент.")] = None, interval : Annotated[Optional[Any], Field(description="Длина интервала агрегации в минутах")] = None, **kwargs) -> GetAgentStatistics200Response:  # noqa: E501
         """Получение статистики использования токенов агента  # noqa: E501
 
-        Чтобы получить статистику использования токенов AI агента, отправьте GET-запрос на `/api/v1/cloud-ai/agents/{id}/statistic`.  Можно указать временной диапазон и интервал агрегации.  # noqa: E501
+        Чтобы получить статистику использования токенов AI агента, отправьте GET-запрос на `/api/v1/cloud-ai/agents/{id}/statistic`.  Статистика разбита на интервалы длиной `interval` минут: для каждого интервала возвращается по точке на каждую модель, к которой были запросы за период, а для интервалов без запросов — одна нулевая точка без `model_name`. По умолчанию возвращаются последние 24 часа.  Для токенов дополнительных пользователей аккаунта нужна роль `ai:read`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -798,11 +2181,11 @@ class AIAgentsApi(object):
 
         :param id: ID агента (required)
         :type id: object
-        :param start_time: Начало временного диапазона (ISO 8601)
+        :param start_time: Начало периода (ISO 8601). По умолчанию — за 24 часа до `endTime`.
         :type start_time: object
-        :param end_time: Конец временного диапазона (ISO 8601)
+        :param end_time: Конец периода (ISO 8601). По умолчанию — текущий момент.
         :type end_time: object
-        :param interval: Интервал в минутах (по умолчанию 60)
+        :param interval: Длина интервала агрегации в минутах
         :type interval: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -821,10 +2204,10 @@ class AIAgentsApi(object):
         return self.get_agent_statistics_with_http_info(id, start_time, end_time, interval, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def get_agent_statistics_with_http_info(self, id : Annotated[Any, Field(..., description="ID агента")], start_time : Annotated[Optional[Any], Field(description="Начало временного диапазона (ISO 8601)")] = None, end_time : Annotated[Optional[Any], Field(description="Конец временного диапазона (ISO 8601)")] = None, interval : Annotated[Optional[Any], Field(description="Интервал в минутах (по умолчанию 60)")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def get_agent_statistics_with_http_info(self, id : Annotated[Any, Field(..., description="ID агента")], start_time : Annotated[Optional[Any], Field(description="Начало периода (ISO 8601). По умолчанию — за 24 часа до `endTime`.")] = None, end_time : Annotated[Optional[Any], Field(description="Конец периода (ISO 8601). По умолчанию — текущий момент.")] = None, interval : Annotated[Optional[Any], Field(description="Длина интервала агрегации в минутах")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Получение статистики использования токенов агента  # noqa: E501
 
-        Чтобы получить статистику использования токенов AI агента, отправьте GET-запрос на `/api/v1/cloud-ai/agents/{id}/statistic`.  Можно указать временной диапазон и интервал агрегации.  # noqa: E501
+        Чтобы получить статистику использования токенов AI агента, отправьте GET-запрос на `/api/v1/cloud-ai/agents/{id}/statistic`.  Статистика разбита на интервалы длиной `interval` минут: для каждого интервала возвращается по точке на каждую модель, к которой были запросы за период, а для интервалов без запросов — одна нулевая точка без `model_name`. По умолчанию возвращаются последние 24 часа.  Для токенов дополнительных пользователей аккаунта нужна роль `ai:read`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -833,11 +2216,11 @@ class AIAgentsApi(object):
 
         :param id: ID агента (required)
         :type id: object
-        :param start_time: Начало временного диапазона (ISO 8601)
+        :param start_time: Начало периода (ISO 8601). По умолчанию — за 24 часа до `endTime`.
         :type start_time: object
-        :param end_time: Конец временного диапазона (ISO 8601)
+        :param end_time: Конец периода (ISO 8601). По умолчанию — текущий момент.
         :type end_time: object
-        :param interval: Интервал в минутах (по умолчанию 60)
+        :param interval: Длина интервала агрегации в минутах
         :type interval: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -955,10 +2338,155 @@ class AIAgentsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
+    def get_agent_v3(self, id : Annotated[Any, Field(..., description="ID агента")], **kwargs) -> GetAgentV3200Response:  # noqa: E501
+        """Получение AI агента (v3)  # noqa: E501
+
+        Чтобы получить информацию об AI агенте, отправьте GET-запрос на `/api/v3/cloud-ai/agents/{id}`.  Отличается от `/api/v1/cloud-ai/agents/{id}` тем, что вместо `knowledge_bases_ids` возвращает `knowledge_bases` — подключённые базы знаний с режимом поиска.  Для токенов дополнительных пользователей аккаунта нужна роль `ai:read`.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_agent_v3(id, async_req=True)
+        >>> result = thread.get()
+
+        :param id: ID агента (required)
+        :type id: object
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: GetAgentV3200Response
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            raise ValueError("Error! Please call the get_agent_v3_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
+        return self.get_agent_v3_with_http_info(id, **kwargs)  # noqa: E501
+
+    @validate_arguments
+    def get_agent_v3_with_http_info(self, id : Annotated[Any, Field(..., description="ID агента")], **kwargs) -> ApiResponse:  # noqa: E501
+        """Получение AI агента (v3)  # noqa: E501
+
+        Чтобы получить информацию об AI агенте, отправьте GET-запрос на `/api/v3/cloud-ai/agents/{id}`.  Отличается от `/api/v1/cloud-ai/agents/{id}` тем, что вместо `knowledge_bases_ids` возвращает `knowledge_bases` — подключённые базы знаний с режимом поиска.  Для токенов дополнительных пользователей аккаунта нужна роль `ai:read`.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_agent_v3_with_http_info(id, async_req=True)
+        >>> result = thread.get()
+
+        :param id: ID агента (required)
+        :type id: object
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the 
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(GetAgentV3200Response, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'id'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_agent_v3" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['id']:
+            _path_params['id'] = _params['id']
+
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = ['Bearer']  # noqa: E501
+
+        _response_types_map = {
+            '200': "GetAgentV3200Response",
+            '400': None,
+            '401': None,
+            '403': None,
+            '404': None,
+            '429': None,
+            '500': None,
+        }
+
+        return self.api_client.call_api(
+            '/api/v3/cloud-ai/agents/{id}', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @validate_arguments
     def get_agents(self, **kwargs) -> GetAgents200Response:  # noqa: E501
         """Получение списка AI агентов  # noqa: E501
 
-        Чтобы получить список AI агентов, отправьте GET-запрос на `/api/v1/cloud-ai/agents`.  Тело ответа будет представлять собой объект JSON с ключом `agents`.  # noqa: E501
+        Чтобы получить список AI агентов, отправьте GET-запрос на `/api/v1/cloud-ai/agents`.  Возвращаются все агенты аккаунта (без пагинации), включая приостановленных и заблокированных. Тело ответа будет представлять собой объект JSON с ключами `agents` и `meta`. Подключённые базы знаний вместе с режимом поиска возвращает метод `/api/v3/cloud-ai/agents`.  Для токенов дополнительных пользователей аккаунта нужна роль `ai:read`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -985,7 +2513,7 @@ class AIAgentsApi(object):
     def get_agents_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
         """Получение списка AI агентов  # noqa: E501
 
-        Чтобы получить список AI агентов, отправьте GET-запрос на `/api/v1/cloud-ai/agents`.  Тело ответа будет представлять собой объект JSON с ключом `agents`.  # noqa: E501
+        Чтобы получить список AI агентов, отправьте GET-запрос на `/api/v1/cloud-ai/agents`.  Возвращаются все агенты аккаунта (без пагинации), включая приостановленных и заблокированных. Тело ответа будет представлять собой объект JSON с ключами `agents` и `meta`. Подключённые базы знаний вместе с режимом поиска возвращает метод `/api/v3/cloud-ai/agents`.  Для токенов дополнительных пользователей аккаунта нужна роль `ai:read`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -1069,7 +2597,6 @@ class AIAgentsApi(object):
             '400': None,
             '401': None,
             '403': None,
-            '404': None,
             '429': None,
             '500': None,
         }
@@ -1092,14 +2619,14 @@ class AIAgentsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def get_agents_token_packages(self, **kwargs) -> GetAgentsTokenPackages200Response:  # noqa: E501
-        """(Deprecated) Получение списка пакетов токенов для агентов  # noqa: E501
+    def get_agents_v3(self, **kwargs) -> GetAgentsV3200Response:  # noqa: E501
+        """Получение списка AI агентов (v3)  # noqa: E501
 
-        Метод устарел.  Чтобы получить список доступных пакетов токенов для AI агентов, отправьте GET-запрос на `/api/v1/cloud-ai/token-packages/agents`.  Тело ответа будет представлять собой объект JSON с ключом `token_packages`.  # noqa: E501
+        Чтобы получить список AI агентов, отправьте GET-запрос на `/api/v3/cloud-ai/agents`.  Отличается от `/api/v1/cloud-ai/agents` тем, что вместо `knowledge_bases_ids` возвращает `knowledge_bases` — подключённые базы знаний с режимом поиска.  Для токенов дополнительных пользователей аккаунта нужна роль `ai:read`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.get_agents_token_packages(async_req=True)
+        >>> thread = api.get_agents_v3(async_req=True)
         >>> result = thread.get()
 
         :param async_req: Whether to execute the request asynchronously.
@@ -1111,22 +2638,22 @@ class AIAgentsApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: GetAgentsTokenPackages200Response
+        :rtype: GetAgentsV3200Response
         """
         kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
-            raise ValueError("Error! Please call the get_agents_token_packages_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
-        return self.get_agents_token_packages_with_http_info(**kwargs)  # noqa: E501
+            raise ValueError("Error! Please call the get_agents_v3_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
+        return self.get_agents_v3_with_http_info(**kwargs)  # noqa: E501
 
     @validate_arguments
-    def get_agents_token_packages_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
-        """(Deprecated) Получение списка пакетов токенов для агентов  # noqa: E501
+    def get_agents_v3_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
+        """Получение списка AI агентов (v3)  # noqa: E501
 
-        Метод устарел.  Чтобы получить список доступных пакетов токенов для AI агентов, отправьте GET-запрос на `/api/v1/cloud-ai/token-packages/agents`.  Тело ответа будет представлять собой объект JSON с ключом `token_packages`.  # noqa: E501
+        Чтобы получить список AI агентов, отправьте GET-запрос на `/api/v3/cloud-ai/agents`.  Отличается от `/api/v1/cloud-ai/agents` тем, что вместо `knowledge_bases_ids` возвращает `knowledge_bases` — подключённые базы знаний с режимом поиска.  Для токенов дополнительных пользователей аккаунта нужна роль `ai:read`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.get_agents_token_packages_with_http_info(async_req=True)
+        >>> thread = api.get_agents_v3_with_http_info(async_req=True)
         >>> result = thread.get()
 
         :param async_req: Whether to execute the request asynchronously.
@@ -1151,10 +2678,8 @@ class AIAgentsApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: tuple(GetAgentsTokenPackages200Response, status_code(int), headers(HTTPHeaderDict))
+        :rtype: tuple(GetAgentsV3200Response, status_code(int), headers(HTTPHeaderDict))
         """
-
-        warnings.warn("GET /api/v1/cloud-ai/token-packages/agents is deprecated.", DeprecationWarning)
 
         _params = locals()
 
@@ -1177,7 +2702,7 @@ class AIAgentsApi(object):
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method get_agents_token_packages" % _key
+                    " to method get_agents_v3" % _key
                 )
             _params[_key] = _val
         del _params['kwargs']
@@ -1204,17 +2729,16 @@ class AIAgentsApi(object):
         _auth_settings = ['Bearer']  # noqa: E501
 
         _response_types_map = {
-            '200': "GetAgentsTokenPackages200Response",
+            '200': "GetAgentsV3200Response",
             '400': None,
             '401': None,
             '403': None,
-            '404': None,
             '429': None,
             '500': None,
         }
 
         return self.api_client.call_api(
-            '/api/v1/cloud-ai/token-packages/agents', 'GET',
+            '/api/v3/cloud-ai/agents', 'GET',
             _path_params,
             _query_params,
             _header_params,
@@ -1231,16 +2755,20 @@ class AIAgentsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def get_knowledgebases_token_packages(self, **kwargs) -> GetAgentsTokenPackages200Response:  # noqa: E501
-        """Получение списка пакетов токенов для баз знаний  # noqa: E501
+    def sync_agent_entity_limits(self, id : Annotated[Any, Field(..., description="ID агента")], sync_agent_entity_limits : SyncAgentEntityLimits, **kwargs) -> GetAgentEntityLimits200Response:  # noqa: E501
+        """Синхронизация лимитов агента за период  # noqa: E501
 
-        Чтобы получить список доступных пакетов токенов для баз знаний, отправьте GET-запрос на `/api/v1/cloud-ai/token-packages/knowledge-bases`.  Тело ответа будет представлять собой объект JSON с ключом `token_packages`.  # noqa: E501
+        Чтобы задать полный набор лимитов AI агента за период, отправьте PUT-запрос на `/api/v1/cloud-ai/agents/{id}/entity-limits/sync`.  Лимиты из запроса создаются или обновляются (сопоставление по `model_id`), а лимиты этого периода, которых нет в запросе, удаляются. Лимиты других периодов не затрагиваются. В ответе — актуальные лимиты периода. Если лимиты одновременно изменил другой запрос, вернётся 409 `entity_keys_limits_sync_conflict` — повторите запрос.  Для токенов дополнительных пользователей аккаунта нужна роль `ai:write`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.get_knowledgebases_token_packages(async_req=True)
+        >>> thread = api.sync_agent_entity_limits(id, sync_agent_entity_limits, async_req=True)
         >>> result = thread.get()
 
+        :param id: ID агента (required)
+        :type id: object
+        :param sync_agent_entity_limits: (required)
+        :type sync_agent_entity_limits: SyncAgentEntityLimits
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request. If one
@@ -1250,24 +2778,28 @@ class AIAgentsApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: GetAgentsTokenPackages200Response
+        :rtype: GetAgentEntityLimits200Response
         """
         kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
-            raise ValueError("Error! Please call the get_knowledgebases_token_packages_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
-        return self.get_knowledgebases_token_packages_with_http_info(**kwargs)  # noqa: E501
+            raise ValueError("Error! Please call the sync_agent_entity_limits_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
+        return self.sync_agent_entity_limits_with_http_info(id, sync_agent_entity_limits, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def get_knowledgebases_token_packages_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
-        """Получение списка пакетов токенов для баз знаний  # noqa: E501
+    def sync_agent_entity_limits_with_http_info(self, id : Annotated[Any, Field(..., description="ID агента")], sync_agent_entity_limits : SyncAgentEntityLimits, **kwargs) -> ApiResponse:  # noqa: E501
+        """Синхронизация лимитов агента за период  # noqa: E501
 
-        Чтобы получить список доступных пакетов токенов для баз знаний, отправьте GET-запрос на `/api/v1/cloud-ai/token-packages/knowledge-bases`.  Тело ответа будет представлять собой объект JSON с ключом `token_packages`.  # noqa: E501
+        Чтобы задать полный набор лимитов AI агента за период, отправьте PUT-запрос на `/api/v1/cloud-ai/agents/{id}/entity-limits/sync`.  Лимиты из запроса создаются или обновляются (сопоставление по `model_id`), а лимиты этого периода, которых нет в запросе, удаляются. Лимиты других периодов не затрагиваются. В ответе — актуальные лимиты периода. Если лимиты одновременно изменил другой запрос, вернётся 409 `entity_keys_limits_sync_conflict` — повторите запрос.  Для токенов дополнительных пользователей аккаунта нужна роль `ai:write`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.get_knowledgebases_token_packages_with_http_info(async_req=True)
+        >>> thread = api.sync_agent_entity_limits_with_http_info(id, sync_agent_entity_limits, async_req=True)
         >>> result = thread.get()
 
+        :param id: ID агента (required)
+        :type id: object
+        :param sync_agent_entity_limits: (required)
+        :type sync_agent_entity_limits: SyncAgentEntityLimits
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
@@ -1290,12 +2822,14 @@ class AIAgentsApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: tuple(GetAgentsTokenPackages200Response, status_code(int), headers(HTTPHeaderDict))
+        :rtype: tuple(GetAgentEntityLimits200Response, status_code(int), headers(HTTPHeaderDict))
         """
 
         _params = locals()
 
         _all_params = [
+            'id',
+            'sync_agent_entity_limits'
         ]
         _all_params.extend(
             [
@@ -1314,7 +2848,7 @@ class AIAgentsApi(object):
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method get_knowledgebases_token_packages" % _key
+                    " to method sync_agent_entity_limits" % _key
                 )
             _params[_key] = _val
         del _params['kwargs']
@@ -1323,6 +2857,9 @@ class AIAgentsApi(object):
 
         # process the path parameters
         _path_params = {}
+        if _params['id']:
+            _path_params['id'] = _params['id']
+
 
         # process the query parameters
         _query_params = []
@@ -1333,301 +2870,36 @@ class AIAgentsApi(object):
         _files = {}
         # process the body parameter
         _body_params = None
+        if _params['sync_agent_entity_limits'] is not None:
+            _body_params = _params['sync_agent_entity_limits']
+
         # set the HTTP header `Accept`
         _header_params['Accept'] = self.api_client.select_header_accept(
             ['application/json'])  # noqa: E501
+
+        # set the HTTP header `Content-Type`
+        _content_types_list = _params.get('_content_type',
+            self.api_client.select_header_content_type(
+                ['application/json']))
+        if _content_types_list:
+                _header_params['Content-Type'] = _content_types_list
 
         # authentication setting
         _auth_settings = ['Bearer']  # noqa: E501
 
         _response_types_map = {
-            '200': "GetAgentsTokenPackages200Response",
+            '200': "GetAgentEntityLimits200Response",
             '400': None,
             '401': None,
             '403': None,
             '404': None,
+            '409': None,
             '429': None,
             '500': None,
         }
 
         return self.api_client.call_api(
-            '/api/v1/cloud-ai/token-packages/knowledge-bases', 'GET',
-            _path_params,
-            _query_params,
-            _header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
-            response_types_map=_response_types_map,
-            auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
-            collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
-
-    @validate_arguments
-    def get_models(self, **kwargs) -> GetModels200Response:  # noqa: E501
-        """(Deprecated) Получение списка моделей  # noqa: E501
-
-        Метод устарел — используйте `GET /api/v3/cloud-ai/models`.  Чтобы получить список доступных AI моделей, отправьте GET-запрос на `/api/v1/cloud-ai/models`.  Тело ответа будет представлять собой объект JSON с ключом `models`.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_models(async_req=True)
-        >>> result = thread.get()
-
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: GetModels200Response
-        """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
-            raise ValueError("Error! Please call the get_models_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
-        return self.get_models_with_http_info(**kwargs)  # noqa: E501
-
-    @validate_arguments
-    def get_models_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
-        """(Deprecated) Получение списка моделей  # noqa: E501
-
-        Метод устарел — используйте `GET /api/v3/cloud-ai/models`.  Чтобы получить список доступных AI моделей, отправьте GET-запрос на `/api/v1/cloud-ai/models`.  Тело ответа будет представлять собой объект JSON с ключом `models`.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_models_with_http_info(async_req=True)
-        >>> result = thread.get()
-
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the 
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
-        :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: tuple(GetModels200Response, status_code(int), headers(HTTPHeaderDict))
-        """
-
-        warnings.warn("GET /api/v1/cloud-ai/models is deprecated.", DeprecationWarning)
-
-        _params = locals()
-
-        _all_params = [
-        ]
-        _all_params.extend(
-            [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
-            ]
-        )
-
-        # validate the arguments
-        for _key, _val in _params['kwargs'].items():
-            if _key not in _all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method get_models" % _key
-                )
-            _params[_key] = _val
-        del _params['kwargs']
-
-        _collection_formats = {}
-
-        # process the path parameters
-        _path_params = {}
-
-        # process the query parameters
-        _query_params = []
-        # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
-        # process the form parameters
-        _form_params = []
-        _files = {}
-        # process the body parameter
-        _body_params = None
-        # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
-
-        # authentication setting
-        _auth_settings = ['Bearer']  # noqa: E501
-
-        _response_types_map = {
-            '200': "GetModels200Response",
-            '400': None,
-            '401': None,
-            '403': None,
-            '404': None,
-            '429': None,
-            '500': None,
-        }
-
-        return self.api_client.call_api(
-            '/api/v1/cloud-ai/models', 'GET',
-            _path_params,
-            _query_params,
-            _header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
-            response_types_map=_response_types_map,
-            auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
-            collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
-
-    @validate_arguments
-    def get_models_v3(self, **kwargs) -> GetModelsV3200Response:  # noqa: E501
-        """Получение списка моделей  # noqa: E501
-
-        Чтобы получить список доступных AI моделей с их характеристиками, отправьте GET-запрос на `/api/v3/cloud-ai/models`.  Тело ответа будет представлять собой объект JSON с ключом `models`.  Характеристики модели (цены, лимиты, возможности) возвращаются в словаре `parameter_values`. Актуальные цены за токены — в ключах `parameter_values.cost_in` и `parameter_values.cost_out` (в рублях за 1 токен).  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_models_v3(async_req=True)
-        >>> result = thread.get()
-
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: GetModelsV3200Response
-        """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
-            raise ValueError("Error! Please call the get_models_v3_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
-        return self.get_models_v3_with_http_info(**kwargs)  # noqa: E501
-
-    @validate_arguments
-    def get_models_v3_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
-        """Получение списка моделей  # noqa: E501
-
-        Чтобы получить список доступных AI моделей с их характеристиками, отправьте GET-запрос на `/api/v3/cloud-ai/models`.  Тело ответа будет представлять собой объект JSON с ключом `models`.  Характеристики модели (цены, лимиты, возможности) возвращаются в словаре `parameter_values`. Актуальные цены за токены — в ключах `parameter_values.cost_in` и `parameter_values.cost_out` (в рублях за 1 токен).  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_models_v3_with_http_info(async_req=True)
-        >>> result = thread.get()
-
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the 
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
-        :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: tuple(GetModelsV3200Response, status_code(int), headers(HTTPHeaderDict))
-        """
-
-        _params = locals()
-
-        _all_params = [
-        ]
-        _all_params.extend(
-            [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
-            ]
-        )
-
-        # validate the arguments
-        for _key, _val in _params['kwargs'].items():
-            if _key not in _all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method get_models_v3" % _key
-                )
-            _params[_key] = _val
-        del _params['kwargs']
-
-        _collection_formats = {}
-
-        # process the path parameters
-        _path_params = {}
-
-        # process the query parameters
-        _query_params = []
-        # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
-        # process the form parameters
-        _form_params = []
-        _files = {}
-        # process the body parameter
-        _body_params = None
-        # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
-
-        # authentication setting
-        _auth_settings = ['Bearer']  # noqa: E501
-
-        _response_types_map = {
-            '200': "GetModelsV3200Response",
-            '400': None,
-            '401': None,
-            '403': None,
-            '404': None,
-            '429': None,
-            '500': None,
-        }
-
-        return self.api_client.call_api(
-            '/api/v3/cloud-ai/models', 'GET',
+            '/api/v1/cloud-ai/agents/{id}/entity-limits/sync', 'PUT',
             _path_params,
             _query_params,
             _header_params,
@@ -1647,7 +2919,7 @@ class AIAgentsApi(object):
     def update_agent(self, id : Annotated[Any, Field(..., description="ID агента")], update_agent : UpdateAgent, **kwargs) -> CreateAgent201Response:  # noqa: E501
         """Обновление AI агента  # noqa: E501
 
-        Чтобы обновить AI агента, отправьте PATCH-запрос на `/api/v1/cloud-ai/agents/{id}`.  # noqa: E501
+        Чтобы обновить AI агента, отправьте PATCH-запрос на `/api/v1/cloud-ai/agents/{id}`, передав изменяемые поля.  Особенности: - `settings` заменяются целиком (кроме `web_search_allowed_sites`, `additional_models` и `memory_enabled`, которые сохраняются, если не переданы) — передавайте полный объект настроек, включая `widget`; - основную модель меняет отдельный метод `PATCH /api/v1/cloud-ai/agents/{id}/model`; - поле `token_limit` больше не поддерживается: запрос с ним отклоняется с кодом 410 — лимиты задаются через `/api/v1/cloud-ai/agents/{id}/entity-limits`; - ошибки привязки `ai_gateway_key_id`: 400 `ai_gateway_key_not_found`, `agent_is_already_migrated_to_another_ai_gateway_key`, `agent_is_not_eligible_for_ai_gateway_migration`; 503 — проверку временно не удалось выполнить; - изменить статус заблокированного или удалённого агента нельзя (400 `agent_can't_change_status`).  Для токенов дополнительных пользователей аккаунта нужна роль `ai:write`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -1678,7 +2950,7 @@ class AIAgentsApi(object):
     def update_agent_with_http_info(self, id : Annotated[Any, Field(..., description="ID агента")], update_agent : UpdateAgent, **kwargs) -> ApiResponse:  # noqa: E501
         """Обновление AI агента  # noqa: E501
 
-        Чтобы обновить AI агента, отправьте PATCH-запрос на `/api/v1/cloud-ai/agents/{id}`.  # noqa: E501
+        Чтобы обновить AI агента, отправьте PATCH-запрос на `/api/v1/cloud-ai/agents/{id}`, передав изменяемые поля.  Особенности: - `settings` заменяются целиком (кроме `web_search_allowed_sites`, `additional_models` и `memory_enabled`, которые сохраняются, если не переданы) — передавайте полный объект настроек, включая `widget`; - основную модель меняет отдельный метод `PATCH /api/v1/cloud-ai/agents/{id}/model`; - поле `token_limit` больше не поддерживается: запрос с ним отклоняется с кодом 410 — лимиты задаются через `/api/v1/cloud-ai/agents/{id}/entity-limits`; - ошибки привязки `ai_gateway_key_id`: 400 `ai_gateway_key_not_found`, `agent_is_already_migrated_to_another_ai_gateway_key`, `agent_is_not_eligible_for_ai_gateway_migration`; 503 — проверку временно не удалось выполнить; - изменить статус заблокированного или удалённого агента нельзя (400 `agent_can't_change_status`).  Для токенов дополнительных пользователей аккаунта нужна роль `ai:write`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -1782,12 +3054,182 @@ class AIAgentsApi(object):
             '401': None,
             '403': None,
             '404': None,
+            '410': None,
+            '429': None,
+            '500': None,
+            '503': None,
+        }
+
+        return self.api_client.call_api(
+            '/api/v1/cloud-ai/agents/{id}', 'PATCH',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @validate_arguments
+    def update_agent_entity_limit(self, id : Annotated[Any, Field(..., description="ID агента")], limit_id : Annotated[Any, Field(..., description="ID лимита агента")], update_agent_entity_limit : UpdateAgentEntityLimit, **kwargs) -> CreateAgentEntityLimit201Response:  # noqa: E501
+        """Изменение лимита агента  # noqa: E501
+
+        Чтобы изменить значение лимита AI агента, отправьте PATCH-запрос на `/api/v1/cloud-ai/agents/{id}/entity-limits/{limit_id}`.  Непереданные поля не меняются. Снять денежный лимит (`money_limit`: `null`) можно только вместе с передачей `limit`.  Для токенов дополнительных пользователей аккаунта нужна роль `ai:write`.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.update_agent_entity_limit(id, limit_id, update_agent_entity_limit, async_req=True)
+        >>> result = thread.get()
+
+        :param id: ID агента (required)
+        :type id: object
+        :param limit_id: ID лимита агента (required)
+        :type limit_id: object
+        :param update_agent_entity_limit: (required)
+        :type update_agent_entity_limit: UpdateAgentEntityLimit
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: CreateAgentEntityLimit201Response
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            raise ValueError("Error! Please call the update_agent_entity_limit_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
+        return self.update_agent_entity_limit_with_http_info(id, limit_id, update_agent_entity_limit, **kwargs)  # noqa: E501
+
+    @validate_arguments
+    def update_agent_entity_limit_with_http_info(self, id : Annotated[Any, Field(..., description="ID агента")], limit_id : Annotated[Any, Field(..., description="ID лимита агента")], update_agent_entity_limit : UpdateAgentEntityLimit, **kwargs) -> ApiResponse:  # noqa: E501
+        """Изменение лимита агента  # noqa: E501
+
+        Чтобы изменить значение лимита AI агента, отправьте PATCH-запрос на `/api/v1/cloud-ai/agents/{id}/entity-limits/{limit_id}`.  Непереданные поля не меняются. Снять денежный лимит (`money_limit`: `null`) можно только вместе с передачей `limit`.  Для токенов дополнительных пользователей аккаунта нужна роль `ai:write`.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.update_agent_entity_limit_with_http_info(id, limit_id, update_agent_entity_limit, async_req=True)
+        >>> result = thread.get()
+
+        :param id: ID агента (required)
+        :type id: object
+        :param limit_id: ID лимита агента (required)
+        :type limit_id: object
+        :param update_agent_entity_limit: (required)
+        :type update_agent_entity_limit: UpdateAgentEntityLimit
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the 
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(CreateAgentEntityLimit201Response, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'id',
+            'limit_id',
+            'update_agent_entity_limit'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method update_agent_entity_limit" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['id']:
+            _path_params['id'] = _params['id']
+
+        if _params['limit_id']:
+            _path_params['limit_id'] = _params['limit_id']
+
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        if _params['update_agent_entity_limit'] is not None:
+            _body_params = _params['update_agent_entity_limit']
+
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # set the HTTP header `Content-Type`
+        _content_types_list = _params.get('_content_type',
+            self.api_client.select_header_content_type(
+                ['application/json']))
+        if _content_types_list:
+                _header_params['Content-Type'] = _content_types_list
+
+        # authentication setting
+        _auth_settings = ['Bearer']  # noqa: E501
+
+        _response_types_map = {
+            '200': "CreateAgentEntityLimit201Response",
+            '400': None,
+            '401': None,
+            '403': None,
+            '404': None,
             '429': None,
             '500': None,
         }
 
         return self.api_client.call_api(
-            '/api/v1/cloud-ai/agents/{id}', 'PATCH',
+            '/api/v1/cloud-ai/agents/{id}/entity-limits/{limit_id}', 'PATCH',
             _path_params,
             _query_params,
             _header_params,

@@ -25,25 +25,33 @@ from timeweb_cloud_api.models.agent_settings import AgentSettings
 
 class Agent(BaseModel):
     """
-    AI Agent
+    AI агент
     """
-    id: Optional[Any] = Field(..., description="Уникальный идентификатор агента")
+    id: Optional[Any] = Field(..., description="ID агента")
     name: Optional[Any] = Field(..., description="Название агента")
     description: Optional[Any] = Field(..., description="Описание агента")
-    model_id: Optional[Any] = Field(..., description="ID модели")
-    provider_id: Optional[Any] = Field(..., description="ID провайдера")
+    project_id: Optional[Any] = Field(None, description="ID проекта, в котором находится агент")
+    model_id: Optional[Any] = Field(..., description="ID основной модели агента")
+    provider_id: Optional[Any] = Field(..., description="ID провайдера модели")
     settings: AgentSettings = Field(...)
-    status: Optional[Any] = Field(..., description="Статус агента")
-    access_type: Optional[Any] = Field(..., description="Тип доступа к агенту")
-    total_tokens: Optional[Any] = Field(..., description="Всего токенов выделено агенту")
-    used_tokens: Optional[Any] = Field(..., description="Использовано токенов")
-    remaining_tokens: Optional[Any] = Field(..., description="Осталось токенов")
-    token_package_id: Optional[Any] = Field(..., description="ID пакета токенов")
-    subscription_renewal_date: Optional[Any] = Field(..., description="Дата обновления подписки")
-    knowledge_bases_ids: Optional[Any] = Field(..., description="ID баз знаний, связанных с агентом")
-    access_id: Optional[Any] = Field(..., description="ID доступа")
+    status: Optional[Any] = Field(..., description="Статус агента: - `active` — работает; - `suspended` — приостановлен владельцем; - `blocked` — заблокирован (для агентов с пакетом токенов — закончились токены или подписка); - `deleted` — удалён.")
+    access_type: Optional[Any] = Field(..., description="Тип доступа: `public` — агент отвечает анонимным посетителям сайта через виджет; `private` — только по токену аккаунта.")
+    access_id: Optional[Any] = Field(..., description="Идентификатор доступа агента. Используется для вызова агента из своих приложений через OpenAI-совместимое API (см. https://agent.timeweb.cloud/docs) и для встраивания виджета.")
+    token_limit: Optional[Any] = Field(..., description="Устарело. Дневной лимит агента в токенах без привязки к модели, если он задан; `0` — такого лимита нет. Лимиты в деньгах, по моделям и за другие периоды здесь не отражаются — используйте лимиты агента (`/api/v1/cloud-ai/agents/{id}/entity-limits`).")
+    total_tokens: Optional[Any] = Field(None, description="Всего токенов в пакете. Только для агентов с пакетом токенов (устаревшая схема оплаты).")
+    used_tokens: Optional[Any] = Field(..., description="Использовано токенов пакета. Для агентов с поресурсной оплатой — `null`.")
+    remaining_tokens: Optional[Any] = Field(None, description="Осталось токенов в пакете. Только для агентов с пакетом токенов.")
+    token_package_id: Optional[Any] = Field(None, description="ID пакета токенов. Только для агентов с пакетом токенов; у агентов с поресурсной оплатой поле отсутствует.")
+    subscription_renewal_date: Optional[Any] = Field(None, description="Дата продления подписки на пакет токенов. Только для агентов с пакетом токенов.")
+    auto_buy_additional_tokens: Optional[Any] = Field(..., description="Включена ли автоматическая докупка пакетов токенов")
+    tools: Optional[Any] = Field(..., description="Инструменты, подключённые к агенту")
+    additional_model_ids: Optional[Any] = Field(..., description="ID дополнительных моделей агента")
+    additional_models: Optional[Any] = Field(..., description="Дополнительные модели агента с настройками")
+    is_web_search_enabled: Optional[Any] = Field(..., description="Включён ли веб-поиск")
+    ai_gateway_key_id: Optional[Any] = Field(None, description="ID ключа AI Gateway, к которому привязан агент. `null` — агента можно привязать к ключу (см. обновление агента); поле отсутствует — привязка недоступна.")
     created_at: Optional[Any] = Field(..., description="Дата создания агента")
-    __properties = ["id", "name", "description", "model_id", "provider_id", "settings", "status", "access_type", "total_tokens", "used_tokens", "remaining_tokens", "token_package_id", "subscription_renewal_date", "knowledge_bases_ids", "access_id", "created_at"]
+    knowledge_bases_ids: Optional[Any] = Field(..., description="ID баз знаний, подключённых к агенту")
+    __properties = ["id", "name", "description", "project_id", "model_id", "provider_id", "settings", "status", "access_type", "access_id", "token_limit", "total_tokens", "used_tokens", "remaining_tokens", "token_package_id", "subscription_renewal_date", "auto_buy_additional_tokens", "tools", "additional_model_ids", "additional_models", "is_web_search_enabled", "ai_gateway_key_id", "created_at", "knowledge_bases_ids"]
 
     @validator('status')
     def status_validate_enum(cls, value):
@@ -107,6 +115,11 @@ class Agent(BaseModel):
         if self.description is None and "description" in self.__fields_set__:
             _dict['description'] = None
 
+        # set to None if project_id (nullable) is None
+        # and __fields_set__ contains the field
+        if self.project_id is None and "project_id" in self.__fields_set__:
+            _dict['project_id'] = None
+
         # set to None if model_id (nullable) is None
         # and __fields_set__ contains the field
         if self.model_id is None and "model_id" in self.__fields_set__:
@@ -126,6 +139,16 @@ class Agent(BaseModel):
         # and __fields_set__ contains the field
         if self.access_type is None and "access_type" in self.__fields_set__:
             _dict['access_type'] = None
+
+        # set to None if access_id (nullable) is None
+        # and __fields_set__ contains the field
+        if self.access_id is None and "access_id" in self.__fields_set__:
+            _dict['access_id'] = None
+
+        # set to None if token_limit (nullable) is None
+        # and __fields_set__ contains the field
+        if self.token_limit is None and "token_limit" in self.__fields_set__:
+            _dict['token_limit'] = None
 
         # set to None if total_tokens (nullable) is None
         # and __fields_set__ contains the field
@@ -152,20 +175,45 @@ class Agent(BaseModel):
         if self.subscription_renewal_date is None and "subscription_renewal_date" in self.__fields_set__:
             _dict['subscription_renewal_date'] = None
 
-        # set to None if knowledge_bases_ids (nullable) is None
+        # set to None if auto_buy_additional_tokens (nullable) is None
         # and __fields_set__ contains the field
-        if self.knowledge_bases_ids is None and "knowledge_bases_ids" in self.__fields_set__:
-            _dict['knowledge_bases_ids'] = None
+        if self.auto_buy_additional_tokens is None and "auto_buy_additional_tokens" in self.__fields_set__:
+            _dict['auto_buy_additional_tokens'] = None
 
-        # set to None if access_id (nullable) is None
+        # set to None if tools (nullable) is None
         # and __fields_set__ contains the field
-        if self.access_id is None and "access_id" in self.__fields_set__:
-            _dict['access_id'] = None
+        if self.tools is None and "tools" in self.__fields_set__:
+            _dict['tools'] = None
+
+        # set to None if additional_model_ids (nullable) is None
+        # and __fields_set__ contains the field
+        if self.additional_model_ids is None and "additional_model_ids" in self.__fields_set__:
+            _dict['additional_model_ids'] = None
+
+        # set to None if additional_models (nullable) is None
+        # and __fields_set__ contains the field
+        if self.additional_models is None and "additional_models" in self.__fields_set__:
+            _dict['additional_models'] = None
+
+        # set to None if is_web_search_enabled (nullable) is None
+        # and __fields_set__ contains the field
+        if self.is_web_search_enabled is None and "is_web_search_enabled" in self.__fields_set__:
+            _dict['is_web_search_enabled'] = None
+
+        # set to None if ai_gateway_key_id (nullable) is None
+        # and __fields_set__ contains the field
+        if self.ai_gateway_key_id is None and "ai_gateway_key_id" in self.__fields_set__:
+            _dict['ai_gateway_key_id'] = None
 
         # set to None if created_at (nullable) is None
         # and __fields_set__ contains the field
         if self.created_at is None and "created_at" in self.__fields_set__:
             _dict['created_at'] = None
+
+        # set to None if knowledge_bases_ids (nullable) is None
+        # and __fields_set__ contains the field
+        if self.knowledge_bases_ids is None and "knowledge_bases_ids" in self.__fields_set__:
+            _dict['knowledge_bases_ids'] = None
 
         return _dict
 
@@ -182,19 +230,27 @@ class Agent(BaseModel):
             "id": obj.get("id"),
             "name": obj.get("name"),
             "description": obj.get("description"),
+            "project_id": obj.get("project_id"),
             "model_id": obj.get("model_id"),
             "provider_id": obj.get("provider_id"),
             "settings": AgentSettings.from_dict(obj.get("settings")) if obj.get("settings") is not None else None,
             "status": obj.get("status"),
             "access_type": obj.get("access_type"),
+            "access_id": obj.get("access_id"),
+            "token_limit": obj.get("token_limit"),
             "total_tokens": obj.get("total_tokens"),
             "used_tokens": obj.get("used_tokens"),
             "remaining_tokens": obj.get("remaining_tokens"),
             "token_package_id": obj.get("token_package_id"),
             "subscription_renewal_date": obj.get("subscription_renewal_date"),
-            "knowledge_bases_ids": obj.get("knowledge_bases_ids"),
-            "access_id": obj.get("access_id"),
-            "created_at": obj.get("created_at")
+            "auto_buy_additional_tokens": obj.get("auto_buy_additional_tokens"),
+            "tools": obj.get("tools"),
+            "additional_model_ids": obj.get("additional_model_ids"),
+            "additional_models": obj.get("additional_models"),
+            "is_web_search_enabled": obj.get("is_web_search_enabled"),
+            "ai_gateway_key_id": obj.get("ai_gateway_key_id"),
+            "created_at": obj.get("created_at"),
+            "knowledge_bases_ids": obj.get("knowledge_bases_ids")
         })
         return _obj
 

@@ -39,8 +39,8 @@ class TestUpdateKnowledgebase(unittest.TestCase):
         model = timeweb_cloud_api.models.update_knowledgebase.UpdateKnowledgebase()  # noqa: E501
         if include_optional :
             return UpdateKnowledgebase(
-                name = Моя база знаний, 
-                description = База знаний с документацией
+                name = Документация продукта, 
+                description = Инструкции и FAQ для службы поддержки
             )
         else :
             return UpdateKnowledgebase(

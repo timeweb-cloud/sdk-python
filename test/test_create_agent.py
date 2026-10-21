@@ -43,51 +43,70 @@ class TestCreateAgent(unittest.TestCase):
                 description = Помощник для ответов на вопросы, 
                 access_type = private, 
                 model_id = 1, 
-                token_package_id = 1, 
-                settings = timeweb_cloud_api.models.agent_settings.agent_settings(
-                    model = timeweb_cloud_api.models.agent_model_settings.agent-model-settings(
-                        temperature = 0.7, 
-                        top_p = 0.9, 
-                        max_tokens = 1000, 
-                        frequency_penalty = 0, 
-                        presence_penalty = 0, ), 
-                    system_prompt = null, 
-                    refine_query = null, 
-                    widget = timeweb_cloud_api.models.agent_settings_widget.agent_settings_widget(
-                        whitelist_domains = [example.com, subdomain.example.com], 
+                settings = timeweb_cloud_api.models.agent_settings.agent-settings(
+                    model = {
+                        'key' : null
+                        }, 
+                    system_prompt = Ты — вежливый помощник службы поддержки., 
+                    refine_query = false, 
+                    memory_enabled = false, 
+                    widget = timeweb_cloud_api.models.agent_widget_settings.agent-widget-settings(
+                        whitelist_domains = [example.com, shop.example.com], 
                         name = Помощник поддержки, 
                         signature = AI Ассистент, 
                         welcome_message = Здравствуйте! Чем могу помочь?, 
                         primary_color = #7177F8, 
-                        font = Inter, Arial, sans-serif, 
-                        icon_url = https://s3.twcstorage.ru/tw-cloud-static/cloud-ai/agent-widget/agent_icons/1.svg, 
-                        chat_position = bottom_right, ), ), 
-                project_id = 1
+                        text_color = #FFFFFF, 
+                        background_color = #FFFFFF, 
+                        header_footer_color = #7177F8, 
+                        font = Arial, 
+                        icon_url = https://example.com/icon.svg, 
+                        use_avatar = false, 
+                        show_button = true, 
+                        show_tool_processing = false, 
+                        show_confirmation_buttons = true, 
+                        chat_position = bottom_right, 
+                        chat_position_adjustment_x = 0, 
+                        chat_position_adjustment_y = 0, ), 
+                    web_search_allowed_sites = [timeweb.cloud], 
+                    additional_models = null, ), 
+                project_id = 1, 
+                is_web_search_enabled = false, 
+                token_package_id = 1
             )
         else :
             return CreateAgent(
                 name = Мой AI помощник,
                 access_type = private,
                 model_id = 1,
-                token_package_id = 1,
-                settings = timeweb_cloud_api.models.agent_settings.agent_settings(
-                    model = timeweb_cloud_api.models.agent_model_settings.agent-model-settings(
-                        temperature = 0.7, 
-                        top_p = 0.9, 
-                        max_tokens = 1000, 
-                        frequency_penalty = 0, 
-                        presence_penalty = 0, ), 
-                    system_prompt = null, 
-                    refine_query = null, 
-                    widget = timeweb_cloud_api.models.agent_settings_widget.agent_settings_widget(
-                        whitelist_domains = [example.com, subdomain.example.com], 
+                settings = timeweb_cloud_api.models.agent_settings.agent-settings(
+                    model = {
+                        'key' : null
+                        }, 
+                    system_prompt = Ты — вежливый помощник службы поддержки., 
+                    refine_query = false, 
+                    memory_enabled = false, 
+                    widget = timeweb_cloud_api.models.agent_widget_settings.agent-widget-settings(
+                        whitelist_domains = [example.com, shop.example.com], 
                         name = Помощник поддержки, 
                         signature = AI Ассистент, 
                         welcome_message = Здравствуйте! Чем могу помочь?, 
                         primary_color = #7177F8, 
-                        font = Inter, Arial, sans-serif, 
-                        icon_url = https://s3.twcstorage.ru/tw-cloud-static/cloud-ai/agent-widget/agent_icons/1.svg, 
-                        chat_position = bottom_right, ), ),
+                        text_color = #FFFFFF, 
+                        background_color = #FFFFFF, 
+                        header_footer_color = #7177F8, 
+                        font = Arial, 
+                        icon_url = https://example.com/icon.svg, 
+                        use_avatar = false, 
+                        show_button = true, 
+                        show_tool_processing = false, 
+                        show_confirmation_buttons = true, 
+                        chat_position = bottom_right, 
+                        chat_position_adjustment_x = 0, 
+                        chat_position_adjustment_y = 0, ), 
+                    web_search_allowed_sites = [timeweb.cloud], 
+                    additional_models = null, ),
+                token_package_id = 1,
         )
         """
 

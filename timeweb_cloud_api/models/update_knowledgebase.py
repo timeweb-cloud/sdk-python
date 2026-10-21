@@ -24,10 +24,10 @@ from pydantic import BaseModel, Field
 
 class UpdateKnowledgebase(BaseModel):
     """
-    Данные для обновления базы знаний
+    Данные для изменения базы знаний. Передайте только поля, которые нужно изменить
     """
-    name: Optional[Any] = Field(None, description="Название базы знаний")
-    description: Optional[Any] = Field(None, description="Описание базы знаний")
+    name: Optional[Any] = Field(None, description="Новое название. Пустая строка игнорируется")
+    description: Optional[Any] = Field(None, description="Новое описание")
     __properties = ["name", "description"]
 
     class Config:

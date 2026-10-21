@@ -7,10 +7,10 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **object** | Название базы знаний | 
 **description** | **object** | Описание базы знаний | [optional] 
-**dbaas_preset_id** | **object** | ID пресета базы данных | 
-**network_id** | **object** | ID сети | 
-**token_package_id** | **object** | ID пакета токенов | 
-**project_id** | **object** | ID проекта | [optional] 
+**dbaas_preset_id** | **object** | ID тарифа кластера OpenSearch, который будет создан для базы знаний. Список тарифов баз данных — &#x60;GET /api/v2/presets/dbs&#x60; | 
+**network_id** | **object** | ID приватной сети (VPC), в которой будет создан кластер | 
+**token_package_id** | **object** | ID пакета токенов подписки. Подходят только базовые пакеты (&#x60;package_type: base&#x60;) из &#x60;GET /api/v1/cloud-ai/token-packages/knowledge-bases&#x60; | 
+**project_id** | **object** | ID проекта, в который нужно добавить базу знаний | [optional] 
 
 ## Example
 

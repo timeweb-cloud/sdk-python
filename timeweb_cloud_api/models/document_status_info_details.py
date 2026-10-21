@@ -24,12 +24,22 @@ from pydantic import BaseModel, Field
 
 class DocumentStatusInfoDetails(BaseModel):
     """
-    Дополнительные детали, зависящие от типа статуса
+    Подробности, набор полей зависит от состояния. Могут присутствовать и другие поля
     """
-    started_at: Optional[Any] = Field(None, description="Время начала индексации")
-    current_stage: Optional[Any] = Field(None, description="Текущий этап индексации")
-    progress: Optional[Any] = Field(None, description="Прогресс в процентах (0-100)")
-    __properties = ["started_at", "current_stage", "progress"]
+    started_at: Optional[Any] = Field(None, description="`indexing`: время начала индексации")
+    current_stage: Optional[Any] = Field(None, description="`indexing`: текущий этап")
+    progress: Optional[Any] = Field(None, description="`indexing`: прогресс в процентах")
+    indexing_duration_ms: Optional[Any] = Field(None, description="`indexed`: длительность индексации в миллисекундах")
+    tokens_used: Optional[Any] = Field(None, description="`indexed`: израсходовано токенов")
+    tokens_estimated: Optional[Any] = Field(None, description="`indexed`: оценка количества токенов перед индексацией")
+    chunks_count: Optional[Any] = Field(None, description="`indexed`: количество фрагментов, на которые разбит документ")
+    needed: Optional[Any] = Field(None, description="`INSUFFICIENT_TOKENS`: сколько токенов нужно")
+    available: Optional[Any] = Field(None, description="`INSUFFICIENT_TOKENS`: сколько токенов доступно")
+    estimated: Optional[Any] = Field(None, description="`INSUFFICIENT_TOKENS`: оценка без запаса")
+    balance: Optional[Any] = Field(None, description="`CRITICAL_BALANCE`, `NEGATIVE_BALANCE`: текущий остаток токенов")
+    min_required: Optional[Any] = Field(None, description="`CRITICAL_BALANCE`: минимально необходимый остаток")
+    additional_properties: Dict[str, Any] = {}
+    __properties = ["started_at", "current_stage", "progress", "indexing_duration_ms", "tokens_used", "tokens_estimated", "chunks_count", "needed", "available", "estimated", "balance", "min_required"]
 
     class Config:
         """Pydantic configuration"""
@@ -53,8 +63,14 @@ class DocumentStatusInfoDetails(BaseModel):
         """Returns the dictionary representation of the model using alias"""
         _dict = self.dict(by_alias=True,
                           exclude={
+                            "additional_properties"
                           },
                           exclude_none=True)
+        # puts key-value pairs in additional_properties in the top level
+        if self.additional_properties is not None:
+            for _key, _value in self.additional_properties.items():
+                _dict[_key] = _value
+
         # set to None if started_at (nullable) is None
         # and __fields_set__ contains the field
         if self.started_at is None and "started_at" in self.__fields_set__:
@@ -70,6 +86,51 @@ class DocumentStatusInfoDetails(BaseModel):
         if self.progress is None and "progress" in self.__fields_set__:
             _dict['progress'] = None
 
+        # set to None if indexing_duration_ms (nullable) is None
+        # and __fields_set__ contains the field
+        if self.indexing_duration_ms is None and "indexing_duration_ms" in self.__fields_set__:
+            _dict['indexing_duration_ms'] = None
+
+        # set to None if tokens_used (nullable) is None
+        # and __fields_set__ contains the field
+        if self.tokens_used is None and "tokens_used" in self.__fields_set__:
+            _dict['tokens_used'] = None
+
+        # set to None if tokens_estimated (nullable) is None
+        # and __fields_set__ contains the field
+        if self.tokens_estimated is None and "tokens_estimated" in self.__fields_set__:
+            _dict['tokens_estimated'] = None
+
+        # set to None if chunks_count (nullable) is None
+        # and __fields_set__ contains the field
+        if self.chunks_count is None and "chunks_count" in self.__fields_set__:
+            _dict['chunks_count'] = None
+
+        # set to None if needed (nullable) is None
+        # and __fields_set__ contains the field
+        if self.needed is None and "needed" in self.__fields_set__:
+            _dict['needed'] = None
+
+        # set to None if available (nullable) is None
+        # and __fields_set__ contains the field
+        if self.available is None and "available" in self.__fields_set__:
+            _dict['available'] = None
+
+        # set to None if estimated (nullable) is None
+        # and __fields_set__ contains the field
+        if self.estimated is None and "estimated" in self.__fields_set__:
+            _dict['estimated'] = None
+
+        # set to None if balance (nullable) is None
+        # and __fields_set__ contains the field
+        if self.balance is None and "balance" in self.__fields_set__:
+            _dict['balance'] = None
+
+        # set to None if min_required (nullable) is None
+        # and __fields_set__ contains the field
+        if self.min_required is None and "min_required" in self.__fields_set__:
+            _dict['min_required'] = None
+
         return _dict
 
     @classmethod
@@ -84,7 +145,21 @@ class DocumentStatusInfoDetails(BaseModel):
         _obj = DocumentStatusInfoDetails.parse_obj({
             "started_at": obj.get("started_at"),
             "current_stage": obj.get("current_stage"),
-            "progress": obj.get("progress")
+            "progress": obj.get("progress"),
+            "indexing_duration_ms": obj.get("indexing_duration_ms"),
+            "tokens_used": obj.get("tokens_used"),
+            "tokens_estimated": obj.get("tokens_estimated"),
+            "chunks_count": obj.get("chunks_count"),
+            "needed": obj.get("needed"),
+            "available": obj.get("available"),
+            "estimated": obj.get("estimated"),
+            "balance": obj.get("balance"),
+            "min_required": obj.get("min_required")
         })
+        # store additional fields in additional_properties
+        for _key in obj.keys():
+            if _key not in cls.__properties:
+                _obj.additional_properties[_key] = obj.get(_key)
+
         return _obj
 

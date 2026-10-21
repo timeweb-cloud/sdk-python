@@ -36,10 +36,24 @@ class TestAIAgentsApi(unittest.TestCase):
         """
         pass
 
+    def test_change_agent_model(self):
+        """Test case for change_agent_model
+
+        Смена модели AI агента  # noqa: E501
+        """
+        pass
+
     def test_create_agent(self):
         """Test case for create_agent
 
         Создание AI агента  # noqa: E501
+        """
+        pass
+
+    def test_create_agent_entity_limit(self):
+        """Test case for create_agent_entity_limit
+
+        Создание лимита агента  # noqa: E501
         """
         pass
 
@@ -57,10 +71,52 @@ class TestAIAgentsApi(unittest.TestCase):
         """
         pass
 
+    def test_delete_agent_entity_limit(self):
+        """Test case for delete_agent_entity_limit
+
+        Удаление лимита агента  # noqa: E501
+        """
+        pass
+
+    def test_export_agent_chats_csv(self):
+        """Test case for export_agent_chats_csv
+
+        Выгрузка чатов агента в CSV  # noqa: E501
+        """
+        pass
+
     def test_get_agent(self):
         """Test case for get_agent
 
         Получение AI агента  # noqa: E501
+        """
+        pass
+
+    def test_get_agent_chat_list(self):
+        """Test case for get_agent_chat_list
+
+        Получение списка чатов агента  # noqa: E501
+        """
+        pass
+
+    def test_get_agent_chat_messages(self):
+        """Test case for get_agent_chat_messages
+
+        Получение сообщений чата агента  # noqa: E501
+        """
+        pass
+
+    def test_get_agent_entity_limit(self):
+        """Test case for get_agent_entity_limit
+
+        Получение лимита агента  # noqa: E501
+        """
+        pass
+
+    def test_get_agent_entity_limits(self):
+        """Test case for get_agent_entity_limits
+
+        Получение лимитов агента  # noqa: E501
         """
         pass
 
@@ -71,6 +127,13 @@ class TestAIAgentsApi(unittest.TestCase):
         """
         pass
 
+    def test_get_agent_v3(self):
+        """Test case for get_agent_v3
+
+        Получение AI агента (v3)  # noqa: E501
+        """
+        pass
+
     def test_get_agents(self):
         """Test case for get_agents
 
@@ -78,31 +141,17 @@ class TestAIAgentsApi(unittest.TestCase):
         """
         pass
 
-    def test_get_agents_token_packages(self):
-        """Test case for get_agents_token_packages
+    def test_get_agents_v3(self):
+        """Test case for get_agents_v3
 
-        Получение списка пакетов токенов для агентов  # noqa: E501
+        Получение списка AI агентов (v3)  # noqa: E501
         """
         pass
 
-    def test_get_knowledgebases_token_packages(self):
-        """Test case for get_knowledgebases_token_packages
+    def test_sync_agent_entity_limits(self):
+        """Test case for sync_agent_entity_limits
 
-        Получение списка пакетов токенов для баз знаний  # noqa: E501
-        """
-        pass
-
-    def test_get_models(self):
-        """Test case for get_models
-
-        Получение списка моделей  # noqa: E501
-        """
-        pass
-
-    def test_get_models_v3(self):
-        """Test case for get_models_v3
-
-        Получение списка моделей  # noqa: E501
+        Синхронизация лимитов агента за период  # noqa: E501
         """
         pass
 
@@ -110,6 +159,13 @@ class TestAIAgentsApi(unittest.TestCase):
         """Test case for update_agent
 
         Обновление AI агента  # noqa: E501
+        """
+        pass
+
+    def test_update_agent_entity_limit(self):
+        """Test case for update_agent_entity_limit
+
+        Изменение лимита агента  # noqa: E501
         """
         pass
 

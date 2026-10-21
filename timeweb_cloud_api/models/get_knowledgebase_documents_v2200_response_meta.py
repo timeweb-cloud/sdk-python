@@ -26,9 +26,9 @@ class GetKnowledgebaseDocumentsV2200ResponseMeta(BaseModel):
     """
     GetKnowledgebaseDocumentsV2200ResponseMeta
     """
-    total: Optional[Any] = Field(..., description="Общее количество документов")
-    limit: Optional[Any] = Field(..., description="Количество документов на странице")
-    offset: Optional[Any] = Field(..., description="Количество пропущенных документов")
+    total: Optional[Any] = Field(..., description="Количество документов, подходящих под фильтр")
+    limit: Optional[Any] = Field(..., description="Применённый размер страницы")
+    offset: Optional[Any] = Field(..., description="Применённое смещение")
     __properties = ["total", "limit", "offset"]
 
     class Config:

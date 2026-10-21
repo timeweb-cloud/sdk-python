@@ -42,7 +42,7 @@ class TestGetKnowledgebaseDocumentsV2200Response(unittest.TestCase):
                 knowledgebase_documents = None, 
                 meta = timeweb_cloud_api.models.get_knowledgebase_documents_v2_200_response_meta.getKnowledgebaseDocumentsV2_200_response_meta(
                     total = 150, 
-                    limit = 20, 
+                    limit = 10, 
                     offset = 0, )
             )
         else :
@@ -50,7 +50,7 @@ class TestGetKnowledgebaseDocumentsV2200Response(unittest.TestCase):
                 knowledgebase_documents = None,
                 meta = timeweb_cloud_api.models.get_knowledgebase_documents_v2_200_response_meta.getKnowledgebaseDocumentsV2_200_response_meta(
                     total = 150, 
-                    limit = 20, 
+                    limit = 10, 
                     offset = 0, ),
         )
         """

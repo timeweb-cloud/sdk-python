@@ -39,6 +39,7 @@ class TestStatus(unittest.TestCase):
         model = timeweb_cloud_api.models.status.Status()  # noqa: E501
         if include_optional :
             return Status(
+                login = ab123456, 
                 is_blocked = false, 
                 is_permanent_blocked = false, 
                 is_send_bill_letters = false, 
@@ -50,6 +51,7 @@ class TestStatus(unittest.TestCase):
             )
         else :
             return Status(
+                login = ab123456,
                 is_blocked = false,
                 is_permanent_blocked = false,
                 is_send_bill_letters = false,

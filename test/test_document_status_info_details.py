@@ -39,9 +39,18 @@ class TestDocumentStatusInfoDetails(unittest.TestCase):
         model = timeweb_cloud_api.models.document_status_info_details.DocumentStatusInfoDetails()  # noqa: E501
         if include_optional :
             return DocumentStatusInfoDetails(
-                started_at = 2024-01-01T12:00:00.000Z, 
-                current_stage = parsing, 
-                progress = 45
+                started_at = 2026-09-22T12:18:25.000Z, 
+                current_stage = chunking, 
+                progress = 45, 
+                indexing_duration_ms = 5000, 
+                tokens_used = 74513, 
+                tokens_estimated = 44019, 
+                chunks_count = 148, 
+                needed = 2000, 
+                available = 500, 
+                estimated = 1800, 
+                balance = 50, 
+                min_required = 100
             )
         else :
             return DocumentStatusInfoDetails(

@@ -39,30 +39,46 @@ class TestDocument(unittest.TestCase):
         model = timeweb_cloud_api.models.document.Document()  # noqa: E501
         if include_optional :
             return Document(
-                id = 1, 
-                name = документация.pdf, 
-                size = 1024000, 
+                id = 286071, 
+                name = faq.md, 
+                size = 81945, 
                 status = indexed, 
-                indexing_version = v1.0, 
+                type = link, 
+                indexing_schedule = timeweb_cloud_api.models.indexing_schedule.indexing-schedule(
+                    days = [monday, wednesday, friday], 
+                    time = 09:00, ), 
+                indexing_version = 5, 
                 status_info = timeweb_cloud_api.models.document_status_info.document-status-info(
-                    type = indexed, 
-                    timestamp = 2024-01-01T12:00:00.000Z, 
+                    type = error, 
+                    timestamp = 2026-09-22T09:11:26.389Z, 
                     error_code = INSUFFICIENT_TOKENS, 
-                    details = timeweb_cloud_api.models.document_status_info_details.document_status_info_details(
-                        started_at = 2024-01-01T12:00:00.000Z, 
-                        current_stage = parsing, 
-                        progress = 45, ), ), 
-                created_at = 2024-10-16T10:00:00.000Z, 
-                updated_at = 2024-10-16T10:00:00.000Z
+                    stage = text_extraction, 
+                    trace_id = 1bac906f-972e-45ca-9caa-a12a5ab13c62, 
+                    details = { }, ), 
+                link = https://example.com/docs/faq.md, 
+                created_at = 2026-09-22T12:18:24.000Z, 
+                updated_at = 2026-09-22T15:19:22.000Z
             )
         else :
             return Document(
-                id = 1,
-                name = документация.pdf,
-                size = 1024000,
+                id = 286071,
+                name = faq.md,
+                size = 81945,
                 status = indexed,
-                created_at = 2024-10-16T10:00:00.000Z,
-                updated_at = 2024-10-16T10:00:00.000Z,
+                type = link,
+                indexing_schedule = timeweb_cloud_api.models.indexing_schedule.indexing-schedule(
+                    days = [monday, wednesday, friday], 
+                    time = 09:00, ),
+                indexing_version = 5,
+                status_info = timeweb_cloud_api.models.document_status_info.document-status-info(
+                    type = error, 
+                    timestamp = 2026-09-22T09:11:26.389Z, 
+                    error_code = INSUFFICIENT_TOKENS, 
+                    stage = text_extraction, 
+                    trace_id = 1bac906f-972e-45ca-9caa-a12a5ab13c62, 
+                    details = { }, ),
+                created_at = 2026-09-22T12:18:24.000Z,
+                updated_at = 2026-09-22T15:19:22.000Z,
         )
         """
 

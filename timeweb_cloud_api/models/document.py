@@ -22,20 +22,24 @@ import json
 from typing import Any, Optional
 from pydantic import BaseModel, Field, validator
 from timeweb_cloud_api.models.document_status_info import DocumentStatusInfo
+from timeweb_cloud_api.models.indexing_schedule import IndexingSchedule
 
 class Document(BaseModel):
     """
-    Документ в базе знаний
+    Документ базы знаний
     """
-    id: Optional[Any] = Field(..., description="Уникальный идентификатор документа")
+    id: Optional[Any] = Field(..., description="ID документа")
     name: Optional[Any] = Field(..., description="Название документа")
-    size: Optional[Any] = Field(..., description="Размер документа в байтах")
-    status: Optional[Any] = Field(..., description="Статус индексации документа")
-    indexing_version: Optional[Any] = Field(None, description="Версия индексации")
-    status_info: Optional[DocumentStatusInfo] = None
-    created_at: Optional[Any] = Field(..., description="Дата создания документа")
-    updated_at: Optional[Any] = Field(..., description="Дата обновления документа")
-    __properties = ["id", "name", "size", "status", "indexing_version", "status_info", "created_at", "updated_at"]
+    size: Optional[Any] = Field(..., description="Размер в байтах. Для документа по ссылке — значение заголовка `Content-Length` на момент добавления, `0`, если сервер его не вернул")
+    status: Optional[Any] = Field(..., description="Статус индексации: - `new` — документ добавлен и ждёт индексации - `indexing` — индексируется - `indexed` — проиндексирован, используется в поиске - `error` — ошибка индексации, подробности в `status_info`")
+    type: Optional[Any] = Field(..., description="Тип документа: `file` — загруженный файл, `link` — документ по ссылке")
+    indexing_schedule: IndexingSchedule = Field(...)
+    indexing_version: Optional[Any] = Field(..., description="Версия индексации документа")
+    status_info: DocumentStatusInfo = Field(...)
+    link: Optional[Any] = Field(None, description="URL документа. Только для документов типа `link`")
+    created_at: Optional[Any] = Field(..., description="Дата и время добавления документа")
+    updated_at: Optional[Any] = Field(..., description="Дата и время последнего изменения документа")
+    __properties = ["id", "name", "size", "status", "type", "indexing_schedule", "indexing_version", "status_info", "link", "created_at", "updated_at"]
 
     @validator('status')
     def status_validate_enum(cls, value):
@@ -43,8 +47,18 @@ class Document(BaseModel):
         if value is None:
             return value
 
-        if value not in ('new', 'indexed', 'indexing', 'error'):
-            raise ValueError("must be one of enum values ('new', 'indexed', 'indexing', 'error')")
+        if value not in ('new', 'indexing', 'indexed', 'error'):
+            raise ValueError("must be one of enum values ('new', 'indexing', 'indexed', 'error')")
+        return value
+
+    @validator('type')
+    def type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in ('file', 'link'):
+            raise ValueError("must be one of enum values ('file', 'link')")
         return value
 
     class Config:
@@ -71,6 +85,9 @@ class Document(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
+        # override the default output from pydantic by calling `to_dict()` of indexing_schedule
+        if self.indexing_schedule:
+            _dict['indexing_schedule'] = self.indexing_schedule.to_dict()
         # override the default output from pydantic by calling `to_dict()` of status_info
         if self.status_info:
             _dict['status_info'] = self.status_info.to_dict()
@@ -94,10 +111,20 @@ class Document(BaseModel):
         if self.status is None and "status" in self.__fields_set__:
             _dict['status'] = None
 
+        # set to None if type (nullable) is None
+        # and __fields_set__ contains the field
+        if self.type is None and "type" in self.__fields_set__:
+            _dict['type'] = None
+
         # set to None if indexing_version (nullable) is None
         # and __fields_set__ contains the field
         if self.indexing_version is None and "indexing_version" in self.__fields_set__:
             _dict['indexing_version'] = None
+
+        # set to None if link (nullable) is None
+        # and __fields_set__ contains the field
+        if self.link is None and "link" in self.__fields_set__:
+            _dict['link'] = None
 
         # set to None if created_at (nullable) is None
         # and __fields_set__ contains the field
@@ -125,8 +152,11 @@ class Document(BaseModel):
             "name": obj.get("name"),
             "size": obj.get("size"),
             "status": obj.get("status"),
+            "type": obj.get("type"),
+            "indexing_schedule": IndexingSchedule.from_dict(obj.get("indexing_schedule")) if obj.get("indexing_schedule") is not None else None,
             "indexing_version": obj.get("indexing_version"),
             "status_info": DocumentStatusInfo.from_dict(obj.get("status_info")) if obj.get("status_info") is not None else None,
+            "link": obj.get("link"),
             "created_at": obj.get("created_at"),
             "updated_at": obj.get("updated_at")
         })

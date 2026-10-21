@@ -32,7 +32,7 @@ class TestKnowledgeBasesApi(unittest.TestCase):
     def test_add_additional_token_package_to_knowledgebase(self):
         """Test case for add_additional_token_package_to_knowledgebase
 
-        Добавление дополнительного пакета токенов  # noqa: E501
+        Покупка дополнительных пакетов токенов  # noqa: E501
         """
         pass
 
@@ -40,6 +40,13 @@ class TestKnowledgeBasesApi(unittest.TestCase):
         """Test case for create_knowledgebase
 
         Создание базы знаний  # noqa: E501
+        """
+        pass
+
+    def test_create_knowledgebase_document(self):
+        """Test case for create_knowledgebase_document
+
+        Добавление документа по ссылке  # noqa: E501
         """
         pass
 
@@ -60,14 +67,14 @@ class TestKnowledgeBasesApi(unittest.TestCase):
     def test_download_document(self):
         """Test case for download_document
 
-        Скачивание документа из базы знаний  # noqa: E501
+        Скачивание файла документа  # noqa: E501
         """
         pass
 
     def test_get_knowledgebase(self):
         """Test case for get_knowledgebase
 
-        Получение базы знаний  # noqa: E501
+        Получение базы знаний со списком документов  # noqa: E501
         """
         pass
 
@@ -78,17 +85,17 @@ class TestKnowledgeBasesApi(unittest.TestCase):
         """
         pass
 
-    def test_get_knowledgebase_statistics(self):
-        """Test case for get_knowledgebase_statistics
+    def test_get_knowledgebase_v3(self):
+        """Test case for get_knowledgebase_v3
 
-        Получение статистики использования токенов базы знаний  # noqa: E501
+        Получение базы знаний  # noqa: E501
         """
         pass
 
     def test_get_knowledgebases(self):
         """Test case for get_knowledgebases
 
-        Получение списка баз знаний  # noqa: E501
+        Получение списка баз знаний (v1)  # noqa: E501
         """
         pass
 
@@ -96,6 +103,13 @@ class TestKnowledgeBasesApi(unittest.TestCase):
         """Test case for get_knowledgebases_v2
 
         Получение списка баз знаний (v2)  # noqa: E501
+        """
+        pass
+
+    def test_get_knowledgebases_v3(self):
+        """Test case for get_knowledgebases_v3
+
+        Получение списка баз знаний  # noqa: E501
         """
         pass
 
@@ -123,7 +137,21 @@ class TestKnowledgeBasesApi(unittest.TestCase):
     def test_update_knowledgebase(self):
         """Test case for update_knowledgebase
 
-        Обновление базы знаний  # noqa: E501
+        Изменение базы знаний  # noqa: E501
+        """
+        pass
+
+    def test_update_knowledgebase_agent_link(self):
+        """Test case for update_knowledgebase_agent_link
+
+        Изменение режима поиска по базе знаний для агента  # noqa: E501
+        """
+        pass
+
+    def test_update_knowledgebase_document(self):
+        """Test case for update_knowledgebase_document
+
+        Изменение документа  # noqa: E501
         """
         pass
 

@@ -221,15 +221,16 @@ configuration = timeweb_cloud_api.Configuration(
 # Enter a context with an instance of the API client
 with timeweb_cloud_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = timeweb_cloud_api.AIAgentsApi(api_client)
-    id = 1 # object | ID агента
-    add_token_package = timeweb_cloud_api.AddTokenPackage() # AddTokenPackage |  (optional)
+    api_instance = timeweb_cloud_api.AIAgentIntegrationsApi(api_client)
+    create_max_bot = timeweb_cloud_api.CreateMaxBot() # CreateMaxBot | 
 
     try:
-        # Добавление дополнительного пакета токенов
-        api_instance.add_additional_token_package(id, add_token_package=add_token_package)
+        # Подключение бота MAX к агенту
+        api_response = api_instance.create_agent_bot_max_bot(create_max_bot)
+        print("The response of AIAgentIntegrationsApi->create_agent_bot_max_bot:\n")
+        pprint(api_response)
     except ApiException as e:
-        print("Exception when calling AIAgentsApi->add_additional_token_package: %s\n" % e)
+        print("Exception when calling AIAgentIntegrationsApi->create_agent_bot_max_bot: %s\n" % e)
 
 ```
 
@@ -239,18 +240,142 @@ All URIs are relative to *https://api.timeweb.cloud*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+*AIAgentIntegrationsApi* | [**create_agent_bot_max_bot**](docs/AIAgentIntegrationsApi.md#create_agent_bot_max_bot) | **POST** /api/v1/cloud-ai/max-bots | Подключение бота MAX к агенту
+*AIAgentIntegrationsApi* | [**create_agent_bot_telegram_bot**](docs/AIAgentIntegrationsApi.md#create_agent_bot_telegram_bot) | **POST** /api/v1/cloud-ai/bots | Подключение Telegram-бота к агенту
+*AIAgentIntegrationsApi* | [**create_agent_integration_crisp**](docs/AIAgentIntegrationsApi.md#create_agent_integration_crisp) | **POST** /api/v1/cloud-ai/agent/{agent_id}/crisp | Подключение агента к Crisp
+*AIAgentIntegrationsApi* | [**create_agent_integration_jivo**](docs/AIAgentIntegrationsApi.md#create_agent_integration_jivo) | **POST** /api/v1/cloud-ai/agent/{agent_id}/jivo | Подключение агента к Jivo
+*AIAgentIntegrationsApi* | [**delete_agent_bot_max_bot**](docs/AIAgentIntegrationsApi.md#delete_agent_bot_max_bot) | **DELETE** /api/v1/cloud-ai/max-bots/{bot_id} | Отключение бота MAX
+*AIAgentIntegrationsApi* | [**delete_agent_bot_telegram_bot**](docs/AIAgentIntegrationsApi.md#delete_agent_bot_telegram_bot) | **DELETE** /api/v1/cloud-ai/bots/{bot_id} | Отключение Telegram-бота
+*AIAgentIntegrationsApi* | [**delete_agent_integration_crisp**](docs/AIAgentIntegrationsApi.md#delete_agent_integration_crisp) | **DELETE** /api/v1/cloud-ai/agent/{agent_id}/crisp | Отключение агента от Crisp
+*AIAgentIntegrationsApi* | [**delete_agent_integration_jivo**](docs/AIAgentIntegrationsApi.md#delete_agent_integration_jivo) | **DELETE** /api/v1/cloud-ai/agent/{agent_id}/jivo | Отключение агента от Jivo
+*AIAgentIntegrationsApi* | [**get_agent_bot_max_bot**](docs/AIAgentIntegrationsApi.md#get_agent_bot_max_bot) | **GET** /api/v1/cloud-ai/max-bots/{bot_id} | Получение информации о боте MAX
+*AIAgentIntegrationsApi* | [**get_agent_bot_max_bots**](docs/AIAgentIntegrationsApi.md#get_agent_bot_max_bots) | **GET** /api/v1/cloud-ai/max-bots | Получение списка ботов MAX
+*AIAgentIntegrationsApi* | [**get_agent_bot_max_bots_by_agent**](docs/AIAgentIntegrationsApi.md#get_agent_bot_max_bots_by_agent) | **GET** /api/v1/cloud-ai/agents/{agent_id}/max-bots | Получение списка ботов MAX агента
+*AIAgentIntegrationsApi* | [**get_agent_bot_telegram_bot**](docs/AIAgentIntegrationsApi.md#get_agent_bot_telegram_bot) | **GET** /api/v1/cloud-ai/bots/{bot_id} | Получение информации о Telegram-боте
+*AIAgentIntegrationsApi* | [**get_agent_bot_telegram_bots**](docs/AIAgentIntegrationsApi.md#get_agent_bot_telegram_bots) | **GET** /api/v1/cloud-ai/bots | Получение списка Telegram-ботов
+*AIAgentIntegrationsApi* | [**get_agent_bot_telegram_bots_by_agent**](docs/AIAgentIntegrationsApi.md#get_agent_bot_telegram_bots_by_agent) | **GET** /api/v1/cloud-ai/agents/{agent_id}/bots | Получение списка Telegram-ботов агента
+*AIAgentIntegrationsApi* | [**get_agent_integration_crisp**](docs/AIAgentIntegrationsApi.md#get_agent_integration_crisp) | **GET** /api/v1/cloud-ai/agent/{agent_id}/crisp | Получение интеграции агента с Crisp
+*AIAgentIntegrationsApi* | [**get_agent_integration_jivo**](docs/AIAgentIntegrationsApi.md#get_agent_integration_jivo) | **GET** /api/v1/cloud-ai/agent/{agent_id}/jivo | Получение интеграции агента с Jivo
+*AIAgentIntegrationsApi* | [**update_agent_bot_max_bot**](docs/AIAgentIntegrationsApi.md#update_agent_bot_max_bot) | **PATCH** /api/v1/cloud-ai/max-bots/{bot_id} | Изменение бота MAX
+*AIAgentIntegrationsApi* | [**update_agent_bot_telegram_bot**](docs/AIAgentIntegrationsApi.md#update_agent_bot_telegram_bot) | **PATCH** /api/v1/cloud-ai/bots/{bot_id} | Изменение Telegram-бота
+*AIAgentSkillsApi* | [**apply_agent_skill_catalog_update**](docs/AIAgentSkillsApi.md#apply_agent_skill_catalog_update) | **POST** /api/v1/cloud-ai/skills/{skill_id}/apply-catalog-update | Применение обновления навыка из каталога
+*AIAgentSkillsApi* | [**connect_agent_skills_to_agent**](docs/AIAgentSkillsApi.md#connect_agent_skills_to_agent) | **POST** /api/v1/cloud-ai/agents/{agent_id}/skills/connect | Подключение нескольких навыков к агенту
+*AIAgentSkillsApi* | [**create_agent_skill**](docs/AIAgentSkillsApi.md#create_agent_skill) | **POST** /api/v1/cloud-ai/skills | Создание навыка
+*AIAgentSkillsApi* | [**delete_agent_skill**](docs/AIAgentSkillsApi.md#delete_agent_skill) | **DELETE** /api/v1/cloud-ai/skills/{skill_id} | Удаление навыка
+*AIAgentSkillsApi* | [**disconnect_agent_skill_from_agent**](docs/AIAgentSkillsApi.md#disconnect_agent_skill_from_agent) | **DELETE** /api/v1/cloud-ai/agents/{agent_id}/skills/{skill_id} | Отключение навыка от агента
+*AIAgentSkillsApi* | [**duplicate_agent_skill**](docs/AIAgentSkillsApi.md#duplicate_agent_skill) | **POST** /api/v1/cloud-ai/skills/{skill_id}/duplicate | Копирование навыка
+*AIAgentSkillsApi* | [**get_agent_skill**](docs/AIAgentSkillsApi.md#get_agent_skill) | **GET** /api/v1/cloud-ai/skills/{skill_id} | Получение навыка
+*AIAgentSkillsApi* | [**get_agent_skill_catalog**](docs/AIAgentSkillsApi.md#get_agent_skill_catalog) | **GET** /api/v1/cloud-ai/skill-catalog | Получение каталога навыков
+*AIAgentSkillsApi* | [**get_agent_skill_library**](docs/AIAgentSkillsApi.md#get_agent_skill_library) | **GET** /api/v1/cloud-ai/skills | Получение списка навыков
+*AIAgentSkillsApi* | [**get_agent_skill_version**](docs/AIAgentSkillsApi.md#get_agent_skill_version) | **GET** /api/v1/cloud-ai/skills/{skill_id}/versions/{version} | Получение версии навыка
+*AIAgentSkillsApi* | [**get_agent_skill_versions**](docs/AIAgentSkillsApi.md#get_agent_skill_versions) | **GET** /api/v1/cloud-ai/skills/{skill_id}/versions | Получение истории версий навыка
+*AIAgentSkillsApi* | [**get_agent_skills_for_agent**](docs/AIAgentSkillsApi.md#get_agent_skills_for_agent) | **GET** /api/v1/cloud-ai/agents/{agent_id}/skills | Получение навыков агента
+*AIAgentSkillsApi* | [**install_agent_skill_from_catalog**](docs/AIAgentSkillsApi.md#install_agent_skill_from_catalog) | **POST** /api/v1/cloud-ai/skill-catalog/{catalog_item_id}/install | Установка навыка из каталога
+*AIAgentSkillsApi* | [**install_and_connect_agent_skill**](docs/AIAgentSkillsApi.md#install_and_connect_agent_skill) | **POST** /api/v1/cloud-ai/agents/{agent_id}/skills/install-and-connect | Установка навыка из каталога и включение у агента
+*AIAgentSkillsApi* | [**rollback_agent_skill_version**](docs/AIAgentSkillsApi.md#rollback_agent_skill_version) | **POST** /api/v1/cloud-ai/skills/{skill_id}/versions/{version}/rollback | Переключение навыка на версию из истории
+*AIAgentSkillsApi* | [**set_agent_skill_for_agent**](docs/AIAgentSkillsApi.md#set_agent_skill_for_agent) | **PUT** /api/v1/cloud-ai/agents/{agent_id}/skills/{skill_id} | Включение и выключение навыка у агента
+*AIAgentSkillsApi* | [**sync_agent_skill_agents_versions**](docs/AIAgentSkillsApi.md#sync_agent_skill_agents_versions) | **POST** /api/v1/cloud-ai/skills/{skill_id}/agents/sync-versions | Перевод всех агентов навыка на текущую версию
+*AIAgentSkillsApi* | [**sync_agent_skill_versions_for_agent**](docs/AIAgentSkillsApi.md#sync_agent_skill_versions_for_agent) | **POST** /api/v1/cloud-ai/agents/{agent_id}/skills/sync-versions | Перевод всех навыков агента на текущие версии
+*AIAgentSkillsApi* | [**update_agent_skill**](docs/AIAgentSkillsApi.md#update_agent_skill) | **PATCH** /api/v1/cloud-ai/skills/{skill_id} | Изменение навыка
+*AIAgentSkillsApi* | [**update_agent_skill_version_for_agent**](docs/AIAgentSkillsApi.md#update_agent_skill_version_for_agent) | **POST** /api/v1/cloud-ai/agents/{agent_id}/skills/{skill_id}/update-version | Перевод агента на текущую версию навыка
+*AIAgentToolsApi* | [**connect_agent_tool_to_agent**](docs/AIAgentToolsApi.md#connect_agent_tool_to_agent) | **POST** /api/v1/cloud-ai/agents/{agent_id}/tools | Подключение MCP-инструмента к агенту
+*AIAgentToolsApi* | [**create_agent_tool**](docs/AIAgentToolsApi.md#create_agent_tool) | **POST** /api/v1/cloud-ai/tools | Подключение собственного MCP-сервера
+*AIAgentToolsApi* | [**delete_agent_tool**](docs/AIAgentToolsApi.md#delete_agent_tool) | **DELETE** /api/v1/cloud-ai/tools/{id} | Удаление MCP-инструмента
+*AIAgentToolsApi* | [**disconnect_agent_tool_from_agent**](docs/AIAgentToolsApi.md#disconnect_agent_tool_from_agent) | **DELETE** /api/v1/cloud-ai/agents/{agent_id}/tools/{tool_id} | Отключение MCP-инструмента от агента
+*AIAgentToolsApi* | [**get_agent_tool**](docs/AIAgentToolsApi.md#get_agent_tool) | **GET** /api/v1/cloud-ai/tools/{id} | Получение MCP-инструмента
+*AIAgentToolsApi* | [**get_agent_tool_o_auth2_authorize_url**](docs/AIAgentToolsApi.md#get_agent_tool_o_auth2_authorize_url) | **GET** /api/v1/cloud-ai/tools/oauth2/authorize-url/{tool_id} | Получение ссылки на OAuth2-авторизацию инструмента
+*AIAgentToolsApi* | [**get_agent_tool_template_prices**](docs/AIAgentToolsApi.md#get_agent_tool_template_prices) | **GET** /api/v1/cloud-ai/tools/templates/prices | Получение цен системных инструментов
+*AIAgentToolsApi* | [**get_agent_tool_templates**](docs/AIAgentToolsApi.md#get_agent_tool_templates) | **GET** /api/v1/cloud-ai/tools/templates/marketplace | Получение шаблонов MCP-инструментов из маркетплейса
+*AIAgentToolsApi* | [**get_agent_tools**](docs/AIAgentToolsApi.md#get_agent_tools) | **GET** /api/v1/cloud-ai/tools | Получение списка MCP-инструментов
+*AIAgentToolsApi* | [**get_agent_tools_by_agent**](docs/AIAgentToolsApi.md#get_agent_tools_by_agent) | **GET** /api/v1/cloud-ai/agents/{agent_id}/tools | Получение MCP-инструментов агента
+*AIAgentToolsApi* | [**install_agent_tool_from_template**](docs/AIAgentToolsApi.md#install_agent_tool_from_template) | **POST** /api/v1/cloud-ai/tools/install | Установка MCP-инструмента из маркетплейса
+*AIAgentToolsApi* | [**refresh_agent_tool_methods**](docs/AIAgentToolsApi.md#refresh_agent_tool_methods) | **POST** /api/v1/cloud-ai/tools/{id}/refresh-methods | Обновление списка методов MCP-инструмента
+*AIAgentToolsApi* | [**update_agent_tool**](docs/AIAgentToolsApi.md#update_agent_tool) | **PUT** /api/v1/cloud-ai/tools/{id} | Изменение MCP-инструмента
+*AIAgentToolsApi* | [**update_agent_tool_connection**](docs/AIAgentToolsApi.md#update_agent_tool_connection) | **PUT** /api/v1/cloud-ai/agents/{agent_id}/tools/{tool_id} | Изменение разрешённых методов MCP-инструмента у агента
 *AIAgentsApi* | [**add_additional_token_package**](docs/AIAgentsApi.md#add_additional_token_package) | **POST** /api/v1/cloud-ai/agents/{id}/add-additional-token-package | Добавление дополнительного пакета токенов
+*AIAgentsApi* | [**change_agent_model**](docs/AIAgentsApi.md#change_agent_model) | **PATCH** /api/v1/cloud-ai/agents/{id}/model | Смена модели AI агента
 *AIAgentsApi* | [**create_agent**](docs/AIAgentsApi.md#create_agent) | **POST** /api/v1/cloud-ai/agents | Создание AI агента
+*AIAgentsApi* | [**create_agent_entity_limit**](docs/AIAgentsApi.md#create_agent_entity_limit) | **POST** /api/v1/cloud-ai/agents/{id}/entity-limits | Создание лимита агента
 *AIAgentsApi* | [**create_agent_v2**](docs/AIAgentsApi.md#create_agent_v2) | **POST** /api/v2/cloud-ai/agents | Создание AI агента
 *AIAgentsApi* | [**delete_agent**](docs/AIAgentsApi.md#delete_agent) | **DELETE** /api/v1/cloud-ai/agents/{id} | Удаление AI агента
+*AIAgentsApi* | [**delete_agent_entity_limit**](docs/AIAgentsApi.md#delete_agent_entity_limit) | **DELETE** /api/v1/cloud-ai/agents/{id}/entity-limits/{limit_id} | Удаление лимита агента
+*AIAgentsApi* | [**export_agent_chats_csv**](docs/AIAgentsApi.md#export_agent_chats_csv) | **GET** /api/v1/cloud-ai/agents/{id}/chats/docs | Выгрузка чатов агента в CSV
 *AIAgentsApi* | [**get_agent**](docs/AIAgentsApi.md#get_agent) | **GET** /api/v1/cloud-ai/agents/{id} | Получение AI агента
+*AIAgentsApi* | [**get_agent_chat_list**](docs/AIAgentsApi.md#get_agent_chat_list) | **GET** /api/v1/cloud-ai/agents/{id}/chat-list | Получение списка чатов агента
+*AIAgentsApi* | [**get_agent_chat_messages**](docs/AIAgentsApi.md#get_agent_chat_messages) | **GET** /api/v1/cloud-ai/agents/{id}/chat-list/{chat_id}/messages | Получение сообщений чата агента
+*AIAgentsApi* | [**get_agent_entity_limit**](docs/AIAgentsApi.md#get_agent_entity_limit) | **GET** /api/v1/cloud-ai/agents/{id}/entity-limits/{limit_id} | Получение лимита агента
+*AIAgentsApi* | [**get_agent_entity_limits**](docs/AIAgentsApi.md#get_agent_entity_limits) | **GET** /api/v1/cloud-ai/agents/{id}/entity-limits | Получение лимитов агента
 *AIAgentsApi* | [**get_agent_statistics**](docs/AIAgentsApi.md#get_agent_statistics) | **GET** /api/v1/cloud-ai/agents/{id}/statistic | Получение статистики использования токенов агента
+*AIAgentsApi* | [**get_agent_v3**](docs/AIAgentsApi.md#get_agent_v3) | **GET** /api/v3/cloud-ai/agents/{id} | Получение AI агента (v3)
 *AIAgentsApi* | [**get_agents**](docs/AIAgentsApi.md#get_agents) | **GET** /api/v1/cloud-ai/agents | Получение списка AI агентов
-*AIAgentsApi* | [**get_agents_token_packages**](docs/AIAgentsApi.md#get_agents_token_packages) | **GET** /api/v1/cloud-ai/token-packages/agents | Получение списка пакетов токенов для агентов
-*AIAgentsApi* | [**get_knowledgebases_token_packages**](docs/AIAgentsApi.md#get_knowledgebases_token_packages) | **GET** /api/v1/cloud-ai/token-packages/knowledge-bases | Получение списка пакетов токенов для баз знаний
-*AIAgentsApi* | [**get_models**](docs/AIAgentsApi.md#get_models) | **GET** /api/v1/cloud-ai/models | Получение списка моделей
-*AIAgentsApi* | [**get_models_v3**](docs/AIAgentsApi.md#get_models_v3) | **GET** /api/v3/cloud-ai/models | Получение списка моделей
+*AIAgentsApi* | [**get_agents_v3**](docs/AIAgentsApi.md#get_agents_v3) | **GET** /api/v3/cloud-ai/agents | Получение списка AI агентов (v3)
+*AIAgentsApi* | [**sync_agent_entity_limits**](docs/AIAgentsApi.md#sync_agent_entity_limits) | **PUT** /api/v1/cloud-ai/agents/{id}/entity-limits/sync | Синхронизация лимитов агента за период
 *AIAgentsApi* | [**update_agent**](docs/AIAgentsApi.md#update_agent) | **PATCH** /api/v1/cloud-ai/agents/{id} | Обновление AI агента
+*AIAgentsApi* | [**update_agent_entity_limit**](docs/AIAgentsApi.md#update_agent_entity_limit) | **PATCH** /api/v1/cloud-ai/agents/{id}/entity-limits/{limit_id} | Изменение лимита агента
+*AIGatewayApi* | [**create_ai_key**](docs/AIGatewayApi.md#create_ai_key) | **POST** /api/v1/cloud-ai/ai-keys | Создание ключа AI Gateway
+*AIGatewayApi* | [**create_ai_key_limit**](docs/AIGatewayApi.md#create_ai_key_limit) | **POST** /api/v1/cloud-ai/ai-keys/{key_id}/entity-limits | Создание лимита ключа AI Gateway
+*AIGatewayApi* | [**delete_ai_key**](docs/AIGatewayApi.md#delete_ai_key) | **DELETE** /api/v1/cloud-ai/ai-keys/{key_id} | Удаление ключа AI Gateway
+*AIGatewayApi* | [**delete_ai_key_limit**](docs/AIGatewayApi.md#delete_ai_key_limit) | **DELETE** /api/v1/cloud-ai/ai-keys/{key_id}/entity-limits/{limit_id} | Удаление лимита ключа AI Gateway
+*AIGatewayApi* | [**get_ai_key_calls_statistic**](docs/AIGatewayApi.md#get_ai_key_calls_statistic) | **GET** /api/v1/cloud-ai/ai-keys/statistic/calls | Получение статистики запросов ключа AI Gateway
+*AIGatewayApi* | [**get_ai_key_limit**](docs/AIGatewayApi.md#get_ai_key_limit) | **GET** /api/v1/cloud-ai/ai-keys/{key_id}/entity-limits/{limit_id} | Получение лимита ключа AI Gateway
+*AIGatewayApi* | [**get_ai_key_limits**](docs/AIGatewayApi.md#get_ai_key_limits) | **GET** /api/v1/cloud-ai/ai-keys/{key_id}/entity-limits | Получение списка лимитов ключа AI Gateway
+*AIGatewayApi* | [**get_ai_key_models_statistic**](docs/AIGatewayApi.md#get_ai_key_models_statistic) | **GET** /api/v1/cloud-ai/ai-keys/statistic/models | Получение списка моделей, использованных ключом AI Gateway
+*AIGatewayApi* | [**get_ai_key_token_usage_statistic**](docs/AIGatewayApi.md#get_ai_key_token_usage_statistic) | **GET** /api/v1/cloud-ai/ai-keys/statistic/token-usage | Получение статистики расхода токенов ключа AI Gateway
+*AIGatewayApi* | [**get_ai_keys**](docs/AIGatewayApi.md#get_ai_keys) | **GET** /api/v1/cloud-ai/ai-keys | Получение списка ключей AI Gateway
+*AIGatewayApi* | [**regenerate_ai_key**](docs/AIGatewayApi.md#regenerate_ai_key) | **PUT** /api/v1/cloud-ai/ai-keys/{key_id}/regenerate | Перевыпуск ключа AI Gateway
+*AIGatewayApi* | [**sync_ai_key_limits**](docs/AIGatewayApi.md#sync_ai_key_limits) | **PUT** /api/v1/cloud-ai/ai-keys/{key_id}/entity-limits/sync | Синхронизация лимитов ключа AI Gateway
+*AIGatewayApi* | [**update_ai_key**](docs/AIGatewayApi.md#update_ai_key) | **PATCH** /api/v1/cloud-ai/ai-keys/{key_id} | Изменение ключа AI Gateway
+*AIGatewayApi* | [**update_ai_key_limit**](docs/AIGatewayApi.md#update_ai_key_limit) | **PATCH** /api/v1/cloud-ai/ai-keys/{key_id}/entity-limits/{limit_id} | Изменение лимита ключа AI Gateway
+*AIGatewayInferenceApi* | [**cancel_ai_gateway_batch**](docs/AIGatewayInferenceApi.md#cancel_ai_gateway_batch) | **POST** /v1/batches/{batch_id}/cancel | Отмена батча
+*AIGatewayInferenceApi* | [**cancel_ai_gateway_response**](docs/AIGatewayInferenceApi.md#cancel_ai_gateway_response) | **POST** /v1/responses/{response_id}/cancel | Отмена фонового ответа (Responses API)
+*AIGatewayInferenceApi* | [**create_ai_gateway_batch**](docs/AIGatewayInferenceApi.md#create_ai_gateway_batch) | **POST** /v1/batches | Создание батча
+*AIGatewayInferenceApi* | [**create_ai_gateway_chat_completion**](docs/AIGatewayInferenceApi.md#create_ai_gateway_chat_completion) | **POST** /v1/chat/completions | Генерация ответа в диалоге (Chat Completions)
+*AIGatewayInferenceApi* | [**create_ai_gateway_completion**](docs/AIGatewayInferenceApi.md#create_ai_gateway_completion) | **POST** /v1/completions | Продолжение текста (Completions)
+*AIGatewayInferenceApi* | [**create_ai_gateway_embedding**](docs/AIGatewayInferenceApi.md#create_ai_gateway_embedding) | **POST** /v1/embeddings | Получение эмбеддингов
+*AIGatewayInferenceApi* | [**create_ai_gateway_image**](docs/AIGatewayInferenceApi.md#create_ai_gateway_image) | **POST** /v1/images/generations | Генерация изображений
+*AIGatewayInferenceApi* | [**create_ai_gateway_image_edit**](docs/AIGatewayInferenceApi.md#create_ai_gateway_image_edit) | **POST** /v1/images/edits | Редактирование изображений
+*AIGatewayInferenceApi* | [**create_ai_gateway_response**](docs/AIGatewayInferenceApi.md#create_ai_gateway_response) | **POST** /v1/responses | Создание ответа (Responses API)
+*AIGatewayInferenceApi* | [**create_ai_gateway_speech**](docs/AIGatewayInferenceApi.md#create_ai_gateway_speech) | **POST** /v1/audio/speech | Синтез речи
+*AIGatewayInferenceApi* | [**create_ai_gateway_transcription**](docs/AIGatewayInferenceApi.md#create_ai_gateway_transcription) | **POST** /v1/audio/transcriptions | Распознавание речи
+*AIGatewayInferenceApi* | [**delete_ai_gateway_file**](docs/AIGatewayInferenceApi.md#delete_ai_gateway_file) | **DELETE** /v1/files/{file_id} | Удаление файла
+*AIGatewayInferenceApi* | [**delete_ai_gateway_response**](docs/AIGatewayInferenceApi.md#delete_ai_gateway_response) | **DELETE** /v1/responses/{response_id} | Удаление ответа (Responses API)
+*AIGatewayInferenceApi* | [**download_ai_gateway_file_content**](docs/AIGatewayInferenceApi.md#download_ai_gateway_file_content) | **GET** /v1/files/{file_id}/content | Скачивание файла
+*AIGatewayInferenceApi* | [**get_ai_gateway_batch**](docs/AIGatewayInferenceApi.md#get_ai_gateway_batch) | **GET** /v1/batches/{batch_id} | Получение батча
+*AIGatewayInferenceApi* | [**get_ai_gateway_batches**](docs/AIGatewayInferenceApi.md#get_ai_gateway_batches) | **GET** /v1/batches | Получение списка батчей
+*AIGatewayInferenceApi* | [**get_ai_gateway_file**](docs/AIGatewayInferenceApi.md#get_ai_gateway_file) | **GET** /v1/files/{file_id} | Получение информации о файле
+*AIGatewayInferenceApi* | [**get_ai_gateway_models**](docs/AIGatewayInferenceApi.md#get_ai_gateway_models) | **GET** /v1/models | Получение списка моделей AI Gateway
+*AIGatewayInferenceApi* | [**get_ai_gateway_response**](docs/AIGatewayInferenceApi.md#get_ai_gateway_response) | **GET** /v1/responses/{response_id} | Получение ответа (Responses API)
+*AIGatewayInferenceApi* | [**upload_ai_gateway_file**](docs/AIGatewayInferenceApi.md#upload_ai_gateway_file) | **POST** /v1/files | Загрузка файла
+*AIModelsApi* | [**get_agents_token_packages**](docs/AIModelsApi.md#get_agents_token_packages) | **GET** /api/v1/cloud-ai/token-packages/agents | Получение списка пакетов токенов для агентов
+*AIModelsApi* | [**get_ai_model_parameters**](docs/AIModelsApi.md#get_ai_model_parameters) | **GET** /api/v3/cloud-ai/model-parameters | Получение справочника характеристик моделей
+*AIModelsApi* | [**get_ai_model_token_packages**](docs/AIModelsApi.md#get_ai_model_token_packages) | **GET** /api/v1/cloud-ai/models/{id}/token-packages | Получение пакетов токенов модели
+*AIModelsApi* | [**get_ai_provider**](docs/AIModelsApi.md#get_ai_provider) | **GET** /api/v1/cloud-ai/providers/{id} | Получение провайдера моделей
+*AIModelsApi* | [**get_ai_providers**](docs/AIModelsApi.md#get_ai_providers) | **GET** /api/v1/cloud-ai/providers | Получение списка провайдеров моделей
+*AIModelsApi* | [**get_knowledgebases_token_packages**](docs/AIModelsApi.md#get_knowledgebases_token_packages) | **GET** /api/v1/cloud-ai/token-packages/knowledge-bases | Получение списка пакетов токенов для баз знаний
+*AIModelsApi* | [**get_models**](docs/AIModelsApi.md#get_models) | **GET** /api/v1/cloud-ai/models | Получение списка моделей (v1)
+*AIModelsApi* | [**get_models_v3**](docs/AIModelsApi.md#get_models_v3) | **GET** /api/v3/cloud-ai/models | Получение списка моделей
+*AISolutionsApi* | [**add_ai_solution_telegram_bot**](docs/AISolutionsApi.md#add_ai_solution_telegram_bot) | **POST** /api/v1/cloud-ai/solutions/{solution_id}/telegram/bots | Подключение Telegram-бота к AI-решению
+*AISolutionsApi* | [**approve_ai_solution_telegram_pairing**](docs/AISolutionsApi.md#approve_ai_solution_telegram_pairing) | **POST** /api/v1/cloud-ai/solutions/{solution_id}/telegram/bots/{account_key}/pairing/approve | Подтверждение владельца Telegram-бота AI-решения
+*AISolutionsApi* | [**create_ai_solution**](docs/AISolutionsApi.md#create_ai_solution) | **POST** /api/v1/cloud-ai/solutions | Создание AI-решения
+*AISolutionsApi* | [**delete_ai_solution**](docs/AISolutionsApi.md#delete_ai_solution) | **DELETE** /api/v1/cloud-ai/solutions/{solution_id} | Удаление AI-решения
+*AISolutionsApi* | [**get_ai_solution**](docs/AISolutionsApi.md#get_ai_solution) | **GET** /api/v1/cloud-ai/solutions/{solution_id} | Получение AI-решения
+*AISolutionsApi* | [**get_ai_solution_chat_full_history**](docs/AISolutionsApi.md#get_ai_solution_chat_full_history) | **GET** /api/v1/cloud-ai/solutions/{solution_id}/chat/history | Получение всей истории чата AI-решения
+*AISolutionsApi* | [**get_ai_solution_chat_history**](docs/AISolutionsApi.md#get_ai_solution_chat_history) | **GET** /api/v1/cloud-ai/solutions/{solution_id}/chat/conversations/{conversation_id}/messages | Получение истории разговора AI-решения
+*AISolutionsApi* | [**get_ai_solution_chat_status**](docs/AISolutionsApi.md#get_ai_solution_chat_status) | **GET** /api/v1/cloud-ai/solutions/{solution_id}/chat/status | Получение статуса чата AI-решения
+*AISolutionsApi* | [**get_ai_solution_main_chat_history**](docs/AISolutionsApi.md#get_ai_solution_main_chat_history) | **GET** /api/v1/cloud-ai/solutions/{solution_id}/chat/messages | Получение истории основного разговора AI-решения
+*AISolutionsApi* | [**list_ai_solution_conversations**](docs/AISolutionsApi.md#list_ai_solution_conversations) | **GET** /api/v1/cloud-ai/solutions/{solution_id}/chat/conversations | Получение списка разговоров AI-решения
+*AISolutionsApi* | [**list_ai_solution_telegram_bots**](docs/AISolutionsApi.md#list_ai_solution_telegram_bots) | **GET** /api/v1/cloud-ai/solutions/{solution_id}/telegram/bots | Получение списка Telegram-ботов AI-решения
+*AISolutionsApi* | [**list_ai_solution_types**](docs/AISolutionsApi.md#list_ai_solution_types) | **GET** /api/v1/cloud-ai/solutions/types | Получение списка типов AI-решений
+*AISolutionsApi* | [**list_ai_solutions**](docs/AISolutionsApi.md#list_ai_solutions) | **GET** /api/v1/cloud-ai/solutions | Получение списка AI-решений
+*AISolutionsApi* | [**regenerate_ai_solution_ai_key**](docs/AISolutionsApi.md#regenerate_ai_solution_ai_key) | **POST** /api/v1/cloud-ai/solutions/{solution_id}/ai-key/regenerate | Перевыпуск ключа AI Gateway решения
+*AISolutionsApi* | [**remove_ai_solution_telegram_bot**](docs/AISolutionsApi.md#remove_ai_solution_telegram_bot) | **DELETE** /api/v1/cloud-ai/solutions/{solution_id}/telegram/bots/{account_key} | Отключение Telegram-бота от AI-решения
+*AISolutionsApi* | [**reset_ai_solution_chat**](docs/AISolutionsApi.md#reset_ai_solution_chat) | **POST** /api/v1/cloud-ai/solutions/{solution_id}/chat/reset | Сброс контекста разговора AI-решения
+*AISolutionsApi* | [**send_ai_solution_message**](docs/AISolutionsApi.md#send_ai_solution_message) | **POST** /api/v1/cloud-ai/solutions/{solution_id}/chat/messages | Отправка сообщения агенту AI-решения
+*AISolutionsApi* | [**shutdown_ai_solution**](docs/AISolutionsApi.md#shutdown_ai_solution) | **POST** /api/v1/cloud-ai/solutions/{solution_id}/shutdown | Выключение AI-решения
+*AISolutionsApi* | [**start_ai_solution**](docs/AISolutionsApi.md#start_ai_solution) | **POST** /api/v1/cloud-ai/solutions/{solution_id}/start | Запуск AI-решения
+*AISolutionsApi* | [**stop_ai_solution_chat**](docs/AISolutionsApi.md#stop_ai_solution_chat) | **POST** /api/v1/cloud-ai/solutions/{solution_id}/chat/stop | Остановка хода агента AI-решения
+*AISolutionsApi* | [**stream_ai_solution_chat**](docs/AISolutionsApi.md#stream_ai_solution_chat) | **POST** /api/v1/cloud-ai/solutions/{solution_id}/chat/stream | Отправка сообщения агенту AI-решения с потоковым ответом
+*AISolutionsApi* | [**update_ai_solution**](docs/AISolutionsApi.md#update_ai_solution) | **PATCH** /api/v1/cloud-ai/solutions/{solution_id} | Изменение AI-решения
 *AccountApi* | [**add_countries_to_allowed_list**](docs/AccountApi.md#add_countries_to_allowed_list) | **POST** /api/v1/auth/access/countries | Добавление стран в список разрешенных
 *AccountApi* | [**add_ips_to_allowed_list**](docs/AccountApi.md#add_ips_to_allowed_list) | **POST** /api/v1/auth/access/ips | Добавление IP-адресов в список разрешенных
 *AccountApi* | [**delete_countries_from_allowed_list**](docs/AccountApi.md#delete_countries_from_allowed_list) | **DELETE** /api/v1/auth/access/countries | Удаление стран из списка разрешенных
@@ -430,20 +555,24 @@ Class | Method | HTTP request | Description
 *ImagesApi* | [**get_images**](docs/ImagesApi.md#get_images) | **GET** /api/v1/images | Получение списка образов
 *ImagesApi* | [**update_image**](docs/ImagesApi.md#update_image) | **PATCH** /api/v1/images/{image_id} | Обновление информации о образе
 *ImagesApi* | [**upload_image**](docs/ImagesApi.md#upload_image) | **POST** /api/v1/images/{image_id} | Загрузка образа
-*KnowledgeBasesApi* | [**add_additional_token_package_to_knowledgebase**](docs/KnowledgeBasesApi.md#add_additional_token_package_to_knowledgebase) | **POST** /api/v1/cloud-ai/knowledge-bases/{id}/add-additional-token-package | Добавление дополнительного пакета токенов
+*KnowledgeBasesApi* | [**add_additional_token_package_to_knowledgebase**](docs/KnowledgeBasesApi.md#add_additional_token_package_to_knowledgebase) | **POST** /api/v1/cloud-ai/knowledge-bases/{id}/add-additional-token-package | Покупка дополнительных пакетов токенов
 *KnowledgeBasesApi* | [**create_knowledgebase**](docs/KnowledgeBasesApi.md#create_knowledgebase) | **POST** /api/v1/cloud-ai/knowledge-bases | Создание базы знаний
+*KnowledgeBasesApi* | [**create_knowledgebase_document**](docs/KnowledgeBasesApi.md#create_knowledgebase_document) | **POST** /api/v1/cloud-ai/knowledge-bases/{id}/documents | Добавление документа по ссылке
 *KnowledgeBasesApi* | [**delete_document**](docs/KnowledgeBasesApi.md#delete_document) | **DELETE** /api/v1/cloud-ai/knowledge-bases/{id}/documents/{document_id} | Удаление документа из базы знаний
 *KnowledgeBasesApi* | [**delete_knowledgebase**](docs/KnowledgeBasesApi.md#delete_knowledgebase) | **DELETE** /api/v1/cloud-ai/knowledge-bases/{id} | Удаление базы знаний
-*KnowledgeBasesApi* | [**download_document**](docs/KnowledgeBasesApi.md#download_document) | **GET** /api/v1/cloud-ai/knowledge-bases/{id}/documents/{document_id}/download | Скачивание документа из базы знаний
-*KnowledgeBasesApi* | [**get_knowledgebase**](docs/KnowledgeBasesApi.md#get_knowledgebase) | **GET** /api/v1/cloud-ai/knowledge-bases/{id} | Получение базы знаний
+*KnowledgeBasesApi* | [**download_document**](docs/KnowledgeBasesApi.md#download_document) | **GET** /api/v1/cloud-ai/knowledge-bases/{id}/documents/{document_id}/download | Скачивание файла документа
+*KnowledgeBasesApi* | [**get_knowledgebase**](docs/KnowledgeBasesApi.md#get_knowledgebase) | **GET** /api/v1/cloud-ai/knowledge-bases/{id} | Получение базы знаний со списком документов
 *KnowledgeBasesApi* | [**get_knowledgebase_documents_v2**](docs/KnowledgeBasesApi.md#get_knowledgebase_documents_v2) | **GET** /api/v2/cloud-ai/knowledge-bases/{id}/documents | Получение списка документов базы знаний
-*KnowledgeBasesApi* | [**get_knowledgebase_statistics**](docs/KnowledgeBasesApi.md#get_knowledgebase_statistics) | **GET** /api/v1/cloud-ai/knowledge-bases/{id}/statistic | Получение статистики использования токенов базы знаний
-*KnowledgeBasesApi* | [**get_knowledgebases**](docs/KnowledgeBasesApi.md#get_knowledgebases) | **GET** /api/v1/cloud-ai/knowledge-bases | Получение списка баз знаний
+*KnowledgeBasesApi* | [**get_knowledgebase_v3**](docs/KnowledgeBasesApi.md#get_knowledgebase_v3) | **GET** /api/v3/cloud-ai/knowledge-bases/{id} | Получение базы знаний
+*KnowledgeBasesApi* | [**get_knowledgebases**](docs/KnowledgeBasesApi.md#get_knowledgebases) | **GET** /api/v1/cloud-ai/knowledge-bases | Получение списка баз знаний (v1)
 *KnowledgeBasesApi* | [**get_knowledgebases_v2**](docs/KnowledgeBasesApi.md#get_knowledgebases_v2) | **GET** /api/v2/cloud-ai/knowledge-bases | Получение списка баз знаний (v2)
+*KnowledgeBasesApi* | [**get_knowledgebases_v3**](docs/KnowledgeBasesApi.md#get_knowledgebases_v3) | **GET** /api/v3/cloud-ai/knowledge-bases | Получение списка баз знаний
 *KnowledgeBasesApi* | [**link_knowledgebase_to_agent**](docs/KnowledgeBasesApi.md#link_knowledgebase_to_agent) | **POST** /api/v1/cloud-ai/knowledge-bases/{id}/link/{agent_id} | Привязка базы знаний к агенту
 *KnowledgeBasesApi* | [**reindex_document**](docs/KnowledgeBasesApi.md#reindex_document) | **POST** /api/v1/cloud-ai/knowledge-bases/{id}/documents/{document_id}/reindex | Переиндексация документа
 *KnowledgeBasesApi* | [**unlink_knowledgebase_from_agent**](docs/KnowledgeBasesApi.md#unlink_knowledgebase_from_agent) | **DELETE** /api/v1/cloud-ai/knowledge-bases/{id}/link/{agent_id} | Отвязка базы знаний от агента
-*KnowledgeBasesApi* | [**update_knowledgebase**](docs/KnowledgeBasesApi.md#update_knowledgebase) | **PATCH** /api/v1/cloud-ai/knowledge-bases/{id} | Обновление базы знаний
+*KnowledgeBasesApi* | [**update_knowledgebase**](docs/KnowledgeBasesApi.md#update_knowledgebase) | **PATCH** /api/v1/cloud-ai/knowledge-bases/{id} | Изменение базы знаний
+*KnowledgeBasesApi* | [**update_knowledgebase_agent_link**](docs/KnowledgeBasesApi.md#update_knowledgebase_agent_link) | **PATCH** /api/v1/cloud-ai/knowledge-bases/{id}/link/{agent_id} | Изменение режима поиска по базе знаний для агента
+*KnowledgeBasesApi* | [**update_knowledgebase_document**](docs/KnowledgeBasesApi.md#update_knowledgebase_document) | **PATCH** /api/v1/cloud-ai/knowledge-bases/{id}/documents/{document_id} | Изменение документа
 *KnowledgeBasesApi* | [**upload_files_to_knowledgebase**](docs/KnowledgeBasesApi.md#upload_files_to_knowledgebase) | **POST** /api/v1/cloud-ai/knowledge-bases/{id}/upload | Загрузка файлов в базу знаний
 *KubernetesApi* | [**create_cluster**](docs/KubernetesApi.md#create_cluster) | **POST** /api/v1/k8s/clusters | Создание кластера
 *KubernetesApi* | [**create_cluster_node_group**](docs/KubernetesApi.md#create_cluster_node_group) | **POST** /api/v1/k8s/clusters/{cluster_id}/groups | Создание группы нод
@@ -471,6 +600,12 @@ Class | Method | HTTP request | Description
 *KubernetesApi* | [**update_cluster**](docs/KubernetesApi.md#update_cluster) | **PATCH** /api/v1/k8s/clusters/{cluster_id} | Обновление информации о кластере
 *KubernetesApi* | [**update_cluster_version**](docs/KubernetesApi.md#update_cluster_version) | **PATCH** /api/v1/k8s/clusters/{cluster_id}/versions/update | Обновление версии кластера
 *LocationsApi* | [**get_locations**](docs/LocationsApi.md#get_locations) | **GET** /api/v2/locations | Получение списка локаций
+*MCPApi* | [**delete_mcp_search_session**](docs/MCPApi.md#delete_mcp_search_session) | **DELETE** /api/v1/mcp/search | Завершение сессии сервера MCP с поиском инструментов
+*MCPApi* | [**delete_mcp_session**](docs/MCPApi.md#delete_mcp_session) | **DELETE** /api/v1/mcp | Завершение сессии сервера MCP
+*MCPApi* | [**open_mcp_search_stream**](docs/MCPApi.md#open_mcp_search_stream) | **GET** /api/v1/mcp/search | Открытие потока событий сервера MCP с поиском инструментов
+*MCPApi* | [**open_mcp_stream**](docs/MCPApi.md#open_mcp_stream) | **GET** /api/v1/mcp | Открытие потока событий сервера MCP
+*MCPApi* | [**send_mcp_message**](docs/MCPApi.md#send_mcp_message) | **POST** /api/v1/mcp | Отправка JSON-RPC-сообщения серверу MCP
+*MCPApi* | [**send_mcp_search_message**](docs/MCPApi.md#send_mcp_search_message) | **POST** /api/v1/mcp/search | Отправка JSON-RPC-сообщения серверу MCP с поиском инструментов
 *MailApi* | [**create_domain_mailbox**](docs/MailApi.md#create_domain_mailbox) | **POST** /api/v1/mail/domains/{domain} | Создание почтового ящика
 *MailApi* | [**create_domain_mailbox_v2**](docs/MailApi.md#create_domain_mailbox_v2) | **POST** /api/v2/mail/domains/{domain} | Создание почтового ящика
 *MailApi* | [**create_multiple_domain_mailboxes**](docs/MailApi.md#create_multiple_domain_mailboxes) | **POST** /api/v1/mail/domains/{domain}/batch | Множественное создание почтовых ящиков
@@ -621,6 +756,7 @@ Class | Method | HTTP request | Description
 
 ## Documentation For Models
 
+ - [AddAiSolutionTelegramBot201Response](docs/AddAiSolutionTelegramBot201Response.md)
  - [AddBalancerToProject200Response](docs/AddBalancerToProject200Response.md)
  - [AddBalancerToProjectRequest](docs/AddBalancerToProjectRequest.md)
  - [AddBitbucket](docs/AddBitbucket.md)
@@ -655,14 +791,71 @@ Class | Method | HTTP request | Description
  - [AddonsConfigResponse](docs/AddonsConfigResponse.md)
  - [AddonsResponse](docs/AddonsResponse.md)
  - [Agent](docs/Agent.md)
+ - [AgentAdditionalModel](docs/AgentAdditionalModel.md)
+ - [AgentEntityLimit](docs/AgentEntityLimit.md)
  - [AgentModelSettings](docs/AgentModelSettings.md)
  - [AgentSettings](docs/AgentSettings.md)
- - [AgentSettingsWidget](docs/AgentSettingsWidget.md)
+ - [AgentSkill](docs/AgentSkill.md)
+ - [AgentTokenStatistic](docs/AgentTokenStatistic.md)
+ - [AgentV3](docs/AgentV3.md)
+ - [AgentWidgetSettings](docs/AgentWidgetSettings.md)
+ - [AiGatewayBatch](docs/AiGatewayBatch.md)
+ - [AiGatewayBatchCreateRequest](docs/AiGatewayBatchCreateRequest.md)
+ - [AiGatewayBatchList](docs/AiGatewayBatchList.md)
+ - [AiGatewayBatchRequestCounts](docs/AiGatewayBatchRequestCounts.md)
+ - [AiGatewayChatCompletion](docs/AiGatewayChatCompletion.md)
+ - [AiGatewayChatCompletionChunk](docs/AiGatewayChatCompletionChunk.md)
+ - [AiGatewayChatCompletionRequest](docs/AiGatewayChatCompletionRequest.md)
+ - [AiGatewayChatCompletionRequestStreamOptions](docs/AiGatewayChatCompletionRequestStreamOptions.md)
+ - [AiGatewayChatMessage](docs/AiGatewayChatMessage.md)
+ - [AiGatewayCompletion](docs/AiGatewayCompletion.md)
+ - [AiGatewayCompletionRequest](docs/AiGatewayCompletionRequest.md)
+ - [AiGatewayEmbeddingList](docs/AiGatewayEmbeddingList.md)
+ - [AiGatewayEmbeddingListUsage](docs/AiGatewayEmbeddingListUsage.md)
+ - [AiGatewayEmbeddingRequest](docs/AiGatewayEmbeddingRequest.md)
+ - [AiGatewayError](docs/AiGatewayError.md)
+ - [AiGatewayErrorError](docs/AiGatewayErrorError.md)
+ - [AiGatewayFile](docs/AiGatewayFile.md)
+ - [AiGatewayFileDeleted](docs/AiGatewayFileDeleted.md)
+ - [AiGatewayImageGenerationRequest](docs/AiGatewayImageGenerationRequest.md)
+ - [AiGatewayImagesResponse](docs/AiGatewayImagesResponse.md)
+ - [AiGatewayModel](docs/AiGatewayModel.md)
+ - [AiGatewayModelList](docs/AiGatewayModelList.md)
+ - [AiGatewayResponse](docs/AiGatewayResponse.md)
+ - [AiGatewayResponseCreateRequest](docs/AiGatewayResponseCreateRequest.md)
+ - [AiGatewayResponseCreateRequestReasoning](docs/AiGatewayResponseCreateRequestReasoning.md)
+ - [AiGatewayResponseDeleted](docs/AiGatewayResponseDeleted.md)
+ - [AiGatewayResponseIncompleteDetails](docs/AiGatewayResponseIncompleteDetails.md)
+ - [AiGatewayResponseUsage](docs/AiGatewayResponseUsage.md)
+ - [AiGatewaySpeechRequest](docs/AiGatewaySpeechRequest.md)
+ - [AiGatewayToolCall](docs/AiGatewayToolCall.md)
+ - [AiGatewayToolCallFunction](docs/AiGatewayToolCallFunction.md)
+ - [AiGatewayTranscription](docs/AiGatewayTranscription.md)
+ - [AiGatewayUsage](docs/AiGatewayUsage.md)
+ - [AiGatewayUsageCompletionTokensDetails](docs/AiGatewayUsageCompletionTokensDetails.md)
+ - [AiGatewayUsagePromptTokensDetails](docs/AiGatewayUsagePromptTokensDetails.md)
+ - [AiGatewayValidationError](docs/AiGatewayValidationError.md)
+ - [AiKey](docs/AiKey.md)
+ - [AiKeyCallsStatisticPoint](docs/AiKeyCallsStatisticPoint.md)
+ - [AiKeyLimit](docs/AiKeyLimit.md)
+ - [AiKeyTokenStatisticPoint](docs/AiKeyTokenStatisticPoint.md)
+ - [AiProvider](docs/AiProvider.md)
+ - [AiSolution](docs/AiSolution.md)
+ - [AiSolutionAiKey](docs/AiSolutionAiKey.md)
+ - [AiSolutionChatMessage](docs/AiSolutionChatMessage.md)
+ - [AiSolutionChatReply](docs/AiSolutionChatReply.md)
+ - [AiSolutionChatStatus](docs/AiSolutionChatStatus.md)
+ - [AiSolutionConversation](docs/AiSolutionConversation.md)
+ - [AiSolutionTelegramBot](docs/AiSolutionTelegramBot.md)
+ - [AiSolutionType](docs/AiSolutionType.md)
+ - [AiSolutionTypeRequirements](docs/AiSolutionTypeRequirements.md)
  - [App](docs/App.md)
  - [AppConfiguration](docs/AppConfiguration.md)
  - [AppDiskStatus](docs/AppDiskStatus.md)
  - [AppProvider](docs/AppProvider.md)
+ - [ApproveTelegramPairing](docs/ApproveTelegramPairing.md)
  - [AppsPresets](docs/AppsPresets.md)
+ - [AuthorizeUrl](docs/AuthorizeUrl.md)
  - [AutoBackup](docs/AutoBackup.md)
  - [AutoReplyIsDisabled](docs/AutoReplyIsDisabled.md)
  - [AutoReplyIsEnabled](docs/AutoReplyIsEnabled.md)
@@ -681,6 +874,7 @@ Class | Method | HTTP request | Description
  - [BaseError](docs/BaseError.md)
  - [BindFloatingIp](docs/BindFloatingIp.md)
  - [Bonus](docs/Bonus.md)
+ - [Bot](docs/Bot.md)
  - [Branch](docs/Branch.md)
  - [Bucket](docs/Bucket.md)
  - [BucketDiskStats](docs/BucketDiskStats.md)
@@ -688,6 +882,13 @@ Class | Method | HTTP request | Description
  - [BucketWebsiteConfig](docs/BucketWebsiteConfig.md)
  - [Certificate](docs/Certificate.md)
  - [CertificateTask](docs/CertificateTask.md)
+ - [ChangeAgentModel](docs/ChangeAgentModel.md)
+ - [Chat](docs/Chat.md)
+ - [ChatFirstMessage](docs/ChatFirstMessage.md)
+ - [ChatListMetrics](docs/ChatListMetrics.md)
+ - [ChatMessage](docs/ChatMessage.md)
+ - [ChatMessageFile](docs/ChatMessageFile.md)
+ - [ChatsCsv](docs/ChatsCsv.md)
  - [CheckDomain200Response](docs/CheckDomain200Response.md)
  - [ClearCache](docs/ClearCache.md)
  - [Clickhouse](docs/Clickhouse.md)
@@ -726,16 +927,32 @@ Class | Method | HTTP request | Description
  - [ConfigRobots](docs/ConfigRobots.md)
  - [ConfigSecurity](docs/ConfigSecurity.md)
  - [ConfigSecuritySecureToken](docs/ConfigSecuritySecureToken.md)
+ - [ConnectAgentTool](docs/ConnectAgentTool.md)
+ - [ConnectSkillItem](docs/ConnectSkillItem.md)
+ - [ConnectSkills](docs/ConnectSkills.md)
+ - [ConnectTelegram](docs/ConnectTelegram.md)
  - [CreateAdmin](docs/CreateAdmin.md)
  - [CreateAgent](docs/CreateAgent.md)
  - [CreateAgent201Response](docs/CreateAgent201Response.md)
+ - [CreateAgentBotTelegramBot201Response](docs/CreateAgentBotTelegramBot201Response.md)
+ - [CreateAgentEntityLimit](docs/CreateAgentEntityLimit.md)
+ - [CreateAgentEntityLimit201Response](docs/CreateAgentEntityLimit201Response.md)
+ - [CreateAgentSkill201Response](docs/CreateAgentSkill201Response.md)
+ - [CreateAgentTool201Response](docs/CreateAgentTool201Response.md)
  - [CreateAgentV2](docs/CreateAgentV2.md)
+ - [CreateAiKey](docs/CreateAiKey.md)
+ - [CreateAiKey201Response](docs/CreateAiKey201Response.md)
+ - [CreateAiKeyLimit](docs/CreateAiKeyLimit.md)
+ - [CreateAiKeyLimit201Response](docs/CreateAiKeyLimit201Response.md)
+ - [CreateAiSolution](docs/CreateAiSolution.md)
+ - [CreateAiSolution201Response](docs/CreateAiSolution201Response.md)
  - [CreateApp](docs/CreateApp.md)
  - [CreateApp201Response](docs/CreateApp201Response.md)
  - [CreateBalancer](docs/CreateBalancer.md)
  - [CreateBalancer200Response](docs/CreateBalancer200Response.md)
  - [CreateBalancerCertificates](docs/CreateBalancerCertificates.md)
  - [CreateBalancerRule200Response](docs/CreateBalancerRule200Response.md)
+ - [CreateBot](docs/CreateBot.md)
  - [CreateCdnResource201Response](docs/CreateCdnResource201Response.md)
  - [CreateCluster](docs/CreateCluster.md)
  - [CreateClusterAdmin](docs/CreateClusterAdmin.md)
@@ -744,6 +961,7 @@ Class | Method | HTTP request | Description
  - [CreateClusterDiskAutoscaling](docs/CreateClusterDiskAutoscaling.md)
  - [CreateClusterInstance](docs/CreateClusterInstance.md)
  - [CreateClusterMaintenanceSlot](docs/CreateClusterMaintenanceSlot.md)
+ - [CreateCrispIntegration](docs/CreateCrispIntegration.md)
  - [CreateDatabaseBackup201Response](docs/CreateDatabaseBackup201Response.md)
  - [CreateDatabaseBackupDownloadUrl201Response](docs/CreateDatabaseBackupDownloadUrl201Response.md)
  - [CreateDatabaseCluster201Response](docs/CreateDatabaseCluster201Response.md)
@@ -757,6 +975,7 @@ Class | Method | HTTP request | Description
  - [CreateDeployRequest](docs/CreateDeployRequest.md)
  - [CreateDns](docs/CreateDns.md)
  - [CreateDnsV2](docs/CreateDnsV2.md)
+ - [CreateDocument](docs/CreateDocument.md)
  - [CreateDomainDNSRecord201Response](docs/CreateDomainDNSRecord201Response.md)
  - [CreateDomainDNSRecordV2201Response](docs/CreateDomainDNSRecordV2201Response.md)
  - [CreateDomainMailbox201Response](docs/CreateDomainMailbox201Response.md)
@@ -768,10 +987,13 @@ Class | Method | HTTP request | Description
  - [CreateFloatingIp201Response](docs/CreateFloatingIp201Response.md)
  - [CreateHttpResource](docs/CreateHttpResource.md)
  - [CreateInstance](docs/CreateInstance.md)
+ - [CreateJivoIntegration](docs/CreateJivoIntegration.md)
  - [CreateKey201Response](docs/CreateKey201Response.md)
  - [CreateKeyRequest](docs/CreateKeyRequest.md)
  - [CreateKnowledgebase](docs/CreateKnowledgebase.md)
  - [CreateKnowledgebase201Response](docs/CreateKnowledgebase201Response.md)
+ - [CreateKnowledgebaseDocument201Response](docs/CreateKnowledgebaseDocument201Response.md)
+ - [CreateMaxBot](docs/CreateMaxBot.md)
  - [CreateMultipleDomainMailboxes201Response](docs/CreateMultipleDomainMailboxes201Response.md)
  - [CreateMultipleDomainMailboxesRequest](docs/CreateMultipleDomainMailboxesRequest.md)
  - [CreateMultipleDomainMailboxesV2201Response](docs/CreateMultipleDomainMailboxesV2201Response.md)
@@ -790,11 +1012,14 @@ Class | Method | HTTP request | Description
  - [CreateServerDiskBackupRequest](docs/CreateServerDiskBackupRequest.md)
  - [CreateServerDiskRequest](docs/CreateServerDiskRequest.md)
  - [CreateServerNetwork](docs/CreateServerNetwork.md)
+ - [CreateSkill](docs/CreateSkill.md)
  - [CreateStorage201Response](docs/CreateStorage201Response.md)
  - [CreateStorageRequest](docs/CreateStorageRequest.md)
  - [CreateStorageRequestConfigurator](docs/CreateStorageRequestConfigurator.md)
+ - [CreateTool](docs/CreateTool.md)
  - [CreateVPC201Response](docs/CreateVPC201Response.md)
  - [CreateVpc](docs/CreateVpc.md)
+ - [CrispIntegration](docs/CrispIntegration.md)
  - [DatabaseAdmin](docs/DatabaseAdmin.md)
  - [DatabaseCluster](docs/DatabaseCluster.md)
  - [DatabaseClusterDisk](docs/DatabaseClusterDisk.md)
@@ -822,6 +1047,7 @@ Class | Method | HTTP request | Description
  - [DedicatedServerPresetCpu](docs/DedicatedServerPresetCpu.md)
  - [DedicatedServerPresetDisk](docs/DedicatedServerPresetDisk.md)
  - [DedicatedServerPresetMemory](docs/DedicatedServerPresetMemory.md)
+ - [DeleteAgent](docs/DeleteAgent.md)
  - [DeleteBalancer200Response](docs/DeleteBalancer200Response.md)
  - [DeleteCluster200Response](docs/DeleteCluster200Response.md)
  - [DeleteCountriesFromAllowedList200Response](docs/DeleteCountriesFromAllowedList200Response.md)
@@ -858,6 +1084,8 @@ Class | Method | HTTP request | Description
  - [DomainRegister](docs/DomainRegister.md)
  - [DomainRequest](docs/DomainRequest.md)
  - [DomainTransfer](docs/DomainTransfer.md)
+ - [ErrorResponse](docs/ErrorResponse.md)
+ - [ExportAgentChatsCsv200Response](docs/ExportAgentChatsCsv200Response.md)
  - [Finances](docs/Finances.md)
  - [FirewallGroup](docs/FirewallGroup.md)
  - [FirewallGroupInAPI](docs/FirewallGroupInAPI.md)
@@ -882,12 +1110,65 @@ Class | Method | HTTP request | Description
  - [Frameworks](docs/Frameworks.md)
  - [Free](docs/Free.md)
  - [GetAccountStatus200Response](docs/GetAccountStatus200Response.md)
+ - [GetAgentBotMaxBots200Response](docs/GetAgentBotMaxBots200Response.md)
+ - [GetAgentBotMaxBots200ResponseMeta](docs/GetAgentBotMaxBots200ResponseMeta.md)
+ - [GetAgentBotMaxBotsByAgent200Response](docs/GetAgentBotMaxBotsByAgent200Response.md)
+ - [GetAgentBotMaxBotsByAgent200ResponseMeta](docs/GetAgentBotMaxBotsByAgent200ResponseMeta.md)
+ - [GetAgentBotTelegramBots200Response](docs/GetAgentBotTelegramBots200Response.md)
+ - [GetAgentBotTelegramBots200ResponseMeta](docs/GetAgentBotTelegramBots200ResponseMeta.md)
+ - [GetAgentBotTelegramBotsByAgent200Response](docs/GetAgentBotTelegramBotsByAgent200Response.md)
+ - [GetAgentBotTelegramBotsByAgent200ResponseMeta](docs/GetAgentBotTelegramBotsByAgent200ResponseMeta.md)
+ - [GetAgentChatList200Response](docs/GetAgentChatList200Response.md)
+ - [GetAgentChatList200ResponseMeta](docs/GetAgentChatList200ResponseMeta.md)
+ - [GetAgentChatMessages200Response](docs/GetAgentChatMessages200Response.md)
+ - [GetAgentChatMessages200ResponseMeta](docs/GetAgentChatMessages200ResponseMeta.md)
+ - [GetAgentEntityLimits200Response](docs/GetAgentEntityLimits200Response.md)
+ - [GetAgentEntityLimits200ResponseMeta](docs/GetAgentEntityLimits200ResponseMeta.md)
+ - [GetAgentIntegrationCrisp200Response](docs/GetAgentIntegrationCrisp200Response.md)
+ - [GetAgentIntegrationJivo200Response](docs/GetAgentIntegrationJivo200Response.md)
+ - [GetAgentSkill200Response](docs/GetAgentSkill200Response.md)
+ - [GetAgentSkillCatalog200Response](docs/GetAgentSkillCatalog200Response.md)
+ - [GetAgentSkillCatalog200ResponseMeta](docs/GetAgentSkillCatalog200ResponseMeta.md)
+ - [GetAgentSkillLibrary200Response](docs/GetAgentSkillLibrary200Response.md)
+ - [GetAgentSkillLibrary200ResponseMeta](docs/GetAgentSkillLibrary200ResponseMeta.md)
+ - [GetAgentSkillVersion200Response](docs/GetAgentSkillVersion200Response.md)
+ - [GetAgentSkillVersions200Response](docs/GetAgentSkillVersions200Response.md)
+ - [GetAgentSkillVersions200ResponseMeta](docs/GetAgentSkillVersions200ResponseMeta.md)
+ - [GetAgentSkillsForAgent200Response](docs/GetAgentSkillsForAgent200Response.md)
+ - [GetAgentSkillsForAgent200ResponseMeta](docs/GetAgentSkillsForAgent200ResponseMeta.md)
  - [GetAgentStatistics200Response](docs/GetAgentStatistics200Response.md)
  - [GetAgentStatistics200ResponseMeta](docs/GetAgentStatistics200ResponseMeta.md)
+ - [GetAgentToolTemplatePrices200Response](docs/GetAgentToolTemplatePrices200Response.md)
+ - [GetAgentToolTemplates200Response](docs/GetAgentToolTemplates200Response.md)
+ - [GetAgentToolTemplates200ResponseMeta](docs/GetAgentToolTemplates200ResponseMeta.md)
+ - [GetAgentTools200Response](docs/GetAgentTools200Response.md)
+ - [GetAgentTools200ResponseMeta](docs/GetAgentTools200ResponseMeta.md)
+ - [GetAgentToolsByAgent200Response](docs/GetAgentToolsByAgent200Response.md)
+ - [GetAgentToolsByAgent200ResponseMeta](docs/GetAgentToolsByAgent200ResponseMeta.md)
+ - [GetAgentV3200Response](docs/GetAgentV3200Response.md)
  - [GetAgents200Response](docs/GetAgents200Response.md)
  - [GetAgents200ResponseMeta](docs/GetAgents200ResponseMeta.md)
  - [GetAgentsTokenPackages200Response](docs/GetAgentsTokenPackages200Response.md)
  - [GetAgentsTokenPackages200ResponseMeta](docs/GetAgentsTokenPackages200ResponseMeta.md)
+ - [GetAgentsV3200Response](docs/GetAgentsV3200Response.md)
+ - [GetAiKeyCallsStatistic200Response](docs/GetAiKeyCallsStatistic200Response.md)
+ - [GetAiKeyLimits200Response](docs/GetAiKeyLimits200Response.md)
+ - [GetAiKeyLimits200ResponseMeta](docs/GetAiKeyLimits200ResponseMeta.md)
+ - [GetAiKeyModelsStatistic200Response](docs/GetAiKeyModelsStatistic200Response.md)
+ - [GetAiKeyModelsStatistic200ResponseMeta](docs/GetAiKeyModelsStatistic200ResponseMeta.md)
+ - [GetAiKeyTokenUsageStatistic200Response](docs/GetAiKeyTokenUsageStatistic200Response.md)
+ - [GetAiKeyTokenUsageStatistic200ResponseMeta](docs/GetAiKeyTokenUsageStatistic200ResponseMeta.md)
+ - [GetAiKeys200Response](docs/GetAiKeys200Response.md)
+ - [GetAiKeys200ResponseMeta](docs/GetAiKeys200ResponseMeta.md)
+ - [GetAiModelParameters200Response](docs/GetAiModelParameters200Response.md)
+ - [GetAiModelParameters200ResponseMeta](docs/GetAiModelParameters200ResponseMeta.md)
+ - [GetAiModelTokenPackages200Response](docs/GetAiModelTokenPackages200Response.md)
+ - [GetAiModelTokenPackages200ResponseMeta](docs/GetAiModelTokenPackages200ResponseMeta.md)
+ - [GetAiProvider200Response](docs/GetAiProvider200Response.md)
+ - [GetAiProviders200Response](docs/GetAiProviders200Response.md)
+ - [GetAiProviders200ResponseMeta](docs/GetAiProviders200ResponseMeta.md)
+ - [GetAiSolutionChatStatus200Response](docs/GetAiSolutionChatStatus200Response.md)
+ - [GetAiSolutionMainChatHistory200Response](docs/GetAiSolutionMainChatHistory200Response.md)
  - [GetAllMailboxesV2200Response](docs/GetAllMailboxesV2200Response.md)
  - [GetAllProjectResources200Response](docs/GetAllProjectResources200Response.md)
  - [GetAppDeploys200Response](docs/GetAppDeploys200Response.md)
@@ -942,10 +1223,13 @@ Class | Method | HTTP request | Description
  - [GetKeys200Response](docs/GetKeys200Response.md)
  - [GetKnowledgebaseDocumentsV2200Response](docs/GetKnowledgebaseDocumentsV2200Response.md)
  - [GetKnowledgebaseDocumentsV2200ResponseMeta](docs/GetKnowledgebaseDocumentsV2200ResponseMeta.md)
- - [GetKnowledgebaseStatistics200Response](docs/GetKnowledgebaseStatistics200Response.md)
+ - [GetKnowledgebaseV3200Response](docs/GetKnowledgebaseV3200Response.md)
  - [GetKnowledgebases200Response](docs/GetKnowledgebases200Response.md)
+ - [GetKnowledgebasesTokenPackages200Response](docs/GetKnowledgebasesTokenPackages200Response.md)
+ - [GetKnowledgebasesTokenPackages200ResponseMeta](docs/GetKnowledgebasesTokenPackages200ResponseMeta.md)
  - [GetKnowledgebasesV2200Response](docs/GetKnowledgebasesV2200Response.md)
- - [GetKnowledgebasesV2200ResponseMeta](docs/GetKnowledgebasesV2200ResponseMeta.md)
+ - [GetKnowledgebasesV3200Response](docs/GetKnowledgebasesV3200Response.md)
+ - [GetKnowledgebasesV3200ResponseMeta](docs/GetKnowledgebasesV3200ResponseMeta.md)
  - [GetLocations200Response](docs/GetLocations200Response.md)
  - [GetMailboxes200Response](docs/GetMailboxes200Response.md)
  - [GetModels200Response](docs/GetModels200Response.md)
@@ -1000,15 +1284,38 @@ Class | Method | HTTP request | Description
  - [ImageUrlIn](docs/ImageUrlIn.md)
  - [ImagesOutResponse](docs/ImagesOutResponse.md)
  - [IncreaseNodes](docs/IncreaseNodes.md)
+ - [IndexingSchedule](docs/IndexingSchedule.md)
  - [InfoServicePrice](docs/InfoServicePrice.md)
+ - [InitializeParams](docs/InitializeParams.md)
+ - [InitializeParamsClientInfo](docs/InitializeParamsClientInfo.md)
+ - [InitializeResult](docs/InitializeResult.md)
+ - [InitializeResultServerInfo](docs/InitializeResultServerInfo.md)
+ - [InstallAgentSkillFromCatalog200Response](docs/InstallAgentSkillFromCatalog200Response.md)
+ - [InstallAgentSkillFromCatalog200ResponseMeta](docs/InstallAgentSkillFromCatalog200ResponseMeta.md)
+ - [InstallAndConnectAgentSkill200Response](docs/InstallAndConnectAgentSkill200Response.md)
+ - [InstallAndConnectSkill](docs/InstallAndConnectSkill.md)
+ - [InstallTool](docs/InstallTool.md)
  - [Invoice](docs/Invoice.md)
  - [Ip](docs/Ip.md)
  - [IssueCertificate](docs/IssueCertificate.md)
+ - [JivoIntegration](docs/JivoIntegration.md)
+ - [JsonRpcError](docs/JsonRpcError.md)
+ - [JsonRpcErrorResponse](docs/JsonRpcErrorResponse.md)
+ - [JsonRpcNotification](docs/JsonRpcNotification.md)
+ - [JsonRpcRequest](docs/JsonRpcRequest.md)
+ - [JsonRpcResultResponse](docs/JsonRpcResultResponse.md)
  - [K8SVersionsResponse](docs/K8SVersionsResponse.md)
  - [Kafka](docs/Kafka.md)
  - [KafkaConfigParameters](docs/KafkaConfigParameters.md)
  - [Knowledgebase](docs/Knowledgebase.md)
+ - [KnowledgebaseAddTokenPackage](docs/KnowledgebaseAddTokenPackage.md)
  - [KnowledgebaseV2](docs/KnowledgebaseV2.md)
+ - [KnowledgebaseV3](docs/KnowledgebaseV3.md)
+ - [LinkKnowledgebase](docs/LinkKnowledgebase.md)
+ - [ListAiSolutionConversations200Response](docs/ListAiSolutionConversations200Response.md)
+ - [ListAiSolutionTelegramBots200Response](docs/ListAiSolutionTelegramBots200Response.md)
+ - [ListAiSolutionTypes200Response](docs/ListAiSolutionTypes200Response.md)
+ - [ListAiSolutions200Response](docs/ListAiSolutions200Response.md)
  - [Location](docs/Location.md)
  - [LocationDto](docs/LocationDto.md)
  - [Mailbox](docs/Mailbox.md)
@@ -1023,10 +1330,10 @@ Class | Method | HTTP request | Description
  - [Meta](docs/Meta.md)
  - [Meta1](docs/Meta1.md)
  - [Model](docs/Model.md)
- - [ModelParamsInfo](docs/ModelParamsInfo.md)
- - [ModelParamsInfoMaxTokens](docs/ModelParamsInfoMaxTokens.md)
- - [ModelParamsInfoReasoningEffort](docs/ModelParamsInfoReasoningEffort.md)
- - [ModelParamsInfoTemperature](docs/ModelParamsInfoTemperature.md)
+ - [ModelBatch](docs/ModelBatch.md)
+ - [ModelParamInfo](docs/ModelParamInfo.md)
+ - [ModelParameter](docs/ModelParameter.md)
+ - [ModelPriceTier](docs/ModelPriceTier.md)
  - [ModelV3](docs/ModelV3.md)
  - [Mongodb](docs/Mongodb.md)
  - [MountNetworkDrive](docs/MountNetworkDrive.md)
@@ -1083,6 +1390,7 @@ Class | Method | HTTP request | Description
  - [Providers](docs/Providers.md)
  - [Rabbitmq](docs/Rabbitmq.md)
  - [ReduceNodes](docs/ReduceNodes.md)
+ - [RegenerateAiSolutionAiKey200Response](docs/RegenerateAiSolutionAiKey200Response.md)
  - [RegistriesResponse](docs/RegistriesResponse.md)
  - [RegistryEdit](docs/RegistryEdit.md)
  - [RegistryIn](docs/RegistryIn.md)
@@ -1096,12 +1404,19 @@ Class | Method | HTTP request | Description
  - [ReplicaDisk](docs/ReplicaDisk.md)
  - [RepositoriesResponse](docs/RepositoriesResponse.md)
  - [Repository](docs/Repository.md)
+ - [ResetAiSolutionChat](docs/ResetAiSolutionChat.md)
+ - [ResetAiSolutionChat200Response](docs/ResetAiSolutionChat200Response.md)
  - [Resource](docs/Resource.md)
  - [ResourceTransfer](docs/ResourceTransfer.md)
  - [ResourceType](docs/ResourceType.md)
  - [Resources](docs/Resources.md)
+ - [ResourcesListResult](docs/ResourcesListResult.md)
+ - [ResourcesReadParams](docs/ResourcesReadParams.md)
+ - [ResourcesReadResult](docs/ResourcesReadResult.md)
  - [ResourcesResponse](docs/ResourcesResponse.md)
  - [RestorePoint](docs/RestorePoint.md)
+ - [RetrievalMode](docs/RetrievalMode.md)
+ - [RetrievalModeRef](docs/RetrievalModeRef.md)
  - [RouterEdit](docs/RouterEdit.md)
  - [RouterIn](docs/RouterIn.md)
  - [RouterInParentService](docs/RouterInParentService.md)
@@ -1121,6 +1436,8 @@ Class | Method | HTTP request | Description
  - [SchemasBaseError](docs/SchemasBaseError.md)
  - [SchemasMeta](docs/SchemasMeta.md)
  - [SchemasPresetsResponse](docs/SchemasPresetsResponse.md)
+ - [SendAiSolutionMessage](docs/SendAiSolutionMessage.md)
+ - [SendAiSolutionMessage200Response](docs/SendAiSolutionMessage200Response.md)
  - [ServerBackup](docs/ServerBackup.md)
  - [ServerDisk](docs/ServerDisk.md)
  - [ServerIp](docs/ServerIp.md)
@@ -1139,8 +1456,17 @@ Class | Method | HTTP request | Description
  - [ServicePriceConfiguration](docs/ServicePriceConfiguration.md)
  - [ServicePriceType](docs/ServicePriceType.md)
  - [ServiceServicePrice](docs/ServiceServicePrice.md)
+ - [SetAgentSkill](docs/SetAgentSkill.md)
+ - [SetAgentSkillForAgent200Response](docs/SetAgentSkillForAgent200Response.md)
  - [SetLabels](docs/SetLabels.md)
  - [SettingCondition](docs/SettingCondition.md)
+ - [Skill](docs/Skill.md)
+ - [SkillAgent](docs/SkillAgent.md)
+ - [SkillCatalogItem](docs/SkillCatalogItem.md)
+ - [SkillSaveMeta](docs/SkillSaveMeta.md)
+ - [SkillScript](docs/SkillScript.md)
+ - [SkillScriptInput](docs/SkillScriptInput.md)
+ - [SkillVersion](docs/SkillVersion.md)
  - [SpamFilterIsDisabled](docs/SpamFilterIsDisabled.md)
  - [SpamFilterIsEnabled](docs/SpamFilterIsEnabled.md)
  - [SpamProtectionIsDisabled](docs/SpamProtectionIsDisabled.md)
@@ -1153,9 +1479,29 @@ Class | Method | HTTP request | Description
  - [Statistics](docs/Statistics.md)
  - [Status](docs/Status.md)
  - [StatusCompanyInfo](docs/StatusCompanyInfo.md)
+ - [StopAiSolutionChat](docs/StopAiSolutionChat.md)
+ - [StreamError](docs/StreamError.md)
  - [Subdomain](docs/Subdomain.md)
+ - [SyncAgentEntityLimits](docs/SyncAgentEntityLimits.md)
+ - [SyncAgentSkillAgentsVersions200Response](docs/SyncAgentSkillAgentsVersions200Response.md)
+ - [SyncAgentSkillAgentsVersions200ResponseMeta](docs/SyncAgentSkillAgentsVersions200ResponseMeta.md)
+ - [SyncAgentSkillVersionsForAgent200Response](docs/SyncAgentSkillVersionsForAgent200Response.md)
+ - [SyncAiKeyLimits](docs/SyncAiKeyLimits.md)
+ - [TextContent](docs/TextContent.md)
  - [TokenPackage](docs/TokenPackage.md)
- - [TokenStatistic](docs/TokenStatistic.md)
+ - [Tool](docs/Tool.md)
+ - [Tool2](docs/Tool2.md)
+ - [Tool2Annotations](docs/Tool2Annotations.md)
+ - [ToolAuthData](docs/ToolAuthData.md)
+ - [ToolAuthDataParams](docs/ToolAuthDataParams.md)
+ - [ToolConfigField](docs/ToolConfigField.md)
+ - [ToolMethod](docs/ToolMethod.md)
+ - [ToolPrice](docs/ToolPrice.md)
+ - [ToolTemplate](docs/ToolTemplate.md)
+ - [ToolTemplateConfigSchema](docs/ToolTemplateConfigSchema.md)
+ - [ToolsCallParams](docs/ToolsCallParams.md)
+ - [ToolsCallResult](docs/ToolsCallResult.md)
+ - [ToolsListResult](docs/ToolsListResult.md)
  - [TopLevelDomain](docs/TopLevelDomain.md)
  - [TrafficUsage](docs/TrafficUsage.md)
  - [TransferStatus](docs/TransferStatus.md)
@@ -1163,11 +1509,17 @@ Class | Method | HTTP request | Description
  - [URLType](docs/URLType.md)
  - [UpdateAdmin](docs/UpdateAdmin.md)
  - [UpdateAgent](docs/UpdateAgent.md)
- - [UpdateAgentSettings](docs/UpdateAgentSettings.md)
+ - [UpdateAgentEntityLimit](docs/UpdateAgentEntityLimit.md)
+ - [UpdateAgentTool](docs/UpdateAgentTool.md)
+ - [UpdateAiKey](docs/UpdateAiKey.md)
+ - [UpdateAiKey200Response](docs/UpdateAiKey200Response.md)
+ - [UpdateAiKeyLimit](docs/UpdateAiKeyLimit.md)
+ - [UpdateAiSolution](docs/UpdateAiSolution.md)
  - [UpdateAppSettings200Response](docs/UpdateAppSettings200Response.md)
  - [UpdateAuthRestrictionsByCountriesRequest](docs/UpdateAuthRestrictionsByCountriesRequest.md)
  - [UpdateAutoBackup](docs/UpdateAutoBackup.md)
  - [UpdateBalancer](docs/UpdateBalancer.md)
+ - [UpdateBot](docs/UpdateBot.md)
  - [UpdateCluster](docs/UpdateCluster.md)
  - [UpdateClusterConfiguration](docs/UpdateClusterConfiguration.md)
  - [UpdateClusterV2](docs/UpdateClusterV2.md)
@@ -1175,6 +1527,7 @@ Class | Method | HTTP request | Description
  - [UpdateClusterV2MaintenanceSlot](docs/UpdateClusterV2MaintenanceSlot.md)
  - [UpdateDatabaseCluster200Response](docs/UpdateDatabaseCluster200Response.md)
  - [UpdateDedicatedServerRequest](docs/UpdateDedicatedServerRequest.md)
+ - [UpdateDocument](docs/UpdateDocument.md)
  - [UpdateDomain](docs/UpdateDomain.md)
  - [UpdateDomainAutoProlongation200Response](docs/UpdateDomainAutoProlongation200Response.md)
  - [UpdateDomainMailInfoRequest](docs/UpdateDomainMailInfoRequest.md)
@@ -1188,6 +1541,7 @@ Class | Method | HTTP request | Description
  - [UpdateMailbox](docs/UpdateMailbox.md)
  - [UpdateMailboxV2](docs/UpdateMailboxV2.md)
  - [UpdateMailboxV2200Response](docs/UpdateMailboxV2200Response.md)
+ - [UpdateMaxBot](docs/UpdateMaxBot.md)
  - [UpdateNetworkDrive](docs/UpdateNetworkDrive.md)
  - [UpdateNotificationSettingsRequest](docs/UpdateNotificationSettingsRequest.md)
  - [UpdatePerson](docs/UpdatePerson.md)
@@ -1202,12 +1556,14 @@ Class | Method | HTTP request | Description
  - [UpdateServerNATRequest](docs/UpdateServerNATRequest.md)
  - [UpdateServerOSBootModeRequest](docs/UpdateServerOSBootModeRequest.md)
  - [UpdateSettings](docs/UpdateSettings.md)
+ - [UpdateSkill](docs/UpdateSkill.md)
  - [UpdateStorageRequest](docs/UpdateStorageRequest.md)
  - [UpdateStorageRequestConfigurator](docs/UpdateStorageRequestConfigurator.md)
  - [UpdateStorageUser200Response](docs/UpdateStorageUser200Response.md)
  - [UpdateStorageUserRequest](docs/UpdateStorageUserRequest.md)
+ - [UpdateTool](docs/UpdateTool.md)
  - [UpdateVpc](docs/UpdateVpc.md)
- - [UploadFilesToKnowledgebase200Response](docs/UploadFilesToKnowledgebase200Response.md)
+ - [UploadResult](docs/UploadResult.md)
  - [UploadSuccessful](docs/UploadSuccessful.md)
  - [UploadSuccessfulResponse](docs/UploadSuccessfulResponse.md)
  - [UrlStatus](docs/UrlStatus.md)
@@ -1234,6 +1590,11 @@ Authentication schemes defined for the API:
 ### Bearer
 
 - **Type**: Bearer authentication (JWT)
+
+<a id="AiGatewayKey"></a>
+### AiGatewayKey
+
+- **Type**: Bearer authentication
 
 
 ## Author

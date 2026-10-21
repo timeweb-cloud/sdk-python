@@ -25,13 +25,15 @@ from timeweb_cloud_api.models.document_status_info_details import DocumentStatus
 
 class DocumentStatusInfo(BaseModel):
     """
-    Детальная информация о текущем состоянии документа в базе знаний
+    Подробности о состоянии индексации документа. `null`, если информации нет
     """
-    type: Optional[Any] = Field(..., description="Тип статуса документа")
-    timestamp: Optional[Any] = Field(..., description="Время записи информации (ISO string)")
-    error_code: Optional[Any] = Field(None, description="Код ошибки (только для type: 'error')")
+    type: Optional[Any] = Field(..., description="Тип состояния, совпадает со статусом документа")
+    timestamp: Optional[Any] = Field(..., description="Время, когда записано состояние")
+    error_code: Optional[Any] = Field(None, description="Код ошибки, только для `type: error`: - `INSUFFICIENT_TOKENS` — недостаточно токенов для индексации - `CRITICAL_BALANCE` — критически низкий остаток токенов - `NEGATIVE_BALANCE` — отрицательный остаток токенов - `INDEXING_ERROR` — не удалось обработать документ")
+    stage: Optional[Any] = Field(None, description="Этап индексации, на котором произошла ошибка")
+    trace_id: Optional[Any] = Field(None, description="Идентификатор операции индексации — укажите его при обращении в поддержку")
     details: Optional[DocumentStatusInfoDetails] = None
-    __properties = ["type", "timestamp", "error_code", "details"]
+    __properties = ["type", "timestamp", "error_code", "stage", "trace_id", "details"]
 
     @validator('type')
     def type_validate_enum(cls, value):
@@ -95,6 +97,16 @@ class DocumentStatusInfo(BaseModel):
         if self.error_code is None and "error_code" in self.__fields_set__:
             _dict['error_code'] = None
 
+        # set to None if stage (nullable) is None
+        # and __fields_set__ contains the field
+        if self.stage is None and "stage" in self.__fields_set__:
+            _dict['stage'] = None
+
+        # set to None if trace_id (nullable) is None
+        # and __fields_set__ contains the field
+        if self.trace_id is None and "trace_id" in self.__fields_set__:
+            _dict['trace_id'] = None
+
         return _dict
 
     @classmethod
@@ -110,6 +122,8 @@ class DocumentStatusInfo(BaseModel):
             "type": obj.get("type"),
             "timestamp": obj.get("timestamp"),
             "error_code": obj.get("error_code"),
+            "stage": obj.get("stage"),
+            "trace_id": obj.get("trace_id"),
             "details": DocumentStatusInfoDetails.from_dict(obj.get("details")) if obj.get("details") is not None else None
         })
         return _obj

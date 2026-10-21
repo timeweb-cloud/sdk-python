@@ -39,18 +39,17 @@ class TestDocumentStatusInfo(unittest.TestCase):
         model = timeweb_cloud_api.models.document_status_info.DocumentStatusInfo()  # noqa: E501
         if include_optional :
             return DocumentStatusInfo(
-                type = indexed, 
-                timestamp = 2024-01-01T12:00:00.000Z, 
+                type = error, 
+                timestamp = 2026-09-22T09:11:26.389Z, 
                 error_code = INSUFFICIENT_TOKENS, 
-                details = timeweb_cloud_api.models.document_status_info_details.document_status_info_details(
-                    started_at = 2024-01-01T12:00:00.000Z, 
-                    current_stage = parsing, 
-                    progress = 45, )
+                stage = text_extraction, 
+                trace_id = 1bac906f-972e-45ca-9caa-a12a5ab13c62, 
+                details = { }
             )
         else :
             return DocumentStatusInfo(
-                type = indexed,
-                timestamp = 2024-01-01T12:00:00.000Z,
+                type = error,
+                timestamp = 2026-09-22T09:11:26.389Z,
         )
         """
 

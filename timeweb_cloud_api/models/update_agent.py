@@ -21,20 +21,24 @@ import json
 
 from typing import Any, Optional
 from pydantic import BaseModel, Field, validator
-from timeweb_cloud_api.models.update_agent_settings import UpdateAgentSettings
+from timeweb_cloud_api.models.agent_settings import AgentSettings
 
 class UpdateAgent(BaseModel):
     """
-    Данные для обновления AI агента
+    Данные для обновления AI агента. Передавайте только изменяемые поля.
     """
     name: Optional[Any] = Field(None, description="Название агента")
     description: Optional[Any] = Field(None, description="Описание агента")
-    access_type: Optional[Any] = Field(None, description="Тип доступа к агенту")
-    status: Optional[Any] = Field(None, description="Статус агента")
-    token_package_id: Optional[Any] = Field(None, description="ID пакета токенов")
-    settings: Optional[UpdateAgentSettings] = None
-    project_id: Optional[Any] = Field(None, description="ID проекта")
-    __properties = ["name", "description", "access_type", "status", "token_package_id", "settings", "project_id"]
+    access_type: Optional[Any] = Field(None, description="Тип доступа")
+    status: Optional[Any] = Field(None, description="Статус агента: `suspended` — приостановить, `active` — возобновить. Статус заблокированного или удалённого агента изменить нельзя.")
+    settings: Optional[AgentSettings] = None
+    project_id: Optional[Any] = Field(None, description="Не используется: перенести агента в другой проект можно методами проектов.")
+    additional_model_ids: Optional[Any] = Field(None, description="ID дополнительных моделей агента (например, для генерации изображений). Список заменяет текущий целиком.")
+    additional_models: Optional[Any] = Field(None, description="Дополнительные модели вместе с настройками (для моделей генерации изображений — `width`/`height`). Если переданы и `additional_models`, и `additional_model_ids`, используется `additional_models`.")
+    is_web_search_enabled: Optional[Any] = Field(None, description="Включить или выключить веб-поиск")
+    ai_gateway_key_id: Optional[Any] = Field(None, description="ID ключа AI Gateway, к которому нужно привязать агента. Привязка доступна, только если в ответе агента `ai_gateway_key_id` равен `null` (агент без баз знаний, инструментов и интеграций, созданный до 9 октября 2026 года), и делается один раз. При первой привязке на аккаунт однократно начисляется временная скидка 10% на запросы через ключи AI Gateway.")
+    token_package_id: Optional[Any] = Field(None, description="Новый пакет токенов. Только для агентов с пакетом токенов (устаревшая схема оплаты): пакет должен относиться к модели агента и быть не меньше текущего, его стоимость сразу списывается с баланса.")
+    __properties = ["name", "description", "access_type", "status", "settings", "project_id", "additional_model_ids", "additional_models", "is_web_search_enabled", "ai_gateway_key_id", "token_package_id"]
 
     @validator('access_type')
     def access_type_validate_enum(cls, value):
@@ -103,15 +107,35 @@ class UpdateAgent(BaseModel):
         if self.status is None and "status" in self.__fields_set__:
             _dict['status'] = None
 
-        # set to None if token_package_id (nullable) is None
-        # and __fields_set__ contains the field
-        if self.token_package_id is None and "token_package_id" in self.__fields_set__:
-            _dict['token_package_id'] = None
-
         # set to None if project_id (nullable) is None
         # and __fields_set__ contains the field
         if self.project_id is None and "project_id" in self.__fields_set__:
             _dict['project_id'] = None
+
+        # set to None if additional_model_ids (nullable) is None
+        # and __fields_set__ contains the field
+        if self.additional_model_ids is None and "additional_model_ids" in self.__fields_set__:
+            _dict['additional_model_ids'] = None
+
+        # set to None if additional_models (nullable) is None
+        # and __fields_set__ contains the field
+        if self.additional_models is None and "additional_models" in self.__fields_set__:
+            _dict['additional_models'] = None
+
+        # set to None if is_web_search_enabled (nullable) is None
+        # and __fields_set__ contains the field
+        if self.is_web_search_enabled is None and "is_web_search_enabled" in self.__fields_set__:
+            _dict['is_web_search_enabled'] = None
+
+        # set to None if ai_gateway_key_id (nullable) is None
+        # and __fields_set__ contains the field
+        if self.ai_gateway_key_id is None and "ai_gateway_key_id" in self.__fields_set__:
+            _dict['ai_gateway_key_id'] = None
+
+        # set to None if token_package_id (nullable) is None
+        # and __fields_set__ contains the field
+        if self.token_package_id is None and "token_package_id" in self.__fields_set__:
+            _dict['token_package_id'] = None
 
         return _dict
 
@@ -129,9 +153,13 @@ class UpdateAgent(BaseModel):
             "description": obj.get("description"),
             "access_type": obj.get("access_type"),
             "status": obj.get("status"),
-            "token_package_id": obj.get("token_package_id"),
-            "settings": UpdateAgentSettings.from_dict(obj.get("settings")) if obj.get("settings") is not None else None,
-            "project_id": obj.get("project_id")
+            "settings": AgentSettings.from_dict(obj.get("settings")) if obj.get("settings") is not None else None,
+            "project_id": obj.get("project_id"),
+            "additional_model_ids": obj.get("additional_model_ids"),
+            "additional_models": obj.get("additional_models"),
+            "is_web_search_enabled": obj.get("is_web_search_enabled"),
+            "ai_gateway_key_id": obj.get("ai_gateway_key_id"),
+            "token_package_id": obj.get("token_package_id")
         })
         return _obj
 

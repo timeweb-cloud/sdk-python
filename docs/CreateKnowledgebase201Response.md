@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**knowledgebase** | [**Knowledgebase**](Knowledgebase.md) |  | 
+**knowledge_base** | [**Knowledgebase**](Knowledgebase.md) |  | 
 
 ## Example
 

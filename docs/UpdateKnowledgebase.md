@@ -1,12 +1,12 @@
 # UpdateKnowledgebase
 
-Данные для обновления базы знаний
+Данные для изменения базы знаний. Передайте только поля, которые нужно изменить
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**name** | **object** | Название базы знаний | [optional] 
-**description** | **object** | Описание базы знаний | [optional] 
+**name** | **object** | Новое название. Пустая строка игнорируется | [optional] 
+**description** | **object** | Новое описание | [optional] 
 
 ## Example
 

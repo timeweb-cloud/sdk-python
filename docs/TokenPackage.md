@@ -5,15 +5,16 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **object** | Уникальный идентификатор пакета | 
-**model_id** | **object** | ID модели, к которой применяется пакет токенов | 
-**name** | **object** | Название пакета токенов | 
-**package_type** | **object** | Тип пакета (base - базовый, additional - дополнительный, promo - промо) | 
-**type** | **object** | Тип сущности, к которой относится пакет (agent - агент, knowledgebase - база знаний) | 
+**id** | **object** | ID пакета | 
+**model_id** | **object** | ID модели, к которой относится пакет | 
+**service_type_id** | **object** | ID тарифа пакета в биллинге | 
+**name** | **object** | Название пакета | 
+**package_type** | **object** | Тип пакета: &#x60;base&#x60; — пакет подписки, &#x60;additional&#x60; — дополнительный пакет, &#x60;promo&#x60; — промо-пакет | 
+**type** | **object** | Для чего пакет: &#x60;agent&#x60; — AI агент, &#x60;knowledgebase&#x60; — база знаний | 
 **token_amount** | **object** | Количество токенов в пакете | 
-**price** | **object** | Цена пакета в целых единицах | 
-**duration_days** | **object** | Продолжительность пакета в днях (null для дополнительных пакетов) | [optional] 
-**is_available** | **object** | Флаг, указывающий доступность пакета | 
+**price** | **object** | Цена пакета в рублях | 
+**duration_days** | **object** | Период подписки в днях. &#x60;null&#x60; для дополнительных пакетов | 
+**is_available** | **object** | Пакет доступен для покупки | 
 
 ## Example
 

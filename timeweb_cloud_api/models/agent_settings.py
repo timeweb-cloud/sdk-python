@@ -22,17 +22,20 @@ import json
 from typing import Any, Optional
 from pydantic import BaseModel, Field
 from timeweb_cloud_api.models.agent_model_settings import AgentModelSettings
-from timeweb_cloud_api.models.agent_settings_widget import AgentSettingsWidget
+from timeweb_cloud_api.models.agent_widget_settings import AgentWidgetSettings
 
 class AgentSettings(BaseModel):
     """
     Настройки агента
     """
     model: AgentModelSettings = Field(...)
-    system_prompt: Optional[Any] = Field(..., description="Системный промпт")
-    refine_query: Optional[Any] = Field(..., description="Уточнять ли запрос перед обработкой")
-    widget: Optional[AgentSettingsWidget] = None
-    __properties = ["model", "system_prompt", "refine_query", "widget"]
+    system_prompt: Optional[Any] = Field(..., description="Системный промпт (инструкция) агента")
+    refine_query: Optional[Any] = Field(..., description="Уточнять (переформулировать) запрос пользователя перед поиском по базам знаний")
+    memory_enabled: Optional[Any] = Field(None, description="Запоминать факты о каждом авторизованном пользователе и учитывать их в ответах. В виджете не работает.")
+    widget: Optional[AgentWidgetSettings] = None
+    web_search_allowed_sites: Optional[Any] = Field(None, description="Домены, которыми ограничивается веб-поиск агента (не более 5). Каждый элемент — домен (`timeweb.ru`) или домен с путём (`timeweb.ru/docs`). Если поле не передано при обновлении, сохранённый список не меняется.")
+    additional_models: Optional[Any] = Field(None, description="Настройки дополнительных моделей. Заполняется автоматически из поля `additional_models` запроса создания или обновления агента, передавать здесь не нужно.")
+    __properties = ["model", "system_prompt", "refine_query", "memory_enabled", "widget", "web_search_allowed_sites", "additional_models"]
 
     class Config:
         """Pydantic configuration"""
@@ -74,6 +77,21 @@ class AgentSettings(BaseModel):
         if self.refine_query is None and "refine_query" in self.__fields_set__:
             _dict['refine_query'] = None
 
+        # set to None if memory_enabled (nullable) is None
+        # and __fields_set__ contains the field
+        if self.memory_enabled is None and "memory_enabled" in self.__fields_set__:
+            _dict['memory_enabled'] = None
+
+        # set to None if web_search_allowed_sites (nullable) is None
+        # and __fields_set__ contains the field
+        if self.web_search_allowed_sites is None and "web_search_allowed_sites" in self.__fields_set__:
+            _dict['web_search_allowed_sites'] = None
+
+        # set to None if additional_models (nullable) is None
+        # and __fields_set__ contains the field
+        if self.additional_models is None and "additional_models" in self.__fields_set__:
+            _dict['additional_models'] = None
+
         return _dict
 
     @classmethod
@@ -89,7 +107,10 @@ class AgentSettings(BaseModel):
             "model": AgentModelSettings.from_dict(obj.get("model")) if obj.get("model") is not None else None,
             "system_prompt": obj.get("system_prompt"),
             "refine_query": obj.get("refine_query"),
-            "widget": AgentSettingsWidget.from_dict(obj.get("widget")) if obj.get("widget") is not None else None
+            "memory_enabled": obj.get("memory_enabled"),
+            "widget": AgentWidgetSettings.from_dict(obj.get("widget")) if obj.get("widget") is not None else None,
+            "web_search_allowed_sites": obj.get("web_search_allowed_sites"),
+            "additional_models": obj.get("additional_models")
         })
         return _obj
 

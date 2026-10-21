@@ -39,39 +39,41 @@ class TestCreateKnowledgebase201Response(unittest.TestCase):
         model = timeweb_cloud_api.models.create_knowledgebase201_response.CreateKnowledgebase201Response()  # noqa: E501
         if include_optional :
             return CreateKnowledgebase201Response(
-                knowledgebase = timeweb_cloud_api.models.knowledgebase.knowledgebase(
-                    id = 1, 
-                    name = Моя база знаний, 
-                    description = База знаний с документацией, 
-                    dbaas_id = 123, 
+                knowledge_base = timeweb_cloud_api.models.knowledgebase.knowledgebase(
+                    id = 5285, 
+                    name = Документация продукта, 
+                    description = Инструкции и FAQ для службы поддержки, 
+                    project_id = 2265605, 
+                    dbaas_id = 4212285, 
                     status = active, 
-                    last_sync = 2024-10-16T10:00:00.000Z, 
-                    total_tokens = 100000, 
-                    used_tokens = 5000, 
-                    remaining_tokens = 95000, 
-                    token_package_id = 1, 
-                    subscription_renewal_date = 2025-01-01T00:00:00.000Z, 
+                    last_sync = null, 
+                    total_tokens = 10000000, 
+                    used_tokens = 74520, 
+                    remaining_tokens = 9925480, 
+                    token_package_id = 111, 
+                    subscription_renewal_date = 2026-10-22T09:03:27.000Z, 
                     documents = null, 
-                    agents_ids = [1, 2, 3], 
-                    created_at = 2024-10-16T10:00:00.000Z, )
+                    agents_ids = [101, 102], 
+                    created_at = 2026-09-22T09:03:27.000Z, )
             )
         else :
             return CreateKnowledgebase201Response(
-                knowledgebase = timeweb_cloud_api.models.knowledgebase.knowledgebase(
-                    id = 1, 
-                    name = Моя база знаний, 
-                    description = База знаний с документацией, 
-                    dbaas_id = 123, 
+                knowledge_base = timeweb_cloud_api.models.knowledgebase.knowledgebase(
+                    id = 5285, 
+                    name = Документация продукта, 
+                    description = Инструкции и FAQ для службы поддержки, 
+                    project_id = 2265605, 
+                    dbaas_id = 4212285, 
                     status = active, 
-                    last_sync = 2024-10-16T10:00:00.000Z, 
-                    total_tokens = 100000, 
-                    used_tokens = 5000, 
-                    remaining_tokens = 95000, 
-                    token_package_id = 1, 
-                    subscription_renewal_date = 2025-01-01T00:00:00.000Z, 
+                    last_sync = null, 
+                    total_tokens = 10000000, 
+                    used_tokens = 74520, 
+                    remaining_tokens = 9925480, 
+                    token_package_id = 111, 
+                    subscription_renewal_date = 2026-10-22T09:03:27.000Z, 
                     documents = null, 
-                    agents_ids = [1, 2, 3], 
-                    created_at = 2024-10-16T10:00:00.000Z, ),
+                    agents_ids = [101, 102], 
+                    created_at = 2026-09-22T09:03:27.000Z, ),
         )
         """
 

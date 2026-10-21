@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**total** | **object** | Общее количество моделей | 
+**total** | **object** | Количество моделей | 
 
 ## Example
 

@@ -24,23 +24,24 @@ from pydantic import BaseModel, Field, validator
 
 class KnowledgebaseV2(BaseModel):
     """
-    База знаний (версия API v2)
+    База знаний (v2): вместо списка документов — их количество
     """
-    id: Optional[Any] = Field(..., description="Уникальный идентификатор базы знаний")
+    id: Optional[Any] = Field(..., description="ID базы знаний")
     name: Optional[Any] = Field(..., description="Название базы знаний")
-    description: Optional[Any] = Field(None, description="Описание базы знаний")
-    dbaas_id: Optional[Any] = Field(..., description="ID базы данных opensearch")
-    status: Optional[Any] = Field(..., description="Статус базы знаний")
-    last_sync: Optional[Any] = Field(None, description="Дата последней синхронизации")
-    total_tokens: Optional[Any] = Field(..., description="Всего токенов выделено")
-    used_tokens: Optional[Any] = Field(..., description="Использовано токенов")
-    remaining_tokens: Optional[Any] = Field(..., description="Осталось токенов")
-    token_package_id: Optional[Any] = Field(..., description="ID пакета токенов")
-    subscription_renewal_date: Optional[Any] = Field(..., description="Дата обновления подписки")
-    documents_count: Optional[Any] = Field(..., description="Общее количество документов в базе знаний")
-    agents_ids: Optional[Any] = Field(..., description="ID агентов, связанных с базой знаний")
-    created_at: Optional[Any] = Field(..., description="Дата создания базы знаний")
-    __properties = ["id", "name", "description", "dbaas_id", "status", "last_sync", "total_tokens", "used_tokens", "remaining_tokens", "token_package_id", "subscription_renewal_date", "documents_count", "agents_ids", "created_at"]
+    description: Optional[Any] = Field(..., description="Описание базы знаний")
+    project_id: Optional[Any] = Field(None, description="ID проекта, в котором находится база знаний. Поля нет, если проект не определён")
+    dbaas_id: Optional[Any] = Field(..., description="ID кластера базы данных OpenSearch, который создан для базы знаний в вашем аккаунте")
+    status: Optional[Any] = Field(..., description="Статус базы знаний: - `creating` — создаётся кластер базы данных, документы будут проиндексированы после перехода в `active` - `active` — база знаний работает - `blocked` — заблокирована: закончились токены или не удалось продлить подписку - `deleted` — удалена")
+    last_sync: Optional[Any] = Field(..., description="Дата и время последней синхронизации. `null`, если синхронизации не было")
+    total_tokens: Optional[Any] = Field(..., description="Количество токенов, доступных в текущем периоде подписки (пакет подписки и докупленные пакеты)")
+    used_tokens: Optional[Any] = Field(..., description="Количество израсходованных токенов")
+    remaining_tokens: Optional[Any] = Field(..., description="Количество оставшихся токенов")
+    token_package_id: Optional[Any] = Field(..., description="ID пакета токенов подписки базы знаний")
+    subscription_renewal_date: Optional[Any] = Field(..., description="Дата следующего продления подписки (списания стоимости пакета токенов)")
+    documents_count: Optional[Any] = Field(..., description="Количество документов в базе знаний")
+    agents_ids: Optional[Any] = Field(..., description="ID агентов, к которым привязана база знаний")
+    created_at: Optional[Any] = Field(..., description="Дата и время создания базы знаний")
+    __properties = ["id", "name", "description", "project_id", "dbaas_id", "status", "last_sync", "total_tokens", "used_tokens", "remaining_tokens", "token_package_id", "subscription_renewal_date", "documents_count", "agents_ids", "created_at"]
 
     @validator('status')
     def status_validate_enum(cls, value):
@@ -90,6 +91,11 @@ class KnowledgebaseV2(BaseModel):
         # and __fields_set__ contains the field
         if self.description is None and "description" in self.__fields_set__:
             _dict['description'] = None
+
+        # set to None if project_id (nullable) is None
+        # and __fields_set__ contains the field
+        if self.project_id is None and "project_id" in self.__fields_set__:
+            _dict['project_id'] = None
 
         # set to None if dbaas_id (nullable) is None
         # and __fields_set__ contains the field
@@ -161,6 +167,7 @@ class KnowledgebaseV2(BaseModel):
             "id": obj.get("id"),
             "name": obj.get("name"),
             "description": obj.get("description"),
+            "project_id": obj.get("project_id"),
             "dbaas_id": obj.get("dbaas_id"),
             "status": obj.get("status"),
             "last_sync": obj.get("last_sync"),

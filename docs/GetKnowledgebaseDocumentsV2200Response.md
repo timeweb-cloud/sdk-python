@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**knowledgebase_documents** | **object** | Список документов | 
+**knowledgebase_documents** | **object** | Документы | 
 **meta** | [**GetKnowledgebaseDocumentsV2200ResponseMeta**](GetKnowledgebaseDocumentsV2200ResponseMeta.md) |  | 
 
 ## Example

@@ -21,26 +21,29 @@ import json
 
 from typing import Any, Optional
 from pydantic import BaseModel, Field, validator
+from timeweb_cloud_api.models.model_batch import ModelBatch
 
 class ModelV3(BaseModel):
     """
-    Модель AI (v3). Идентификация и управляющие поля находятся на верхнем уровне, все сравнимые характеристики (цены, лимиты, возможности) — в словаре `parameter_values`
+    AI модель с характеристиками для сравнения (v3). Цены и характеристики — в `parameter_values`
     """
-    id: Optional[Any] = Field(..., description="Уникальный идентификатор модели")
-    provider_id: Optional[Any] = Field(..., description="ID провайдера, который предоставляет модель")
-    name: Optional[Any] = Field(..., description="Название модели")
-    public_name: Optional[Any] = Field(..., description="Публичное имя модели")
-    model_name: Optional[Any] = Field(..., description="Идентификатор модели, который передаётся в поле `model` тела запроса")
-    type: Optional[Any] = Field(..., description="Тип модели (llm — языковая модель, hosted-llm — self-hosted языковая модель, embedding — модель для эмбеддингов, image — генерация изображений, audio — работа с аудио, moderation — модерация контента)")
+    id: Optional[Any] = Field(..., description="ID модели")
+    provider_id: Optional[Any] = Field(..., description="ID провайдера модели")
+    name: Optional[Any] = Field(..., description="Семейство модели")
+    public_name: Optional[Any] = Field(..., description="Отображаемое название модели")
+    model_name: Optional[Any] = Field(..., description="Идентификатор модели с префиксом провайдера — передаётся в поле `model` запросов к AI Gateway")
+    type: Optional[Any] = Field(..., description="Тип модели: - `llm` — языковая модель - `hosted-llm` — языковая модель, размещённая в Timeweb Cloud - `embedding` — модель эмбеддингов - `image` — генерация изображений - `audio` — работа с аудио - `video` — генерация видео - `moderation` — модерация контента - `system-one` — служебная модель с собственным API")
     version: Optional[Any] = Field(..., description="Версия модели")
-    is_deprecated: Optional[Any] = Field(..., description="Признак, что модель устарела")
-    is_stopped: Optional[Any] = Field(..., description="Признак, что поддержка модели остановлена")
-    deprecation_date: Optional[Any] = Field(None, description="Дата отключения модели у провайдера. `null`, если отключение не запланировано")
+    is_deprecated: Optional[Any] = Field(..., description="Модель устарела и недоступна для выбора в новых агентах")
+    is_stopped: Optional[Any] = Field(..., description="Поддержка модели остановлена: запросы к ней не выполняются")
+    deprecation_date: Optional[Any] = Field(..., description="Дата отключения модели у провайдера. `null`, если отключение не запланировано")
     created_at: Optional[Any] = Field(..., description="Дата и время добавления модели")
-    updated_at: Optional[Any] = Field(..., description="Дата и время последнего обновления модели")
-    params_info: Optional[Any] = Field(None, description="Информация о доступных параметрах модели с их ограничениями. Ключ — название параметра, значение — его тип, ограничения и значение по умолчанию")
-    parameter_values: Optional[Any] = Field(..., description="Характеристики модели. Ключ — код характеристики, значение — число, строка, булево значение или массив строк.  Основные коды: - `cost_in` — цена за 1 входной токен в рублях - `cost_out` — цена за 1 выходной токен в рублях - `context_window` — размер контекстного окна в токенах - `max_output_tokens` — максимальное количество токенов в ответе - `is_reasoning` — поддержка режима рассуждений - `supports_function_calling` — поддержка function calling - `supported_input_modalities` — поддерживаемые входные модальности (например, `text`, `image`) - `supported_output_modalities` — поддерживаемые выходные модальности - `avg_speed` — средняя скорость генерации в токенах в секунду - `aa_intelligence_index`, `aa_coding_index`, `aa_agentic_index` — индексы качества Artificial Analysis - `release_date` — дата релиза модели")
-    __properties = ["id", "provider_id", "name", "public_name", "model_name", "type", "version", "is_deprecated", "is_stopped", "deprecation_date", "created_at", "updated_at", "params_info", "parameter_values"]
+    updated_at: Optional[Any] = Field(..., description="Дата и время последнего изменения модели")
+    params_info: Optional[Any] = Field(..., description="Параметры генерации, которые можно настроить у агента с этой моделью. Ключ — имя параметра (`temperature`, `top_p`, `max_tokens`, `reasoning_effort` и т.д.). `null`, если параметры не заданы")
+    parameter_values: Optional[Any] = Field(..., description="Характеристики модели. Ключ — `code` из справочника `GET /api/v3/cloud-ai/model-parameters`, значение — число, строка, булево значение или массив строк. Если значение неизвестно, ключа нет.  Основные коды: - `cost_in`, `cost_out` — цена 1 входного / выходного токена в рублях - `cost_cache_read`, `cost_cache_write` — цена 1 токена чтения / записи кэша промпта в рублях; ключа нет, если отдельной цены нет (тарифицируется по `cost_in`) - `pricing_unit` — единица тарификации: `token` (по умолчанию), `megapixel`, `credit` - `cost_per_image` — цена изображения базового размера (1 МП) в рублях - `credits_from`, `cost_per_second_from` — минимальная ставка в кредитах провайдера и цена от, в рублях, за секунду видео - `context_window`, `max_output_tokens` — размер контекста и максимум токенов в ответе - `is_reasoning`, `supports_function_calling` — поддержка рассуждений и вызова инструментов - `supported_input_modalities`, `supported_output_modalities` — входные и выходные модальности (`text`, `image`, ...) - `avg_speed` — средняя скорость генерации, токенов в секунду - `aa_intelligence_index`, `aa_coding_index`, `aa_agentic_index` — индексы Artificial Analysis - `release_date` — дата релиза (`YYYY-MM-DD`)")
+    price_tiers: Optional[Any] = Field(..., description="Ступени цены по размеру входного контекста, по возрастанию порога. Пустой массив — у модели одна цена при любом контексте")
+    batch: ModelBatch = Field(...)
+    __properties = ["id", "provider_id", "name", "public_name", "model_name", "type", "version", "is_deprecated", "is_stopped", "deprecation_date", "created_at", "updated_at", "params_info", "parameter_values", "price_tiers", "batch"]
 
     @validator('type')
     def type_validate_enum(cls, value):
@@ -48,8 +51,8 @@ class ModelV3(BaseModel):
         if value is None:
             return value
 
-        if value not in ('llm', 'hosted-llm', 'embedding', 'image', 'audio', 'moderation'):
-            raise ValueError("must be one of enum values ('llm', 'hosted-llm', 'embedding', 'image', 'audio', 'moderation')")
+        if value not in ('llm', 'hosted-llm', 'embedding', 'image', 'audio', 'video', 'moderation', 'system-one'):
+            raise ValueError("must be one of enum values ('llm', 'hosted-llm', 'embedding', 'image', 'audio', 'video', 'moderation', 'system-one')")
         return value
 
     class Config:
@@ -76,6 +79,9 @@ class ModelV3(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
+        # override the default output from pydantic by calling `to_dict()` of batch
+        if self.batch:
+            _dict['batch'] = self.batch.to_dict()
         # set to None if id (nullable) is None
         # and __fields_set__ contains the field
         if self.id is None and "id" in self.__fields_set__:
@@ -146,6 +152,11 @@ class ModelV3(BaseModel):
         if self.parameter_values is None and "parameter_values" in self.__fields_set__:
             _dict['parameter_values'] = None
 
+        # set to None if price_tiers (nullable) is None
+        # and __fields_set__ contains the field
+        if self.price_tiers is None and "price_tiers" in self.__fields_set__:
+            _dict['price_tiers'] = None
+
         return _dict
 
     @classmethod
@@ -170,7 +181,8 @@ class ModelV3(BaseModel):
             "deprecation_date": obj.get("deprecation_date"),
             "created_at": obj.get("created_at"),
             "updated_at": obj.get("updated_at"),
-            "params_info": obj.get("params_info"),
+            "price_tiers": obj.get("price_tiers"),
+            "batch": ModelBatch.from_dict(obj.get("batch")) if obj.get("batch") is not None else None
         })
         return _obj
 

@@ -1,18 +1,21 @@
 # Document
 
-Документ в базе знаний
+Документ базы знаний
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **object** | Уникальный идентификатор документа | 
+**id** | **object** | ID документа | 
 **name** | **object** | Название документа | 
-**size** | **object** | Размер документа в байтах | 
-**status** | **object** | Статус индексации документа | 
-**indexing_version** | **object** | Версия индексации | [optional] 
-**status_info** | [**DocumentStatusInfo**](DocumentStatusInfo.md) |  | [optional] 
-**created_at** | **object** | Дата создания документа | 
-**updated_at** | **object** | Дата обновления документа | 
+**size** | **object** | Размер в байтах. Для документа по ссылке — значение заголовка &#x60;Content-Length&#x60; на момент добавления, &#x60;0&#x60;, если сервер его не вернул | 
+**status** | **object** | Статус индексации: - &#x60;new&#x60; — документ добавлен и ждёт индексации - &#x60;indexing&#x60; — индексируется - &#x60;indexed&#x60; — проиндексирован, используется в поиске - &#x60;error&#x60; — ошибка индексации, подробности в &#x60;status_info&#x60; | 
+**type** | **object** | Тип документа: &#x60;file&#x60; — загруженный файл, &#x60;link&#x60; — документ по ссылке | 
+**indexing_schedule** | [**IndexingSchedule**](IndexingSchedule.md) |  | 
+**indexing_version** | **object** | Версия индексации документа | 
+**status_info** | [**DocumentStatusInfo**](DocumentStatusInfo.md) |  | 
+**link** | **object** | URL документа. Только для документов типа &#x60;link&#x60; | [optional] 
+**created_at** | **object** | Дата и время добавления документа | 
+**updated_at** | **object** | Дата и время последнего изменения документа | 
 
 ## Example
 

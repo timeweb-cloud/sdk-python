@@ -24,14 +24,15 @@ from pydantic import BaseModel, Field
 
 class AgentModelSettings(BaseModel):
     """
-    Настройки модели агента
+    Параметры модели агента. Допустимые параметры и их границы зависят от модели (см. параметры модели в разделе «AI Модели»): параметры, которые модель не поддерживает, отбрасываются при сохранении, а значения вне допустимых границ отклоняются с ошибкой 400.
     """
-    temperature: Optional[Any] = Field(None, description="Контролирует случайность вывода модели.")
-    top_p: Optional[Any] = Field(None, description="Контролирует разнообразие вывода модели.")
-    max_tokens: Optional[Any] = Field(None, description="Максимальное количество токенов в выводе.")
-    frequency_penalty: Optional[Any] = Field(None, description="Положительные значения штрафуют новые токены на основе их существующей частоты.")
-    presence_penalty: Optional[Any] = Field(None, description="Положительные значения штрафуют новые токены на основе того, встречались ли они в тексте ранее.")
-    __properties = ["temperature", "top_p", "max_tokens", "frequency_penalty", "presence_penalty"]
+    temperature: Optional[Any] = Field(None, description="Температура: чем выше, тем случайнее ответы модели.")
+    top_p: Optional[Any] = Field(None, description="Nucleus sampling: доля вероятностной массы, из которой выбираются токены.")
+    max_tokens: Optional[Any] = Field(None, description="Максимальное количество токенов в ответе модели.")
+    frequency_penalty: Optional[Any] = Field(None, description="Штраф за частоту: положительные значения снижают повторы уже использованных токенов.")
+    presence_penalty: Optional[Any] = Field(None, description="Штраф за присутствие: положительные значения поощряют новые темы.")
+    enable_thinking: Optional[Any] = Field(None, description="Включает режим рассуждений (thinking) для моделей, которые его поддерживают.")
+    __properties = ["temperature", "top_p", "max_tokens", "frequency_penalty", "presence_penalty", "enable_thinking"]
 
     class Config:
         """Pydantic configuration"""
@@ -82,6 +83,11 @@ class AgentModelSettings(BaseModel):
         if self.presence_penalty is None and "presence_penalty" in self.__fields_set__:
             _dict['presence_penalty'] = None
 
+        # set to None if enable_thinking (nullable) is None
+        # and __fields_set__ contains the field
+        if self.enable_thinking is None and "enable_thinking" in self.__fields_set__:
+            _dict['enable_thinking'] = None
+
         return _dict
 
     @classmethod
@@ -98,7 +104,8 @@ class AgentModelSettings(BaseModel):
             "top_p": obj.get("top_p"),
             "max_tokens": obj.get("max_tokens"),
             "frequency_penalty": obj.get("frequency_penalty"),
-            "presence_penalty": obj.get("presence_penalty")
+            "presence_penalty": obj.get("presence_penalty"),
+            "enable_thinking": obj.get("enable_thinking")
         })
         return _obj
 

@@ -39,15 +39,15 @@ class TestGetKnowledgebasesV2200Response(unittest.TestCase):
         model = timeweb_cloud_api.models.get_knowledgebases_v2200_response.GetKnowledgebasesV2200Response()  # noqa: E501
         if include_optional :
             return GetKnowledgebasesV2200Response(
-                knowledgebases = None, 
-                meta = timeweb_cloud_api.models.get_knowledgebases_v2_200_response_meta.getKnowledgebasesV2_200_response_meta(
-                    total = 3, )
+                knowledge_bases = None, 
+                meta = timeweb_cloud_api.models.get_knowledgebases_v3_200_response_meta.getKnowledgebasesV3_200_response_meta(
+                    total = 1, )
             )
         else :
             return GetKnowledgebasesV2200Response(
-                knowledgebases = None,
-                meta = timeweb_cloud_api.models.get_knowledgebases_v2_200_response_meta.getKnowledgebasesV2_200_response_meta(
-                    total = 3, ),
+                knowledge_bases = None,
+                meta = timeweb_cloud_api.models.get_knowledgebases_v3_200_response_meta.getKnowledgebasesV3_200_response_meta(
+                    total = 1, ),
         )
         """
 

@@ -28,10 +28,10 @@ class CreateKnowledgebase(BaseModel):
     """
     name: Optional[Any] = Field(..., description="Название базы знаний")
     description: Optional[Any] = Field(None, description="Описание базы знаний")
-    dbaas_preset_id: Optional[Any] = Field(..., description="ID пресета базы данных")
-    network_id: Optional[Any] = Field(..., description="ID сети")
-    token_package_id: Optional[Any] = Field(..., description="ID пакета токенов")
-    project_id: Optional[Any] = Field(None, description="ID проекта")
+    dbaas_preset_id: Optional[Any] = Field(..., description="ID тарифа кластера OpenSearch, который будет создан для базы знаний. Список тарифов баз данных — `GET /api/v2/presets/dbs`")
+    network_id: Optional[Any] = Field(..., description="ID приватной сети (VPC), в которой будет создан кластер")
+    token_package_id: Optional[Any] = Field(..., description="ID пакета токенов подписки. Подходят только базовые пакеты (`package_type: base`) из `GET /api/v1/cloud-ai/token-packages/knowledge-bases`")
+    project_id: Optional[Any] = Field(None, description="ID проекта, в который нужно добавить базу знаний")
     __properties = ["name", "description", "dbaas_preset_id", "network_id", "token_package_id", "project_id"]
 
     class Config:

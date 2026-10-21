@@ -39,19 +39,19 @@ class TestCreateKnowledgebase(unittest.TestCase):
         model = timeweb_cloud_api.models.create_knowledgebase.CreateKnowledgebase()  # noqa: E501
         if include_optional :
             return CreateKnowledgebase(
-                name = Моя база знаний, 
-                description = База знаний с документацией, 
-                dbaas_preset_id = 1, 
-                network_id = net_12345, 
-                token_package_id = 1, 
-                project_id = 1
+                name = Документация продукта, 
+                description = Инструкции и FAQ для службы поддержки, 
+                dbaas_preset_id = 2449, 
+                network_id = network-1234567890abcdef, 
+                token_package_id = 111, 
+                project_id = 2265605
             )
         else :
             return CreateKnowledgebase(
-                name = Моя база знаний,
-                dbaas_preset_id = 1,
-                network_id = net_12345,
-                token_package_id = 1,
+                name = Документация продукта,
+                dbaas_preset_id = 2449,
+                network_id = network-1234567890abcdef,
+                token_package_id = 111,
         )
         """
 

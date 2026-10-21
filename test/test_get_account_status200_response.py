@@ -40,6 +40,7 @@ class TestGetAccountStatus200Response(unittest.TestCase):
         if include_optional :
             return GetAccountStatus200Response(
                 status = timeweb_cloud_api.models.status.status(
+                    login = ab123456, 
                     is_blocked = false, 
                     is_permanent_blocked = false, 
                     is_send_bill_letters = false, 
@@ -52,6 +53,7 @@ class TestGetAccountStatus200Response(unittest.TestCase):
         else :
             return GetAccountStatus200Response(
                 status = timeweb_cloud_api.models.status.status(
+                    login = ab123456, 
                     is_blocked = false, 
                     is_permanent_blocked = false, 
                     is_send_bill_letters = false, 

@@ -41,13 +41,13 @@ class TestGetAgents200Response(unittest.TestCase):
             return GetAgents200Response(
                 agents = None, 
                 meta = timeweb_cloud_api.models.get_agents_200_response_meta.getAgents_200_response_meta(
-                    total = 5, )
+                    total = 1, )
             )
         else :
             return GetAgents200Response(
                 agents = None,
                 meta = timeweb_cloud_api.models.get_agents_200_response_meta.getAgents_200_response_meta(
-                    total = 5, ),
+                    total = 1, ),
         )
         """
 

@@ -1,17 +1,18 @@
 # CreateAgent
 
-Данные для создания AI агента
+Данные для создания AI агента (устаревший метод API v1)
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **object** | Название агента | 
 **description** | **object** | Описание агента | [optional] 
-**access_type** | **object** | Тип доступа к агенту | 
-**model_id** | **object** | ID модели | 
-**token_package_id** | **object** | ID пакета токенов | 
+**access_type** | **object** | Тип доступа: &#x60;public&#x60; — агент отвечает анонимным посетителям сайта через виджет; &#x60;private&#x60; — только по токену аккаунта. | 
+**model_id** | **object** | ID основной модели агента | 
 **settings** | [**AgentSettings**](AgentSettings.md) |  | 
-**project_id** | **object** | ID проекта | [optional] 
+**project_id** | **object** | ID проекта, в который нужно добавить агента. По умолчанию — проект по умолчанию. | [optional] 
+**is_web_search_enabled** | **object** | Включить веб-поиск | [optional] 
+**token_package_id** | **object** | ID пакета токенов. Обязателен для совместимости, но не учитывается: агент всегда создаётся с поресурсной оплатой. | 
 
 ## Example
 

@@ -41,13 +41,13 @@ class TestGetModels200Response(unittest.TestCase):
             return GetModels200Response(
                 models = None, 
                 meta = timeweb_cloud_api.models.get_models_v3_200_response_meta.getModelsV3_200_response_meta(
-                    total = 10, )
+                    total = 163, )
             )
         else :
             return GetModels200Response(
                 models = None,
                 meta = timeweb_cloud_api.models.get_models_v3_200_response_meta.getModelsV3_200_response_meta(
-                    total = 10, ),
+                    total = 163, ),
         )
         """
 
