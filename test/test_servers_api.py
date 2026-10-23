@@ -78,6 +78,13 @@ class TestServersApi(unittest.TestCase):
         """
         pass
 
+    def test_create_server_disk_backup_download_url(self):
+        """Test case for create_server_disk_backup_download_url
+
+        Получение ссылки для скачивания бэкапа диска сервера  # noqa: E501
+        """
+        pass
+
     def test_delete_server(self):
         """Test case for delete_server
 

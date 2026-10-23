@@ -707,6 +707,7 @@ Class | Method | HTTP request | Description
 *ServersApi* | [**create_server**](docs/ServersApi.md#create_server) | **POST** /api/v1/servers | Создание сервера
 *ServersApi* | [**create_server_disk**](docs/ServersApi.md#create_server_disk) | **POST** /api/v1/servers/{server_id}/disks | Создание диска сервера
 *ServersApi* | [**create_server_disk_backup**](docs/ServersApi.md#create_server_disk_backup) | **POST** /api/v1/servers/{server_id}/disks/{disk_id}/backups | Создание бэкапа диска сервера
+*ServersApi* | [**create_server_disk_backup_download_url**](docs/ServersApi.md#create_server_disk_backup_download_url) | **POST** /api/v1/servers/{server_id}/disks/{disk_id}/backups/{backup_id}/download-url | Получение ссылки для скачивания бэкапа диска сервера
 *ServersApi* | [**delete_server**](docs/ServersApi.md#delete_server) | **DELETE** /api/v1/servers/{server_id} | Удаление сервера
 *ServersApi* | [**delete_server_disk**](docs/ServersApi.md#delete_server_disk) | **DELETE** /api/v1/servers/{server_id}/disks/{disk_id} | Удаление диска сервера
 *ServersApi* | [**delete_server_disk_backup**](docs/ServersApi.md#delete_server_disk_backup) | **DELETE** /api/v1/servers/{server_id}/disks/{disk_id}/backups/{backup_id} | Удаление бэкапа диска сервера
@@ -1009,6 +1010,7 @@ Class | Method | HTTP request | Description
  - [CreateServerConfiguration](docs/CreateServerConfiguration.md)
  - [CreateServerDisk201Response](docs/CreateServerDisk201Response.md)
  - [CreateServerDiskBackup201Response](docs/CreateServerDiskBackup201Response.md)
+ - [CreateServerDiskBackupDownloadUrl201Response](docs/CreateServerDiskBackupDownloadUrl201Response.md)
  - [CreateServerDiskBackupRequest](docs/CreateServerDiskBackupRequest.md)
  - [CreateServerDiskRequest](docs/CreateServerDiskRequest.md)
  - [CreateServerNetwork](docs/CreateServerNetwork.md)
@@ -1439,6 +1441,8 @@ Class | Method | HTTP request | Description
  - [SendAiSolutionMessage](docs/SendAiSolutionMessage.md)
  - [SendAiSolutionMessage200Response](docs/SendAiSolutionMessage200Response.md)
  - [ServerBackup](docs/ServerBackup.md)
+ - [ServerBackupDownloadUrl](docs/ServerBackupDownloadUrl.md)
+ - [ServerBackupDownloadUrlRequest](docs/ServerBackupDownloadUrlRequest.md)
  - [ServerDisk](docs/ServerDisk.md)
  - [ServerIp](docs/ServerIp.md)
  - [ServerLog](docs/ServerLog.md)

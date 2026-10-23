@@ -11,6 +11,7 @@ Method | HTTP request | Description
 [**create_server**](ServersApi.md#create_server) | **POST** /api/v1/servers | Создание сервера
 [**create_server_disk**](ServersApi.md#create_server_disk) | **POST** /api/v1/servers/{server_id}/disks | Создание диска сервера
 [**create_server_disk_backup**](ServersApi.md#create_server_disk_backup) | **POST** /api/v1/servers/{server_id}/disks/{disk_id}/backups | Создание бэкапа диска сервера
+[**create_server_disk_backup_download_url**](ServersApi.md#create_server_disk_backup_download_url) | **POST** /api/v1/servers/{server_id}/disks/{disk_id}/backups/{backup_id}/download-url | Получение ссылки для скачивания бэкапа диска сервера
 [**delete_server**](ServersApi.md#delete_server) | **DELETE** /api/v1/servers/{server_id} | Удаление сервера
 [**delete_server_disk**](ServersApi.md#delete_server_disk) | **DELETE** /api/v1/servers/{server_id}/disks/{disk_id} | Удаление диска сервера
 [**delete_server_disk_backup**](ServersApi.md#delete_server_disk_backup) | **DELETE** /api/v1/servers/{server_id}/disks/{disk_id}/backups/{backup_id} | Удаление бэкапа диска сервера
@@ -631,6 +632,96 @@ Name | Type | Description  | Notes
 **401** |  |  -  |
 **403** |  |  -  |
 **404** |  |  -  |
+**429** |  |  -  |
+**500** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **create_server_disk_backup_download_url**
+> CreateServerDiskBackupDownloadUrl201Response create_server_disk_backup_download_url(server_id, disk_id, backup_id, server_backup_download_url_request)
+
+Получение ссылки для скачивания бэкапа диска сервера
+
+Чтобы получить ссылку для скачивания бэкапа диска сервера, отправьте POST-запрос на `/api/v1/servers/{server_id}/disks/{disk_id}/backups/{backup_id}/download-url`.   Скачивание бэкапов доступно для серверов в локациях `ru-1` (Санкт-Петербург) и `ru-3` (Москва). Для серверов в других локациях метод вернет ошибку со статусом `400`.   Ссылка действует 7 дней. Скачать бэкап по ней может любой, у кого она есть, поэтому не передавайте ее третьим лицам.   Тело ответа будет представлять собой объект JSON с ключом `backup_url`.
+
+### Example
+
+* Bearer (JWT) Authentication (Bearer):
+```python
+import time
+import os
+import timeweb_cloud_api
+from timeweb_cloud_api.models.create_server_disk_backup_download_url201_response import CreateServerDiskBackupDownloadUrl201Response
+from timeweb_cloud_api.models.server_backup_download_url_request import ServerBackupDownloadUrlRequest
+from timeweb_cloud_api.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.timeweb.cloud
+# See configuration.py for a list of all supported configuration parameters.
+configuration = timeweb_cloud_api.Configuration(
+    host = "https://api.timeweb.cloud"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): Bearer
+configuration = timeweb_cloud_api.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = timeweb_cloud_api.ServersApi(api_client)
+    server_id = 1051 # object | ID облачного сервера.
+    disk_id = 1051 # object | ID диска сервера.
+    backup_id = 1051 # object | ID бэкапа сервера.
+    server_backup_download_url_request = timeweb_cloud_api.ServerBackupDownloadUrlRequest() # ServerBackupDownloadUrlRequest | 
+
+    try:
+        # Получение ссылки для скачивания бэкапа диска сервера
+        api_response = api_instance.create_server_disk_backup_download_url(server_id, disk_id, backup_id, server_backup_download_url_request)
+        print("The response of ServersApi->create_server_disk_backup_download_url:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ServersApi->create_server_disk_backup_download_url: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **server_id** | [**object**](.md)| ID облачного сервера. | 
+ **disk_id** | [**object**](.md)| ID диска сервера. | 
+ **backup_id** | [**object**](.md)| ID бэкапа сервера. | 
+ **server_backup_download_url_request** | [**ServerBackupDownloadUrlRequest**](ServerBackupDownloadUrlRequest.md)|  | 
+
+### Return type
+
+[**CreateServerDiskBackupDownloadUrl201Response**](CreateServerDiskBackupDownloadUrl201Response.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | Ответ будет представлять собой объект JSON с ключом &#x60;backup_url&#x60;. |  -  |
+**400** |  |  -  |
+**401** |  |  -  |
+**403** |  |  -  |
+**404** |  |  -  |
+**409** |  |  -  |
 **429** |  |  -  |
 **500** |  |  -  |
 

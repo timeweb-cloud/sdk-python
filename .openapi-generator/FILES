@@ -270,6 +270,7 @@ docs/CreateServer201Response.md
 docs/CreateServerConfiguration.md
 docs/CreateServerDisk201Response.md
 docs/CreateServerDiskBackup201Response.md
+docs/CreateServerDiskBackupDownloadUrl201Response.md
 docs/CreateServerDiskBackupRequest.md
 docs/CreateServerDiskRequest.md
 docs/CreateServerNetwork.md
@@ -717,6 +718,8 @@ docs/SchemasPresetsResponse.md
 docs/SendAiSolutionMessage.md
 docs/SendAiSolutionMessage200Response.md
 docs/ServerBackup.md
+docs/ServerBackupDownloadUrl.md
+docs/ServerBackupDownloadUrlRequest.md
 docs/ServerDisk.md
 docs/ServerIp.md
 docs/ServerLog.md
@@ -1132,6 +1135,7 @@ test/test_create_server201_response.py
 test/test_create_server_configuration.py
 test/test_create_server_disk201_response.py
 test/test_create_server_disk_backup201_response.py
+test/test_create_server_disk_backup_download_url201_response.py
 test/test_create_server_disk_backup_request.py
 test/test_create_server_disk_request.py
 test/test_create_server_network.py
@@ -1578,6 +1582,8 @@ test/test_schemas_presets_response.py
 test/test_send_ai_solution_message.py
 test/test_send_ai_solution_message200_response.py
 test/test_server_backup.py
+test/test_server_backup_download_url.py
+test/test_server_backup_download_url_request.py
 test/test_server_disk.py
 test/test_server_ip.py
 test/test_server_log.py
@@ -2013,6 +2019,7 @@ timeweb_cloud_api/models/create_server201_response.py
 timeweb_cloud_api/models/create_server_configuration.py
 timeweb_cloud_api/models/create_server_disk201_response.py
 timeweb_cloud_api/models/create_server_disk_backup201_response.py
+timeweb_cloud_api/models/create_server_disk_backup_download_url201_response.py
 timeweb_cloud_api/models/create_server_disk_backup_request.py
 timeweb_cloud_api/models/create_server_disk_request.py
 timeweb_cloud_api/models/create_server_network.py
@@ -2443,6 +2450,8 @@ timeweb_cloud_api/models/schemas_presets_response.py
 timeweb_cloud_api/models/send_ai_solution_message.py
 timeweb_cloud_api/models/send_ai_solution_message200_response.py
 timeweb_cloud_api/models/server_backup.py
+timeweb_cloud_api/models/server_backup_download_url.py
+timeweb_cloud_api/models/server_backup_download_url_request.py
 timeweb_cloud_api/models/server_disk.py
 timeweb_cloud_api/models/server_ip.py
 timeweb_cloud_api/models/server_log.py
