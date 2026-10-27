@@ -6,7 +6,6 @@
 README.md
 docs/AIAgentIntegrationsApi.md
 docs/AIAgentSkillsApi.md
-docs/AIAgentToolsApi.md
 docs/AIAgentsApi.md
 docs/AIGatewayApi.md
 docs/AIGatewayInferenceApi.md
@@ -915,7 +914,6 @@ test/test_agent_v3.py
 test/test_agent_widget_settings.py
 test/test_ai_agent_integrations_api.py
 test/test_ai_agent_skills_api.py
-test/test_ai_agent_tools_api.py
 test/test_ai_agents_api.py
 test/test_ai_gateway_api.py
 test/test_ai_gateway_batch.py
@@ -1732,7 +1730,6 @@ timeweb_cloud_api/api/__init__.py
 timeweb_cloud_api/api/account_api.py
 timeweb_cloud_api/api/ai_agent_integrations_api.py
 timeweb_cloud_api/api/ai_agent_skills_api.py
-timeweb_cloud_api/api/ai_agent_tools_api.py
 timeweb_cloud_api/api/ai_agents_api.py
 timeweb_cloud_api/api/ai_gateway_api.py
 timeweb_cloud_api/api/ai_gateway_inference_api.py

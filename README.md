@@ -278,20 +278,6 @@ Class | Method | HTTP request | Description
 *AIAgentSkillsApi* | [**sync_agent_skill_versions_for_agent**](docs/AIAgentSkillsApi.md#sync_agent_skill_versions_for_agent) | **POST** /api/v1/cloud-ai/agents/{agent_id}/skills/sync-versions | Перевод всех навыков агента на текущие версии
 *AIAgentSkillsApi* | [**update_agent_skill**](docs/AIAgentSkillsApi.md#update_agent_skill) | **PATCH** /api/v1/cloud-ai/skills/{skill_id} | Изменение навыка
 *AIAgentSkillsApi* | [**update_agent_skill_version_for_agent**](docs/AIAgentSkillsApi.md#update_agent_skill_version_for_agent) | **POST** /api/v1/cloud-ai/agents/{agent_id}/skills/{skill_id}/update-version | Перевод агента на текущую версию навыка
-*AIAgentToolsApi* | [**connect_agent_tool_to_agent**](docs/AIAgentToolsApi.md#connect_agent_tool_to_agent) | **POST** /api/v1/cloud-ai/agents/{agent_id}/tools | Подключение MCP-инструмента к агенту
-*AIAgentToolsApi* | [**create_agent_tool**](docs/AIAgentToolsApi.md#create_agent_tool) | **POST** /api/v1/cloud-ai/tools | Подключение собственного MCP-сервера
-*AIAgentToolsApi* | [**delete_agent_tool**](docs/AIAgentToolsApi.md#delete_agent_tool) | **DELETE** /api/v1/cloud-ai/tools/{id} | Удаление MCP-инструмента
-*AIAgentToolsApi* | [**disconnect_agent_tool_from_agent**](docs/AIAgentToolsApi.md#disconnect_agent_tool_from_agent) | **DELETE** /api/v1/cloud-ai/agents/{agent_id}/tools/{tool_id} | Отключение MCP-инструмента от агента
-*AIAgentToolsApi* | [**get_agent_tool**](docs/AIAgentToolsApi.md#get_agent_tool) | **GET** /api/v1/cloud-ai/tools/{id} | Получение MCP-инструмента
-*AIAgentToolsApi* | [**get_agent_tool_o_auth2_authorize_url**](docs/AIAgentToolsApi.md#get_agent_tool_o_auth2_authorize_url) | **GET** /api/v1/cloud-ai/tools/oauth2/authorize-url/{tool_id} | Получение ссылки на OAuth2-авторизацию инструмента
-*AIAgentToolsApi* | [**get_agent_tool_template_prices**](docs/AIAgentToolsApi.md#get_agent_tool_template_prices) | **GET** /api/v1/cloud-ai/tools/templates/prices | Получение цен системных инструментов
-*AIAgentToolsApi* | [**get_agent_tool_templates**](docs/AIAgentToolsApi.md#get_agent_tool_templates) | **GET** /api/v1/cloud-ai/tools/templates/marketplace | Получение шаблонов MCP-инструментов из маркетплейса
-*AIAgentToolsApi* | [**get_agent_tools**](docs/AIAgentToolsApi.md#get_agent_tools) | **GET** /api/v1/cloud-ai/tools | Получение списка MCP-инструментов
-*AIAgentToolsApi* | [**get_agent_tools_by_agent**](docs/AIAgentToolsApi.md#get_agent_tools_by_agent) | **GET** /api/v1/cloud-ai/agents/{agent_id}/tools | Получение MCP-инструментов агента
-*AIAgentToolsApi* | [**install_agent_tool_from_template**](docs/AIAgentToolsApi.md#install_agent_tool_from_template) | **POST** /api/v1/cloud-ai/tools/install | Установка MCP-инструмента из маркетплейса
-*AIAgentToolsApi* | [**refresh_agent_tool_methods**](docs/AIAgentToolsApi.md#refresh_agent_tool_methods) | **POST** /api/v1/cloud-ai/tools/{id}/refresh-methods | Обновление списка методов MCP-инструмента
-*AIAgentToolsApi* | [**update_agent_tool**](docs/AIAgentToolsApi.md#update_agent_tool) | **PUT** /api/v1/cloud-ai/tools/{id} | Изменение MCP-инструмента
-*AIAgentToolsApi* | [**update_agent_tool_connection**](docs/AIAgentToolsApi.md#update_agent_tool_connection) | **PUT** /api/v1/cloud-ai/agents/{agent_id}/tools/{tool_id} | Изменение разрешённых методов MCP-инструмента у агента
 *AIAgentsApi* | [**add_additional_token_package**](docs/AIAgentsApi.md#add_additional_token_package) | **POST** /api/v1/cloud-ai/agents/{id}/add-additional-token-package | Добавление дополнительного пакета токенов
 *AIAgentsApi* | [**change_agent_model**](docs/AIAgentsApi.md#change_agent_model) | **PATCH** /api/v1/cloud-ai/agents/{id}/model | Смена модели AI агента
 *AIAgentsApi* | [**create_agent**](docs/AIAgentsApi.md#create_agent) | **POST** /api/v1/cloud-ai/agents | Создание AI агента
@@ -600,12 +586,26 @@ Class | Method | HTTP request | Description
 *KubernetesApi* | [**update_cluster**](docs/KubernetesApi.md#update_cluster) | **PATCH** /api/v1/k8s/clusters/{cluster_id} | Обновление информации о кластере
 *KubernetesApi* | [**update_cluster_version**](docs/KubernetesApi.md#update_cluster_version) | **PATCH** /api/v1/k8s/clusters/{cluster_id}/versions/update | Обновление версии кластера
 *LocationsApi* | [**get_locations**](docs/LocationsApi.md#get_locations) | **GET** /api/v2/locations | Получение списка локаций
+*MCPApi* | [**connect_agent_tool_to_agent**](docs/MCPApi.md#connect_agent_tool_to_agent) | **POST** /api/v1/cloud-ai/agents/{agent_id}/tools | Подключение MCP-инструмента к агенту
+*MCPApi* | [**create_agent_tool**](docs/MCPApi.md#create_agent_tool) | **POST** /api/v1/cloud-ai/tools | Подключение собственного MCP-сервера
+*MCPApi* | [**delete_agent_tool**](docs/MCPApi.md#delete_agent_tool) | **DELETE** /api/v1/cloud-ai/tools/{id} | Удаление MCP-инструмента
 *MCPApi* | [**delete_mcp_search_session**](docs/MCPApi.md#delete_mcp_search_session) | **DELETE** /api/v1/mcp/search | Завершение сессии сервера MCP с поиском инструментов
 *MCPApi* | [**delete_mcp_session**](docs/MCPApi.md#delete_mcp_session) | **DELETE** /api/v1/mcp | Завершение сессии сервера MCP
+*MCPApi* | [**disconnect_agent_tool_from_agent**](docs/MCPApi.md#disconnect_agent_tool_from_agent) | **DELETE** /api/v1/cloud-ai/agents/{agent_id}/tools/{tool_id} | Отключение MCP-инструмента от агента
+*MCPApi* | [**get_agent_tool**](docs/MCPApi.md#get_agent_tool) | **GET** /api/v1/cloud-ai/tools/{id} | Получение MCP-инструмента
+*MCPApi* | [**get_agent_tool_o_auth2_authorize_url**](docs/MCPApi.md#get_agent_tool_o_auth2_authorize_url) | **GET** /api/v1/cloud-ai/tools/oauth2/authorize-url/{tool_id} | Получение ссылки на OAuth2-авторизацию инструмента
+*MCPApi* | [**get_agent_tool_template_prices**](docs/MCPApi.md#get_agent_tool_template_prices) | **GET** /api/v1/cloud-ai/tools/templates/prices | Получение цен системных инструментов
+*MCPApi* | [**get_agent_tool_templates**](docs/MCPApi.md#get_agent_tool_templates) | **GET** /api/v1/cloud-ai/tools/templates/marketplace | Получение шаблонов MCP-инструментов из маркетплейса
+*MCPApi* | [**get_agent_tools**](docs/MCPApi.md#get_agent_tools) | **GET** /api/v1/cloud-ai/tools | Получение списка MCP-инструментов
+*MCPApi* | [**get_agent_tools_by_agent**](docs/MCPApi.md#get_agent_tools_by_agent) | **GET** /api/v1/cloud-ai/agents/{agent_id}/tools | Получение MCP-инструментов агента
+*MCPApi* | [**install_agent_tool_from_template**](docs/MCPApi.md#install_agent_tool_from_template) | **POST** /api/v1/cloud-ai/tools/install | Установка MCP-инструмента из маркетплейса
 *MCPApi* | [**open_mcp_search_stream**](docs/MCPApi.md#open_mcp_search_stream) | **GET** /api/v1/mcp/search | Открытие потока событий сервера MCP с поиском инструментов
 *MCPApi* | [**open_mcp_stream**](docs/MCPApi.md#open_mcp_stream) | **GET** /api/v1/mcp | Открытие потока событий сервера MCP
+*MCPApi* | [**refresh_agent_tool_methods**](docs/MCPApi.md#refresh_agent_tool_methods) | **POST** /api/v1/cloud-ai/tools/{id}/refresh-methods | Обновление списка методов MCP-инструмента
 *MCPApi* | [**send_mcp_message**](docs/MCPApi.md#send_mcp_message) | **POST** /api/v1/mcp | Отправка JSON-RPC-сообщения серверу MCP
 *MCPApi* | [**send_mcp_search_message**](docs/MCPApi.md#send_mcp_search_message) | **POST** /api/v1/mcp/search | Отправка JSON-RPC-сообщения серверу MCP с поиском инструментов
+*MCPApi* | [**update_agent_tool**](docs/MCPApi.md#update_agent_tool) | **PUT** /api/v1/cloud-ai/tools/{id} | Изменение MCP-инструмента
+*MCPApi* | [**update_agent_tool_connection**](docs/MCPApi.md#update_agent_tool_connection) | **PUT** /api/v1/cloud-ai/agents/{agent_id}/tools/{tool_id} | Изменение разрешённых методов MCP-инструмента у агента
 *MailApi* | [**create_domain_mailbox**](docs/MailApi.md#create_domain_mailbox) | **POST** /api/v1/mail/domains/{domain} | Создание почтового ящика
 *MailApi* | [**create_domain_mailbox_v2**](docs/MailApi.md#create_domain_mailbox_v2) | **POST** /api/v2/mail/domains/{domain} | Создание почтового ящика
 *MailApi* | [**create_multiple_domain_mailboxes**](docs/MailApi.md#create_multiple_domain_mailboxes) | **POST** /api/v1/mail/domains/{domain}/batch | Множественное создание почтовых ящиков

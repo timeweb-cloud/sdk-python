@@ -20,7 +20,6 @@ __version__ = "1.0.0"
 # import apis into sdk package
 from timeweb_cloud_api.api.ai_agent_integrations_api import AIAgentIntegrationsApi
 from timeweb_cloud_api.api.ai_agent_skills_api import AIAgentSkillsApi
-from timeweb_cloud_api.api.ai_agent_tools_api import AIAgentToolsApi
 from timeweb_cloud_api.api.ai_agents_api import AIAgentsApi
 from timeweb_cloud_api.api.ai_gateway_api import AIGatewayApi
 from timeweb_cloud_api.api.ai_gateway_inference_api import AIGatewayInferenceApi

@@ -29,6 +29,27 @@ class TestMCPApi(unittest.TestCase):
     def tearDown(self):
         pass
 
+    def test_connect_agent_tool_to_agent(self):
+        """Test case for connect_agent_tool_to_agent
+
+        Подключение MCP-инструмента к агенту  # noqa: E501
+        """
+        pass
+
+    def test_create_agent_tool(self):
+        """Test case for create_agent_tool
+
+        Подключение собственного MCP-сервера  # noqa: E501
+        """
+        pass
+
+    def test_delete_agent_tool(self):
+        """Test case for delete_agent_tool
+
+        Удаление MCP-инструмента  # noqa: E501
+        """
+        pass
+
     def test_delete_mcp_search_session(self):
         """Test case for delete_mcp_search_session
 
@@ -40,6 +61,62 @@ class TestMCPApi(unittest.TestCase):
         """Test case for delete_mcp_session
 
         Завершение сессии сервера MCP  # noqa: E501
+        """
+        pass
+
+    def test_disconnect_agent_tool_from_agent(self):
+        """Test case for disconnect_agent_tool_from_agent
+
+        Отключение MCP-инструмента от агента  # noqa: E501
+        """
+        pass
+
+    def test_get_agent_tool(self):
+        """Test case for get_agent_tool
+
+        Получение MCP-инструмента  # noqa: E501
+        """
+        pass
+
+    def test_get_agent_tool_o_auth2_authorize_url(self):
+        """Test case for get_agent_tool_o_auth2_authorize_url
+
+        Получение ссылки на OAuth2-авторизацию инструмента  # noqa: E501
+        """
+        pass
+
+    def test_get_agent_tool_template_prices(self):
+        """Test case for get_agent_tool_template_prices
+
+        Получение цен системных инструментов  # noqa: E501
+        """
+        pass
+
+    def test_get_agent_tool_templates(self):
+        """Test case for get_agent_tool_templates
+
+        Получение шаблонов MCP-инструментов из маркетплейса  # noqa: E501
+        """
+        pass
+
+    def test_get_agent_tools(self):
+        """Test case for get_agent_tools
+
+        Получение списка MCP-инструментов  # noqa: E501
+        """
+        pass
+
+    def test_get_agent_tools_by_agent(self):
+        """Test case for get_agent_tools_by_agent
+
+        Получение MCP-инструментов агента  # noqa: E501
+        """
+        pass
+
+    def test_install_agent_tool_from_template(self):
+        """Test case for install_agent_tool_from_template
+
+        Установка MCP-инструмента из маркетплейса  # noqa: E501
         """
         pass
 
@@ -57,6 +134,13 @@ class TestMCPApi(unittest.TestCase):
         """
         pass
 
+    def test_refresh_agent_tool_methods(self):
+        """Test case for refresh_agent_tool_methods
+
+        Обновление списка методов MCP-инструмента  # noqa: E501
+        """
+        pass
+
     def test_send_mcp_message(self):
         """Test case for send_mcp_message
 
@@ -68,6 +152,20 @@ class TestMCPApi(unittest.TestCase):
         """Test case for send_mcp_search_message
 
         Отправка JSON-RPC-сообщения серверу MCP с поиском инструментов  # noqa: E501
+        """
+        pass
+
+    def test_update_agent_tool(self):
+        """Test case for update_agent_tool
+
+        Изменение MCP-инструмента  # noqa: E501
+        """
+        pass
+
+    def test_update_agent_tool_connection(self):
+        """Test case for update_agent_tool_connection
+
+        Изменение разрешённых методов MCP-инструмента у агента  # noqa: E501
         """
         pass
 
