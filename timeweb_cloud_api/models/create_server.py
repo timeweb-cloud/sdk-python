@@ -42,7 +42,7 @@ class CreateServer(BaseModel):
     ssh_keys_ids: Optional[Any] = Field(None, description="Список SSH-ключей.")
     is_local_network: Optional[Any] = Field(None, description="Локальная сеть.")
     network: Optional[CreateServerNetwork] = None
-    cloud_init: Optional[Any] = Field(None, description="Cloud-init скрипт")
+    cloud_init: Optional[Any] = Field(None, description="Cloud-init скрипт. Максимальный размер — 65 535 байт в UTF-8.")
     availability_zone: Optional[AvailabilityZone] = None
     project_id: Optional[Any] = Field(None, description="ID проекта.")
     hostname: Optional[Any] = Field(None, description="Сетевое имя сервера")

@@ -36,7 +36,7 @@ class UpdateServer(BaseModel):
     avatar_id: Optional[Any] = Field(None, description="ID аватара сервера. Описание методов работы с аватарами появится позднее.")
     comment: Optional[Any] = Field(None, description="Комментарий к облачному серверу. Максимальная длина — 255 символов.")
     image_id: Optional[Any] = Field(None, description="ID образа, который будет установлен на облачный сервер. Нельзя передавать вместе с `os_id`.")
-    cloud_init: Optional[Any] = Field(None, description="Cloud-init скрипт")
+    cloud_init: Optional[Any] = Field(None, description="Cloud-init скрипт. Максимальный размер — 65 535 байт в UTF-8.")
     __properties = ["configurator", "os_id", "software_id", "preset_id", "bandwidth", "name", "avatar_id", "comment", "image_id", "cloud_init"]
 
     class Config:
