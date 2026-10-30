@@ -30,6 +30,8 @@ from timeweb_cloud_api.models.apps_presets import AppsPresets
 from timeweb_cloud_api.models.available_frameworks import AvailableFrameworks
 from timeweb_cloud_api.models.create_app import CreateApp
 from timeweb_cloud_api.models.create_app201_response import CreateApp201Response
+from timeweb_cloud_api.models.create_app_v2 import CreateAppV2
+from timeweb_cloud_api.models.create_app_v2201_response import CreateAppV2201Response
 from timeweb_cloud_api.models.create_deploy201_response import CreateDeploy201Response
 from timeweb_cloud_api.models.create_deploy_request import CreateDeployRequest
 from timeweb_cloud_api.models.get_app_deploys200_response import GetAppDeploys200Response
@@ -219,9 +221,9 @@ class AppsApi(object):
 
     @validate_arguments
     def create_app(self, create_app : CreateApp, **kwargs) -> CreateApp201Response:  # noqa: E501
-        """Создание приложения  # noqa: E501
+        """(Deprecated) Создание приложения  # noqa: E501
 
-        Чтобы создать приложение, отправьте POST-запрос в `/api/v1/apps`, задав необходимые атрибуты.  # noqa: E501
+        Метод устарел. Используйте [POST /api/v2/apps](#operation/createAppV2).  Чтобы создать приложение, отправьте POST-запрос в `/api/v1/apps`, задав необходимые атрибуты.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -248,9 +250,9 @@ class AppsApi(object):
 
     @validate_arguments
     def create_app_with_http_info(self, create_app : CreateApp, **kwargs) -> ApiResponse:  # noqa: E501
-        """Создание приложения  # noqa: E501
+        """(Deprecated) Создание приложения  # noqa: E501
 
-        Чтобы создать приложение, отправьте POST-запрос в `/api/v1/apps`, задав необходимые атрибуты.  # noqa: E501
+        Метод устарел. Используйте [POST /api/v2/apps](#operation/createAppV2).  Чтобы создать приложение, отправьте POST-запрос в `/api/v1/apps`, задав необходимые атрибуты.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -283,6 +285,8 @@ class AppsApi(object):
                  returns the request thread.
         :rtype: tuple(CreateApp201Response, status_code(int), headers(HTTPHeaderDict))
         """
+
+        warnings.warn("POST /api/v1/apps is deprecated.", DeprecationWarning)
 
         _params = locals()
 
@@ -354,6 +358,159 @@ class AppsApi(object):
 
         return self.api_client.call_api(
             '/api/v1/apps', 'POST',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @validate_arguments
+    def create_app_v2(self, create_app_v2 : CreateAppV2, **kwargs) -> CreateAppV2201Response:  # noqa: E501
+        """Создание приложения (v2)  # noqa: E501
+
+        Чтобы создать приложение, отправьте POST-запрос в `/api/v2/apps`.  Создание сервера, настройка окружения и первый деплой выполняются асинхронно. Ответ `201 Created` содержит запись приложения в статусе `new` и не означает, что приложение уже готово к работе. До создания инфраструктуры в ответе могут отсутствовать `ip`, `location`, `configuration`, `disk_status`, `language`, `framework`, `envs`, `env_version`, `build_cmd`, `run_cmd` и `index_dir`. Состояние приложения можно проверять через `GET /api/v2/apps/{app_id}`.  В v2 обязательно поле `language`, а в ответе ветка репозитория называется `branch`. Для Git-репозитория передайте параметры провайдера, репозитория, ветки, коммита и сборки. Для готового Docker-образа используйте `type: backend`, `language: custom-image`, `docker_image` и `docker_image_tag`. Для frontend обязателен `preset_id`, для backend — либо `preset_id`, либо `configuration`. ID тарифа можно получить через `GET /api/v1/presets/apps`.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.create_app_v2(create_app_v2, async_req=True)
+        >>> result = thread.get()
+
+        :param create_app_v2: (required)
+        :type create_app_v2: CreateAppV2
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: CreateAppV2201Response
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            raise ValueError("Error! Please call the create_app_v2_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
+        return self.create_app_v2_with_http_info(create_app_v2, **kwargs)  # noqa: E501
+
+    @validate_arguments
+    def create_app_v2_with_http_info(self, create_app_v2 : CreateAppV2, **kwargs) -> ApiResponse:  # noqa: E501
+        """Создание приложения (v2)  # noqa: E501
+
+        Чтобы создать приложение, отправьте POST-запрос в `/api/v2/apps`.  Создание сервера, настройка окружения и первый деплой выполняются асинхронно. Ответ `201 Created` содержит запись приложения в статусе `new` и не означает, что приложение уже готово к работе. До создания инфраструктуры в ответе могут отсутствовать `ip`, `location`, `configuration`, `disk_status`, `language`, `framework`, `envs`, `env_version`, `build_cmd`, `run_cmd` и `index_dir`. Состояние приложения можно проверять через `GET /api/v2/apps/{app_id}`.  В v2 обязательно поле `language`, а в ответе ветка репозитория называется `branch`. Для Git-репозитория передайте параметры провайдера, репозитория, ветки, коммита и сборки. Для готового Docker-образа используйте `type: backend`, `language: custom-image`, `docker_image` и `docker_image_tag`. Для frontend обязателен `preset_id`, для backend — либо `preset_id`, либо `configuration`. ID тарифа можно получить через `GET /api/v1/presets/apps`.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.create_app_v2_with_http_info(create_app_v2, async_req=True)
+        >>> result = thread.get()
+
+        :param create_app_v2: (required)
+        :type create_app_v2: CreateAppV2
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the 
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(CreateAppV2201Response, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'create_app_v2'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method create_app_v2" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        if _params['create_app_v2'] is not None:
+            _body_params = _params['create_app_v2']
+
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # set the HTTP header `Content-Type`
+        _content_types_list = _params.get('_content_type',
+            self.api_client.select_header_content_type(
+                ['application/json']))
+        if _content_types_list:
+                _header_params['Content-Type'] = _content_types_list
+
+        # authentication setting
+        _auth_settings = ['Bearer']  # noqa: E501
+
+        _response_types_map = {
+            '201': "CreateAppV2201Response",
+            '400': None,
+            '401': None,
+            '403': None,
+            '404': None,
+            '409': None,
+            '429': None,
+            '500': None,
+        }
+
+        return self.api_client.call_api(
+            '/api/v2/apps', 'POST',
             _path_params,
             _query_params,
             _header_params,

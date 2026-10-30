@@ -159,6 +159,10 @@ from timeweb_cloud_api.models.app import App
 from timeweb_cloud_api.models.app_configuration import AppConfiguration
 from timeweb_cloud_api.models.app_disk_status import AppDiskStatus
 from timeweb_cloud_api.models.app_provider import AppProvider
+from timeweb_cloud_api.models.app_v2 import AppV2
+from timeweb_cloud_api.models.app_v2_configuration import AppV2Configuration
+from timeweb_cloud_api.models.app_v2_disk_status import AppV2DiskStatus
+from timeweb_cloud_api.models.app_v2_provider import AppV2Provider
 from timeweb_cloud_api.models.approve_telegram_pairing import ApproveTelegramPairing
 from timeweb_cloud_api.models.apps_presets import AppsPresets
 from timeweb_cloud_api.models.authorize_url import AuthorizeUrl
@@ -254,6 +258,10 @@ from timeweb_cloud_api.models.create_ai_solution import CreateAiSolution
 from timeweb_cloud_api.models.create_ai_solution201_response import CreateAiSolution201Response
 from timeweb_cloud_api.models.create_app import CreateApp
 from timeweb_cloud_api.models.create_app201_response import CreateApp201Response
+from timeweb_cloud_api.models.create_app_v2 import CreateAppV2
+from timeweb_cloud_api.models.create_app_v2201_response import CreateAppV2201Response
+from timeweb_cloud_api.models.create_app_v2_configuration import CreateAppV2Configuration
+from timeweb_cloud_api.models.create_app_v2_network import CreateAppV2Network
 from timeweb_cloud_api.models.create_balancer import CreateBalancer
 from timeweb_cloud_api.models.create_balancer200_response import CreateBalancer200Response
 from timeweb_cloud_api.models.create_balancer_certificates import CreateBalancerCertificates

@@ -109,6 +109,10 @@ docs/App.md
 docs/AppConfiguration.md
 docs/AppDiskStatus.md
 docs/AppProvider.md
+docs/AppV2.md
+docs/AppV2Configuration.md
+docs/AppV2DiskStatus.md
+docs/AppV2Provider.md
 docs/ApproveTelegramPairing.md
 docs/AppsApi.md
 docs/AppsPresets.md
@@ -208,6 +212,10 @@ docs/CreateAiSolution.md
 docs/CreateAiSolution201Response.md
 docs/CreateApp.md
 docs/CreateApp201Response.md
+docs/CreateAppV2.md
+docs/CreateAppV2201Response.md
+docs/CreateAppV2Configuration.md
+docs/CreateAppV2Network.md
 docs/CreateBalancer.md
 docs/CreateBalancer200Response.md
 docs/CreateBalancerCertificates.md
@@ -973,6 +981,10 @@ test/test_app.py
 test/test_app_configuration.py
 test/test_app_disk_status.py
 test/test_app_provider.py
+test/test_app_v2.py
+test/test_app_v2_configuration.py
+test/test_app_v2_disk_status.py
+test/test_app_v2_provider.py
 test/test_approve_telegram_pairing.py
 test/test_apps_api.py
 test/test_apps_presets.py
@@ -1072,6 +1084,10 @@ test/test_create_ai_solution.py
 test/test_create_ai_solution201_response.py
 test/test_create_app.py
 test/test_create_app201_response.py
+test/test_create_app_v2.py
+test/test_create_app_v2201_response.py
+test/test_create_app_v2_configuration.py
+test/test_create_app_v2_network.py
 test/test_create_balancer.py
 test/test_create_balancer200_response.py
 test/test_create_balancer_certificates.py
@@ -1860,6 +1876,10 @@ timeweb_cloud_api/models/app.py
 timeweb_cloud_api/models/app_configuration.py
 timeweb_cloud_api/models/app_disk_status.py
 timeweb_cloud_api/models/app_provider.py
+timeweb_cloud_api/models/app_v2.py
+timeweb_cloud_api/models/app_v2_configuration.py
+timeweb_cloud_api/models/app_v2_disk_status.py
+timeweb_cloud_api/models/app_v2_provider.py
 timeweb_cloud_api/models/approve_telegram_pairing.py
 timeweb_cloud_api/models/apps_presets.py
 timeweb_cloud_api/models/authorize_url.py
@@ -1955,6 +1975,10 @@ timeweb_cloud_api/models/create_ai_solution.py
 timeweb_cloud_api/models/create_ai_solution201_response.py
 timeweb_cloud_api/models/create_app.py
 timeweb_cloud_api/models/create_app201_response.py
+timeweb_cloud_api/models/create_app_v2.py
+timeweb_cloud_api/models/create_app_v2201_response.py
+timeweb_cloud_api/models/create_app_v2_configuration.py
+timeweb_cloud_api/models/create_app_v2_network.py
 timeweb_cloud_api/models/create_balancer.py
 timeweb_cloud_api/models/create_balancer200_response.py
 timeweb_cloud_api/models/create_balancer_certificates.py

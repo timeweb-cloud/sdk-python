@@ -43,6 +43,13 @@ class TestAppsApi(unittest.TestCase):
         """
         pass
 
+    def test_create_app_v2(self):
+        """Test case for create_app_v2
+
+        Создание приложения (v2)  # noqa: E501
+        """
+        pass
+
     def test_create_deploy(self):
         """Test case for create_deploy
 

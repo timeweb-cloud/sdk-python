@@ -375,6 +375,7 @@ Class | Method | HTTP request | Description
 *AccountApi* | [**update_notification_settings**](docs/AccountApi.md#update_notification_settings) | **PATCH** /api/v1/account/notification-settings | Изменение настроек уведомлений аккаунта
 *AppsApi* | [**add_provider**](docs/AppsApi.md#add_provider) | **POST** /api/v1/vcs-provider | Привязка vcs провайдера
 *AppsApi* | [**create_app**](docs/AppsApi.md#create_app) | **POST** /api/v1/apps | Создание приложения
+*AppsApi* | [**create_app_v2**](docs/AppsApi.md#create_app_v2) | **POST** /api/v2/apps | Создание приложения (v2)
 *AppsApi* | [**create_deploy**](docs/AppsApi.md#create_deploy) | **POST** /api/v1/apps/{app_id}/deploy | Запуск деплоя приложения
 *AppsApi* | [**delete_app**](docs/AppsApi.md#delete_app) | **DELETE** /api/v1/apps/{app_id} | Удаление приложения
 *AppsApi* | [**delete_provider**](docs/AppsApi.md#delete_provider) | **DELETE** /api/v1/vcs-provider/{provider_id} | Отвязка vcs провайдера от аккаунта
@@ -854,6 +855,10 @@ Class | Method | HTTP request | Description
  - [AppConfiguration](docs/AppConfiguration.md)
  - [AppDiskStatus](docs/AppDiskStatus.md)
  - [AppProvider](docs/AppProvider.md)
+ - [AppV2](docs/AppV2.md)
+ - [AppV2Configuration](docs/AppV2Configuration.md)
+ - [AppV2DiskStatus](docs/AppV2DiskStatus.md)
+ - [AppV2Provider](docs/AppV2Provider.md)
  - [ApproveTelegramPairing](docs/ApproveTelegramPairing.md)
  - [AppsPresets](docs/AppsPresets.md)
  - [AuthorizeUrl](docs/AuthorizeUrl.md)
@@ -949,6 +954,10 @@ Class | Method | HTTP request | Description
  - [CreateAiSolution201Response](docs/CreateAiSolution201Response.md)
  - [CreateApp](docs/CreateApp.md)
  - [CreateApp201Response](docs/CreateApp201Response.md)
+ - [CreateAppV2](docs/CreateAppV2.md)
+ - [CreateAppV2201Response](docs/CreateAppV2201Response.md)
+ - [CreateAppV2Configuration](docs/CreateAppV2Configuration.md)
+ - [CreateAppV2Network](docs/CreateAppV2Network.md)
  - [CreateBalancer](docs/CreateBalancer.md)
  - [CreateBalancer200Response](docs/CreateBalancer200Response.md)
  - [CreateBalancerCertificates](docs/CreateBalancerCertificates.md)

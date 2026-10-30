@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**add_provider**](AppsApi.md#add_provider) | **POST** /api/v1/vcs-provider | Привязка vcs провайдера
 [**create_app**](AppsApi.md#create_app) | **POST** /api/v1/apps | Создание приложения
+[**create_app_v2**](AppsApi.md#create_app_v2) | **POST** /api/v2/apps | Создание приложения (v2)
 [**create_deploy**](AppsApi.md#create_deploy) | **POST** /api/v1/apps/{app_id}/deploy | Запуск деплоя приложения
 [**delete_app**](AppsApi.md#delete_app) | **DELETE** /api/v1/apps/{app_id} | Удаление приложения
 [**delete_provider**](AppsApi.md#delete_provider) | **DELETE** /api/v1/vcs-provider/{provider_id} | Отвязка vcs провайдера от аккаунта
@@ -115,7 +116,7 @@ Name | Type | Description  | Notes
 
 Создание приложения
 
-Чтобы создать приложение, отправьте POST-запрос в `/api/v1/apps`, задав необходимые атрибуты.
+Метод устарел. Используйте [POST /api/v2/apps](#operation/createAppV2).  Чтобы создать приложение, отправьте POST-запрос в `/api/v1/apps`, задав необходимые атрибуты.
 
 ### Example
 
@@ -187,6 +188,90 @@ Name | Type | Description  | Notes
 **400** |  |  -  |
 **401** |  |  -  |
 **403** |  |  -  |
+**409** |  |  -  |
+**429** |  |  -  |
+**500** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **create_app_v2**
+> CreateAppV2201Response create_app_v2(create_app_v2)
+
+Создание приложения (v2)
+
+Чтобы создать приложение, отправьте POST-запрос в `/api/v2/apps`.  Создание сервера, настройка окружения и первый деплой выполняются асинхронно. Ответ `201 Created` содержит запись приложения в статусе `new` и не означает, что приложение уже готово к работе. До создания инфраструктуры в ответе могут отсутствовать `ip`, `location`, `configuration`, `disk_status`, `language`, `framework`, `envs`, `env_version`, `build_cmd`, `run_cmd` и `index_dir`. Состояние приложения можно проверять через `GET /api/v2/apps/{app_id}`.  В v2 обязательно поле `language`, а в ответе ветка репозитория называется `branch`. Для Git-репозитория передайте параметры провайдера, репозитория, ветки, коммита и сборки. Для готового Docker-образа используйте `type: backend`, `language: custom-image`, `docker_image` и `docker_image_tag`. Для frontend обязателен `preset_id`, для backend — либо `preset_id`, либо `configuration`. ID тарифа можно получить через `GET /api/v1/presets/apps`.
+
+### Example
+
+* Bearer (JWT) Authentication (Bearer):
+```python
+import time
+import os
+import timeweb_cloud_api
+from timeweb_cloud_api.models.create_app_v2 import CreateAppV2
+from timeweb_cloud_api.models.create_app_v2201_response import CreateAppV2201Response
+from timeweb_cloud_api.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.timeweb.cloud
+# See configuration.py for a list of all supported configuration parameters.
+configuration = timeweb_cloud_api.Configuration(
+    host = "https://api.timeweb.cloud"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): Bearer
+configuration = timeweb_cloud_api.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with timeweb_cloud_api.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = timeweb_cloud_api.AppsApi(api_client)
+    create_app_v2 = {"type":"backend","provider_id":"b392b624-ee80-496e-8b61-47276acac2da","repository_id":"eb4e1796-78ce-4232-a824-3c3f4dfaf98f","branch_name":"master","commit_sha":"7d3a6dcca79d2c29e3fe7456ca1598e70d484d7c","build_cmd":"npm ci","run_cmd":"npm start","is_auto_deploy":true,"name":"app_example","comment":"","preset_id":42,"language":"node","framework":"express","env_version":"22","envs":{"NODE_ENV":"production"}} # CreateAppV2 | 
+
+    try:
+        # Создание приложения (v2)
+        api_response = api_instance.create_app_v2(create_app_v2)
+        print("The response of AppsApi->create_app_v2:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling AppsApi->create_app_v2: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **create_app_v2** | [**CreateAppV2**](CreateAppV2.md)|  | 
+
+### Return type
+
+[**CreateAppV2201Response**](CreateAppV2201Response.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | Запись приложения создана, развёртывание продолжается асинхронно. Объект JSON с ключом app. |  -  |
+**400** |  |  -  |
+**401** |  |  -  |
+**403** |  |  -  |
+**404** |  |  -  |
 **409** |  |  -  |
 **429** |  |  -  |
 **500** |  |  -  |
