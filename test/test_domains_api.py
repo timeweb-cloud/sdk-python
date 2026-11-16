@@ -134,6 +134,13 @@ class TestDomainsApi(unittest.TestCase):
         """
         pass
 
+    def test_get_domain_dns_records_v2(self):
+        """Test case for get_domain_dns_records_v2
+
+        Получить информацию обо всех пользовательских DNS-записях домена или поддомена  # noqa: E501
+        """
+        pass
+
     def test_get_domain_name_servers(self):
         """Test case for get_domain_name_servers
 

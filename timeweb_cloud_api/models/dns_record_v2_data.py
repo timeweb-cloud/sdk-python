@@ -26,9 +26,9 @@ class DnsRecordV2Data(BaseModel):
     """
     Данные DNS-записи. Состав полей зависит от типа записи.
     """
-    priority: Optional[Any] = Field(None, description="Приоритет DNS-записи (для MX и SRV записей).")
-    subdomain: Optional[Any] = Field(None, description="Имя поддомена (только поддомен без основного домена, например `sub` для `sub.example.com`). Для записей на основном домене это поле отсутствует в ответе.")
-    value: Optional[Any] = Field(None, description="Значение DNS-записи (для A, AAAA, TXT, CNAME, MX записей).")
+    priority: Optional[Any] = Field(None, description="Приоритет DNS-записи (для MX, SRV, HTTPS и SVCB записей).")
+    subdomain: Optional[Any] = Field(None, description="Имя записи относительно `fqdn`, например `sub` для `sub.example.com` или `mail._domainkey`. Для записей самого `fqdn` это поле отсутствует в ответе.")
+    value: Optional[Any] = Field(None, description="Значение DNS-записи (для всех типов, кроме SRV: у SRV цель записи в поле `host`).")
     host: Optional[Any] = Field(None, description="Каноническое имя хоста, предоставляющего сервис (для SRV записей).")
     port: Optional[Any] = Field(None, description="TCP или UDP порт, на котором работает сервис (для SRV записей).")
     service: Optional[Any] = Field(None, description="Имя сервиса (для SRV записей).")

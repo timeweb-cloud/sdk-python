@@ -35,6 +35,7 @@ from timeweb_cloud_api.models.create_person201_response import CreatePerson201Re
 from timeweb_cloud_api.models.domain_register import DomainRegister
 from timeweb_cloud_api.models.get_domain200_response import GetDomain200Response
 from timeweb_cloud_api.models.get_domain_dns_records200_response import GetDomainDNSRecords200Response
+from timeweb_cloud_api.models.get_domain_dns_records_v2200_response import GetDomainDNSRecordsV2200Response
 from timeweb_cloud_api.models.get_domain_name_servers200_response import GetDomainNameServers200Response
 from timeweb_cloud_api.models.get_domain_requests200_response import GetDomainRequests200Response
 from timeweb_cloud_api.models.get_domains200_response import GetDomains200Response
@@ -2127,9 +2128,9 @@ class DomainsApi(object):
 
     @validate_arguments
     def get_domain_dns_records(self, fqdn : Annotated[Any, Field(..., description="Полное имя домена или поддомена.")], limit : Annotated[Optional[Any], Field(description="Обозначает количество записей, которое необходимо вернуть.")] = None, offset : Annotated[Optional[Any], Field(description="Указывает на смещение относительно начала списка.")] = None, **kwargs) -> GetDomainDNSRecords200Response:  # noqa: E501
-        """Получить информацию обо всех пользовательских DNS-записях домена или поддомена  # noqa: E501
+        """(Deprecated) Получить информацию обо всех пользовательских DNS-записях домена или поддомена  # noqa: E501
 
-        Чтобы получить информацию обо всех пользовательских DNS-записях домена или поддомена, отправьте запрос GET на `/api/v1/domains/{fqdn}/dns-records`.  # noqa: E501
+        Метод устарел. Используйте [GET /api/v2/domains/{fqdn}/dns-records](#operation/getDomainDNSRecordsV2).  Чтобы получить информацию обо всех пользовательских DNS-записях домена или поддомена, отправьте запрос GET на `/api/v1/domains/{fqdn}/dns-records`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -2160,9 +2161,9 @@ class DomainsApi(object):
 
     @validate_arguments
     def get_domain_dns_records_with_http_info(self, fqdn : Annotated[Any, Field(..., description="Полное имя домена или поддомена.")], limit : Annotated[Optional[Any], Field(description="Обозначает количество записей, которое необходимо вернуть.")] = None, offset : Annotated[Optional[Any], Field(description="Указывает на смещение относительно начала списка.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
-        """Получить информацию обо всех пользовательских DNS-записях домена или поддомена  # noqa: E501
+        """(Deprecated) Получить информацию обо всех пользовательских DNS-записях домена или поддомена  # noqa: E501
 
-        Чтобы получить информацию обо всех пользовательских DNS-записях домена или поддомена, отправьте запрос GET на `/api/v1/domains/{fqdn}/dns-records`.  # noqa: E501
+        Метод устарел. Используйте [GET /api/v2/domains/{fqdn}/dns-records](#operation/getDomainDNSRecordsV2).  Чтобы получить информацию обо всех пользовательских DNS-записях домена или поддомена, отправьте запрос GET на `/api/v1/domains/{fqdn}/dns-records`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -2199,6 +2200,8 @@ class DomainsApi(object):
                  returns the request thread.
         :rtype: tuple(GetDomainDNSRecords200Response, status_code(int), headers(HTTPHeaderDict))
         """
+
+        warnings.warn("GET /api/v1/domains/{fqdn}/dns-records is deprecated.", DeprecationWarning)
 
         _params = locals()
 
@@ -2270,6 +2273,150 @@ class DomainsApi(object):
 
         return self.api_client.call_api(
             '/api/v1/domains/{fqdn}/dns-records', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @validate_arguments
+    def get_domain_dns_records_v2(self, fqdn : Annotated[Any, Field(..., description="Полное имя домена или поддомена.")], **kwargs) -> GetDomainDNSRecordsV2200Response:  # noqa: E501
+        """Получить информацию обо всех пользовательских DNS-записях домена или поддомена  # noqa: E501
+
+        Чтобы получить информацию обо всех пользовательских DNS-записях домена или поддомена, отправьте запрос GET на `/api/v2/domains/{fqdn}/dns-records`.  По основному домену возвращаются записи всей зоны, включая записи поддоменов: у них `fqdn` — основной домен, а `data.subdomain` — имя поддомена. По поддомену возвращаются только записи этого поддомена, без вложенных поддоменов: у них `fqdn` — сам поддомен, а поля `data.subdomain` нет. Полное имя записи — `data.subdomain` + `.` + `fqdn`.  Возвращаются все записи сразу, без пагинации.  Заменяет устаревший `GET /api/v1/domains/{fqdn}/dns-records`: тот по поддомену не возвращает его TXT-записи.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_domain_dns_records_v2(fqdn, async_req=True)
+        >>> result = thread.get()
+
+        :param fqdn: Полное имя домена или поддомена. (required)
+        :type fqdn: object
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: GetDomainDNSRecordsV2200Response
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            raise ValueError("Error! Please call the get_domain_dns_records_v2_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
+        return self.get_domain_dns_records_v2_with_http_info(fqdn, **kwargs)  # noqa: E501
+
+    @validate_arguments
+    def get_domain_dns_records_v2_with_http_info(self, fqdn : Annotated[Any, Field(..., description="Полное имя домена или поддомена.")], **kwargs) -> ApiResponse:  # noqa: E501
+        """Получить информацию обо всех пользовательских DNS-записях домена или поддомена  # noqa: E501
+
+        Чтобы получить информацию обо всех пользовательских DNS-записях домена или поддомена, отправьте запрос GET на `/api/v2/domains/{fqdn}/dns-records`.  По основному домену возвращаются записи всей зоны, включая записи поддоменов: у них `fqdn` — основной домен, а `data.subdomain` — имя поддомена. По поддомену возвращаются только записи этого поддомена, без вложенных поддоменов: у них `fqdn` — сам поддомен, а поля `data.subdomain` нет. Полное имя записи — `data.subdomain` + `.` + `fqdn`.  Возвращаются все записи сразу, без пагинации.  Заменяет устаревший `GET /api/v1/domains/{fqdn}/dns-records`: тот по поддомену не возвращает его TXT-записи.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_domain_dns_records_v2_with_http_info(fqdn, async_req=True)
+        >>> result = thread.get()
+
+        :param fqdn: Полное имя домена или поддомена. (required)
+        :type fqdn: object
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the 
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(GetDomainDNSRecordsV2200Response, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'fqdn'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_domain_dns_records_v2" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['fqdn']:
+            _path_params['fqdn'] = _params['fqdn']
+
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = ['Bearer']  # noqa: E501
+
+        _response_types_map = {
+            '200': "GetDomainDNSRecordsV2200Response",
+            '400': None,
+            '401': None,
+            '404': None,
+            '429': None,
+            '500': None,
+        }
+
+        return self.api_client.call_api(
+            '/api/v2/domains/{fqdn}/dns-records', 'GET',
             _path_params,
             _query_params,
             _header_params,

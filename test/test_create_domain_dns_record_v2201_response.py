@@ -40,9 +40,8 @@ class TestCreateDomainDNSRecordV2201Response(unittest.TestCase):
         if include_optional :
             return CreateDomainDNSRecordV2201Response(
                 dns_record = timeweb_cloud_api.models.dns_record_v2.dns-record-v2(
-                    type = A, 
                     id = 123, 
-                    fqdn = somedomain.ru, 
+                    type = A, 
                     data = timeweb_cloud_api.models.dns_record_v2_data.dns_record_v2_data(
                         priority = 10, 
                         subdomain = sub, 
@@ -51,14 +50,14 @@ class TestCreateDomainDNSRecordV2201Response(unittest.TestCase):
                         port = 993, 
                         service = _sip, 
                         protocol = _TCP, ), 
+                    fqdn = somedomain.ru, 
                     ttl = 600, )
             )
         else :
             return CreateDomainDNSRecordV2201Response(
                 dns_record = timeweb_cloud_api.models.dns_record_v2.dns-record-v2(
-                    type = A, 
                     id = 123, 
-                    fqdn = somedomain.ru, 
+                    type = A, 
                     data = timeweb_cloud_api.models.dns_record_v2_data.dns_record_v2_data(
                         priority = 10, 
                         subdomain = sub, 
@@ -67,6 +66,7 @@ class TestCreateDomainDNSRecordV2201Response(unittest.TestCase):
                         port = 993, 
                         service = _sip, 
                         protocol = _TCP, ), 
+                    fqdn = somedomain.ru, 
                     ttl = 600, ),
         )
         """

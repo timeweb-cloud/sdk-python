@@ -27,12 +27,12 @@ class DnsRecordV2(BaseModel):
     """
     DNS-запись.
     """
+    id: Optional[Any] = Field(..., description="ID DNS-записи.")
     type: Optional[Any] = Field(..., description="Тип DNS-записи.")
-    id: Optional[Any] = Field(None, description="ID DNS-записи.")
-    fqdn: Optional[Any] = Field(None, description="Полное имя основного домена.")
     data: DnsRecordV2Data = Field(...)
-    ttl: Optional[Any] = Field(None, description="Время жизни DNS-записи.")
-    __properties = ["type", "id", "fqdn", "data", "ttl"]
+    fqdn: Optional[Any] = Field(..., description="Домен, относительно которого указано `data.subdomain`. Полное имя записи — `data.subdomain` + `.` + `fqdn`, а если `data.subdomain` нет — `fqdn`.")
+    ttl: Optional[Any] = Field(..., description="Время жизни DNS-записи в секундах.")
+    __properties = ["id", "type", "data", "fqdn", "ttl"]
 
     @validator('type')
     def type_validate_enum(cls, value):
@@ -40,8 +40,8 @@ class DnsRecordV2(BaseModel):
         if value is None:
             return value
 
-        if value not in ('TXT', 'SRV', 'CNAME', 'AAAA', 'MX', 'A'):
-            raise ValueError("must be one of enum values ('TXT', 'SRV', 'CNAME', 'AAAA', 'MX', 'A')")
+        if value not in ('TXT', 'SRV', 'CNAME', 'AAAA', 'MX', 'A', 'PTR', 'HTTPS', 'SVCB', 'CAA'):
+            raise ValueError("must be one of enum values ('TXT', 'SRV', 'CNAME', 'AAAA', 'MX', 'A', 'PTR', 'HTTPS', 'SVCB', 'CAA')")
         return value
 
     class Config:
@@ -71,15 +71,15 @@ class DnsRecordV2(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of data
         if self.data:
             _dict['data'] = self.data.to_dict()
-        # set to None if type (nullable) is None
-        # and __fields_set__ contains the field
-        if self.type is None and "type" in self.__fields_set__:
-            _dict['type'] = None
-
         # set to None if id (nullable) is None
         # and __fields_set__ contains the field
         if self.id is None and "id" in self.__fields_set__:
             _dict['id'] = None
+
+        # set to None if type (nullable) is None
+        # and __fields_set__ contains the field
+        if self.type is None and "type" in self.__fields_set__:
+            _dict['type'] = None
 
         # set to None if fqdn (nullable) is None
         # and __fields_set__ contains the field
@@ -103,10 +103,10 @@ class DnsRecordV2(BaseModel):
             return DnsRecordV2.parse_obj(obj)
 
         _obj = DnsRecordV2.parse_obj({
-            "type": obj.get("type"),
             "id": obj.get("id"),
-            "fqdn": obj.get("fqdn"),
+            "type": obj.get("type"),
             "data": DnsRecordV2Data.from_dict(obj.get("data")) if obj.get("data") is not None else None,
+            "fqdn": obj.get("fqdn"),
             "ttl": obj.get("ttl")
         })
         return _obj

@@ -5,9 +5,9 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**priority** | **object** | Приоритет DNS-записи (для MX и SRV записей). | [optional] 
-**subdomain** | **object** | Имя поддомена (только поддомен без основного домена, например &#x60;sub&#x60; для &#x60;sub.example.com&#x60;). Для записей на основном домене это поле отсутствует в ответе. | [optional] 
-**value** | **object** | Значение DNS-записи (для A, AAAA, TXT, CNAME, MX записей). | [optional] 
+**priority** | **object** | Приоритет DNS-записи (для MX, SRV, HTTPS и SVCB записей). | [optional] 
+**subdomain** | **object** | Имя записи относительно &#x60;fqdn&#x60;, например &#x60;sub&#x60; для &#x60;sub.example.com&#x60; или &#x60;mail._domainkey&#x60;. Для записей самого &#x60;fqdn&#x60; это поле отсутствует в ответе. | [optional] 
+**value** | **object** | Значение DNS-записи (для всех типов, кроме SRV: у SRV цель записи в поле &#x60;host&#x60;). | [optional] 
 **host** | **object** | Каноническое имя хоста, предоставляющего сервис (для SRV записей). | [optional] 
 **port** | **object** | TCP или UDP порт, на котором работает сервис (для SRV записей). | [optional] 
 **service** | **object** | Имя сервиса (для SRV записей). | [optional] 

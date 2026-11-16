@@ -497,6 +497,7 @@ Class | Method | HTTP request | Description
 *DomainsApi* | [**get_domain**](docs/DomainsApi.md#get_domain) | **GET** /api/v1/domains/{fqdn} | Получение информации о домене
 *DomainsApi* | [**get_domain_default_dns_records**](docs/DomainsApi.md#get_domain_default_dns_records) | **GET** /api/v1/domains/{fqdn}/default-dns-records | Получить информацию обо всех DNS-записях по умолчанию домена или поддомена
 *DomainsApi* | [**get_domain_dns_records**](docs/DomainsApi.md#get_domain_dns_records) | **GET** /api/v1/domains/{fqdn}/dns-records | Получить информацию обо всех пользовательских DNS-записях домена или поддомена
+*DomainsApi* | [**get_domain_dns_records_v2**](docs/DomainsApi.md#get_domain_dns_records_v2) | **GET** /api/v2/domains/{fqdn}/dns-records | Получить информацию обо всех пользовательских DNS-записях домена или поддомена
 *DomainsApi* | [**get_domain_name_servers**](docs/DomainsApi.md#get_domain_name_servers) | **GET** /api/v1/domains/{fqdn}/name-servers | Получение списка name-серверов домена
 *DomainsApi* | [**get_domain_request**](docs/DomainsApi.md#get_domain_request) | **GET** /api/v1/domains-requests/{request_id} | Получение заявки на регистрацию/продление/трансфер домена
 *DomainsApi* | [**get_domain_requests**](docs/DomainsApi.md#get_domain_requests) | **GET** /api/v1/domains-requests | Получение списка заявок на регистрацию/продление/трансфер домена
@@ -1224,6 +1225,7 @@ Class | Method | HTTP request | Description
  - [GetDeploySettings200Response](docs/GetDeploySettings200Response.md)
  - [GetDomain200Response](docs/GetDomain200Response.md)
  - [GetDomainDNSRecords200Response](docs/GetDomainDNSRecords200Response.md)
+ - [GetDomainDNSRecordsV2200Response](docs/GetDomainDNSRecordsV2200Response.md)
  - [GetDomainMailInfo200Response](docs/GetDomainMailInfo200Response.md)
  - [GetDomainNameServers200Response](docs/GetDomainNameServers200Response.md)
  - [GetDomainRequests200Response](docs/GetDomainRequests200Response.md)

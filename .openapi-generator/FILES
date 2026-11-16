@@ -487,6 +487,7 @@ docs/GetDeployLogs200Response.md
 docs/GetDeploySettings200Response.md
 docs/GetDomain200Response.md
 docs/GetDomainDNSRecords200Response.md
+docs/GetDomainDNSRecordsV2200Response.md
 docs/GetDomainMailInfo200Response.md
 docs/GetDomainNameServers200Response.md
 docs/GetDomainRequests200Response.md
@@ -1359,6 +1360,7 @@ test/test_get_deploy_logs200_response.py
 test/test_get_deploy_settings200_response.py
 test/test_get_domain200_response.py
 test/test_get_domain_dns_records200_response.py
+test/test_get_domain_dns_records_v2200_response.py
 test/test_get_domain_mail_info200_response.py
 test/test_get_domain_name_servers200_response.py
 test/test_get_domain_requests200_response.py
@@ -2245,6 +2247,7 @@ timeweb_cloud_api/models/get_deploy_logs200_response.py
 timeweb_cloud_api/models/get_deploy_settings200_response.py
 timeweb_cloud_api/models/get_domain200_response.py
 timeweb_cloud_api/models/get_domain_dns_records200_response.py
+timeweb_cloud_api/models/get_domain_dns_records_v2200_response.py
 timeweb_cloud_api/models/get_domain_mail_info200_response.py
 timeweb_cloud_api/models/get_domain_name_servers200_response.py
 timeweb_cloud_api/models/get_domain_requests200_response.py

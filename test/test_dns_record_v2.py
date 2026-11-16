@@ -39,9 +39,8 @@ class TestDnsRecordV2(unittest.TestCase):
         model = timeweb_cloud_api.models.dns_record_v2.DnsRecordV2()  # noqa: E501
         if include_optional :
             return DnsRecordV2(
-                type = A, 
                 id = 123, 
-                fqdn = somedomain.ru, 
+                type = A, 
                 data = timeweb_cloud_api.models.dns_record_v2_data.dns_record_v2_data(
                     priority = 10, 
                     subdomain = sub, 
@@ -50,10 +49,12 @@ class TestDnsRecordV2(unittest.TestCase):
                     port = 993, 
                     service = _sip, 
                     protocol = _TCP, ), 
+                fqdn = somedomain.ru, 
                 ttl = 600
             )
         else :
             return DnsRecordV2(
+                id = 123,
                 type = A,
                 data = timeweb_cloud_api.models.dns_record_v2_data.dns_record_v2_data(
                     priority = 10, 
@@ -63,6 +64,8 @@ class TestDnsRecordV2(unittest.TestCase):
                     port = 993, 
                     service = _sip, 
                     protocol = _TCP, ),
+                fqdn = somedomain.ru,
+                ttl = 600,
         )
         """
 

@@ -5,11 +5,11 @@ DNS-запись.
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**id** | **object** | ID DNS-записи. | 
 **type** | **object** | Тип DNS-записи. | 
-**id** | **object** | ID DNS-записи. | [optional] 
-**fqdn** | **object** | Полное имя основного домена. | [optional] 
 **data** | [**DnsRecordV2Data**](DnsRecordV2Data.md) |  | 
-**ttl** | **object** | Время жизни DNS-записи. | [optional] 
+**fqdn** | **object** | Домен, относительно которого указано &#x60;data.subdomain&#x60;. Полное имя записи — &#x60;data.subdomain&#x60; + &#x60;.&#x60; + &#x60;fqdn&#x60;, а если &#x60;data.subdomain&#x60; нет — &#x60;fqdn&#x60;. | 
+**ttl** | **object** | Время жизни DNS-записи в секундах. | 
 
 ## Example
 
