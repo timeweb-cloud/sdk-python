@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **redirect** | **object** | Перенаправлять запросы с HTTP на HTTPS. | [optional] 
 **certificate_id** | **object** | ID SSL-сертификата, который используется для доменов ресурса. &#x60;null&#x60; — отвязать сертификат. | [optional] 
+**ssl_protocols** | **object** | Версии SSL/TLS, по которым CDN принимает HTTPS-подключения. &#x60;null&#x60; — принимать все версии. | [optional] 
 **secure_token** | [**ConfigSecuritySecureToken**](ConfigSecuritySecureToken.md) |  | [optional] 
 
 ## Example

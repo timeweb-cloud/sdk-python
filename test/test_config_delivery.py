@@ -40,6 +40,7 @@ class TestConfigDelivery(unittest.TestCase):
         if include_optional :
             return ConfigDelivery(
                 http3 = true, 
+                http2 = true, 
                 gzip = true, 
                 large_files = false, 
                 slice_size = 10, 

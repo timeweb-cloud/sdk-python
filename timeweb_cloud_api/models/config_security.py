@@ -29,8 +29,9 @@ class ConfigSecurity(BaseModel):
     """
     redirect: Optional[Any] = Field(None, description="Перенаправлять запросы с HTTP на HTTPS.")
     certificate_id: Optional[Any] = Field(None, description="ID SSL-сертификата, который используется для доменов ресурса. `null` — отвязать сертификат.")
+    ssl_protocols: Optional[Any] = Field(None, description="Версии SSL/TLS, по которым CDN принимает HTTPS-подключения. `null` — принимать все версии.")
     secure_token: Optional[ConfigSecuritySecureToken] = None
-    __properties = ["redirect", "certificate_id", "secure_token"]
+    __properties = ["redirect", "certificate_id", "ssl_protocols", "secure_token"]
 
     class Config:
         """Pydantic configuration"""
@@ -69,6 +70,11 @@ class ConfigSecurity(BaseModel):
         if self.certificate_id is None and "certificate_id" in self.__fields_set__:
             _dict['certificate_id'] = None
 
+        # set to None if ssl_protocols (nullable) is None
+        # and __fields_set__ contains the field
+        if self.ssl_protocols is None and "ssl_protocols" in self.__fields_set__:
+            _dict['ssl_protocols'] = None
+
         return _dict
 
     @classmethod
@@ -83,6 +89,7 @@ class ConfigSecurity(BaseModel):
         _obj = ConfigSecurity.parse_obj({
             "redirect": obj.get("redirect"),
             "certificate_id": obj.get("certificate_id"),
+            "ssl_protocols": obj.get("ssl_protocols"),
             "secure_token": ConfigSecuritySecureToken.from_dict(obj.get("secure_token")) if obj.get("secure_token") is not None else None
         })
         return _obj

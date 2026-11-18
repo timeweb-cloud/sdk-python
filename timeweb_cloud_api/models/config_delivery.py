@@ -28,12 +28,13 @@ class ConfigDelivery(BaseModel):
     Настройки раздачи контента
     """
     http3: Optional[Any] = Field(None, description="Раздавать контент по HTTP/3 (QUIC).")
+    http2: Optional[Any] = Field(None, description="Раздавать контент по HTTP/2.")
     gzip: Optional[Any] = Field(None, description="Сжимать ответы алгоритмом gzip.")
     large_files: Optional[Any] = Field(None, description="Режим раздачи больших файлов.")
     slice_size: Optional[Any] = Field(None, description="Размер слайса в мегабайтах — файл забирается с источника и кэшируется частями такого размера. `null` — не использовать слайсинг.")
     image_optimization: Optional[Any] = Field(None, description="Оптимизировать изображения на лету.")
     packaging: Optional[ConfigDeliveryPackaging] = None
-    __properties = ["http3", "gzip", "large_files", "slice_size", "image_optimization", "packaging"]
+    __properties = ["http3", "http2", "gzip", "large_files", "slice_size", "image_optimization", "packaging"]
 
     class Config:
         """Pydantic configuration"""
@@ -66,6 +67,11 @@ class ConfigDelivery(BaseModel):
         # and __fields_set__ contains the field
         if self.http3 is None and "http3" in self.__fields_set__:
             _dict['http3'] = None
+
+        # set to None if http2 (nullable) is None
+        # and __fields_set__ contains the field
+        if self.http2 is None and "http2" in self.__fields_set__:
+            _dict['http2'] = None
 
         # set to None if gzip (nullable) is None
         # and __fields_set__ contains the field
@@ -100,6 +106,7 @@ class ConfigDelivery(BaseModel):
 
         _obj = ConfigDelivery.parse_obj({
             "http3": obj.get("http3"),
+            "http2": obj.get("http2"),
             "gzip": obj.get("gzip"),
             "large_files": obj.get("large_files"),
             "slice_size": obj.get("slice_size"),

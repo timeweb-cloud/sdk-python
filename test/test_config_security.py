@@ -41,6 +41,7 @@ class TestConfigSecurity(unittest.TestCase):
             return ConfigSecurity(
                 redirect = true, 
                 certificate_id = 5678, 
+                ssl_protocols = [TLSv1.2, TLSv1.3], 
                 secure_token = timeweb_cloud_api.models.config_security_secure_token.config_security_secure_token(
                     secret_key = s3cr3tKey0, 
                     restrict_by_ip = false, )

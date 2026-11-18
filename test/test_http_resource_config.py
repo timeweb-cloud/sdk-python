@@ -41,6 +41,7 @@ class TestHttpResourceConfig(unittest.TestCase):
             return HttpResourceConfig(
                 delivery = timeweb_cloud_api.models.config_delivery.config-delivery(
                     http3 = true, 
+                    http2 = true, 
                     gzip = true, 
                     large_files = false, 
                     slice_size = 10, 
@@ -68,6 +69,7 @@ class TestHttpResourceConfig(unittest.TestCase):
                 security = timeweb_cloud_api.models.config_security.config-security(
                     redirect = true, 
                     certificate_id = 5678, 
+                    ssl_protocols = [TLSv1.2, TLSv1.3], 
                     secure_token = timeweb_cloud_api.models.config_security_secure_token.config_security_secure_token(
                         secret_key = s3cr3tKey0, 
                         restrict_by_ip = false, ), ), 
